@@ -11,36 +11,7 @@ public class MainBtnEvt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//스크린화면해상도에맞춰조절,화면꺼지지않게
-		#region
-
-		float screenNum =(float)Screen.height/(float)Screen.width;
-		if (screenNum < 0.57f) {
-
-			Screen.SetResolution (Screen.width, Screen.width / 16 * 9, true);
-
-		} else if (screenNum >= 0.57f && screenNum < 0.62f) {
-
-			Screen.SetResolution (Screen.width, Screen.width / 5 * 3, true);
-
-		} else if (screenNum >= 0.62f && screenNum < 0.65f) {
-
-			Screen.SetResolution (Screen.width, Screen.width / 16 * 10, true);
-
-		} else if (screenNum >= 0.65f && screenNum < 0.7f) {
-
-			Screen.SetResolution (Screen.width, Screen.width / 3 * 2, true);
-
-		} else if (screenNum >= 0.7f) {
-
-			Screen.SetResolution (Screen.width, Screen.width / 4 * 3, true);
-
-		} else {
-			Screen.SetResolution (Screen.width, Screen.width / 3 * 2, true);
-		}
-
-		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		#endregion
+		setScreen ();
 		StartCoroutine ("testText");
 	}
 
@@ -89,6 +60,8 @@ public class MainBtnEvt : MonoBehaviour {
 		MainWindow_obj[2].SetActive(false);
 	}
 
+
+	//테스트텍스트
 	IEnumerator testText(){
 		test_str = "";
 		for (int i = 0; i < 3; i++) {
@@ -100,5 +73,39 @@ public class MainBtnEvt : MonoBehaviour {
 		test_txt.text = test_str;
 
 		yield return null;
+	}
+
+
+	void setScreen(){
+		//스크린화면해상도에맞춰조절,화면꺼지지않게
+		#region
+
+		float screenNum =(float)Screen.height/(float)Screen.width;
+		if (screenNum < 0.57f) {
+
+			Screen.SetResolution (Screen.width, Screen.width / 16 * 9, true);
+
+		} else if (screenNum >= 0.57f && screenNum < 0.62f) {
+
+			Screen.SetResolution (Screen.width, Screen.width / 5 * 3, true);
+
+		} else if (screenNum >= 0.62f && screenNum < 0.65f) {
+
+			Screen.SetResolution (Screen.width, Screen.width / 16 * 10, true);
+
+		} else if (screenNum >= 0.65f && screenNum < 0.7f) {
+
+			Screen.SetResolution (Screen.width, Screen.width / 3 * 2, true);
+
+		} else if (screenNum >= 0.7f) {
+
+			Screen.SetResolution (Screen.width, Screen.width / 4 * 3, true);
+
+		} else {
+			Screen.SetResolution (Screen.width, Screen.width / 3 * 2, true);
+		}
+
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+		#endregion
 	}
 }

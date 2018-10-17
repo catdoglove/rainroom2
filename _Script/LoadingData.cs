@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class LoadingData : MonoBehaviour {
 
-	public GameObject canvas_obj;
-	public Camera camera;
+
+	public Camera camera_c;
 	public GameObject GM;
 	public int progress_i=0;
 
@@ -19,7 +19,7 @@ public class LoadingData : MonoBehaviour {
 
 
 	public void setCam(){
-		camera = GM.GetComponent<DataHandler> ().Main_camera;
+		camera_c = GM.GetComponent<DataHandler> ().Main_camera;
 
 	}
 }

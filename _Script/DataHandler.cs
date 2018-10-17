@@ -8,10 +8,11 @@ public class DataHandler : MonoBehaviour {
 	public GameObject canvas_obj;
 
 	void Awake(){
-		canvas_obj = GameObject.Find ("Maincanvas");
+		canvas_obj = GameObject.Find ("MainCanvas");
 	}
 	// Use this for initialization
 	void Start () {
+		
 		canvas_obj.GetComponent<Canvas>().worldCamera = Main_camera;
 	}
 	
