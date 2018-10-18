@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MainBtnEvt : MonoBehaviour {
+public class MainBtnEvt : CavasData {
 
 	public GameObject[] MainBtn_obj;
 	public GameObject[] MainWindow_obj;
@@ -13,7 +13,27 @@ public class MainBtnEvt : MonoBehaviour {
 	void Start () {
 		setScreen ();
 		StartCoroutine ("testText");
+
 	}
+
+	public void changeSight(){
+		if (canvasPack_cvs [0].activeSelf == true) {
+			for (int i = 3; i < 6; i++) {
+				canvasPack_cvs [i].SetActive (true);
+			}
+			for (int i = 0; i < 3; i++) {
+				canvasPack_cvs [i].SetActive (false);
+			}
+		} else {
+			for (int i = 3; i < 6; i++) {
+				canvasPack_cvs [i].SetActive (false);
+			}
+			for (int i = 0; i < 3; i++) {
+				canvasPack_cvs [i].SetActive (true);
+			}
+		}
+	}
+
 
 	public void showButtons(){
 		allClose ();
@@ -61,12 +81,11 @@ public class MainBtnEvt : MonoBehaviour {
 	}
 
 
+
+
 	//테스트텍스트
 	IEnumerator testText(){
 		test_str = "";
-		for (int i = 0; i < 3; i++) {
-			test_str = test_str + "MainBtn_obj [i]:" + MainBtn_obj [i].ToString ();
-		}
 
 		test_str = test_str + "MainWindow_obj [0]:" + MainWindow_obj [0].ToString ();
 
