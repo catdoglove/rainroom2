@@ -10,7 +10,7 @@ public class MainTimeHandler : MonoBehaviour {
 	//비상점텍스트
 	public Text rainNum;
 	//시간
-	public static int talk;
+	public int talk;
 	public Text talkTime_txt,talkNum,heartNum;
 	string lastTime;
 

@@ -7,7 +7,7 @@ public class MainShop : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//GM.GetComponent<LoadingData> ().bedPrice_i;
+		//GM.GetComponent<LoadingData> ().;
 		
 	}
 	
