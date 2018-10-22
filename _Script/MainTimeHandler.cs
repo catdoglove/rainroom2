@@ -15,16 +15,18 @@ public class MainTimeHandler : MonoBehaviour {
 	string lastTime;
 
 	//대화시간
-	public Text talkTime;
+
 
 	// Use this for initialization
 	void Start () {
 		//빗물
 		//collectRain ();
 		//대화
-		//StartCoroutine ("talkTimeFlow");
+		StartCoroutine ("talkTimeFlow");
 		
 	}
+
+
 
 
 	void collectRain(){
@@ -77,38 +79,45 @@ public class MainTimeHandler : MonoBehaviour {
 	IEnumerator talkTimeFlow(){
 		int minute;
 		int sec;
-		talk = PlayerPrefs.GetInt ("talk", 5);
+		int a = 0;
+		while (a == 0) {
+			talk = PlayerPrefs.GetInt ("talk", 5);
 
-		lastTime = PlayerPrefs.GetString("TalkLastTime",System.DateTime.Now.ToString());
-		System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
-		System.TimeSpan compareTime =  System.DateTime.Now - lastDateTime;
-		minute = (int)compareTime .TotalMinutes;
-		sec= (int)compareTime .TotalSeconds;
-		sec = sec-(sec / 60)*60;
-		sec = 59 - sec;
-		minute =  4- minute;
+			lastTime = PlayerPrefs.GetString ("TalkLastTime", System.DateTime.Now.ToString ());
+			System.DateTime lastDateTime = System.DateTime.Parse (lastTime);
+			System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+			minute = (int)compareTime.TotalMinutes;
+			sec = (int)compareTime.TotalSeconds;
+			sec = sec - (sec / 60) * 60;
+			sec = 59 - sec;
+			minute = 1 - minute;
 
-		if (minute < 0) {
-			while (minute < 0) {
-				minute = minute + 4;
-				sec = sec + 59;
-				talk++;
+
+			if (minute < 0) {
+				while (minute < 0) {
+					minute = minute + 1;
+					sec = sec + 59;
+					talk++;
+				}
+				PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
+				talkTime_txt.text = "01:59";
+			} else {
+				string str = string.Format (@"{0:00}" + ":", minute) + string.Format (@"{0:00}", sec);
+				talkTime_txt.text = "" + str;
 			}
-			PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
-		}
-			string str= string.Format(@"{0:00}"+":",minute)+string.Format(@"{0:00}",sec);
-			talkTime.text = str;
-			talkNum.text = talk.ToString();
-		if (talk >= 5) {
-			talkTime.text = "00:00";
-			talk = 5;
-			talkNum.text = talk.ToString();
-			PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
-		} 
-		PlayerPrefs.SetInt ("talk", talk);
-		PlayerPrefs.Save ();
 
-		yield return null;
+			talkNum.text = talk.ToString ();
+			if (talk >= 5) {
+				talkTime_txt.text = "00:00";
+				talk = 5;
+				talkNum.text = talk.ToString ();
+				PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
+			} 
+			PlayerPrefs.SetInt ("talk", talk);
+			PlayerPrefs.Save ();
+		
+			yield return new WaitForSeconds(0.1f);
+		}
 	}
 	
 

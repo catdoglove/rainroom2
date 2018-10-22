@@ -127,4 +127,16 @@ public class MainBtnEvt : CavasData {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		#endregion
 	}
+
+
+	public void talkTest(){
+		int talk = PlayerPrefs.GetInt ("talk", 5);
+		if (talk <= 0) {
+			talk = 0;
+		} else {
+			talk--;
+		}
+		PlayerPrefs.SetInt("talk",talk);
+		PlayerPrefs.Save ();
+	}
 }
