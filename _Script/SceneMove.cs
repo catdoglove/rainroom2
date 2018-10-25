@@ -19,8 +19,22 @@ public class SceneMove : MonoBehaviour {
 
 	}
 
+	IEnumerator Load2()
+	{
+		async = SceneManager.LoadSceneAsync("Main");
+		while (!async.isDone)
+		{
+			yield return true;
+		}
+
+	}
+
 	public void moveDown(){
 		StartCoroutine(Load());
+	}
+
+	public void moveUp(){
+		StartCoroutine(Load2());
 	}
 
 

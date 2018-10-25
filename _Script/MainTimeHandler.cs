@@ -14,7 +14,7 @@ public class MainTimeHandler : MonoBehaviour {
 	public Text talkTime_txt,talkNum,heartNum;
 	string lastTime;
 
-	//대화시간
+
 
 
 	// Use this for initialization
@@ -82,7 +82,6 @@ public class MainTimeHandler : MonoBehaviour {
 		int a = 0;
 		while (a == 0) {
 			talk = PlayerPrefs.GetInt ("talk", 5);
-
 			lastTime = PlayerPrefs.GetString ("TalkLastTime", System.DateTime.Now.ToString ());
 			System.DateTime lastDateTime = System.DateTime.Parse (lastTime);
 			System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
@@ -91,8 +90,6 @@ public class MainTimeHandler : MonoBehaviour {
 			sec = sec - (sec / 60) * 60;
 			sec = 59 - sec;
 			minute = 1 - minute;
-
-
 			if (minute < 0) {
 				while (minute < 0) {
 					minute = minute + 1;
@@ -119,6 +116,7 @@ public class MainTimeHandler : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 		}
 	}
-	
+
+
 
 }

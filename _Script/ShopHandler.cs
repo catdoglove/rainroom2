@@ -10,7 +10,7 @@ public class ShopHandler : CommonDate {
 	public string itemName_str;
 
 
-	void setIndex0(){
+	public void setIndex0(){
 		itemIndex_i = 0;
 	}
 	void setIndex1(){
