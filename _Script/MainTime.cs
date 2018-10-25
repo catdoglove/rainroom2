@@ -20,11 +20,13 @@ public class MainTime : MonoBehaviour {
 		int a = 0;
 		while (a == 0) {
 			if (randDust1_i == 1) {
+				StopCoroutine ("goDust1");
 				StartCoroutine ("goDust1");
 			} else {
 				randDust1_i = Random.Range (0, 30);
 			}
 			if (randDust2_i == 1) {
+				StopCoroutine ("goDust2");
 				StartCoroutine ("goDust2");
 			} else {
 				randDust2_i = Random.Range (0, 30);
@@ -42,7 +44,7 @@ public class MainTime : MonoBehaviour {
 
 	IEnumerator goDust1(){
 		while (randDust1_i == 1) {
-			moveX1 = moveX1 + 0.01f;
+			moveX1 = moveX1 + 0.05f;
 			if (moveX1 >= 9.4) {
 				moveX1 = -9.4f;
 				randDust1_i = 0;
@@ -54,7 +56,7 @@ public class MainTime : MonoBehaviour {
 
 	IEnumerator goDust2(){
 		while (randDust2_i == 1) {
-			moveX2 = moveX2 - 0.01f;
+			moveX2 = moveX2 - 0.05f;
 			if (moveX2 <= -9.4) {
 				moveX2 = 9.4f;
 				randDust2_i = 0;

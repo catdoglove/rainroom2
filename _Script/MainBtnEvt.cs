@@ -9,7 +9,7 @@ public class MainBtnEvt : CommonDate {
 	public Text test_txt;
 	public string test_str;
 
-	public GameObject boxClean_obj;
+
 
 
 	// Use this for initialization
@@ -211,32 +211,5 @@ public class MainBtnEvt : CommonDate {
 		PlayerPrefs.Save ();
 	}
 
-	public void boxOpen(){
-		boxClean_obj.SetActive (true);
-	}
 
-	public void boxYes(){
-
-		string str1;
-		str1 = PlayerPrefs.GetString ("code", "");
-		coldRain_i = PlayerPrefs.GetInt (str1+"c", 0);
-		hotRain_i = PlayerPrefs.GetInt (str1+"h", 0);
-
-		if (coldRain_i >= 50 && hotRain_i >= 25) {
-			
-			coldRain_i = coldRain_i - 50;
-			PlayerPrefs.SetInt (str1 + "c", coldRain_i);
-
-			hotRain_i = hotRain_i - 25;
-			PlayerPrefs.SetInt (str1 + "h", hotRain_i);
-
-		} else {
-			
-		}
-		
-	}
-
-	public void boxNo(){
-		boxClean_obj.SetActive (false);
-	}
 }
