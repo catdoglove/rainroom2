@@ -377,9 +377,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1397473731}
+  - component: {fileID: 1397473733}
+  - component: {fileID: 1397473732}
   m_Layer: 0
   m_Name: MainGM
-  m_TagString: Untagged
+  m_TagString: MGMtag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,6 +399,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1397473732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1397473730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db284b2223aefb648b9322975d38200d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1397473733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1397473730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cc377443035c54e98c3947e84a7ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window_spr: []
+  book_spr: []
+  bed_spr: []
+  desk_spr: []
+  flower_spr: []
+  icebox_spr: []
+  wall_spr: []
+  drawer_spr: []
+  poster_spr: []
+  rug_spr: []
+  clock_spr: []
+  stand_spr: []
+  tapestry_spr: []
+  umbrella_spr: []
+  mat_spr: []
+  closet_spr: []
+  shelf_spr: []
+  drawing_spr: []
+  flowerpot_spr: []
+  gasrange_spr: []
+  waterPurifiler_spr: []
+  light_spr: []
 --- !u!1 &1613157360
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +531,7 @@ RectTransform:
   m_GameObject: {fileID: 1835949031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.022222223, y: 0.022222223, z: 0.022222223}
+  m_LocalScale: {x: 0.022207083, y: 0.022207083, z: 0.022207083}
   m_Children:
   - {fileID: 702363793}
   - {fileID: 605100924}
