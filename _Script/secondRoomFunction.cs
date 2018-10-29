@@ -9,6 +9,7 @@ public class secondRoomFunction : CavasData {
 
 	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i,flower_i,light_i,umbrella_i;
 	public GameObject bookImg_obj,windowImg_obj,gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj,flowerImg_obj,lightImg_obj,umbrellaImg_obj;
+
 	
 
 	// Use this for initialization
