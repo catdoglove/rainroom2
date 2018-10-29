@@ -19,7 +19,7 @@ public class FirstRoomFunction : CavasData {
 	void Start () {
 
 		//로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
-		GMNotdistroy = GameObject.FindGameObjectWithTag ("MGMtag");
+		GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
 
 
 		//방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
@@ -44,7 +44,7 @@ public class FirstRoomFunction : CavasData {
 		rugImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().rug_spr [rug_i];
 		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
 		tapestryImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
-		posterImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().poster_spr [poster_i];
+		standImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().stand_spr [stand_i];
 
 		*/
 
