@@ -5,6 +5,10 @@ using UnityEngine;
 public class secondRoomFunction : CavasData {
 
 	public GameObject GMNotdistroy;
+
+
+	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i,flower_i,light_i,umbrella_i;
+	public GameObject;
 	
 
 	// Use this for initialization

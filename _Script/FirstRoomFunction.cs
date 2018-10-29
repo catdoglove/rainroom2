@@ -12,23 +12,28 @@ public class FirstRoomFunction : CavasData {
 	public GameObject GMNotdistroy;
 
 
-	public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i;
-	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj;
+	public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i;
+	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj;
 
 	// Use this for initialization
 	void Start () {
+
+		//로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
 		GMNotdistroy = GameObject.FindGameObjectWithTag ("MGMtag");
+
+
+		//방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
+
 		/*
 		window_i = PlayerPrefs.GetInt ("window", 0);
-
-		PlayerPrefs.GetInt ("book",0);
-		PlayerPrefs.GetInt ("bed",0);
-		PlayerPrefs.GetInt ("rug",0);
+		book_i = PlayerPrefs.GetInt ("book",0);
+		bed_i = PlayerPrefs.GetInt ("bed",0);
+		rug_i = PlayerPrefs.GetInt ("rug",0);
 		PlayerPrefs.GetInt ("bookbox",0);
-		PlayerPrefs.GetInt ("poster",0);
-		PlayerPrefs.GetInt ("desk",0);
-		PlayerPrefs.GetInt ("tapestry",0);
-		PlayerPrefs.GetInt ("stand",0);
+		poster_i = PlayerPrefs.GetInt ("poster",0);
+		desk_i = PlayerPrefs.GetInt ("desk",0);
+		tapestry_i = PlayerPrefs.GetInt ("tapestry",0);
+		stand_i = PlayerPrefs.GetInt ("stand",0);
 
 
 		windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
@@ -36,7 +41,11 @@ public class FirstRoomFunction : CavasData {
 		bedImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().bed_spr [bed_i];
 		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
 		standImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().stand_spr [stand_i];
+		rugImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().rug_spr [rug_i];
+		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
 		tapestryImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
+		posterImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().poster_spr [poster_i];
+
 		*/
 
 

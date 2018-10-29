@@ -25,7 +25,7 @@ public class LoadingData : LodingDataBase {
 		tapestry_spr = Resources.LoadAll<Sprite> ("");
 		umbrella_spr = Resources.LoadAll<Sprite> ("");
 		mat_spr = Resources.LoadAll<Sprite> ("");
-		closet_spr = Resources.LoadAll<Sprite> ("");
+		cabinet_spr = Resources.LoadAll<Sprite> ("");
 		poster_spr = Resources.LoadAll<Sprite> ("");
 		drawer_spr = Resources.LoadAll<Sprite> ("");
 	}
