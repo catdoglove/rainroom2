@@ -15,6 +15,7 @@ public class FirstRoomFunction : CavasData {
 	public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i;
 	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj;
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -95,5 +96,6 @@ public class FirstRoomFunction : CavasData {
 		boxClean_obj.SetActive (false);
 	}
 
+    
 
 }
