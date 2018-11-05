@@ -7,8 +7,9 @@ public class ShopHandler : CommonDate {
 
 	public GameObject[] shopItems_btn;
 	public int itemIndex_i, itemLevel_i;
-	public string itemName_str;
+    public int coldRainPrice_i, hotRainPrice_i;
 
+    public string itemName_str;
 
 	public void setIndex0(){
 		itemIndex_i = 0;
@@ -52,8 +53,10 @@ public class ShopHandler : CommonDate {
 		itemName_str = shopItems_btn [itemIndex_i].name;
 		itemLevel_i = PlayerPrefs.GetInt (itemName_str, 0);
 
-		//딕셔너리로2차열하기
-	}
-	
+        //딕셔너리로2차열하기
+        //GM.GetComponent<LoadingData> ().;
+
+    }
+
 
 }

@@ -6,8 +6,10 @@ public class MainTime : MonoBehaviour {
 
 	//이동
 	public float moveX1,moveX2,moveY;
+    public float spiX, spiY;
 	public int randDust1_i,randDust2_i,randSpider_i;
-	public GameObject dust1_obj, dust2_obj;
+	public GameObject dust1_obj, dust2_obj, spider_obj;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -32,10 +34,14 @@ public class MainTime : MonoBehaviour {
 				randDust2_i = Random.Range (0, 30);
 			}
 			if (randSpider_i == 1) {
+                spider_obj.transform.position = new Vector3(spiX, spider_obj.transform.position.y, spider_obj.transform.position.z);
 
 			} else {
-				//randSpider_i = Random.Range (0, 20);
+				randSpider_i = Random.Range (0, 4);
+                spiX = Random.Range(-9, 9);
 			}
+
+            
 
 			yield return new WaitForSeconds(1f);
 		}
