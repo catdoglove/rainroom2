@@ -28,14 +28,30 @@ public class MainShop : ShopHandler {
 	}
 
     public void ShopChageImage() {
+        string str = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
         if (coldRain_i >= coldRainPrice_i) {
+            if (hotRain_i >= hotRainPrice_i)
+            {
+                coldRain_i = coldRain_i - coldRainPrice_i;
+                PlayerPrefs.SetInt(str + "c", coldRain_i);
 
+                hotRain_i = hotRain_i - hotRainPrice_i;
+                PlayerPrefs.SetInt(str + "h", hotRain_i);
+
+                PlayerPrefs.Save();
+            }
+            else
+            {
+                //따듯한물부족
+            }
         }
-
-        if (hotRain_i >= hotRainPrice_i)
+        else
         {
-
+            //빗물부족
         }
+
 
 
 

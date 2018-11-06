@@ -11,10 +11,17 @@ public class FirstRoomFunction : CavasData {
 
 	public GameObject GMNotdistroy;
 
+    //하트
+    public int heart_i;
 
-	public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i;
+
+    public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i;
 	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj;
 
+    public GameObject moreCoinWindow_obj;
+
+    public int bookBox_i;
+    public GameObject bookBox_obj;
 
 	// Use this for initialization
 	void Start () {
@@ -23,9 +30,9 @@ public class FirstRoomFunction : CavasData {
 		GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
 
 
-		//방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
+        //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 
-		/*
+        /*
 		window_i = PlayerPrefs.GetInt ("window", 0);
 		book_i = PlayerPrefs.GetInt ("book",0);
 		bed_i = PlayerPrefs.GetInt ("bed",0);
@@ -35,6 +42,17 @@ public class FirstRoomFunction : CavasData {
 		desk_i = PlayerPrefs.GetInt ("desk",0);
 		tapestry_i = PlayerPrefs.GetInt ("tapestry",0);
 		stand_i = PlayerPrefs.GetInt ("stand",0);
+
+        bookBox_i = PlayerPrefs.GetInt ("bookbox",0);
+        if (bookBox_i == 0)
+        {
+            bookBox_obj.SetActive(true);
+        }
+        else
+        {
+            bookBox_obj.SetActive(false);
+        }
+        
 
 
 		windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
@@ -50,10 +68,10 @@ public class FirstRoomFunction : CavasData {
 		*/
 
 
-	}
+    }
 
-
-	public void openBeadal(){
+    //전단지열기
+    public void openBeadal(){
 		
 		if (beadalWindow_obj.activeSelf == true) {
 			beadalWindow_obj.SetActive (false);
@@ -61,6 +79,26 @@ public class FirstRoomFunction : CavasData {
 			beadalWindow_obj.SetActive (true);
 		}
 	}
+
+    //배달시키기
+    public void BuyFood1() {
+        //호감도 10~20상승
+        //하트가격4~8
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i >= 4)
+        {
+            heart_i = heart_i - 4;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+        }
+        else
+        {
+            //돈부족함
+        }
+    }
+
+
 	public void closeBeadal(){
 		beadalWindow_obj.SetActive (false);
 	}

@@ -23,7 +23,8 @@ public class MainTimeHandler : MonoBehaviour {
 		//collectRain ();
 		//대화
 		StartCoroutine ("talkTimeFlow");
-		
+        //이부분은 생성될때 한번만 실행된다
+        //돈디스트로이로 씬을 넘어가도 다시 실행되지 않는다
 	}
 
 
