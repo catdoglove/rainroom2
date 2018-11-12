@@ -48,7 +48,7 @@ public class ShopHandler : CommonDate {
 		itemIndex_i = 11;
 	}
 
-	void callShopButtonName(){
+	public void callShopButtonName(){
 
 		itemName_str = shopItems_btn [itemIndex_i].name;
 		itemLevel_i = PlayerPrefs.GetInt (itemName_str, 0);
