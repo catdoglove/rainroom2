@@ -16,8 +16,8 @@ public class MainShop : ShopHandler {
     // Use this for initialization
     void Start () {
         //GM.GetComponent<LoadingData> ().;
-        //data_cPrice = CSVReader.Read("");
-        //data_hPrice = CSVReader.Read("");
+        data_cPrice = CSVReader.Read("f_coldrain");
+        data_hPrice = CSVReader.Read("f_hotrain");
     }
 
     public void ShopCoinLoad(){

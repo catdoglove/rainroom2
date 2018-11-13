@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class secondRoomFunction : CavasData {
 
@@ -12,7 +13,9 @@ public class secondRoomFunction : CavasData {
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
+    public Text WaterPurifilerH_txt, WaterPurifilerC_txt;
 
+    public GameObject needhRain_obj, needcRain_obj;
     // Use this for initialization
     void Start () {
 		//GM을 찾아불러온 데이터들 가져오기
@@ -52,7 +55,9 @@ public class secondRoomFunction : CavasData {
 	}
 
 
-
+    /// <summary>
+    /// 정수기로 찬물 따듯한물을 바꿔준다
+    /// </summary>
     public void OpenWaterPurifiler()
     {
         if (WaterPurifilerWindow_obj.activeSelf == true)
@@ -62,6 +67,12 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
+            string str1;
+            str1 = PlayerPrefs.GetString("code", "");
+            coldRain_i = PlayerPrefs.GetInt(str1 + "c", 0);
+            hotRain_i = PlayerPrefs.GetInt(str1 + "h", 0);
+            WaterPurifilerC_txt.text = "" + coldRain_i;
+            WaterPurifilerH_txt.text = "" + hotRain_i;
             WaterPurifilerWindow_obj.SetActive(true);
         }
     }
@@ -84,10 +95,16 @@ public class secondRoomFunction : CavasData {
         {
             coldRain_i = coldRain_i - 400;
             hotRain_i = hotRain_i + 10;
+            PlayerPrefs.SetInt(str1 + "c", coldRain_i);
+            PlayerPrefs.SetInt(str1 + "h", hotRain_i);
+            PlayerPrefs.Save();
         }
-        PlayerPrefs.SetInt(str1 + "c", coldRain_i);
-        PlayerPrefs.SetInt(str1 + "h", hotRain_i);
-        PlayerPrefs.Save();
+        else
+        {
+            //찬물부족
+            needcRain_obj.SetActive(true);
+        }
+       
     }
 
     public void HotToColdYes()
@@ -100,16 +117,29 @@ public class secondRoomFunction : CavasData {
         {
             coldRain_i = coldRain_i + 200;
             hotRain_i = hotRain_i - 20;
+            PlayerPrefs.SetInt(str1 + "c", coldRain_i);
+            PlayerPrefs.SetInt(str1 + "h", hotRain_i);
+            PlayerPrefs.Save();
         }
-        PlayerPrefs.SetInt(str1 + "c", coldRain_i);
-        PlayerPrefs.SetInt(str1 + "h", hotRain_i);
-        PlayerPrefs.Save();
+        else
+        {
+            //따듯한물부족
+            needhRain_obj.SetActive(true);
+        }
+        
     }
 
     public void CloseWaterYN()
     {
         coldToHot_obj.SetActive(false);
         hotToCold_obj.SetActive(false);
+    }
+
+    public void needClose()
+    {
+        needcRain_obj.SetActive(false);
+        needhRain_obj.SetActive(false);
+
     }
 
 

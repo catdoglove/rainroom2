@@ -6,21 +6,40 @@ using UnityEngine.UI;
 public class SoundHandler : MonoBehaviour {
 
     public Slider BGM_sld, SE_sld, BGS_sld;
-    public AudioSource BGM,BSG,SE;
-    float BGMVol_f = 1f;
+    public AudioSource BGM,BGS,SE;
+    float BGMVol_f, BGSVol_f, SEVol_f;
+
+    public GameObject audio_obj; 
 
 	// Use this for initialization
 	void Start () {
+
+        audio_obj = GameObject.Find("AudioSound");
+        SE = audio_obj.GetComponent<AudioSource>();
+        audio_obj = GameObject.Find("BackSound");
+        BGS = audio_obj.GetComponent<AudioSource>();
+        audio_obj = GameObject.Find("BackMusic");
+        BGM = audio_obj.GetComponent<AudioSource>();
+
+
         BGMVol_f = PlayerPrefs.GetFloat("bgm",1f);
         BGM_sld.value = BGMVol_f;
         BGM.volume = BGM_sld.value;
-        Debug.Log("1234");
+
+        BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
+        BGS_sld.value = BGSVol_f;
+        BGS.volume = BGS_sld.value;
+
+        SEVol_f = PlayerPrefs.GetFloat("se", 1f);
+        SE_sld.value = SEVol_f;
+        SE.volume = SE_sld.value;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        BGMSlider();
-
+        //BGMSlider();
+        SESlider();
+        BGSSlider();
     }
 
     public void BGMSlider()
@@ -28,5 +47,17 @@ public class SoundHandler : MonoBehaviour {
         BGM.volume = BGM_sld.value;
         BGMVol_f = BGM_sld.value;
         PlayerPrefs.SetFloat("bgm", BGMVol_f);
+    }
+    public void BGSSlider()
+    {
+        BGS.volume = BGS_sld.value;
+        BGSVol_f = BGS_sld.value;
+        PlayerPrefs.SetFloat("bgs", BGSVol_f);
+    }
+    public void SESlider()
+    {
+        SE.volume = SE_sld.value;
+        SEVol_f = SE_sld.value;
+        PlayerPrefs.SetFloat("se", SEVol_f);
     }
 }

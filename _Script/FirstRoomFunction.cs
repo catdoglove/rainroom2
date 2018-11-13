@@ -121,13 +121,17 @@ public class FirstRoomFunction : CavasData {
 			hotRain_i = hotRain_i - 25;
 			PlayerPrefs.SetInt (str1 + "h", hotRain_i);
 
-			//스위치케이스문으로읽어온박스넘버를보고저장해줘서치운박스를구분함
-			//박스는처음에는없는걸로하고안치운박스면만들어주는걸로해서오류나도
-			//박스가보이는일은없게하자
+            //스위치케이스문으로읽어온박스넘버를보고저장해줘서치운박스를구분함
+            //박스는처음에는없는걸로하고안치운박스면만들어주는걸로해서오류나도
+            //박스가보이는일은없게하자
+            //그냥함수를다만들어주자
 
-			PlayerPrefs.Save ();
+            //PlayerPrefs.SetInt("bedbox", 1);
+            //PlayerPrefs.SetInt("bookbox", 1);
+
+            PlayerPrefs.Save ();
 		} else {
-
+            //돈부족
 		}
 	}
 	public void boxNo(){
