@@ -33,15 +33,15 @@ public class FirstRoomFunction : CavasData {
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 
         /*
-		window_i = PlayerPrefs.GetInt ("window", 0);
-		book_i = PlayerPrefs.GetInt ("book",0);
-		bed_i = PlayerPrefs.GetInt ("bed",0);
-		rug_i = PlayerPrefs.GetInt ("rug",0);
-		PlayerPrefs.GetInt ("bookbox",0);
-		poster_i = PlayerPrefs.GetInt ("poster",0);
-		desk_i = PlayerPrefs.GetInt ("desk",0);
-		tapestry_i = PlayerPrefs.GetInt ("tapestry",0);
-		stand_i = PlayerPrefs.GetInt ("stand",0);
+		window_i = PlayerPrefs.GetInt ("windowlv", 0);
+		book_i = PlayerPrefs.GetInt ("booklv",0);
+		bed_i = PlayerPrefs.GetInt ("bedlv",0);
+		rug_i = PlayerPrefs.GetInt ("ruglv",0);
+		
+		poster_i = PlayerPrefs.GetInt ("posterlv",0);
+		desk_i = PlayerPrefs.GetInt ("desklv",0);
+		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
+		stand_i = PlayerPrefs.GetInt ("standlv",0);
 
         bookBox_i = PlayerPrefs.GetInt ("bookbox",0);
         if (bookBox_i == 0)

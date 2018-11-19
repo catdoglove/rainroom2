@@ -283,7 +283,9 @@ public class TalkEvt : MonoBehaviour {
 
         loveLv_obj.text = loveLv + "- 레벨 및 대화셀";
         loveExp_obj.text = loveExp + "- 경험치";
-
+        PlayerPrefs.SetInt("lovepoint", loveExp);
+        PlayerPrefs.SetInt("lovelv", loveLv);
+        PlayerPrefs.Save();
 
     }
 

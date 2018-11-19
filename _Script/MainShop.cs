@@ -16,8 +16,8 @@ public class MainShop : ShopHandler {
     // Use this for initialization
     void Start () {
         //GM.GetComponent<LoadingData> ().;
-        data_cPrice = CSVReader.Read("f_coldrain");
-        data_hPrice = CSVReader.Read("f_hotrain");
+        //data_cPrice = CSVReader.Read("Price/f_coldrain");
+        //data_hPrice = CSVReader.Read("Price/f_hotrain");
     }
 
     public void ShopCoinLoad(){
@@ -89,33 +89,43 @@ public class MainShop : ShopHandler {
                 break;
 
             case 1:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 2:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 3:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 4:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 5:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 6:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 7:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 8:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 10:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 11:
+                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
         }
 

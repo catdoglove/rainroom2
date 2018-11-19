@@ -1,17 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainInfo : MonoBehaviour {
 
 	public GameObject infoWindow_obj,infoBackWindow_obj;
 	Vector3 rect_scl,backRect_scl;
 
+    public Slider love_sld;
+    public int love_i = 0;
+    public int loveLv_i = 0;
+
 	int turnCk_i;
+
+
+    public string[] sticker_str;
+    public GameObject[] sticker_obj;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+        //호감도
+        love_i = PlayerPrefs.GetInt("lovepoint", 0);
+        //호감레벨
+        loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
+    }
+
+   public void infoShow()
+    {
+        //호감도
+        love_i = PlayerPrefs.GetInt("lovepoint", 0);
+        //호감레벨
+        loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
+        love_sld.value = love_i;
+
+        //업적스티커창
+        /*
+        for(int i = 0; i < 10; i++)
+        {
+            if (PlayerPrefs.GetInt(sticker_str[i], 0) == 1)
+            {
+                sticker_obj[i].SetActive(true);
+            }
+        }
+        */
+    }
 
 	public void infoWindowTurn(){
 		StopCoroutine ("backTurning2");
@@ -44,11 +78,12 @@ public class MainInfo : MonoBehaviour {
 	IEnumerator backTurning(){
 		backRect_scl = infoBackWindow_obj.transform.localScale;
 
-			while (backRect_scl.x <= 1f) {
-				backRect_scl.x=backRect_scl.x+0.1f;
-				infoBackWindow_obj.transform.localScale = backRect_scl;
-				yield return null;
-			}
+        while (backRect_scl.x <= 1f)
+        {
+            backRect_scl.x = backRect_scl.x + 0.1f;
+            infoBackWindow_obj.transform.localScale = backRect_scl;
+            yield return null;
+        }
 	}
 
 
