@@ -15,8 +15,7 @@ public class MainInfo : MonoBehaviour {
 	int turnCk_i;
 
 
-    public string[] sticker_str;
-    public GameObject[] sticker_obj;
+
 
 	// Use this for initialization
 	void Start () {
@@ -35,16 +34,7 @@ public class MainInfo : MonoBehaviour {
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         love_sld.value = love_i;
 
-        //업적스티커창
-        /*
-        for(int i = 0; i < 10; i++)
-        {
-            if (PlayerPrefs.GetInt(sticker_str[i], 0) == 1)
-            {
-                sticker_obj[i].SetActive(true);
-            }
-        }
-        */
+        
     }
 
 	public void infoWindowTurn(){
