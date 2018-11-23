@@ -25,6 +25,9 @@ public class TouchSpider : MonoBehaviour {
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.Save();
+
+        //돈+표시
+        GM.GetComponent<GetFadeout>().getRainFade();
     }
     
 }

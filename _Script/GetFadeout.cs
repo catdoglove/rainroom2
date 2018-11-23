@@ -12,6 +12,7 @@ public class GetFadeout : MonoBehaviour {
 
     public GameObject fade_obj;
 
+
     // Use this for initialization
     void Start () {
 
