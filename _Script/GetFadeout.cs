@@ -8,8 +8,7 @@ public class GetFadeout : MonoBehaviour {
 
     Vector2 pos;
     public Vector2 wldObjectPos;
-
-    public GameObject 
+    
     // Use this for initialization
     void Start () {
 
