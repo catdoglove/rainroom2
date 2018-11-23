@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class MainInfo : MonoBehaviour {
 
 	public GameObject infoWindow_obj,infoBackWindow_obj;
+    public GameObject face_obj;
+    public Sprite[] face_spr;
+
 	Vector3 rect_scl,backRect_scl;
 
     public Slider love_sld;
@@ -15,6 +18,8 @@ public class MainInfo : MonoBehaviour {
 	int turnCk_i;
 
 
+    public GameObject[] checkImg_obj;
+    public Text[] checkList_txt;
 
 
 	// Use this for initialization
@@ -30,9 +35,11 @@ public class MainInfo : MonoBehaviour {
     {
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
+        love_sld.value = love_i;
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
-        love_sld.value = love_i;
+        //face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
+
 
         
     }
@@ -50,6 +57,37 @@ public class MainInfo : MonoBehaviour {
 		StopCoroutine ("turning");
 		StartCoroutine ("backTurning2");
 	}
+
+    void InfoCheckList()
+    {
+
+        switch (loveLv_i)
+        {
+            case 0:
+
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+        }
+    }
 
 
 	IEnumerator turning(){

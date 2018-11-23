@@ -13,30 +13,18 @@ public class SoundHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
 
-        audio_obj = GameObject.Find("AudioSound");
-        SE = audio_obj.GetComponent<AudioSource>();
-        audio_obj = GameObject.Find("BackSound");
-        BGS = audio_obj.GetComponent<AudioSource>();
-        audio_obj = GameObject.Find("BackMusic");
-        BGM = audio_obj.GetComponent<AudioSource>();
-
-
-        BGMVol_f = PlayerPrefs.GetFloat("bgm",1f);
-        BGM_sld.value = BGMVol_f;
-        BGM.volume = BGM_sld.value;
-
-        BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
-        BGS_sld.value = BGSVol_f;
-        BGS.volume = BGS_sld.value;
-
-        SEVol_f = PlayerPrefs.GetFloat("se", 1f);
-        SE_sld.value = SEVol_f;
-        SE.volume = SE_sld.value;
     }
 	
-	// Update is called once per frame
-	void Update () {
+    
+
+
+    // Update is called once per frame
+    void Update () {
+        if (audio_obj==null) {
+            OnLoadSound();
+        }
         //BGMSlider();
         SESlider();
         BGSSlider();
@@ -59,5 +47,28 @@ public class SoundHandler : MonoBehaviour {
         SE.volume = SE_sld.value;
         SEVol_f = SE_sld.value;
         PlayerPrefs.SetFloat("se", SEVol_f);
+    }
+
+    public void OnLoadSound()
+    {
+        audio_obj = GameObject.Find("AudioSound");
+        SE = audio_obj.GetComponent<AudioSource>();
+        audio_obj = GameObject.Find("BackSound");
+        BGS = audio_obj.GetComponent<AudioSource>();
+        audio_obj = GameObject.Find("BackMusic");
+        BGM = audio_obj.GetComponent<AudioSource>();
+
+
+        BGMVol_f = PlayerPrefs.GetFloat("bgm", 1f);
+        BGM_sld.value = BGMVol_f;
+        BGM.volume = BGM_sld.value;
+
+        BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
+        BGS_sld.value = BGSVol_f;
+        BGS.volume = BGS_sld.value;
+
+        SEVol_f = PlayerPrefs.GetFloat("se", 1f);
+        SE_sld.value = SEVol_f;
+        SE.volume = SE_sld.value;
     }
 }

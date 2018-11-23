@@ -38,7 +38,7 @@ public class MainTime : MonoBehaviour {
 
 			} else {
 				randSpider_i = Random.Range (0, 4);
-                spiX = Random.Range(-9, 9);
+                spiX = Random.Range(-6, 6);
 			}
 
             

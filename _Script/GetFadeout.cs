@@ -6,22 +6,26 @@ public class GetFadeout : MonoBehaviour {
 
 	Color color;
 
-	// Use this for initialization
-	void Start () {
+    Vector2 pos;
+    public Vector2 wldObjectPos;
+
+    public GameObject 
+    // Use this for initialization
+    void Start () {
 
 
 		
 	}
-
-
 	//거미랑먼지터치할때 터치한위치에빗물이나옴 상점에서 소모될때돈에서빠져나가는게보임
-
 
 	public void getRainFade(){
 		//StopCoroutine ("imgFadeOut");
 		StartCoroutine ("imgFadeOut");
 
-	}
+        Vector2 mouseDragPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
+        
+    }
 
 	IEnumerator imgFadeOut(){
 		//color = showCard.GetComponent<Image>().color;	
