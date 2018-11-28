@@ -9,10 +9,14 @@ public class MainTime : MonoBehaviour {
     public float spiX, spiY;
 	public int randDust1_i,randDust2_i,randSpider_i;
 	public GameObject dust1_obj, dust2_obj, spider_obj;
-    
 
-	// Use this for initialization
-	void Start () {
+    public float bMoveX, bMoveY;
+    public int endBMove_i;
+    public GameObject balloon_obj;
+
+
+    // Use this for initialization
+    void Start () {
 		//업데이트대신쓴다
 		StartCoroutine ("updateSec");
 		
@@ -40,10 +44,18 @@ public class MainTime : MonoBehaviour {
 				randSpider_i = Random.Range (0, 4);
                 spiX = Random.Range(-6, 6);
 			}
-
+            if (PlayerPrefs.GetInt("balloon", 0) == 8)
+            {
+                
+            }
+            else
+            {
+                PlayerPrefs.SetInt("balloon", Random.Range(0, 10));
+            }
+            
             
 
-			yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f);
 		}
 	}
 
@@ -100,7 +112,32 @@ public class MainTime : MonoBehaviour {
 
     IEnumerator goBalloon()
     {
-        yield return new WaitForSeconds(0.1f);
+        while (endBMove_i == 1)
+        {
+            bMoveX = bMoveX + 0.005f;
+            if (PlayerPrefs.GetInt("balloon", 0) != 8)
+            {
+                bMoveX = 15.4f;
+            }
+                if (bMoveX >= 5.4)
+            {
+                bMoveX = 15.4f;
+                endBMove_i = 0;
+            }
+            balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+    public void checkBalloon()
+    {
+        if (PlayerPrefs.GetInt("balloon", 0) == 8)
+        {
+            bMoveX = -3f;
+            endBMove_i = 1;
+            StartCoroutine("goBalloon");
+        }
     }
    
 

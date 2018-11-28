@@ -15,8 +15,8 @@ public class FirstRoomFunction : CavasData {
     public int heart_i;
 
 
-    public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i;
-	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj;
+    public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i, cabinet_i;
+	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj, cabinetImg_obj;
 
     public GameObject moreCoinWindow_obj;
 
@@ -27,13 +27,13 @@ public class FirstRoomFunction : CavasData {
 	void Start () {
 
 		//로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
-		GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
+		//GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
 
 
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 
-        /*
-		window_i = PlayerPrefs.GetInt ("windowlv", 0);
+        
+		//window_i = PlayerPrefs.GetInt ("windowlv", 0);
 		book_i = PlayerPrefs.GetInt ("booklv",0);
 		bed_i = PlayerPrefs.GetInt ("bedlv",0);
 		rug_i = PlayerPrefs.GetInt ("ruglv",0);
@@ -42,30 +42,22 @@ public class FirstRoomFunction : CavasData {
 		desk_i = PlayerPrefs.GetInt ("desklv",0);
 		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
-
-        bookBox_i = PlayerPrefs.GetInt ("bookbox",0);
-        if (bookBox_i == 0)
-        {
-            bookBox_obj.SetActive(true);
-        }
-        else
-        {
-            bookBox_obj.SetActive(false);
-        }
+        cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
         
 
 
-		windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
-		bookImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().book_spr [book_i];
+
+        //windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
+        bookImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().book_spr [book_i];
 		bedImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().bed_spr [bed_i];
 		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
-		standImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().stand_spr [stand_i];
+		//standImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().stand_spr [stand_i];
 		rugImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().rug_spr [rug_i];
-		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
-		tapestryImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
-		standImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().stand_spr [stand_i];
+		//deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
+        //tapestryImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
+        cabinetImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().cabinet_spr[cabinet_i];
 
-		*/
+		
 
 
     }
