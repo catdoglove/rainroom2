@@ -14,25 +14,25 @@ public class ShopHandler : CommonDate {
 	public void setIndex0(){
 		itemIndex_i = 0;
 	}
-	void setIndex1(){
+    public void setIndex1(){
 		itemIndex_i = 1;
 	}
-	void setIndex2(){
+    public void setIndex2(){
 		itemIndex_i = 2;
 	}
-	void setIndex3(){
+    public void setIndex3(){
 		itemIndex_i = 3;
 	}
-	void setIndex4(){
+    public void setIndex4(){
 		itemIndex_i = 4;
 	}
-	void setIndex5(){
+    public void setIndex5(){
 		itemIndex_i = 5;
 	}
-	void setIndex6(){
+    public void setIndex6(){
 		itemIndex_i = 6;
 	}
-	void setIndex7(){
+    public void setIndex7(){
 		itemIndex_i = 7;
 	}
 	void setIndex8(){
@@ -48,15 +48,7 @@ public class ShopHandler : CommonDate {
 		itemIndex_i = 11;
 	}
 
-	public void callShopButtonName(){
-
-		itemName_str = shopItems_btn [itemIndex_i].name;
-		itemLevel_i = PlayerPrefs.GetInt (itemName_str, 0);
-
-        //딕셔너리로2차열하기
-        //GM.GetComponent<LoadingData> ().;
-
-    }
+	
 
 
 }

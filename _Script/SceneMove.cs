@@ -33,7 +33,9 @@ public class SceneMove : MonoBehaviour {
 	}
 
 	public void moveDown(){
-		GMN = MainGM.GetComponent<FirstRoomFunction> ().GMNotdistroy;
+        if (GMN == null) {
+            GMN= GameObject.FindGameObjectWithTag("GMtag");
+        }
 		GMN.GetComponent<MainBtnEvt> ().allClose ();
 		for (int i = 0; i < 3; i++) {
 			GMN.GetComponent<MainBtnEvt> ().MainBtn_obj [i].SetActive (false);

@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainShop : ShopHandler {
-	public GameObject GM;
+	public GameObject GM,loadGM,GMtag;
 	public Text coldRain_txt,hotRain_txt;
-    public GameObject[] fisrtRoomItem_obj;
+    
 
     public GameObject needhRain_obj,needcRain_obj;
 
@@ -16,8 +16,9 @@ public class MainShop : ShopHandler {
     // Use this for initialization
     void Start () {
         //GM.GetComponent<LoadingData> ().;
-        //data_cPrice = CSVReader.Read("Price/f_coldrain");
-        //data_hPrice = CSVReader.Read("Price/f_hotrain");
+        
+        data_cPrice = CSVReader.Read("Price/f_coldrain");
+        data_hPrice = CSVReader.Read("Price/f_hotrain");
     }
 
     public void ShopCoinLoad(){
@@ -31,6 +32,16 @@ public class MainShop : ShopHandler {
 		coldRain_txt.text = "" + coldRain_i;
 		hotRain_txt.text = "" + hotRain_i;
 	}
+    public void callShopButtonName()
+    {
+
+        itemName_str = shopItems_btn[itemIndex_i].name;
+        itemLevel_i = PlayerPrefs.GetInt(itemName_str, 0);
+
+        //딕셔너리로2차열하기
+        //GM.GetComponent<LoadingData> ().;
+
+    }
 
     public void ShopChageImage() {
         string str = PlayerPrefs.GetString("code", "");
@@ -38,20 +49,25 @@ public class MainShop : ShopHandler {
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
 
         callShopButtonName();
-        hotRainPrice_i = (int)data_hPrice[itemIndex_i][itemName_str];
-        coldRainPrice_i = (int)data_cPrice[itemIndex_i][itemName_str];
 
         itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
+
+        hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
+        coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
+
+        
+
+        Debug.Log(itemIndex_i+"fd"+itemLevel_i);//////////////////////////////////////////////////////////////////
 
         if (coldRain_i >= coldRainPrice_i) {
             if (hotRain_i >= hotRainPrice_i)
             {
                 coldRain_i = coldRain_i - coldRainPrice_i;
                 PlayerPrefs.SetInt(str + "c", coldRain_i);
-
+                Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
                 hotRain_i = hotRain_i - hotRainPrice_i;
                 PlayerPrefs.SetInt(str + "h", hotRain_i);
-
+                Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                 itemLevel_i++;
                 PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
 
@@ -85,47 +101,47 @@ public class MainShop : ShopHandler {
         switch (itemIndex_i)
         {
             case 0:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent <FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[itemLevel_i];
                 break;
 
             case 1:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[itemLevel_i];
                 break;
 
             case 2:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[itemLevel_i];
                 break;
 
             case 3:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
                 break;
 
             case 4:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[itemLevel_i];
                 break;
 
             case 5:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 6:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 7:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 8:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 10:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 11:
-                fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = GM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
         }
 

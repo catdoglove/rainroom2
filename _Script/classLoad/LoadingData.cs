@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LoadingData : LodingDataBase {
 
-    void Start()
+    void Awake()
     {
         setSprite();
     }

@@ -39,6 +39,8 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.Save();
 
+        GM.GetComponent<MainTime>().bMoveX = 15.4f;
+
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
     }
