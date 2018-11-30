@@ -14,13 +14,14 @@ public class MainTimeHandler : MonoBehaviour {
 	public Text talkTime_txt,talkNum,heartNum;
 	string lastTime;
 
+    public int coldRain_i, hotRain_i;
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		//빗물
-		//collectRain ();
+		collectRain ();
 		//대화
 		StartCoroutine ("talkTimeFlow");
         //이부분은 생성될때 한번만 실행된다
@@ -32,8 +33,12 @@ public class MainTimeHandler : MonoBehaviour {
 
 	void collectRain(){
 
-		//세이브불러오기
-		rain = PlayerPrefs.GetInt ("rain", 0);
+        string str = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
+
+        //세이브불러오기
+        coldRain_i = PlayerPrefs.GetInt ("str", 0);
 
 		//모인 빗물
 		//현재시간을가져옵니다
@@ -48,9 +53,9 @@ public class MainTimeHandler : MonoBehaviour {
 		getRain = (int)compareTimem .TotalMinutes;
 
 		//최초실행
-		if(PlayerPrefs.GetInt("coin",-1)==-1&&getRain>20000){
-			getRain = 0;
-		}
+		//if(PlayerPrefs.GetInt("coin",-1)==-1&&getRain>20000){
+		//	getRain = 0;
+		//}
 		//부정행위방지
 		if (getRain>36000) {//5일치 이상 모았을때
 			if (getRain > 100000) {//2주일 되었을 때
@@ -66,9 +71,9 @@ public class MainTimeHandler : MonoBehaviour {
 			//경고
 		}
 
-		rain = rain + getRain;
-		PlayerPrefs.SetInt ("rain", rain);
-		rainNum.text = rain.ToString();
+        coldRain_i = coldRain_i + getRain;
+		PlayerPrefs.SetInt (str, coldRain_i);
+		//rainNum.text = coldRain_i.ToString();
 		PlayerPrefs.SetString("lastTime",dateTimenow.ToString());
 		PlayerPrefs.Save ();
 		

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class MainTime : MonoBehaviour {
 
-	//이동
-	public float moveX1,moveX2,moveY;
+
     public float spiX, spiY;
-	public int randDust1_i,randDust2_i,randSpider_i;
-	public GameObject dust1_obj, dust2_obj, spider_obj;
+	public int randSpider_i;
+	public GameObject spider_obj;
 
     public float bMoveX, bMoveY;
     public int endBMove_i;
-    public GameObject balloon_obj;
+    public GameObject balloon_obj, balloonR_obj;
 
 
     // Use this for initialization
@@ -25,18 +24,7 @@ public class MainTime : MonoBehaviour {
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
-			if (randDust1_i == 1) {
-				StopCoroutine ("goDust1");
-				StartCoroutine ("goDust1");
-			} else {
-				randDust1_i = Random.Range (0, 30);
-			}
-			if (randDust2_i == 1) {
-				StopCoroutine ("goDust2");
-				StartCoroutine ("goDust2");
-			} else {
-				randDust2_i = Random.Range (0, 30);
-			}
+			
 			if (randSpider_i == 1) {
                 spider_obj.transform.position = new Vector3(spiX, spider_obj.transform.position.y, spider_obj.transform.position.z);
 
@@ -51,7 +39,9 @@ public class MainTime : MonoBehaviour {
             else
             {
                 PlayerPrefs.SetInt("balloon", Random.Range(0, 10));
+                
             }
+
             
             
 
@@ -60,29 +50,9 @@ public class MainTime : MonoBehaviour {
 	}
 
 
-	IEnumerator goDust1(){
-		while (randDust1_i == 1) {
-			moveX1 = moveX1 + 0.05f;
-			if (moveX1 >= 9.4) {
-				moveX1 = -9.4f;
-				randDust1_i = 0;
-			}
-			dust1_obj.transform.position = new Vector3 (moveX1, moveY, dust1_obj.transform.position.z);
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
+	
 
-	IEnumerator goDust2(){
-		while (randDust2_i == 1) {
-			moveX2 = moveX2 - 0.05f;
-			if (moveX2 <= -9.4) {
-				moveX2 = 9.4f;
-				randDust2_i = 0;
-			}
-			dust2_obj.transform.position = new Vector3 (moveX2, moveY, dust1_obj.transform.position.z);
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
+	
 
 	void baedal(){
 		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
@@ -112,19 +82,40 @@ public class MainTime : MonoBehaviour {
 
     IEnumerator goBalloon()
     {
+        int br = Random.Range(0, 10);
+        PlayerPrefs.SetInt("balloonrnd", br);
         while (endBMove_i == 1)
         {
-            bMoveX = bMoveX + 0.005f;
-            if (PlayerPrefs.GetInt("balloon", 0) != 8)
+            
+            if (br >= 5)
             {
-                bMoveX = 15.4f;
-            }
+                bMoveX = bMoveX + 0.005f;
+                if (PlayerPrefs.GetInt("balloon", 0) != 8)
+                {
+                    bMoveX = 15.4f;
+                }
                 if (bMoveX >= 5.4)
-            {
-                bMoveX = 15.4f;
-                endBMove_i = 0;
+                {
+                    bMoveX = 15.4f;
+                    endBMove_i = 0;
+                }
+                balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
             }
-            balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+            else
+            {
+                bMoveX = bMoveX - 0.005f;
+                if (PlayerPrefs.GetInt("balloon", 0) != 8)
+                {
+                    bMoveX = -15.4f;
+                }
+                if (bMoveX <= -5.4)
+                {
+                    bMoveX = -15.4f;
+                    endBMove_i = 0;
+                }
+                balloonR_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+            }
+            
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -134,7 +125,15 @@ public class MainTime : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("balloon", 0) == 8)
         {
-            bMoveX = -3f;
+            if (PlayerPrefs.GetInt("balloonrnd", 0)>=5)
+            {
+                bMoveX = 5.2f;
+            }
+            else
+            {
+                bMoveX = -5.2f;
+            }
+            
             endBMove_i = 1;
             StartCoroutine("goBalloon");
         }
