@@ -16,6 +16,10 @@ public class MainShop : ShopHandler {
 
     List<Dictionary<string, object>> data_hPrice, data_cPrice;
 
+    string str;
+
+    public GameObject buyYes_obj;
+
 
     // Use this for initialization
     void Start () {
@@ -32,7 +36,7 @@ public class MainShop : ShopHandler {
 
         
 		
-		string str = PlayerPrefs.GetString ("code", "");
+		str = PlayerPrefs.GetString ("code", "");
 
 		coldRain_i = PlayerPrefs.GetInt (str+"c", 0);
 		hotRain_i = PlayerPrefs.GetInt (str+"h", 0);
@@ -42,62 +46,62 @@ public class MainShop : ShopHandler {
         LvChange();
 
     }
-    public void callShopButtonName()
+
+    public void ShopBuyYes()
     {
+        if (hotRainPrice_i == 0 && coldRainPrice_i == 0){}
+        else
+        {
+            Debug.Log(itemIndex_i + "fd" + itemLevel_i);//////////////////////////////////////////////////////////////////
 
-        itemName_str = shopItems_btn[itemIndex_i].name;
-        itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-
-        //딕셔너리로2차열하기
-        //GM.GetComponent<LoadingData> ().;
-
+            if (coldRain_i >= coldRainPrice_i)
+            {
+                if (hotRain_i >= hotRainPrice_i)
+                {
+                    coldRain_i = coldRain_i - coldRainPrice_i;
+                    PlayerPrefs.SetInt(str + "c", coldRain_i);
+                    Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
+                    hotRain_i = hotRain_i - hotRainPrice_i;
+                    PlayerPrefs.SetInt(str + "h", hotRain_i);
+                    Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
+                    itemLevel_i++;
+                    PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
+                    SwitchByIndex();
+                    PlayerPrefs.Save();
+                    coldRain_txt.text = "" + coldRain_i;
+                    hotRain_txt.text = "" + hotRain_i;
+                    LvChange();
+                }
+                else
+                {
+                    needhRain_obj.SetActive(true);
+                    //따듯한물부족
+                }
+            }
+            else
+            {
+                needcRain_obj.SetActive(true);
+                //빗물부족
+            }
+        }//endOfElse
     }
+ 
 
     public void ShopChageImage() {
-        string str = PlayerPrefs.GetString("code", "");
+        str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
 
-        callShopButtonName();
-
+        
+        itemName_str = shopItems_btn[itemIndex_i].name;
         itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
         
         hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
         coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
-        if () { }
 
+        buyYes_obj.SetActive(true);
 
-            Debug.Log(itemIndex_i+"fd"+itemLevel_i);//////////////////////////////////////////////////////////////////
-
-        if (coldRain_i >= coldRainPrice_i) {
-            if (hotRain_i >= hotRainPrice_i)
-            {
-                coldRain_i = coldRain_i - coldRainPrice_i;
-                PlayerPrefs.SetInt(str + "c", coldRain_i);
-                Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
-                hotRain_i = hotRain_i - hotRainPrice_i;
-                PlayerPrefs.SetInt(str + "h", hotRain_i);
-                Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
-                itemLevel_i++;
-                PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
-                SwitchByIndex();
-                PlayerPrefs.Save();
-                coldRain_txt.text = "" + coldRain_i;
-                hotRain_txt.text = "" + hotRain_i;
-                LvChange();
-            }
-            else
-            {
-                needhRain_obj.SetActive(true);
-                //따듯한물부족
-            }
-        }
-        else
-        {
-            needcRain_obj.SetActive(true);
-            //빗물부족
-        }
-
+       
     }
 
     public void closeRain()
@@ -158,17 +162,25 @@ public class MainShop : ShopHandler {
 
     }
 
+    /// <summary>
+    /// 아이템의 레벨과 가격을 새로고침해준다
+    /// </summary>
     public void LvChange()
     {
         for(int i = 0; i < 1; i++)
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-            levels_txt[i].text = itemLevel_i.ToString();
+            levels_txt[i].text = "LV. "+itemLevel_i.ToString();
             coldPrice_txt[i].text = data_cPrice[itemLevel_i][itemName_str].ToString();
             hotPrice_txt[i].text = data_hPrice[itemLevel_i][itemName_str].ToString();
             
         }
+    }
+
+    public void CloseShopBuy()
+    {
+        buyYes_obj.SetActive(false);
     }
 	
 
