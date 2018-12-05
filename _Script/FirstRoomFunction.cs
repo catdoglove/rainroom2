@@ -7,7 +7,7 @@ public class FirstRoomFunction : CavasData {
 
 	public GameObject beadalWindow_obj;
 
-	public GameObject boxClean_obj;
+	
 
 	public GameObject GMNotdistroy;
 
@@ -23,7 +23,16 @@ public class FirstRoomFunction : CavasData {
     public GameObject moreCoinWindow_obj;
 
     public int bookBox_i;
-    public GameObject bookBox_obj;
+    public GameObject bookBox_obj, bedBox_obj, deskBox_obj, cabinetBox_obj;
+    public GameObject needMore_obj;
+    public GameObject boxClean_obj;
+    //public Sprite[] boxItem_spr;
+    
+    
+
+    public string boxName_str;
+
+
 
     public GameObject loadGM;
 
@@ -35,6 +44,7 @@ public class FirstRoomFunction : CavasData {
 
 
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
+
 
         
 		//window_i = PlayerPrefs.GetInt ("windowlv", 0);
@@ -48,6 +58,25 @@ public class FirstRoomFunction : CavasData {
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
         cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
 
+
+
+        //박스
+        if (PlayerPrefs.GetInt("bedbox", 0)==10)
+        {
+            bedBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("cabinetbox", 0) == 10)
+        {
+            cabinetBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("deskbox", 0) == 10)
+        {
+            deskBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("bookbox", 0) == 10)
+        {
+            bookBox_obj.SetActive(true);
+        }
 
 
         setItems();
@@ -90,6 +119,7 @@ public class FirstRoomFunction : CavasData {
         }
         else
         {
+            needMore_obj.SetActive(true);
             //돈부족함
         }
     }
@@ -102,7 +132,26 @@ public class FirstRoomFunction : CavasData {
 	public void boxOpen(){
 		boxClean_obj.SetActive (true);
 	}
-	public void boxYes(){
+
+    public void boxBed()
+    {
+        boxName_str = "bed";
+    }
+    public void boxCabinet()
+    {
+        boxName_str = "cabinet";
+    }
+    public void boxBook()
+    {
+        boxName_str = "book";
+    }
+    public void boxDesk()
+    {
+        boxName_str = "desk";
+    }
+
+
+    public void boxYes(){
 
 		string str1;
 		str1 = PlayerPrefs.GetString ("code", "");
@@ -117,22 +166,50 @@ public class FirstRoomFunction : CavasData {
 			hotRain_i = hotRain_i - 25;
 			PlayerPrefs.SetInt (str1 + "h", hotRain_i);
 
-            //스위치케이스문으로읽어온박스넘버를보고저장해줘서치운박스를구분함
-            //박스는처음에는없는걸로하고안치운박스면만들어주는걸로해서오류나도
-            //박스가보이는일은없게하자
-            //그냥함수를다만들어주자
-
-            //PlayerPrefs.SetInt("bedbox", 1);
-            //PlayerPrefs.SetInt("bookbox", 1);
+            PlayerPrefs.SetInt(boxName_str+"box", 1);
+            PlayerPrefs.SetInt(boxName_str + "lv", 1);
 
             PlayerPrefs.Save ();
-		} else {
+            if (PlayerPrefs.GetInt("bedbox", 0) == 1)
+            {
+                bedBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("cabinetbox", 0) == 1)
+            {
+                cabinetBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("deskbox", 0) == 1)
+            {
+                deskBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("bookbox", 0) == 1)
+            {
+                bookBox_obj.SetActive(false);
+            }
+            book_i = PlayerPrefs.GetInt("booklv", 0);
+            bed_i = PlayerPrefs.GetInt("bedlv", 0);
+            desk_i = PlayerPrefs.GetInt("desklv", 0);
+            cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
+            bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+            bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
+            deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
+            cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+            boxClean_obj.SetActive(false);
+        } else {
+            needMore_obj.SetActive(true);
             //돈부족
-		}
+        }
 	}
+
 	public void boxNo(){
 		boxClean_obj.SetActive (false);
-	}
+        needMore_obj.SetActive(false);
+    }
+
+    public void closeNeed()
+    {
+        needMore_obj.SetActive(false);
+    }
 
     
 

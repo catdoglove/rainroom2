@@ -84,7 +84,11 @@ public class MainBtnEvt : CommonDate {
 			}
 
 			PlayerPrefs.SetString ("code", str);
-			PlayerPrefs.SetInt ("first", 1);
+            PlayerPrefs.SetInt("bookbox", 10);
+            PlayerPrefs.SetInt("deskbox", 10);
+            PlayerPrefs.SetInt("bedbox", 10);
+            PlayerPrefs.SetInt("cabinetbox", 10);
+;			PlayerPrefs.SetInt ("first", 1);
 			PlayerPrefs.Save ();
 		}//endOfIf
 

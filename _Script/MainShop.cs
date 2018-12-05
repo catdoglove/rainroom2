@@ -20,14 +20,19 @@ public class MainShop : ShopHandler {
 
     public GameObject buyYes_obj;
 
+    //처음에박스값을10으로설정해준다 아래에서레벨을불러올때 박스값이10이면 박스에담겨있는물건이다 이물건은박스에서 꺼낼지물어본다
+    //기본방에서 물건터치는박스로 막혀있다. 박스를 터치하면 상자치우기창이뜬다.
+    public GameObject[] boxs_obj;
+
 
     // Use this for initialization
     void Start () {
         //GM.GetComponent<LoadingData> ().;
         //PlayerPrefs.SetInt("booklv",0);
-        //string str = PlayerPrefs.GetString("code", "");
+        string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt(str + "c", 999999);
         //PlayerPrefs.SetInt(str + "h", 99999);
+        //PlayerPrefs.DeleteAll();
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
     }
@@ -35,7 +40,6 @@ public class MainShop : ShopHandler {
     public void ShopCoinLoad(){
 
         
-		
 		str = PlayerPrefs.GetString ("code", "");
 
 		coldRain_i = PlayerPrefs.GetInt (str+"c", 0);
