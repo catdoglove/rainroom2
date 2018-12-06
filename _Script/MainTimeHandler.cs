@@ -36,9 +36,7 @@ public class MainTimeHandler : MonoBehaviour {
         string str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
-
-        //세이브불러오기
-        coldRain_i = PlayerPrefs.GetInt ("str", 0);
+        
 
 		//모인 빗물
 		//현재시간을가져옵니다
@@ -72,7 +70,7 @@ public class MainTimeHandler : MonoBehaviour {
 		}
 
         coldRain_i = coldRain_i + getRain;
-		PlayerPrefs.SetInt (str, coldRain_i);
+		PlayerPrefs.SetInt (str + "c", coldRain_i);
 		//rainNum.text = coldRain_i.ToString();
 		PlayerPrefs.SetString("lastTime",dateTimenow.ToString());
 		PlayerPrefs.Save ();

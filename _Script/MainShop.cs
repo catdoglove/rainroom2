@@ -35,6 +35,7 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.DeleteAll();
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
+
     }
 
     public void ShopCoinLoad(){
@@ -48,6 +49,40 @@ public class MainShop : ShopHandler {
 		coldRain_txt.text = "" + coldRain_i;
 		hotRain_txt.text = "" + hotRain_i;
         LvChange();
+
+        //박스
+        if (PlayerPrefs.GetInt("bedbox", 0) == 10)
+        {
+            boxs_obj[1].SetActive(true);
+        }
+        else
+        {
+            boxs_obj[1].SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("cabinetbox", 0) == 10)
+        {
+            boxs_obj[2].SetActive(true);
+        }
+        else
+        {
+            boxs_obj[2].SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("deskbox", 0) == 10)
+        {
+           // boxs_obj[3].SetActive(true);
+        }
+        else
+        {
+            //boxs_obj[3].SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("bookbox", 0) == 10)
+        {
+            boxs_obj[0].SetActive(true);
+        }
+        else
+        {
+            boxs_obj[0].SetActive(false);
+        }
 
     }
 
@@ -75,6 +110,7 @@ public class MainShop : ShopHandler {
                     coldRain_txt.text = "" + coldRain_i;
                     hotRain_txt.text = "" + hotRain_i;
                     LvChange();
+                    CloseShopBuy();
                 }
                 else
                 {

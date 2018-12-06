@@ -436,4 +436,64 @@ public class TalkEvt : MonoBehaviour {
 
     }
 
+    public void checkList()
+    {
+        switch (loveLv)
+        {
+            case 0:
+                if(PlayerPrefs.GetInt("booklv", 0) == 2)
+                {
+                    if(PlayerPrefs.GetInt("desklv", 0) == 1)
+                    {
+
+                    }
+                }
+                    break;
+            case 1:
+                if (PlayerPrefs.GetInt("booklv", 0) == 4)
+                {
+                    if (PlayerPrefs.GetInt("cabinetlv", 0) == 1)
+                    {
+                        
+                    }
+                }
+                break;
+            case 2:
+                if (PlayerPrefs.GetInt("booklv", 0) == 6)
+                {
+                    if (PlayerPrefs.GetInt("bedlv", 0) == 1)
+                    {
+                        if (PlayerPrefs.GetInt("ladderlv", 0) == 1)
+                        {
+
+                        }
+                    }
+                }
+                break;
+            case 3:
+                if (PlayerPrefs.GetInt("booklv", 0) == 7)
+                {
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 1)
+                    {
+                        if (PlayerPrefs.GetInt("walllv", 0) == 1)
+                        {
+
+                        }
+                    }
+                }
+                break;
+            case 4:
+                if (PlayerPrefs.GetInt("booklv", 0) == 2)
+                {
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 1)
+                    {
+
+                    }
+                }
+                break;
+        }
+
+
+    }
+
 }

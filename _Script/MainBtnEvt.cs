@@ -19,6 +19,7 @@ public class MainBtnEvt : CommonDate {
 
 		//처음코드설정
 
+
 		#region
 		int c=0;
 		string str="";
