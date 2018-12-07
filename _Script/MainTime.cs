@@ -24,7 +24,7 @@ public class MainTime : MonoBehaviour {
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
-			
+			//거미
 			if (randSpider_i == 1) {
                 spider_obj.transform.position = new Vector3(spiX, spider_obj.transform.position.y, spider_obj.transform.position.z);
 
@@ -32,16 +32,34 @@ public class MainTime : MonoBehaviour {
 				randSpider_i = Random.Range (0, 4);
                 spiX = Random.Range(-6, 6);
 			}
-            if (PlayerPrefs.GetInt("balloon", 0) == 8)
+            //풍선
+            if (PlayerPrefs.GetInt("miniopen", 0) == 1)
             {
-                
+                if (PlayerPrefs.GetInt("balloon", 0) == 8)
+                {
+                    checkBalloon();
+                    PlayerPrefs.SetInt("miniopen", 0);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("balloon", Random.Range(7, 10));
+
+                }
             }
             else
             {
-                PlayerPrefs.SetInt("balloon", Random.Range(0, 10));
-                
-            }
+                /*
+                if (PlayerPrefs.GetInt("balloon", 0) == 8)
+                {
 
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("balloon", Random.Range(5, 10));
+
+                }
+                */
+            }
             
             
 
@@ -68,28 +86,15 @@ public class MainTime : MonoBehaviour {
 	}
 
 
-    void windowMiniGame()
-    {
-        //창이 안켜져 있을경우 풍선이 지나갈 확률 10초마다 판단
-        //창이   켜져 있을경우 동일하게 판단
-        //풍선이 나올때는 양방향으로 지나갈 수 있게 하되 한 화면에 여러개 나오지 않도록
-        //풍선은 물을 준다
-        //비행기는 풍선과 별도로 지나간다 비행기는 하트등을준다
-        //새,나뭇잎등은 이동하지않고 나온다
-        //셋엑티브 트루일경우에 바로등장해서 이동시켜주고 아닐경우
-        //숫자만저장해뒀다가 오픈할때 설정해준다
-    }
+  
 
     IEnumerator goBalloon()
     {
-        int br = Random.Range(0, 10);
-        PlayerPrefs.SetInt("balloonrnd", br);
         while (endBMove_i == 1)
         {
-            
-            if (br >= 5)
+            if (PlayerPrefs.GetInt("balloonrnd", 0) >= 5)
             {
-                bMoveX = bMoveX + 0.005f;
+                bMoveX = bMoveX + 0.5f;
                 if (PlayerPrefs.GetInt("balloon", 0) != 8)
                 {
                     bMoveX = 15.4f;
@@ -98,12 +103,13 @@ public class MainTime : MonoBehaviour {
                 {
                     bMoveX = 15.4f;
                     endBMove_i = 0;
+                    PlayerPrefs.SetInt("miniopen", 1);
                 }
                 balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
             }
             else
             {
-                bMoveX = bMoveX - 0.005f;
+                bMoveX = bMoveX - 0.5f;
                 if (PlayerPrefs.GetInt("balloon", 0) != 8)
                 {
                     bMoveX = -15.4f;
@@ -112,8 +118,9 @@ public class MainTime : MonoBehaviour {
                 {
                     bMoveX = -15.4f;
                     endBMove_i = 0;
+                    PlayerPrefs.SetInt("miniopen", 1);
                 }
-                balloonR_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+                balloonR_obj.transform.position = new Vector3(bMoveX, balloonR_obj.transform.position.y, balloonR_obj.transform.position.z);
             }
             
             yield return new WaitForSeconds(0.1f);
@@ -123,18 +130,21 @@ public class MainTime : MonoBehaviour {
 
     public void checkBalloon()
     {
+        int br = Random.Range(0, 10);
+        PlayerPrefs.SetInt("balloonrnd", br);
         if (PlayerPrefs.GetInt("balloon", 0) == 8)
         {
             if (PlayerPrefs.GetInt("balloonrnd", 0)>=5)
             {
-                bMoveX = 5.2f;
+                bMoveX = -5.2f;
             }
             else
             {
-                bMoveX = -5.2f;
+                bMoveX = 5.2f;
             }
             
             endBMove_i = 1;
+            StopCoroutine("goBalloon");
             StartCoroutine("goBalloon");
         }
     }

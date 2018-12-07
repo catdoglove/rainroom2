@@ -266,27 +266,23 @@ public class TalkEvt : MonoBehaviour {
         }
         else if (loveExp >= loveMax)
         {
-            if (loveLv > 8)
+            if (loveLv > 11)
             {
                 //최대 레벨
                 //대화집 또는 해당 레벨에 언락되어서 뭔가 살 수 있는 무언가를 생각해보자
                 Debug.Log("레벨멈춤");
             }
             else {
-                loveLv++;
-                loveExp = 0;
-                nowArr = 1;
-                GetRandomInt(allArr[loveLv]);
+                checkList();
+                
             }
 
         }
-
         loveLv_obj.text = loveLv + "- 레벨 및 대화셀";
         loveExp_obj.text = loveExp + "- 경험치";
         PlayerPrefs.SetInt("lovepoint", loveExp);
         PlayerPrefs.SetInt("lovelv", loveLv);
         PlayerPrefs.Save();
-
     }
 
     public void itemEff()
@@ -436,8 +432,9 @@ public class TalkEvt : MonoBehaviour {
 
     }
 
-    public void checkList()
+    void checkList()
     {
+        int a = 0;
         switch (loveLv)
         {
             case 0:
@@ -445,7 +442,7 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if(PlayerPrefs.GetInt("desklv", 0) == 1)
                     {
-
+                        a = 1;
                     }
                 }
                     break;
@@ -454,7 +451,7 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("cabinetlv", 0) == 1)
                     {
-                        
+                        a = 1;
                     }
                 }
                 break;
@@ -463,9 +460,9 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("bedlv", 0) == 1)
                     {
-                        if (PlayerPrefs.GetInt("ladderlv", 0) == 1)
+                        if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
                         {
-
+                            a = 1;
                         }
                     }
                 }
@@ -477,20 +474,87 @@ public class TalkEvt : MonoBehaviour {
                     {
                         if (PlayerPrefs.GetInt("walllv", 0) == 1)
                         {
-
+                            a = 1;
                         }
                     }
                 }
                 break;
             case 4:
-                if (PlayerPrefs.GetInt("booklv", 0) == 2)
+                if (PlayerPrefs.GetInt("booklv", 0) == 8)
                 {
-                    if (PlayerPrefs.GetInt("windowlv", 0) == 1)
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 3)
                     {
-
+                        if (PlayerPrefs.GetInt("gasrangelv", 0) == 1)
+                        {
+                            a = 1;
+                        }
                     }
                 }
                 break;
+            case 5:
+                if (PlayerPrefs.GetInt("windowlv", 0) == 5)
+                {
+                    if (PlayerPrefs.GetInt("outbox", 0) == 1)
+                    {
+                        a = 1;
+                    }
+                }
+                break;
+            case 6:
+                if (PlayerPrefs.GetInt("lightlv", 0) == 5)
+                {
+                    if (PlayerPrefs.GetInt("drawerlv", 0) == 1)
+                    {
+                        a = 1;
+                    }
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("booklv", 0) == 10)
+                {
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 6)
+                    {
+                        a = 1;
+                    }
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("booklv", 0) == 11)
+                {
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 7)
+                    {
+                        a = 1;
+                    }
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("booklv", 0) == 12)
+                {
+                    if (PlayerPrefs.GetInt("windowlv", 0) == 9)
+                    {
+                        a = 1;
+                    }
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("windowlv", 0) == 10)
+                {
+                    a = 1;
+                }
+                break;
+            case 11:
+                if (PlayerPrefs.GetInt("booklv", 0) == 12)
+                {
+                    a = 1;
+                }
+                break;
+        }
+        if (a == 1)
+        {
+            loveLv++;
+            loveExp = 0;
+            nowArr = 1;
+            GetRandomInt(allArr[loveLv]);
         }
 
 

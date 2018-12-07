@@ -17,18 +17,20 @@ public class WindowMiniGame : MonoBehaviour {
     public void OpenMiniGame()
     {
         miniGameWindow_obj.SetActive(true);
-
+        PlayerPrefs.SetInt("miniopen",1);
     }
 
     public void CloseMiniGame()
     {
         miniGameWindow_obj.SetActive(false);
         PlayerPrefs.SetInt("balloon", 10);
+        PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.Save();
     }
 
     public void TouchBallon()
     {
+        GM.GetComponent<MainTime>().bMoveX = 15.4f;
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
@@ -37,10 +39,11 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.SetInt("balloon", 10);
+        PlayerPrefs.SetInt("miniopen", 1);
         PlayerPrefs.Save();
-
-        GM.GetComponent<MainTime>().bMoveX = 15.4f;
-
+        GM.GetComponent<MainTime>().balloon_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().bMoveX, GM.GetComponent<MainTime>().balloon_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
+        GM.GetComponent<MainTime>().balloonR_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().bMoveX, GM.GetComponent<MainTime>().balloonR_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
+        GM.GetComponent<MainTime>().endBMove_i = 0;
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
     }

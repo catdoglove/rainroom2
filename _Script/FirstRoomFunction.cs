@@ -41,7 +41,7 @@ public class FirstRoomFunction : CavasData {
 
 		//로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
 		GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
-
+        loadGM = GameObject.Find("loadGM");
 
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 

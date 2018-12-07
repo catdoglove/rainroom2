@@ -33,6 +33,8 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt(str + "c", 999999);
         //PlayerPrefs.SetInt(str + "h", 99999);
         //PlayerPrefs.DeleteAll();
+        GM = GameObject.FindGameObjectWithTag("firstroomGM");
+        loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
 
@@ -40,6 +42,13 @@ public class MainShop : ShopHandler {
 
     public void ShopCoinLoad(){
 
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            loadGM = GameObject.FindGameObjectWithTag("loadGM");
+            data_cPrice = CSVReader.Read("Price/f_coldrain");
+            data_hPrice = CSVReader.Read("Price/f_hotrain");
+        }
         
 		str = PlayerPrefs.GetString ("code", "");
 
@@ -105,7 +114,11 @@ public class MainShop : ShopHandler {
                     Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
-                    SwitchByIndex();
+                    //이미지를바꿔주는 함수 단칸방에 있을 때에는 이미지를 바꿔주지 않는다.
+                    if(PlayerPrefs.GetInt("place", 0) == 0)
+                    {
+                        SwitchByIndex();
+                    }
                     PlayerPrefs.Save();
                     coldRain_txt.text = "" + coldRain_i;
                     hotRain_txt.text = "" + hotRain_i;

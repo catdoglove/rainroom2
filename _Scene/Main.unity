@@ -2247,17 +2247,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128228823}
-        m_MethodName: checkBalloon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2128228828}
         m_MethodName: OpenMiniGame
         m_Mode: 1
@@ -3272,7 +3261,7 @@ GameObject:
   - component: {fileID: 447937000}
   m_Layer: 0
   m_Name: loadGM
-  m_TagString: Untagged
+  m_TagString: loadGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3355,7 +3344,7 @@ RectTransform:
   - {fileID: 576550699}
   - {fileID: 1555778637}
   m_Father: {fileID: 1852424617}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5378,17 +5367,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 365005795}
         m_MethodName: windowSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2128228823}
-        m_MethodName: checkBalloon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10153,7 +10131,7 @@ RectTransform:
   - {fileID: 1203596564}
   - {fileID: 1826074162}
   m_Father: {fileID: 1852424617}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14273,9 +14251,9 @@ RectTransform:
   - {fileID: 549771838}
   - {fileID: 605372798}
   - {fileID: 1841361251}
-  - {fileID: 501033976}
   - {fileID: 1365309732}
   - {fileID: 1943244340}
+  - {fileID: 501033976}
   m_Father: {fileID: 240903339}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14342,7 +14320,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1856499098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1340, y: 184.55, z: 0}
+  m_LocalPosition: {x: 1334, y: 58, z: 0}
   m_LocalScale: {x: 1.0000799, y: 1.0000799, z: 1.0000799}
   m_Children: []
   m_Father: {fileID: 874161747}
@@ -14350,7 +14328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1340, y: 184.55}
+  m_AnchoredPosition: {x: 1334, y: 58}
   m_SizeDelta: {x: 134.6, y: 223.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1856499100
@@ -14807,7 +14785,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1852424617}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15391,7 +15369,7 @@ GameObject:
   - component: {fileID: 2128228828}
   m_Layer: 0
   m_Name: firstroomGM
-  m_TagString: Untagged
+  m_TagString: firstroomGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15424,7 +15402,7 @@ MonoBehaviour:
   spiY: 0
   randSpider_i: 0
   spider_obj: {fileID: 225968052}
-  bMoveX: 0
+  bMoveX: 15
   bMoveY: 0
   endBMove_i: 0
   balloon_obj: {fileID: 1366200872}
@@ -15492,7 +15470,7 @@ MonoBehaviour:
   needMore_obj: {fileID: 595220326}
   boxClean_obj: {fileID: 1649824038}
   boxName_str: 
-  loadGM: {fileID: 447936999}
+  loadGM: {fileID: 0}
 --- !u!114 &2128228825
 MonoBehaviour:
   m_ObjectHideFlags: 0

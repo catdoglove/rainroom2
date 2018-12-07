@@ -40,21 +40,25 @@ public class SceneMove : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			GMN.GetComponent<MainBtnEvt> ().MainBtn_obj [i].SetActive (false);
 		}
-		StartCoroutine(Load());
-		PlayerPrefs.SetInt ("place",1);
+        PlayerPrefs.SetInt("place", 1);
+        StartCoroutine(Load());
+        PlayerPrefs.Save();
 		//아래층으로
 	}
 
 	public void moveUp(){
-		GMN = GameObject.FindGameObjectWithTag ("GMtag");
-		GMN.GetComponent<MainBtnEvt> ().allClose ();
+        if(GMN == null) {
+            GMN = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMN.GetComponent<MainBtnEvt> ().allClose ();
 		for (int i = 0; i < 3; i++) {
 			GMN.GetComponent<MainBtnEvt> ().MainBtn_obj [i].SetActive (false);
-		}
-		StartCoroutine(Load2());
-		PlayerPrefs.SetInt ("place",0);
-		//다락방으로
-	}
+        }
+        PlayerPrefs.SetInt("place", 0);
+        StartCoroutine(Load2());
+        PlayerPrefs.Save();
+        //다락방으로
+    }
 
 
 
