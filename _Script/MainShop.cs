@@ -78,11 +78,11 @@ public class MainShop : ShopHandler {
         }
         if (PlayerPrefs.GetInt("deskbox", 0) == 10)
         {
-           // boxs_obj[3].SetActive(true);
+            boxs_obj[3].SetActive(true);
         }
         else
         {
-            //boxs_obj[3].SetActive(false);
+            boxs_obj[3].SetActive(false);
         }
         if (PlayerPrefs.GetInt("bookbox", 0) == 10)
         {
@@ -182,6 +182,7 @@ public class MainShop : ShopHandler {
 
             case 3:
                 GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[6].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
                 break;
 
             case 4:
@@ -189,28 +190,18 @@ public class MainShop : ShopHandler {
                 break;
 
             case 5:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
+                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4+itemLevel_i];
                 break;
 
             case 6:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
                 break;
 
             case 7:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
-                break;
+                 break;
+                
 
-            case 8:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
-                break;
-
-            case 10:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
-                break;
-
-            case 11:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
-                break;
+            
         }
 
     }
@@ -220,7 +211,7 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void LvChange()
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 4; i++)
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
