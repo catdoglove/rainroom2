@@ -33,6 +33,7 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt(str + "c", 999999);
         //PlayerPrefs.SetInt(str + "h", 99999);
         //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
@@ -152,8 +153,14 @@ public class MainShop : ShopHandler {
         hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
         coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
 
-        buyYes_obj.SetActive(true);
-
+        //맥스레벨일때
+        if (hotRainPrice_i == 0 && coldRainPrice_i == 0) {
+            
+        }
+        else
+        {
+            buyYes_obj.SetActive(true);
+        }
        
     }
 
@@ -211,15 +218,26 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void LvChange()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 6; i++)
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
             levels_txt[i].text = "LV. "+itemLevel_i.ToString();
-            coldPrice_txt[i].text = data_cPrice[itemLevel_i][itemName_str].ToString();
-            hotPrice_txt[i].text = data_hPrice[itemLevel_i][itemName_str].ToString();
-            
-        }
+            hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
+            coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
+            coldPrice_txt[i].text = coldRainPrice_i.ToString();
+            hotPrice_txt[i].text = hotRainPrice_i.ToString();
+
+            if (hotRainPrice_i == 0 && coldRainPrice_i == 0) {
+                itemName_str = shopItems_btn[i].name;
+                itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
+                levels_txt[i].text = "LV. MAX";
+                coldPrice_txt[i].text = "0";
+                hotPrice_txt[i].text = "0";
+            }
+            else
+            { }
+            }
     }
 
     public void CloseShopBuy()

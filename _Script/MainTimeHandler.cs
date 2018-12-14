@@ -66,7 +66,8 @@ public class MainTimeHandler : MonoBehaviour {
 				//warningBtn.SetActive(true);
 			}
 		}else if(getRain<0){
-			//경고
+            //경고 물이 마이너스 됐을때 일단 0으로 만들어준다
+            getRain = 0;
 		}
 
         coldRain_i = coldRain_i + getRain;
@@ -89,6 +90,10 @@ public class MainTimeHandler : MonoBehaviour {
 			lastTime = PlayerPrefs.GetString ("TalkLastTime", System.DateTime.Now.ToString ());
 			System.DateTime lastDateTime = System.DateTime.Parse (lastTime);
 			System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+            if ((int)compareTime.TotalSeconds < 0)
+            {
+                compareTime = System.DateTime.Now - System.DateTime.Now;
+            }
 			minute = (int)compareTime.TotalMinutes;
 			sec = (int)compareTime.TotalSeconds;
 			sec = sec - (sec / 60) * 60;
