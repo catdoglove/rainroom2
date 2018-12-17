@@ -9,6 +9,9 @@ public class MainBtnEvt : CommonDate {
 	public Text test_txt;
 	public string test_str;
 
+    public GameObject close_obj;
+    public GameObject backBlackImg_obj;
+
 
 
 
@@ -126,7 +129,8 @@ public class MainBtnEvt : CommonDate {
 			MainWindow_obj [3].SetActive (false);
 		} else {
 			allClose ();
-			MainWindow_obj [0].SetActive (true);
+            windowsOpen();
+            MainWindow_obj [0].SetActive (true);
 			MainWindow_obj [3].SetActive (true);
 		}
 	}
@@ -135,7 +139,8 @@ public class MainBtnEvt : CommonDate {
 			MainWindow_obj [1].SetActive (false);
 		} else {
 			allClose ();
-			MainWindow_obj [1].SetActive (true);
+            windowsOpen();
+            MainWindow_obj [1].SetActive (true);
 		}
 	}
 
@@ -144,7 +149,8 @@ public class MainBtnEvt : CommonDate {
 			MainWindow_obj [2].SetActive (false);
 		} else {
 			allClose ();
-			MainWindow_obj [2].SetActive (true);
+            windowsOpen();
+            MainWindow_obj [2].SetActive (true);
 		}
 	}
 
@@ -153,7 +159,15 @@ public class MainBtnEvt : CommonDate {
 		MainWindow_obj[1].SetActive(false);
 		MainWindow_obj[2].SetActive(false);
 		MainWindow_obj [3].SetActive (false);
-	}
+        backBlackImg_obj.SetActive(false);
+        close_obj.SetActive(false);
+    }
+
+    public void windowsOpen()
+    {
+        backBlackImg_obj.SetActive(true);
+        close_obj.SetActive(true);
+    }
 
 
 
