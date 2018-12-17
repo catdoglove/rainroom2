@@ -20,10 +20,11 @@ public class LoadingData : LodingDataBase {
             desk_spr = Resources.LoadAll<Sprite>("UI/Roomup/back_desk(240x240)");
             flower_spr = Resources.LoadAll<Sprite>("UI/Roomdown/head_flowerseed(100x170)");
             icebox_spr = Resources.LoadAll<Sprite>("UI/Roomdown/back_ice(190x230)");
+
            // wall_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
             shelf_spr = Resources.LoadAll<Sprite>("UI/Roomdown/back_shelf(240x130)");
             //drawing_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
-            //flowerpot_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
+            flowerpot_spr = Resources.LoadAll<Sprite>("UI/Roomdown/head_flowerseed(100x170)");
             gasrange_spr = Resources.LoadAll<Sprite>("UI/Roomdown/back_gasrange(210x200)");
             waterPurifiler_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
             rug_spr = Resources.LoadAll<Sprite>("UI/Roomup/rug(280x100)");

@@ -14,7 +14,7 @@ public class MainShop : ShopHandler {
 
     public GameObject needhRain_obj,needcRain_obj;
 
-    List<Dictionary<string, object>> data_hPrice, data_cPrice;
+    List<Dictionary<string, object>> data_hPrice, data_cPrice, data_itemName;
 
     string str;
 
@@ -38,7 +38,7 @@ public class MainShop : ShopHandler {
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
-
+        //data_itemName = CSVReader.Read("Price/f_itemname");                               나중에추가해줄것
     }
 
     public void ShopCoinLoad(){
@@ -115,6 +115,7 @@ public class MainShop : ShopHandler {
                     Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
+                    
                     //이미지를바꿔주는 함수 단칸방에 있을 때에는 이미지를 바꿔주지 않는다.
                     if(PlayerPrefs.GetInt("place", 0) == 0)
                     {
@@ -223,6 +224,7 @@ public class MainShop : ShopHandler {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
             levels_txt[i].text = "LV. "+itemLevel_i.ToString();
+            ///////////////////////////////////////////////////////////////////////////////////이름더해주기 data_itemName[itemLevel_i][itemName_str]
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();

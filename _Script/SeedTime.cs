@@ -17,16 +17,19 @@ public class SeedTime : MonoBehaviour {
     int minute;
     int hours;
 
+
+    public GameObject loadGM;
+
     // Use this for initialization
     void Start () {
-        SeedTimeFlow();
+        loadGM = GameObject.FindGameObjectWithTag("loadGM");
 
+        SeedTimeFlow();
     }
 
 
     void SeedTimeFlow()
     {
-
         seed_i = PlayerPrefs.GetInt("seed", 0);
         seedWater_i = PlayerPrefs.GetInt("seedWater", 0);
         System.DateTime d = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
@@ -45,11 +48,10 @@ public class SeedTime : MonoBehaviour {
                 seed_i = PlayerPrefs.GetInt("seed", 0);
                 seed_i++;
                 PlayerPrefs.SetInt("seed", 0);
-                //seedImg_obj.GetComponent<Image>().sprite = seed_spr[seed_i];
+                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
         }
-        
     }
 
     public void TouchSeed()
