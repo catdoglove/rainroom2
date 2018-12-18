@@ -10,9 +10,10 @@ public class SeedTime : MonoBehaviour {
 
     string lastTime;
 
-    public GameObject seedWindow_obj, seedYetWindow_obj;
+    public GameObject seedWindow_obj, seedYetWindow_obj, needWaterWindow_obj;
     public GameObject seedImg_obj;
     public Sprite[] seed_spr;
+
 
     int minute;
     int hours;
@@ -48,10 +49,11 @@ public class SeedTime : MonoBehaviour {
                 seed_i = PlayerPrefs.GetInt("seed", 0);
                 seed_i++;
                 PlayerPrefs.SetInt("seed", 0);
-                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
+                //seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
         }
+        //seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
     }
 
     public void TouchSeed()
@@ -99,6 +101,7 @@ public class SeedTime : MonoBehaviour {
         else
         {
             //물부족캄
+            needWaterWindow_obj.SetActive(true);
         }
     }
 

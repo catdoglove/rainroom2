@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MainBtnEvt : CommonDate {
+public class MainBtnEvt : CavasData
+{
 
 	public GameObject[] MainBtn_obj;
 	public GameObject[] MainWindow_obj;
@@ -12,11 +13,19 @@ public class MainBtnEvt : CommonDate {
     public GameObject close_obj;
     public GameObject backBlackImg_obj;
 
+    //메뉴펼쳐주기
+    public GameObject menuBack_obj;
+    public Vector2 menuBack_vet;
 
+    public GameObject GM;
 
 
 	// Use this for initialization
 	void Start () {
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+        }
 		setScreen ();
 		StartCoroutine ("testText");
 
@@ -92,7 +101,7 @@ public class MainBtnEvt : CommonDate {
             PlayerPrefs.SetInt("deskbox", 10);
             PlayerPrefs.SetInt("bedbox", 10);
             PlayerPrefs.SetInt("cabinetbox", 10);
-;			PlayerPrefs.SetInt ("first", 1);
+			PlayerPrefs.SetInt ("first", 1);
 			PlayerPrefs.Save ();
 		}//endOfIf
 
@@ -109,18 +118,20 @@ public class MainBtnEvt : CommonDate {
 
 
 
-
+    /// <summary>
+    /// 메뉴를펼쳐준다
+    /// </summary>
 	public void showButtons(){
 		allClose ();
 		if (MainBtn_obj [0].activeSelf == true) {
-			for (int i = 0; i < 3; i++) {
-				MainBtn_obj [i].SetActive (false);
-			}
-		} else {
-			for (int i = 0; i < 3; i++) {
-				MainBtn_obj [i].SetActive (true);
-			}
-		}
+            StopCoroutine("menuFlowBack");
+            StartCoroutine("menuFlow");
+            MainBtn_obj[0].SetActive(false);
+        } else {
+            StopCoroutine("menuFlow");
+            StartCoroutine("menuFlowBack");
+            MainBtn_obj[0].SetActive(true);
+        }
 	}
 
 	public void openInfoWindow(){
@@ -230,5 +241,43 @@ public class MainBtnEvt : CommonDate {
 		PlayerPrefs.Save ();
 	}
 
+    public void Sight()
+    {
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+        }
+        GM.GetComponent<FirstRoomFunction>().changeSight();
+    }
 
+
+    IEnumerator menuFlow()
+    {
+        menuBack_vet = menuBack_obj.transform.position;
+            while (menuBack_vet.y >= 0.4f)
+            {
+                menuBack_vet.y = menuBack_vet.y - 0.6f;
+            if (menuBack_vet.y <= 0.4f)
+            {
+                menuBack_vet.y = 0.39f;
+            }
+                menuBack_obj.transform.position = menuBack_vet;
+                yield return null;
+            }
+        menuBack_vet.y = 0.2f;
+        menuBack_obj.transform.position = menuBack_vet;
+    }
+
+    IEnumerator menuFlowBack()
+    {
+        menuBack_vet = menuBack_obj.transform.position;
+            while (menuBack_vet.y <= 6f)
+            {
+                menuBack_vet.y = menuBack_vet.y + 0.6f;
+                menuBack_obj.transform.position = menuBack_vet;
+                yield return null;
+            }
+        menuBack_vet.y = 6.15f;
+        menuBack_obj.transform.position = menuBack_vet;
+    }
 }

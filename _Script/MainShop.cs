@@ -219,7 +219,14 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void LvChange()
     {
-        for(int i = 0; i < 6; i++)
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            loadGM = GameObject.FindGameObjectWithTag("loadGM");
+            data_cPrice = CSVReader.Read("Price/f_coldrain");
+            data_hPrice = CSVReader.Read("Price/f_hotrain");
+        }
+        for (int i = 0; i < 6; i++)
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);

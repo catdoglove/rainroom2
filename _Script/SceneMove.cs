@@ -37,9 +37,7 @@ public class SceneMove : MonoBehaviour {
             GMN= GameObject.FindGameObjectWithTag("GMtag");
         }
 		GMN.GetComponent<MainBtnEvt> ().allClose ();
-		for (int i = 0; i < 3; i++) {
-			GMN.GetComponent<MainBtnEvt> ().MainBtn_obj [i].SetActive (false);
-		}
+		
         PlayerPrefs.SetInt("place", 1);
         StartCoroutine(Load());
         PlayerPrefs.Save();
@@ -52,7 +50,6 @@ public class SceneMove : MonoBehaviour {
         }
         GMN.GetComponent<MainBtnEvt> ().allClose ();
 		for (int i = 0; i < 3; i++) {
-			GMN.GetComponent<MainBtnEvt> ().MainBtn_obj [i].SetActive (false);
         }
         PlayerPrefs.SetInt("place", 0);
         StartCoroutine(Load2());

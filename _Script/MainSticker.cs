@@ -6,6 +6,7 @@ public class MainSticker : MonoBehaviour {
 
     public string[] sticker_str;
     public GameObject[] sticker_obj;
+    public GameObject[] newSticker_obj;
 
 
     public bool check;
@@ -19,17 +20,7 @@ public class MainSticker : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //업적스티커창
-        /*
-        for(int i = 0; i < 10; i++)
-        {
-            if (PlayerPrefs.GetInt(sticker_str[i], 0) == 1)
-            {
-                sticker_obj[i].SetActive(true);
-            }
-        }
-        */
-
+       
     }
 
     // Update is called once per frame
@@ -69,4 +60,20 @@ public class MainSticker : MonoBehaviour {
         check = false;
     }
 
+
+    public void showSticker()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (PlayerPrefs.GetInt(sticker_str[i], 0) == 1)
+            {
+                newSticker_obj[i].SetActive(true);
+            }
+            if (PlayerPrefs.GetInt(sticker_str[i], 0) == 2)
+            {
+                sticker_obj[i].SetActive(true);
+            }
+        }
+
+    }
 }
