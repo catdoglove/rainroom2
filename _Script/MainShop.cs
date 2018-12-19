@@ -25,6 +25,14 @@ public class MainShop : ShopHandler {
     public GameObject[] boxs_obj;
 
 
+    public GameObject downBtn_obj, upBtn_obj, functionBtn_obj;
+    public GameObject[] ItemListImg_obj;
+    public Sprite[] upDown_spr;
+
+
+    public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
+
+
     // Use this for initialization
     void Start () {
         //GM.GetComponent<LoadingData> ().;
@@ -215,7 +223,7 @@ public class MainShop : ShopHandler {
     }
 
     /// <summary>
-    /// 아이템의 레벨과 가격을 새로고침해준다
+    /// 아이템의 레벨과 가격을 새로고침해준다.
     /// </summary>
     public void LvChange()
     {
@@ -254,5 +262,110 @@ public class MainShop : ShopHandler {
         buyYes_obj.SetActive(false);
     }
 	
+
+    public void DownShop()
+    {
+        upBtn_obj.GetComponent<Image>().sprite = upDown_spr[1];
+        downBtn_obj.GetComponent<Image>().sprite = upDown_spr[2];
+        functionBtn_obj.GetComponent<Image>().sprite = upDown_spr[5];
+        ItemListImg_obj[1].SetActive(true);
+        ItemListImg_obj[0].SetActive(false);
+        ItemListImg_obj[2].SetActive(false);
+    }
+
+    public void Upshop()
+    {
+        upBtn_obj.GetComponent<Image>().sprite = upDown_spr[0];
+        downBtn_obj.GetComponent<Image>().sprite = upDown_spr[3];
+        functionBtn_obj.GetComponent<Image>().sprite = upDown_spr[5];
+        ItemListImg_obj[1].SetActive(false);
+        ItemListImg_obj[0].SetActive(true);
+        ItemListImg_obj[2].SetActive(false);
+    }
+
+    public void functionShop()
+    {
+        upBtn_obj.GetComponent<Image>().sprite = upDown_spr[1];
+        downBtn_obj.GetComponent<Image>().sprite = upDown_spr[3];
+        functionBtn_obj.GetComponent<Image>().sprite = upDown_spr[4];
+        ItemListImg_obj[1].SetActive(false);
+        ItemListImg_obj[0].SetActive(false);
+        ItemListImg_obj[2].SetActive(true);
+    }
+
+    /// <summary>
+    /// 기능성창이 열렸을때 해금과 구매 여부를 판단해준다.
+    /// </summary>
+    public void OpenfunctionItem()
+    {
+        switch_i= PlayerPrefs.GetInt("switchshop",0);
+        waterCan_i=PlayerPrefs.GetInt("wateringcanshop", 0);
+        waterpurifier_i=PlayerPrefs.GetInt("waterpurifiershop", 0);
+        reform_i=PlayerPrefs.GetInt("reformshop", 0);
+
+        if (switch_i == 1)
+        {
+
+        }else if (switch_i == 2)
+        {
+
+        }
+        if (waterCan_i == 1)
+        {
+
+        }
+        else if (waterCan_i == 2)
+        {
+
+        }
+        if (waterpurifier_i == 1)
+        {
+
+        }
+        else if (waterpurifier_i == 2)
+        {
+
+        }
+        if (reform_i == 1)
+        {
+
+        }
+        else if (reform_i == 2)
+        {
+
+        }
+    }
+
+    public void Fswitch0()
+    {
+        func_i = 0;
+    }
+
+    public void FwaterCan1()
+    {
+        func_i = 1;
+    }
+
+    public void Fwaterpurifier2()
+    {
+        func_i = 2;
+    }
+
+    public void Freform3()
+    {
+        func_i = 3;
+    }
+
+
+
+    public void FuctionBuy()
+    {
+
+    }
+
+    public void FunctionYes()
+    {
+
+    }
 
 }

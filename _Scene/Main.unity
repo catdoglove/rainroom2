@@ -1758,7 +1758,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 165967196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: DownShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &165967196
@@ -2475,7 +2486,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 235658685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: Upshop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &235658685
@@ -2663,7 +2685,7 @@ RectTransform:
   m_GameObject: {fileID: 240903335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013891898, y: 0.013891898, z: 0.013891898}
+  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
   m_Children:
   - {fileID: 1521106222}
   - {fileID: 1829402453}
@@ -3844,7 +3866,7 @@ RectTransform:
   m_GameObject: {fileID: 366125186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 91}
-  m_LocalScale: {x: 0.013891898, y: 0.013891898, z: 0.013891898}
+  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
   m_Children:
   - {fileID: 1649824039}
   - {fileID: 874161747}
@@ -5500,25 +5522,25 @@ MonoBehaviour:
   hotRain_txt: {fileID: 605372796}
   levels_txt:
   - {fileID: 1316432900}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1346541793}
+  - {fileID: 406246069}
+  - {fileID: 1683988073}
+  - {fileID: 1049890799}
+  - {fileID: 1628406715}
   coldPrice_txt:
   - {fileID: 333946781}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 369336963}
+  - {fileID: 1591788989}
+  - {fileID: 879693780}
+  - {fileID: 866695158}
+  - {fileID: 637547183}
   hotPrice_txt:
   - {fileID: 888562057}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1224018142}
+  - {fileID: 488858315}
+  - {fileID: 1340703402}
+  - {fileID: 612468513}
+  - {fileID: 1301542313}
   needhRain_obj: {fileID: 1715736498}
   needcRain_obj: {fileID: 1247179380}
   buyYes_obj: {fileID: 501033975}
@@ -5527,6 +5549,25 @@ MonoBehaviour:
   - {fileID: 1148836051}
   - {fileID: 2080780568}
   - {fileID: 1831015159}
+  downBtn_obj: {fileID: 165967193}
+  upBtn_obj: {fileID: 235658682}
+  functionBtn_obj: {fileID: 1728837668}
+  ItemListImg_obj:
+  - {fileID: 1365309731}
+  - {fileID: 1943244339}
+  - {fileID: 1742777958}
+  upDown_spr:
+  - {fileID: 21300000, guid: d26054d8964e0104594e9f75bb9b290d, type: 3}
+  - {fileID: 21300002, guid: d26054d8964e0104594e9f75bb9b290d, type: 3}
+  - {fileID: 21300004, guid: d26054d8964e0104594e9f75bb9b290d, type: 3}
+  - {fileID: 21300006, guid: d26054d8964e0104594e9f75bb9b290d, type: 3}
+  - {fileID: 21300000, guid: 3001a84ea324233419ea6d1ecd46348d, type: 3}
+  - {fileID: 21300002, guid: 3001a84ea324233419ea6d1ecd46348d, type: 3}
+  switch_i: 0
+  waterCan_i: 0
+  waterpurifier_i: 0
+  reform_i: 0
+  func_i: 0
 --- !u!114 &534253878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8944,7 +8985,7 @@ RectTransform:
   m_GameObject: {fileID: 800312760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013891898, y: 0.013891898, z: 0.013891898}
+  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
   m_Children:
   - {fileID: 984459757}
   m_Father: {fileID: 0}
@@ -9802,7 +9843,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 882829929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalPosition: {x: 11.800003, y: 269.84998, z: 90}
   m_LocalScale: {x: 0.017331023, y: 0.017331023, z: 0.017331023}
   m_Children:
   - {fileID: 1739260427}
@@ -15752,7 +15793,7 @@ RectTransform:
   m_GameObject: {fileID: 1462431040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013891898, y: 0.013891898, z: 0.013891898}
+  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
   m_Children:
   - {fileID: 835532572}
   - {fileID: 309627280}
@@ -15939,7 +15980,7 @@ RectTransform:
   m_GameObject: {fileID: 1495067293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013891898, y: 0.013891898, z: 0.013891898}
+  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
   m_Children:
   - {fileID: 225968053}
   - {fileID: 1449619538}
@@ -18141,7 +18182,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1728837671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: functionShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1728837671
