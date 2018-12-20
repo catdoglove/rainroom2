@@ -35,20 +35,27 @@ public class ShopHandler : CommonDate {
     public void setIndex7(){
 		itemIndex_i = 7;
 	}
-	void setIndex8(){
+    public void setIndex8(){
 		itemIndex_i = 8;
 	}
-	void setIndex9(){
+    public void setIndex9(){
 		itemIndex_i = 9;
 	}
-	void setIndex10(){
+    public void setIndex10(){
 		itemIndex_i = 10;
 	}
-	void setIndex11(){
+    public void setIndex11(){
 		itemIndex_i = 11;
 	}
+    public void setIndex12()
+    {
+        itemIndex_i = 12;
+    }
+    public void setIndex13()
+    {
+        itemIndex_i = 13;
+    }
 
-	
 
 
 }

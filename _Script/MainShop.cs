@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainShop : ShopHandler {
-	public GameObject GM,loadGM,GMtag;
+    public GameObject GM, loadGM, GMtag, GM2;
 	public Text coldRain_txt,hotRain_txt;
 
     public Text[] levels_txt;
@@ -28,6 +28,7 @@ public class MainShop : ShopHandler {
     public GameObject downBtn_obj, upBtn_obj, functionBtn_obj;
     public GameObject[] ItemListImg_obj;
     public Sprite[] upDown_spr;
+    public int upDownCheck_i = 0;
 
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
@@ -38,11 +39,12 @@ public class MainShop : ShopHandler {
         //GM.GetComponent<LoadingData> ().;
         //PlayerPrefs.SetInt("booklv",0);
         string str = PlayerPrefs.GetString("code", "");
-        //PlayerPrefs.SetInt(str + "c", 999999);
-        //PlayerPrefs.SetInt(str + "h", 99999);
+        PlayerPrefs.SetInt(str + "c", 999999);
+        PlayerPrefs.SetInt(str + "h", 99999);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
+        GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
@@ -55,6 +57,7 @@ public class MainShop : ShopHandler {
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
             loadGM = GameObject.FindGameObjectWithTag("loadGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
             data_cPrice = CSVReader.Read("Price/f_coldrain");
             data_hPrice = CSVReader.Read("Price/f_hotrain");
         }
@@ -68,40 +71,46 @@ public class MainShop : ShopHandler {
 		hotRain_txt.text = "" + hotRain_i;
         LvChange();
 
-        //박스
-        if (PlayerPrefs.GetInt("bedbox", 0) == 10)
+        //다락방
+        if (PlayerPrefs.GetInt("place", 0) == 0)
         {
-            boxs_obj[1].SetActive(true);
-        }
-        else
+            //박스
+            if (PlayerPrefs.GetInt("bedbox", 0) == 10)
+            {
+                boxs_obj[1].SetActive(true);
+            }
+            else
+            {
+                boxs_obj[1].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("cabinetbox", 0) == 10)
+            {
+                boxs_obj[2].SetActive(true);
+            }
+            else
+            {
+                boxs_obj[2].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("deskbox", 0) == 10)
+            {
+                boxs_obj[3].SetActive(true);
+            }
+            else
+            {
+                boxs_obj[3].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("bookbox", 0) == 10)
+            {
+                boxs_obj[0].SetActive(true);
+            }
+            else
+            {
+                boxs_obj[0].SetActive(false);
+            }
+        }else if(PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
-            boxs_obj[1].SetActive(false);
-        }
-        if (PlayerPrefs.GetInt("cabinetbox", 0) == 10)
-        {
-            boxs_obj[2].SetActive(true);
-        }
-        else
-        {
-            boxs_obj[2].SetActive(false);
-        }
-        if (PlayerPrefs.GetInt("deskbox", 0) == 10)
-        {
-            boxs_obj[3].SetActive(true);
-        }
-        else
-        {
-            boxs_obj[3].SetActive(false);
-        }
-        if (PlayerPrefs.GetInt("bookbox", 0) == 10)
-        {
-            boxs_obj[0].SetActive(true);
-        }
-        else
-        {
-            boxs_obj[0].SetActive(false);
-        }
 
+        }
     }
 
     public void ShopBuyYes()
@@ -125,10 +134,9 @@ public class MainShop : ShopHandler {
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
                     
                     //이미지를바꿔주는 함수 단칸방에 있을 때에는 이미지를 바꿔주지 않는다.
-                    if(PlayerPrefs.GetInt("place", 0) == 0)
-                    {
+                    
                         SwitchByIndex();
-                    }
+                    
                     PlayerPrefs.Save();
                     coldRain_txt.text = "" + coldRain_i;
                     hotRain_txt.text = "" + hotRain_i;
@@ -182,42 +190,65 @@ public class MainShop : ShopHandler {
 
     void SwitchByIndex()
     {
-        switch (itemIndex_i)
+        //단칸방
+        if (PlayerPrefs.GetInt("place", 0) == 0)
         {
-            case 0:
-                GM.GetComponent <FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[itemLevel_i];
-                break;
+            switch (itemIndex_i)
+            {
+                case 0:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[itemLevel_i];
+                    break;
 
-            case 1:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[itemLevel_i];
-                break;
+                case 1:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[itemLevel_i];
+                    break;
 
-            case 2:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[itemLevel_i];
-                break;
+                case 2:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[itemLevel_i];
+                    break;
 
-            case 3:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[6].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
-                break;
+                case 3:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[6].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[itemLevel_i];
+                    break;
 
-            case 4:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[itemLevel_i];
-                break;
+                case 4:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[itemLevel_i];
+                    break;
 
-            case 5:
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
-                GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4+itemLevel_i];
-                break;
+                case 5:
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4 + itemLevel_i];
+                    break;
 
-            case 6:
-                break;
-
-            case 7:
-                 break;
                 
-
-            
+            }
+        }
+        else if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            switch (itemIndex_i)
+            {
+                case 6:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[13].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
+                    break;
+                case 7:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[12].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window2_spr[itemLevel_i];
+                    break;
+                case 8:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().mat_spr[itemLevel_i];
+                    break;
+                case 9:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().mat2_spr[itemLevel_i];
+                    break;
+                case 10:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().drawer_spr[itemLevel_i];
+                    break;
+                case 11:
+                    GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().shelf_spr[itemLevel_i];
+                    break;
+            }
         }
 
     }
@@ -227,34 +258,43 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void LvChange()
     {
+        //다락방
+        if (upDownCheck_i == 0)
+        {
+        }
+        else if (upDownCheck_i == 1)//단칸방
+        {
+
+        }
         if (GM == null)
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
             loadGM = GameObject.FindGameObjectWithTag("loadGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
             data_cPrice = CSVReader.Read("Price/f_coldrain");
             data_hPrice = CSVReader.Read("Price/f_hotrain");
         }
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 12; i++)
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-            levels_txt[i].text = "LV. "+itemLevel_i.ToString();
+            levels_txt[i].text = "LV. " + itemLevel_i.ToString();
             ///////////////////////////////////////////////////////////////////////////////////이름더해주기 data_itemName[itemLevel_i][itemName_str]
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();
             hotPrice_txt[i].text = hotRainPrice_i.ToString();
 
-            if (hotRainPrice_i == 0 && coldRainPrice_i == 0) {
+            if (hotRainPrice_i == 0 && coldRainPrice_i == 0)
+            {
                 itemName_str = shopItems_btn[i].name;
                 itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
                 levels_txt[i].text = "LV. MAX";
                 coldPrice_txt[i].text = "0";
                 hotPrice_txt[i].text = "0";
-            }
-            else
-            { }
-            }
+            }else{ }
+        }
+        
     }
 
     public void CloseShopBuy()
@@ -271,6 +311,7 @@ public class MainShop : ShopHandler {
         ItemListImg_obj[1].SetActive(true);
         ItemListImg_obj[0].SetActive(false);
         ItemListImg_obj[2].SetActive(false);
+        upDownCheck_i = 1;
     }
 
     public void Upshop()
@@ -281,6 +322,7 @@ public class MainShop : ShopHandler {
         ItemListImg_obj[1].SetActive(false);
         ItemListImg_obj[0].SetActive(true);
         ItemListImg_obj[2].SetActive(false);
+        upDownCheck_i = 0;
     }
 
     public void functionShop()

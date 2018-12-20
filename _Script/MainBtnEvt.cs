@@ -17,7 +17,7 @@ public class MainBtnEvt : CavasData
     public GameObject menuBack_obj;
     public Vector2 menuBack_vet;
 
-    public GameObject GM;
+    public GameObject GM, GM2;
 
 
 	// Use this for initialization
@@ -243,11 +243,24 @@ public class MainBtnEvt : CavasData
 
     public void Sight()
     {
-        if (GM == null)
+        if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("GM2");
+            }
+            GM2.GetComponent<secondRoomFunction>().changeSight();
         }
-        GM.GetComponent<FirstRoomFunction>().changeSight();
+        else if(PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            if (GM == null)
+            {
+                GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            }
+            GM.GetComponent<FirstRoomFunction>().changeSight();
+        }
+        
+        
     }
 
 

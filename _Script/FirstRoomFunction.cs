@@ -18,7 +18,7 @@ public class FirstRoomFunction : CavasData {
 
 
     public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i, cabinet_i;
-	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj, cabinetImg_obj;
+	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj, cabinetImg_obj, rugImg2_obj;
 
     public GameObject moreCoinWindow_obj;
 
@@ -38,9 +38,11 @@ public class FirstRoomFunction : CavasData {
 
 	// Use this for initialization
 	void Start () {
+        //장소초기화
+        PlayerPrefs.SetInt("place", 0);
 
-		//로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
-		GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
+        //로딩화면에서 불러온 정보를 찾아오기 위해서 태그로 지엠을 찾아준다
+        GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
         loadGM = GameObject.Find("loadGM");
 
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
@@ -89,7 +91,8 @@ public class FirstRoomFunction : CavasData {
         bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
         deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
         //standImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().stand_spr [stand_i];
-        //rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         //deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
         //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
@@ -97,7 +100,6 @@ public class FirstRoomFunction : CavasData {
 
     //전단지열기
     public void openBeadal(){
-		
 		if (beadalWindow_obj.activeSelf == true) {
 			beadalWindow_obj.SetActive (false);
 		} else {

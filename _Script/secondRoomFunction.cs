@@ -8,51 +8,52 @@ public class secondRoomFunction : CavasData {
 	public GameObject GMNotdistroy;
 
 
-	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i,flower_i,light_i,umbrella_i;
-	public GameObject bookImg_obj,windowImg_obj,gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj,flowerImg_obj,lightImg_obj,umbrellaImg_obj;
+	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i;
+	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj;
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
     public Text WaterPurifilerH_txt, WaterPurifilerC_txt;
 
     public GameObject needhRain_obj, needcRain_obj;
+
+    public GameObject[] secondRoomItem_obj;
     // Use this for initialization
     void Start () {
 		//GM을 찾아불러온 데이터들 가져오기
 
-		//GMNotdistroy = GameObject.FindGameObjectWithTag ("GMtag");
+		GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
 
-		/*
-		window_i = PlayerPrefs.GetInt ("window",0);
-		book_i = PlayerPrefs.GetInt ("book",0);
-		gasrange_i = gasrange_i = PlayerPrefs.GetInt ("gasrange",0);
-		icebox_i = PlayerPrefs.GetInt ("icebox",0);
-		shelf_i = PlayerPrefs.GetInt ("shelf",0);
-		drawing_i = PlayerPrefs.GetInt ("drawing",0);
-		mat_i = PlayerPrefs.GetInt ("mat",0);
-		flower_i = PlayerPrefs.GetInt ("flower",0);
-		light_i = PlayerPrefs.GetInt ("light",0);
-		umbrella_i = PlayerPrefs.GetInt ("umbrella",0);
+		
+		window_i = PlayerPrefs.GetInt ("windowlv",0);
+		gasrange_i = PlayerPrefs.GetInt ("gasrangelv", 0);
+		icebox_i = PlayerPrefs.GetInt ("iceboxlv", 0);
+		shelf_i = PlayerPrefs.GetInt ("shelflv", 0);
+		//drawing_i = PlayerPrefs.GetInt ("drawing",0);
+		mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
+        mat2_i = PlayerPrefs.GetInt("mat2lv", 0);
+        flower_i = PlayerPrefs.GetInt ("flower", 0);
+		light_i = PlayerPrefs.GetInt ("lightlv", 0);
+		umbrella_i = PlayerPrefs.GetInt ("umbrellalv", 0);
+        drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
 
 
-
-		windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
-		bookImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().book_spr [book_i];
-		gasrangeImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().gasrange_spr [gasrange_i];
-		icebox_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().icebox_spr [icebox_i];
-		shelf_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().shelf_spr [shelf_i];
-		drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
-		deskImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().desk_spr [desk_i];
+        drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
+        windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
+        windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
+        //bookImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().book_spr [book_i];
+        gasrangeImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().gasrange_spr [gasrange_i];
+		iceboxImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().icebox_spr [icebox_i];
+		shelfImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().shelf_spr [shelf_i];
+		//drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
 		matImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().mat_spr [mat_i];
-		flowerImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().flower_spr [flower_i];
+        matImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat2_spr[mat2_i];
+        flowerImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().flower_spr [flower_i];
 		lightImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().light_spr [light_i];
-		umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
-
-
+        lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
+        //umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
         
-
-		*/
-	}
+    }
 
 
     /// <summary>

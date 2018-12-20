@@ -2098,7 +2098,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex2
+        m_MethodName: setIndex11
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2685,7 +2685,7 @@ RectTransform:
   m_GameObject: {fileID: 240903335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
+  m_LocalScale: {x: 0.01388889, y: 0.01388889, z: 0.01388889}
   m_Children:
   - {fileID: 1521106222}
   - {fileID: 1829402453}
@@ -3866,7 +3866,7 @@ RectTransform:
   m_GameObject: {fileID: 366125186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 91}
-  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
+  m_LocalScale: {x: 0.01388889, y: 0.01388889, z: 0.01388889}
   m_Children:
   - {fileID: 1649824039}
   - {fileID: 874161747}
@@ -4556,6 +4556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447937001}
   - component: {fileID: 447937000}
+  - component: {fileID: 447937002}
   m_Layer: 0
   m_Name: loadGM
   m_TagString: loadGM
@@ -4576,6 +4577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   window_spr:
   - {fileID: 0}
+  window2_spr: []
   book_spr: []
   bed_spr: []
   desk_spr: []
@@ -4600,6 +4602,7 @@ MonoBehaviour:
   tapestry_spr: []
   umbrella_spr: []
   mat_spr: []
+  mat2_spr: []
   cabinet_spr: []
   shelf_spr: []
   drawing_spr: []
@@ -4620,6 +4623,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447937002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 447936999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db284b2223aefb648b9322975d38200d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &448428271
 GameObject:
   m_ObjectHideFlags: 0
@@ -5460,6 +5474,7 @@ MonoBehaviour:
   menuBack_obj: {fileID: 1521106221}
   menuBack_vet: {x: 0, y: 0}
   GM: {fileID: 0}
+  GM2: {fileID: 0}
 --- !u!114 &534253875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5506,9 +5521,12 @@ MonoBehaviour:
   - {fileID: 1203596563}
   - {fileID: 1826074161}
   - {fileID: 641755885}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1342777476}
+  - {fileID: 1114802145}
+  - {fileID: 1404639403}
+  - {fileID: 1208861321}
+  - {fileID: 1726800625}
+  - {fileID: 201647071}
   - {fileID: 0}
   itemIndex_i: 0
   itemLevel_i: 0
@@ -5518,6 +5536,7 @@ MonoBehaviour:
   GM: {fileID: 2128228821}
   loadGM: {fileID: 447936999}
   GMtag: {fileID: 534253872}
+  GM2: {fileID: 0}
   coldRain_txt: {fileID: 549771840}
   hotRain_txt: {fileID: 605372796}
   levels_txt:
@@ -5527,6 +5546,12 @@ MonoBehaviour:
   - {fileID: 1683988073}
   - {fileID: 1049890799}
   - {fileID: 1628406715}
+  - {fileID: 138461371}
+  - {fileID: 663464837}
+  - {fileID: 448431525}
+  - {fileID: 45405562}
+  - {fileID: 14167228}
+  - {fileID: 880187379}
   coldPrice_txt:
   - {fileID: 333946781}
   - {fileID: 369336963}
@@ -5534,6 +5559,12 @@ MonoBehaviour:
   - {fileID: 879693780}
   - {fileID: 866695158}
   - {fileID: 637547183}
+  - {fileID: 1612120287}
+  - {fileID: 167611433}
+  - {fileID: 489331741}
+  - {fileID: 1158806597}
+  - {fileID: 1638984798}
+  - {fileID: 1871374346}
   hotPrice_txt:
   - {fileID: 888562057}
   - {fileID: 1224018142}
@@ -5541,6 +5572,12 @@ MonoBehaviour:
   - {fileID: 1340703402}
   - {fileID: 612468513}
   - {fileID: 1301542313}
+  - {fileID: 554480944}
+  - {fileID: 1723052052}
+  - {fileID: 556046004}
+  - {fileID: 1317615040}
+  - {fileID: 779912410}
+  - {fileID: 1271974819}
   needhRain_obj: {fileID: 1715736498}
   needcRain_obj: {fileID: 1247179380}
   buyYes_obj: {fileID: 501033975}
@@ -5563,6 +5600,7 @@ MonoBehaviour:
   - {fileID: 21300006, guid: d26054d8964e0104594e9f75bb9b290d, type: 3}
   - {fileID: 21300000, guid: 3001a84ea324233419ea6d1ecd46348d, type: 3}
   - {fileID: 21300002, guid: 3001a84ea324233419ea6d1ecd46348d, type: 3}
+  upDownCheck_i: 0
   switch_i: 0
   waterCan_i: 0
   waterpurifier_i: 0
@@ -6963,7 +7001,7 @@ SpriteRenderer:
   m_Size: {x: 2.98, y: 2.61}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &637547181
 GameObject:
@@ -8985,7 +9023,7 @@ RectTransform:
   m_GameObject: {fileID: 800312760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
+  m_LocalScale: {x: 0.01388889, y: 0.01388889, z: 0.01388889}
   m_Children:
   - {fileID: 984459757}
   m_Father: {fileID: 0}
@@ -11166,7 +11204,7 @@ SpriteRenderer:
   m_Size: {x: 2.98, y: 2.61}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!1 &1049890797
 GameObject:
@@ -11675,7 +11713,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex1
+        m_MethodName: setIndex7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12617,7 +12655,7 @@ GameObject:
   - component: {fileID: 1208861324}
   - component: {fileID: 1208861323}
   m_Layer: 5
-  m_Name: kitchen
+  m_Name: mat2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12682,7 +12720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex5
+        m_MethodName: setIndex9
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14117,7 +14155,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex0
+        m_MethodName: setIndex6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15127,7 +15165,7 @@ GameObject:
   - component: {fileID: 1404639406}
   - component: {fileID: 1404639405}
   m_Layer: 5
-  m_Name: out
+  m_Name: mat1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15192,7 +15230,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex4
+        m_MethodName: setIndex8
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15793,7 +15831,7 @@ RectTransform:
   m_GameObject: {fileID: 1462431040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
+  m_LocalScale: {x: 0.01388889, y: 0.01388889, z: 0.01388889}
   m_Children:
   - {fileID: 835532572}
   - {fileID: 309627280}
@@ -15980,7 +16018,7 @@ RectTransform:
   m_GameObject: {fileID: 1495067293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.013896183, y: 0.013896183, z: 0.013896183}
+  m_LocalScale: {x: 0.01388889, y: 0.01388889, z: 0.01388889}
   m_Children:
   - {fileID: 225968053}
   - {fileID: 1449619538}
@@ -17919,7 +17957,7 @@ GameObject:
   - component: {fileID: 1726800628}
   - component: {fileID: 1726800627}
   m_Layer: 5
-  m_Name: tvdown
+  m_Name: drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17984,7 +18022,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: setIndex3
+        m_MethodName: setIndex10
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20336,8 +20374,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228824}
-        m_MethodName: changeSight
+      - m_Target: {fileID: 534253874}
+        m_MethodName: Sight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21349,6 +21387,7 @@ MonoBehaviour:
   bedImg_obj: {fileID: 604404576}
   rugImg_obj: {fileID: 933337702}
   cabinetImg_obj: {fileID: 533704789}
+  rugImg2_obj: {fileID: 1609290855}
   moreCoinWindow_obj: {fileID: 0}
   bookBox_i: 0
   bookBox_obj: {fileID: 1822280059}
