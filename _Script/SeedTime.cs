@@ -40,20 +40,22 @@ public class SeedTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 59 - minute;
-        hours = 1 - hours;
+        minute = 2 - minute;
+        hours =  0 - hours;
+        Debug.Log(hours);
         if (hours < 0)
         {
+            Debug.Log(seedWater_i+"mm"+ seed_i + "mm" + hours);
             if (seedWater_i > seed_i)
             {
                 seed_i = PlayerPrefs.GetInt("seed", 0);
                 seed_i++;
-                PlayerPrefs.SetInt("seed", 0);
-                //seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
+                PlayerPrefs.SetInt("seed", seed_i);
+                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
         }
-        //seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
+        seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
     }
 
     public void TouchSeed()
@@ -95,7 +97,7 @@ public class SeedTime : MonoBehaviour {
             PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
             seedWater_i = PlayerPrefs.GetInt("seedWater", 0);
             seedWater_i++;
-            PlayerPrefs.SetInt("seedWater", 0);
+            PlayerPrefs.SetInt("seedWater", seedWater_i);
             PlayerPrefs.Save();
         }
         else

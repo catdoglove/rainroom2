@@ -18,6 +18,11 @@ public class secondRoomFunction : CavasData {
     public GameObject needhRain_obj, needcRain_obj;
 
     public GameObject[] secondRoomItem_obj;
+
+    public GameObject seedBox_obj,iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj;
+    public GameObject boxClean_obj;
+    public string boxName_str;
+
     // Use this for initialization
     void Start () {
 		//GM을 찾아불러온 데이터들 가져오기
@@ -32,7 +37,7 @@ public class secondRoomFunction : CavasData {
 		//drawing_i = PlayerPrefs.GetInt ("drawing",0);
 		mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
         mat2_i = PlayerPrefs.GetInt("mat2lv", 0);
-        flower_i = PlayerPrefs.GetInt ("flower", 0);
+        flower_i = PlayerPrefs.GetInt ("seed", 0);
 		light_i = PlayerPrefs.GetInt ("lightlv", 0);
 		umbrella_i = PlayerPrefs.GetInt ("umbrellalv", 0);
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
@@ -143,5 +148,87 @@ public class secondRoomFunction : CavasData {
 
     }
 
+
+
+
+
+
+
+    public void boxOpen()
+    {
+        boxClean_obj.SetActive(true);
+    }
+
+    public void boxSeed()
+    {
+        boxName_str = "seed";
+    }
+    public void boxDrawer()
+    {
+        boxName_str = "drawer";
+    }
+    public void boxGas()
+    {
+        boxName_str = "gasrange";
+    }
+    public void boxIce()
+    {
+        boxName_str = "icebox";
+    }
+
+
+    public void boxYes()
+    {
+
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str1 + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str1 + "h", 0);
+
+        if (coldRain_i >= 50 && hotRain_i >= 25)
+        {
+
+            coldRain_i = coldRain_i - 50;
+            PlayerPrefs.SetInt(str1 + "c", coldRain_i);
+
+            hotRain_i = hotRain_i - 25;
+            PlayerPrefs.SetInt(str1 + "h", hotRain_i);
+
+            PlayerPrefs.SetInt(boxName_str + "box", 1);
+            PlayerPrefs.SetInt(boxName_str + "lv", 1);
+
+            PlayerPrefs.Save();
+            if (PlayerPrefs.GetInt("seedbox", 0) == 1)
+            {
+                seedBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("drawerbox", 0) == 1)
+            {
+                drawerBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("gasrangebox", 0) == 1)
+            {
+                gasrangeBox_obj.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("iceboxbox", 0) == 1)
+            {
+                iceBoxBox_obj.SetActive(false);
+            }
+            flower_i = PlayerPrefs.GetInt("seedlv", 0);
+            drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
+            gasrange_i = PlayerPrefs.GetInt("gasrangelv", 0);
+            //_i = PlayerPrefs.GetInt("iceboxlv", 0);
+
+            //bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+
+
+            boxClean_obj.SetActive(false);
+        }
+        else
+        {
+            //needMore_obj.SetActive(true);
+            //돈부족
+        }
+    }
 
 }

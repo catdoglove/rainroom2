@@ -19,6 +19,8 @@ public class MainShop : ShopHandler {
     string str;
 
     public GameObject buyYes_obj;
+    public GameObject buyItemImg_obj;
+    public Sprite[] buyItem_spr;
 
     //처음에박스값을10으로설정해준다 아래에서레벨을불러올때 박스값이10이면 박스에담겨있는물건이다 이물건은박스에서 꺼낼지물어본다
     //기본방에서 물건터치는박스로 막혀있다. 박스를 터치하면 상자치우기창이뜬다.
@@ -48,7 +50,7 @@ public class MainShop : ShopHandler {
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
-        //data_itemName = CSVReader.Read("Price/f_itemname");                               나중에추가해줄것
+        data_itemName = CSVReader.Read("Price/f_itemname");
     }
 
     public void ShopCoinLoad(){
@@ -60,6 +62,7 @@ public class MainShop : ShopHandler {
             GM2 = GameObject.FindGameObjectWithTag("GM2");
             data_cPrice = CSVReader.Read("Price/f_coldrain");
             data_hPrice = CSVReader.Read("Price/f_hotrain");
+            data_itemName = CSVReader.Read("Price/f_itemname");
         }
         
 		str = PlayerPrefs.GetString ("code", "");
@@ -157,7 +160,9 @@ public class MainShop : ShopHandler {
         }//endOfElse
     }
  
-
+    /// <summary>
+    /// 물건을 살때 이름을 불러오고 살까요창을 띄워준다
+    /// </summary>
     public void ShopChageImage() {
         str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -177,6 +182,7 @@ public class MainShop : ShopHandler {
         else
         {
             buyYes_obj.SetActive(true);
+            buyItemImg_obj.GetComponent<Image>().sprite = buyItem_spr[itemIndex_i];
         }
        
     }
@@ -278,8 +284,7 @@ public class MainShop : ShopHandler {
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-            levels_txt[i].text = "LV. " + itemLevel_i.ToString();
-            ///////////////////////////////////////////////////////////////////////////////////이름더해주기 data_itemName[itemLevel_i][itemName_str]
+            levels_txt[i].text = "LV. " + itemLevel_i.ToString()+ "\n" + data_itemName[itemLevel_i][itemName_str];
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();
@@ -289,9 +294,9 @@ public class MainShop : ShopHandler {
             {
                 itemName_str = shopItems_btn[i].name;
                 itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-                levels_txt[i].text = "LV. MAX";
-                coldPrice_txt[i].text = "0";
-                hotPrice_txt[i].text = "0";
+                levels_txt[i].text = "LV.MAX" + "\n" + data_itemName[itemLevel_i][itemName_str];
+                coldPrice_txt[i].text = "-";
+                hotPrice_txt[i].text = "-";
             }else{ }
         }
         

@@ -17,8 +17,8 @@ public class FirstRoomFunction : CavasData {
     public GameObject[] fisrtRoomItem_obj;
 
 
-    public int window_i,book_i,bed_i,desk_i,stand_i,tapestry_i,rug_i,poster_i, cabinet_i;
-	public GameObject windowImg_obj,bookImg_obj,deskImg_obj,standImg_obj,tapestryImg_obj,bedImg_obj,rugImg_obj, cabinetImg_obj, rugImg2_obj;
+    public int window_i, book_i, bed_i, desk_i, stand_i, tapestry_i, rug_i, poster_i, cabinet_i, wall_i;
+    public GameObject windowImg_obj, bookImg_obj, deskImg_obj, standImg_obj, tapestryImg_obj, bedImg_obj, rugImg_obj, cabinetImg_obj, rugImg2_obj, wallImg_obj, wallImg2_obj;
 
     public GameObject moreCoinWindow_obj;
 
@@ -53,7 +53,7 @@ public class FirstRoomFunction : CavasData {
 		book_i = PlayerPrefs.GetInt ("booklv",0);
 		bed_i = PlayerPrefs.GetInt ("bedlv",0);
 		rug_i = PlayerPrefs.GetInt ("ruglv",0);
-		
+        wall_i = PlayerPrefs.GetInt("walllv", 0);
 		poster_i = PlayerPrefs.GetInt ("posterlv",0);
 		desk_i = PlayerPrefs.GetInt ("desklv",0);
 		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
@@ -93,6 +93,8 @@ public class FirstRoomFunction : CavasData {
         //standImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().stand_spr [stand_i];
         rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
+        wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
         //deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
         //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
