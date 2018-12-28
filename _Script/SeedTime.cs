@@ -42,10 +42,10 @@ public class SeedTime : MonoBehaviour {
         minute = minute - (minute / 60) * 60;
         minute = 2 - minute;
         hours =  0 - hours;
-        Debug.Log(hours);
+        //Debug.Log(hours);
         if (hours < 0)
         {
-            Debug.Log(seedWater_i+"mm"+ seed_i + "mm" + hours);
+            //Debug.Log(seedWater_i+"mm"+ seed_i + "mm" + hours);
             if (seedWater_i > seed_i)
             {
                 seed_i = PlayerPrefs.GetInt("seed", 0);

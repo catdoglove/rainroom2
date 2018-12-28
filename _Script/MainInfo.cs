@@ -12,6 +12,7 @@ public class MainInfo : MonoBehaviour {
 
     public GameObject cBook_obj, cWindow_obj, cWall_obj, cBed_obj, cCabinet_obj, cDesk_obj, cLight_obj, cDrawer_obj, cGasrange_obj, cIcebox_obj, CShelf_obj, cBox_obj, cLadder_obj;
     public Text[] itemList_txt;
+    public GameObject[] checkLine_obj;
 
 	Vector3 rect_scl,backRect_scl;
 
@@ -35,12 +36,14 @@ public class MainInfo : MonoBehaviour {
 
    public void infoShow()
     {
+        PlayerPrefs.SetInt("lovelv", loveLv_i);/////////////////////////////////////////////////////test////////////////////////////////
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
         love_sld.value = love_i;
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         //face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
+        InfoCheckList();
     }
 
 	public void infoWindowTurn(){
@@ -124,77 +127,194 @@ public class MainInfo : MonoBehaviour {
         {
             case 0:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "2";
+                itemList_txt[0].text = "Lv.2  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 2)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cDesk_obj.SetActive(true);
-                itemList_txt[5].text = "1";
+                itemList_txt[5].text = "Lv.1  달성";
+                checkLine_obj[5].SetActive(false);
+                if (PlayerPrefs.GetInt("desklv", 0) >= 1)
+                {
+                    checkLine_obj[5].SetActive(true);
+                }
                 break;
             case 1:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "4";
+                itemList_txt[0].text = "Lv.4  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 4)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cCabinet_obj.SetActive(true);
-                itemList_txt[4].text = "1";
+                itemList_txt[4].text = "Lv.1  달성";
+                checkLine_obj[4].SetActive(false);
+                if (PlayerPrefs.GetInt("cabinetlv", 0) >= 1)
+                {
+                    checkLine_obj[4].SetActive(true);
+                }
                 break;
             case 2:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "6";
+                itemList_txt[0].text = "Lv.6  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 6)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cBed_obj.SetActive(true);
-                itemList_txt[3].text = "1";
+                itemList_txt[3].text = "Lv.1  달성";
+                checkLine_obj[3].SetActive(false);
+                if (PlayerPrefs.GetInt("bedlv", 0) >= 1)
+                {
+                    checkLine_obj[3].SetActive(true);
+                }
                 cLadder_obj.SetActive(true);
-                itemList_txt[12].text = "1";
+                itemList_txt[12].text = "사다리 정리";
+                checkLine_obj[12].SetActive(false);
                 break;
             case 3:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "7";
+                itemList_txt[0].text = "Lv.7  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 7)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "1";
+                itemList_txt[1].text = "Lv.1  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 1)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 cWall_obj.SetActive(true);
-                itemList_txt[2].text = "1";
+                itemList_txt[2].text = "Lv.1  달성";
+                checkLine_obj[2].SetActive(false);
+                if (PlayerPrefs.GetInt("walllv", 0) >= 1)
+                {
+                    checkLine_obj[2].SetActive(true);
+                }
                 break;
             case 4:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "8";
+                itemList_txt[0].text = "Lv.8  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 8)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "3";
+                itemList_txt[1].text = "Lv.3  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 3)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 cGasrange_obj.SetActive(true);
-                itemList_txt[8].text = "1";
+                itemList_txt[8].text = "Lv.1  달성";
+                checkLine_obj[8].SetActive(false);
+                if (PlayerPrefs.GetInt("gasrangelv", 0) >= 1)
+                {
+                    checkLine_obj[8].SetActive(true);
+                }
                 break;
             case 5:
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "5";
+                itemList_txt[1].text = "Lv.5  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 5)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 cBox_obj.SetActive(true);
-                itemList_txt[11].text = "외출";
+                itemList_txt[11].text = "현관 정리";
+                checkLine_obj[11].SetActive(false);
                 break;
             case 6:
                 cLight_obj.SetActive(true);
-                itemList_txt[6].text = "1";
+                itemList_txt[6].text = "Lv.1  달성";
+                checkLine_obj[6].SetActive(false);
+                if (PlayerPrefs.GetInt("lightlv", 0) >= 1)
+                {
+                    checkLine_obj[6].SetActive(true);
+                }
                 cDrawer_obj.SetActive(true);
-                itemList_txt[7].text = "1";
+                itemList_txt[7].text = "Lv.1  달성";
+                checkLine_obj[7].SetActive(false);
+                if (PlayerPrefs.GetInt("drawerlv", 0) >= 1)
+                {
+                    checkLine_obj[7].SetActive(true);
+                }
                 break;
             case 7:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "10";
+                itemList_txt[0].text = "Lv.10  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 10)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "6";
+                itemList_txt[1].text = "Lv.6  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 6)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 break;
             case 8:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "11";
+                itemList_txt[0].text = "Lv.11  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 11)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "7";
+                itemList_txt[1].text = "LV.7  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 7)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 break;
             case 9:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "12";
+                itemList_txt[0].text = "Lv.12  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 12)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "9";
+                itemList_txt[1].text = "Lv.9  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 9)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 break;
             case 10:
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "10";
+                itemList_txt[1].text = "Lv.10  달성";
+                checkLine_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 10)
+                {
+                    checkLine_obj[1].SetActive(true);
+                }
                 break;
             case 11:
                 cBook_obj.SetActive(true);
-                itemList_txt[0].text = "14";
+                itemList_txt[0].text = "Lv.14  달성";
+                checkLine_obj[0].SetActive(false);
+                if (PlayerPrefs.GetInt("booklv", 0) >= 14)
+                {
+                    checkLine_obj[0].SetActive(true);
+                }
                 break;
         }
     }
