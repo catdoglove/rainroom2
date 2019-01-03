@@ -79,8 +79,6 @@ public class FirstRoomFunction : CavasData {
         {
             bookBox_obj.SetActive(true);
         }
-
-
         setItems();
     }
 

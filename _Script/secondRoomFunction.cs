@@ -57,7 +57,27 @@ public class secondRoomFunction : CavasData {
 		lightImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().light_spr [light_i];
         lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         //umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
-        
+
+
+
+
+        //박스
+        if (PlayerPrefs.GetInt("icebox", 0) == 10)
+        {
+            iceBoxBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("gasrangebox", 0) == 10)
+        {
+            gasrangeBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("drawerbox", 0) == 10)
+        {
+            drawerBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("seedbox", 0) == 10)
+        {
+            seedBox_obj.SetActive(true);
+        }
     }
 
 
@@ -158,7 +178,6 @@ public class secondRoomFunction : CavasData {
     {
         boxClean_obj.SetActive(true);
     }
-
     public void boxSeed()
     {
         boxName_str = "seed";
@@ -179,7 +198,6 @@ public class secondRoomFunction : CavasData {
 
     public void boxYes()
     {
-
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str1 + "c", 0);
@@ -187,7 +205,6 @@ public class secondRoomFunction : CavasData {
 
         if (coldRain_i >= 50 && hotRain_i >= 25)
         {
-
             coldRain_i = coldRain_i - 50;
             PlayerPrefs.SetInt(str1 + "c", coldRain_i);
 
@@ -217,10 +234,12 @@ public class secondRoomFunction : CavasData {
             flower_i = PlayerPrefs.GetInt("seedlv", 0);
             drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
             gasrange_i = PlayerPrefs.GetInt("gasrangelv", 0);
-            //_i = PlayerPrefs.GetInt("iceboxlv", 0);
+            icebox_i = PlayerPrefs.GetInt("iceboxlv", 0);
 
-            //bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
-
+            flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[flower_i];
+            drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
+            gasrangeImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().gasrange_spr[gasrange_i];
+            iceboxImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().icebox_spr[icebox_i];
 
             boxClean_obj.SetActive(false);
         }
@@ -231,4 +250,8 @@ public class secondRoomFunction : CavasData {
         }
     }
 
+    public void boxClose()
+    {
+        boxClean_obj.SetActive(false);
+    }
 }

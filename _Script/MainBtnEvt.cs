@@ -101,7 +101,14 @@ public class MainBtnEvt : CavasData
             PlayerPrefs.SetInt("deskbox", 10);
             PlayerPrefs.SetInt("bedbox", 10);
             PlayerPrefs.SetInt("cabinetbox", 10);
-			PlayerPrefs.SetInt ("first", 1);
+
+            PlayerPrefs.SetInt("icebox", 10);
+            PlayerPrefs.SetInt("gasrangebox", 10);
+            PlayerPrefs.SetInt("drawerbox", 10);
+            PlayerPrefs.SetInt("seedbox", 10);
+
+
+                PlayerPrefs.SetInt ("first", 1);
 			PlayerPrefs.Save ();
 		}//endOfIf
 
