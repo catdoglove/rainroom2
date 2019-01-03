@@ -11,6 +11,7 @@ public class MainShop : ShopHandler {
     public Text[] coldPrice_txt;
     public Text[] hotPrice_txt;
 
+    public Text[] lvNum_txt;
 
     public GameObject needhRain_obj,needcRain_obj;
 
@@ -41,8 +42,8 @@ public class MainShop : ShopHandler {
         //GM.GetComponent<LoadingData> ().;
         //PlayerPrefs.SetInt("booklv",0);
         string str = PlayerPrefs.GetString("code", "");
-        PlayerPrefs.SetInt(str + "c", 999999);
-        PlayerPrefs.SetInt(str + "h", 99999);
+        //PlayerPrefs.SetInt(str + "c", 999999);
+        //PlayerPrefs.SetInt(str + "h", 99999);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -284,7 +285,8 @@ public class MainShop : ShopHandler {
         {
             itemName_str = shopItems_btn[i].name;
             itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-            levels_txt[i].text = "LV. " + itemLevel_i.ToString()+ "\n" + data_itemName[itemLevel_i][itemName_str];
+            levels_txt[i].text = "" + data_itemName[itemLevel_i][itemName_str];
+            lvNum_txt[i].text = "LV. " + itemLevel_i.ToString();
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();
@@ -294,7 +296,8 @@ public class MainShop : ShopHandler {
             {
                 itemName_str = shopItems_btn[i].name;
                 itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
-                levels_txt[i].text = "LV.MAX" + "\n" + data_itemName[itemLevel_i][itemName_str];
+                levels_txt[i].text = "" + data_itemName[itemLevel_i][itemName_str];
+                lvNum_txt[i].text = "LV.MAX";
                 coldPrice_txt[i].text = "-";
                 hotPrice_txt[i].text = "-";
             }else{ }
