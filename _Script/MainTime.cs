@@ -12,6 +12,7 @@ public class MainTime : MonoBehaviour {
     public float bMoveX, bMoveY;
     public int endBMove_i;
     public GameObject balloon_obj, balloonR_obj;
+    
 
 
     // Use this for initialization
@@ -24,8 +25,9 @@ public class MainTime : MonoBehaviour {
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
-			//거미
-			if (randSpider_i == 1) {
+            beadal();
+            //거미
+            if (randSpider_i == 1) {
                 spider_obj.transform.position = new Vector3(spiX, spider_obj.transform.position.y, spider_obj.transform.position.z);
 
 			} else {
@@ -72,7 +74,7 @@ public class MainTime : MonoBehaviour {
 
 	
 
-	void baedal(){
+	void beadal(){
 		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
 		System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
 		int m = (int)compareTime.TotalMinutes;
@@ -81,9 +83,14 @@ public class MainTime : MonoBehaviour {
 		sec = 59 - sec;
 		m = 1 - m;
 		if (m < 0) {
-			//배달이 온
+            //배달이 온
+            PlayerPrefs.SetInt("beadal", 0);
+            PlayerPrefs.Save();
 		}
 	}
+
+   
+
 
 
   

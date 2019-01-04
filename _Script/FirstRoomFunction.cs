@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FirstRoomFunction : CavasData {
 
 	public GameObject beadalWindow_obj;
-
+    public int point_i;
 	
 
 	public GameObject GMNotdistroy;
@@ -100,11 +100,21 @@ public class FirstRoomFunction : CavasData {
 
     //전단지열기
     public void openBeadal(){
-		if (beadalWindow_obj.activeSelf == true) {
-			beadalWindow_obj.SetActive (false);
-		} else {
-			beadalWindow_obj.SetActive (true);
-		}
+        if (PlayerPrefs.GetInt("beadal", 0)==0)
+        {
+            if (beadalWindow_obj.activeSelf == true)
+            {
+                beadalWindow_obj.SetActive(false);
+            }
+            else
+            {
+                beadalWindow_obj.SetActive(true);
+            }
+        }
+        else
+        {
+            //아직배부름
+        }
 	}
 
     //배달시키기
@@ -118,6 +128,73 @@ public class FirstRoomFunction : CavasData {
         {
             heart_i = heart_i - 4;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            point_i = PlayerPrefs.GetInt("lovepoint", 0);
+            point_i = point_i + 10;
+            PlayerPrefs.SetInt("lovepoint", point_i);
+        }
+        else
+        {
+            needMore_obj.SetActive(true);
+            //돈부족함
+        }
+    }
+    public void BuyFood2()
+    {
+        //호감도 10~20상승
+        //하트가격4~8
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i >= 5)
+        {
+            heart_i = heart_i - 5;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            point_i = PlayerPrefs.GetInt("lovepoint", 0);
+            point_i = point_i + 12;
+            PlayerPrefs.SetInt("lovepoint", point_i);
+        }
+        else
+        {
+            needMore_obj.SetActive(true);
+            //돈부족함
+        }
+    }
+    public void BuyFood3()
+    {
+        //호감도 10~20상승
+        //하트가격4~8
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i >= 7)
+        {
+            heart_i = heart_i - 7;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            point_i = PlayerPrefs.GetInt("lovepoint", 0);
+            point_i = point_i + 17;
+            PlayerPrefs.SetInt("lovepoint", point_i);
+        }
+        else
+        {
+            needMore_obj.SetActive(true);
+            //돈부족함
+        }
+    }
+
+    public void BuyFood4()
+    {
+        //호감도 10~20상승
+        //하트가격4~8
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i >= 8)
+        {
+            heart_i = heart_i - 8;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            point_i = PlayerPrefs.GetInt("lovepoint", 0);
+            point_i = point_i + 20;
+            PlayerPrefs.SetInt("lovepoint", point_i);
         }
         else
         {
@@ -127,7 +204,7 @@ public class FirstRoomFunction : CavasData {
     }
 
 
-	public void closeBeadal(){
+    public void closeBeadal(){
 		beadalWindow_obj.SetActive (false);
 	}
 

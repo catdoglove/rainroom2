@@ -23,6 +23,8 @@ public class secondRoomFunction : CavasData {
     public GameObject boxClean_obj;
     public string boxName_str;
 
+    public GameObject close_obj;
+
     // Use this for initialization
     void Start () {
 		//GM을 찾아불러온 데이터들 가져오기
@@ -253,5 +255,18 @@ public class secondRoomFunction : CavasData {
     public void boxClose()
     {
         boxClean_obj.SetActive(false);
+    }
+
+    public void OpenClose()
+    {
+        close_obj.SetActive(true);
+    }
+
+
+    public void AllClose()
+    {
+        close_obj.SetActive(false);
+        WaterPurifilerWindow_obj.SetActive(false);
+        CloseWaterYN();
     }
 }
