@@ -33,6 +33,7 @@ public class MainShop : ShopHandler {
     public Sprite[] upDown_spr;
     public int upDownCheck_i = 0;
 
+    public GameObject[] functionTape_obj;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
@@ -341,6 +342,7 @@ public class MainShop : ShopHandler {
         ItemListImg_obj[1].SetActive(false);
         ItemListImg_obj[0].SetActive(false);
         ItemListImg_obj[2].SetActive(true);
+        OpenfunctionItem();
     }
 
     /// <summary>
@@ -348,41 +350,68 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void OpenfunctionItem()
     {
-        switch_i= PlayerPrefs.GetInt("switchshop",0);
-        waterCan_i=PlayerPrefs.GetInt("wateringcanshop", 0);
-        waterpurifier_i=PlayerPrefs.GetInt("waterpurifiershop", 0);
-        reform_i=PlayerPrefs.GetInt("reformshop", 0);
+        
+        switch_i = PlayerPrefs.GetInt("switchshop", 0);
+        waterCan_i = PlayerPrefs.GetInt("wateringcanshop", 0);
+        waterpurifier_i = PlayerPrefs.GetInt("waterpurifiershop", 0);
+        reform_i = PlayerPrefs.GetInt("reformshop", 0);
+        if (PlayerPrefs.GetInt("seedbox", 0) >= 1&& waterCan_i == 0)
+        {
+            PlayerPrefs.SetInt("wateringcanshop", 1);
+            waterCan_i = 1;
+        }
+       
 
         if (switch_i == 1)
         {
-
+            functionTape_obj[0].SetActive(false);
         }else if (switch_i == 2)
         {
+            functionTape_obj[0].SetActive(false);
 
         }
+        else if(switch_i==0)
+        {
+            functionTape_obj[0].SetActive(true);
+        }
+
         if (waterCan_i == 1)
         {
-
+            functionTape_obj[1].SetActive(false);
         }
         else if (waterCan_i == 2)
         {
-
+            functionTape_obj[1].SetActive(false);
         }
+        else if (waterCan_i == 0)
+        {
+            functionTape_obj[1].SetActive(true);
+        }
+
         if (waterpurifier_i == 1)
         {
-
+            functionTape_obj[2].SetActive(false);
         }
         else if (waterpurifier_i == 2)
         {
-
+            functionTape_obj[2].SetActive(false);
         }
+        else if (waterpurifier_i == 0)
+        {
+            functionTape_obj[2].SetActive(true);
+        }
+
         if (reform_i == 1)
         {
-
+            functionTape_obj[3].SetActive(false);
         }
         else if (reform_i == 2)
         {
-
+            functionTape_obj[3].SetActive(false);
+        }
+        else if (reform_i == 0)
+        {
+            functionTape_obj[3].SetActive(true);
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FirstRoomFunction : CavasData {
 
-	public GameObject beadalWindow_obj;
+    public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj;
     public int point_i;
 	
 
@@ -203,6 +203,20 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
+    public void beadalType1()
+    {
+        beadalType1_obj.SetActive(true);
+    }
+    public void beadalType2()
+    {
+        beadalType2_obj.SetActive(true);
+    }
+
+    public void BeadalTypeClose()
+    {
+        beadalType1_obj.SetActive(false);
+        beadalType2_obj.SetActive(false);
+    }
 
     public void closeBeadal(){
 		beadalWindow_obj.SetActive (false);

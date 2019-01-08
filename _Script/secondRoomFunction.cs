@@ -215,7 +215,7 @@ public class secondRoomFunction : CavasData {
 
             PlayerPrefs.SetInt(boxName_str + "box", 1);
             PlayerPrefs.SetInt(boxName_str + "lv", 1);
-
+            
             PlayerPrefs.Save();
             if (PlayerPrefs.GetInt("seedbox", 0) == 1)
             {
