@@ -34,6 +34,8 @@ public class MainShop : ShopHandler {
     public int upDownCheck_i = 0;
 
     public GameObject[] functionTape_obj;
+    public string function_txt;
+    public GameObject[] functionBuyBtn_obj;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
@@ -355,6 +357,7 @@ public class MainShop : ShopHandler {
         waterCan_i = PlayerPrefs.GetInt("wateringcanshop", 0);
         waterpurifier_i = PlayerPrefs.GetInt("waterpurifiershop", 0);
         reform_i = PlayerPrefs.GetInt("reformshop", 0);
+        //해금
         if (PlayerPrefs.GetInt("seedbox", 0) >= 1&& waterCan_i == 0)
         {
             PlayerPrefs.SetInt("wateringcanshop", 1);
@@ -365,6 +368,7 @@ public class MainShop : ShopHandler {
         if (switch_i == 1)
         {
             functionTape_obj[0].SetActive(false);
+            functionBuyBtn_obj[0].SetActive(true);
         }else if (switch_i == 2)
         {
             functionTape_obj[0].SetActive(false);
@@ -378,6 +382,7 @@ public class MainShop : ShopHandler {
         if (waterCan_i == 1)
         {
             functionTape_obj[1].SetActive(false);
+            functionBuyBtn_obj[1].SetActive(true);
         }
         else if (waterCan_i == 2)
         {
@@ -391,6 +396,7 @@ public class MainShop : ShopHandler {
         if (waterpurifier_i == 1)
         {
             functionTape_obj[2].SetActive(false);
+            functionBuyBtn_obj[2].SetActive(true);
         }
         else if (waterpurifier_i == 2)
         {
@@ -404,6 +410,7 @@ public class MainShop : ShopHandler {
         if (reform_i == 1)
         {
             functionTape_obj[3].SetActive(false);
+            //functionBuyBtn_obj[3].SetActive(true);
         }
         else if (reform_i == 2)
         {
@@ -435,16 +442,34 @@ public class MainShop : ShopHandler {
         func_i = 3;
     }
 
-
-
     public void FuctionBuy()
     {
-
+        switch (func_i)
+        {
+            case 0: 
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 
     public void FunctionYes()
     {
-
+        switch (func_i)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 
 }

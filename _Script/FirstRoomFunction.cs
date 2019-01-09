@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FirstRoomFunction : CavasData {
 
     public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj;
+    public int buyFood_i;
     public int point_i;
 	
 
@@ -119,87 +120,88 @@ public class FirstRoomFunction : CavasData {
 
     //배달시키기
     public void BuyFood1() {
-        //호감도 10~20상승
-        //하트가격4~8
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 4)
-        {
-            heart_i = heart_i - 4;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            point_i = PlayerPrefs.GetInt("lovepoint", 0);
-            point_i = point_i + 10;
-            PlayerPrefs.SetInt("lovepoint", point_i);
-        }
-        else
-        {
-            needMore_obj.SetActive(true);
-            //돈부족함
-        }
+        buyFood_i = 1;
     }
     public void BuyFood2()
     {
-        //호감도 10~20상승
-        //하트가격4~8
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 5)
-        {
-            heart_i = heart_i - 5;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            point_i = PlayerPrefs.GetInt("lovepoint", 0);
-            point_i = point_i + 12;
-            PlayerPrefs.SetInt("lovepoint", point_i);
-        }
-        else
-        {
-            needMore_obj.SetActive(true);
-            //돈부족함
-        }
+        buyFood_i = 2;
     }
     public void BuyFood3()
     {
-        //호감도 10~20상승
-        //하트가격4~8
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 7)
-        {
-            heart_i = heart_i - 7;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            point_i = PlayerPrefs.GetInt("lovepoint", 0);
-            point_i = point_i + 17;
-            PlayerPrefs.SetInt("lovepoint", point_i);
-        }
-        else
-        {
-            needMore_obj.SetActive(true);
-            //돈부족함
-        }
+        buyFood_i = 3;
     }
-
     public void BuyFood4()
     {
-        //호감도 10~20상승
-        //하트가격4~8
+        buyFood_i = 4;
+    }
+
+    public void BuyFoodYes()
+    {
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 8)
+        switch (buyFood_i)
         {
-            heart_i = heart_i - 8;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            point_i = PlayerPrefs.GetInt("lovepoint", 0);
-            point_i = point_i + 20;
-            PlayerPrefs.SetInt("lovepoint", point_i);
-        }
-        else
-        {
-            needMore_obj.SetActive(true);
-            //돈부족함
+            case 1:
+                if (heart_i >= 4)
+                {
+                    heart_i = heart_i - 4;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 10;
+                    PlayerPrefs.SetInt("lovepoint", point_i);
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 2:
+                if (heart_i >= 5)
+                {
+                    heart_i = heart_i - 5;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 12;
+                    PlayerPrefs.SetInt("lovepoint", point_i);
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 3:
+                if (heart_i >= 7)
+                {
+                    heart_i = heart_i - 7;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 17;
+                    PlayerPrefs.SetInt("lovepoint", point_i);
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 4:
+                if (heart_i >= 8)
+                {
+                    heart_i = heart_i - 8;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 20;
+                    PlayerPrefs.SetInt("lovepoint", point_i);
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
         }
     }
 

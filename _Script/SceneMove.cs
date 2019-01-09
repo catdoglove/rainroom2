@@ -14,7 +14,8 @@ public class SceneMove : MonoBehaviour {
 
 	IEnumerator Load()
 	{
-		async = SceneManager.LoadSceneAsync("Main2");
+        async = SceneManager.LoadSceneAsync("SubLoad");
+        //async = SceneManager.LoadSceneAsync("Main2");
 		while (!async.isDone)
 		{
 			yield return true;
@@ -24,8 +25,9 @@ public class SceneMove : MonoBehaviour {
 
 	IEnumerator Load2()
 	{
-		async = SceneManager.LoadSceneAsync("Main");
-		while (!async.isDone)
+        async = SceneManager.LoadSceneAsync("SubLoad");
+        //async = SceneManager.LoadSceneAsync("Main");
+        while (!async.isDone)
 		{
 			yield return true;
 		}
