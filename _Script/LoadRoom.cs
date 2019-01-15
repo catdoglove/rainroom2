@@ -6,8 +6,19 @@ using UnityEngine.SceneManagement;
 public class LoadRoom : MonoBehaviour {
     AsyncOperation async;
 
+    public GameObject menuBlock_obj;
+    public Vector2 menuBlock_vet;
+
     // Use this for initialization
     void Start () {
+        if (menuBlock_obj == null)
+        {
+            menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
+        }
+        menuBlock_vet.y = menuBlock_obj.transform.position.y;
+        menuBlock_vet.x = 300f;
+        menuBlock_obj.transform.position = menuBlock_vet;
+        
         StartCoroutine(LoadCount());
     }
 
@@ -23,11 +34,11 @@ public class LoadRoom : MonoBehaviour {
         {
             async = SceneManager.LoadSceneAsync("Main");
         }
-        
         while (!async.isDone)
         {
             yield return true;
         }
+        
 
     }
 

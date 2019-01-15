@@ -12,16 +12,20 @@ public class SceneMove : MonoBehaviour {
 
 	AsyncOperation async;
 
+    void Start()
+    {
+      
+    }
+
 	IEnumerator Load()
 	{
         async = SceneManager.LoadSceneAsync("SubLoad");
         //async = SceneManager.LoadSceneAsync("Main2");
 		while (!async.isDone)
 		{
-			yield return true;
+            yield return true;
 		}
-
-	}
+    }
 
 	IEnumerator Load2()
 	{
@@ -29,17 +33,21 @@ public class SceneMove : MonoBehaviour {
         //async = SceneManager.LoadSceneAsync("Main");
         while (!async.isDone)
 		{
-			yield return true;
+            yield return true;
 		}
+        
 
-	}
+    }
 
 	public void moveDown(){
+
+
         if (GMN == null) {
             GMN= GameObject.FindGameObjectWithTag("GMtag");
         }
 		GMN.GetComponent<MainBtnEvt> ().allClose ();
-		
+ 
+
         PlayerPrefs.SetInt("place", 1);
         StartCoroutine(Load());
         PlayerPrefs.Save();
@@ -51,8 +59,8 @@ public class SceneMove : MonoBehaviour {
             GMN = GameObject.FindGameObjectWithTag("GMtag");
         }
         GMN.GetComponent<MainBtnEvt> ().allClose ();
-		for (int i = 0; i < 3; i++) {
-        }
+
+
         PlayerPrefs.SetInt("place", 0);
         StartCoroutine(Load2());
         PlayerPrefs.Save();

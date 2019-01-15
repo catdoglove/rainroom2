@@ -47,7 +47,7 @@ public class MainSticker : MonoBehaviour {
 
     public void OnMouseUp()
     {
-        if (wldObjectPos.x > -4 && wldObjectPos.x < 4.5)
+        if (wldObjectPos.x > -4 && wldObjectPos.x < 4.4)
         {
             if (wldObjectPos.y < 3.44 && wldObjectPos.y > -2.77)
             {

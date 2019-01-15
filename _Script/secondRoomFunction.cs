@@ -25,11 +25,26 @@ public class secondRoomFunction : CavasData {
 
     public GameObject close_obj;
 
+    //씬이동
+    public GameObject menuBlock_obj;
+    public Vector2 menuBlock_vet;
+
     // Use this for initialization
     void Start () {
-		//GM을 찾아불러온 데이터들 가져오기
+        //씬이동
+        if (menuBlock_obj == null)
+        {
+            menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
+        }
+        menuBlock_vet.y = menuBlock_obj.transform.position.y;
+        menuBlock_vet.x = 3000f;
+        menuBlock_obj.transform.position = menuBlock_vet;
 
-		GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
+
+
+
+        //GM을 찾아불러온 데이터들 가져오기
+        GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
 
 		
 		window_i = PlayerPrefs.GetInt ("windowlv",0);

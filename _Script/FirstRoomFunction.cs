@@ -29,7 +29,6 @@ public class FirstRoomFunction : CavasData {
     public GameObject boxClean_obj;
     //public Sprite[] boxItem_spr;
     
-    
 
     public string boxName_str;
 
@@ -37,8 +36,26 @@ public class FirstRoomFunction : CavasData {
 
     public GameObject loadGM;
 
-	// Use this for initialization
-	void Start () {
+
+    //씬이동
+    public GameObject menuBlock_obj;
+    public Vector2 menuBlock_vet;
+
+    // Use this for initialization
+    void Start () {
+
+        //씬이동
+        if (menuBlock_obj == null)
+        {
+            menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
+        }
+        menuBlock_vet.y = menuBlock_obj.transform.position.y;
+        menuBlock_vet.x = 3000f;
+        menuBlock_obj.transform.position = menuBlock_vet;
+
+
+
+
         //장소초기화
         PlayerPrefs.SetInt("place", 0);
 
