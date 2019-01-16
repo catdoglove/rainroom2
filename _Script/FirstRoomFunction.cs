@@ -50,7 +50,7 @@ public class FirstRoomFunction : CavasData {
             menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
         }
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
-        menuBlock_vet.x = 3000f;
+        menuBlock_vet.x = 2500f;
         menuBlock_obj.transform.position = menuBlock_vet;
 
 

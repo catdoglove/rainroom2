@@ -22,11 +22,12 @@ public class MainInfo : MonoBehaviour {
 
 	int turnCk_i;
 
+    public GameObject[] reverseBtn_obj;
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
@@ -47,18 +48,24 @@ public class MainInfo : MonoBehaviour {
     }
 
 	public void infoWindowTurn(){
-		StopCoroutine ("backTurning2");
+        reverseBtn_obj[0].SetActive(true);
+        reverseBtn_obj[1].SetActive(false);
+        StopCoroutine ("backTurning2");
 		StopCoroutine ("backTurning");
 		StopCoroutine ("turning2");
 		StartCoroutine ("turning");
+        PlayerPrefs.SetInt("flip", 1);
 	}
 
 	public void infoBackWindowTurn(){
+        reverseBtn_obj[0].SetActive(false);
+        reverseBtn_obj[1].SetActive(true);
 		StopCoroutine ("backTurning");
 		StopCoroutine ("turning2");
 		StopCoroutine ("turning");
 		StartCoroutine ("backTurning2");
-	}
+        PlayerPrefs.SetInt("flip", 0);
+    }
 
 
 

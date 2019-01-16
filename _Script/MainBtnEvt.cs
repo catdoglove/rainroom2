@@ -19,6 +19,8 @@ public class MainBtnEvt : CavasData
 
     public GameObject GM, GM2;
 
+    public GameObject[] reverseBtn_obj;
+
 
 	// Use this for initialization
 	void Start () {
@@ -145,9 +147,16 @@ public class MainBtnEvt : CavasData
 		if (MainWindow_obj [0].activeSelf == true) {
 			MainWindow_obj [0].SetActive (false);
 			MainWindow_obj [3].SetActive (false);
-		} else {
+            reverseBtn_obj[0].SetActive(false);
+            reverseBtn_obj[1].SetActive(false);
+        } else {
 			allClose ();
             windowsOpen();
+            if (PlayerPrefs.GetInt("flip", 0) == 1)
+            {
+                reverseBtn_obj[1].SetActive(true);
+            }
+            reverseBtn_obj[0].SetActive(true);
             MainWindow_obj [0].SetActive (true);
 			MainWindow_obj [3].SetActive (true);
 		}
@@ -179,6 +188,8 @@ public class MainBtnEvt : CavasData
 		MainWindow_obj [3].SetActive (false);
         backBlackImg_obj.SetActive(false);
         close_obj.SetActive(false);
+        reverseBtn_obj[0].SetActive(false);
+        reverseBtn_obj[1].SetActive(false);
     }
 
     public void windowsOpen()
