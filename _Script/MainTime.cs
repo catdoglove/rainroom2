@@ -12,7 +12,8 @@ public class MainTime : MonoBehaviour {
     public float bMoveX, bMoveY;
     public int endBMove_i;
     public GameObject balloon_obj, balloonR_obj;
-    
+
+    public int airplane_i, cat_i;
 
 
     // Use this for initialization
@@ -25,6 +26,22 @@ public class MainTime : MonoBehaviour {
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
+            cat_i = PlayerPrefs.GetInt("windowcatrand", 0);
+            if (cat_i == 999)
+            {
+
+            }
+            else if (cat_i <= 10 && cat_i > 0)
+            {
+                cat_i--;
+            }
+            else
+            {
+                cat_i = Random.Range(0, 20);
+            }
+            PlayerPrefs.SetInt("windowcatrand", cat_i);
+
+
             beadal();
             //거미
             if (randSpider_i == 1) {
@@ -62,9 +79,9 @@ public class MainTime : MonoBehaviour {
                 }
                 */
             }
-            
-            
 
+
+            PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
 		}
 	}

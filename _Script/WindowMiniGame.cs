@@ -8,6 +8,8 @@ public class WindowMiniGame : MonoBehaviour {
 
     public GameObject miniGameWindow_obj, miniBackWindow_obj;
 
+    public GameObject minicat_obj;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,6 +20,12 @@ public class WindowMiniGame : MonoBehaviour {
     {
         miniGameWindow_obj.SetActive(true);
         PlayerPrefs.SetInt("miniopen",1);
+        if(PlayerPrefs.GetInt("windowcatrand", 0) <= 10)
+        {
+            PlayerPrefs.SetInt("windowcatrand", 999);
+            PlayerPrefs.Save();
+            minicat_obj.SetActive(true);
+        }
     }
 
     public void CloseMiniGame()
@@ -25,7 +33,9 @@ public class WindowMiniGame : MonoBehaviour {
         miniGameWindow_obj.SetActive(false);
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.SetInt("miniopen", 0);
+        PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
+        minicat_obj.SetActive(false);
     }
 
     public void TouchBallon()
@@ -48,4 +58,19 @@ public class WindowMiniGame : MonoBehaviour {
         GM.GetComponent<GetFadeout>().getRainFade();
     }
 
+    public void TouchCat()
+    {
+        minicat_obj.SetActive(false);
+        string str = PlayerPrefs.GetString("code", "");
+        int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
+        coldRain_i = coldRain_i + 5;
+        hotRain_i = hotRain_i + 3;
+        PlayerPrefs.SetInt(str + "c", coldRain_i);
+        PlayerPrefs.SetInt(str + "h", hotRain_i);
+        PlayerPrefs.SetInt("balloon", 10);
+        PlayerPrefs.SetInt("miniopen", 1);
+        PlayerPrefs.SetInt("windowcatrand", 19);
+        PlayerPrefs.Save();
+    }
 }

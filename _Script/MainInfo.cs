@@ -21,8 +21,8 @@ public class MainInfo : MonoBehaviour {
     public int loveLv_i = 0;
 
 	int turnCk_i;
-
-    public GameObject[] reverseBtn_obj;
+    
+    public GameObject reverseBtn_obj, reverseBackBtn_obj;
 
 
 
@@ -48,23 +48,21 @@ public class MainInfo : MonoBehaviour {
     }
 
 	public void infoWindowTurn(){
-        reverseBtn_obj[0].SetActive(true);
-        reverseBtn_obj[1].SetActive(false);
+        reverseBtn_obj.SetActive(false);
         StopCoroutine ("backTurning2");
 		StopCoroutine ("backTurning");
 		StopCoroutine ("turning2");
 		StartCoroutine ("turning");
-        PlayerPrefs.SetInt("flip", 1);
+        reverseBackBtn_obj.SetActive(true);
 	}
 
 	public void infoBackWindowTurn(){
-        reverseBtn_obj[0].SetActive(false);
-        reverseBtn_obj[1].SetActive(true);
-		StopCoroutine ("backTurning");
+        reverseBackBtn_obj.SetActive(false);
+        StopCoroutine ("backTurning");
 		StopCoroutine ("turning2");
 		StopCoroutine ("turning");
 		StartCoroutine ("backTurning2");
-        PlayerPrefs.SetInt("flip", 0);
+        reverseBtn_obj.SetActive(true);
     }
 
 
