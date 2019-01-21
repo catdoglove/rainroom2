@@ -23,9 +23,10 @@ public class WindowMiniGame : MonoBehaviour {
         if(PlayerPrefs.GetInt("windowcatrand", 0) <= 10)
         {
             PlayerPrefs.SetInt("windowcatrand", 999);
-            PlayerPrefs.Save();
             minicat_obj.SetActive(true);
         }
+        PlayerPrefs.SetInt("windowairplane", 999);
+        PlayerPrefs.Save();
     }
 
     public void CloseMiniGame()
@@ -68,8 +69,6 @@ public class WindowMiniGame : MonoBehaviour {
         hotRain_i = hotRain_i + 3;
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
-        PlayerPrefs.SetInt("balloon", 10);
-        PlayerPrefs.SetInt("miniopen", 1);
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
     }

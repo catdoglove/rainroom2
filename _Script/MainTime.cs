@@ -13,7 +13,7 @@ public class MainTime : MonoBehaviour {
     public int endBMove_i;
     public GameObject balloon_obj, balloonR_obj;
 
-    public int airplane_i, cat_i;
+    public int airplane_i, cat_i,plane_i;
 
 
     // Use this for initialization
@@ -26,6 +26,7 @@ public class MainTime : MonoBehaviour {
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
+            //고양이
             cat_i = PlayerPrefs.GetInt("windowcatrand", 0);
             if (cat_i == 999)
             {
@@ -41,7 +42,27 @@ public class MainTime : MonoBehaviour {
             }
             PlayerPrefs.SetInt("windowcatrand", cat_i);
 
-
+            //비행기
+            airplane_i = PlayerPrefs.GetInt("windowairplane", 0);
+            if (airplane_i == 999)
+            {
+                plane_i = Random.Range(0, 10);
+                if (plane_i == 4)
+                {
+                    if (PlayerPrefs.GetInt("balloonrnd", 0) >= 5)
+                    {
+                        bMoveX = -5.2f;
+                    }
+                    else
+                    {
+                        bMoveX = 5.2f;
+                    }
+                    endBMove_i = 1;
+                    StopCoroutine("goBalloon");
+                    StartCoroutine("goBalloon");
+                }
+            }
+            
             beadal();
             //거미
             if (randSpider_i == 1) {
@@ -64,6 +85,8 @@ public class MainTime : MonoBehaviour {
                     PlayerPrefs.SetInt("balloon", Random.Range(7, 10));
 
                 }
+
+             
             }
             else
             {
@@ -172,6 +195,26 @@ public class MainTime : MonoBehaviour {
             StartCoroutine("goBalloon");
         }
     }
-   
 
+    IEnumerator goAirplane()
+    {
+        while (endBMove_i == 1)
+        {
+                bMoveX = bMoveX + 0.5f;
+                if (PlayerPrefs.GetInt("balloon", 0) != 8)
+                {
+                    bMoveX = 15.4f;
+                }
+                if (bMoveX >= 5.4)
+                {
+                    bMoveX = 15.4f;
+                    endBMove_i = 0;
+                    PlayerPrefs.SetInt("miniopen", 1);
+                }
+                balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
+
+
+}
