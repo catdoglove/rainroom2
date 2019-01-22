@@ -106,7 +106,7 @@ public class MainBtnEvt : CavasData
             PlayerPrefs.SetInt("icebox", 10);
             PlayerPrefs.SetInt("gasrangebox", 10);
             PlayerPrefs.SetInt("drawerbox", 10);
-            PlayerPrefs.SetInt("seedbox", 10);
+            PlayerPrefs.SetInt("seedbox", -10);
 
 
                 PlayerPrefs.SetInt ("first", 1);
@@ -162,7 +162,6 @@ public class MainBtnEvt : CavasData
             MainWindow_obj [1].SetActive (true);
 		}
 	}
-
 	public void openOptionWindow(){
 		if (MainWindow_obj [2].activeSelf == true) {
 			MainWindow_obj [2].SetActive (false);
@@ -172,7 +171,6 @@ public class MainBtnEvt : CavasData
             MainWindow_obj [2].SetActive (true);
 		}
 	}
-
 	public void allClose(){
 		MainWindow_obj[0].SetActive(false);
 		MainWindow_obj[1].SetActive(false);
@@ -187,10 +185,7 @@ public class MainBtnEvt : CavasData
         backBlackImg_obj.SetActive(true);
         close_obj.SetActive(true);
     }
-
-
-
-
+    
 	//테스트텍스트
 	IEnumerator testText(){
 		test_str = "";
@@ -200,9 +195,7 @@ public class MainBtnEvt : CavasData
 
 		yield return null;
 	}
-
-
-
+    
 	void setScreen(){
 		//스크린화면해상도에맞춰조절,화면꺼지지않게
 		#region
@@ -236,8 +229,7 @@ public class MainBtnEvt : CavasData
 		#endregion
 	
 	}
-
-
+    
 	public void talkTest(){
 		int talk = PlayerPrefs.GetInt ("talk", 5);
 		if (talk <= 0) {
@@ -268,10 +260,8 @@ public class MainBtnEvt : CavasData
             GM.GetComponent<FirstRoomFunction>().changeSight();
         }
         
-        
     }
-
-
+    
     IEnumerator menuFlow()
     {
         menuBack_vet = menuBack_obj.transform.position;

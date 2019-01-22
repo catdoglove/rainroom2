@@ -11,7 +11,11 @@ public class MainTime : MonoBehaviour {
 
     public float bMoveX, bMoveY;
     public int endBMove_i;
-    public GameObject balloon_obj, balloonR_obj;
+
+    public float pMoveX = 5.4f, pMoveY;
+    public int endPMove_i;
+
+    public GameObject balloon_obj, balloonR_obj, airplane_obj;
 
     public int airplane_i, cat_i,plane_i;
 
@@ -46,20 +50,16 @@ public class MainTime : MonoBehaviour {
             airplane_i = PlayerPrefs.GetInt("windowairplane", 0);
             if (airplane_i == 999)
             {
-                plane_i = Random.Range(0, 10);
+                
                 if (plane_i == 4)
                 {
-                    if (PlayerPrefs.GetInt("balloonrnd", 0) >= 5)
-                    {
-                        bMoveX = -5.2f;
-                    }
-                    else
-                    {
-                        bMoveX = 5.2f;
-                    }
-                    endBMove_i = 1;
-                    StopCoroutine("goBalloon");
-                    StartCoroutine("goBalloon");
+                    
+                    StopCoroutine("goAirplane");
+                    StartCoroutine("goAirplane");
+                }
+                else
+                {
+                    plane_i = Random.Range(0, 10);
                 }
             }
             
@@ -70,7 +70,7 @@ public class MainTime : MonoBehaviour {
 
 			} else {
 				randSpider_i = Random.Range (0, 4);
-                spiX = Random.Range(-6, 6);
+                spiX = Random.Range(-5, 5);
 			}
             //풍선
             if (PlayerPrefs.GetInt("miniopen", 0) == 1)
@@ -90,17 +90,7 @@ public class MainTime : MonoBehaviour {
             }
             else
             {
-                /*
-                if (PlayerPrefs.GetInt("balloon", 0) == 8)
-                {
-
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("balloon", Random.Range(5, 10));
-
-                }
-                */
+                
             }
 
 
@@ -141,7 +131,7 @@ public class MainTime : MonoBehaviour {
         {
             if (PlayerPrefs.GetInt("balloonrnd", 0) >= 5)
             {
-                bMoveX = bMoveX + 0.5f;
+                bMoveX = bMoveX + 0.05f;
                 if (PlayerPrefs.GetInt("balloon", 0) != 8)
                 {
                     bMoveX = 15.4f;
@@ -156,7 +146,7 @@ public class MainTime : MonoBehaviour {
             }
             else
             {
-                bMoveX = bMoveX - 0.5f;
+                bMoveX = bMoveX - 0.05f;
                 if (PlayerPrefs.GetInt("balloon", 0) != 8)
                 {
                     bMoveX = -15.4f;
@@ -198,20 +188,19 @@ public class MainTime : MonoBehaviour {
 
     IEnumerator goAirplane()
     {
-        while (endBMove_i == 1)
+        while (plane_i == 4)
         {
-                bMoveX = bMoveX + 0.5f;
-                if (PlayerPrefs.GetInt("balloon", 0) != 8)
+            if (pMoveX > 7)
+            {
+                pMoveX = 5.4f;
+            }
+                pMoveX = pMoveX -0.1f;
+                if (pMoveX <= -5.4)
                 {
-                    bMoveX = 15.4f;
+                pMoveX = 17.4f;
+                plane_i = 0;
                 }
-                if (bMoveX >= 5.4)
-                {
-                    bMoveX = 15.4f;
-                    endBMove_i = 0;
-                    PlayerPrefs.SetInt("miniopen", 1);
-                }
-                balloon_obj.transform.position = new Vector3(bMoveX, balloon_obj.transform.position.y, balloon_obj.transform.position.z);
+            airplane_obj.transform.position = new Vector3(pMoveX, airplane_obj.transform.position.y, airplane_obj.transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
     }

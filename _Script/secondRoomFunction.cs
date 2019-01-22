@@ -91,7 +91,7 @@ public class secondRoomFunction : CavasData {
         {
             drawerBox_obj.SetActive(true);
         }
-        if (PlayerPrefs.GetInt("seedbox", 0) == 10)
+        if (PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
             seedBox_obj.SetActive(true);
         }

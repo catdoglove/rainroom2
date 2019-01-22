@@ -250,7 +250,7 @@ RectTransform:
   m_GameObject: {fileID: 605100921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 1835949032}
   m_RootOrder: 1
@@ -258,7 +258,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 435.2, y: 316.2}
+  m_SizeDelta: {x: 800, y: 619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &702363792
 GameObject:
@@ -423,12 +423,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   window_spr:
   - {fileID: 0}
+  window2_spr: []
   book_spr: []
   bed_spr: []
   desk_spr: []
   flower_spr: []
   icebox_spr: []
   wall_spr: []
+  wall2_spr: []
   drawer_spr: []
   poster_spr: []
   rug_spr: []
@@ -437,6 +439,7 @@ MonoBehaviour:
   tapestry_spr: []
   umbrella_spr: []
   mat_spr: []
+  mat2_spr: []
   cabinet_spr: []
   shelf_spr: []
   drawing_spr: []
@@ -532,7 +535,7 @@ RectTransform:
   m_GameObject: {fileID: 1835949031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.022208437, y: 0.022208437, z: 0.022208437}
+  m_LocalScale: {x: 0.022226332, y: 0.022226332, z: 0.022226332}
   m_Children:
   - {fileID: 702363793}
   - {fileID: 605100924}

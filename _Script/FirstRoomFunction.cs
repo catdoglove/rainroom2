@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class FirstRoomFunction : CavasData {
 
-    public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj;
+    //배달
+    public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj, beadalYesNo_obj, beadalIllust_obj, beadalFood_obj;
     public int buyFood_i;
     public int point_i;
-	
+    public Sprite[] beadalYN_spr,beadalFood_spr;
+    public GameObject dish_obj;
 
 	public GameObject GMNotdistroy;
 
@@ -44,13 +46,18 @@ public class FirstRoomFunction : CavasData {
     // Use this for initialization
     void Start () {
 
+
+        //string str1;
+        //str1 = PlayerPrefs.GetString("code", "");
+       // PlayerPrefs.SetInt(str1 + "ht", 999999);
+
         //씬이동
         if (menuBlock_obj == null)
         {
             menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
         }
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
-        menuBlock_vet.x = 2500f;
+        menuBlock_vet.x = -2500f;
         menuBlock_obj.transform.position = menuBlock_vet;
 
 
@@ -135,7 +142,9 @@ public class FirstRoomFunction : CavasData {
         }
 	}
 
+
     //배달시키기
+#region
     public void BuyFood1() {
         buyFood_i = 1;
     }
@@ -151,9 +160,27 @@ public class FirstRoomFunction : CavasData {
     {
         buyFood_i = 4;
     }
+    public void BuyFood5()
+    {
+        buyFood_i = 5;
+    }
+    public void BuyFood6()
+    {
+        buyFood_i = 6;
+    }
+    public void BuyFood7()
+    {
+        buyFood_i = 7;
+    }
+    public void BuyFood8()
+    {
+        buyFood_i = 8;
+    }
+#endregion
 
     public void BuyFoodYes()
     {
+        beadalYesNo_obj.SetActive(false);
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
@@ -165,8 +192,9 @@ public class FirstRoomFunction : CavasData {
                     heart_i = heart_i - 4;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 10;
-                    PlayerPrefs.SetInt("lovepoint", point_i);
+                    point_i = point_i + 3;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
                 }
                 else
                 {
@@ -175,13 +203,14 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
             case 2:
-                if (heart_i >= 5)
+                if (heart_i >= 6)
                 {
-                    heart_i = heart_i - 5;
+                    heart_i = heart_i - 6;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 12;
-                    PlayerPrefs.SetInt("lovepoint", point_i);
+                    point_i = point_i + 7;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
                 }
                 else
                 {
@@ -195,8 +224,9 @@ public class FirstRoomFunction : CavasData {
                     heart_i = heart_i - 7;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 17;
-                    PlayerPrefs.SetInt("lovepoint", point_i);
+                    point_i = point_i + 9;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
                 }
                 else
                 {
@@ -205,13 +235,78 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
             case 4:
-                if (heart_i >= 8)
+                if (heart_i >= 7)
                 {
                     heart_i = heart_i - 8;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 20;
-                    PlayerPrefs.SetInt("lovepoint", point_i);
+                    point_i = point_i + 9;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 5:
+                if (heart_i >= 6)
+                {
+                    heart_i = heart_i - 6;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 7;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 6:
+                if (heart_i >= 7)
+                {
+                    heart_i = heart_i - 7;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 8;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 7:
+                if (heart_i >= 7)
+                {
+                    heart_i = heart_i - 7;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 9;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                }
+                else
+                {
+                    needMore_obj.SetActive(true);
+                    //돈부족함
+                }
+                break;
+            case 8:
+                if (heart_i >= 10)
+                {
+                    heart_i = heart_i - 10;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 13;
+                    BeadalYesF();
+                    beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
                 }
                 else
                 {
@@ -220,6 +315,37 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
         }
+        PlayerPrefs.Save();
+    }
+
+    void BeadalYesF()
+    {
+        PlayerPrefs.SetInt("lovepoint", point_i);
+        closeBeadal();
+        beadalIllust_obj.SetActive(true);
+    }
+
+    public void CleanDish()
+    {
+        dish_obj.SetActive(false);
+        string str = PlayerPrefs.GetString("code", "");
+        int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        coldRain_i = coldRain_i + 20;
+        PlayerPrefs.SetInt(str + "c", coldRain_i);
+        PlayerPrefs.Save();
+    }
+
+    public void CloseBeadalIllust()
+    {
+        beadalIllust_obj.SetActive(false);
+
+        dish_obj.SetActive(true);
+        closeBeadal();
+    }
+
+    public void buyFoodNo()
+    {
+        beadalYesNo_obj.SetActive(false);
     }
 
     public void beadalType1()
@@ -235,11 +361,21 @@ public class FirstRoomFunction : CavasData {
     {
         beadalType1_obj.SetActive(false);
         beadalType2_obj.SetActive(false);
+        beadalYesNo_obj.SetActive(false);
     }
 
     public void closeBeadal(){
 		beadalWindow_obj.SetActive (false);
-	}
+        beadalType1_obj.SetActive(false);
+        beadalType2_obj.SetActive(false);
+        beadalYesNo_obj.SetActive(false);
+    }
+
+    public void OpenBeadalYN()
+    {
+        beadalFood_obj.GetComponent<Image>().sprite = beadalFood_spr[buyFood_i];
+        beadalYesNo_obj.SetActive(true);
+    }
 
 	public void boxOpen(){
 		boxClean_obj.SetActive (true);
