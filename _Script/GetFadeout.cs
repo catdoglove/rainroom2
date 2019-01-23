@@ -16,6 +16,8 @@ public class GetFadeout : MonoBehaviour {
 
     Vector2 mouseDragPos;
 
+
+
     // Use this for initialization
     void Start () {
         color = fade_obj.GetComponent<Image>().color;
@@ -51,6 +53,11 @@ public class GetFadeout : MonoBehaviour {
 		}
         fade_obj.transform.position = new Vector2(15f, 15f);
     }
+
+
+
+
+
 
 
 }

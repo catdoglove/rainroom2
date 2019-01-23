@@ -10,9 +10,13 @@ public class FirstRoomFunction : CavasData {
     public int buyFood_i;
     public int point_i;
     public Sprite[] beadalYN_spr,beadalFood_spr;
-    public GameObject dish_obj;
+    public GameObject dish_obj, beadalYet_obj;
 
 	public GameObject GMNotdistroy;
+
+
+    public GameObject needToast_obj, beadalYetToast_obj;
+    Color color;
 
     //하트
     public int heart_i;
@@ -43,9 +47,15 @@ public class FirstRoomFunction : CavasData {
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
 
+
+    public GameObject coopon_obj;
+
     // Use this for initialization
     void Start () {
 
+        color.r = 255;
+        color.g = 255;
+        color.b = 255;
 
         //string str1;
         //str1 = PlayerPrefs.GetString("code", "");
@@ -138,6 +148,10 @@ public class FirstRoomFunction : CavasData {
         }
         else
         {
+
+            StopCoroutine("toastBImgFadeOut");
+            beadalYet_obj.SetActive(true);
+            StartCoroutine("toastBImgFadeOut");
             //아직배부름
         }
 	}
@@ -198,8 +212,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 2:
@@ -214,8 +227,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 3:
@@ -230,8 +242,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 4:
@@ -246,8 +257,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 5:
@@ -262,8 +272,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 6:
@@ -278,8 +287,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 7:
@@ -294,8 +302,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
             case 8:
@@ -310,8 +317,7 @@ public class FirstRoomFunction : CavasData {
                 }
                 else
                 {
-                    needMore_obj.SetActive(true);
-                    //돈부족함
+                    needMoney();
                 }
                 break;
         }
@@ -320,9 +326,11 @@ public class FirstRoomFunction : CavasData {
 
     void BeadalYesF()
     {
+        PlayerPrefs.SetInt("beadal", 1);
         PlayerPrefs.SetInt("lovepoint", point_i);
         closeBeadal();
         beadalIllust_obj.SetActive(true);
+        PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
     }
 
     public void CleanDish()
@@ -375,6 +383,12 @@ public class FirstRoomFunction : CavasData {
     {
         beadalFood_obj.GetComponent<Image>().sprite = beadalFood_spr[buyFood_i];
         beadalYesNo_obj.SetActive(true);
+    }
+
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
     }
 
 	public void boxOpen(){
@@ -448,8 +462,7 @@ public class FirstRoomFunction : CavasData {
             rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
             boxClean_obj.SetActive(false);
         } else {
-            needMore_obj.SetActive(true);
-            //돈부족
+            needMoney();
         }
 	}
 
@@ -461,8 +474,52 @@ public class FirstRoomFunction : CavasData {
     public void closeNeed()
     {
         needMore_obj.SetActive(false);
+        beadalYet_obj.SetActive(false);
     }
 
-    
+
+
+    IEnumerator toastBImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        beadalYetToast_obj.GetComponent<Image>().color = color;
+        beadalYetToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            beadalYetToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        beadalYetToast_obj.SetActive(false);
+
+    }
+
+    IEnumerator toastNImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = color;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
+    }
+
+    public void OpenCoopon()
+    {
+        if (coopon_obj.activeSelf == true)
+        {
+            coopon_obj.SetActive(false);
+        }
+        else
+        {
+            coopon_obj.SetActive(true);
+        }
+    }
 
 }

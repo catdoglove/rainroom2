@@ -25,6 +25,7 @@ public class SecondRoomTime : MonoBehaviour {
         int a = 0;
         while (a == 0)
         {
+            beadal();
             if (randDust1_i == 1)
             {
                 StopCoroutine("goDust1");
@@ -45,6 +46,24 @@ public class SecondRoomTime : MonoBehaviour {
             }
 
             yield return new WaitForSeconds(1f);
+        }
+    }
+
+    //음식시간아랫방에서도 추가할것
+    void beadal()
+    {
+        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("foodLastTime", System.DateTime.Now.ToString()));
+        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+        int m = (int)compareTime.TotalMinutes;
+        int sec = (int)compareTime.TotalSeconds;
+        sec = sec - (sec / 60) * 60;
+        sec = 59 - sec;
+        m = 1 - m;
+        if (m < 0)
+        {
+            //배달이 온
+            PlayerPrefs.SetInt("beadal", 0);
+            PlayerPrefs.Save();
         }
     }
 

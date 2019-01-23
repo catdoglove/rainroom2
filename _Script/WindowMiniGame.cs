@@ -10,8 +10,10 @@ public class WindowMiniGame : MonoBehaviour {
 
     public GameObject minicat_obj;
 
-	// Use this for initialization
-	void Start () {
+    public float cMoveX = 0f;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -23,6 +25,9 @@ public class WindowMiniGame : MonoBehaviour {
         if(PlayerPrefs.GetInt("windowcatrand", 0) <= 10)
         {
             PlayerPrefs.SetInt("windowcatrand", 999);
+            int cat = Random.Range(-2, 2);
+            cMoveX = cat;
+            minicat_obj.transform.position = new Vector3(cMoveX, minicat_obj.transform.position.y, minicat_obj.transform.position.z);
             minicat_obj.SetActive(true);
         }
         PlayerPrefs.SetInt("windowairplane", 999);
@@ -71,5 +76,10 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
+    }
+
+    public void TouchAirplane()
+    {
+        PlayerPrefs.SetInt("windowairplane", 999);
     }
 }

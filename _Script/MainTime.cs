@@ -56,13 +56,14 @@ public class MainTime : MonoBehaviour {
                     
                     StopCoroutine("goAirplane");
                     StartCoroutine("goAirplane");
+                    PlayerPrefs.SetInt("windowairplane", 0);
                 }
                 else
                 {
                     plane_i = Random.Range(0, 10);
                 }
             }
-            
+            //배달
             beadal();
             //거미
             if (randSpider_i == 1) {
@@ -103,7 +104,7 @@ public class MainTime : MonoBehaviour {
 	
 
 	
-
+    //음식시간아랫방에서도 추가할것
 	void beadal(){
 		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
 		System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
@@ -121,10 +122,7 @@ public class MainTime : MonoBehaviour {
 
    
 
-
-
-  
-
+    //풍선
     IEnumerator goBalloon()
     {
         while (endBMove_i == 1)
@@ -164,7 +162,7 @@ public class MainTime : MonoBehaviour {
         }
     }
 
-
+    //풍선
     public void checkBalloon()
     {
         int br = Random.Range(0, 10);
@@ -185,7 +183,7 @@ public class MainTime : MonoBehaviour {
             StartCoroutine("goBalloon");
         }
     }
-
+    //비행기코루틴
     IEnumerator goAirplane()
     {
         while (plane_i == 4)
@@ -197,6 +195,7 @@ public class MainTime : MonoBehaviour {
                 pMoveX = pMoveX -0.1f;
                 if (pMoveX <= -5.4)
                 {
+                PlayerPrefs.SetInt("windowairplane", 0);
                 pMoveX = 17.4f;
                 plane_i = 0;
                 }
