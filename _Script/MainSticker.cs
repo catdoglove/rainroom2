@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainSticker : MonoBehaviour
 {
 
     public string[] sticker_str;
     public GameObject[] sticker_obj;
-    public GameObject[] newSticker_obj;
+    public GameObject[] newStickerB_obj, newStickerS_obj, newStickerG_obj;
 
+
+    public Sprite[] stickerS_spr, stickerG_spr;
+    public string name_str;
 
     public bool check;
     Vector2 pos;
@@ -22,6 +26,26 @@ public class MainSticker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlayerPrefs.SetInt("downst", 3);
+        PlayerPrefs.SetInt("insleepst", 3);
+        PlayerPrefs.SetInt("firstcookst", 3);
+        PlayerPrefs.SetInt("airplanest", 3);
+        PlayerPrefs.SetInt("petcatst", 3);
+        PlayerPrefs.SetInt("boxst", 3);
+        PlayerPrefs.SetInt("talkst",3);
+        PlayerPrefs.DeleteKey("talkstb");
+        PlayerPrefs.DeleteKey("talksts");
+        PlayerPrefs.DeleteKey("talkstg");
+        PlayerPrefs.DeleteKey("talkstplus");
+        PlayerPrefs.DeleteKey("petcatstb");
+        PlayerPrefs.DeleteKey("petcatsts");
+        PlayerPrefs.DeleteKey("petcatstg");
+        PlayerPrefs.DeleteKey("petcatstplus");
+
+        if (gameObject.name.Substring(1, 1) == "a")
+        {
+            showSticker();
+        }
 
     }
 
@@ -55,15 +79,29 @@ public class MainSticker : MonoBehaviour
             if (wldObjectPos.y < 3.44 && wldObjectPos.y > -2.77)
             {
                 gameObject.SetActive(false);
-                string name_str = this.gameObject.name;
+                name_str = this.gameObject.name;
+                if (name_str.Length == 3)
+                {
+                    allStickerCheck();
+                }
+                else
+                {
+                    int name_i = int.Parse(name_str.Substring(1, 1));
+                    sticker_obj[name_i].SetActive(true);
+                    int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0);
+                    if (plus == 1)
+                    {
+                        sticker_obj[name_i].GetComponent<SpriteRenderer>().sprite = stickerS_spr[name_i];
+                    }
+                    if (plus == 2)
+                    {
+                        sticker_obj[name_i].GetComponent<SpriteRenderer>().sprite = stickerG_spr[name_i];
+                    }
+                    PlayerPrefs.SetInt(sticker_str[name_i] + "plus", plus + 1);
+                    PlayerPrefs.SetInt(sticker_str[name_i] + name_str.Substring(0, 1), 2);
+                    PlayerPrefs.Save();
+                }
 
-                //int name_i = int.Parse(name_str.Substring(1, 1));
-                int name_i = 0;
-                sticker_obj[name_i].SetActive(true);
-                //int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0);
-                //PlayerPrefs.SetInt(sticker_str[name_i]+"plus", plus+1);
-                //PlayerPrefs.SetInt(sticker_str[name_i]+name_str.Substring(0, 1), 2);
-                //PlayerPrefs.Save();
             }
         }
         check = false;
@@ -75,7 +113,8 @@ public class MainSticker : MonoBehaviour
 
     public void showSticker()
     {
-        for (int i = 0; i < 10; i++)
+        PlayerPrefs.SetInt(sticker_str[0],3);
+        for (int i = 0; i < 7; i++)
         {
             if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)
             {
@@ -100,18 +139,17 @@ public class MainSticker : MonoBehaviour
             }
             PlayerPrefs.Save();
 
-
             if (PlayerPrefs.GetInt(sticker_str[i] + "b", 0) == 1)
                 {
-                    newSticker_obj[i].SetActive(true);
+                    newStickerB_obj[i].SetActive(true);
                 }
                 if (PlayerPrefs.GetInt(sticker_str[i] + "s", 0) == 1)
                 {
-                    newSticker_obj[i].SetActive(true);
+                    newStickerS_obj[i].SetActive(true);
                 }
                 if (PlayerPrefs.GetInt(sticker_str[i] + "g", 0) == 1)
                 {
-                    newSticker_obj[i].SetActive(true);
+                    newStickerG_obj[i].SetActive(true);
                 }
             
             if (PlayerPrefs.GetInt(sticker_str[i] + "plus", 0) >= 1)
@@ -119,16 +157,53 @@ public class MainSticker : MonoBehaviour
                 sticker_obj[i].SetActive(true);
                 if (PlayerPrefs.GetInt(sticker_str[i] + "plus", 0) == 2)
                 {
-
+                    sticker_obj[i].GetComponent<SpriteRenderer>().sprite = stickerS_spr[i];
                 }
                 else if (PlayerPrefs.GetInt(sticker_str[i] + "plus", 0) == 3)
                 {
-
+                    sticker_obj[i].GetComponent<SpriteRenderer>().sprite = stickerG_spr[i];
                 }
-
-
             }
+        }
+        allsticker();
+    }
 
+    void allsticker()
+    {
+        for (int i = 20; i < 22; i++)
+        {
+            if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)
+            {
+                if (PlayerPrefs.GetInt(sticker_str[i] + "b", 0) == 0)
+                {
+                    PlayerPrefs.SetInt(sticker_str[i] + "b", 1);
+                }
+            }
+            PlayerPrefs.Save();
+            if (PlayerPrefs.GetInt(sticker_str[i] + "b", 0) == 1)
+            {
+                newStickerB_obj[i].SetActive(true);
+            }
+            if (PlayerPrefs.GetInt(sticker_str[i] + "plus", 0) >= 1)
+            {
+                sticker_obj[i].SetActive(true);
+            }
+        }//endoffor
+    }
+
+    void allStickerCheck()
+    {
+        if (name_str.Length == 3)
+        {
+            int ii = int.Parse(name_str.Substring(1, 2));
+            if (ii >= 20)
+            {
+                sticker_obj[ii].SetActive(true);
+                
+                PlayerPrefs.SetInt(sticker_str[ii] + "plus", 1);
+                PlayerPrefs.SetInt(sticker_str[ii] + name_str.Substring(0, 1), 2);
+                PlayerPrefs.Save();
+            }
         }
     }
 }

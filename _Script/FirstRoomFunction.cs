@@ -53,9 +53,7 @@ public class FirstRoomFunction : CavasData {
     // Use this for initialization
     void Start () {
 
-        color.r = 255;
-        color.g = 255;
-        color.b = 255;
+        color = new Color(1f,1f,1f);
 
         //string str1;
         //str1 = PlayerPrefs.GetString("code", "");
@@ -95,8 +93,7 @@ public class FirstRoomFunction : CavasData {
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
         cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
 
-
-
+        
         //박스
         if (PlayerPrefs.GetInt("bedbox", 0)==10)
         {
