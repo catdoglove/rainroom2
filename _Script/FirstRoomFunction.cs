@@ -11,6 +11,8 @@ public class FirstRoomFunction : CavasData {
     public int point_i;
     public Sprite[] beadalYN_spr,beadalFood_spr;
     public GameObject dish_obj, beadalYet_obj;
+    public Text[] heart_txt;
+
 
 	public GameObject GMNotdistroy;
 
@@ -46,8 +48,6 @@ public class FirstRoomFunction : CavasData {
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
-
-
     public GameObject coopon_obj;
 
     // Use this for initialization
@@ -79,8 +79,6 @@ public class FirstRoomFunction : CavasData {
         loadGM = GameObject.Find("loadGM");
 
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
-
-
         
 		//window_i = PlayerPrefs.GetInt ("windowlv", 0);
 		book_i = PlayerPrefs.GetInt ("booklv",0);
@@ -134,6 +132,11 @@ public class FirstRoomFunction : CavasData {
     public void openBeadal(){
         if (PlayerPrefs.GetInt("beadal", 0)==0)
         {
+            string str1;
+            str1 = PlayerPrefs.GetString("code", "");
+            heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+            heart_txt[0].text = "" + heart_i;
+            heart_txt[1].text = "" + heart_i;
             if (beadalWindow_obj.activeSelf == true)
             {
                 beadalWindow_obj.SetActive(false);
@@ -318,6 +321,9 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
         }
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        heart_txt[0].text = "" + heart_i;
+        heart_txt[1].text = "" + heart_i;
         PlayerPrefs.Save();
     }
 
@@ -343,7 +349,6 @@ public class FirstRoomFunction : CavasData {
     public void CloseBeadalIllust()
     {
         beadalIllust_obj.SetActive(false);
-
         dish_obj.SetActive(true);
         closeBeadal();
     }

@@ -26,6 +26,7 @@ public class MainSticker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        /*
         PlayerPrefs.SetInt("downst", 3);
         PlayerPrefs.SetInt("insleepst", 3);
         PlayerPrefs.SetInt("firstcookst", 3);
@@ -33,6 +34,7 @@ public class MainSticker : MonoBehaviour
         PlayerPrefs.SetInt("petcatst", 3);
         PlayerPrefs.SetInt("boxst", 3);
         PlayerPrefs.SetInt("talkst",3);
+        PlayerPrefs.SetInt("allbook", 1);
         PlayerPrefs.DeleteKey("talkstb");
         PlayerPrefs.DeleteKey("talksts");
         PlayerPrefs.DeleteKey("talkstg");
@@ -41,7 +43,7 @@ public class MainSticker : MonoBehaviour
         PlayerPrefs.DeleteKey("petcatsts");
         PlayerPrefs.DeleteKey("petcatstg");
         PlayerPrefs.DeleteKey("petcatstplus");
-
+        */
         if (gameObject.name.Substring(1, 1) == "a")
         {
             showSticker();
@@ -199,7 +201,6 @@ public class MainSticker : MonoBehaviour
             if (ii >= 20)
             {
                 sticker_obj[ii].SetActive(true);
-                
                 PlayerPrefs.SetInt(sticker_str[ii] + "plus", 1);
                 PlayerPrefs.SetInt(sticker_str[ii] + name_str.Substring(0, 1), 2);
                 PlayerPrefs.Save();
