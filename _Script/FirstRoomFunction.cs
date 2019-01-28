@@ -13,6 +13,12 @@ public class FirstRoomFunction : CavasData {
     public GameObject dish_obj, beadalYet_obj;
     public Text[] heart_txt;
 
+    //쿠폰
+    public GameObject[] couponType1_obj, couponType2_obj, couponComplete_obj;
+    public GameObject useCoupon_obj;
+    public GameObject coupon_obj;
+    
+    //모두모으면 버튼이나타나게 한다
 
 	public GameObject GMNotdistroy;
 
@@ -48,7 +54,6 @@ public class FirstRoomFunction : CavasData {
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
-    public GameObject coopon_obj;
 
     // Use this for initialization
     void Start () {
@@ -91,7 +96,7 @@ public class FirstRoomFunction : CavasData {
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
         cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
 
-        
+        //여기에 박스인것들은 대화버튼들 비활성화시켜놓기
         //박스
         if (PlayerPrefs.GetInt("bedbox", 0)==10)
         {
@@ -512,16 +517,87 @@ public class FirstRoomFunction : CavasData {
         needToast_obj.SetActive(false);
     }
 
-    public void OpenCoopon()
+    public void OpenCoupon()
     {
-        if (coopon_obj.activeSelf == true)
+        if (coupon_obj.activeSelf == true)
         {
-            coopon_obj.SetActive(false);
+            coupon_obj.SetActive(false);
         }
         else
         {
-            coopon_obj.SetActive(true);
+            if (buyFood_i == 1)
+            {
+
+            }
+            coupon_obj.SetActive(true);
         }
     }
 
+    public void useCouponY()
+    {
+        point_i = PlayerPrefs.GetInt("lovepoint", 0);
+        point_i = point_i + 3;
+        PayCoupon();
+        coupon_obj.SetActive(false);
+    }
+    public void useCouponN()
+    {
+        coupon_obj.SetActive(false);
+    }
+
+    void ShowCoupon()
+    {
+        int coup = PlayerPrefs.GetInt("coupon1", 0);
+        for(int i = 0; i < coup; i++)
+        {
+            couponType1_obj[i].SetActive(true);
+        }
+        if (coup == 10)
+        {
+            couponComplete_obj[0].SetActive(true);
+        }
+        coup = PlayerPrefs.GetInt("coupon2", 0);
+        for (int i = 0; i < coup; i++)
+        {
+            couponType2_obj[i].SetActive(true);
+        }
+        if (coup == 10)
+        {
+            couponComplete_obj[1].SetActive(true);
+        }
+    }
+    void PayCoupon()
+    {
+        if (buyFood_i == 1)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                couponType1_obj[i].SetActive(false);
+            }
+            PlayerPrefs.SetInt("coupon1", 0);
+            couponComplete_obj[0].SetActive(false);
+        }
+        
+        if (buyFood_i == 2)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                couponType2_obj[i].SetActive(false);
+            }
+            PlayerPrefs.SetInt("coupon2", 0);
+            couponComplete_obj[1].SetActive(false);
+        }
+        
+  
+    }
+
+    /// <summary>
+    /// 아래층으로 내려가기위해 사다리앞 박스를 치우기
+    /// </summary>
+    public void ladderBox()
+    {
+
+    }
+
+  
 }
