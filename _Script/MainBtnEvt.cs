@@ -18,11 +18,18 @@ public class MainBtnEvt : CavasData
     public Vector2 menuBack_vet;
 
     public GameObject GM, GM2;
-    
 
 
-	// Use this for initialization
-	void Start () {
+    //문장속도
+    float speedF = 0.03f;
+    public Text tspeed_txt;
+    public GameObject speed_obj, speed_toast;
+
+
+    // Use this for initialization
+    void Start () {
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0);
+
         if (GM == null)
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -230,16 +237,6 @@ public class MainBtnEvt : CavasData
 	
 	}
     
-	public void talkTest(){
-		int talk = PlayerPrefs.GetInt ("talk", 5);
-		if (talk <= 0) {
-			talk = 0;
-		} else {
-			talk--;
-		}
-		PlayerPrefs.SetInt("talk",talk);
-		PlayerPrefs.Save ();
-	}
 
     public void Sight()
     {
@@ -291,4 +288,59 @@ public class MainBtnEvt : CavasData
         menuBack_vet.y = 6.15f;
         menuBack_obj.transform.position = menuBack_vet;
     }
+
+
+
+    public void TalkSpeedFast()
+    {
+        speedF = 0.01f;
+        StartCoroutine("closeToast");
+    }
+
+    public void TalkSpeedNor()
+    {
+        speedF = 0.03f;
+        StartCoroutine("closeToast");
+    }
+
+    public void TalkSpeedSlow()
+    {
+        speedF = 0.05f;
+        StartCoroutine("closeToast");
+    }
+
+    public void talkSpeedSet()
+    {
+        speed_obj.SetActive(true);
+    }
+
+
+    //토스트
+    IEnumerator closeToast()
+    {
+
+        PlayerPrefs.SetFloat("talkspeed", speedF);
+        PlayerPrefs.Save();
+
+        if (speedF == 0.01f)
+        {
+            tspeed_txt.text = "대화 속도 '빠름'으로 변경";
+        }
+        else if (speedF == 0.03f)
+        {
+            tspeed_txt.text = "대화 속도 '보통'으로 변경";
+        }
+        else if (speedF == 0.05f)
+        {
+            tspeed_txt.text = "대화 속도 '느림'으로 변경";
+        }
+
+        speed_obj.SetActive(false);
+        speed_toast.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        speed_toast.SetActive(false);
+
+
+    }
+
 }

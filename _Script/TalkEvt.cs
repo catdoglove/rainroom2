@@ -11,18 +11,18 @@ public class TalkEvt : MonoBehaviour {
     string[] testText_cut; //대사 끊기
     string text_str; //실질적 대사출력
 
-    public GameObject talkbtn,itembtn; //대화버튼
+    public GameObject talkbtn,itembtn, talkballoon, closeTB; //대화버튼 및 영역
     bool ihaveitem;
 
     int[] allArr = new int[10]; //총 줄수
-    int loveLv = 0; //호감도 단계라고 생각하면 됨
-    
+    int loveLv = 1; //호감도 단계라고 생각하면 됨
+    int countTalkNum;//대화횟수
 
+    float speedF = 0.03f;
     int nowArr =0; //현재 줄
     int[] randArr;//난수 필
     int loveExp;//호감도
     int loveMax = 10;//필요 호감도
-    public Text loveLv_obj, loveExp_obj, loveTalk_obj;
 
     //질문만들기
     string quesStr; //질문용대화
@@ -30,7 +30,6 @@ public class TalkEvt : MonoBehaviour {
     public GameObject quesBtn1, quesBtn2; //질문버튼
     int choiceNum; //예스or노
 
-    float speedF = 0.03f;
 
     //아이템 관련- 0책, 1빛, 2씨앗, 3벽, 4창문
     int[] itemLv = new int[5]; // 등급
@@ -39,9 +38,12 @@ public class TalkEvt : MonoBehaviour {
     public GameObject book_obj, light_obj, seed_obj, wall_obj, window_obj; //대화버튼
 
 
+    
+
 
     // Use this for initialization
     void Start () {
+        countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
         callTalkItem();
         
@@ -69,21 +71,32 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkA() //대사치기
     {
-        lovetalk();
-        testText_cut = text_str.Split('/'); //끊기
-        cleantalk();
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0);
+        Debug.Log(countTalkNum);
 
-        if (testText_cut[0] == "q")
-        { //질문이 있는경우
-            StartCoroutine("questionTalkRun");
+        if (countTalkNum == 0)
+        {
+            //대화못함
+            Debug.Log("대화횟수마감");
         }
         else
         {
-            StartCoroutine("talkRun");
-        }
+            lovetalk();
+            testText_cut = text_str.Split('/'); //끊기
+            cleantalk();
 
-        //경험치
-        ExpCk_talk();
+            if (testText_cut[0] == "q")
+            { //질문이 있는경우
+                StartCoroutine("questionTalkRun");
+            }
+            else
+            {
+                StartCoroutine("talkRun");
+            }
+
+            //경험치
+            ExpCk_talk();
+        }
 
     }
 
@@ -278,10 +291,7 @@ public class TalkEvt : MonoBehaviour {
             }
 
         }
-        loveLv_obj.text = loveLv + "- 레벨 및 대화셀";
-        loveExp_obj.text = loveExp + "- 경험치";
-        PlayerPrefs.SetInt("lovepoint", loveExp);
-        PlayerPrefs.SetInt("lovelv", loveLv);
+
         PlayerPrefs.Save();
     }
 
@@ -305,42 +315,59 @@ public class TalkEvt : MonoBehaviour {
         allArr[9] = 165;
         
     }
-    
-    public void TalkSpeedFast()
-    {
-        speedF = 0.01f;
-    }
 
-    public void TalkSpeedNor()
-    {
-        speedF = 0.03f;
-    }
 
-    public void TalkSpeedSlpw()
+
+
+
+
+    public void closeTalkBoon()
     {
-        speedF = 0.05f;
+        talkballoon.SetActive(false);
     }
 
 
-   
+    //대화횟수차감
+    public void countTalk()
+    {        
+        if (countTalkNum <= 0)
+        {
+            countTalkNum = 0;
+        }
+        else
+        {
+            countTalkNum--;
+        }
+        PlayerPrefs.SetInt("talk", countTalkNum);
+        PlayerPrefs.Save();
+    }
+
 
     //버튼 가리기(대화할 때 안 눌리기 위해서)
     void falseObject()
     {
+        talkballoon.SetActive(true);
+
+        closeTB.SetActive(false);
         talkbtn.SetActive(false);
         quesBtn1.SetActive(false);
         quesBtn2.SetActive(false);
         book_obj.SetActive(false);
-       // light_obj.SetActive(false);
-       // seed_obj.SetActive(false);
-       // wall_obj.SetActive(false);
-       // window_obj.SetActive(false);
+        light_obj.SetActive(false);
+        seed_obj.SetActive(false);
+        wall_obj.SetActive(false);
+        window_obj.SetActive(false);
     }
 
     void trueObject()
     {
+        closeTB.SetActive(true);
         talkbtn.SetActive(true);
         book_obj.SetActive(true);
+        wall_obj.SetActive(true);
+        window_obj.SetActive(true);
+        light_obj.SetActive(true);
+        seed_obj.SetActive(true);
     }
 
 
@@ -368,9 +395,61 @@ public class TalkEvt : MonoBehaviour {
         StartCoroutine("itemTalkRun");
     }
 
+    public void talkWall()
+    {
+        itemLineReload();
+        text_str = "" + data_wall[itemNowArr[0]]["wall" + itemLv[0]];
+        itemNowArr[0]++;
+
+        testText_cut = text_str.Split('/');
+        cleantalk();
+
+        StartCoroutine("itemTalkRun");
+    }
+
+
+    public void talkLight()
+    {
+        itemLineReload();
+        text_str = "" + data_light[itemNowArr[0]]["light" + itemLv[0]];
+        itemNowArr[0]++;
+
+        testText_cut = text_str.Split('/');
+        cleantalk();
+
+        StartCoroutine("itemTalkRun");
+    }
+
+    public void talkWindow()
+    {
+        itemLineReload();
+        text_str = "" + data_window[itemNowArr[0]]["window" + itemLv[0]];
+        itemNowArr[0]++;
+
+        testText_cut = text_str.Split('/');
+        cleantalk();
+
+        StartCoroutine("itemTalkRun");
+    }
+
+    public void talkSeed()
+    {
+        itemLineReload();
+        text_str = "" + data_seed[itemNowArr[0]]["seed" + itemLv[0]];
+        itemNowArr[0]++;
+
+        testText_cut = text_str.Split('/');
+        cleantalk();
+
+        StartCoroutine("itemTalkRun");
+    }
+
+
+
     //아이템대사 출력
     IEnumerator itemTalkRun()
     {
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         falseObject();
         for (int i = 0; i < testText_cut.Length; i++)
         {
