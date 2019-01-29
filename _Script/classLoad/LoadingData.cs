@@ -27,8 +27,8 @@ public class LoadingData : LodingDataBase {
             //drawing_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
             flowerpot_spr = Resources.LoadAll<Sprite>("UI/Roomdown/head_flowerseed(100x170)");
             gasrange_spr = Resources.LoadAll<Sprite>("UI/Roomdown/back_gasrange(210x200)");
-            waterPurifiler_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
-            rug_spr = Resources.LoadAll<Sprite>("UI/Roomup/rug(280x100)");
+            //waterPurifiler_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
+            //rug_spr = Resources.LoadAll<Sprite>("UI/Roomup/rug(280x100)");
             //clock_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
             //stand_spr = Resources.LoadAll<Sprite>("UI/Roomup/");
             //tapestry_spr = Resources.LoadAll<Sprite>("UI/Roomup/");

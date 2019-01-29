@@ -40,13 +40,9 @@ public class secondRoomFunction : CavasData {
         menuBlock_vet.x = 2500f;
         menuBlock_obj.transform.position = menuBlock_vet;
 
-
-
-
+        
         //GM을 찾아불러온 데이터들 가져오기
         GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
-
-		
 		window_i = PlayerPrefs.GetInt ("windowlv",0);
 		gasrange_i = PlayerPrefs.GetInt ("gasrangelv", 0);
 		icebox_i = PlayerPrefs.GetInt ("iceboxlv", 0);
@@ -184,11 +180,6 @@ public class secondRoomFunction : CavasData {
         needhRain_obj.SetActive(false);
 
     }
-
-
-
-
-
 
 
     public void boxOpen()

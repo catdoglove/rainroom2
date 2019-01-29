@@ -16,16 +16,13 @@ public class MainBtnEvt : CavasData
     //메뉴펼쳐주기
     public GameObject menuBack_obj;
     public Vector2 menuBack_vet;
-
     public GameObject GM, GM2;
-
-
+    
     //문장속도
     float speedF = 0.03f;
     public Text tspeed_txt;
     public GameObject speed_obj, speed_toast;
-
-
+    
     // Use this for initialization
     void Start () {
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
@@ -131,8 +128,7 @@ public class MainBtnEvt : CavasData
 
 	}//endofstart
 
-
-
+    
     /// <summary>
     /// 메뉴를펼쳐준다
     /// </summary>

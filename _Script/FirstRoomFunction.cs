@@ -34,11 +34,12 @@ public class FirstRoomFunction : CavasData {
 
     public int window_i, book_i, bed_i, desk_i, stand_i, tapestry_i, rug_i, poster_i, cabinet_i, wall_i;
     public GameObject windowImg_obj, bookImg_obj, deskImg_obj, standImg_obj, tapestryImg_obj, bedImg_obj, rugImg_obj, cabinetImg_obj, rugImg2_obj, wallImg_obj, wallImg2_obj;
-
+    public GameObject ladderImg_obj;
+    public Sprite ladder_spr;
     public GameObject moreCoinWindow_obj;
 
     public int bookBox_i;
-    public GameObject bookBox_obj, bedBox_obj, deskBox_obj, cabinetBox_obj;
+    public GameObject bookBox_obj, bedBox_obj, deskBox_obj, cabinetBox_obj, ladderBox_obj;
     public GameObject needMore_obj;
     public GameObject boxClean_obj;
     //public Sprite[] boxItem_spr;
@@ -62,7 +63,7 @@ public class FirstRoomFunction : CavasData {
 
         //string str1;
         //str1 = PlayerPrefs.GetString("code", "");
-       // PlayerPrefs.SetInt(str1 + "ht", 999999);
+        //PlayerPrefs.SetInt(str1 + "ht", 999999);
 
         //씬이동
         if (menuBlock_obj == null)
@@ -114,6 +115,10 @@ public class FirstRoomFunction : CavasData {
         {
             bookBox_obj.SetActive(true);
         }
+        if (PlayerPrefs.GetInt("ladderbox", 0) == 0)
+        {
+            ladderBox_obj.SetActive(true);
+        }
         setItems();
     }
 
@@ -131,6 +136,7 @@ public class FirstRoomFunction : CavasData {
         //deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
         //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+        ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
     }
 
     //전단지열기
@@ -418,7 +424,10 @@ public class FirstRoomFunction : CavasData {
     {
         boxName_str = "desk";
     }
-
+    public void boxLadder()
+    {
+        boxName_str = "ladder";
+    }
 
     public void boxYes(){
 
@@ -455,11 +464,17 @@ public class FirstRoomFunction : CavasData {
             {
                 bookBox_obj.SetActive(false);
             }
+            if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
+            {
+                ladderBox_obj.SetActive(false);
+            }
             book_i = PlayerPrefs.GetInt("booklv", 0);
             bed_i = PlayerPrefs.GetInt("bedlv", 0);
             desk_i = PlayerPrefs.GetInt("desklv", 0);
             cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
             rug_i = PlayerPrefs.GetInt("ruglv", 0);
+
+            ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
 
             bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
             bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
@@ -591,13 +606,7 @@ public class FirstRoomFunction : CavasData {
   
     }
 
-    /// <summary>
-    /// 아래층으로 내려가기위해 사다리앞 박스를 치우기
-    /// </summary>
-    public void ladderBox()
-    {
-
-    }
+ 
 
   
 }

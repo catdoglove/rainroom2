@@ -71,6 +71,12 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkA() //대사치기
     {
+        //저장값을 가져온다
+        countTalkNum = PlayerPrefs.GetInt("talk", 5);
+        loveMax = PlayerPrefs.GetInt("lovemax", 40);
+        loveExp = PlayerPrefs.GetInt("lovepoint", 0);
+        loveLv = PlayerPrefs.GetInt("lovelv", 0);
+
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         Debug.Log(countTalkNum);
 
@@ -267,6 +273,7 @@ public class TalkEvt : MonoBehaviour {
     //대화에 따른 호감도 증가
     void ExpCk_talk() 
     {
+
         if (loveExp < loveMax) // 필요량 - 1
         {
             if (ihaveitem)
@@ -274,7 +281,8 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp++;
+            loveExp=loveMax+10;
+            PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.            
         }
         else if (loveExp >= loveMax)
@@ -374,17 +382,17 @@ public class TalkEvt : MonoBehaviour {
     void callTalkItem()
     {
         // 나중에 0을 아이템 등급이라 생각하면 됨 각각 bookitemlv windowlv 등등 정하면 끝
-        itemLv[0] = 0;
-        itemLv[1] = 0;
-        itemLv[2] = 0;
-        itemLv[3] = 0;
-        itemLv[4] = 0;
+        itemLv[0] = PlayerPrefs.GetInt("booklv",0);
+        itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
+        itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
+        itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
+        itemLv[4] = PlayerPrefs.GetInt("seed", 0);
 
     }
 
     public void talkBook()
     {
-        
+        callTalkItem();
         itemLineReload();
         text_str = "" + data_book[itemNowArr[0]]["book" + itemLv[0]];
         itemNowArr[0]++;
@@ -397,8 +405,9 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkWall()
     {
+        callTalkItem();
         itemLineReload();
-        text_str = "" + data_wall[itemNowArr[0]]["wall" + itemLv[0]];
+        text_str = "" + data_wall[itemNowArr[0]]["wall" + itemLv[1]];
         itemNowArr[0]++;
 
         testText_cut = text_str.Split('/');
@@ -410,8 +419,9 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkLight()
     {
+        callTalkItem();
         itemLineReload();
-        text_str = "" + data_light[itemNowArr[0]]["light" + itemLv[0]];
+        text_str = "" + data_light[itemNowArr[0]]["light" + itemLv[2]];
         itemNowArr[0]++;
 
         testText_cut = text_str.Split('/');
@@ -422,8 +432,9 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkWindow()
     {
+        callTalkItem();
         itemLineReload();
-        text_str = "" + data_window[itemNowArr[0]]["window" + itemLv[0]];
+        text_str = "" + data_window[itemNowArr[0]]["window" + itemLv[3]];
         itemNowArr[0]++;
 
         testText_cut = text_str.Split('/');
@@ -434,8 +445,9 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkSeed()
     {
+        callTalkItem();
         itemLineReload();
-        text_str = "" + data_seed[itemNowArr[0]]["seed" + itemLv[0]];
+        text_str = "" + data_seed[itemNowArr[0]]["seed" + itemLv[4]];
         itemNowArr[0]++;
 
         testText_cut = text_str.Split('/');
@@ -522,6 +534,7 @@ public class TalkEvt : MonoBehaviour {
                     if(PlayerPrefs.GetInt("desklv", 0) == 1)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 100);
                     }
                 }
                     break;
@@ -531,6 +544,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("cabinetlv", 0) == 1)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 150);
                     }
                 }
                 break;
@@ -539,9 +553,10 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("bedlv", 0) == 1)
                     {
-                        if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
+                        if (PlayerPrefs.GetInt("ladderlv", 0) == 1)
                         {
                             a = 1;
+                            PlayerPrefs.SetInt("lovemax", 250);
                         }
                     }
                 }
@@ -554,6 +569,7 @@ public class TalkEvt : MonoBehaviour {
                         if (PlayerPrefs.GetInt("walllv", 0) == 1)
                         {
                             a = 1;
+                            PlayerPrefs.SetInt("lovemax", 250);
                         }
                     }
                 }
@@ -566,6 +582,7 @@ public class TalkEvt : MonoBehaviour {
                         if (PlayerPrefs.GetInt("gasrangelv", 0) == 1)
                         {
                             a = 1;
+                            PlayerPrefs.SetInt("lovemax", 290);
                         }
                     }
                 }
@@ -576,6 +593,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("outbox", 0) == 1)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 290);
                     }
                 }
                 break;
@@ -585,6 +603,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("drawerlv", 0) == 1)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 390);
                     }
                 }
                 break;
@@ -594,6 +613,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("windowlv", 0) == 6)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 400);
                     }
                 }
                 break;
@@ -603,6 +623,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("windowlv", 0) == 7)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 450);
                     }
                 }
                 break;
@@ -612,6 +633,7 @@ public class TalkEvt : MonoBehaviour {
                     if (PlayerPrefs.GetInt("windowlv", 0) == 9)
                     {
                         a = 1;
+                        PlayerPrefs.SetInt("lovemax", 450);
                     }
                 }
                 break;
@@ -619,12 +641,14 @@ public class TalkEvt : MonoBehaviour {
                 if (PlayerPrefs.GetInt("windowlv", 0) == 10)
                 {
                     a = 1;
+                    PlayerPrefs.SetInt("lovemax", 450);
                 }
                 break;
             case 11:
                 if (PlayerPrefs.GetInt("booklv", 0) == 12)
                 {
                     a = 1;
+                    PlayerPrefs.SetInt("lovemax", 450);
                 }
                 break;
         }
@@ -634,6 +658,9 @@ public class TalkEvt : MonoBehaviour {
             loveExp = 0;
             nowArr = 1;
             GetRandomInt(allArr[loveLv]);
+            PlayerPrefs.SetInt("lovepoint", loveExp);
+            PlayerPrefs.SetInt("lovelv", loveLv);
+            PlayerPrefs.Save();
         }
 
 

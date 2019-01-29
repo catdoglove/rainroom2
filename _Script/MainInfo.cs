@@ -37,10 +37,11 @@ public class MainInfo : MonoBehaviour {
 
    public void infoShow()
     {
-        PlayerPrefs.SetInt("lovelv", loveLv_i);/////////////////////////////////////////////////////test////////////////////////////////
+        PlayerPrefs.SetInt("talk", 5);////////////////////////////////////////////////////////////////////////////
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
         love_sld.value = love_i;
+        love_sld.maxValue = PlayerPrefs.GetInt("lovemax", 40);
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         //face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
@@ -178,8 +179,12 @@ public class MainInfo : MonoBehaviour {
                     checkLine_obj[3].SetActive(true);
                 }
                 cLadder_obj.SetActive(true);
-                itemList_txt[12].text = "사다리 정리";
                 checkLine_obj[12].SetActive(false);
+                if (PlayerPrefs.GetInt("ladderlv", 0) >= 1)
+                {
+                    checkLine_obj[12].SetActive(true);
+                }
+                itemList_txt[12].text = "사다리 정리";
                 break;
             case 3:
                 cBook_obj.SetActive(true);
