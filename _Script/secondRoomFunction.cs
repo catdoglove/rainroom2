@@ -15,7 +15,7 @@ public class secondRoomFunction : CavasData {
     public GameObject coldToHot_obj, hotToCold_obj;
     public Text WaterPurifilerH_txt, WaterPurifilerC_txt;
 
-    public GameObject needhRain_obj, needcRain_obj;
+    public GameObject needhRain_obj, needcRain_obj, needMore_obj;
 
     public GameObject[] secondRoomItem_obj;
 
@@ -253,7 +253,7 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
-            //needMore_obj.SetActive(true);
+            needMore_obj.SetActive(true);
             //돈부족
         }
     }

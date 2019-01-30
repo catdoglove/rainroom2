@@ -76,6 +76,16 @@ public class TalkEvt : MonoBehaviour {
         loveMax = PlayerPrefs.GetInt("lovemax", 40);
         loveExp = PlayerPrefs.GetInt("lovepoint", 0);
         loveLv = PlayerPrefs.GetInt("lovelv", 0);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        int hRain = PlayerPrefs.GetInt(str1 + "h", 0);
+        int sum=loveLv;
+        if (sum > 5)
+        {
+            sum = 5;
+        }
+        hRain = hRain + sum;
+        PlayerPrefs.SetInt(str1 + "h", hRain);
 
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         Debug.Log(countTalkNum);

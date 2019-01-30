@@ -136,7 +136,10 @@ public class FirstRoomFunction : CavasData {
         //deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
         //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
-        ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
+        if (ladderBox_obj.activeSelf == false)
+        {
+            ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
+        }
     }
 
     //전단지열기
@@ -159,7 +162,6 @@ public class FirstRoomFunction : CavasData {
         }
         else
         {
-
             StopCoroutine("toastBImgFadeOut");
             beadalYet_obj.SetActive(true);
             StartCoroutine("toastBImgFadeOut");

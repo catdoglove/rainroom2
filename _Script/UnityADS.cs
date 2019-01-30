@@ -7,11 +7,13 @@ public class UnityADS : MonoBehaviour {
 
     private string gameId = "1486550";//★테스트ID , Window > Services 설정 테스트 바꿀것 test 1486550
     public int soundck;
+    public GameObject ad_obj, radio_ani, adBtn_obj;
 
 	int sG,mG;
 
     // Use this for initialization
     void Start () {
+        StartCoroutine("adTimeFlow");
 		//StartCoroutine ("adTimeFlow");
           if (Advertisement.isSupported)
           {
@@ -27,10 +29,25 @@ public class UnityADS : MonoBehaviour {
         {
             ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
+            PlayerPrefs.SetInt("secf", 30);
         }
         else
         {
         }
+    }
+
+    public void adYN()
+    {
+        ad_obj.SetActive(true);
+    }
+    public void closeAdYN()
+    {
+        ad_obj.SetActive(false);
+    }
+    public void adYes()
+    {
+        ShowRewardedAd();
+        ad_obj.SetActive(false);
     }
     
 
@@ -38,6 +55,9 @@ public class UnityADS : MonoBehaviour {
     {
         if (result == ShowResult.Finished)
         {
+            radio_ani.SetActive(false);
+            adBtn_obj.SetActive(false);
+            PlayerPrefs.SetInt("talk", 5);
         }
     }
 
@@ -46,16 +66,17 @@ public class UnityADS : MonoBehaviour {
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
 
-			sG = PlayerPrefs.GetInt("secf",300);
+			sG = PlayerPrefs.GetInt("secf",30);
 			mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
 			if (sG < 0) {
 				sG = 0;
 				mG = 0;
-				//goPy.SetActive (true);
-			} else {
+				radio_ani.SetActive (true);
+                adBtn_obj.SetActive(true);
+            } else {
 			}
-			sG = PlayerPrefs.GetInt("secf",300);
+			sG = PlayerPrefs.GetInt("secf",30);
 			sG = sG - 1;
 			if (sG < 0) {
 				sG = -1;
