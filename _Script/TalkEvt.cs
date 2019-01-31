@@ -735,7 +735,7 @@ public class TalkEvt : MonoBehaviour {
     //하트를 5번째대화마다 준다.
     void getTalkHeart()
     {
-        talkHeart_i = PlayerPrefs.GetInt("talkheartcount",0);
+        talkHeart_i = PlayerPrefs.GetInt("talkheartcount", 0);
         talkHeart_i++;
         if (talkHeart_i >= 5)
         {
@@ -748,7 +748,7 @@ public class TalkEvt : MonoBehaviour {
         }
         PlayerPrefs.SetInt("talkheartcount", talkHeart_i);
 
-
+    }
 
     void setCharAni()
     {
