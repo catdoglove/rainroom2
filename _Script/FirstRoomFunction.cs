@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FirstRoomFunction : CavasData {
+    //앞뒤바꾸기
+    public GameObject character_obj;
 
     //배달
     public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj, beadalYesNo_obj, beadalIllust_obj, beadalFood_obj;
@@ -519,6 +521,8 @@ public class FirstRoomFunction : CavasData {
 
     }
 
+    //토스트페이드아웃
+
     IEnumerator toastNImgFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
@@ -609,6 +613,18 @@ public class FirstRoomFunction : CavasData {
     }
 
  
+
+    public void characterTurn()
+    {
+        if (character_obj.transform.rotation.y == 0)
+        {
+            character_obj.transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+        else
+        {
+            character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+    }
 
   
 }

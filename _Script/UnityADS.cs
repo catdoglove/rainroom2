@@ -14,8 +14,8 @@ public class UnityADS : MonoBehaviour {
     // Use this for initialization
     void Start () {
         StartCoroutine("adTimeFlow");
-		//StartCoroutine ("adTimeFlow");
-          if (Advertisement.isSupported)
+        StartCoroutine ("adAniTime");
+        if (Advertisement.isSupported)
           {
               Advertisement.Initialize(gameId, true);
           }
@@ -66,16 +66,18 @@ public class UnityADS : MonoBehaviour {
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
 
+            
 			sG = PlayerPrefs.GetInt("secf",30);
-			mG = (int)(sG / 60);
+            Debug.Log(sG);
+            mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
 			if (sG < 0) {
 				sG = 0;
 				mG = 0;
-				radio_ani.SetActive (true);
-                adBtn_obj.SetActive(true);
             } else {
-			}
+                radio_ani.SetActive(false);
+                adBtn_obj.SetActive(false);
+            }
 			sG = PlayerPrefs.GetInt("secf",30);
 			sG = sG - 1;
 			if (sG < 0) {
@@ -85,4 +87,27 @@ public class UnityADS : MonoBehaviour {
 			yield return new WaitForSeconds(1f);
 		}
 	}
+    IEnumerator adAniTime()
+    {
+        int w = 0;
+        while (w == 0)
+        {
+            if (sG < 0)
+            {
+                if (PlayerPrefs.GetInt("front", 1) == 1)
+                {
+                    radio_ani.SetActive(true);
+                    adBtn_obj.SetActive(true);
+                }
+                else
+                {
+                    radio_ani.SetActive(false);
+                    adBtn_obj.SetActive(false);
+                }
+            }
+            
+            yield return null;
+        }
+
+    }
 }

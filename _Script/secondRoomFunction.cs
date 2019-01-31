@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class secondRoomFunction : CavasData {
 
-	public GameObject GMNotdistroy;
+    //앞뒤 캐릭터
+    public GameObject character_obj;
+
+
+    public GameObject GMNotdistroy;
 
 
 	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i;
@@ -24,6 +28,10 @@ public class secondRoomFunction : CavasData {
     public string boxName_str;
 
     public GameObject close_obj;
+
+    //물부족창
+    public GameObject needToast_obj;
+    Color color;
 
     //씬이동
     public GameObject menuBlock_obj;
@@ -142,6 +150,7 @@ public class secondRoomFunction : CavasData {
         {
             //찬물부족
             needcRain_obj.SetActive(true);
+            StartCoroutine("toastCImgFadeOut");
         }
        
     }
@@ -274,5 +283,35 @@ public class secondRoomFunction : CavasData {
         close_obj.SetActive(false);
         WaterPurifilerWindow_obj.SetActive(false);
         CloseWaterYN();
+    }
+
+
+    //토스트가 사라지게
+    IEnumerator toastCImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needcRain_obj.GetComponent<Image>().color = color;
+        needcRain_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needcRain_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needcRain_obj.SetActive(false);
+    }
+
+    //캐릭터회전
+    public void characterTurn()
+    {
+        if (character_obj.transform.rotation.y == 0)
+        {
+            character_obj.transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+        else
+        {
+            character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
     }
 }

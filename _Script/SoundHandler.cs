@@ -25,7 +25,7 @@ public class SoundHandler : MonoBehaviour {
         if (audio_obj==null) {
             OnLoadSound();
         }
-        //BGMSlider();
+        BGMSlider();
         SESlider();
         BGSSlider();
     }

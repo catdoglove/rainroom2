@@ -243,6 +243,7 @@ public class MainBtnEvt : CavasData
                 GM2 = GameObject.FindGameObjectWithTag("GM2");
             }
             GM2.GetComponent<secondRoomFunction>().changeSight();
+            GM2.GetComponent<secondRoomFunction>().characterTurn();
         }
         else if(PlayerPrefs.GetInt("place", 0) == 0)
         {
@@ -251,6 +252,7 @@ public class MainBtnEvt : CavasData
                 GM = GameObject.FindGameObjectWithTag("firstroomGM");
             }
             GM.GetComponent<FirstRoomFunction>().changeSight();
+            GM.GetComponent<FirstRoomFunction>().characterTurn();
         }
         
     }

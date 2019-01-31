@@ -184,7 +184,7 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[12].SetActive(true);
                 }
-                itemList_txt[12].text = "사다리 정리";
+                itemList_txt[12].text = "사다리상자정리";
                 break;
             case 3:
                 cBook_obj.SetActive(true);
@@ -225,7 +225,7 @@ public class MainInfo : MonoBehaviour {
                     checkLine_obj[1].SetActive(true);
                 }
                 cGasrange_obj.SetActive(true);
-                itemList_txt[8].text = "Lv.1  달성";
+                itemList_txt[8].text = "가스버너 꺼내기";
                 checkLine_obj[8].SetActive(false);
                 if (PlayerPrefs.GetInt("gasrangelv", 0) >= 1)
                 {
@@ -241,8 +241,15 @@ public class MainInfo : MonoBehaviour {
                     checkLine_obj[1].SetActive(true);
                 }
                 cBox_obj.SetActive(true);
-                itemList_txt[11].text = "현관 정리";
+                itemList_txt[11].text = "현관 박스 정리";
                 checkLine_obj[11].SetActive(false);
+                cIcebox_obj.SetActive(true);
+                itemList_txt[9].text = "식품용박스꺼내기";
+                checkLine_obj[9].SetActive(false);
+                if (PlayerPrefs.GetInt("iceboxlv", 0) >= 1)
+                {
+                    checkLine_obj[9].SetActive(true);
+                }
                 break;
             case 6:
                 cLight_obj.SetActive(true);
