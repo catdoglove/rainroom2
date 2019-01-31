@@ -37,8 +37,12 @@ public class TalkEvt : MonoBehaviour {
     int[] itemNowArr = new int[5]; //현재 줄
     public GameObject book_obj, light_obj, seed_obj, wall_obj, window_obj; //대화버튼
 
+    //캐릭터 변환
 
-    
+    public Animator charAni;
+
+
+
 
 
     // Use this for initialization
@@ -53,7 +57,10 @@ public class TalkEvt : MonoBehaviour {
         data_seed = CSVReader.Read("Talk/talk_seed"); 
         data_wall = CSVReader.Read("Talk/talk_wall"); 
         data_window = CSVReader.Read("Talk/talk_window");
-                
+
+        setCharAni();
+
+
     }
 
     void lovetalk() { //호감도에 또는 사물에 따른 대화
@@ -71,6 +78,7 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkA() //대사치기
     {
+
         //저장값을 가져온다
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         loveMax = PlayerPrefs.GetInt("lovemax", 40);
@@ -364,6 +372,16 @@ public class TalkEvt : MonoBehaviour {
     //버튼 가리기(대화할 때 안 눌리기 위해서)
     void falseObject()
     {
+        int aninum = loveLv;
+        if (aninum < 13)
+        {
+            charAni.Play("talk1");
+        }
+        else if (aninum > 12)
+        {
+            charAni.Play("talk2");
+        }
+
         talkballoon.SetActive(true);
 
         closeTB.SetActive(false);
@@ -386,6 +404,9 @@ public class TalkEvt : MonoBehaviour {
         window_obj.SetActive(true);
         light_obj.SetActive(true);
         seed_obj.SetActive(true);
+        
+        setCharAni();
+
     }
 
 
@@ -674,6 +695,41 @@ public class TalkEvt : MonoBehaviour {
         }
 
 
+    }
+
+
+
+    void setCharAni()
+    {
+        int aninum = loveLv;
+        if (aninum < 2)
+        {
+            charAni.Play("char_12");
+        }
+        else if (aninum < 4)
+        {
+            charAni.Play("char_34");
+        }
+        else if (aninum < 6)
+        {
+            charAni.Play("char_56");
+        }
+        else if (aninum < 9)
+        {
+            charAni.Play("char_78");
+        }
+        else if (aninum < 11)
+        {
+            charAni.Play("char_101");
+        }
+        else if (aninum < 13)
+        {
+            charAni.Play("123");
+        }
+        else if (aninum > 12)
+        {
+            charAni.Play("144");
+        }
     }
 
 }
