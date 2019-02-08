@@ -181,6 +181,7 @@ public class MainBtnEvt : CavasData
 		MainWindow_obj [3].SetActive (false);
         backBlackImg_obj.SetActive(false);
         close_obj.SetActive(false);
+        speed_obj.SetActive(false);
     }
 
     public void windowsOpen()
@@ -291,19 +292,19 @@ public class MainBtnEvt : CavasData
 
     public void TalkSpeedFast()
     {
-        speedF = 0.01f;
+        speedF = 0.03f;
         StartCoroutine("closeToast");
     }
 
     public void TalkSpeedNor()
     {
-        speedF = 0.03f;
+        speedF = 0.05f;
         StartCoroutine("closeToast");
     }
 
     public void TalkSpeedSlow()
     {
-        speedF = 0.05f;
+        speedF = 0.08f;
         StartCoroutine("closeToast");
     }
 
@@ -320,15 +321,15 @@ public class MainBtnEvt : CavasData
         PlayerPrefs.SetFloat("talkspeed", speedF);
         PlayerPrefs.Save();
 
-        if (speedF == 0.01f)
+        if (speedF == 0.03f)
         {
             tspeed_txt.text = "대화 속도 '빠름'으로 변경";
         }
-        else if (speedF == 0.03f)
+        else if (speedF == 0.05f)
         {
             tspeed_txt.text = "대화 속도 '보통'으로 변경";
         }
-        else if (speedF == 0.05f)
+        else if (speedF == 0.08f)
         {
             tspeed_txt.text = "대화 속도 '느림'으로 변경";
         }
@@ -337,7 +338,6 @@ public class MainBtnEvt : CavasData
         speed_toast.SetActive(true);
         yield return new WaitForSeconds(3f);
         speed_toast.SetActive(false);
-
 
     }
 
