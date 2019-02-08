@@ -128,11 +128,19 @@ public class MainBtnEvt : CavasData
 
 	}//endofstart
 
-    
-    /// <summary>
-    /// 메뉴를펼쳐준다
-    /// </summary>
-	public void showButtons(){
+    void Update()
+    {//게임종료
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
+
+        /// <summary>
+        /// 메뉴를펼쳐준다
+        /// </summary>
+        public void showButtons(){
 		allClose ();
 		if (MainBtn_obj [0].activeSelf == true) {
             StopCoroutine("menuFlowBack");

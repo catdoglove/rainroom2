@@ -35,7 +35,7 @@ public class TalkEvt : MonoBehaviour {
     int[] itemLv = new int[5]; // 등급
     int[] itemAllArr = new int[5]; //총 줄수 
     int[] itemNowArr = new int[5]; //현재 줄
-    public GameObject book_obj, light_obj, seed_obj, wall_obj, window_obj; //대화버튼
+   // public GameObject closetalk_btn; //대화버튼 book_obj, light_obj, seed_obj, wall_obj, window_obj, 
 
 
     //하트얻기
@@ -382,6 +382,8 @@ public class TalkEvt : MonoBehaviour {
     public void closeTalkBoon()
     {
         talkballoon.SetActive(false);
+        closeTB.SetActive(false);
+        closeTB.GetComponent<Button>().interactable = false;
     }
 
 
@@ -404,6 +406,7 @@ public class TalkEvt : MonoBehaviour {
     //버튼 가리기(대화할 때 안 눌리기 위해서)
     void falseObject()
     {
+        //closetalk_btn.SetActive(true);
         int aninum = loveLv;
         if (aninum < 13)
         {
@@ -415,28 +418,31 @@ public class TalkEvt : MonoBehaviour {
         }
 
         talkballoon.SetActive(true);
+        closeTB.GetComponent<Button>().interactable = false;
+        closeTB.SetActive(true);
 
-        closeTB.SetActive(false);
         talkbtn.SetActive(false);
         quesBtn1.SetActive(false);
         quesBtn2.SetActive(false);
-        book_obj.SetActive(false);
-        light_obj.SetActive(false);
-        seed_obj.SetActive(false);
-        wall_obj.SetActive(false);
-        window_obj.SetActive(false);
+        // book_obj.SetActive(false);
+        // light_obj.SetActive(false);
+        // seed_obj.SetActive(false);
+        // wall_obj.SetActive(false);
+        // window_obj.SetActive(false);
+
     }
 
     void trueObject()
     {
-        closeTB.SetActive(true);
+        closeTB.GetComponent<Button>().interactable = true;
+        //closeTB.SetActive(true);
         talkbtn.SetActive(true);
-        book_obj.SetActive(true);
-        wall_obj.SetActive(true);
-        window_obj.SetActive(true);
-        light_obj.SetActive(true);
-        seed_obj.SetActive(true);
-        
+        //  book_obj.SetActive(true);
+        //  wall_obj.SetActive(true);
+        //  window_obj.SetActive(true);
+        //  light_obj.SetActive(true);
+        //  seed_obj.SetActive(true);
+
         setCharAni();
 
     }
