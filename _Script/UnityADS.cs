@@ -68,7 +68,7 @@ public class UnityADS : MonoBehaviour {
 
             
 			sG = PlayerPrefs.GetInt("secf",30);
-            Debug.Log(sG);
+            //Debug.Log(sG);
             mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
 			if (sG < 0) {

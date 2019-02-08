@@ -26,6 +26,8 @@ public class MainSticker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
+        //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
         /*
         PlayerPrefs.SetInt("downst", 3);
         PlayerPrefs.SetInt("insleepst", 3);
@@ -115,7 +117,6 @@ public class MainSticker : MonoBehaviour
 
     public void showSticker()
     {
-        PlayerPrefs.SetInt(sticker_str[0],3);
         for (int i = 0; i < 7; i++)
         {
             if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)
