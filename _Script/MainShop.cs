@@ -47,7 +47,7 @@ public class MainShop : ShopHandler {
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt(str + "c", 999999);
         //PlayerPrefs.SetInt(str + "h", 99999);
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
