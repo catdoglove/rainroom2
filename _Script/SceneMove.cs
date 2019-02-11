@@ -9,6 +9,7 @@ public class SceneMove : MonoBehaviour {
 
 	public GameObject MainGM;
 	public GameObject GMN;
+    public GameObject moreLv_obj;
 
 	AsyncOperation async;
 
@@ -41,17 +42,25 @@ public class SceneMove : MonoBehaviour {
 
 	public void moveDown(){
 
+        if (PlayerPrefs.GetInt("lovelv", 0) >= 3)
+        {
+            PlayerPrefs.SetInt("unlockshop", 10);
+            if (GMN == null)
+            {
+                GMN = GameObject.FindGameObjectWithTag("GMtag");
+            }
+            GMN.GetComponent<MainBtnEvt>().allClose();
 
-        if (GMN == null) {
-            GMN= GameObject.FindGameObjectWithTag("GMtag");
+
+            PlayerPrefs.SetInt("place", 1);
+            StartCoroutine(Load());
+            PlayerPrefs.Save();
+            //아래층으로
         }
-		GMN.GetComponent<MainBtnEvt> ().allClose ();
- 
-
-        PlayerPrefs.SetInt("place", 1);
-        StartCoroutine(Load());
-        PlayerPrefs.Save();
-		//아래층으로
+        else
+        {
+            moreLv_obj.SetActive(true);
+        }
 	}
 
 	public void moveUp(){
@@ -68,5 +77,9 @@ public class SceneMove : MonoBehaviour {
     }
 
 
+    public void closeMoreLv()
+    {
+        moreLv_obj.SetActive(false);
+    }
 
 }

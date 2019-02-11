@@ -67,11 +67,21 @@ public class MainTime : MonoBehaviour {
             beadal();
             //거미
             if (randSpider_i == 1) {
-                spider_obj.transform.position = new Vector3(spiX, spider_obj.transform.position.y, spider_obj.transform.position.z);
+                spider_obj.SetActive(false);
+                    spider_obj.transform.position = new Vector3(spiX, 4.7f, spider_obj.transform.position.z);
+                if(PlayerPrefs.GetInt("front", 1) == 2)
+                {
+                    spider_obj.SetActive(true);
+                }
+                
 
-			} else {
-				randSpider_i = Random.Range (0, 4);
-                spiX = Random.Range(-5, 5);
+            } else {
+                if (PlayerPrefs.GetInt("front", 1) == 2)
+                {
+                    randSpider_i = Random.Range(0, 4);
+                    spiX = Random.Range(-5, 5);
+                }
+                
 			}
             //풍선
             if (PlayerPrefs.GetInt("miniopen", 0) == 1)

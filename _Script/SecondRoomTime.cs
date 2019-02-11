@@ -22,10 +22,13 @@ public class SecondRoomTime : MonoBehaviour {
     /// <returns></returns>
     IEnumerator UpdateSec()
     {
-        int a = 0;
+        
+            int a = 0;
         while (a == 0)
         {
+            
             beadal();
+
             if (randDust1_i == 1)
             {
                 StopCoroutine("goDust1");

@@ -37,6 +37,10 @@ public class secondRoomFunction : CavasData {
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
 
+    //하트
+    public int heart_i;
+    public Text boxHeart_txt;
+
     // Use this for initialization
     void Start () {
         //씬이동
@@ -45,7 +49,7 @@ public class secondRoomFunction : CavasData {
             menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
         }
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
-        menuBlock_vet.x = 2500f;
+        menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
 
         
@@ -217,16 +221,15 @@ public class secondRoomFunction : CavasData {
     {
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
-        coldRain_i = PlayerPrefs.GetInt(str1 + "c", 0);
-        hotRain_i = PlayerPrefs.GetInt(str1 + "h", 0);
+        int heart_i;
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
 
-        if (coldRain_i >= 50 && hotRain_i >= 25)
+        if (heart_i >= 3)
         {
-            coldRain_i = coldRain_i - 50;
-            PlayerPrefs.SetInt(str1 + "c", coldRain_i);
 
-            hotRain_i = hotRain_i - 25;
-            PlayerPrefs.SetInt(str1 + "h", hotRain_i);
+            heart_i = heart_i - 3;
+            boxHeart_txt.text = "" + 3;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
 
             PlayerPrefs.SetInt(boxName_str + "box", 1);
             PlayerPrefs.SetInt(boxName_str + "lv", 1);
@@ -262,7 +265,7 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
-            needMore_obj.SetActive(true);
+            //needMore_obj.SetActive(true);
             //돈부족
         }
     }

@@ -38,7 +38,11 @@ public class MainShop : ShopHandler {
     public GameObject[] functionBuyBtn_obj;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
+    
 
+    //부족하다창
+    Color color;
+    public GameObject needToast_obj;
 
     // Use this for initialization
     void Start () {
@@ -68,7 +72,18 @@ public class MainShop : ShopHandler {
             data_hPrice = CSVReader.Read("Price/f_hotrain");
             data_itemName = CSVReader.Read("Price/f_itemname");
         }
-        
+
+        if (PlayerPrefs.GetInt("unlockshop", 0) == 10)
+        {
+            downBtn_obj.SetActive(true);
+            functionBtn_obj.SetActive(true);
+        }
+        else
+        {
+            downBtn_obj.SetActive(false);
+            functionBtn_obj.SetActive(false);
+        }
+
 		str = PlayerPrefs.GetString ("code", "");
 
 		coldRain_i = PlayerPrefs.GetInt (str+"c", 0);
@@ -152,12 +167,14 @@ public class MainShop : ShopHandler {
                 }
                 else
                 {
+                    StartCoroutine("toastHotImgFadeOut");
                     needhRain_obj.SetActive(true);
                     //따듯한물부족
                 }
             }
             else
             {
+                StartCoroutine("toastColdImgFadeOut");
                 needcRain_obj.SetActive(true);
                 //빗물부족
             }
@@ -472,4 +489,35 @@ public class MainShop : ShopHandler {
         }
     }
 
+    //온수가 부족하다
+    IEnumerator toastHotImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needhRain_obj.GetComponent<Image>().color = color;
+        needhRain_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needhRain_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needhRain_obj.SetActive(false);
+    }
+
+    //빗물이가 부족하다
+    IEnumerator toastColdImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needcRain_obj.GetComponent<Image>().color = color;
+        needcRain_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needcRain_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needcRain_obj.SetActive(false);
+    }
 }

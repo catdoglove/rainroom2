@@ -47,6 +47,9 @@ public class TalkEvt : MonoBehaviour {
     public Animator charAni;
 
 
+    //레벨업
+    public GameObject leveUpToast_obj;
+
 
 
     // Use this for initialization
@@ -331,7 +334,7 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp=loveMax+10;
+            loveExp= loveExp + 10;
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.            
         }
@@ -451,7 +454,7 @@ public class TalkEvt : MonoBehaviour {
     void callTalkItem()
     {
         // 나중에 0을 아이템 등급이라 생각하면 됨 각각 bookitemlv windowlv 등등 정하면 끝
-        itemLv[0] = PlayerPrefs.GetInt("booklv",0);
+        itemLv[0] = PlayerPrefs.GetInt("booklv",0)-1;
         itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
@@ -733,6 +736,7 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", loveExp);
             PlayerPrefs.SetInt("lovelv", loveLv);
             PlayerPrefs.Save();
+            leveUpToast_obj.SetActive(true);
         }
 
 
@@ -789,4 +793,9 @@ public class TalkEvt : MonoBehaviour {
         }
     }
 
+
+    public void closeLeveUP()
+    {
+        leveUpToast_obj.SetActive(false);
+    }
 }

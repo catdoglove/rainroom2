@@ -22,9 +22,13 @@ public class MainBtnEvt : CavasData
     float speedF = 0.03f;
     public Text tspeed_txt;
     public GameObject speed_obj, speed_toast;
+
+    //닫을때같이닫는것
+    public GameObject YN_obj;
     
     // Use this for initialization
     void Start () {
+        PlayerPrefs.SetInt("front", 1);
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
 
         if (GM == null)
@@ -190,6 +194,7 @@ public class MainBtnEvt : CavasData
         backBlackImg_obj.SetActive(false);
         close_obj.SetActive(false);
         speed_obj.SetActive(false);
+        YN_obj.SetActive(false);
     }
 
     public void windowsOpen()
