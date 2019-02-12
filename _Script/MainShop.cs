@@ -33,11 +33,18 @@ public class MainShop : ShopHandler {
     public Sprite[] upDown_spr;
     public int upDownCheck_i = 0;
 
+    //기능성
     public GameObject[] functionTape_obj;
     public string function_txt;
     public GameObject[] functionBuyBtn_obj;
+    public GameObject[] funcImgs_obj;
+
+    public GameObject fucnYN_obj, funcImg_obj;
+    public Sprite[] funcImg_spr;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
+
+    public string[] func_str;
     
 
     //부족하다창
@@ -328,6 +335,7 @@ public class MainShop : ShopHandler {
     public void CloseShopBuy()
     {
         buyYes_obj.SetActive(false);
+        fucnYN_obj.SetActive(false);
     }
 	
 
@@ -369,7 +377,7 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void OpenfunctionItem()
     {
-        
+
         switch_i = PlayerPrefs.GetInt("switchshop", 0);
         waterCan_i = PlayerPrefs.GetInt("wateringcanshop", 0);
         waterpurifier_i = PlayerPrefs.GetInt("waterpurifiershop", 0);
@@ -380,15 +388,17 @@ public class MainShop : ShopHandler {
             PlayerPrefs.SetInt("wateringcanshop", 1);
             waterCan_i = 1;
         }
-       
+        
 
         if (switch_i == 1)
         {
             functionTape_obj[0].SetActive(false);
             functionBuyBtn_obj[0].SetActive(true);
-        }else if (switch_i == 2)
+        }
+        else if (switch_i == 2)
         {
             functionTape_obj[0].SetActive(false);
+            funcImgs_obj[0].GetComponent<Image>().sprite = funcImg_spr[0];
 
         }
         else if(switch_i==0)
@@ -404,6 +414,7 @@ public class MainShop : ShopHandler {
         else if (waterCan_i == 2)
         {
             functionTape_obj[1].SetActive(false);
+            funcImgs_obj[1].GetComponent<Image>().sprite = funcImg_spr[1];
         }
         else if (waterCan_i == 0)
         {
@@ -418,6 +429,7 @@ public class MainShop : ShopHandler {
         else if (waterpurifier_i == 2)
         {
             functionTape_obj[2].SetActive(false);
+            funcImgs_obj[2].GetComponent<Image>().sprite = funcImg_spr[2];
         }
         else if (waterpurifier_i == 0)
         {
@@ -463,29 +475,78 @@ public class MainShop : ShopHandler {
     {
         switch (func_i)
         {
-            case 0: 
+            case 0:
+                fucnYN_obj.SetActive(true);
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 1:
+                fucnYN_obj.SetActive(true);
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 2:
+                fucnYN_obj.SetActive(true);
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 3:
+                //fucnYN_obj.SetActive(true);
+                //funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
         }
     }
 
     public void FunctionYes()
     {
+        str = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
         switch (func_i)
         {
             case 0:
+                coldRainPrice_i = 100;
+                hotRainPrice_i = 50;
                 break;
             case 1:
+                coldRainPrice_i = 500;
                 break;
             case 2:
+                coldRainPrice_i = 200;
+                hotRainPrice_i = 200;
                 break;
             case 3:
+                coldRainPrice_i = 100;
+                hotRainPrice_i = 50;
                 break;
+        }
+        if (coldRain_i >= coldRainPrice_i)
+        {
+            if (hotRain_i >= hotRainPrice_i)
+            {
+                coldRain_i = coldRain_i - coldRainPrice_i;
+                PlayerPrefs.SetInt(str + "c", coldRain_i);
+                hotRain_i = hotRain_i - hotRainPrice_i;
+                PlayerPrefs.SetInt(str + "h", hotRain_i);
+                coldRain_txt.text = "" + coldRain_i;
+                hotRain_txt.text = "" + hotRain_i;
+                PlayerPrefs.SetInt(func_str[func_i],2);
+                funcImgs_obj[func_i].GetComponent<Image>().sprite = funcImg_spr[func_i];
+                PlayerPrefs.Save();
+                fucnYN_obj.SetActive(false);
+                GM.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
+            }
+            else
+            {
+                StartCoroutine("toastHotImgFadeOut");
+                needhRain_obj.SetActive(true);
+                fucnYN_obj.SetActive(false);
+                //따듯한물부족
+            }
+        }
+        else
+        {
+            StartCoroutine("toastColdImgFadeOut");
+            needcRain_obj.SetActive(true);
+            fucnYN_obj.SetActive(false);
+            //빗물부족
         }
     }
 

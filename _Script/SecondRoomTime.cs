@@ -22,11 +22,9 @@ public class SecondRoomTime : MonoBehaviour {
     /// <returns></returns>
     IEnumerator UpdateSec()
     {
-        
             int a = 0;
         while (a == 0)
         {
-            
             beadal();
 
             if (randDust1_i == 1)
@@ -69,13 +67,19 @@ public class SecondRoomTime : MonoBehaviour {
             PlayerPrefs.Save();
         }
     }
-
-
     IEnumerator goDust1()
     {
         while (randDust1_i == 1)
         {
-            moveX1 = moveX1 + 0.05f;
+            if (PlayerPrefs.GetInt("front", 1) == 2)
+            {
+                dust1_obj.SetActive(true);
+            }
+            else
+            {
+                dust1_obj.SetActive(false);
+            }
+                moveX1 = moveX1 + 0.05f;
             if (moveX1 >= 9.4)
             {
                 moveX1 = -9.4f;
@@ -85,12 +89,20 @@ public class SecondRoomTime : MonoBehaviour {
             yield return new WaitForSeconds(0.1f);
         }
     }
-
-
+    
     IEnumerator goDust2()
     {
         while (randDust2_i == 1)
         {
+            if (PlayerPrefs.GetInt("front", 1) == 2)
+            {
+                dust2_obj.SetActive(true);
+            }
+            else
+            {
+                dust2_obj.SetActive(false);
+            }
+
             moveX2 = moveX2 - 0.05f;
             if (moveX2 <= -9.4)
             {

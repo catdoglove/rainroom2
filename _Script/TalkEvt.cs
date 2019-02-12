@@ -449,8 +449,7 @@ public class TalkEvt : MonoBehaviour {
         setCharAni();
 
     }
-
-
+    
     void callTalkItem()
     {
         // 나중에 0을 아이템 등급이라 생각하면 됨 각각 bookitemlv windowlv 등등 정하면 끝
@@ -459,7 +458,6 @@ public class TalkEvt : MonoBehaviour {
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
         itemLv[4] = PlayerPrefs.GetInt("seed", 0);
-
     }
 
     public void talkBook()
@@ -487,8 +485,7 @@ public class TalkEvt : MonoBehaviour {
 
         StartCoroutine("itemTalkRun");
     }
-
-
+    
     public void talkLight()
     {
         callTalkItem();
@@ -528,8 +525,7 @@ public class TalkEvt : MonoBehaviour {
         StartCoroutine("itemTalkRun");
     }
 
-
-
+    
     //아이템대사 출력
     IEnumerator itemTalkRun()
     {
@@ -591,8 +587,6 @@ public class TalkEvt : MonoBehaviour {
             itemNowArr[0] = 0;
             Debug.Log("리셋");
         }
-        
-
     }
 
     void checkList()
@@ -738,8 +732,7 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.Save();
             leveUpToast_obj.SetActive(true);
         }
-
-
+        
     }
 
     //하트를 5번째대화마다 준다.
@@ -792,8 +785,7 @@ public class TalkEvt : MonoBehaviour {
             charAni.Play("144");
         }
     }
-
-
+    
     public void closeLeveUP()
     {
         leveUpToast_obj.SetActive(false);
