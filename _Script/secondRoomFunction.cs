@@ -13,7 +13,7 @@ public class secondRoomFunction : CavasData {
 
 
 	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i;
-	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj;
+	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
@@ -40,6 +40,7 @@ public class secondRoomFunction : CavasData {
     //하트
     public int heart_i;
     public Text boxHeart_txt;
+    public Text boxTotal_txt;
 
     // Use this for initialization
     void Start () {
@@ -51,7 +52,6 @@ public class secondRoomFunction : CavasData {
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
-
         
         //GM을 찾아불러온 데이터들 가져오기
         GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
@@ -78,7 +78,7 @@ public class secondRoomFunction : CavasData {
 		//drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
 		matImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().mat_spr [mat_i];
         matImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat2_spr[mat2_i];
-        flowerImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().flower_spr [flower_i];
+        flowerImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().flower_spr [flower_i+1];
 		lightImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().light_spr [light_i];
         lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         //umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
@@ -86,6 +86,11 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("wateringcanshop", 0) == 2)
         {
             WaterCan_obj.SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("waterpurifiershop", 0) == 2)
+        {
+            WaterPurifiler_obj.SetActive(true);
         }
 
 
@@ -152,6 +157,8 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt(str1 + "c", coldRain_i);
             PlayerPrefs.SetInt(str1 + "h", hotRain_i);
             PlayerPrefs.Save();
+            WaterPurifilerC_txt.text = "" + coldRain_i;
+            WaterPurifilerH_txt.text = "" + hotRain_i;
         }
         else
         {
@@ -159,7 +166,7 @@ public class secondRoomFunction : CavasData {
             needcRain_obj.SetActive(true);
             StartCoroutine("toastCImgFadeOut");
         }
-       
+        coldToHot_obj.SetActive(false);
     }
 
     public void HotToColdYes()
@@ -175,13 +182,16 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt(str1 + "c", coldRain_i);
             PlayerPrefs.SetInt(str1 + "h", hotRain_i);
             PlayerPrefs.Save();
+            WaterPurifilerC_txt.text = "" + coldRain_i;
+            WaterPurifilerH_txt.text = "" + hotRain_i;
         }
         else
         {
             //따듯한물부족
             needhRain_obj.SetActive(true);
         }
-        
+
+        hotToCold_obj.SetActive(false);
     }
 
     public void CloseWaterYN()
@@ -201,6 +211,10 @@ public class secondRoomFunction : CavasData {
     public void boxOpen()
     {
         boxClean_obj.SetActive(true);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        boxTotal_txt.text = "" + heart_i;
     }
     public void boxSeed()
     {

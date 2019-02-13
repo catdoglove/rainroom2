@@ -51,11 +51,11 @@ public class SeedTime : MonoBehaviour {
                 seed_i = PlayerPrefs.GetInt("seed", 0);
                 seed_i++;
                 PlayerPrefs.SetInt("seed", seed_i);
-                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
+                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i+1];
                 PlayerPrefs.Save();
             }
         }
-        seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
+        seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i+1];
     }
 
     public void TouchSeed()

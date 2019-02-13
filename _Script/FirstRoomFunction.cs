@@ -32,6 +32,7 @@ public class FirstRoomFunction : CavasData {
     public int heart_i;
 
     public Text boxHeart_txt;
+    public Text boxTotal_txt;
 
     public GameObject[] fisrtRoomItem_obj;
 
@@ -62,9 +63,7 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
-
         color = new Color(1f,1f,1f);
-
         //string str1;
         //str1 = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt(str1 + "ht", 999999);
@@ -148,6 +147,7 @@ public class FirstRoomFunction : CavasData {
 
     //전단지열기
     public void openBeadal(){
+        ShowCoupon();
         if (PlayerPrefs.GetInt("beadal", 0)==0)
         {
             string str1;
@@ -226,6 +226,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 3;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
+                    int cop = PlayerPrefs.GetInt("coupon1", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon1", cop);
                 }
                 else
                 {
@@ -241,6 +244,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 7;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
+                    int cop = PlayerPrefs.GetInt("coupon1", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon1", cop);
                 }
                 else
                 {
@@ -256,6 +262,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 9;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
+                    int cop = PlayerPrefs.GetInt("coupon1", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon1", cop);
                 }
                 else
                 {
@@ -271,6 +280,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 9;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
+                    int cop = PlayerPrefs.GetInt("coupon1", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon1", cop);
                 }
                 else
                 {
@@ -286,6 +298,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 7;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                    int cop = PlayerPrefs.GetInt("coupon2", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon2", cop);
                 }
                 else
                 {
@@ -301,6 +316,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 8;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                    int cop = PlayerPrefs.GetInt("coupon2", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon2", cop);
                 }
                 else
                 {
@@ -316,6 +334,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 9;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                    int cop = PlayerPrefs.GetInt("coupon2", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon2", cop);
                 }
                 else
                 {
@@ -331,6 +352,9 @@ public class FirstRoomFunction : CavasData {
                     point_i = point_i + 13;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
+                    int cop = PlayerPrefs.GetInt("coupon2", 0);
+                    cop++;
+                    PlayerPrefs.SetInt("coupon2", cop);
                 }
                 else
                 {
@@ -412,6 +436,10 @@ public class FirstRoomFunction : CavasData {
 
 	public void boxOpen(){
 		boxClean_obj.SetActive (true);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        boxTotal_txt.text = ""+heart_i;
 	}
 
     public void boxBed()
@@ -439,7 +467,6 @@ public class FirstRoomFunction : CavasData {
 
 		string str1;
 		str1 = PlayerPrefs.GetString ("code", "");
-        int heart_i;
         heart_i = PlayerPrefs.GetInt (str1+"ht", 0);
 
 		if (heart_i >= 3) {

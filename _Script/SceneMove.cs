@@ -45,6 +45,10 @@ public class SceneMove : MonoBehaviour {
         if (PlayerPrefs.GetInt("lovelv", 0) >= 3)
         {
             PlayerPrefs.SetInt("unlockshop", 10);
+            if (PlayerPrefs.GetInt("waterpurifiershop", 0)==0)
+            {
+                PlayerPrefs.SetInt("waterpurifiershop", 1);
+            }
             if (GMN == null)
             {
                 GMN = GameObject.FindGameObjectWithTag("GMtag");

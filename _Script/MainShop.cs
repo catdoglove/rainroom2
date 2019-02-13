@@ -79,6 +79,7 @@ public class MainShop : ShopHandler {
             data_hPrice = CSVReader.Read("Price/f_hotrain");
             data_itemName = CSVReader.Read("Price/f_itemname");
         }
+        
 
         if (PlayerPrefs.GetInt("unlockshop", 0) == 10)
         {
@@ -99,7 +100,7 @@ public class MainShop : ShopHandler {
 		coldRain_txt.text = "" + coldRain_i;
 		hotRain_txt.text = "" + hotRain_i;
         LvChange();
-
+        OpenfunctionItem();
         //다락방
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
@@ -507,16 +508,19 @@ public class MainShop : ShopHandler {
                 break;
             case 1:
                 coldRainPrice_i = 500;
+                GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
                 break;
             case 2:
                 coldRainPrice_i = 200;
                 hotRainPrice_i = 200;
+                GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(true);
                 break;
             case 3:
                 coldRainPrice_i = 100;
                 hotRainPrice_i = 50;
                 break;
         }
+        
         if (coldRain_i >= coldRainPrice_i)
         {
             if (hotRain_i >= hotRainPrice_i)
@@ -531,13 +535,12 @@ public class MainShop : ShopHandler {
                 funcImgs_obj[func_i].GetComponent<Image>().sprite = funcImg_spr[func_i];
                 PlayerPrefs.Save();
                 fucnYN_obj.SetActive(false);
-                GM.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
             }
             else
             {
                 StartCoroutine("toastHotImgFadeOut");
                 needhRain_obj.SetActive(true);
-                fucnYN_obj.SetActive(false);
+                Needfalse();
                 //따듯한물부족
             }
         }
@@ -545,9 +548,16 @@ public class MainShop : ShopHandler {
         {
             StartCoroutine("toastColdImgFadeOut");
             needcRain_obj.SetActive(true);
-            fucnYN_obj.SetActive(false);
+            Needfalse();
             //빗물부족
         }
+    }
+
+    void Needfalse()
+    {
+        GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(false);
+        GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(false);
+        fucnYN_obj.SetActive(false);
     }
 
     //온수가 부족하다

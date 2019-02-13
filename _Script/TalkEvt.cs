@@ -29,8 +29,7 @@ public class TalkEvt : MonoBehaviour {
     public Text btnTxt1, btnTxt2; //질문버튼 텍스트
     public GameObject quesBtn1, quesBtn2; //질문버튼
     int choiceNum; //예스or노
-
-
+    
     //아이템 관련- 0책, 1빛, 2씨앗, 3벽, 4창문
     int[] itemLv = new int[5]; // 등급
     int[] itemAllArr = new int[5]; //총 줄수 
@@ -41,15 +40,11 @@ public class TalkEvt : MonoBehaviour {
     //하트얻기
     public int talkHeart_i;
     
-
     //캐릭터 변환
-
     public Animator charAni;
-
 
     //레벨업
     public GameObject leveUpToast_obj;
-
 
 
     // Use this for initialization
