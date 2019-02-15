@@ -40,8 +40,8 @@ public class MainInfo : MonoBehaviour {
         PlayerPrefs.SetInt("talk", 5);///////////////////////////////////////테스트용나중에꼭지울것/////////////////////////////////////
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
-        love_sld.value = love_i;
         love_sld.maxValue = PlayerPrefs.GetInt("lovemax", 40);
+        love_sld.value = love_i;
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];

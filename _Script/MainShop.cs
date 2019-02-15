@@ -53,6 +53,7 @@ public class MainShop : ShopHandler {
 
     // Use this for initialization
     void Start () {
+        color = new Color(1f, 1f, 1f);
         //GM.GetComponent<LoadingData> ().;
         //PlayerPrefs.SetInt("booklv",0);
         string str = PlayerPrefs.GetString("code", "");
@@ -69,7 +70,6 @@ public class MainShop : ShopHandler {
     }
 
     public void ShopCoinLoad(){
-
         if (GM == null)
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -80,7 +80,6 @@ public class MainShop : ShopHandler {
             data_itemName = CSVReader.Read("Price/f_itemname");
         }
         
-
         if (PlayerPrefs.GetInt("unlockshop", 0) == 10)
         {
             downBtn_obj.SetActive(true);
@@ -93,10 +92,8 @@ public class MainShop : ShopHandler {
         }
 
 		str = PlayerPrefs.GetString ("code", "");
-
 		coldRain_i = PlayerPrefs.GetInt (str+"c", 0);
 		hotRain_i = PlayerPrefs.GetInt (str+"h", 0);
-
 		coldRain_txt.text = "" + coldRain_i;
 		hotRain_txt.text = "" + hotRain_i;
         LvChange();
@@ -162,11 +159,8 @@ public class MainShop : ShopHandler {
                     Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
-                    
                     //이미지를바꿔주는 함수 단칸방에 있을 때에는 이미지를 바꿔주지 않는다.
-                    
-                        SwitchByIndex();
-                    
+                    SwitchByIndex();
                     PlayerPrefs.Save();
                     coldRain_txt.text = "" + coldRain_i;
                     hotRain_txt.text = "" + hotRain_i;
@@ -177,6 +171,7 @@ public class MainShop : ShopHandler {
                 {
                     StartCoroutine("toastHotImgFadeOut");
                     needhRain_obj.SetActive(true);
+                    CloseShopBuy();
                     //따듯한물부족
                 }
             }
@@ -184,11 +179,11 @@ public class MainShop : ShopHandler {
             {
                 StartCoroutine("toastColdImgFadeOut");
                 needcRain_obj.SetActive(true);
+                CloseShopBuy();
                 //빗물부족
             }
         }//endOfElse
     }
- 
     /// <summary>
     /// 물건을 살때 이름을 불러오고 살까요창을 띄워준다
     /// </summary>
@@ -196,7 +191,6 @@ public class MainShop : ShopHandler {
         str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
-
         
         itemName_str = shopItems_btn[itemIndex_i].name;
         itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
@@ -205,8 +199,8 @@ public class MainShop : ShopHandler {
         coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
 
         //맥스레벨일때
-        if (hotRainPrice_i == 0 && coldRainPrice_i == 0) {
-            
+        if (hotRainPrice_i == 0 && coldRainPrice_i == 0)
+        {
         }
         else
         {
@@ -390,7 +384,6 @@ public class MainShop : ShopHandler {
             waterCan_i = 1;
         }
         
-
         if (switch_i == 1)
         {
             functionTape_obj[0].SetActive(false);
@@ -541,6 +534,7 @@ public class MainShop : ShopHandler {
                 StartCoroutine("toastHotImgFadeOut");
                 needhRain_obj.SetActive(true);
                 Needfalse();
+                CloseShopBuy();
                 //따듯한물부족
             }
         }
@@ -549,6 +543,7 @@ public class MainShop : ShopHandler {
             StartCoroutine("toastColdImgFadeOut");
             needcRain_obj.SetActive(true);
             Needfalse();
+            CloseShopBuy();
             //빗물부족
         }
     }

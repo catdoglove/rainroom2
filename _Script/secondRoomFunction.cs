@@ -43,7 +43,9 @@ public class secondRoomFunction : CavasData {
     public Text boxTotal_txt;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        color = new Color(1f, 1f, 1f);
         //씬이동
         if (menuBlock_obj == null)
         {

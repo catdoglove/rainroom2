@@ -17,8 +17,10 @@ public class FirstRoomFunction : CavasData {
 
     //쿠폰
     public GameObject[] couponType1_obj, couponType2_obj, couponComplete_obj;
-    public GameObject useCoupon_obj;
+    //public GameObject useCoupon_obj;
     public GameObject coupon_obj;
+    public GameObject couponFood_obj;
+    public Sprite[] couponFood_spr;
     
     //모두모으면 버튼이나타나게 한다
 
@@ -209,6 +211,7 @@ public class FirstRoomFunction : CavasData {
     }
 #endregion
 
+    //어떤음식인지 받아온 숫자로 판단해서 그음식에 맞게 처리를 해준다
     public void BuyFoodYes()
     {
         beadalYesNo_obj.SetActive(false);
@@ -573,6 +576,11 @@ public class FirstRoomFunction : CavasData {
         {
             if (buyFood_i == 1)
             {
+                couponFood_obj.GetComponent<Image>().sprite = couponFood_spr[0];
+            }
+            else
+            {
+                couponFood_obj.GetComponent<Image>().sprite = couponFood_spr[1];
 
             }
             coupon_obj.SetActive(true);
