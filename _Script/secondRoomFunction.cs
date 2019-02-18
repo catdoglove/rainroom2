@@ -12,8 +12,10 @@ public class secondRoomFunction : CavasData {
     public GameObject GMNotdistroy;
 
 
-	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i;
+	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i,wall_i;
 	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
+    public GameObject wallImg_obj, wallImg2_obj;
+    public Sprite[] wall_spr, wall2_spr;
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
@@ -61,8 +63,9 @@ public class secondRoomFunction : CavasData {
 		gasrange_i = PlayerPrefs.GetInt ("gasrangelv", 0);
 		icebox_i = PlayerPrefs.GetInt ("iceboxlv", 0);
 		shelf_i = PlayerPrefs.GetInt ("shelflv", 0);
-		//drawing_i = PlayerPrefs.GetInt ("drawing",0);
-		mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
+        //drawing_i = PlayerPrefs.GetInt ("drawing",0);
+        wall_i = PlayerPrefs.GetInt("walllv", 0);
+        mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
         mat2_i = PlayerPrefs.GetInt("mat2lv", 0);
         flower_i = PlayerPrefs.GetInt ("seed", 0);
 		light_i = PlayerPrefs.GetInt ("lightlv", 0);
@@ -70,6 +73,9 @@ public class secondRoomFunction : CavasData {
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
 
 
+
+        wallImg_obj.GetComponent<Image>().sprite = wall_spr[wall_i];
+        wallImg2_obj.GetComponent<Image>().sprite = wall2_spr[wall_i];
         drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
         windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
         windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
@@ -284,9 +290,31 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
-            //needMore_obj.SetActive(true);
+            needMoney();
+            boxClean_obj.SetActive(false);
             //돈부족
         }
+    }
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
+    }
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = color;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
     }
 
     public void boxClose()

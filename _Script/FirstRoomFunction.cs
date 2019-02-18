@@ -517,6 +517,7 @@ public class FirstRoomFunction : CavasData {
             boxClean_obj.SetActive(false);
         } else {
             needMoney();
+            boxClean_obj.SetActive(false);
         }
 	}
 
@@ -550,7 +551,6 @@ public class FirstRoomFunction : CavasData {
     }
 
     //토스트페이드아웃
-
     IEnumerator toastNImgFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
