@@ -27,7 +27,7 @@ public class TalkEvt : MonoBehaviour {
     //질문만들기
     string quesStr; //질문용대화
     public Text btnTxt1, btnTxt2; //질문버튼 텍스트
-    public GameObject quesBtn1, quesBtn2; //질문버튼
+    public GameObject quesBtmArea; //질문버튼
     int choiceNum; //예스or노
     
     //아이템 관련- 0책, 1빛, 2씨앗, 3벽, 4창문
@@ -174,6 +174,7 @@ public class TalkEvt : MonoBehaviour {
     IEnumerator questionTalkRun()
     {
         falseObject();
+        closeTB.SetActive(false);
         quesStr = " ";
         for (int i = 0; i < testText_cut.Length; i++)
         {
@@ -198,8 +199,7 @@ public class TalkEvt : MonoBehaviour {
                 yield return new WaitForSeconds(speedF);
             }
         }
-        quesBtn1.SetActive(true);
-        quesBtn2.SetActive(true);
+        quesBtmArea.SetActive(true);
     }
 
     //선택한 질문 출력
@@ -419,8 +419,7 @@ public class TalkEvt : MonoBehaviour {
         closeTB.SetActive(true);
 
         talkbtn.SetActive(false);
-        quesBtn1.SetActive(false);
-        quesBtn2.SetActive(false);
+        quesBtmArea.SetActive(false);
         // book_obj.SetActive(false);
         // light_obj.SetActive(false);
         // seed_obj.SetActive(false);

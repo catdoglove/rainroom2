@@ -10,11 +10,22 @@ public class UnityADS : MonoBehaviour {
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
 	int sG,mG;
+    int sG2, mG2;
 
     // Use this for initialization
     void Start () {
-        StartCoroutine("adTimeFlow");
-        StartCoroutine ("adAniTime");
+        
+        if(PlayerPrefs.GetInt("place", 1) == 1)
+        {
+            StartCoroutine("adTimeFlow2");
+            StartCoroutine("adAniTime2");
+        }
+        else
+        {
+            StartCoroutine("adTimeFlow");
+            StartCoroutine("adAniTime");
+        }
+        
         if (Advertisement.isSupported)
           {
               Advertisement.Initialize(gameId, true);
@@ -65,8 +76,6 @@ public class UnityADS : MonoBehaviour {
 
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
-
-            
 			sG = PlayerPrefs.GetInt("secf",30);
             //Debug.Log(sG);
             mG = (int)(sG / 60);
@@ -106,6 +115,59 @@ public class UnityADS : MonoBehaviour {
                 }
             }
             
+            yield return null;
+        }
+
+    }
+
+
+    IEnumerator adTimeFlow2()
+    {
+        while (mG2 > -1)
+        {
+            sG2 = PlayerPrefs.GetInt("secf2", 30);
+            //Debug.Log(sG);
+            mG2= (int)(sG2 / 60);
+            sG2 = sG2 - (sG2 / 60) * 60;
+            if (sG2 < 0)
+            {
+                sG2 = 0;
+                mG2 = 0;
+            }
+            else
+            {
+                radio_ani.SetActive(false);
+                adBtn_obj.SetActive(false);
+            }
+            sG2 = PlayerPrefs.GetInt("secf2", 30);
+            sG2 = sG2 - 1;
+            if (sG2 < 0)
+            {
+                sG2 = -1;
+            }
+            PlayerPrefs.SetInt("secf2", sG2);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    IEnumerator adAniTime2()
+    {
+        int w = 0;
+        while (w == 0)
+        {
+            if (sG2 < 0)
+            {
+                if (PlayerPrefs.GetInt("front", 1) == 1)
+                {
+                    radio_ani.SetActive(true);
+                    adBtn_obj.SetActive(true);
+                }
+                else
+                {
+                    radio_ani.SetActive(false);
+                    adBtn_obj.SetActive(false);
+                }
+            }
+
             yield return null;
         }
 
