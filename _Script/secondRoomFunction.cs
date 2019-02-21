@@ -103,7 +103,7 @@ public class secondRoomFunction : CavasData {
 
 
         //박스
-        if (PlayerPrefs.GetInt("icebox", 0) == 10)
+        if (PlayerPrefs.GetInt("iceboxbox", 0) == 10)
         {
             iceBoxBox_obj.SetActive(true);
         }
@@ -114,6 +114,10 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("drawerbox", 0) == 10)
         {
             drawerBox_obj.SetActive(true);
+        }
+        else
+        {
+            drawerBox_obj.SetActive(false);
         }
         if (PlayerPrefs.GetInt("seedbox", 0) == -10)
         {

@@ -12,6 +12,10 @@ public class WindowMiniGame : MonoBehaviour {
 
     public float cMoveX = 0f;
 
+    //업적
+    public GameObject achievement_obj;
+    public float moveX, moveY;
+
     // Use this for initialization
     void Start () {
 		
@@ -66,6 +70,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void TouchCat()
     {
+        achievementfunc2();
         minicat_obj.SetActive(false);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -82,7 +87,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void TouchAirplane()
     {
-
+        achievementfunc();
         GM.GetComponent<MainTime>().pMoveX = 17.4f;
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -99,5 +104,84 @@ public class WindowMiniGame : MonoBehaviour {
         GM.GetComponent<GetFadeout>().getRainFade();
     }
 
-    
+    //업적
+    void achievementfunc()
+    {
+        
+        int cts = PlayerPrefs.GetInt("countairplanest", 0);
+        cts++;
+        PlayerPrefs.SetInt("countairplanest", cts);
+        if (cts >= 50 && PlayerPrefs.GetInt("airplanest", 0) < 3)
+        {
+            PlayerPrefs.SetInt("airplanest", 3);
+            //achievement_obj.SetActive(true);
+            achievement();
+        }
+        else if (cts >= 10 && PlayerPrefs.GetInt("airplanest", 0) < 2)
+        {
+            PlayerPrefs.SetInt("airplanest", 2);
+            achievement();
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("airplanest", 0) < 1)
+        {
+            PlayerPrefs.SetInt("airplanest", 1);
+            achievement();
+        }
+    }
+
+    void achievementfunc2()
+    {
+        
+        int cts = PlayerPrefs.GetInt("countpetcatst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countpetcatst", cts);
+        Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
+        if (cts >= 50 && PlayerPrefs.GetInt("petcatst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("petcatst", 3);
+            //achievement_obj.SetActive(true);
+            achievement();
+        }
+        else if (cts >= 10 && PlayerPrefs.GetInt("petcatst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("petcatst", 2);
+            achievement();
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("petcatst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("petcatst", 1);
+            achievement();
+        }
+        Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
+    }
+
+    void achievement()
+    {
+        StartCoroutine("achievementIn");
+    }
+
+    IEnumerator achievementOut()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            moveY = moveY + 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+
+    }
+    IEnumerator achievementIn()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 0f; i < 1f; i += 0.05f)
+        {
+            moveY = moveY - 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("achievementOut");
+    }
+
 }

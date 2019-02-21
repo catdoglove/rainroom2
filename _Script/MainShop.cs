@@ -136,6 +136,14 @@ public class MainShop : ShopHandler {
             }
         }else if(PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
+            if (PlayerPrefs.GetInt("drawerbox", 0) == 10)
+            {
+                boxs_obj[4].SetActive(true);
+            }
+            else
+            {
+                boxs_obj[4].SetActive(false);
+            }
 
         }
     }

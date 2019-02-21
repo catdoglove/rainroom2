@@ -24,6 +24,8 @@ public class MainInfo : MonoBehaviour {
     
     public GameObject reverseBtn_obj, reverseBackBtn_obj;
 
+    public GameObject sticker_obj;
+
 
 
     // Use this for initialization
@@ -46,6 +48,8 @@ public class MainInfo : MonoBehaviour {
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
         InfoCheckList();
+        //업적
+        sticker_obj.GetComponent<MainSticker>().showSticker();
     }
 
 	public void infoWindowTurn(){

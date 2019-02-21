@@ -46,6 +46,11 @@ public class TalkEvt : MonoBehaviour {
     //레벨업
     public GameObject leveUpToast_obj;
 
+    //업적
+    public GameObject achievement_obj;
+    public float moveX, moveY;
+
+
 
     // Use this for initialization
     void Start () {
@@ -330,7 +335,29 @@ public class TalkEvt : MonoBehaviour {
             }
             loveExp= loveExp + 4;
             PlayerPrefs.SetInt("lovepoint", loveExp);
-            // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.            
+            // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
+
+            //업적
+            int cts = PlayerPrefs.GetInt("counttalkst", 0);
+            cts++;
+            PlayerPrefs.SetInt("counttalkst", cts);
+            
+            if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) != 3)
+            {
+                PlayerPrefs.SetInt("talkst", 3);
+                //achievement_obj.SetActive(true);
+                achievement();
+            }
+            else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) != 2)
+            {
+                PlayerPrefs.SetInt("talkst", 2);
+                achievement();
+            }
+            else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) != 1)
+            {
+                PlayerPrefs.SetInt("talkst", 1);
+                achievement();
+            }
         }
         else if (loveExp >= loveMax)
         {
@@ -346,7 +373,7 @@ public class TalkEvt : MonoBehaviour {
             }
 
         }
-
+        
         PlayerPrefs.Save();
     }
 
@@ -783,4 +810,35 @@ public class TalkEvt : MonoBehaviour {
     {
         leveUpToast_obj.SetActive(false);
     }
+
+    //업적
+    void achievement()
+    {
+        StartCoroutine("achievementIn");
+    }
+
+    IEnumerator achievementOut()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            moveY = moveY + 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+        
+    }
+    IEnumerator achievementIn()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 0f; i < 1f; i += 0.05f)
+        {
+            moveY = moveY - 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("achievementOut");
+    }
+
 }

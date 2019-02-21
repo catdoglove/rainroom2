@@ -13,8 +13,17 @@ public class SceneMove : MonoBehaviour {
 
 	AsyncOperation async;
 
+    //업적
+    public GameObject achievement_obj;
+    public float moveX, moveY;
+
     void Start()
     {
+        if(PlayerPrefs.GetInt("achievemove", 0) == 1)
+        {
+            PlayerPrefs.SetInt("achievemove", 0);
+            achievementfunc();
+        }
       
     }
 
@@ -54,8 +63,7 @@ public class SceneMove : MonoBehaviour {
                 GMN = GameObject.FindGameObjectWithTag("GMtag");
             }
             GMN.GetComponent<MainBtnEvt>().allClose();
-
-
+            PlayerPrefs.SetInt("achievemove", 1);
             PlayerPrefs.SetInt("place", 1);
             StartCoroutine(Load());
             PlayerPrefs.Save();
@@ -72,18 +80,70 @@ public class SceneMove : MonoBehaviour {
             GMN = GameObject.FindGameObjectWithTag("GMtag");
         }
         GMN.GetComponent<MainBtnEvt> ().allClose ();
-
-
+        PlayerPrefs.SetInt("achievemove", 1);
         PlayerPrefs.SetInt("place", 0);
         StartCoroutine(Load2());
         PlayerPrefs.Save();
         //다락방으로
     }
 
-
+  
     public void closeMoreLv()
     {
         moreLv_obj.SetActive(false);
     }
 
+    //업적
+    void achievementfunc()
+    {
+        int cts = PlayerPrefs.GetInt("countladderst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countladderst", cts);
+
+        if (cts >= 50 && PlayerPrefs.GetInt("downst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("downst", 3);
+            //achievement_obj.SetActive(true);
+            achievement();
+        }
+        else if (cts >= 10 && PlayerPrefs.GetInt("downst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("downst", 2);
+            achievement();
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("downst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("downst", 1);
+            achievement();
+        }
+    }
+    
+    void achievement()
+    {
+        StartCoroutine("achievementIn");
+    }
+
+    IEnumerator achievementOut()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            moveY = moveY + 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+
+    }
+    IEnumerator achievementIn()
+    {
+        moveY = achievement_obj.transform.position.y;
+        for (float i = 0f; i < 1f; i += 0.05f)
+        {
+            moveY = moveY - 0.08f;
+            achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("achievementOut");
+    }
 }
