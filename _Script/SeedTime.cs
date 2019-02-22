@@ -13,26 +13,29 @@ public class SeedTime : MonoBehaviour {
     public GameObject seedWindow_obj, seedYetWindow_obj, needWaterWindow_obj;
     public GameObject seedImg_obj;
     public Sprite[] seed_spr;
-
-
+    
     int minute;
     int hours;
-
-
+    
     public GameObject loadGM;
 
     // Use this for initialization
     void Start () {
+        
         loadGM = GameObject.FindGameObjectWithTag("loadGM");
-
-        SeedTimeFlow();
+        if(PlayerPrefs.GetInt("seedbox", 0) == -10)
+        {
+        }
+        else
+        {
+            SeedTimeFlow();
+        }
     }
-
-
+    
     void SeedTimeFlow()
     {
-        seed_i = PlayerPrefs.GetInt("seed", 0);
-        seedWater_i = PlayerPrefs.GetInt("seedWater", 0);
+        seed_i = PlayerPrefs.GetInt("seedlv", 0);
+        seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
         System.DateTime d = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString());
         System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
@@ -40,27 +43,26 @@ public class SeedTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 2 - minute;
+        minute = 1 - minute;
         hours =  0 - hours;
-        //Debug.Log(hours);
         if (hours < 0)
         {
-            //Debug.Log(seedWater_i+"mm"+ seed_i + "mm" + hours);
             if (seedWater_i > seed_i)
             {
-                seed_i = PlayerPrefs.GetInt("seed", 0);
+                seed_i = PlayerPrefs.GetInt("seedlv", 0);
                 seed_i++;
-                PlayerPrefs.SetInt("seed", seed_i);
-                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i+1];
+                PlayerPrefs.SetInt("seedlv", seed_i);
+                seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
         }
-        seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i+1];
+        seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
     }
 
     public void TouchSeed()
     {
         SeedTimeFlow();
+        
         if (hours < 0)
         {
             if (seedWater_i == seed_i)
