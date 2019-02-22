@@ -9,7 +9,7 @@ public class FirstRoomFunction : CavasData {
 
     //배달
     public GameObject beadalWindow_obj, beadalType1_obj, beadalType2_obj, beadalYesNo_obj, beadalIllust_obj, beadalFood_obj;
-    public int buyFood_i;
+    public int buyFood_i, beadalType_i;
     public int point_i;
     public Sprite[] beadalYN_spr,beadalFood_spr;
     public GameObject dish_obj, beadalYet_obj;
@@ -53,7 +53,8 @@ public class FirstRoomFunction : CavasData {
     
 
     public string boxName_str;
-
+    public int boxs_i;
+    public Text boxTxt_txt;
 
 
     public GameObject loadGM;
@@ -69,7 +70,7 @@ public class FirstRoomFunction : CavasData {
         //string str1;
         //str1 = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt(str1 + "ht", 999999);
-
+        PlayerPrefs.SetInt("place", 0);
         //씬이동
         if (menuBlock_obj == null)
         {
@@ -405,10 +406,12 @@ public class FirstRoomFunction : CavasData {
     public void beadalType1()
     {
         beadalType1_obj.SetActive(true);
+        beadalType_i = 0;
     }
     public void beadalType2()
     {
         beadalType2_obj.SetActive(true);
+        beadalType_i = 1;
     }
 
     public void BeadalTypeClose()
@@ -438,7 +441,9 @@ public class FirstRoomFunction : CavasData {
     }
 
 	public void boxOpen(){
-		boxClean_obj.SetActive (true);
+        boxTxt_txt.text = ""+ boxs_i;
+
+        boxClean_obj.SetActive (true);
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
@@ -448,22 +453,27 @@ public class FirstRoomFunction : CavasData {
     public void boxBed()
     {
         boxName_str = "bed";
+        boxs_i = 3;
     }
     public void boxCabinet()
     {
         boxName_str = "cabinet";
+        boxs_i = 1;
     }
     public void boxBook()
     {
         boxName_str = "book";
+        boxs_i = 1;
     }
     public void boxDesk()
     {
         boxName_str = "desk";
+        boxs_i = 1;
     }
     public void boxLadder()
     {
         boxName_str = "ladder";
+        boxs_i = 5;
     }
 
     public void boxYes(){
@@ -574,7 +584,7 @@ public class FirstRoomFunction : CavasData {
         }
         else
         {
-            if (buyFood_i == 1)
+            if (beadalType_i == 0)
             {
                 couponFood_obj.GetComponent<Image>().sprite = couponFood_spr[0];
             }
@@ -592,6 +602,7 @@ public class FirstRoomFunction : CavasData {
         point_i = PlayerPrefs.GetInt("lovepoint", 0);
         point_i = point_i + 3;
         PayCoupon();
+        BeadalYesF();
         coupon_obj.SetActive(false);
     }
     public void useCouponN()
@@ -622,7 +633,7 @@ public class FirstRoomFunction : CavasData {
     }
     void PayCoupon()
     {
-        if (buyFood_i == 1)
+        if (beadalType_i == 0)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -632,7 +643,7 @@ public class FirstRoomFunction : CavasData {
             couponComplete_obj[0].SetActive(false);
         }
         
-        if (buyFood_i == 2)
+        if (beadalType_i == 1)
         {
             for (int i = 0; i < 10; i++)
             {

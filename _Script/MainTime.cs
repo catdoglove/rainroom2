@@ -60,7 +60,7 @@ public class MainTime : MonoBehaviour {
                 }
                 else
                 {
-                    plane_i = Random.Range(0, 10);
+                    plane_i = Random.Range(0, 50);
                 }
             }
             //배달
