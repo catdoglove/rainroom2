@@ -18,11 +18,8 @@ public class WindowMiniGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetInt("balloon", 10);
-        PlayerPrefs.SetInt("miniopen", 0);
-        PlayerPrefs.SetInt("windowcatrand", 19);
-        PlayerPrefs.Save();
-    }
+		
+	}
 	
 
     public void OpenMiniGame()
@@ -138,6 +135,7 @@ public class WindowMiniGame : MonoBehaviour {
         int cts = PlayerPrefs.GetInt("countpetcatst", 0);
         cts++;
         PlayerPrefs.SetInt("countpetcatst", cts);
+        Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
         if (cts >= 50 && PlayerPrefs.GetInt("petcatst", 0) < 3)
         {
             PlayerPrefs.SetInt("petcatst", 3);
@@ -165,23 +163,24 @@ public class WindowMiniGame : MonoBehaviour {
     IEnumerator achievementOut()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 1f; i > -0.2f; i -= 0.05f)
+        for (float i = 1f; i > 0f; i -= 0.05f)
         {
             moveY = moveY + 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
             yield return null;
         }
+
     }
     IEnumerator achievementIn()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 0f; i < 1.2f; i += 0.05f)
+        for (float i = 0f; i < 1f; i += 0.05f)
         {
             moveY = moveY - 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
             yield return null;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine("achievementOut");
     }
 

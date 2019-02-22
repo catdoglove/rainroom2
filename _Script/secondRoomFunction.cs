@@ -15,9 +15,7 @@ public class secondRoomFunction : CavasData {
 	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i,wall_i;
 	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
     public GameObject wallImg_obj, wallImg2_obj;
-    public GameObject switch_obj;
     public Sprite[] wall_spr, wall2_spr;
-
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
@@ -69,7 +67,7 @@ public class secondRoomFunction : CavasData {
         wall_i = PlayerPrefs.GetInt("walllv", 0);
         mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
         mat2_i = PlayerPrefs.GetInt("mat2lv", 0);
-        flower_i = PlayerPrefs.GetInt ("seedlv", 0);
+        flower_i = PlayerPrefs.GetInt ("seed", 0);
 		light_i = PlayerPrefs.GetInt ("lightlv", 0);
 		umbrella_i = PlayerPrefs.GetInt ("umbrellalv", 0);
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
@@ -88,14 +86,7 @@ public class secondRoomFunction : CavasData {
 		//drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
 		matImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().mat_spr [mat_i];
         matImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat2_spr[mat2_i];
-        if (PlayerPrefs.GetInt("seedbox", 0) == -10)
-        {
-            flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[0];
-        }
-        else
-        {
-            flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[flower_i];
-        }
+        flowerImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().flower_spr [flower_i+1];
 		lightImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().light_spr [light_i];
         lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         //umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
@@ -110,10 +101,7 @@ public class secondRoomFunction : CavasData {
             WaterPurifiler_obj.SetActive(true);
         }
 
-        if (PlayerPrefs.GetInt("switchshop", 0) == 2)
-        {
-            switch_obj.SetActive(true);
-        }
+
         //박스
         if (PlayerPrefs.GetInt("iceboxbox", 0) == 10)
         {

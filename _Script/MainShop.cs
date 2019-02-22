@@ -40,8 +40,7 @@ public class MainShop : ShopHandler {
     public GameObject[] funcImgs_obj;
 
     public GameObject fucnYN_obj, funcImg_obj;
-    public Sprite[] funcImg_spr,funcTxt_spr;
-    
+    public Sprite[] funcImg_spr;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
@@ -58,10 +57,8 @@ public class MainShop : ShopHandler {
         //GM.GetComponent<LoadingData> ().;
         //PlayerPrefs.SetInt("booklv",0);
         string str = PlayerPrefs.GetString("code", "");
-        //PlayerPrefs.SetInt("seedlv",0);
         //PlayerPrefs.SetInt(str + "c", 999999);
         //PlayerPrefs.SetInt(str + "h", 99999);
-        //PlayerPrefs.SetInt(str + "ht", 999);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -271,11 +268,6 @@ public class MainShop : ShopHandler {
                 case 6:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[13].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
-                    if(PlayerPrefs.GetInt("switchshop", 0) == 0)
-                    {
-                        PlayerPrefs.SetInt("switchshop", 1);
-
-                    }
                     break;
                 case 7:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
@@ -487,15 +479,15 @@ public class MainShop : ShopHandler {
         {
             case 0:
                 fucnYN_obj.SetActive(true);
-                funcImg_obj.GetComponent<Image>().sprite = funcTxt_spr[func_i];
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 1:
                 fucnYN_obj.SetActive(true);
-                funcImg_obj.GetComponent<Image>().sprite = funcTxt_spr[func_i];
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 2:
                 fucnYN_obj.SetActive(true);
-                funcImg_obj.GetComponent<Image>().sprite = funcTxt_spr[func_i];
+                funcImg_obj.GetComponent<Image>().sprite = funcImg_spr[func_i];
                 break;
             case 3:
                 //fucnYN_obj.SetActive(true);
@@ -517,17 +509,19 @@ public class MainShop : ShopHandler {
                 break;
             case 1:
                 coldRainPrice_i = 500;
-                hotRainPrice_i = 0;
+                GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
                 break;
             case 2:
                 coldRainPrice_i = 200;
                 hotRainPrice_i = 200;
+                GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(true);
                 break;
             case 3:
                 coldRainPrice_i = 100;
                 hotRainPrice_i = 50;
                 break;
         }
+        
         if (coldRain_i >= coldRainPrice_i)
         {
             if (hotRain_i >= hotRainPrice_i)
@@ -542,34 +536,6 @@ public class MainShop : ShopHandler {
                 funcImgs_obj[func_i].GetComponent<Image>().sprite = funcImg_spr[func_i];
                 PlayerPrefs.Save();
                 fucnYN_obj.SetActive(false);
-                
-                    switch (func_i)
-                    {
-                        case 0:
-                        if (PlayerPrefs.GetInt("place", 0) == 1)
-                        {
-                            GM2.GetComponent<secondRoomFunction>().switch_obj.SetActive(true);
-                        }
-                            functionBuyBtn_obj[0].SetActive(false);
-                            break;
-                        case 1:
-                        if (PlayerPrefs.GetInt("place", 0) == 1)
-                        {
-                            GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
-                        }
-                            functionBuyBtn_obj[1].SetActive(false);
-                            break;
-                        case 2:
-                        if (PlayerPrefs.GetInt("place", 0) == 1)
-                        {
-                            GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(true);
-                        }
-                            functionBuyBtn_obj[2].SetActive(false);
-                            break;
-                        case 3:
-                            break;
-                    }
-                
             }
             else
             {
@@ -592,6 +558,8 @@ public class MainShop : ShopHandler {
 
     void Needfalse()
     {
+        GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(false);
+        GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(false);
         fucnYN_obj.SetActive(false);
     }
 

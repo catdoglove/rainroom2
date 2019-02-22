@@ -337,24 +337,23 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
-            Debug.Log("cat" + PlayerPrefs.GetInt("talkst", 0) + "count" + PlayerPrefs.GetInt("counttalkst", 0));
             //업적
             int cts = PlayerPrefs.GetInt("counttalkst", 0);
             cts++;
             PlayerPrefs.SetInt("counttalkst", cts);
             
-            if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) < 3)
+            if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) != 3)
             {
                 PlayerPrefs.SetInt("talkst", 3);
                 //achievement_obj.SetActive(true);
                 achievement();
             }
-            else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) < 2)
+            else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) != 2)
             {
                 PlayerPrefs.SetInt("talkst", 2);
                 achievement();
             }
-            else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) < 1)
+            else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) != 1)
             {
                 PlayerPrefs.SetInt("talkst", 1);
                 achievement();
@@ -821,7 +820,7 @@ public class TalkEvt : MonoBehaviour {
     IEnumerator achievementOut()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 1f; i > -0.2f; i -= 0.05f)
+        for (float i = 1f; i > 0f; i -= 0.05f)
         {
             moveY = moveY + 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
@@ -832,13 +831,13 @@ public class TalkEvt : MonoBehaviour {
     IEnumerator achievementIn()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 0f; i < 1.2f; i += 0.05f)
+        for (float i = 0f; i < 1f; i += 0.05f)
         {
             moveY = moveY - 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
             yield return null;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine("achievementOut");
     }
 
