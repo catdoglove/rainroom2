@@ -26,6 +26,7 @@ public class MainInfo : MonoBehaviour {
 
     public GameObject sticker_obj;
 
+    public Text loveLv_txt;
 
 
     // Use this for initialization
@@ -46,6 +47,7 @@ public class MainInfo : MonoBehaviour {
         love_sld.value = love_i;
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
+        loveLv_txt.text = "" + loveLv_i;
         face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
         InfoCheckList();
         //업적
@@ -182,13 +184,13 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[3].SetActive(true);
                 }
-                cLadder_obj.SetActive(true);
-                checkLine_obj[12].SetActive(false);
-                if (PlayerPrefs.GetInt("ladderlv", 0) >= 1)
+                cWall_obj.SetActive(true);
+                itemList_txt[2].text = "Lv.1  달성";
+                checkLine_obj[2].SetActive(false);
+                if (PlayerPrefs.GetInt("walllv", 0) >= 1)
                 {
-                    checkLine_obj[12].SetActive(true);
+                    checkLine_obj[2].SetActive(true);
                 }
-                itemList_txt[12].text = "사다리상자정리";
                 break;
             case 3:
                 cBook_obj.SetActive(true);
@@ -205,13 +207,13 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[1].SetActive(true);
                 }
-                cWall_obj.SetActive(true);
-                itemList_txt[2].text = "Lv.1  달성";
-                checkLine_obj[2].SetActive(false);
-                if (PlayerPrefs.GetInt("walllv", 0) >= 1)
+                cLadder_obj.SetActive(true);
+                checkLine_obj[12].SetActive(false);
+                if (PlayerPrefs.GetInt("ladderlv", 0) >= 1)
                 {
-                    checkLine_obj[2].SetActive(true);
+                    checkLine_obj[12].SetActive(true);
                 }
+                itemList_txt[12].text = "사다리상자정리";
                 break;
             case 4:
                 cBook_obj.SetActive(true);

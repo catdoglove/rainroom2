@@ -49,7 +49,7 @@ public class TalkEvt : MonoBehaviour {
     //업적
     public GameObject achievement_obj;
     public float moveX, moveY;
-
+    public GameObject firstGM;
 
 
     // Use this for initialization
@@ -132,6 +132,10 @@ public class TalkEvt : MonoBehaviour {
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         Debug.Log(countTalkNum);
 
+        
+
+
+
         if (countTalkNum == 0)
         {
             //대화못함
@@ -139,6 +143,7 @@ public class TalkEvt : MonoBehaviour {
         }
         else
         {
+            checkach();
             lovetalk();
             testText_cut = text_str.Split('/'); //끊기
             cleantalk();
@@ -337,28 +342,7 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
-            Debug.Log("cat" + PlayerPrefs.GetInt("talkst", 0) + "count" + PlayerPrefs.GetInt("counttalkst", 0));
-            //업적
-            int cts = PlayerPrefs.GetInt("counttalkst", 0);
-            cts++;
-            PlayerPrefs.SetInt("counttalkst", cts);
             
-            if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) < 3)
-            {
-                PlayerPrefs.SetInt("talkst", 3);
-                //achievement_obj.SetActive(true);
-                achievement();
-            }
-            else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) < 2)
-            {
-                PlayerPrefs.SetInt("talkst", 2);
-                achievement();
-            }
-            else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) < 1)
-            {
-                PlayerPrefs.SetInt("talkst", 1);
-                achievement();
-            }
         }
         else if (loveExp >= loveMax)
         {
@@ -640,7 +624,7 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("bedlv", 0) >= 1)
                     {
-                        if (PlayerPrefs.GetInt("ladderlv", 0) == 1)
+                        if (PlayerPrefs.GetInt("walllv", 0) == 1)
                         {
                             a = 1;
                             PlayerPrefs.SetInt("lovemax", 250);
@@ -653,7 +637,7 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("windowlv", 0) >= 1)
                     {
-                        if (PlayerPrefs.GetInt("walllv", 0) >= 1)
+                        if (PlayerPrefs.GetInt("ladderlv", 0) >= 1)
                         {
                             a = 1;
                             PlayerPrefs.SetInt("lovemax", 250);
@@ -813,6 +797,31 @@ public class TalkEvt : MonoBehaviour {
     }
 
     //업적
+    void checkach()
+    {
+        int cts = PlayerPrefs.GetInt("counttalkst", 0);
+        cts++;
+        PlayerPrefs.SetInt("counttalkst", cts);
+        Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
+        if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("talkst", 3);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(0, 2);
+        }
+        else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("talkst", 2);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(0, 1);
+            achievement();
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("talkst", 1);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(0, 0);
+            achievement();
+        }
+    }
+
     void achievement()
     {
         StartCoroutine("achievementIn");

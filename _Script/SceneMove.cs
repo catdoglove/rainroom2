@@ -9,6 +9,7 @@ public class SceneMove : MonoBehaviour {
 
 	public GameObject MainGM;
 	public GameObject GMN;
+    public GameObject secondGM;
     public GameObject moreLv_obj;
 
 	AsyncOperation async;
@@ -50,8 +51,7 @@ public class SceneMove : MonoBehaviour {
 
 	public void moveDown(){
 
-        if (PlayerPrefs.GetInt("lovelv", 0) >= 3)
-        {
+        
             PlayerPrefs.SetInt("unlockshop", 10);
             if (PlayerPrefs.GetInt("waterpurifiershop", 0)==0)
             {
@@ -67,11 +67,7 @@ public class SceneMove : MonoBehaviour {
             StartCoroutine(Load());
             PlayerPrefs.Save();
             //아래층으로
-        }
-        else
-        {
-            moreLv_obj.SetActive(true);
-        }
+        
 	}
 
 	public void moveUp(){
@@ -91,6 +87,8 @@ public class SceneMove : MonoBehaviour {
         moreLv_obj.SetActive(false);
     }
 
+
+    
     //업적
     void achievementfunc()
     {
@@ -101,21 +99,21 @@ public class SceneMove : MonoBehaviour {
         if (cts >= 50 && PlayerPrefs.GetInt("downst", 0) < 3)
         {
             PlayerPrefs.SetInt("downst", 3);
-            //achievement_obj.SetActive(true);
-            achievement();
+            secondGM.GetComponent<AchievementShow>().achievementCheck(2, 2);
         }
         else if (cts >= 10 && PlayerPrefs.GetInt("downst", 0) < 2)
         {
             PlayerPrefs.SetInt("downst", 2);
-            achievement();
+            secondGM.GetComponent<AchievementShow>().achievementCheck(2, 1);
         }
         else if (cts >= 1 && PlayerPrefs.GetInt("downst", 0) < 1)
         {
             PlayerPrefs.SetInt("downst", 1);
-            achievement();
+            secondGM.GetComponent<AchievementShow>().achievementCheck(2, 0);
         }
     }
-    
+
+    /*
     void achievement()
     {
         StartCoroutine("achievementIn");
@@ -144,4 +142,5 @@ public class SceneMove : MonoBehaviour {
         yield return new WaitForSeconds(4f);
         StartCoroutine("achievementOut");
     }
+    */
 }

@@ -50,11 +50,12 @@ public class FirstRoomFunction : CavasData {
     public GameObject needMore_obj;
     public GameObject boxClean_obj;
     //public Sprite[] boxItem_spr;
+    public GameObject boxLv_obj;
     
 
     public string boxName_str;
     public int boxs_i;
-    public Text boxTxt_txt;
+    public Text boxTxt_txt, boxneed_txt;
 
 
     public GameObject loadGM;
@@ -453,26 +454,31 @@ public class FirstRoomFunction : CavasData {
     public void boxBed()
     {
         boxName_str = "bed";
+        boxneed_txt.text = "";
         boxs_i = 3;
     }
     public void boxCabinet()
     {
         boxName_str = "cabinet";
+        boxneed_txt.text = "";
         boxs_i = 1;
     }
     public void boxBook()
     {
         boxName_str = "book";
+        boxneed_txt.text = "";
         boxs_i = 1;
     }
     public void boxDesk()
     {
         boxName_str = "desk";
+        boxneed_txt.text = "";
         boxs_i = 1;
     }
     public void boxLadder()
     {
         boxName_str = "ladder";
+        boxneed_txt.text = "호감Lv.3 달성하기";
         boxs_i = 5;
     }
 
@@ -481,55 +487,121 @@ public class FirstRoomFunction : CavasData {
 		string str1;
 		str1 = PlayerPrefs.GetString ("code", "");
         heart_i = PlayerPrefs.GetInt (str1+"ht", 0);
+        if (boxName_str == "ladder")
+        {
+            if (PlayerPrefs.GetInt("lovelv", 0) >= 2)
+            {
+                if (heart_i >= boxs_i)
+                {
+                    heart_i = heart_i - boxs_i;
+                    boxHeart_txt.text = "" + boxs_i;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    PlayerPrefs.SetInt(boxName_str + "box", 1);
+                    PlayerPrefs.SetInt(boxName_str + "lv", 1);
+                    PlayerPrefs.Save();
 
-		if (heart_i >= 3) {
+                    if (PlayerPrefs.GetInt("bedbox", 0) == 1)
+                    {
+                        bedBox_obj.SetActive(false);
+                    }
+                    if (PlayerPrefs.GetInt("cabinetbox", 0) == 1)
+                    {
+                        cabinetBox_obj.SetActive(false);
+                    }
+                    if (PlayerPrefs.GetInt("deskbox", 0) == 1)
+                    {
+                        deskBox_obj.SetActive(false);
+                    }
+                    if (PlayerPrefs.GetInt("bookbox", 0) == 1)
+                    {
+                        bookBox_obj.SetActive(false);
+                    }
+                    if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
+                    {
+                        ladderBox_obj.SetActive(false);
+                        ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
+                    }
+                    book_i = PlayerPrefs.GetInt("booklv", 0);
+                    bed_i = PlayerPrefs.GetInt("bedlv", 0);
+                    desk_i = PlayerPrefs.GetInt("desklv", 0);
+                    cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
+                    rug_i = PlayerPrefs.GetInt("ruglv", 0);
 
-            heart_i = heart_i - 3;
-            boxHeart_txt.text = "" + 3;
-            PlayerPrefs.SetInt (str1 + "ht", heart_i);
-            PlayerPrefs.SetInt(boxName_str + "box", 1);
-            PlayerPrefs.SetInt(boxName_str + "lv", 1);
-            PlayerPrefs.Save ();
+                    bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+                    bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
+                    deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
+                    cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
-            if (PlayerPrefs.GetInt("bedbox", 0) == 1)
-            {
-                bedBox_obj.SetActive(false);
+                    rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+                    boxClean_obj.SetActive(false);
+                }
+                else
+                {
+                    needMoney();
+                    boxClean_obj.SetActive(false);
+                }
             }
-            if (PlayerPrefs.GetInt("cabinetbox", 0) == 1)
+            else
             {
-                cabinetBox_obj.SetActive(false);
+                boxLv_obj.SetActive(true);
             }
-            if (PlayerPrefs.GetInt("deskbox", 0) == 1)
-            {
-                deskBox_obj.SetActive(false);
-            }
-            if (PlayerPrefs.GetInt("bookbox", 0) == 1)
-            {
-                bookBox_obj.SetActive(false);
-            }
-            if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
-            {
-                ladderBox_obj.SetActive(false);
-                ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
-            }
-            book_i = PlayerPrefs.GetInt("booklv", 0);
-            bed_i = PlayerPrefs.GetInt("bedlv", 0);
-            desk_i = PlayerPrefs.GetInt("desklv", 0);
-            cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
-            rug_i = PlayerPrefs.GetInt("ruglv", 0);
-            
-            bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
-            bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
-            deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
-            cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
-
-            rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-            boxClean_obj.SetActive(false);
-        } else {
-            needMoney();
-            boxClean_obj.SetActive(false);
         }
-	}
+        else
+        {
+
+            if (heart_i >= boxs_i)
+            {
+
+                heart_i = heart_i - boxs_i;
+                boxHeart_txt.text = "" + boxs_i;
+                PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                PlayerPrefs.SetInt(boxName_str + "box", 1);
+                PlayerPrefs.SetInt(boxName_str + "lv", 1);
+                PlayerPrefs.Save();
+
+                if (PlayerPrefs.GetInt("bedbox", 0) == 1)
+                {
+                    bedBox_obj.SetActive(false);
+                }
+                if (PlayerPrefs.GetInt("cabinetbox", 0) == 1)
+                {
+                    cabinetBox_obj.SetActive(false);
+                }
+                if (PlayerPrefs.GetInt("deskbox", 0) == 1)
+                {
+                    deskBox_obj.SetActive(false);
+                }
+                if (PlayerPrefs.GetInt("bookbox", 0) == 1)
+                {
+                    bookBox_obj.SetActive(false);
+                }
+                if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
+                {
+                    ladderBox_obj.SetActive(false);
+                    ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
+                }
+                book_i = PlayerPrefs.GetInt("booklv", 0);
+                bed_i = PlayerPrefs.GetInt("bedlv", 0);
+                desk_i = PlayerPrefs.GetInt("desklv", 0);
+                cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
+                rug_i = PlayerPrefs.GetInt("ruglv", 0);
+
+                bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+                bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
+                deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
+                cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+
+                rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+                boxClean_obj.SetActive(false);
+            }
+            else
+            {
+                needMoney();
+                boxClean_obj.SetActive(false);
+            }
+
+        }
+    }
 
 	public void boxNo(){
 		boxClean_obj.SetActive (false);

@@ -117,18 +117,17 @@ public class WindowMiniGame : MonoBehaviour {
         if (cts >= 50 && PlayerPrefs.GetInt("airplanest", 0) < 3)
         {
             PlayerPrefs.SetInt("airplanest", 3);
-            //achievement_obj.SetActive(true);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(3, 2);
         }
         else if (cts >= 10 && PlayerPrefs.GetInt("airplanest", 0) < 2)
         {
             PlayerPrefs.SetInt("airplanest", 2);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(3, 1);
         }
         else if (cts >= 1 && PlayerPrefs.GetInt("airplanest", 0) < 1)
         {
             PlayerPrefs.SetInt("airplanest", 1);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(3, 0);
         }
     }
 
@@ -141,18 +140,17 @@ public class WindowMiniGame : MonoBehaviour {
         if (cts >= 50 && PlayerPrefs.GetInt("petcatst", 0) < 3)
         {
             PlayerPrefs.SetInt("petcatst", 3);
-            //achievement_obj.SetActive(true);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(4, 2);
         }
         else if (cts >= 10 && PlayerPrefs.GetInt("petcatst", 0) < 2)
         {
             PlayerPrefs.SetInt("petcatst", 2);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(4, 1);
         }
         else if (cts >= 1 && PlayerPrefs.GetInt("petcatst", 0) < 1)
         {
             PlayerPrefs.SetInt("petcatst", 1);
-            achievement();
+            GM.GetComponent<AchievementShow>().achievementCheck(4, 0);
         }
         Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
     }

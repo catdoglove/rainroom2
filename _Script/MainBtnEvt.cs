@@ -28,7 +28,7 @@ public class MainBtnEvt : CavasData
     
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetInt("front", 1);
+        PlayerPrefs.SetInt("front", 2);
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
 
         if (GM == null)
