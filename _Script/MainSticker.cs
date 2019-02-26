@@ -9,8 +9,7 @@ public class MainSticker : MonoBehaviour
     public string[] sticker_str;
     public GameObject[] sticker_obj;
     public GameObject[] newStickerB_obj, newStickerS_obj, newStickerG_obj;
-
-
+    
     public Sprite[] stickerS_spr, stickerG_spr;
     public string name_str;
 
@@ -20,16 +19,13 @@ public class MainSticker : MonoBehaviour
 
     int posX, posY;
     float speed = 0.04f;
-
-
-
+    
     // Use this for initialization
     void Start()
     {
         //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
         //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
         /*
-        PlayerPrefs.SetInt("downst", 3);
         PlayerPrefs.SetInt("insleepst", 3);
         PlayerPrefs.SetInt("firstcookst", 3);
         PlayerPrefs.SetInt("airplanest", 3);

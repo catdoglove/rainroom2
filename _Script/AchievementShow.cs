@@ -24,7 +24,13 @@ public class AchievementShow : MonoBehaviour {
     {
         if (achv_i >= 20)
         {
-
+            achSticker_obj.GetComponent<Image>().sprite = achievementImg2_spr[achv_i-20];
+            tier_i++;
+            string str = "lv" + tier_i;
+            Debug.Log("achv" + achv_i + "lv" + tier_i );
+            //Debug.Log(data[20]["lv1"]);
+            tier_i--;
+            title_txt.text = "" + data[achv_i][str];
         }
         else
         {
@@ -33,6 +39,7 @@ public class AchievementShow : MonoBehaviour {
             string str = "lv" + tier_i;
             //Debug.Log("achv" + achv_i + "lv" + tier_i+data[0]["lv1"]);
             tier_i--;
+            data = CSVReader.Read("rewardname");
             title_txt.text = "" + data[achv_i][str];
         }
         StartCoroutine("achievementIn");
@@ -40,7 +47,7 @@ public class AchievementShow : MonoBehaviour {
     IEnumerator achievementOut()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 1f; i > -0.2f; i -= 0.05f)
+        for (float i = 1f; i > 0f; i -= 0.04f)
         {
             moveY = moveY + 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
@@ -51,13 +58,13 @@ public class AchievementShow : MonoBehaviour {
     IEnumerator achievementIn()
     {
         moveY = achievement_obj.transform.position.y;
-        for (float i = 0f; i < 1.2f; i += 0.05f)
+        for (float i = 0f; i < 1f; i += 0.04f)
         {
             moveY = moveY - 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
             yield return null;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         StartCoroutine("achievementOut");
     }
 

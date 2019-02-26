@@ -12,6 +12,7 @@ public class FirstRoomFunction : CavasData {
     public int buyFood_i, beadalType_i;
     public int point_i;
     public Sprite[] beadalYN_spr,beadalFood_spr;
+    public Sprite beadalT1_spr, beadalT2_spr;
     public GameObject dish_obj, beadalYet_obj;
     public Text[] heart_txt;
 
@@ -24,7 +25,7 @@ public class FirstRoomFunction : CavasData {
     
     //모두모으면 버튼이나타나게 한다
 
-	public GameObject GMNotdistroy;
+	public GameObject GMNotdistroy, firstGM;
 
 
     public GameObject needToast_obj, beadalYetToast_obj;
@@ -44,6 +45,8 @@ public class FirstRoomFunction : CavasData {
     public GameObject ladderImg_obj;
     public Sprite ladder_spr;
     public GameObject moreCoinWindow_obj;
+    public GameObject bookcase_obj;
+    public Sprite bookcase_spr;
 
     public int bookBox_i;
     public GameObject bookBox_obj, bedBox_obj, deskBox_obj, cabinetBox_obj, ladderBox_obj;
@@ -68,9 +71,6 @@ public class FirstRoomFunction : CavasData {
     // Use this for initialization
     void Start () {
         color = new Color(1f,1f,1f);
-        //string str1;
-        //str1 = PlayerPrefs.GetString("code", "");
-        //PlayerPrefs.SetInt(str1 + "ht", 999999);
         PlayerPrefs.SetInt("place", 0);
         //씬이동
         if (menuBlock_obj == null)
@@ -132,7 +132,16 @@ public class FirstRoomFunction : CavasData {
     public void setItems()
     {
         //windowImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData> ().window_spr [window_i];
-        bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+        if (PlayerPrefs.GetInt("booklv", 0) == 15)
+        {
+            bookcase_obj.GetComponent<Image>().sprite = bookcase_spr;
+            bookcase_obj.SetActive(true);
+            bookImg_obj.SetActive(false);
+        }
+        else
+        {
+            bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+        }
         bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
         deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
         //standImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().stand_spr [stand_i];
@@ -212,7 +221,6 @@ public class FirstRoomFunction : CavasData {
         buyFood_i = 8;
     }
 #endregion
-
     //어떤음식인지 받아온 숫자로 판단해서 그음식에 맞게 처리를 해준다
     public void BuyFoodYes()
     {
@@ -433,6 +441,15 @@ public class FirstRoomFunction : CavasData {
     {
         beadalFood_obj.GetComponent<Image>().sprite = beadalFood_spr[buyFood_i];
         beadalYesNo_obj.SetActive(true);
+        if (beadalType_i == 0)
+        {
+            beadalYesNo_obj.GetComponent<Image>().sprite = beadalT1_spr;
+        }
+        else
+        {
+
+            beadalYesNo_obj.GetComponent<Image>().sprite = beadalT2_spr;
+        }
     }
 
     void needMoney()
@@ -522,18 +539,26 @@ public class FirstRoomFunction : CavasData {
                         ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
                     }
                     book_i = PlayerPrefs.GetInt("booklv", 0);
+                    if (book_i >= 15)
+                    {
+
+                    }
+                    else
+                    {
+                        bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+                    }
                     bed_i = PlayerPrefs.GetInt("bedlv", 0);
                     desk_i = PlayerPrefs.GetInt("desklv", 0);
                     cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
                     rug_i = PlayerPrefs.GetInt("ruglv", 0);
 
-                    bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
                     bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
                     deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
                     cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
                     rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
                     boxClean_obj.SetActive(false);
+                    checkach();
                 }
                 else
                 {
@@ -551,7 +576,6 @@ public class FirstRoomFunction : CavasData {
 
             if (heart_i >= boxs_i)
             {
-
                 heart_i = heart_i - boxs_i;
                 boxHeart_txt.text = "" + boxs_i;
                 PlayerPrefs.SetInt(str1 + "ht", heart_i);
@@ -574,6 +598,7 @@ public class FirstRoomFunction : CavasData {
                 if (PlayerPrefs.GetInt("bookbox", 0) == 1)
                 {
                     bookBox_obj.SetActive(false);
+
                 }
                 if (PlayerPrefs.GetInt("ladderbox", 0) == 1)
                 {
@@ -585,14 +610,18 @@ public class FirstRoomFunction : CavasData {
                 desk_i = PlayerPrefs.GetInt("desklv", 0);
                 cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
                 rug_i = PlayerPrefs.GetInt("ruglv", 0);
-
-                bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+                if (book_i<15)
+                {
+                    bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+                }
                 bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
                 deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
                 cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
                 rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
                 boxClean_obj.SetActive(false);
+
+                checkach();
             }
             else
             {
@@ -613,9 +642,7 @@ public class FirstRoomFunction : CavasData {
         needMore_obj.SetActive(false);
         beadalYet_obj.SetActive(false);
     }
-
-
-
+    
     IEnumerator toastBImgFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
@@ -629,7 +656,6 @@ public class FirstRoomFunction : CavasData {
             yield return null;
         }
         beadalYetToast_obj.SetActive(false);
-
     }
 
     //토스트페이드아웃
@@ -725,11 +751,8 @@ public class FirstRoomFunction : CavasData {
             couponComplete_obj[1].SetActive(false);
         }
         
-  
     }
-
- 
-
+    
     public void characterTurn()
     {
         if (character_obj.transform.rotation.y == 0)
@@ -741,6 +764,29 @@ public class FirstRoomFunction : CavasData {
             character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
+    
+    //업적
+    void checkach()
+    {
+        int cts = PlayerPrefs.GetInt("countboxst", 0);
+        cts++;
+        Debug.Log("boxst");
+        PlayerPrefs.SetInt("countboxst", cts);
+        if (cts >= 9 && PlayerPrefs.GetInt("boxst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("boxst", 3);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(1, 2);
+        }
+        else if (cts >= 5 && PlayerPrefs.GetInt("boxst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("boxst", 2);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(1, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("boxst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("boxst", 1);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(1, 0);
+        }
+    }
 
-  
 }

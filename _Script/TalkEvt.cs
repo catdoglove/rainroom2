@@ -812,13 +812,11 @@ public class TalkEvt : MonoBehaviour {
         {
             PlayerPrefs.SetInt("talkst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 1);
-            achievement();
         }
         else if (cts >= 1 && PlayerPrefs.GetInt("talkst", 0) < 1)
         {
             PlayerPrefs.SetInt("talkst", 1);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 0);
-            achievement();
         }
     }
 

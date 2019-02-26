@@ -41,6 +41,8 @@ public class MainShop : ShopHandler {
 
     public GameObject fucnYN_obj, funcImg_obj;
     public Sprite[] funcImg_spr,funcTxt_spr;
+
+    public GameObject[] funcPrice_obj;
     
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
@@ -56,7 +58,7 @@ public class MainShop : ShopHandler {
     void Start () {
         color = new Color(1f, 1f, 1f);
         //GM.GetComponent<LoadingData> ().;
-        //PlayerPrefs.SetInt("booklv",0);
+        //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
         //PlayerPrefs.SetInt(str + "c", 999999);
@@ -153,7 +155,9 @@ public class MainShop : ShopHandler {
 
     public void ShopBuyYes()
     {
-        if (hotRainPrice_i == 0 && coldRainPrice_i == 0){}
+        if (hotRainPrice_i == 0 && coldRainPrice_i == 0){
+
+        }
         else
         {
             Debug.Log(itemIndex_i + "fd" + itemLevel_i);//////////////////////////////////////////////////////////////////
@@ -170,6 +174,7 @@ public class MainShop : ShopHandler {
                     Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
+                    achvcheck();
                     //이미지를바꿔주는 함수 단칸방에 있을 때에는 이미지를 바꿔주지 않는다.
                     SwitchByIndex();
                     PlayerPrefs.Save();
@@ -177,6 +182,8 @@ public class MainShop : ShopHandler {
                     hotRain_txt.text = "" + hotRain_i;
                     LvChange();
                     CloseShopBuy();
+                    
+
                 }
                 else
                 {
@@ -212,6 +219,7 @@ public class MainShop : ShopHandler {
         //맥스레벨일때
         if (hotRainPrice_i == 0 && coldRainPrice_i == 0)
         {
+            
         }
         else
         {
@@ -236,7 +244,16 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 0:
-                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[itemLevel_i];
+                    if (PlayerPrefs.GetInt("booklv", 0) == 15)
+                    {
+                        GM.GetComponent<FirstRoomFunction>().bookcase_obj.SetActive(true);
+                        GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].SetActive(false);
+                        GM.GetComponent<FirstRoomFunction>().bookcase_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().bookcase_spr;
+                    }
+                    else
+                    {
+                        GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[itemLevel_i];
+                    }
                     break;
 
                 case 1:
@@ -349,7 +366,6 @@ public class MainShop : ShopHandler {
         fucnYN_obj.SetActive(false);
     }
 	
-
     public void DownShop()
     {
         upBtn_obj.GetComponent<Image>().sprite = upDown_spr[1];
@@ -409,6 +425,8 @@ public class MainShop : ShopHandler {
         {
             functionTape_obj[0].SetActive(false);
             funcImgs_obj[0].GetComponent<Image>().sprite = funcImg_spr[0];
+            funcPrice_obj[0].SetActive(true);
+            funcPrice_obj[1].SetActive(false);
 
         }
         else if(switch_i==0)
@@ -425,6 +443,8 @@ public class MainShop : ShopHandler {
         {
             functionTape_obj[1].SetActive(false);
             funcImgs_obj[1].GetComponent<Image>().sprite = funcImg_spr[1];
+            funcPrice_obj[2].SetActive(true);
+            funcPrice_obj[3].SetActive(false);
         }
         else if (waterCan_i == 0)
         {
@@ -440,6 +460,8 @@ public class MainShop : ShopHandler {
         {
             functionTape_obj[2].SetActive(false);
             funcImgs_obj[2].GetComponent<Image>().sprite = funcImg_spr[2];
+            funcPrice_obj[4].SetActive(true);
+            funcPrice_obj[5].SetActive(false);
         }
         else if (waterpurifier_i == 0)
         {
@@ -550,21 +572,27 @@ public class MainShop : ShopHandler {
                         {
                             GM2.GetComponent<secondRoomFunction>().switch_obj.SetActive(true);
                         }
-                            functionBuyBtn_obj[0].SetActive(false);
+                        funcPrice_obj[0].SetActive(true);
+                        funcPrice_obj[1].SetActive(false);
+                        functionBuyBtn_obj[0].SetActive(false);
                             break;
                         case 1:
                         if (PlayerPrefs.GetInt("place", 0) == 1)
                         {
                             GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
                         }
-                            functionBuyBtn_obj[1].SetActive(false);
+                        funcPrice_obj[2].SetActive(true);
+                        funcPrice_obj[3].SetActive(false);
+                        functionBuyBtn_obj[1].SetActive(false);
                             break;
                         case 2:
                         if (PlayerPrefs.GetInt("place", 0) == 1)
                         {
                             GM2.GetComponent<secondRoomFunction>().WaterPurifiler_obj.SetActive(true);
                         }
-                            functionBuyBtn_obj[2].SetActive(false);
+                        funcPrice_obj[4].SetActive(true);
+                        funcPrice_obj[5].SetActive(false);
+                        functionBuyBtn_obj[2].SetActive(false);
                             break;
                         case 3:
                             break;
@@ -625,5 +653,47 @@ public class MainShop : ShopHandler {
             yield return null;
         }
         needcRain_obj.SetActive(false);
+    }
+
+    void achvcheck()
+    {
+        //업적
+        if (itemName_str == "book")
+        {
+            if (PlayerPrefs.GetInt("booklv") >= 15 && PlayerPrefs.GetInt("allbook", 0) == 0)
+            {
+                PlayerPrefs.SetInt("allbook", 1);
+                //단칸방
+                if (PlayerPrefs.GetInt("place", 0) == 0)
+                {
+                    GM.GetComponent<AchievementShow>().achievementCheck(21, 0);
+                }
+                else
+                {
+
+                    GM2.GetComponent<AchievementShow>().achievementCheck(21, 0);
+                }
+
+            }
+        }
+        Debug.Log(itemName_str + PlayerPrefs.GetInt("windowlv") + "window" + PlayerPrefs.GetInt("allwindow", 0));
+        if (itemName_str == "window")
+        {
+            if (PlayerPrefs.GetInt("windowlv") >= 8 && PlayerPrefs.GetInt("allwindow", 0) == 0)
+            {
+                PlayerPrefs.SetInt("alwindow", 1);
+                //단칸방
+                if (PlayerPrefs.GetInt("place", 0) == 0)
+                {
+                    GM.GetComponent<AchievementShow>().achievementCheck(20, 0);
+                }
+                else
+                {
+
+                    GM2.GetComponent<AchievementShow>().achievementCheck(20, 0);
+                }
+
+            }
+        }
     }
 }
