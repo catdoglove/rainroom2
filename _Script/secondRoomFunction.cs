@@ -17,7 +17,7 @@ public class secondRoomFunction : CavasData {
     public GameObject wallImg_obj, wallImg2_obj;
     public GameObject switch_obj;
     public Sprite[] wall_spr, wall2_spr;
-
+    public GameObject iceBoxBtn_obj;
 
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
@@ -45,6 +45,9 @@ public class secondRoomFunction : CavasData {
     public int heart_i;
     public Text boxHeart_txt;
     public Text boxTotal_txt;
+
+    
+    public int boxs_i;
 
     // Use this for initialization
     void Start ()
@@ -118,6 +121,10 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("iceboxbox", 0) == 10)
         {
             iceBoxBox_obj.SetActive(true);
+        }
+        else
+        {
+            iceBoxBtn_obj.SetActive(true);
         }
         if (PlayerPrefs.GetInt("gasrangebox", 0) == 10)
         {
@@ -243,18 +250,22 @@ public class secondRoomFunction : CavasData {
     public void boxSeed()
     {
         boxName_str = "seed";
+        boxs_i = 4;
     }
     public void boxDrawer()
     {
         boxName_str = "drawer";
+        boxs_i = 1;
     }
     public void boxGas()
     {
         boxName_str = "gasrange";
+        boxs_i = 4;
     }
     public void boxIce()
     {
         boxName_str = "icebox";
+        boxs_i = 4;
     }
 
 
@@ -265,11 +276,11 @@ public class secondRoomFunction : CavasData {
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
 
-        if (heart_i >= 3)
+        if (heart_i >= boxs_i)
         {
-
-            heart_i = heart_i - 3;
-            boxHeart_txt.text = "" + 3;
+            
+            heart_i = heart_i - boxs_i;
+            boxHeart_txt.text = "" + boxs_i;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
 
             PlayerPrefs.SetInt(boxName_str + "box", 1);
@@ -291,6 +302,7 @@ public class secondRoomFunction : CavasData {
             if (PlayerPrefs.GetInt("iceboxbox", 0) == 1)
             {
                 iceBoxBox_obj.SetActive(false);
+                iceBoxBtn_obj.SetActive(true);
             }
             flower_i = PlayerPrefs.GetInt("seedlv", 0);
             drawer_i = PlayerPrefs.GetInt("drawerlv", 0);

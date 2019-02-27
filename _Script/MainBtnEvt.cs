@@ -138,6 +138,7 @@ public class MainBtnEvt : CavasData
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
     }
 

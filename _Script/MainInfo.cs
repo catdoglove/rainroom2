@@ -28,6 +28,11 @@ public class MainInfo : MonoBehaviour {
 
     public Text loveLv_txt;
 
+    //별명짓기
+    public GameObject nicknameWrite_obj;
+    public Text nickname_txt;
+    public InputField InputField;
+
 
     // Use this for initialization
     void Start () {
@@ -52,6 +57,8 @@ public class MainInfo : MonoBehaviour {
         InfoCheckList();
         //업적
         sticker_obj.GetComponent<MainSticker>().showSticker();
+        //별명
+        nickname_txt.text = PlayerPrefs.GetString("nickname", "별명짓기");
     }
 
 	public void infoWindowTurn(){

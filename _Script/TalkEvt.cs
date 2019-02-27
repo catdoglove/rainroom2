@@ -45,6 +45,7 @@ public class TalkEvt : MonoBehaviour {
 
     //레벨업
     public GameObject leveUpToast_obj;
+    Color color;
 
     //업적
     public GameObject achievement_obj;
@@ -54,6 +55,7 @@ public class TalkEvt : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
         callTalkItem();
@@ -338,7 +340,7 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp= loveExp + 4;
+            loveExp= loveExp + 20;
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
@@ -726,6 +728,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 break;
         }
+        //조금 친해진 것 같다 호감레벨 상승
         if (a == 1)
         {
             loveLv++;
@@ -735,6 +738,8 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", loveExp);
             PlayerPrefs.SetInt("lovelv", loveLv);
             PlayerPrefs.Save();
+            StopCoroutine("leveUpToastImgFadeOut");
+            StartCoroutine("leveUpToastImgFadeOut");
             leveUpToast_obj.SetActive(true);
         }
         
@@ -820,10 +825,7 @@ public class TalkEvt : MonoBehaviour {
         }
     }
 
-    void achievement()
-    {
-        StartCoroutine("achievementIn");
-    }
+ 
 
     IEnumerator achievementOut()
     {
@@ -849,4 +851,19 @@ public class TalkEvt : MonoBehaviour {
         StartCoroutine("achievementOut");
     }
 
+    //친해졌다
+    IEnumerator leveUpToastImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        leveUpToast_obj.GetComponent<Image>().color = color;
+        leveUpToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            leveUpToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        leveUpToast_obj.SetActive(false);
+    }
 }

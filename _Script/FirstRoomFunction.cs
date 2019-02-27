@@ -29,7 +29,7 @@ public class FirstRoomFunction : CavasData {
 
 
     public GameObject needToast_obj, beadalYetToast_obj;
-    Color color;
+    Color colorN,colorB,colorL;
 
     //하트
     public int heart_i;
@@ -70,7 +70,9 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
-        color = new Color(1f,1f,1f);
+        colorN = new Color(1f,1f,1f);
+        colorB = new Color(1f, 1f, 1f);
+        colorL = new Color(1f, 1f, 1f);
         PlayerPrefs.SetInt("place", 0);
         //씬이동
         if (menuBlock_obj == null)
@@ -568,6 +570,8 @@ public class FirstRoomFunction : CavasData {
             }
             else
             {
+                StopCoroutine("toastLadderFadeOut");
+                StartCoroutine("toastLadderFadeOut");
                 boxLv_obj.SetActive(true);
             }
         }
@@ -645,14 +649,14 @@ public class FirstRoomFunction : CavasData {
     
     IEnumerator toastBImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        beadalYetToast_obj.GetComponent<Image>().color = color;
+        colorB.a = Mathf.Lerp(0f, 1f, 1f);
+        beadalYetToast_obj.GetComponent<Image>().color = colorB;
         beadalYetToast_obj.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            beadalYetToast_obj.GetComponent<Image>().color = color;
+            colorB.a = Mathf.Lerp(0f, 1f, i);
+            beadalYetToast_obj.GetComponent<Image>().color = colorB;
             yield return null;
         }
         beadalYetToast_obj.SetActive(false);
@@ -661,17 +665,32 @@ public class FirstRoomFunction : CavasData {
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = color;
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = colorN;
         needToast_obj.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = color;
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = colorN;
             yield return null;
         }
         needToast_obj.SetActive(false);
+    }
+    //사다리페이드아웃
+    IEnumerator toastLadderFadeOut()
+    {
+        colorL.a = Mathf.Lerp(0f, 1f, 1f);
+        boxLv_obj.GetComponent<Image>().color = colorL;
+        boxLv_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorL.a = Mathf.Lerp(0f, 1f, i);
+            boxLv_obj.GetComponent<Image>().color = colorL;
+            yield return null;
+        }
+        boxLv_obj.SetActive(false);
     }
 
     public void OpenCoupon()

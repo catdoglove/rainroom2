@@ -197,8 +197,7 @@ public class GasrangeEvt : MonoBehaviour {
         {
             pageIce_i++;
             ingredientPage_obj[0].SetActive(false);
-            ingredientPage_obj[1].SetActive(false);
-            ingredientPage_obj[page_i].SetActive(true);
+            ingredientPage_obj[1].SetActive(true);
         }
     }
 
@@ -207,9 +206,8 @@ public class GasrangeEvt : MonoBehaviour {
         if (pageIce_i > 0)
         {
             pageIce_i--;
-            ingredientPage_obj[0].SetActive(false);
+            ingredientPage_obj[0].SetActive(true);
             ingredientPage_obj[1].SetActive(false);
-            ingredientPage_obj[pageIce_i].SetActive(true);
         }
     }
 

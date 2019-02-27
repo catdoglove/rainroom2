@@ -13,15 +13,19 @@ public class SeedTime : MonoBehaviour {
     public GameObject seedWindow_obj, seedYetWindow_obj, needWaterWindow_obj;
     public GameObject seedImg_obj;
     public Sprite[] seed_spr;
+    public Text seed_txt;
     
     int minute;
     int hours;
     
     public GameObject loadGM;
 
+    Color colorN, colorY;
+
     // Use this for initialization
     void Start () {
-        
+        colorN = new Color(1f, 1f, 1f);
+        colorY = new Color(1f, 1f, 1f);
         loadGM = GameObject.FindGameObjectWithTag("loadGM");
         if(PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
@@ -67,6 +71,7 @@ public class SeedTime : MonoBehaviour {
         {
             if (seedWater_i == seed_i)
             {
+                seed_txt.text = ""+ seedCPrice_i[seed_i];
                 seedWindow_obj.SetActive(true);
             }
             else {
@@ -76,6 +81,8 @@ public class SeedTime : MonoBehaviour {
         }
         else
         {
+            StopCoroutine("toastYetWaterFadeOut");
+            StartCoroutine("toastYetWaterFadeOut");
             seedYetWindow_obj.SetActive(true);
         }
     }
@@ -105,10 +112,41 @@ public class SeedTime : MonoBehaviour {
         else
         {
             //물부족캄
+            StopCoroutine("toastneedWaterFadeOut");
+            StartCoroutine("toastneedWaterFadeOut");
             needWaterWindow_obj.SetActive(true);
         }
     }
 
+    //물부족
+    IEnumerator toastneedWaterFadeOut()
+    {
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        needWaterWindow_obj.GetComponent<Image>().color = colorN;
+        needWaterWindow_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            needWaterWindow_obj.GetComponent<Image>().color = colorN;
+            yield return null;
+        }
+        needWaterWindow_obj.SetActive(false);
+    }
 
-
+    //아직 축축함
+    IEnumerator toastYetWaterFadeOut()
+    {
+        colorY.a = Mathf.Lerp(0f, 1f, 1f);
+        seedYetWindow_obj.GetComponent<Image>().color = colorY;
+        seedYetWindow_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorY.a = Mathf.Lerp(0f, 1f, i);
+            seedYetWindow_obj.GetComponent<Image>().color = colorY;
+            yield return null;
+        }
+        seedYetWindow_obj.SetActive(false);
+    }
 }

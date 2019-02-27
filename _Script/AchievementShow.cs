@@ -22,6 +22,7 @@ public class AchievementShow : MonoBehaviour {
     //업적
     public void achievementCheck(int achv_i,int tier_i)
     {
+        achievement_obj.SetActive(true);
         if (achv_i >= 20)
         {
             achSticker_obj.GetComponent<Image>().sprite = achievementImg2_spr[achv_i-20];
@@ -53,7 +54,7 @@ public class AchievementShow : MonoBehaviour {
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);
             yield return null;
         }
-
+        achievement_obj.SetActive(false);
     }
     IEnumerator achievementIn()
     {
