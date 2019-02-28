@@ -29,8 +29,8 @@ public class MainInfo : MonoBehaviour {
     public Text loveLv_txt;
 
     //별명짓기
-    public GameObject nicknameWrite_obj;
-    public Text nickname_txt;
+    public GameObject nicknameWrite_obj, nicknameYN_obj;
+    public Text nickname_txt, InputField_txt, nickYN_txt;
     public InputField InputField;
 
 
@@ -364,5 +364,35 @@ public class MainInfo : MonoBehaviour {
         CShelf_obj.SetActive(false);
         cBox_obj.SetActive(false);
         cLadder_obj.SetActive(false);
+        nicknameWrite_obj.SetActive(false);
+        nicknameYN_obj.SetActive(false);
+    }
+
+    //이름
+    public void MakeNickname()
+    {
+        nicknameWrite_obj.SetActive(true);
+        InputField.text = "";
+        InputField_txt.text = "";
+    }
+    public void Setname()
+    {
+        PlayerPrefs.SetString("nickname", "" + InputField_txt.text);
+        PlayerPrefs.Save();
+        nickname_txt.text = InputField_txt.text;
+        nicknameWrite_obj.SetActive(false);
+        nicknameYN_obj.SetActive(false);
+    }
+    public void closeNick()
+    {
+        InputField.text = "";
+        InputField_txt.text = "";
+        nicknameWrite_obj.SetActive(false);
+        nicknameYN_obj.SetActive(false);
+    }
+    public void OpenNickYN()
+    {
+        nicknameYN_obj.SetActive(true);
+        nickYN_txt.text = ""+InputField_txt.text;
     }
 }

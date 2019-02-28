@@ -36,7 +36,7 @@ public class MainBtnEvt : CavasData
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
         }
 		setScreen ();
-		StartCoroutine ("testText");
+		//StartCoroutine ("testText");
 
 		//처음코드설정
 

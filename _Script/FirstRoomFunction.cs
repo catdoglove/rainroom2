@@ -55,19 +55,16 @@ public class FirstRoomFunction : CavasData {
     //public Sprite[] boxItem_spr;
     public GameObject boxLv_obj;
     
-
     public string boxName_str;
     public int boxs_i;
     public Text boxTxt_txt, boxneed_txt;
 
-
     public GameObject loadGM;
-
 
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
-
+    
     // Use this for initialization
     void Start () {
         colorN = new Color(1f,1f,1f);
@@ -82,7 +79,6 @@ public class FirstRoomFunction : CavasData {
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
-
 
 
 
@@ -807,5 +803,6 @@ public class FirstRoomFunction : CavasData {
             firstGM.GetComponent<AchievementShow>().achievementCheck(1, 0);
         }
     }
+
 
 }
