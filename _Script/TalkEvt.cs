@@ -14,7 +14,7 @@ public class TalkEvt : MonoBehaviour {
     public GameObject talkbtn,itembtn, talkballoon, closeTB; //대화버튼 및 영역
     bool ihaveitem;
 
-    int[] allArr = new int[10]; //총 줄수
+    int[] allArr = new int[10]; //총 호감단계
     int loveLv = 1; //호감도 단계라고 생각하면 됨
     int countTalkNum;//대화횟수
 
@@ -72,9 +72,17 @@ public class TalkEvt : MonoBehaviour {
     }
 
     void lovetalk() { //호감도에 또는 사물에 따른 대화
-
+        int lol;
+        if (loveLv >= 9)
+        {
+            lol = 9;
+        }
+        else
+        {
+            lol = loveLv;
+        }
         lineReload();
-        text_str = "" + data[randArr[nowArr - 1]]["대화" + loveLv]; //문장넣기 0~9
+        text_str = "" + data[randArr[nowArr - 1]]["대화" + lol]; //문장넣기 0~9
     }
 
     void cleantalk() //대화 초기화
@@ -92,6 +100,7 @@ public class TalkEvt : MonoBehaviour {
         loveMax = PlayerPrefs.GetInt("lovemax", 40);
         loveExp = PlayerPrefs.GetInt("lovepoint", 0);
         loveLv = PlayerPrefs.GetInt("lovelv", 0);
+
 
         //하트를 5번째마다 더해주는 함수
         getTalkHeart();
@@ -311,18 +320,27 @@ public class TalkEvt : MonoBehaviour {
 
     void lineReload() // 대화 차례대로 보여주기 및 대화줄 초기화
     {
+        int lol;
+        if (loveLv >= 9)
+        {
+            lol = 9;
+        }
+        else
+        {
+            lol = loveLv;
+        }
         if (nowArr == 0) // 난수 돌리기
         {
-            GetRandomInt(allArr[loveLv]); //9>allArr[loveLv] ★꼭 바꾸기 테스트용
+            GetRandomInt(allArr[lol]); //9>allArr[loveLv] ★꼭 바꾸기 테스트용
             nowArr++;
         }
-        else if (nowArr < allArr[loveLv]) //대화 차례대로 보이기
+        else if (nowArr < allArr[lol]) //대화 차례대로 보이기
         {
             nowArr++;
         }
-        else if (nowArr >= allArr[loveLv]) //대화 줄 초기화
+        else if (nowArr >= allArr[lol]) //대화 줄 초기화
         {
-            GetRandomInt(allArr[loveLv]);
+            GetRandomInt(allArr[lol]);
             nowArr = 0;
             nowArr++;
         }
@@ -663,7 +681,7 @@ public class TalkEvt : MonoBehaviour {
             case 5:
                 if (PlayerPrefs.GetInt("windowlv", 0) >= 5)
                 {
-                    if (PlayerPrefs.GetInt("outbox", 0) == 1)
+                    if (PlayerPrefs.GetInt("doorbox", 0) == 1)
                     {
                         if (PlayerPrefs.GetInt("iceboxlv") >= 1)
                         {
@@ -706,7 +724,7 @@ public class TalkEvt : MonoBehaviour {
             case 9:
                 if (PlayerPrefs.GetInt("booklv", 0) >= 12)
                 {
-                    if (PlayerPrefs.GetInt("windowlv", 0) >= 9)
+                    if (PlayerPrefs.GetInt("windowlv", 0) >= 8)
                     {
                         a = 1;
                         PlayerPrefs.SetInt("lovemax", 450);
@@ -714,7 +732,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 break;
             case 10:
-                if (PlayerPrefs.GetInt("windowlv", 0) >= 10)
+                if (PlayerPrefs.GetInt("lightlv", 0) >= 2)
                 {
                     a = 1;
                     PlayerPrefs.SetInt("lovemax", 450);
@@ -734,7 +752,15 @@ public class TalkEvt : MonoBehaviour {
             loveLv++;
             loveExp = 0;
             nowArr = 1;
-            GetRandomInt(allArr[loveLv]);
+            if (loveLv >= 9)
+            {
+                    GetRandomInt(allArr[9]);
+            }
+            else
+            {
+                GetRandomInt(allArr[loveLv]);
+            }
+            
             PlayerPrefs.SetInt("lovepoint", loveExp);
             PlayerPrefs.SetInt("lovelv", loveLv);
             PlayerPrefs.Save();

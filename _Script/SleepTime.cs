@@ -6,19 +6,25 @@ using UnityEngine.UI;
 public class SleepTime : MonoBehaviour {
 
     //잠
-    public GameObject sleepWindow_obj, sleepBlind_obj, sleepLight_obj, sleepStar_obj;
+    public GameObject sleepWindow_obj, sleepBlind_obj, sleepLight_obj, sleepStar_obj,sleepGone_obj;
     public Text sleepTime_txt;
     public int minute, hours;
     string lastTime;
+
+    public GameObject[] sleep_obj;
+
+    //꿈일기
+    public GameObject dream_obj;
+    public GameObject dreamBtn_obj;
 
     // Use this for initialization
     void Start () {
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
         {
-            sleepTime_txt.text = "00:00";
             StartCoroutine("sleepTimecheck");
-            sleepTime_txt.text = "00:00";
-            //sleepBlind_obj.SetActive(true);
+            sleepBlind_obj.SetActive(true);
+            sleep_obj[0].SetActive(true);
+            sleepGone_obj.SetActive(false);
         }
         
     }
@@ -35,11 +41,15 @@ public class SleepTime : MonoBehaviour {
 
     public void SleepY()
     {
+        StopCoroutine("sleepTimecheck");
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
+        sleep_obj[0].SetActive(true);
+        sleepGone_obj.SetActive(false);
+        dreamBtn_obj.SetActive(false);
         PlayerPrefs.Save();
     }
 
@@ -52,13 +62,11 @@ public class SleepTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 20 - minute;
+        minute = 2 - minute;
         hours = 0 - hours;
-        if (hours < 0)
+        if (minute < 0)
         {
-            hours = 0;
         }
-        
     }
 
     //매초시간흐르게
@@ -69,11 +77,17 @@ public class SleepTime : MonoBehaviour {
         {
             SleepTimeFlow();
             string str = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
-            if (hours < 0)
+            if (minute < 0)
             {
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);
-                StopCoroutine("sleepTimecheck");
+                sleep_obj[0].SetActive(false);
+                sleepGone_obj.SetActive(true);
+                //StopCoroutine("sleepTimecheck");
+                if(PlayerPrefs.GetInt("nowsleep", 0) == 1)
+                {
+                    dreamBtn_obj.SetActive(true);
+                }
                 PlayerPrefs.SetInt("nowsleep", 0);
                 PlayerPrefs.Save();
             }
@@ -81,8 +95,15 @@ public class SleepTime : MonoBehaviour {
             {
                 sleepTime_txt.text = str;
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
         }
         
+    }
+    
+    //꿈일기 창띄우기
+    public void ShowDream()
+    {
+        dream_obj.SetActive(true);
+        dreamBtn_obj.SetActive(false);
     }
 }

@@ -263,6 +263,10 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[9].SetActive(true);
                 }
+                if (PlayerPrefs.GetInt("doorbox", 0) >= 1)
+                {
+                    checkLine_obj[11].SetActive(true);
+                }
                 break;
             case 6:
                 cLight_obj.SetActive(true);
@@ -321,7 +325,7 @@ public class MainInfo : MonoBehaviour {
                     checkLine_obj[0].SetActive(true);
                 }
                 cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "Lv.9  달성";
+                itemList_txt[1].text = "Lv.8  달성";
                 checkLine_obj[1].SetActive(false);
                 if (PlayerPrefs.GetInt("windowlv", 0) >= 9)
                 {
@@ -329,12 +333,12 @@ public class MainInfo : MonoBehaviour {
                 }
                 break;
             case 10:
-                cWindow_obj.SetActive(true);
-                itemList_txt[1].text = "Lv.10  달성";
-                checkLine_obj[1].SetActive(false);
-                if (PlayerPrefs.GetInt("windowlv", 0) >= 10)
+                cLight_obj.SetActive(true);
+                itemList_txt[6].text = "Lv.2  달성";
+                checkLine_obj[6].SetActive(false);
+                if (PlayerPrefs.GetInt("lightlv", 0) >= 2)
                 {
-                    checkLine_obj[1].SetActive(true);
+                    checkLine_obj[6].SetActive(true);
                 }
                 break;
             case 11:

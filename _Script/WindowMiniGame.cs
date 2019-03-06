@@ -27,6 +27,8 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void OpenMiniGame()
     {
+        System.DateTime date = System.DateTime.Now;
+
         miniGameWindow_obj.SetActive(true);
         PlayerPrefs.SetInt("miniopen",1);
         if(PlayerPrefs.GetInt("windowcatrand", 0) <= 10)

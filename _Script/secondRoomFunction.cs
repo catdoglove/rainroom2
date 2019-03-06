@@ -27,9 +27,11 @@ public class secondRoomFunction : CavasData {
 
     public GameObject[] secondRoomItem_obj;
 
-    public GameObject seedBox_obj,iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj;
+    public GameObject seedBox_obj,iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj,doorBox_obj;
     public GameObject boxClean_obj;
     public string boxName_str;
+
+
 
     public GameObject close_obj;
 
@@ -44,7 +46,7 @@ public class secondRoomFunction : CavasData {
     //하트
     public int heart_i;
     public Text boxHeart_txt;
-    public Text boxTotal_txt;
+    public Text boxTotal_txt, boxTxt_txt;
 
     
     public int boxs_i;
@@ -141,6 +143,10 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
             seedBox_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("doorbox", 0) == 1)
+        {
+            doorBox_obj.SetActive(false);
         }
     }
 
@@ -241,6 +247,8 @@ public class secondRoomFunction : CavasData {
 
     public void boxOpen()
     {
+        boxHeart_txt.text = "" + boxs_i;
+
         boxClean_obj.SetActive(true);
         string str1;
         str1 = PlayerPrefs.GetString("code", "");
@@ -268,6 +276,12 @@ public class secondRoomFunction : CavasData {
         boxs_i = 4;
     }
 
+    public void boxDoor()
+    {
+        boxName_str = "door";
+        boxs_i = 10;
+    }
+
 
     public void boxYes()
     {
@@ -278,9 +292,7 @@ public class secondRoomFunction : CavasData {
 
         if (heart_i >= boxs_i)
         {
-            
             heart_i = heart_i - boxs_i;
-            boxHeart_txt.text = "" + boxs_i;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
 
             PlayerPrefs.SetInt(boxName_str + "box", 1);
@@ -303,6 +315,10 @@ public class secondRoomFunction : CavasData {
             {
                 iceBoxBox_obj.SetActive(false);
                 iceBoxBtn_obj.SetActive(true);
+            }
+            if (PlayerPrefs.GetInt("doorbox", 0) == 1)
+            {
+                doorBox_obj.SetActive(false);
             }
             flower_i = PlayerPrefs.GetInt("seedlv", 0);
             drawer_i = PlayerPrefs.GetInt("drawerlv", 0);

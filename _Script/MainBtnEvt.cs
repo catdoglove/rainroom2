@@ -25,10 +25,16 @@ public class MainBtnEvt : CavasData
 
     //닫을때같이닫는것
     public GameObject YN_obj;
-    
+
+
+    void Awake()
+    {
+        //방의 위치를 사다리쪽으로 2로해준다
+        PlayerPrefs.SetInt("front", 2);
+    }
+
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetInt("front", 2);
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
 
         if (GM == null)

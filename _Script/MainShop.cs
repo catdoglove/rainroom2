@@ -681,7 +681,7 @@ public class MainShop : ShopHandler {
         {
             if (PlayerPrefs.GetInt("windowlv") >= 8 && PlayerPrefs.GetInt("allwindow", 0) == 0)
             {
-                PlayerPrefs.SetInt("alwindow", 1);
+                PlayerPrefs.SetInt("allwindow", 1);
                 //단칸방
                 if (PlayerPrefs.GetInt("place", 0) == 0)
                 {
