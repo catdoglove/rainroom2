@@ -25,7 +25,7 @@ public class MainSticker : MonoBehaviour
     {
         //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
         //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
-        /*
+        
         PlayerPrefs.SetInt("insleepst", 3);
         PlayerPrefs.SetInt("firstcookst", 3);
         PlayerPrefs.SetInt("airplanest", 3);
@@ -33,15 +33,15 @@ public class MainSticker : MonoBehaviour
         PlayerPrefs.SetInt("boxst", 3);
         PlayerPrefs.SetInt("talkst",3);
         PlayerPrefs.SetInt("allbook", 1);
-        PlayerPrefs.DeleteKey("talkstb");
-        PlayerPrefs.DeleteKey("talksts");
-        PlayerPrefs.DeleteKey("talkstg");
-        PlayerPrefs.DeleteKey("talkstplus");
-        PlayerPrefs.DeleteKey("petcatstb");
-        PlayerPrefs.DeleteKey("petcatsts");
-        PlayerPrefs.DeleteKey("petcatstg");
-        PlayerPrefs.DeleteKey("petcatstplus");
-        */
+        //PlayerPrefs.DeleteKey("talkstb");
+        //PlayerPrefs.DeleteKey("talksts");
+        //PlayerPrefs.DeleteKey("talkstg");
+        //PlayerPrefs.DeleteKey("talkstplus");
+        //PlayerPrefs.DeleteKey("petcatstb");
+        //PlayerPrefs.DeleteKey("petcatsts");
+        //PlayerPrefs.DeleteKey("petcatstg");
+        //PlayerPrefs.DeleteKey("petcatstplus");
+        
         if (gameObject.name.Substring(1, 1) == "a")
         {
             showSticker();
@@ -74,9 +74,9 @@ public class MainSticker : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (wldObjectPos.x > -4 && wldObjectPos.x < 4.4)
+        if (wldObjectPos.x > -3.7 && wldObjectPos.x < 3.7)
         {
-            if (wldObjectPos.y < 3.44 && wldObjectPos.y > -2.77)
+            if (wldObjectPos.y < 3.64 && wldObjectPos.y > -3.97)
             {
                 gameObject.SetActive(false);
                 name_str = this.gameObject.name;
