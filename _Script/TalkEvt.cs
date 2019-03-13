@@ -30,13 +30,10 @@ public class TalkEvt : MonoBehaviour {
     public GameObject quesBtmArea; //질문버튼
     int choiceNum; //예스or노
     
-    //아이템 관련- 0책, 1빛, 2씨앗, 3벽, 4창문
+    //아이템 관련- 0책, 1벽지, 2전등, 3창문, 4씨앗
     int[] itemLv = new int[5]; // 등급
-    int[] itemAllArr = new int[5]; //총 줄수 
-    int[] itemNowArr = new int[5]; //현재 줄
-   // public GameObject closetalk_btn; //대화버튼 book_obj, light_obj, seed_obj, wall_obj, window_obj, 
-
-
+    int itemAllArr; //총 줄수 
+    int itemNowArr; //현재 줄
     //하트얻기
     public int talkHeart_i;
     
@@ -55,6 +52,7 @@ public class TalkEvt : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
@@ -452,11 +450,6 @@ public class TalkEvt : MonoBehaviour {
 
         talkbtn.SetActive(false);
         quesBtmArea.SetActive(false);
-        // book_obj.SetActive(false);
-        // light_obj.SetActive(false);
-        // seed_obj.SetActive(false);
-        // wall_obj.SetActive(false);
-        // window_obj.SetActive(false);
 
     }
 
@@ -465,11 +458,6 @@ public class TalkEvt : MonoBehaviour {
         closeTB.GetComponent<Button>().interactable = true;
         //closeTB.SetActive(true);
         talkbtn.SetActive(true);
-        //  book_obj.SetActive(true);
-        //  wall_obj.SetActive(true);
-        //  window_obj.SetActive(true);
-        //  light_obj.SetActive(true);
-        //  seed_obj.SetActive(true);
 
         setCharAni();
 
@@ -482,17 +470,14 @@ public class TalkEvt : MonoBehaviour {
         itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
-        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) +1;
-        Debug.Log(itemLv[4]);
+        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) -1;
     }
 
     public void talkBook()
     {
         callTalkItem();
-        itemLineReload();
-        text_str = "" + data_book[itemNowArr[0]]["book" + itemLv[0]];
-        itemNowArr[0]++;
-
+        itemLineReload(299); 
+        text_str = "" + data_book[itemNowArr]["book" + itemLv[0]];
         testText_cut = text_str.Split('/');
         cleantalk();
 
@@ -502,10 +487,8 @@ public class TalkEvt : MonoBehaviour {
     public void talkWall()
     {
         callTalkItem();
-        itemLineReload();
-        text_str = "" + data_wall[itemNowArr[0]]["wall" + itemLv[1]];
-        itemNowArr[0]++;
-
+        itemLineReload(304);
+        text_str = "" + data_wall[itemNowArr]["wall" + itemLv[1]];
         testText_cut = text_str.Split('/');
         cleantalk();
 
@@ -515,10 +498,8 @@ public class TalkEvt : MonoBehaviour {
     public void talkLight()
     {
         callTalkItem();
-        itemLineReload();
-        text_str = "" + data_light[itemNowArr[0]]["light" + itemLv[2]];
-        itemNowArr[0]++;
-
+        itemLineReload(376);
+        text_str = "" + data_light[itemNowArr]["light" + itemLv[2]];
         testText_cut = text_str.Split('/');
         cleantalk();
 
@@ -528,10 +509,8 @@ public class TalkEvt : MonoBehaviour {
     public void talkWindow()
     {
         callTalkItem();
-        itemLineReload();
-        text_str = "" + data_window[itemNowArr[0]]["window" + itemLv[3]];
-        itemNowArr[0]++;
-
+        itemLineReload(472);
+        text_str = "" + data_window[itemNowArr]["window" + itemLv[3]];
         testText_cut = text_str.Split('/');
         cleantalk();
 
@@ -541,10 +520,8 @@ public class TalkEvt : MonoBehaviour {
     public void talkSeed()
     {
         callTalkItem();
-        itemLineReload();
-        text_str = "" + data_seed[itemNowArr[0]]["seed" + itemLv[4]];
-        itemNowArr[0]++;
-
+        itemLineReload(289);
+        text_str = "" + data_seed[itemNowArr]["seed" + itemLv[4]];
         testText_cut = text_str.Split('/');
         cleantalk();
 
@@ -569,48 +546,110 @@ public class TalkEvt : MonoBehaviour {
 
 
     //범위 설정 다시하기
-    public void testItemLvUP()
+    public void bookAllArr()
     {
-        if (itemLv[0] > 12)
-        {
-            //최대 레벨
-        }
-        else
-        {
-            itemLv[0]++;
-            Debug.Log("현재레벨" + itemLv[0]);
-            itemNowArr[0] = 0; //레벨업하면 현재 초기화
-        }
-
         if (itemLv[0] == 12 || itemLv[0] == 13)
             {
-            itemAllArr[0] = 8;
-            Debug.Log("88");
+            itemAllArr = 7;
         }else if (itemLv[0] == 7 || itemLv[0] == 8 || itemLv[0] == 9 || itemLv[0] == 10 || itemLv[0] == 11)
         {
-            itemAllArr[0] = 6;
-            Debug.Log("66");
-        }else if (itemLv[0] == 6 || itemLv[0] == 5 || itemLv[0] == 4 || itemLv[0] == 3)
-        {
-            itemAllArr[0] = 4;
-            Debug.Log("44");
+            itemAllArr = 5;
         }
-        else if (itemLv[0] < 3)
+        else if (itemLv[0] <= 6)
         {
-            itemAllArr[0] = 3;
+            itemAllArr = 3;
         }
 
     }
-
-    void itemLineReload()
+    
+    void wallAllArr()
     {
-        if (itemNowArr[0] < itemAllArr[0]-1) //대화 차례대로 보이기
-        { 
-
-        }
-        else if (itemNowArr[0] > itemAllArr[0]-1) //대화 줄 초기화
+        if (itemLv[1] == 3)
         {
-            itemNowArr[0] = 0;
+            itemAllArr = 7;
+        }
+        else if (itemLv[0] <= 2)
+        {
+            itemAllArr = 3;
+        }
+    }
+
+    void lightAllArr()
+    {
+        itemAllArr = 3;
+    }
+
+    void windowAllArr()
+    {
+        if (itemLv[3] == 8)
+        {
+            itemAllArr = 9;
+        }
+        else if (itemLv[3] == 7 || itemLv[3] == 6)
+        {
+            itemAllArr = 5;
+        }
+        else if (itemLv[3] <= 5)
+        {
+            itemAllArr = 3;
+        }
+    }
+
+    void seedAllArr()
+    {
+        if (itemLv[4] == 9)
+        {
+            itemAllArr = 7;
+        }
+        else if (itemLv[4] == 6 || itemLv[4] == 7 || itemLv[4] == 8)
+        {
+            itemAllArr = 5;
+        }
+        else if (itemLv[4] <= 5)
+        {
+            itemAllArr = 3;
+        }
+    }
+
+
+    void itemLineReload(int lv)
+    {
+        switch (lv)
+        {
+            case 299:
+                //Debug.Log("책이다");
+                bookAllArr();
+                break;
+
+            case 304:
+               // Debug.Log("벽이다");
+                wallAllArr();
+                break;
+
+            case 376:
+                //Debug.Log("빛이다");
+                lightAllArr();
+                break;
+
+            case 472:
+                //Debug.Log("창이다");
+                windowAllArr();
+                break;
+
+            case 289:
+                //Debug.Log("풀이다");
+                seedAllArr();
+                break;
+        }
+
+        if (itemNowArr < itemAllArr) //대화 차례대로 보이기
+        {
+            itemNowArr++;
+            Debug.Log(itemNowArr);
+        }
+        else if (itemNowArr >= itemAllArr) //대화 줄 초기화
+        {
+            itemNowArr = 0;
             Debug.Log("리셋");
         }
     }
