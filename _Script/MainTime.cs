@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainTime : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class MainTime : MonoBehaviour {
 
     public int airplane_i, cat_i,plane_i;
 
+    public Text beadalTime_txt;
 
     // Use this for initialization
     void Start () {
@@ -123,7 +125,10 @@ public class MainTime : MonoBehaviour {
 		sec = sec - (sec / 60) * 60;
 		sec = 59 - sec;
 		m = 1 - m;
-		if (m < 0) {
+        string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
+        beadalTime_txt.text = strb;
+        if (m < 0) {
+            beadalTime_txt.text = "00:00";
             //배달이 온
             PlayerPrefs.SetInt("beadal", 0);
             PlayerPrefs.Save();

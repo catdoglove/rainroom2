@@ -482,7 +482,8 @@ public class TalkEvt : MonoBehaviour {
         itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
-        itemLv[4] = PlayerPrefs.GetInt("seed", 0);
+        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) +1;
+        Debug.Log(itemLv[4]);
     }
 
     public void talkBook()

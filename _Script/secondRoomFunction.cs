@@ -31,9 +31,9 @@ public class secondRoomFunction : CavasData {
     public GameObject boxClean_obj;
     public string boxName_str;
 
-
-
     public GameObject close_obj;
+
+    public GameObject umb_obj;
 
     //물부족창
     public GameObject needToast_obj;
@@ -147,6 +147,11 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("doorbox", 0) == 1)
         {
             doorBox_obj.SetActive(false);
+            umb_obj.SetActive(true);
+        }
+        else
+        {
+            umb_obj.SetActive(false);
         }
     }
 
@@ -319,6 +324,7 @@ public class secondRoomFunction : CavasData {
             if (PlayerPrefs.GetInt("doorbox", 0) == 1)
             {
                 doorBox_obj.SetActive(false);
+                umb_obj.SetActive(true);
             }
             flower_i = PlayerPrefs.GetInt("seedlv", 0);
             drawer_i = PlayerPrefs.GetInt("drawerlv", 0);

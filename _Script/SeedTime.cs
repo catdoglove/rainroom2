@@ -14,6 +14,8 @@ public class SeedTime : MonoBehaviour {
     public GameObject seedImg_obj;
     public Sprite[] seed_spr;
     public Text seed_txt;
+
+    public GameObject seedTime_obj;
     
     int minute;
     int hours;
@@ -21,6 +23,9 @@ public class SeedTime : MonoBehaviour {
     public GameObject loadGM;
 
     Color colorN, colorY;
+
+    //씨앗
+    public Text seedTime_txt;
 
     // Use this for initialization
     void Start () {
@@ -49,8 +54,16 @@ public class SeedTime : MonoBehaviour {
         minute = minute - (minute / 60) * 60;
         minute = 1 - minute;
         hours =  0 - hours;
-        if (hours < 0)
+
+        string strb = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
+        seedTime_txt.text = strb;
+        if (minute <= 0 && hours == 0)
         {
+            hours = -1;
+        }
+            if (hours < 0)
+        {
+            seedTime_txt.text = "00:00";
             if (seedWater_i > seed_i)
             {
                 seed_i = PlayerPrefs.GetInt("seedlv", 0);
@@ -140,11 +153,13 @@ public class SeedTime : MonoBehaviour {
         colorY.a = Mathf.Lerp(0f, 1f, 1f);
         seedYetWindow_obj.GetComponent<Image>().color = colorY;
         seedYetWindow_obj.SetActive(true);
+        seedTime_obj.GetComponent<Image>().color = colorY;
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
             colorY.a = Mathf.Lerp(0f, 1f, i);
             seedYetWindow_obj.GetComponent<Image>().color = colorY;
+            seedTime_obj.GetComponent<Image>().color = colorY;
             yield return null;
         }
         seedYetWindow_obj.SetActive(false);

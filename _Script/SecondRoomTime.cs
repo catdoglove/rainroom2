@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SecondRoomTime : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class SecondRoomTime : MonoBehaviour {
     public float moveX1, moveX2, moveY;
     public GameObject dust1_obj, dust2_obj;
     public int randDust1_i, randDust2_i;
+
+
 
     // Use this for initialization
     void Start ()

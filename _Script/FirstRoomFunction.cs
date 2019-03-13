@@ -16,6 +16,8 @@ public class FirstRoomFunction : CavasData {
     public GameObject dish_obj, beadalYet_obj;
     public Text[] heart_txt;
 
+    public GameObject beadalTime_obj;
+
     //쿠폰
     public GameObject[] couponType1_obj, couponType2_obj, couponComplete_obj;
     //public GameObject useCoupon_obj;
@@ -65,6 +67,7 @@ public class FirstRoomFunction : CavasData {
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
     
+
     // Use this for initialization
     void Start () {
 
@@ -653,12 +656,14 @@ public class FirstRoomFunction : CavasData {
     {
         colorB.a = Mathf.Lerp(0f, 1f, 1f);
         beadalYetToast_obj.GetComponent<Image>().color = colorB;
+        beadalTime_obj.GetComponent<Image>().color = colorB;
         beadalYetToast_obj.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
             colorB.a = Mathf.Lerp(0f, 1f, i);
             beadalYetToast_obj.GetComponent<Image>().color = colorB;
+            beadalTime_obj.GetComponent<Image>().color = colorB;
             yield return null;
         }
         beadalYetToast_obj.SetActive(false);
