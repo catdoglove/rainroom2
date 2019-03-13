@@ -10,6 +10,10 @@ public class FirstRoomBookList : MonoBehaviour {
     int itemAllArr; //총 줄수 
     int itemNowArr=2; //현재 줄
 
+    //아이템 관련- 299책,  304벽지,  376전등, 472 창문,  299씨앗
+    int itemck; // 등급
+    string itTxt;
+
     //책장내용
     public GameObject itemListText_obj, itemListText_BG, itemListText_txt, itemListText_left, itemListText_book, itemListText_light, itemListText_seed, itemListText_wall, itemListText_window;
     public GameObject bookArea, lightArea, seedArea, wallArea, windowArea, nextPage;
@@ -49,6 +53,8 @@ public class FirstRoomBookList : MonoBehaviour {
     //책관련
     public void showBookList()
     {
+        //아이템 관련- 299책,  304벽지,  376전등, 472 창문,  289씨앗
+        itemck = 299;
         ShowList();
         bookArea.SetActive(true);
         itemListText_book.SetActive(false);
@@ -159,35 +165,12 @@ public class FirstRoomBookList : MonoBehaviour {
 
     }
     
-    public void bookGungBok()
-    {
-        if (pageNum == 12 || pageNum == 13)
-        {
-            itemAllArr = 7;
-        }
-        else if (pageNum == 7 || pageNum == 8 || pageNum == 9 || pageNum == 10 || pageNum == 11)
-        {
-            itemAllArr = 5;
-        }
-        else if (pageNum <= 6)
-        {
-            itemAllArr = 3;
-        }
-
-        callArr();
-
-        string itTxt = "" + data_book[itemNowArr]["book" + pageNum];
-        itTxt = itTxt.Replace("/", "");
-        itemTxt.text = itTxt;
-
-    }
-
-
 
 
     //창문관련
     public void showWindowList()
     {
+        itemck = 472;
         ShowList();
         windowArea.SetActive(true);
         itemListText_window.SetActive(false);
@@ -258,33 +241,12 @@ public class FirstRoomBookList : MonoBehaviour {
         itTxt = itTxt.Replace("/", "");
         itemTxt.text = itTxt;
     }
-
     
-    public void windowGungBok()
-    {
-        if (pageNum == 8)
-        {
-            itemAllArr = 9;
-        }
-        else if (pageNum == 7 || pageNum == 6)
-        {
-            itemAllArr = 5;
-        }
-        else if (pageNum <= 5)
-        {
-            itemAllArr = 3;
-        }
-
-        callArr();
-
-        string itTxt = "" + data_window[itemNowArr]["window" + pageNum];
-        itTxt = itTxt.Replace("/", "");
-        itemTxt.text = itTxt;
-    }
 
     //씨앗 관련
     public void showSeedList()
     {
+        itemck = 289;
         ShowList();
         seedArea.SetActive(true);
         itemListText_seed.SetActive(false);
@@ -365,33 +327,11 @@ public class FirstRoomBookList : MonoBehaviour {
     }
 
 
-    public void seedGungBok()
-    {
-        if (pageNum == 9)
-        {
-            itemAllArr = 7;
-        }
-        else if (pageNum == 6 || pageNum == 7 || pageNum == 8)
-        {
-            itemAllArr = 5;
-        }
-        else if (pageNum <= 5)
-        {
-            itemAllArr = 3;
-        }
-
-        callArr();
-
-        string itTxt = "" + data_seed[itemNowArr]["seed" + pageNum];
-        itTxt = itTxt.Replace("/", "");
-        itemTxt.text = itTxt;
-    }
-
-
 
     //벽지관련
     public void showWallList()
     {
+        itemck = 304;
         ShowList();
         wallArea.SetActive(true);
         itemListText_wall.SetActive(false);
@@ -431,30 +371,12 @@ public class FirstRoomBookList : MonoBehaviour {
     }
 
 
-    public void wallGungBok()
-    {
-        if (pageNum == 3)
-        {
-            itemAllArr = 7;
-        }
-        else if (pageNum <= 2)
-        {
-            itemAllArr = 3;
-        }
-
-        callArr();
-
-        string itTxt = "" + data_wall[itemNowArr]["wall" + pageNum];
-        itTxt = itTxt.Replace("/", "");
-        itemTxt.text = itTxt;
-    }
-
-
 
 
     //전등관련
     public void showLightList()
     {
+        itemck = 376;
         ShowList();
         lightArea.SetActive(true);
         itemListText_light.SetActive(false);
@@ -498,22 +420,11 @@ public class FirstRoomBookList : MonoBehaviour {
         itemTxt.text = itTxt;
     }
 
-
-
-    public void lightGungBok()
-    {
-        itemAllArr = 3;
-
-        callArr();
-
-        string itTxt = "" + data_light[itemNowArr]["light" + pageNum];
-        itTxt = itTxt.Replace("/", "");
-        itemTxt.text = itTxt;
-    }
-
+    
 
     void trueList()
     {
+        //여기서 MAX일때 설정하면 될듯 내일할거★
         itemListText_book.SetActive(true);
         itemListText_light.SetActive(true);
         itemListText_seed.SetActive(true);
@@ -563,5 +474,117 @@ public class FirstRoomBookList : MonoBehaviour {
         }
 
     }
+
+
+    public void GungBok()
+    {
+        switch (itemck)
+        {
+            //아이템 관련-  책,   벽지,   전등,  창문,   씨앗
+            case 299:
+
+
+                if (pageNum == 12 || pageNum == 13)
+                {
+                    itemAllArr = 7;
+                }
+                else if (pageNum == 7 || pageNum == 8 || pageNum == 9 || pageNum == 10 || pageNum == 11)
+                {
+                    itemAllArr = 5;
+                }
+                else if (pageNum <= 6)
+                {
+                    itemAllArr = 3;
+                }
+
+                callArr();
+
+                string itTxt = "" + data_book[itemNowArr]["book" + pageNum];
+                itTxt = itTxt.Replace("/", "");
+                itemTxt.text = itTxt;
+
+                break;
+
+            case 304:
+
+                if (pageNum == 3)
+                {
+                    itemAllArr = 7;
+                }
+                else if (pageNum <= 2)
+                {
+                    itemAllArr = 3;
+                }
+
+                callArr();
+
+                itTxt = "" + data_wall[itemNowArr]["wall" + pageNum];
+                itTxt = itTxt.Replace("/", "");
+                itemTxt.text = itTxt;
+
+                break;
+
+            case 376:
+
+                itemAllArr = 3;
+
+                callArr();
+
+                itTxt = "" + data_light[itemNowArr]["light" + pageNum];
+                itTxt = itTxt.Replace("/", "");
+                itemTxt.text = itTxt;
+
+                break;
+
+            case 472:
+
+
+                if (pageNum == 8)
+                {
+                    itemAllArr = 9;
+                }
+                else if (pageNum == 7 || pageNum == 6)
+                {
+                    itemAllArr = 5;
+                }
+                else if (pageNum <= 5)
+                {
+                    itemAllArr = 3;
+                }
+
+                callArr();
+
+                itTxt = "" + data_window[itemNowArr]["window" + pageNum];
+                itTxt = itTxt.Replace("/", "");
+                itemTxt.text = itTxt;
+
+                break;
+
+            case 289:
+
+                if (pageNum == 9)
+                {
+                    itemAllArr = 7;
+                }
+                else if (pageNum == 6 || pageNum == 7 || pageNum == 8)
+                {
+                    itemAllArr = 5;
+                }
+                else if (pageNum <= 5)
+                {
+                    itemAllArr = 3;
+                }
+
+                callArr();
+
+                itTxt = "" + data_seed[itemNowArr]["seed" + pageNum];
+                itTxt = itTxt.Replace("/", "");
+                itemTxt.text = itTxt;
+
+                break;
+        }
+    }
+
+
 
 }
