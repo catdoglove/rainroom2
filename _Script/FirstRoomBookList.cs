@@ -13,6 +13,7 @@ public class FirstRoomBookList : MonoBehaviour {
     //아이템 관련- 299책,  304벽지,  376전등, 472 창문,  299씨앗
     int itemck; // 등급
     string itTxt;
+    int windowLv, seedLv, lightLv, wallLv;
 
     //책장내용
     public GameObject itemListText_obj, itemListText_BG, itemListText_txt, itemListText_left, itemListText_book, itemListText_light, itemListText_seed, itemListText_wall, itemListText_window;
@@ -30,13 +31,19 @@ public class FirstRoomBookList : MonoBehaviour {
         data_seed = CSVReader.Read("Talk/talk_seed");
         data_wall = CSVReader.Read("Talk/talk_wall");
         data_window = CSVReader.Read("Talk/talk_window");
-            
+               
     }
-    
+
     //책장내용 열기
 
     public void openItemList()
     {
+
+        windowLv = PlayerPrefs.GetInt("windowlv", 0);
+        seedLv = PlayerPrefs.GetInt("seedlv", 0) - 1;
+        lightLv = PlayerPrefs.GetInt("lightlv", 0);
+        wallLv = PlayerPrefs.GetInt("walllv", 0);
+
         trueList();
         itemListText_BG.GetComponent<Image>().sprite = itemListBG[0];
         itemListText_obj.SetActive(true);
@@ -424,12 +431,32 @@ public class FirstRoomBookList : MonoBehaviour {
 
     void trueList()
     {
-        //여기서 MAX일때 설정하면 될듯 내일할거★
         itemListText_book.SetActive(true);
-        itemListText_light.SetActive(true);
-        itemListText_seed.SetActive(true);
-        itemListText_wall.SetActive(true);
-        itemListText_window.SetActive(true);
+
+        if (windowLv >= 8)
+        {
+            itemListText_window.SetActive(true);
+        }
+        else { itemListText_window.SetActive(false); }
+
+        if (seedLv >= 9)
+        {
+            itemListText_seed.SetActive(true);
+        }
+        else { itemListText_seed.SetActive(false); }
+
+        if (lightLv >= 4)
+        {
+            itemListText_light.SetActive(true);
+        }
+        else { itemListText_light.SetActive(false); }
+
+        if (wallLv >= 3)
+        {
+            itemListText_wall.SetActive(true);
+        }
+        else { itemListText_wall.SetActive(false); }
+
     }
 
     void ShowList()

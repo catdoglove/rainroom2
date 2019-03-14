@@ -77,7 +77,7 @@ public class SleepTime : MonoBehaviour {
         {
             SleepTimeFlow();
             string str = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
-            if (minute < 0)
+            if (minute <= 0)
             {
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);

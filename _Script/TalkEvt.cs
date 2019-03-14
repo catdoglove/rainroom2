@@ -18,7 +18,7 @@ public class TalkEvt : MonoBehaviour {
     int loveLv = 1; //호감도 단계라고 생각하면 됨
     int countTalkNum;//대화횟수
 
-    float speedF = 0.03f;
+    float speedF = 0.05f;
     int nowArr =0; //현재 줄
     int[] randArr;//난수 필
     int loveExp;//호감도
@@ -470,7 +470,7 @@ public class TalkEvt : MonoBehaviour {
         itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
-        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) -1;
+        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0);
     }
 
     public void talkBook()
