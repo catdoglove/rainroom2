@@ -94,8 +94,7 @@ public class MainSticker : MonoBehaviour
         {
             if (wldObjectPos.y < 3.64 && wldObjectPos.y > -3.97)
             {
-                if (GM == null)
-                {
+               
                     if (PlayerPrefs.GetInt("place", 0) == 1)
                     {
                         GM2 = GameObject.FindGameObjectWithTag("GM2");
@@ -106,7 +105,6 @@ public class MainSticker : MonoBehaviour
                         FGM = GameObject.FindGameObjectWithTag("firstroomGM");
                         GM = FGM;
                     }
-                }
                 gameObject.SetActive(false);
                 name_str = this.gameObject.name;
                 if (name_str.Length == 3)
@@ -131,7 +129,10 @@ public class MainSticker : MonoBehaviour
                     PlayerPrefs.SetInt(sticker_str[name_i] + "plus", plus + 1);
                     PlayerPrefs.SetInt(sticker_str[name_i] + name_str.Substring(0, 1), 2);
                     PlayerPrefs.SetInt("frameopen",1);
-                    frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
+                    if (PlayerPrefs.GetInt("place", 0) == 0)
+                    {
+                        frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
+                    }
                     PlayerPrefs.Save();
                 }
 
