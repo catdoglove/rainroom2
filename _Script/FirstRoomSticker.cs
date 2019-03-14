@@ -59,13 +59,13 @@ public class FirstRoomSticker : MonoBehaviour {
                 show_i = 14;
                 break;
             case 6:
-                show_i = 42;
+                show_i = 33;
                 break;
             case 7:
-                show_i = 44;
+                show_i = 35;
                 break;
             case 8:
-                show_i = 46;
+                show_i = 37;
                 break;
             case 9:
                 show_i = 0;
@@ -124,7 +124,7 @@ public class FirstRoomSticker : MonoBehaviour {
     public void frameNumCheck()
     {
         show_i++;
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 28; i++)
         {
             if(show_i == showNum_i[i])
             {

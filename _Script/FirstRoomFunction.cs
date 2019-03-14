@@ -66,11 +66,15 @@ public class FirstRoomFunction : CavasData {
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
-    
+
+    //업적액자
+    public GameObject frame_obj;
+    public Sprite frameOpen_spr;
 
     // Use this for initialization
     void Start () {
-
+        PlayerPrefs.SetInt("downst", 0);
+        PlayerPrefs.SetInt("countladderst", 0);
         //만약 잠을 자고 있다면 들어왔을때 첫화면이 침대쪽 화면으로
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
         {
@@ -110,6 +114,10 @@ public class FirstRoomFunction : CavasData {
 		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
         cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
+        if(PlayerPrefs.GetInt("frameopen", 0) == 1)
+        {
+            frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
+        }
 
         //여기에 박스인것들은 대화버튼들 비활성화시켜놓기
         //박스

@@ -7,16 +7,18 @@ public class AchievementShow : MonoBehaviour {
     //업적
     public GameObject achievement_obj,achSticker_obj;
     public float moveX, moveY, saveY;
-    //public sprite _spr;
     public Sprite[] achievementImg_spr;
     public Sprite[] achievementImg2_spr;
     public Text title_txt,info_txt;
-
     List<Dictionary<string, object>> data;
+
+    private void Awake()
+    {
+        //saveY = achievement_obj.transform.position.y;
+    }
 
     // Use this for initialization
     void Start () {
-        saveY = achievement_obj.transform.position.y;
         data = CSVReader.Read("rewardname");
     }
 
