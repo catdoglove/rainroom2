@@ -6,7 +6,7 @@ public class AchievementShow : MonoBehaviour {
 
     //업적
     public GameObject achievement_obj,achSticker_obj;
-    public float moveX, moveY;
+    public float moveX, moveY, saveY;
     //public sprite _spr;
     public Sprite[] achievementImg_spr;
     public Sprite[] achievementImg2_spr;
@@ -16,6 +16,7 @@ public class AchievementShow : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        saveY = achievement_obj.transform.position.y;
         data = CSVReader.Read("rewardname");
     }
 
@@ -58,7 +59,8 @@ public class AchievementShow : MonoBehaviour {
     }
     IEnumerator achievementIn()
     {
-        moveY = achievement_obj.transform.position.y;
+        moveY = saveY;
+        //moveY = achievement_obj.transform.position.y;
         for (float i = 0f; i < 1f; i += 0.04f)
         {
             moveY = moveY - 0.08f;

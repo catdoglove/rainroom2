@@ -18,31 +18,45 @@ public class MainSticker : MonoBehaviour
     public Vector2 wldObjectPos;
 
     int posX, posY;
-    float speed = 0.04f;
+    //float speed = 0.04f;
+
+    public GameObject FGM, GM2,GM;
     
     // Use this for initialization
     void Start()
     {
-        //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
-        //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
-        
-        PlayerPrefs.SetInt("insleepst", 3);
-        PlayerPrefs.SetInt("firstcookst", 3);
-        PlayerPrefs.SetInt("airplanest", 3);
-        PlayerPrefs.SetInt("petcatst", 3);
-        PlayerPrefs.SetInt("boxst", 3);
-        PlayerPrefs.SetInt("talkst",3);
-        PlayerPrefs.SetInt("allbook", 1);
-        //PlayerPrefs.DeleteKey("talkstb");
-        //PlayerPrefs.DeleteKey("talksts");
-        //PlayerPrefs.DeleteKey("talkstg");
-        //PlayerPrefs.DeleteKey("talkstplus");
-        //PlayerPrefs.DeleteKey("petcatstb");
-        //PlayerPrefs.DeleteKey("petcatsts");
-        //PlayerPrefs.DeleteKey("petcatstg");
-        //PlayerPrefs.DeleteKey("petcatstplus");
-        
-        if (gameObject.name.Substring(1, 1) == "a")
+
+
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
+            GM = GM2;
+        }
+        else if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            FGM = GameObject.FindGameObjectWithTag("firstroomGM");
+            GM = FGM;
+        }
+            //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
+            //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
+
+            //PlayerPrefs.SetInt("insleepst", 3);
+            //PlayerPrefs.SetInt("firstcookst", 3);
+            //PlayerPrefs.SetInt("airplanest", 3);
+            //PlayerPrefs.SetInt("petcatst", 3);
+            //PlayerPrefs.SetInt("boxst", 3);
+            //PlayerPrefs.SetInt("talkst",3);
+            //PlayerPrefs.SetInt("allbook", 1);
+            //PlayerPrefs.DeleteKey("talkstb");
+            //PlayerPrefs.DeleteKey("talksts");
+            //PlayerPrefs.DeleteKey("talkstg");
+            //PlayerPrefs.DeleteKey("talkstplus");
+            //PlayerPrefs.DeleteKey("petcatstb");
+            //PlayerPrefs.DeleteKey("petcatsts");
+            //PlayerPrefs.DeleteKey("petcatstg");
+            //PlayerPrefs.DeleteKey("petcatstplus");
+
+            if (gameObject.name.Substring(1, 1) == "a")
         {
             showSticker();
         }
@@ -89,6 +103,8 @@ public class MainSticker : MonoBehaviour
                     int name_i = int.Parse(name_str.Substring(1, 1));
                     sticker_obj[name_i].SetActive(true);
                     int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0);
+                    GM.GetComponent<FirstRoomSticker>().frame_i = (name_i * 3) +plus;
+                    GM.GetComponent<FirstRoomSticker>().ShowFrame();
                     if (plus == 1)
                     {
                         sticker_obj[name_i].GetComponent<SpriteRenderer>().sprite = stickerS_spr[name_i];
@@ -113,6 +129,19 @@ public class MainSticker : MonoBehaviour
 
     public void showSticker()
     {
+        if (GM == null)
+        {
+            if (PlayerPrefs.GetInt("place", 0) == 1)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("GM2");
+                GM = GM2;
+            }
+            else if (PlayerPrefs.GetInt("place", 0) == 0)
+            {
+                FGM = GameObject.FindGameObjectWithTag("firstroomGM");
+                GM = FGM;
+            }
+        }
         for (int i = 0; i < 7; i++)
         {
             if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)

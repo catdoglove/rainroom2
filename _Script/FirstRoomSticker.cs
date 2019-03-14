@@ -11,7 +11,7 @@ public class FirstRoomSticker : MonoBehaviour {
     public GameObject[] frameBtn_obj;
     public GameObject[] frameABtn_obj;
     public Sprite[] frame_spr;
-    int frame_i;
+    public int frame_i;
     int show_i;
 
     public int[] showNum_i;
