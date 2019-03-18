@@ -37,7 +37,7 @@ public class SeedTime : MonoBehaviour {
         }
         else
         {
-            SeedTimeFlow();
+            StartCoroutine("TimeCheck");
         }
     }
     
@@ -84,7 +84,7 @@ public class SeedTime : MonoBehaviour {
         {
             if (seedWater_i == seed_i)
             {
-                seed_txt.text = ""+ seedCPrice_i[seed_i];
+                seed_txt.text = ""+ seedCPrice_i[seed_i-1];
                 seedWindow_obj.SetActive(true);
             }
             else {
@@ -111,13 +111,13 @@ public class SeedTime : MonoBehaviour {
         string str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
 
-        if (coldRain_i >= seedCPrice_i[seed_i])
+        if (coldRain_i >= seedCPrice_i[seed_i-1])
         {
-            coldRain_i = coldRain_i - seedCPrice_i[seed_i];
+            coldRain_i = coldRain_i - seedCPrice_i[seed_i-1];
             PlayerPrefs.SetInt(str + "c", coldRain_i);
 
             PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
-            seedWater_i = PlayerPrefs.GetInt("seedWater", 0);
+            seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
             seedWater_i++;
             PlayerPrefs.SetInt("seedWater", seedWater_i);
             PlayerPrefs.Save();
@@ -163,5 +163,16 @@ public class SeedTime : MonoBehaviour {
             yield return null;
         }
         seedYetWindow_obj.SetActive(false);
+    }
+
+    IEnumerator TimeCheck()
+    {
+        int a =0;
+        while (a == 0)
+        {
+            SeedTimeFlow();
+            yield return new WaitForSeconds(2f);
+        }
+
     }
 }

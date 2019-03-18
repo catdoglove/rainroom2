@@ -12,6 +12,8 @@ public class SleepTime : MonoBehaviour {
     string lastTime;
 
     public GameObject[] sleep_obj;
+    public int sleepBed_i;
+    int n;
 
     //꿈일기
     public GameObject dream_obj;
@@ -19,11 +21,12 @@ public class SleepTime : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        n = PlayerPrefs.GetInt("bedlv", 0);
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
         {
             StartCoroutine("sleepTimecheck");
             sleepBlind_obj.SetActive(true);
-            sleep_obj[0].SetActive(true);
+            sleep_obj[n-1].SetActive(true);
             sleepGone_obj.SetActive(false);
         }
         
@@ -31,6 +34,7 @@ public class SleepTime : MonoBehaviour {
 
     public void OpenSleep()
     {
+        n = PlayerPrefs.GetInt("bedlv", 0);
         sleepWindow_obj.SetActive(true);
     }
 
@@ -39,15 +43,18 @@ public class SleepTime : MonoBehaviour {
         sleepWindow_obj.SetActive(false);
     }
 
+    
+
     public void SleepY()
     {
+        n = PlayerPrefs.GetInt("bedlv", 0);
         StopCoroutine("sleepTimecheck");
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
-        sleep_obj[0].SetActive(true);
+        sleep_obj[n-1].SetActive(true);
         sleepGone_obj.SetActive(false);
         dreamBtn_obj.SetActive(false);
         PlayerPrefs.Save();
@@ -81,7 +88,7 @@ public class SleepTime : MonoBehaviour {
             {
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);
-                sleep_obj[0].SetActive(false);
+                sleep_obj[n-1].SetActive(false);
                 sleepGone_obj.SetActive(true);
                 //StopCoroutine("sleepTimecheck");
                 if(PlayerPrefs.GetInt("nowsleep", 0) == 1)
@@ -97,7 +104,6 @@ public class SleepTime : MonoBehaviour {
             }
             yield return new WaitForSeconds(0.1f);
         }
-        
     }
     
     //꿈일기 창띄우기
@@ -106,4 +112,6 @@ public class SleepTime : MonoBehaviour {
         dream_obj.SetActive(true);
         dreamBtn_obj.SetActive(false);
     }
+
+    
 }

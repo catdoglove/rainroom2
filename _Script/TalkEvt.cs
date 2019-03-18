@@ -142,9 +142,6 @@ public class TalkEvt : MonoBehaviour {
         Debug.Log(countTalkNum);
 
         
-
-
-
         if (countTalkNum == 0)
         {
             //대화못함
@@ -171,7 +168,6 @@ public class TalkEvt : MonoBehaviour {
         }
 
     }
-
 
 
     //대사 출력
@@ -470,7 +466,7 @@ public class TalkEvt : MonoBehaviour {
         itemLv[1] = PlayerPrefs.GetInt("walllv", 0);
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
-        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0);
+        itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) - 1;
     }
 
     public void talkBook()
