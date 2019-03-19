@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq; //랜덤필
 
 public class SleepTime : MonoBehaviour {
 
@@ -19,6 +20,16 @@ public class SleepTime : MonoBehaviour {
     public GameObject dream_obj;
     public GameObject dreamBtn_obj;
 
+    List<Dictionary<string, object>> data_diary;
+    string text_str; //실질적 대사출력
+    string[] Text_cut; //대사 끊기
+    int nowArr = 0; //현재 줄
+    int[] randArr;//난수 필
+
+    public GameObject[] diary_obj;
+    public Text diary_today, diary_dream; //선언 및 보여질
+
+
     // Use this for initialization
     void Start () {
         n = PlayerPrefs.GetInt("bedlv", 0);
@@ -29,8 +40,38 @@ public class SleepTime : MonoBehaviour {
             sleep_obj[n-1].SetActive(true);
             sleepGone_obj.SetActive(false);
         }
-        
+
+
+        data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
+
     }
+
+    public int[] GetRandomInt(int length) //66
+    {
+        randArr = new int[length];
+        bool isSame;
+
+        for (int i = 0; i < length; ++i)
+        {
+            while (true)
+            {
+                randArr[i] = Random.Range(0, length); //0~(line_txt-1)
+                isSame = false;
+
+                for (int j = 0; j < i; ++j)
+                {
+                    if (randArr[j] == randArr[i])
+                    {
+                        isSame = true;
+                        break;
+                    }
+                }
+                if (!isSame) break;
+            }
+        }
+        return randArr;
+    }
+
 
     public void OpenSleep()
     {
@@ -111,7 +152,47 @@ public class SleepTime : MonoBehaviour {
     {
         dream_obj.SetActive(true);
         dreamBtn_obj.SetActive(false);
+
+        lineReload();
+        text_str = " " + data_diary[randArr[nowArr-1]]["일기"];
+        Text_cut = text_str.Split('/');
+
+        if (Text_cut[0] == " a")
+        {
+            diary_obj[0].SetActive(true);
+            diary_today.text = Text_cut[1];
+        }
+        else if (Text_cut[0] == " b")
+        {
+            diary_obj[1].SetActive(true);
+            diary_dream.text = Text_cut[1];
+
+        }
+
     }
 
-    
+    void lineReload() // 대화 차례대로 보여주기 및 대화줄 초기화
+    {
+        if (nowArr == 0) // 난수 돌리기
+        {
+            GetRandomInt(65); //9>allArr[loveLv] ★꼭 바꾸기 테스트용
+            nowArr++;
+            //Debug.Log("돌리기");
+        }
+        else if (nowArr < 65) //대화 차례대로 보이기
+        {
+            nowArr++;
+            //Debug.Log("보이기");
+        }
+        else if (nowArr >= 65) //대화 줄 초기화
+        {
+            GetRandomInt(65);
+            nowArr = 0;
+            nowArr++;
+            //Debug.Log("초기화");
+        }
+
+    }
+
+
 }
