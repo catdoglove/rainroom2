@@ -5,7 +5,7 @@ using UnityEngine;
 public class TouchSpider : MonoBehaviour {
 
     public GameObject GM;
-    public GameObject spider_obj;
+    public GameObject spider_obj,star_obj;
 
     // Use this for initialization
     void Start()
@@ -29,5 +29,23 @@ public class TouchSpider : MonoBehaviour {
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
     }
-    
+
+    public void getStar()
+    {
+
+        GM.GetComponent<MainTime>().randStar_i = 0;
+        star_obj.transform.position = new Vector3(-11f, star_obj.transform.position.y, star_obj.transform.position.z);
+        string str = PlayerPrefs.GetString("code", "");
+        int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
+        coldRain_i = coldRain_i + 5;
+        hotRain_i = hotRain_i + 3;
+        PlayerPrefs.SetInt(str + "c", coldRain_i);
+        PlayerPrefs.SetInt(str + "h", hotRain_i);
+        PlayerPrefs.Save();
+
+        //돈+표시
+        GM.GetComponent<GetFadeout>().getRainFade();
+    }
+
 }

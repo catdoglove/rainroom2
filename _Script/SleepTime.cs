@@ -20,6 +20,8 @@ public class SleepTime : MonoBehaviour {
     public GameObject dream_obj;
     public GameObject dreamBtn_obj;
 
+    public GameObject firstGM;
+
     List<Dictionary<string, object>> data_diary;
     string text_str; //실질적 대사출력
     string[] Text_cut; //대사 끊기
@@ -92,6 +94,24 @@ public class SleepTime : MonoBehaviour {
         StopCoroutine("sleepTimecheck");
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
+        int s = PlayerPrefs.GetInt("countinsleepst", 0);
+        s++;
+        PlayerPrefs.SetInt("countinsleepst", s);
+        if (s >= 5 && PlayerPrefs.GetInt("insleepst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("insleepst", 3);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
+        }
+        else if (s >= 3 && PlayerPrefs.GetInt("insleepst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("insleepst", 2);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
+        }
+        else if (s >= 1 && PlayerPrefs.GetInt("insleepst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("insleepst", 1);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 0);
+        }
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);

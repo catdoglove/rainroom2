@@ -124,14 +124,23 @@ public class FirstRoomSticker : MonoBehaviour {
     public void frameNumCheck()
     {
         show_i++;
+        int c=0;
         for (int i = 0; i < 28; i++)
         {
             if(show_i == showNum_i[i])
             {
                 frameShow_obj.SetActive(false);
+                c = 1;
             }
         }
-        frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
+        if (c == 1)
+        {
+        }
+        else
+        {
+            frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
+        }
+
     }
 
     void LoadFrame()

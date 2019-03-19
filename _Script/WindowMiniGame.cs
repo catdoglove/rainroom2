@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WindowMiniGame : MonoBehaviour {
 
@@ -16,6 +17,10 @@ public class WindowMiniGame : MonoBehaviour {
     public GameObject achievement_obj;
     public float moveX, moveY;
 
+    //낮밤
+    public GameObject dayLight_obj;
+    public Sprite[] dayLight_spr;
+
     // Use this for initialization
     void Start () {
         PlayerPrefs.SetInt("balloon", 10);
@@ -27,7 +32,36 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void OpenMiniGame()
     {
-        System.DateTime date = System.DateTime.Now;
+
+        System.DateTime time = System.DateTime.Now;
+
+        if (time.ToString("tt") == "PM")
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k >= 6)
+            {
+                //밤
+                dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
+            }
+            else
+            {
+                //낮
+                dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
+            }
+        }
+        else
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k <= 6)
+            {
+                dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
+            }
+            else
+            {
+                //낮
+                dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
+            }
+        }
 
         miniGameWindow_obj.SetActive(true);
         PlayerPrefs.SetInt("miniopen",1);

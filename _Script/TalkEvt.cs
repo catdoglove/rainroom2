@@ -885,6 +885,7 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt("talkst", 1);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 0);
         }
+        PlayerPrefs.Save();
     }
 
  

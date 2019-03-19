@@ -22,6 +22,13 @@ public class MainTime : MonoBehaviour {
 
     public Text beadalTime_txt;
 
+    //별
+
+    public int randStar_i;
+    public GameObject star_obj;
+    public float starX, starY;
+
+
     // Use this for initialization
     void Start () {
 		//업데이트대신쓴다
@@ -85,6 +92,25 @@ public class MainTime : MonoBehaviour {
                 }
                 
 			}
+            //잠잘때 별
+            if (randStar_i == 1)
+            {
+                star_obj.SetActive(false);
+                star_obj.transform.position = new Vector3(starX, starY, star_obj.transform.position.z);
+                if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
+                {
+                    star_obj.SetActive(true);
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
+                {
+                    randStar_i = Random.Range(0, 4);
+                    starX = Random.Range(-5, 5);
+                    starY = Random.Range(0, 5);
+                }
+            }
             //풍선
             if (PlayerPrefs.GetInt("miniopen", 0) == 1)
             {

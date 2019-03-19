@@ -11,8 +11,8 @@ public class SeedTime : MonoBehaviour {
     string lastTime;
 
     public GameObject seedWindow_obj, seedYetWindow_obj, needWaterWindow_obj;
-    public GameObject seedImg_obj;
-    public Sprite[] seed_spr;
+    public GameObject seedImg_obj, waterPot_obj;
+    public Sprite[] seed_spr, waterPot_spr;
     public Text seed_txt;
 
     public GameObject seedTime_obj;
@@ -72,6 +72,8 @@ public class SeedTime : MonoBehaviour {
                 seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
+
+            waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[1];
         }
         seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
     }
@@ -108,27 +110,35 @@ public class SeedTime : MonoBehaviour {
 
     public void SeedYes()
     {
-        string str = PlayerPrefs.GetString("code", "");
-        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
-
-        if (coldRain_i >= seedCPrice_i[seed_i-1])
+        if (seed_i == 10)
         {
-            coldRain_i = coldRain_i - seedCPrice_i[seed_i-1];
-            PlayerPrefs.SetInt(str + "c", coldRain_i);
-
-            PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
-            seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
-            seedWater_i++;
-            PlayerPrefs.SetInt("seedWater", seedWater_i);
-            PlayerPrefs.Save();
         }
         else
         {
-            //물부족캄
-            StopCoroutine("toastneedWaterFadeOut");
-            StartCoroutine("toastneedWaterFadeOut");
-            needWaterWindow_obj.SetActive(true);
+            string str = PlayerPrefs.GetString("code", "");
+            coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+
+            if (coldRain_i >= seedCPrice_i[seed_i - 1])
+            {
+                waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
+                coldRain_i = coldRain_i - seedCPrice_i[seed_i - 1];
+                PlayerPrefs.SetInt(str + "c", coldRain_i);
+
+                PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
+                seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
+                seedWater_i++;
+                PlayerPrefs.SetInt("seedWater", seedWater_i);
+                PlayerPrefs.Save();
+            }
+            else
+            {
+                //물부족캄
+                StopCoroutine("toastneedWaterFadeOut");
+                StartCoroutine("toastneedWaterFadeOut");
+                needWaterWindow_obj.SetActive(true);
+            }
         }
+        
     }
 
     //물부족
@@ -167,6 +177,7 @@ public class SeedTime : MonoBehaviour {
 
     IEnumerator TimeCheck()
     {
+        waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
         int a =0;
         while (a == 0)
         {
@@ -175,4 +186,6 @@ public class SeedTime : MonoBehaviour {
         }
 
     }
+
+    
 }

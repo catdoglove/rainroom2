@@ -39,26 +39,26 @@ public class MainSticker : MonoBehaviour
             FGM = GameObject.FindGameObjectWithTag("firstroomGM");
             GM = FGM;
         }
-            //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
-            //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
+        //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
+        //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
 
-            //PlayerPrefs.SetInt("insleepst", 3);
-            //PlayerPrefs.SetInt("firstcookst", 3);
-            //PlayerPrefs.SetInt("airplanest", 3);
-            //PlayerPrefs.SetInt("petcatst", 3);
-            //PlayerPrefs.SetInt("boxst", 3);
-            //PlayerPrefs.SetInt("talkst",3);
-            //PlayerPrefs.SetInt("allbook", 1);
-            //PlayerPrefs.DeleteKey("talkstb");
-            //PlayerPrefs.DeleteKey("talksts");
-            //PlayerPrefs.DeleteKey("talkstg");
-            //PlayerPrefs.DeleteKey("talkstplus");
-            //PlayerPrefs.DeleteKey("petcatstb");
-            //PlayerPrefs.DeleteKey("petcatsts");
-            //PlayerPrefs.DeleteKey("petcatstg");
-            //PlayerPrefs.DeleteKey("petcatstplus");
+        //PlayerPrefs.SetInt("insleepst", 3);
+        //PlayerPrefs.SetInt("firstcookst", 3);
+        //PlayerPrefs.SetInt("airplanest", 3);
+        //PlayerPrefs.SetInt("petcatst", 3);
+        //PlayerPrefs.SetInt("boxst", 3);
+        //PlayerPrefs.SetInt("talkst",3);
+        //PlayerPrefs.SetInt("allbook", 1);
+        //PlayerPrefs.DeleteKey("talkstb");
+        //PlayerPrefs.DeleteKey("talksts");
+        //PlayerPrefs.DeleteKey("talkstg");
+        //PlayerPrefs.DeleteKey("talkstplus");
+        //PlayerPrefs.DeleteKey("petcatstb");
+        //PlayerPrefs.DeleteKey("petcatsts");
+        //PlayerPrefs.DeleteKey("petcatstg");
+        //PlayerPrefs.DeleteKey("petcatstplus");
 
-            if (gameObject.name.Substring(1, 1) == "a")
+        if (gameObject.name.Substring(1, 1) == "a")
         {
             showSticker();
         }
@@ -116,7 +116,7 @@ public class MainSticker : MonoBehaviour
                     int name_i = int.Parse(name_str.Substring(1, 1));
                     sticker_obj[name_i].SetActive(true);
                     int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0);
-                    GM.GetComponent<FirstRoomSticker>().frame_i = (name_i * 3) +plus;
+                    GM.GetComponent<FirstRoomSticker>().frame_i = (name_i * 3) + plus;
                     GM.GetComponent<FirstRoomSticker>().ShowFrame();
                     if (plus == 1)
                     {
@@ -232,7 +232,11 @@ public class MainSticker : MonoBehaviour
             int ii = int.Parse(name_str.Substring(1, 2));
             if (ii >= 20)
             {
-                sticker_obj[ii].SetActive(true);
+                GM.GetComponent<FirstRoomSticker>().frame_i = ii + 1;
+                GM.GetComponent<FirstRoomSticker>().ShowFrame();
+                Debug.Log("dddddddd" + GM.GetComponent<FirstRoomSticker>().frame_i);
+
+                    sticker_obj[ii].SetActive(true);
                 PlayerPrefs.SetInt(sticker_str[ii] + "plus", 1);
                 PlayerPrefs.SetInt(sticker_str[ii] + name_str.Substring(0, 1), 2);
                 PlayerPrefs.Save();
