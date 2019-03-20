@@ -10,7 +10,7 @@ public class AchievementShow : MonoBehaviour {
     public Sprite[] achievementImg_spr;
     public Sprite[] achievementImg2_spr;
     public Text title_txt,info_txt;
-    List<Dictionary<string, object>> data;
+    List<Dictionary<string, object>> data,infoData;
 
     private void Awake()
     {
@@ -20,6 +20,7 @@ public class AchievementShow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         data = CSVReader.Read("rewardname");
+        //infoData = CSVReader.Read("rewarinfo");
     }
 
     //업적
@@ -35,6 +36,7 @@ public class AchievementShow : MonoBehaviour {
             //Debug.Log(data[20]["lv1"]);
             tier_i--;
             title_txt.text = "" + data[achv_i][str];
+            //info_txt.text = "" + infoData[achv_i][str];
         }
         else
         {
@@ -45,6 +47,7 @@ public class AchievementShow : MonoBehaviour {
             tier_i--;
             data = CSVReader.Read("rewardname");
             title_txt.text = "" + data[achv_i][str];
+            //info_txt.text = "" + infoData[achv_i][str];
         }
         StartCoroutine("achievementIn");
     }

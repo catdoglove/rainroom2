@@ -10,13 +10,14 @@ public class MainTime : MonoBehaviour {
 	public int randSpider_i;
 	public GameObject spider_obj;
 
-    public float bMoveX, bMoveY;
+    public float bMoveX, bMoveY, moveX1, moveX2, moveY, moveY2;
     public int endBMove_i;
 
     public float pMoveX = 5.4f, pMoveY;
     public int endPMove_i;
 
     public GameObject balloon_obj, balloonR_obj, airplane_obj;
+    public int randball1_i, randball2_i;
 
     public int airplane_i, cat_i,plane_i;
 
@@ -72,6 +73,8 @@ public class MainTime : MonoBehaviour {
                     plane_i = Random.Range(0, 50);
                 }
             }
+            //풍선
+            ball();
             //배달
             beadal();
             //거미
@@ -111,6 +114,8 @@ public class MainTime : MonoBehaviour {
                     starY = Random.Range(0, 5);
                 }
             }
+
+            /*
             //풍선
             if (PlayerPrefs.GetInt("miniopen", 0) == 1)
             {
@@ -127,17 +132,34 @@ public class MainTime : MonoBehaviour {
 
              
             }
-            else
-            {
-                
-            }
-
+            */
 
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
 		}
 	}
 
+    void ball()
+    {
+        if (randball1_i == 1)
+        {
+            StopCoroutine("goball1");
+            StartCoroutine("goball1");
+        }
+        else
+        {
+            randball1_i = Random.Range(0, 30);
+        }
+        if (randball2_i == 1)
+        {
+            StopCoroutine("goball2");
+            StartCoroutine("goball2");
+        }
+        else
+        {
+            randball2_i = Random.Range(0, 30);
+        }
+    }
 
 	
 
@@ -161,8 +183,8 @@ public class MainTime : MonoBehaviour {
 		}
 	}
 
-   
 
+    /*
     //풍선
     IEnumerator goBalloon()
     {
@@ -204,6 +226,7 @@ public class MainTime : MonoBehaviour {
     }
 
     //풍선
+    
     public void checkBalloon()
     {
         int br = Random.Range(0, 10);
@@ -224,6 +247,8 @@ public class MainTime : MonoBehaviour {
             StartCoroutine("goBalloon");
         }
     }
+    */
+
     //비행기코루틴
     IEnumerator goAirplane()
     {
@@ -241,6 +266,46 @@ public class MainTime : MonoBehaviour {
                 plane_i = 0;
                 }
             airplane_obj.transform.position = new Vector3(pMoveX, airplane_obj.transform.position.y, airplane_obj.transform.position.z);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+
+    IEnumerator goball1()
+    {
+        while (randball1_i == 1)
+        {
+            if (moveX2 == 15.4f)
+            {
+                moveX2 = -5.2f;
+            }
+            moveX1 = moveX1 + 0.05f;
+            if (moveX1 >= 5.4)
+            {
+                moveX1 = 15.4f;
+                randball1_i = 0;
+            }
+            balloon_obj.transform.position = new Vector3(moveX1, moveY, balloon_obj.transform.position.z);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator goball2()
+    {
+        while (randball2_i == 1)
+        {
+            if (moveX2 == -15.4f)
+            {
+                moveX2 = 5.2f;
+            }
+            moveX2 = moveX2 - 0.05f;
+            if (moveX2 <= -5.4)
+            {
+                moveX2 = -15.4f;
+                randball2_i = 0;
+            }
+            balloonR_obj.transform.position = new Vector3(moveX2, moveY2, balloonR_obj.transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
     }
