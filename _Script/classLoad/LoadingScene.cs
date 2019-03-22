@@ -8,14 +8,25 @@ public class LoadingScene : MonoBehaviour {
 
 	AsyncOperation async;
 	Color color;
-	public GameObject logoImg;
+	public GameObject logoImg, prolouge_obj, logocanvas;
+    public Animator anim;
 
 
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(imgFadeIn());
-		StartCoroutine(LoadCount());
-	}
+    }
+    
+    void Update()
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.97f)
+        {
+            prolouge_obj.SetActive(false);
+        }
+
+        //최초로 프롤로그 실행되는 코드, 로고 애니메이션 false
+            
+    }
 
 	IEnumerator Load()
 	{
@@ -41,5 +52,18 @@ public class LoadingScene : MonoBehaviour {
 			logoImg.GetComponent<Image>().color = color;
 			yield return new WaitForSeconds(0.025f);
 		}
-	}
+
+
+        //최초로 프롤로그 실행되는 코드, 로고 애니메이션 false
+        yield return new WaitForSeconds(2f);
+        logocanvas.SetActive(false);
+
+    }
+
+
+    public void nextScene()
+    {
+        StartCoroutine(LoadCount());
+    }
+
 }
