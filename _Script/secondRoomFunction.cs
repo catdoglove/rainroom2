@@ -294,7 +294,7 @@ public class secondRoomFunction : CavasData {
         str1 = PlayerPrefs.GetString("code", "");
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-
+        boxTxt_txt.text = "" + boxs_i;
         if (heart_i >= boxs_i)
         {
             heart_i = heart_i - boxs_i;

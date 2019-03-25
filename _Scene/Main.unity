@@ -25837,8 +25837,8 @@ RectTransform:
   m_Children:
   - {fileID: 209934734}
   - {fileID: 740825593}
-  - {fileID: 1366200873}
   - {fileID: 1856499099}
+  - {fileID: 1366200873}
   - {fileID: 1000973660}
   - {fileID: 1629593704}
   - {fileID: 237594503}
@@ -41572,7 +41572,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 874161747}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41654,6 +41654,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2128228828}
         m_MethodName: TouchBallon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2128228828}
+        m_MethodName: ball1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -56922,7 +56933,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000799, y: 1.0000799, z: 1.0000799}
   m_Children: []
   m_Father: {fileID: 874161747}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -56970,6 +56981,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2128228828}
         m_MethodName: TouchBallon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2128228828}
+        m_MethodName: ball2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -63286,10 +63308,10 @@ MonoBehaviour:
   spider_obj: {fileID: 225968052}
   bMoveX: 15
   bMoveY: 0
-  moveX1: 15
-  moveX2: -15
-  moveY: 0
-  moveY2: 0
+  moveX1: 16
+  moveX2: -16
+  moveY: 1
+  moveY2: 2.5
   endBMove_i: 0
   pMoveX: 5.4
   pMoveY: 0

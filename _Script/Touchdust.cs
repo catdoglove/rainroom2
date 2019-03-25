@@ -32,8 +32,6 @@ public class Touchdust : MonoBehaviour {
 		PlayerPrefs.Save ();
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
-
-
-
+        
     }
 }

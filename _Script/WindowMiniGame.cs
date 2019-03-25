@@ -87,9 +87,23 @@ public class WindowMiniGame : MonoBehaviour {
         minicat_obj.SetActive(false);
     }
 
+    public void ball1()
+    {
+        GM.GetComponent<MainTime>().randball1_i = 0;
+        GM.GetComponent<MainTime>().moveX1 = 15.4f;
+        GM.GetComponent<MainTime>().balloon_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().moveX1, GM.GetComponent<MainTime>().balloon_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
+    }
+
+    public void ball2()
+    {
+        GM.GetComponent<MainTime>().randball2_i = 0;
+        GM.GetComponent<MainTime>().moveX2 = 15.4f;
+        GM.GetComponent<MainTime>().balloonR_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().moveX2, GM.GetComponent<MainTime>().balloonR_obj.transform.position.y, GM.GetComponent<MainTime>().balloonR_obj.transform.position.z);
+    }
+
+
     public void TouchBallon()
     {
-        GM.GetComponent<MainTime>().bMoveX = 15.4f;
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
@@ -97,11 +111,7 @@ public class WindowMiniGame : MonoBehaviour {
         hotRain_i = hotRain_i + 3;
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
-        PlayerPrefs.SetInt("balloon", 10);
-        PlayerPrefs.SetInt("miniopen", 1);
         PlayerPrefs.Save();
-        GM.GetComponent<MainTime>().balloon_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().bMoveX, GM.GetComponent<MainTime>().balloon_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
-        GM.GetComponent<MainTime>().balloonR_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().bMoveX, GM.GetComponent<MainTime>().balloonR_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
         GM.GetComponent<MainTime>().endBMove_i = 0;
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();

@@ -148,16 +148,27 @@ public class MainTime : MonoBehaviour {
         }
         else
         {
+            
             randball1_i = Random.Range(0, 30);
+            if (randball1_i == 1)
+            {
+                moveX1 = -5.2f;
+            }
         }
         if (randball2_i == 1)
         {
+            
             StopCoroutine("goball2");
             StartCoroutine("goball2");
         }
         else
         {
+            
             randball2_i = Random.Range(0, 30);
+            if (randball2_i == 1)
+            {
+                moveX2 = 5.2f;
+            }
         }
     }
 
@@ -276,9 +287,10 @@ public class MainTime : MonoBehaviour {
     {
         while (randball1_i == 1)
         {
-            if (moveX2 == 15.4f)
+            if (moveX1 >= 15f)
             {
-                moveX2 = -5.2f;
+                //moveX1 = -5.2f;
+                randball1_i = 0;
             }
             moveX1 = moveX1 + 0.05f;
             if (moveX1 >= 5.4)
@@ -295,9 +307,10 @@ public class MainTime : MonoBehaviour {
     {
         while (randball2_i == 1)
         {
-            if (moveX2 == -15.4f)
+            if (moveX2 <= -15f)
             {
-                moveX2 = 5.2f;
+                //moveX2 = 5.2f;
+                randball2_i = 0;
             }
             moveX2 = moveX2 - 0.05f;
             if (moveX2 <= -5.4)

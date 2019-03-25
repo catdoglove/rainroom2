@@ -62,6 +62,7 @@ public class GasrangeEvt : MonoBehaviour {
     
     public void OpenGasrange()
     {
+        CheckIng();
         gasrange_obj.SetActive(true);
 
         
@@ -105,6 +106,17 @@ public class GasrangeEvt : MonoBehaviour {
         {
             cookFood_obj[9].SetActive(true);
         }
+    }
+
+    public void CloseIceBox()
+    {
+        iceBox_obj.SetActive(false);
+
+    }
+
+    public void infoShow()
+    {
+
     }
 
     public void OpenIceBox()
