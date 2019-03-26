@@ -14,7 +14,47 @@ public class LoadingScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		StartCoroutine(imgFadeIn());
+
+
+        float screenNum = (float)Screen.height / (float)Screen.width;
+        if (screenNum < 0.57f)
+        {
+
+            Screen.SetResolution(Screen.width, Screen.width / 16 * 9, true);
+
+        }
+        else if (screenNum >= 0.57f && screenNum < 0.62f)
+        {
+
+            Screen.SetResolution(Screen.width, Screen.width / 5 * 3, true);
+
+        }
+        else if (screenNum >= 0.62f && screenNum < 0.65f)
+        {
+
+            Screen.SetResolution(Screen.width, Screen.width / 16 * 10, true);
+
+        }
+        else if (screenNum >= 0.65f && screenNum < 0.7f)
+        {
+
+            Screen.SetResolution(Screen.width, Screen.width / 3 * 2, true);
+
+        }
+        else if (screenNum >= 0.7f)
+        {
+
+            Screen.SetResolution(Screen.width, Screen.width / 4 * 3, true);
+
+        }
+        else
+        {
+            Screen.SetResolution(Screen.width, Screen.width / 3 * 2, true);
+        }
+
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     
     void Update()
@@ -22,6 +62,7 @@ public class LoadingScene : MonoBehaviour {
         if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.97f)
         {
             prolouge_obj.SetActive(false);
+            StartCoroutine(LoadCount());
         }
 
         //최초로 프롤로그 실행되는 코드, 로고 애니메이션 false
@@ -38,9 +79,9 @@ public class LoadingScene : MonoBehaviour {
 
 	}
 	IEnumerator LoadCount()
-	{
-		yield return new WaitForSeconds(0.5f);
-		StartCoroutine(Load());
+    {
+        yield return null;
+        StartCoroutine(Load());
 	}
 
 	IEnumerator imgFadeIn()
@@ -63,7 +104,7 @@ public class LoadingScene : MonoBehaviour {
 
     public void nextScene()
     {
-        StartCoroutine(LoadCount());
+        //StartCoroutine(LoadCount());
     }
 
 }

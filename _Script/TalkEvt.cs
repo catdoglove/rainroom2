@@ -49,6 +49,9 @@ public class TalkEvt : MonoBehaviour {
     public float moveX, moveY;
     public GameObject firstGM;
 
+    //나가기
+    public bool exitGame;
+    
 
     // Use this for initialization
     void Start () {
@@ -68,6 +71,61 @@ public class TalkEvt : MonoBehaviour {
         setCharAni();
         
     }
+
+    //게임종료-------
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if (!talkballoon.activeSelf)
+            {
+                talkballoon.SetActive(true); //대화창 새로만들기
+                Text_obj.text = "가는거니? 뒤로두번 종료";
+            }
+            else
+            {
+                StartCoroutine("quitGame");
+            }
+
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        /* 앱이 종료 될 때 처리 */
+    }
+
+    IEnumerator quitGame()
+    {
+        float fl;
+        for (fl = 0; fl <= 40; fl++)
+        {
+
+            Debug.Log(fl);
+            if (fl >= 40)
+            {
+                Text_obj.text = "잘가";
+            }
+        }
+        Application.Quit();
+        yield return new WaitForSeconds(fl);
+    }
+    //--------------
+
+    /*
+        if (exCk >= 1 && exCk < 40) {
+        exCk++;
+    } else if (exCk >= 40) {
+        Application.Quit ();
+    } else { 
+
+     */
+
+
+
+
 
     void lovetalk() { //호감도에 또는 사물에 따른 대화
         int lol;

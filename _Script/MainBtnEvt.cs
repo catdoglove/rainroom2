@@ -27,6 +27,7 @@ public class MainBtnEvt : CavasData
     public GameObject YN_obj;
 
 
+
     void Awake()
     {
         //방의 위치를 사다리쪽으로 2로해준다
@@ -139,20 +140,13 @@ public class MainBtnEvt : CavasData
 
 	}//endofstart
 
-    void Update()
-    {//게임종료
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-            //System.Diagnostics.Process.GetCurrentProcess().Kill();
-        }
-    }
+ 
 
 
-        /// <summary>
-        /// 메뉴를펼쳐준다
-        /// </summary>
-        public void showButtons(){
+    /// <summary>
+    /// 메뉴를펼쳐준다
+    /// </summary>
+    public void showButtons(){
 		allClose ();
 		if (MainBtn_obj [0].activeSelf == true) {
             StopCoroutine("menuFlowBack");
