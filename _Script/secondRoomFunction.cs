@@ -51,6 +51,9 @@ public class secondRoomFunction : CavasData {
     
     public int boxs_i;
 
+
+    public GameObject goOutWindow_obj;
+
     // Use this for initialization
     void Start ()
     {
@@ -413,5 +416,15 @@ public class secondRoomFunction : CavasData {
         {
             character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
+    }
+
+    //외출창띄우기
+    public void OpenGoOut()
+    {
+        goOutWindow_obj.SetActive(true);
+    }
+    public void CloseGoOut()
+    {
+        goOutWindow_obj.SetActive(false);
     }
 }

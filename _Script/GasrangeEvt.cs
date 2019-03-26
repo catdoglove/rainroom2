@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GasrangeEvt : MonoBehaviour {
 
@@ -11,10 +12,19 @@ public class GasrangeEvt : MonoBehaviour {
     public GameObject[] cookFood_obj, ingredient_obj;
     public int page_i=0, pageIce_i=0,indexNumber_i;
 
+    public Text ingredient_txt;
+    public GameObject text_obj;
+    List<Dictionary<string, object>> data;
 
-	// Use this for initialization
-	void Start () {
+
+    //요리
+    public GameObject cookYN_obj,cookImg_obj;
+    public Sprite[] cook_spr;
+
+    // Use this for initialization
+    void Start () {
         CheckIng();
+        data = CSVReader.Read("material");
     }
 
 #region
@@ -64,7 +74,6 @@ public class GasrangeEvt : MonoBehaviour {
     {
         CheckIng();
         gasrange_obj.SetActive(true);
-
         
         if (egg_i == 1)
         {
@@ -111,16 +120,28 @@ public class GasrangeEvt : MonoBehaviour {
     public void CloseIceBox()
     {
         iceBox_obj.SetActive(false);
+        gasrange_obj.SetActive(false);
+    }
+    public void Closefood()
+    {
+        cookYN_obj.SetActive(false);
+    }
 
+    public void foodShow()
+    {
+        cookYN_obj.SetActive(true);
+        cookImg_obj.GetComponent<Image>().sprite = cook_spr[indexNumber_i];
     }
 
     public void infoShow()
     {
-
+        text_obj.SetActive(false);
+        ingredient_txt.text = "" + data[indexNumber_i]["재료"];
     }
 
     public void OpenIceBox()
     {
+        CheckIng();
         iceBox_obj.SetActive(true);
         if (egg_i == 1)
         {
@@ -128,39 +149,39 @@ public class GasrangeEvt : MonoBehaviour {
         }
         if (carot_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
-        }
-        if (cucumber_i == 1)
-        {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[1].SetActive(true);
         }
         if (milk_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[2].SetActive(true);
         }
-        if (tofu_i == 1)
+        if (cucumber_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[3].SetActive(true);
         }
         if (bread_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[4].SetActive(true);
         }
         if (paprika_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[5].SetActive(true);
         }
         if (seeweed_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[6].SetActive(true);
         }
         if (ham_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[7].SetActive(true);
         }
         if (mushroom_i == 1)
         {
-            ingredient_obj[0].SetActive(true);
+            ingredient_obj[9].SetActive(true);
+        }
+        if (tofu_i == 1)
+        {
+            ingredient_obj[8].SetActive(true);
         }
     }
 
