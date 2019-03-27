@@ -17,9 +17,9 @@ public class MainBtnEvt : CavasData
     public GameObject menuBack_obj;
     public Vector2 menuBack_vet;
     public GameObject GM, GM2;
-    
+
     //문장속도
-    float speedF = 0.03f;
+    float speedF = 0.05f;
     public Text tspeed_txt;
     public GameObject speed_obj, speed_toast;
 
@@ -36,6 +36,7 @@ public class MainBtnEvt : CavasData
 
     // Use this for initialization
     void Start () {
+        PlayerPrefs.SetFloat("talkspeed", speedF);
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
 
         if (GM == null)

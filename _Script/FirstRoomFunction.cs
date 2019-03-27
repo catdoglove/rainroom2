@@ -71,6 +71,15 @@ public class FirstRoomFunction : CavasData {
     public GameObject frame_obj;
     public Sprite frameOpen_spr;
 
+    //타이틀닫기
+    public GameObject titleImg;
+    public void closeTitle()
+    {
+        titleImg.SetActive(false);
+    }
+
+
+
     // Use this for initialization
     void Start () {
        // PlayerPrefs.SetInt("downst", 0);

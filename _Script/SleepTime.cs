@@ -42,6 +42,10 @@ public class SleepTime : MonoBehaviour {
             sleep_obj[n-1].SetActive(true);
             sleepGone_obj.SetActive(false);
         }
+        else
+        {
+            PlayerPrefs.SetInt("sleepTxt", 0);
+        }
 
 
         data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
@@ -94,6 +98,7 @@ public class SleepTime : MonoBehaviour {
         StopCoroutine("sleepTimecheck");
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
+        PlayerPrefs.SetInt("sleepTxt", 1);
         int s = PlayerPrefs.GetInt("countinsleepst", 0);
         s++;
         PlayerPrefs.SetInt("countinsleepst", s);
@@ -157,6 +162,7 @@ public class SleepTime : MonoBehaviour {
                     dreamBtn_obj.SetActive(true);
                 }
                 PlayerPrefs.SetInt("nowsleep", 0);
+                PlayerPrefs.SetInt("sleepTxt", 0);
                 PlayerPrefs.Save();
             }
             else
@@ -214,5 +220,10 @@ public class SleepTime : MonoBehaviour {
 
     }
 
+
+    public void closeDiary()
+    {
+        dream_obj.SetActive(false);
+    }
 
 }

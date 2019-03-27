@@ -18,7 +18,7 @@ public class TalkEvt : MonoBehaviour {
     int loveLv = 1; //호감도 단계라고 생각하면 됨
     int countTalkNum;//대화횟수
 
-    float speedF = 0.05f;
+    float speedF = 0.08f;
     int nowArr =0; //현재 줄
     int[] randArr;//난수 필
     int loveExp;//호감도
@@ -50,8 +50,9 @@ public class TalkEvt : MonoBehaviour {
     public GameObject firstGM;
 
     //나가기
-    public bool exitGame;
-    
+    public GameObject exitTalkBalln;
+    public Text exitText;
+
 
     // Use this for initialization
     void Start () {
@@ -78,10 +79,18 @@ public class TalkEvt : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
 
-            if (!talkballoon.activeSelf)
+            if (!exitTalkBalln.activeSelf)
             {
-                talkballoon.SetActive(true); //대화창 새로만들기
-                Text_obj.text = "가는거니? 뒤로두번 종료";
+                exitTalkBalln.SetActive(true); //대화창 새로만들기
+                //여기다 상황에 따른 문구 수정하면 될듯
+                if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
+                {
+                    exitText.text = "(자고있다. 조용히 나갈까?)\n뒤로두번 종료";
+                }
+                else
+                {
+                    exitText.text = "가는거니?\n뒤로두번 종료";
+                }
             }
             else
             {
@@ -106,7 +115,15 @@ public class TalkEvt : MonoBehaviour {
             Debug.Log(fl);
             if (fl >= 40)
             {
-                Text_obj.text = "잘가";
+                if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
+                {
+                    exitText.text = "(잘자)";
+                }
+                else
+                {
+                    exitText.text = "잘가";
+                }
+                
             }
         }
         Application.Quit();
