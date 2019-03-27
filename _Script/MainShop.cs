@@ -43,7 +43,9 @@ public class MainShop : ShopHandler {
     public Sprite[] funcImg_spr,funcTxt_spr;
 
     public GameObject[] funcPrice_obj;
-    
+    public GameObject funcCabinet_obj;
+    public GameObject[] funcBox_obj;
+    public Sprite[] funcBox_spr;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
@@ -404,7 +406,6 @@ public class MainShop : ShopHandler {
     /// </summary>
     public void OpenfunctionItem()
     {
-
         switch_i = PlayerPrefs.GetInt("switchshop", 0);
         waterCan_i = PlayerPrefs.GetInt("wateringcanshop", 0);
         waterpurifier_i = PlayerPrefs.GetInt("waterpurifiershop", 0);
@@ -617,6 +618,46 @@ public class MainShop : ShopHandler {
             //빗물부족
         }
     }
+
+    //보관함
+    public void OpenFuncCabinet()
+    {
+        funcCabinet_obj.SetActive(true);
+        if(PlayerPrefs.GetInt("putwatercan", 1) == 1)
+        {
+            funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[0];
+        }
+        else
+        {
+            funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[1];
+        }
+    }
+    //물뿌리개 보관
+    public void PutWaterCan()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2.GetComponent<secondRoomFunction>().WaterCan_obj.activeSelf == true)
+            {
+                GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(false);
+                PlayerPrefs.SetInt("putwatercan",0);
+                funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[1];
+            }
+            else
+            {
+                GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(true);
+                PlayerPrefs.SetInt("putwatercan", 1);
+                funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[0];
+            }
+            
+        }
+    }
+
+    public void CloseFuncCabinet()
+    {
+        funcCabinet_obj.SetActive(false);
+    }
+
 
     void Needfalse()
     {

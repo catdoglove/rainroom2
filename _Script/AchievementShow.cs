@@ -20,7 +20,7 @@ public class AchievementShow : MonoBehaviour {
     // Use this for initialization
     void Start () {
         data = CSVReader.Read("rewardname");
-        //infoData = CSVReader.Read("rewarinfo");
+        infoData = CSVReader.Read("rewardinfo");
     }
 
     //업적
@@ -36,7 +36,7 @@ public class AchievementShow : MonoBehaviour {
             //Debug.Log(data[20]["lv1"]);
             tier_i--;
             title_txt.text = "" + data[achv_i][str];
-            //info_txt.text = "" + infoData[achv_i][str];
+            info_txt.text = "" + infoData[achv_i][str];
         }
         else
         {
@@ -47,7 +47,7 @@ public class AchievementShow : MonoBehaviour {
             tier_i--;
             data = CSVReader.Read("rewardname");
             title_txt.text = "" + data[achv_i][str];
-            //info_txt.text = "" + infoData[achv_i][str];
+            info_txt.text = "" + infoData[achv_i][str];
         }
         StartCoroutine("achievementIn");
     }

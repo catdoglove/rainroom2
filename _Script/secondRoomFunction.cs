@@ -111,6 +111,10 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("wateringcanshop", 0) == 2)
         {
             WaterCan_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("putwatercan", 1) == 0)
+            {
+                WaterCan_obj.SetActive(false);
+            }
         }
 
         if (PlayerPrefs.GetInt("waterpurifiershop", 0) == 2)

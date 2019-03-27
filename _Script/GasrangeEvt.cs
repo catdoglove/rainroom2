@@ -21,6 +21,10 @@ public class GasrangeEvt : MonoBehaviour {
     public GameObject cookYN_obj,cookImg_obj;
     public Sprite[] cook_spr;
 
+    public GameObject pen_obj, illust_obj,block_obj;
+    public Sprite pen1_spr, pen2_spr;
+
+
     // Use this for initialization
     void Start () {
         CheckIng();
@@ -131,6 +135,42 @@ public class GasrangeEvt : MonoBehaviour {
     {
         cookYN_obj.SetActive(true);
         cookImg_obj.GetComponent<Image>().sprite = cook_spr[indexNumber_i];
+    }
+
+    public void foodY()
+    {
+        StartCoroutine("penMove");
+    }
+
+    IEnumerator penMove()
+    {
+        block_obj.SetActive(true);
+        cookYN_obj.SetActive(false);
+        pen_obj.SetActive(true);
+        int a = 1;
+        for (int i = 0; i < 5; i += 1)
+        {
+            if (a == 1)
+            {
+                pen_obj.GetComponent<Image>().sprite = pen1_spr;
+                a = 0;
+            }
+            else
+            {
+                pen_obj.GetComponent<Image>().sprite = pen2_spr;
+                a = 1;
+            }
+            yield return new WaitForSeconds(0.6f);
+        }
+        pen_obj.SetActive(false);
+        illust_obj.SetActive(true);
+        gasrange_obj.SetActive(false);
+        block_obj.SetActive(false);
+    }
+
+    public void closeIllust()
+    {
+        illust_obj.SetActive(false);
     }
 
     public void infoShow()
