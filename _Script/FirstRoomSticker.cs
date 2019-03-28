@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FirstRoomSticker : MonoBehaviour {
 
-    public GameObject frame_obj;
+    public GameObject frame_obj, frameImg_obj;
     //public GameObject 
     public string[] sticker_str;
     public GameObject[] frameBtn_obj;

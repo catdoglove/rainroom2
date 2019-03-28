@@ -7,6 +7,7 @@ public class GasrangeEvt : MonoBehaviour {
 
     public GameObject gasrange_obj, iceBox_obj;
     public int egg_i, milk_i, tofu_i, bread_i, mushroom_i, carot_i, ham_i, seeweed_i, cucumber_i, paprika_i;
+    public int iceLv_i;
 
     public GameObject[] cookPage_obj, ingredientPage_obj;
     public GameObject[] cookFood_obj, ingredient_obj;
@@ -18,11 +19,14 @@ public class GasrangeEvt : MonoBehaviour {
 
 
     //요리
-    public GameObject cookYN_obj,cookImg_obj;
+    public GameObject cookYN_obj,cookImg_obj,GM2;
     public Sprite[] cook_spr;
 
     public GameObject pen_obj, illust_obj,block_obj;
     public Sprite pen1_spr, pen2_spr;
+    public int[] cookPrice_i;
+    public int gasLv_i;
+    public Text price_txt, allHeart_txt;
 
 
     // Use this for initialization
@@ -78,6 +82,16 @@ public class GasrangeEvt : MonoBehaviour {
     {
         CheckIng();
         gasrange_obj.SetActive(true);
+
+        switch (gasLv_i)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
         
         if (egg_i == 1)
         {
@@ -133,13 +147,33 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void foodShow()
     {
+        string str1 = PlayerPrefs.GetString("code", "");
+        int ht = PlayerPrefs.GetInt(str1 + "ht", 0);
         cookYN_obj.SetActive(true);
         cookImg_obj.GetComponent<Image>().sprite = cook_spr[indexNumber_i];
+        price_txt.text = "" + cookPrice_i[indexNumber_i];
+        allHeart_txt.text = "" + ht;
     }
 
     public void foodY()
     {
-        StartCoroutine("penMove");
+        string str1 = PlayerPrefs.GetString("code", "");
+        int ht = PlayerPrefs.GetInt(str1 + "ht", 0);
+
+        if (ht >= cookPrice_i[indexNumber_i])
+        {
+            checkach();
+            StartCoroutine("penMove");
+            ht = ht - cookPrice_i[indexNumber_i];
+            allHeart_txt.text = "" + ht;
+            PlayerPrefs.SetInt(str1 + "ht", ht);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+
+        }
+        
     }
 
     IEnumerator penMove()
@@ -181,6 +215,15 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void OpenIceBox()
     {
+        switch (iceLv_i)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
         CheckIng();
         iceBox_obj.SetActive(true);
         if (egg_i == 1)
@@ -284,5 +327,29 @@ public class GasrangeEvt : MonoBehaviour {
         }
     }
 
-    
+    //업적
+    void checkach()
+    {
+        
+        int cts = PlayerPrefs.GetInt("countfirstcookst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countfirstcookst", cts);
+        if (cts >= 5 && PlayerPrefs.GetInt("firstcookst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("firstcookst", 3);
+            GM2.GetComponent<AchievementShow>().achievementCheck(6, 2);
+        }
+        else if (cts >= 3 && PlayerPrefs.GetInt("firstcookst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("firstcookst", 2);
+            GM2.GetComponent<AchievementShow>().achievementCheck(6, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("firstcookst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("firstcookst", 1);
+            GM2.GetComponent<AchievementShow>().achievementCheck(6, 0);
+        }
+        PlayerPrefs.Save();
+    }
+
 }

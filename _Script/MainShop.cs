@@ -50,6 +50,8 @@ public class MainShop : ShopHandler {
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
     public string[] func_str;
+
+    public GameObject shop_obj,close_obj,back_obj;
     
 
     //부족하다창
@@ -622,6 +624,17 @@ public class MainShop : ShopHandler {
     //보관함
     public void OpenFuncCabinet()
     {
+        if (PlayerPrefs.GetInt("wateringcanshop", 0) == 2)
+        {
+            funcBox_obj[0].SetActive(true);
+        }
+        else
+        {
+            funcBox_obj[0].SetActive(false);
+        }
+            shop_obj.SetActive(false);
+        close_obj.SetActive(false);
+        back_obj.SetActive(false);
         funcCabinet_obj.SetActive(true);
         if(PlayerPrefs.GetInt("putwatercan", 1) == 1)
         {
