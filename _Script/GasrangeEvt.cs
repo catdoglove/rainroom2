@@ -19,7 +19,7 @@ public class GasrangeEvt : MonoBehaviour {
 
 
     //요리
-    public GameObject cookYN_obj,cookImg_obj,GM2;
+    public GameObject cookYN_obj,cookImg_obj,GM2, beadalYet_obj;
     public Sprite[] cook_spr;
 
     public GameObject pen_obj, illust_obj,block_obj;
@@ -27,6 +27,9 @@ public class GasrangeEvt : MonoBehaviour {
     public int[] cookPrice_i;
     public int gasLv_i;
     public Text price_txt, allHeart_txt;
+
+    public Color colorB;
+    public GameObject beadalYetToast_obj, beadalTime_obj;
 
 
     // Use this for initialization
@@ -80,59 +83,69 @@ public class GasrangeEvt : MonoBehaviour {
     
     public void OpenGasrange()
     {
-        CheckIng();
-        gasrange_obj.SetActive(true);
+        if(PlayerPrefs.GetInt("beadal", 0) == 0)
+        {
+            gasrange_obj.SetActive(true);
+            CheckIng();
+            switch (gasLv_i)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
 
-        switch (gasLv_i)
-        {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
+            if (egg_i == 1)
+            {
+                cookFood_obj[0].SetActive(true);
+            }
+            if (egg_i + ham_i + carot_i == 3)
+            {
+                cookFood_obj[1].SetActive(true);
+            }
+            if (carot_i + paprika_i + cucumber_i == 3)
+            {
+                cookFood_obj[2].SetActive(true);
+            }
+            if (ham_i + egg_i + bread_i == 3)
+            {
+                cookFood_obj[3].SetActive(true);
+            }
+            if (tofu_i == 1)
+            {
+                cookFood_obj[4].SetActive(true);
+            }
+            if (bread_i + ham_i == 2)
+            {
+                cookFood_obj[5].SetActive(true);
+            }
+            if (milk_i + egg_i == 2)
+            {
+                cookFood_obj[6].SetActive(true);
+            }
+            if (seeweed_i == 1)
+            {
+                cookFood_obj[7].SetActive(true);
+            }
+            if (cucumber_i + seeweed_i == 2)
+            {
+                cookFood_obj[8].SetActive(true);
+            }
+            if (mushroom_i + carot_i == 1)
+            {
+                cookFood_obj[9].SetActive(true);
+            }
         }
-        
-        if (egg_i == 1)
+        else
         {
-            cookFood_obj[0].SetActive(true);
+            StopCoroutine("toastBImgFadeOut");
+            beadalYet_obj.SetActive(true);
+            StartCoroutine("toastBImgFadeOut");
+            //아직배부름
         }
-        if (egg_i + ham_i + carot_i == 3)
-        {
-            cookFood_obj[1].SetActive(true);
-        }
-        if (carot_i + paprika_i + cucumber_i == 3)
-        {
-            cookFood_obj[2].SetActive(true);
-        }
-        if (ham_i + egg_i + bread_i == 3)
-        {
-            cookFood_obj[3].SetActive(true);
-        }
-        if (tofu_i == 1)
-        {
-            cookFood_obj[4].SetActive(true);
-        }
-        if (bread_i + ham_i == 2)
-        {
-            cookFood_obj[5].SetActive(true);
-        }
-        if (milk_i + egg_i == 2)
-        {
-            cookFood_obj[6].SetActive(true);
-        }
-        if (seeweed_i == 1)
-        {
-            cookFood_obj[7].SetActive(true);
-        }
-        if (cucumber_i + seeweed_i == 2)
-        {
-            cookFood_obj[8].SetActive(true);
-        }
-        if (mushroom_i + carot_i == 1)
-        {
-            cookFood_obj[9].SetActive(true);
-        }
+
     }
 
     public void CloseIceBox()
@@ -211,6 +224,23 @@ public class GasrangeEvt : MonoBehaviour {
     {
         text_obj.SetActive(false);
         ingredient_txt.text = "" + data[indexNumber_i]["재료"];
+    }
+
+    IEnumerator toastBImgFadeOut()
+    {
+        colorB.a = Mathf.Lerp(0f, 1f, 1f);
+        beadalYetToast_obj.GetComponent<Image>().color = colorB;
+        beadalTime_obj.GetComponent<Image>().color = colorB;
+        beadalYetToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorB.a = Mathf.Lerp(0f, 1f, i);
+            beadalYetToast_obj.GetComponent<Image>().color = colorB;
+            beadalTime_obj.GetComponent<Image>().color = colorB;
+            yield return null;
+        }
+        beadalYetToast_obj.SetActive(false);
     }
 
     public void OpenIceBox()

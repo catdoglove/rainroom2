@@ -14,6 +14,14 @@ public class LoadingScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (PlayerPrefs.GetInt("logofirst", 0) == 99)
+        {
+            prolouge_obj.SetActive(false);
+        }
+        else
+        {
+            logocanvas.SetActive(false);
+        }
 
 		StartCoroutine(imgFadeIn());
 
@@ -98,7 +106,12 @@ public class LoadingScene : MonoBehaviour {
         //최초로 프롤로그 실행되는 코드, 로고 애니메이션 false
         yield return new WaitForSeconds(2f);
         logocanvas.SetActive(false);
-
+        if (PlayerPrefs.GetInt("logofirst") == 99)
+        {
+            StartCoroutine(Load());
+        }
+        PlayerPrefs.SetInt("logofirst", 99);
+        PlayerPrefs.Save();
     }
 
 
