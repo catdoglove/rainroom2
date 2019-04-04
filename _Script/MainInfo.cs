@@ -32,7 +32,7 @@ public class MainInfo : MonoBehaviour {
     public GameObject nicknameWrite_obj, nicknameYN_obj;
     public Text nickname_txt, InputField_txt, nickYN_txt;
     public InputField InputField;
-
+    public GameObject nickBtn_obj;
 
     // Use this for initialization
     void Start () {
@@ -59,6 +59,10 @@ public class MainInfo : MonoBehaviour {
         sticker_obj.GetComponent<MainSticker>().showSticker();
         //별명
         nickname_txt.text = PlayerPrefs.GetString("nickname", "별명짓기");
+        if (PlayerPrefs.GetInt("setnick", 0)==99)
+        {
+            nickBtn_obj.SetActive(false);
+        }
     }
 
 	public void infoWindowTurn(){
@@ -382,6 +386,8 @@ public class MainInfo : MonoBehaviour {
     public void Setname()
     {
         PlayerPrefs.SetString("nickname", "" + InputField_txt.text);
+        PlayerPrefs.SetInt("setnick", 99);
+        nickBtn_obj.SetActive(false);
         PlayerPrefs.Save();
         nickname_txt.text = InputField_txt.text;
         nicknameWrite_obj.SetActive(false);
