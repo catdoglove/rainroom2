@@ -10,6 +10,8 @@ public class SecondRoomTime : MonoBehaviour {
     public GameObject dust1_obj, dust2_obj;
     public int randDust1_i, randDust2_i;
 
+    //요리
+    public Text beadalTime_txt;
 
 
     // Use this for initialization
@@ -63,8 +65,11 @@ public class SecondRoomTime : MonoBehaviour {
         sec = sec - (sec / 60) * 60;
         sec = 59 - sec;
         m = 1 - m;
+        string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
+        beadalTime_txt.text = strb;
         if (m < 0)
         {
+            beadalTime_txt.text = "00:00";
             //배달이 온
             PlayerPrefs.SetInt("beadal", 0);
             PlayerPrefs.Save();

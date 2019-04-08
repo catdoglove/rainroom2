@@ -54,6 +54,8 @@ public class secondRoomFunction : CavasData {
 
     public GameObject goOutWindow_obj;
 
+    public GameObject GM2;
+
     // Use this for initialization
     void Start ()
     {
@@ -309,7 +311,7 @@ public class secondRoomFunction : CavasData {
 
             PlayerPrefs.SetInt(boxName_str + "box", 1);
             PlayerPrefs.SetInt(boxName_str + "lv", 1);
-            
+            checkach();
             PlayerPrefs.Save();
             if (PlayerPrefs.GetInt("seedbox", 0) == 1)
             {
@@ -430,5 +432,29 @@ public class secondRoomFunction : CavasData {
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
+    }
+
+    //업적
+    void checkach()
+    {
+        int cts = PlayerPrefs.GetInt("countboxst", 0);
+        cts++;
+        Debug.Log("boxst");
+        PlayerPrefs.SetInt("countboxst", cts);
+        if (cts >= 10 && PlayerPrefs.GetInt("boxst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("boxst", 3);
+            GM2.GetComponent<AchievementShow>().achievementCheck(1, 2);
+        }
+        else if (cts >= 5 && PlayerPrefs.GetInt("boxst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("boxst", 2);
+            GM2.GetComponent<AchievementShow>().achievementCheck(1, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("boxst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("boxst", 1);
+            GM2.GetComponent<AchievementShow>().achievementCheck(1, 0);
+        }
     }
 }

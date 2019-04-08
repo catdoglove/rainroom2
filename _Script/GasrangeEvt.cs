@@ -19,7 +19,7 @@ public class GasrangeEvt : MonoBehaviour {
 
 
     //요리
-    public GameObject cookYN_obj,cookImg_obj,GM2, beadalYet_obj;
+    public GameObject cookYN_obj,cookImg_obj,GM2;
     public Sprite[] cook_spr;
 
     public GameObject pen_obj, illust_obj,block_obj;
@@ -30,10 +30,12 @@ public class GasrangeEvt : MonoBehaviour {
 
     public Color colorB;
     public GameObject beadalYetToast_obj, beadalTime_obj;
+    int point_i;
 
 
     // Use this for initialization
     void Start () {
+        colorB = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
     }
@@ -42,42 +44,52 @@ public class GasrangeEvt : MonoBehaviour {
     public void indexNumber0()
     {
         indexNumber_i = 0;
+        point_i = 5;
     }
     public void indexNumber1()
     {
         indexNumber_i = 1;
+        point_i = 9;
     }
     public void indexNumber2()
     {
         indexNumber_i = 2;
+        point_i = 7;
     }
     public void indexNumber3()
     {
         indexNumber_i = 3;
+        point_i = 11;
     }
     public void indexNumber4()
     {
         indexNumber_i = 4;
+        point_i = 6;
     }
     public void indexNumber5()
     {
         indexNumber_i = 5;
+        point_i = 13;
     }
     public void indexNumber6()
     {
         indexNumber_i = 6;
+        point_i = 7;
     }
     public void indexNumber7()
     {
         indexNumber_i = 7;
+        point_i = 7;
     }
     public void indexNumber8()
     {
         indexNumber_i = 8;
+        point_i = 13;
     }
     public void indexNumber9()
     {
         indexNumber_i = 9;
+        point_i = 13;
     }
 #endregion
     
@@ -141,7 +153,7 @@ public class GasrangeEvt : MonoBehaviour {
         else
         {
             StopCoroutine("toastBImgFadeOut");
-            beadalYet_obj.SetActive(true);
+            beadalYetToast_obj.SetActive(true);
             StartCoroutine("toastBImgFadeOut");
             //아직배부름
         }
@@ -180,6 +192,10 @@ public class GasrangeEvt : MonoBehaviour {
             ht = ht - cookPrice_i[indexNumber_i];
             allHeart_txt.text = "" + ht;
             PlayerPrefs.SetInt(str1 + "ht", ht);
+            point_i = PlayerPrefs.GetInt("lovepoint", 0) + point_i;
+            PlayerPrefs.SetInt("beadal", 1);
+            PlayerPrefs.SetInt("lovepoint", point_i);
+            PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
         }
         else
@@ -247,6 +263,7 @@ public class GasrangeEvt : MonoBehaviour {
     {
         switch (iceLv_i)
         {
+            //계란, 
             case 0:
                 break;
             case 1:

@@ -662,7 +662,21 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("putwatercan", 1);
                 funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[0];
             }
-            
+
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putwatercan", 1) == 1)
+            {
+                PlayerPrefs.SetInt("putwatercan", 0);
+                funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[1];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putwatercan", 1);
+                funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[0];
+            }
+
         }
     }
 

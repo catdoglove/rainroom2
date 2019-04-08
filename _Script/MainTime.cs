@@ -29,17 +29,32 @@ public class MainTime : MonoBehaviour {
     public GameObject star_obj;
     public float starX, starY;
 
-
+    string str;
     // Use this for initialization
     void Start () {
-		//업데이트대신쓴다
-		StartCoroutine ("updateSec");
+        //업데이트대신쓴다
+        str = PlayerPrefs.GetString("code", "");
+        StartCoroutine ("updateSec");
 		
 	}
 	
 	IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
+            //최대량 제한
+            if (PlayerPrefs.GetInt(str + "c", 0) > 999999)
+            {
+                PlayerPrefs.SetInt(str + "c", 999999);
+            }
+            if (PlayerPrefs.GetInt(str + "h", 0) > 99999)
+            {
+                PlayerPrefs.SetInt(str + "h", 99999);
+            }
+            if (PlayerPrefs.GetInt(str + "ht", 0) > 999)
+            {
+                PlayerPrefs.SetInt(str + "ht", 999);
+            }
+
             //고양이
             cat_i = PlayerPrefs.GetInt("windowcatrand", 0);
             if (cat_i == 999)

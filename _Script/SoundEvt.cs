@@ -7,11 +7,14 @@ public class SoundEvt : MonoBehaviour {
 
     public AudioSource se_book, se_window,se_cat;
     public AudioClip sp_book, sp_window,sp_cat;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    
+    public AudioSource BGM, BGS;
+    float BGMVol_f, BGSVol_f;
+    // Use this for initialization
+    void Start () {
+        BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
+        BGS.volume = BGSVol_f;
+    }
 
     public void bookSound()
     {
