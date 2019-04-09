@@ -89,6 +89,13 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void ball1()
     {
+        float xx = GM.GetComponent<MainTime>().moveX1;
+        float yy = GM.GetComponent<MainTime>().balloon_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+
+        //돈+표시
+        GM.GetComponent<GetFadeout>().getRainFade();
         GM.GetComponent<MainTime>().randball1_i = 0;
         GM.GetComponent<MainTime>().moveX1 = 15.4f;
         GM.GetComponent<MainTime>().balloon_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().moveX1, GM.GetComponent<MainTime>().balloon_obj.transform.position.y, GM.GetComponent<MainTime>().balloon_obj.transform.position.z);
@@ -96,6 +103,13 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void ball2()
     {
+        float xx = GM.GetComponent<MainTime>().moveX2;
+        float yy = GM.GetComponent<MainTime>().balloonR_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+
+        //돈+표시
+        GM.GetComponent<GetFadeout>().getRainFade();
         GM.GetComponent<MainTime>().randball2_i = 0;
         GM.GetComponent<MainTime>().moveX2 = 15.4f;
         GM.GetComponent<MainTime>().balloonR_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().moveX2, GM.GetComponent<MainTime>().balloonR_obj.transform.position.y, GM.GetComponent<MainTime>().balloonR_obj.transform.position.z);
@@ -104,6 +118,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void TouchBallon()
     {
+        
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
@@ -113,12 +128,14 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.Save();
         GM.GetComponent<MainTime>().endBMove_i = 0;
-        //돈+표시
-        GM.GetComponent<GetFadeout>().getRainFade();
     }
 
     public void TouchCat()
     {
+        float xx = cMoveX;
+        float yy = minicat_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
         achievementfunc2();
         minicat_obj.SetActive(false);
         string str = PlayerPrefs.GetString("code", "");
@@ -136,6 +153,10 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void TouchAirplane()
     {
+        float xx = GM.GetComponent<MainTime>().pMoveX;
+        float yy = GM.GetComponent<MainTime>().airplane_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
         achievementfunc();
         GM.GetComponent<MainTime>().pMoveX = 17.4f;
         string str = PlayerPrefs.GetString("code", "");

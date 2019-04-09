@@ -29,7 +29,7 @@ public class GetFadeout : MonoBehaviour {
         /// <summary>
         /// 터치좌표를 가져와 그부분에 +되는걸 표시
         /// </summary>
-	public void getRainFade(){
+	/*public void getRainFade(){
         mouseDragPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         
         wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
@@ -41,9 +41,26 @@ public class GetFadeout : MonoBehaviour {
         //StopCoroutine ("imgFadeOut");
         StartCoroutine ("imgFadeOut");
         
+    }*/
+
+    public void getRainFade()
+    {
+        mouseDragPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
+
+        
+        
+        moveY = PlayerPrefs.GetFloat("watposy", 11);
+        moveX = PlayerPrefs.GetFloat("watposx", 11);
+        fade_obj.transform.position = wldObjectPos;
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        fade_obj.GetComponent<Image>().color = color;
+        StartCoroutine("imgFadeOut");
+
     }
 
-	IEnumerator imgFadeOut(){
+    IEnumerator imgFadeOut(){
         for (float i = 1f; i > 0f; i -= 0.05f) {
 			color.a = Mathf.Lerp (0f, 1f, i);
             fade_obj.GetComponent<Image>().color = color;

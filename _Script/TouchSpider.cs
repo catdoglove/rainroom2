@@ -16,6 +16,12 @@ public class TouchSpider : MonoBehaviour {
     public void getSpider() {
 
         GM.GetComponent<MainTime>().randSpider_i = 0;
+
+        float xx = spider_obj.transform.position.x;
+        float yy = spider_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+
         spider_obj.transform.position = new Vector3(-11f, spider_obj.transform.position.y, spider_obj.transform.position.z);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -26,6 +32,8 @@ public class TouchSpider : MonoBehaviour {
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.Save();
 
+        //Debug.Log(spider_obj.transform.position.x);
+
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
     }
@@ -34,6 +42,12 @@ public class TouchSpider : MonoBehaviour {
     {
 
         GM.GetComponent<MainTime>().randStar_i = 0;
+
+        float xx = star_obj.transform.position.x;
+        float yy = star_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+
         star_obj.transform.position = new Vector3(-11f, star_obj.transform.position.y, star_obj.transform.position.z);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);

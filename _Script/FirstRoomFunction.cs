@@ -71,6 +71,13 @@ public class FirstRoomFunction : CavasData {
     public GameObject frame_obj;
     public Sprite frameOpen_spr;
 
+
+    //도움말열기
+    public GameObject Help_obj;
+    public Sprite[] help_spr;
+
+    
+
     //타이틀닫기
     public GameObject titleImg;
     public void closeTitle()
@@ -736,6 +743,15 @@ public class FirstRoomFunction : CavasData {
             }
             coupon_obj.SetActive(true);
         }
+    }
+    public void OpenHelpBeadal()
+    {
+        Help_obj.SetActive(true);
+        Help_obj.GetComponent<Image>().sprite = help_spr[0];
+    }
+    public void CloseHelp()
+    {
+        Help_obj.SetActive(false);
     }
 
     public void useCouponY()

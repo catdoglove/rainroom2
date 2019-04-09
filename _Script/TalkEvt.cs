@@ -202,10 +202,12 @@ public class TalkEvt : MonoBehaviour {
         else if (sum < 11)
         {
             sum = 5;
-        }else if (sum < 13)
+        }
+        else if (sum < 13)
         {
             sum = 6;
-        }else if (sum > 12)
+        }
+        else if (sum > 12)
         {
             sum = 6;
         }
@@ -215,7 +217,6 @@ public class TalkEvt : MonoBehaviour {
         //대화속도
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         Debug.Log(countTalkNum);
-
         
         if (countTalkNum == 0)
         {

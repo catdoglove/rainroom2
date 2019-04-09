@@ -13,11 +13,19 @@ public class Touchdust : MonoBehaviour {
 	void OnMouseDown() {
 		string str = gameObject.name;
 		if (str.Equals ("먼지1")) {
-			GM.GetComponent<SecondRoomTime> ().moveX1 = -10f;
+            float xx = gameObject.transform.position.x;
+            float yy = gameObject.transform.position.y;
+            PlayerPrefs.SetFloat("watposx", xx);
+            PlayerPrefs.SetFloat("watposy", yy);
+            GM.GetComponent<SecondRoomTime> ().moveX1 = -10f;
 			GM.GetComponent<SecondRoomTime> ().randDust1_i = 0;
-			gameObject.transform.position = new Vector3 (-10f, -4f, gameObject.transform.position.z);
+            gameObject.transform.position = new Vector3 (-10f, -4f, gameObject.transform.position.z);
 		} else {
-			GM.GetComponent<SecondRoomTime> ().moveX2 = 10f;
+            float xx = gameObject.transform.position.x;
+            float yy = gameObject.transform.position.y;
+            PlayerPrefs.SetFloat("watposx", xx);
+            PlayerPrefs.SetFloat("watposy", yy);
+            GM.GetComponent<SecondRoomTime> ().moveX2 = 10f;
 			GM.GetComponent<SecondRoomTime> ().randDust2_i = 0;
 			gameObject.transform.position = new Vector3 (10f, -4f, gameObject.transform.position.z);
 		}

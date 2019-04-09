@@ -12,8 +12,12 @@ public class SoundEvt : MonoBehaviour {
     float BGMVol_f, BGSVol_f;
     // Use this for initialization
     void Start () {
-        BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
-        BGS.volume = BGSVol_f;
+        if (PlayerPrefs.GetInt("titlesets", 0)==1)
+        {
+            BGSVol_f = PlayerPrefs.GetFloat("bgs", 1f);
+            BGS.volume = BGSVol_f;
+            PlayerPrefs.SetInt("titlesets", 0);
+        }
     }
 
     public void bookSound()

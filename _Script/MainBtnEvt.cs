@@ -26,10 +26,26 @@ public class MainBtnEvt : CavasData
     //닫을때같이닫는것
     public GameObject YN_obj;
 
+    //도움말
+    public GameObject Help_obj;
+    public Sprite[] help_spr;
+    public GameObject helpfrist_obj;
+    public void CloseHelpf()
+    {
+        Help_obj.SetActive(false);
+    }
 
-
+    public void CloseHelp()
+    {
+        helpfrist_obj.SetActive(false);
+    }
     void Awake()
     {
+        if (PlayerPrefs.GetInt("helpf", 0) == 0)
+        {
+            helpfrist_obj.SetActive(true);
+            PlayerPrefs.SetInt("helpf", 1);
+        }
         //방의 위치를 사다리쪽으로 2로해준다
         PlayerPrefs.SetInt("front", 2);
     }
@@ -355,6 +371,23 @@ public class MainBtnEvt : CavasData
         yield return new WaitForSeconds(3f);
         speed_toast.SetActive(false);
 
+    }
+
+
+    public void OpenHelpShop()
+    {
+        Help_obj.SetActive(true);
+        Help_obj.GetComponent<Image>().sprite = help_spr[0];
+    }
+    public void OpenHelpInfo()
+    {
+        Help_obj.SetActive(true);
+        Help_obj.GetComponent<Image>().sprite = help_spr[1];
+    }
+    public void OpenHelpOption()
+    {
+        Help_obj.SetActive(true);
+        Help_obj.GetComponent<Image>().sprite = help_spr[2];
     }
 
 }

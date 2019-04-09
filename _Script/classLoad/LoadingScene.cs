@@ -11,9 +11,13 @@ public class LoadingScene : MonoBehaviour {
 	public GameObject logoImg, prolouge_obj, logocanvas;
     public Animator anim;
 
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("titlesets", 1);
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (PlayerPrefs.GetInt("logofirst", 0) == 99)
         {
             prolouge_obj.SetActive(false);
