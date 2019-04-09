@@ -48,7 +48,10 @@ public class secondRoomFunction : CavasData {
     public Text boxHeart_txt;
     public Text boxTotal_txt, boxTxt_txt;
 
-    
+
+    //도움말
+    public GameObject Help_obj;
+
     public int boxs_i;
 
 
@@ -422,6 +425,15 @@ public class secondRoomFunction : CavasData {
         {
             character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
+    }
+
+    public void OpenHelpCook()
+    {
+        Help_obj.SetActive(true);
+    }
+    public void CloseHelp()
+    {
+        Help_obj.SetActive(false);
     }
 
     //외출창띄우기

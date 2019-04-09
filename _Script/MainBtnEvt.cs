@@ -29,17 +29,28 @@ public class MainBtnEvt : CavasData
     //도움말
     public GameObject Help_obj;
     public Sprite[] help_spr;
+    public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
-
+    int help = 0;
 
     public void CloseHelpf()
     {
-        Help_obj.SetActive(false);
+        if (help == 0)
+        {
+            help = 1;
+            helpfrist_obj.GetComponent<Image>().sprite = helpf_spr[1];
+        }
+        else
+        {
+            help = 0;
+            helpfrist_obj.GetComponent<Image>().sprite = helpf_spr[0];
+            helpfrist_obj.SetActive(false);
+        }
     }
 
     public void CloseHelp()
     {
-        helpfrist_obj.SetActive(false);
+        Help_obj.SetActive(false);
     }
     void Awake()
     {
@@ -390,6 +401,11 @@ public class MainBtnEvt : CavasData
     {
         Help_obj.SetActive(true);
         Help_obj.GetComponent<Image>().sprite = help_spr[2];
+    }
+
+    public void OpenHelpf()
+    {
+        helpfrist_obj.SetActive(true);
     }
 
 }
