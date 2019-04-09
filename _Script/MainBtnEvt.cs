@@ -40,6 +40,11 @@ public class MainBtnEvt : CavasData
             help = 1;
             helpfrist_obj.GetComponent<Image>().sprite = helpf_spr[1];
         }
+        else if (help == 1)
+        {
+            helpfrist_obj.GetComponent<Image>().sprite = helpf_spr[2];
+            help = 2;
+        }
         else
         {
             help = 0;
