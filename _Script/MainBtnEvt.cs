@@ -30,6 +30,8 @@ public class MainBtnEvt : CavasData
     public GameObject Help_obj;
     public Sprite[] help_spr;
     public GameObject helpfrist_obj;
+
+
     public void CloseHelpf()
     {
         Help_obj.SetActive(false);
