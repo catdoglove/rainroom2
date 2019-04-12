@@ -54,6 +54,7 @@ public class TouchSpider : MonoBehaviour {
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
         coldRain_i = coldRain_i + 5;
         hotRain_i = hotRain_i + 3;
+        //테스트할때만 나중에 1로변경할것
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.Save();

@@ -198,6 +198,11 @@ public class MainBtnEvt : CavasData
 		if (MainWindow_obj [0].activeSelf == true) {
 			MainWindow_obj [0].SetActive (false);
 			MainWindow_obj [3].SetActive (false);
+            if (PlayerPrefs.GetInt("infohelpfirst", 0) == 0)
+            {
+                OpenHelpInfo();
+                PlayerPrefs.SetInt("infohelpfirst", 1);
+            }
         } else {
 			allClose ();
             windowsOpen();
@@ -208,7 +213,12 @@ public class MainBtnEvt : CavasData
 	public void openShopWindow(){
 		if (MainWindow_obj [1].activeSelf == true) {
 			MainWindow_obj [1].SetActive (false);
-		} else {
+            if (PlayerPrefs.GetInt("shophelpfirst", 0) == 0)
+            {
+                OpenHelpShop();
+                PlayerPrefs.SetInt("shophelpfirst", 1);
+            }
+        } else {
 			allClose ();
             windowsOpen();
             MainWindow_obj [1].SetActive (true);
@@ -217,7 +227,12 @@ public class MainBtnEvt : CavasData
 	public void openOptionWindow(){
 		if (MainWindow_obj [2].activeSelf == true) {
 			MainWindow_obj [2].SetActive (false);
-		} else {
+            if (PlayerPrefs.GetInt("optionhelpfirst", 0) == 0)
+            {
+                OpenHelpOption();
+                PlayerPrefs.SetInt("optionhelpfirst", 1);
+            }
+        } else {
 			allClose ();
             windowsOpen();
             MainWindow_obj [2].SetActive (true);

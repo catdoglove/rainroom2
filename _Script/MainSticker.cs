@@ -132,6 +132,7 @@ public class MainSticker : MonoBehaviour
                     if (PlayerPrefs.GetInt("place", 0) == 0)
                     {
                         GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Image>().sprite = frameOpen_spr;
+                        GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Button>().interactable = true;
                     }
                     PlayerPrefs.Save();
                 }

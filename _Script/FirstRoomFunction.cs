@@ -76,7 +76,9 @@ public class FirstRoomFunction : CavasData {
     public GameObject Help_obj;
     public Sprite[] help_spr;
 
-    
+    public GameObject GM;
+
+
 
     //타이틀닫기
     public GameObject titleImg;
@@ -133,6 +135,7 @@ public class FirstRoomFunction : CavasData {
         if(PlayerPrefs.GetInt("frameopen", 0) == 1)
         {
             frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
+            frame_obj.GetComponent<Button>().interactable = true;
         }
 
         //여기에 박스인것들은 대화버튼들 비활성화시켜놓기
@@ -423,6 +426,12 @@ public class FirstRoomFunction : CavasData {
 
     public void CleanDish()
     {
+        float xx = dish_obj.transform.position.x;
+        float yy = dish_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+
+        GM.GetComponent<GetFadeout>().getRainFade();
         dish_obj.SetActive(false);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -537,7 +546,7 @@ public class FirstRoomFunction : CavasData {
         heart_i = PlayerPrefs.GetInt (str1+"ht", 0);
         if (boxName_str == "ladder")
         {
-            if (PlayerPrefs.GetInt("lovelv", 0) >= 2)
+            if (PlayerPrefs.GetInt("lovelv", 0) >= 3)
             {
                 if (heart_i >= boxs_i)
                 {

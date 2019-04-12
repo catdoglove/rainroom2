@@ -40,7 +40,7 @@ public class UnityADS : MonoBehaviour {
         {
             ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
-            PlayerPrefs.SetInt("secf", 30);
+            PlayerPrefs.SetInt("secf", 300);
         }
         else
         {
@@ -76,7 +76,7 @@ public class UnityADS : MonoBehaviour {
 
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
-			sG = PlayerPrefs.GetInt("secf",30);
+			sG = PlayerPrefs.GetInt("secf",300);
             //Debug.Log(sG);
             mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
@@ -87,7 +87,7 @@ public class UnityADS : MonoBehaviour {
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-			sG = PlayerPrefs.GetInt("secf",30);
+			sG = PlayerPrefs.GetInt("secf",300);
 			sG = sG - 1;
 			if (sG < 0) {
 				sG = -1;
@@ -125,7 +125,7 @@ public class UnityADS : MonoBehaviour {
     {
         while (mG2 > -1)
         {
-            sG2 = PlayerPrefs.GetInt("secf2", 30);
+            sG2 = PlayerPrefs.GetInt("secf2", 300);
             //Debug.Log(sG);
             mG2= (int)(sG2 / 60);
             sG2 = sG2 - (sG2 / 60) * 60;
@@ -139,7 +139,7 @@ public class UnityADS : MonoBehaviour {
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-            sG2 = PlayerPrefs.GetInt("secf2", 30);
+            sG2 = PlayerPrefs.GetInt("secf2", 300);
             sG2 = sG2 - 1;
             if (sG2 < 0)
             {

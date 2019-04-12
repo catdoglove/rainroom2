@@ -67,7 +67,7 @@ public class MainTime : MonoBehaviour {
             }
             else
             {
-                cat_i = Random.Range(0, 20);
+                cat_i = Random.Range(0, 200);
             }
             PlayerPrefs.SetInt("windowcatrand", cat_i);
 
@@ -85,7 +85,7 @@ public class MainTime : MonoBehaviour {
                 }
                 else
                 {
-                    plane_i = Random.Range(0, 50);
+                    plane_i = Random.Range(0, 500);
                 }
             }
             //풍선
@@ -105,7 +105,7 @@ public class MainTime : MonoBehaviour {
             } else {
                 if (PlayerPrefs.GetInt("front", 1) == 2)
                 {
-                    randSpider_i = Random.Range(0, 4);
+                    randSpider_i = Random.Range(0, 15);
                     spiX = Random.Range(-5, 5);
                 }
                 
@@ -130,24 +130,7 @@ public class MainTime : MonoBehaviour {
                 }
             }
 
-            /*
-            //풍선
-            if (PlayerPrefs.GetInt("miniopen", 0) == 1)
-            {
-                if (PlayerPrefs.GetInt("balloon", 0) == 8)
-                {
-                    checkBalloon();
-                    PlayerPrefs.SetInt("miniopen", 0);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("balloon", Random.Range(7, 10));
-
-                }
-
-             
-            }
-            */
+            
 
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
@@ -164,7 +147,7 @@ public class MainTime : MonoBehaviour {
         else
         {
             
-            randball1_i = Random.Range(0, 30);
+            randball1_i = Random.Range(0, 90);
             if (randball1_i == 1)
             {
                 moveX1 = -5.2f;
@@ -179,7 +162,7 @@ public class MainTime : MonoBehaviour {
         else
         {
             
-            randball2_i = Random.Range(0, 30);
+            randball2_i = Random.Range(0, 90);
             if (randball2_i == 1)
             {
                 moveX2 = 5.2f;
@@ -198,7 +181,7 @@ public class MainTime : MonoBehaviour {
 		int sec = (int)compareTime.TotalSeconds;
 		sec = sec - (sec / 60) * 60;
 		sec = 59 - sec;
-		m = 1 - m;
+		m = 59 - m;
         string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
         beadalTime_txt.text = strb;
         if (m < 0) {

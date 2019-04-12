@@ -181,7 +181,7 @@ public class WindowMiniGame : MonoBehaviour {
         int cts = PlayerPrefs.GetInt("countairplanest", 0);
         cts++;
         PlayerPrefs.SetInt("countairplanest", cts);
-        if (cts >= 50 && PlayerPrefs.GetInt("airplanest", 0) < 3)
+        if (cts >= 100 && PlayerPrefs.GetInt("airplanest", 0) < 3)
         {
             PlayerPrefs.SetInt("airplanest", 3);
             GM.GetComponent<AchievementShow>().achievementCheck(3, 2);
@@ -204,12 +204,12 @@ public class WindowMiniGame : MonoBehaviour {
         int cts = PlayerPrefs.GetInt("countpetcatst", 0);
         cts++;
         PlayerPrefs.SetInt("countpetcatst", cts);
-        if (cts >= 50 && PlayerPrefs.GetInt("petcatst", 0) < 3)
+        if (cts >= 500 && PlayerPrefs.GetInt("petcatst", 0) < 3)
         {
             PlayerPrefs.SetInt("petcatst", 3);
             GM.GetComponent<AchievementShow>().achievementCheck(4, 2);
         }
-        else if (cts >= 10 && PlayerPrefs.GetInt("petcatst", 0) < 2)
+        else if (cts >= 100 && PlayerPrefs.GetInt("petcatst", 0) < 2)
         {
             PlayerPrefs.SetInt("petcatst", 2);
             GM.GetComponent<AchievementShow>().achievementCheck(4, 1);

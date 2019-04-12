@@ -428,7 +428,7 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp= loveExp + 20;
+            loveExp= loveExp + 1;
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
@@ -946,12 +946,12 @@ public class TalkEvt : MonoBehaviour {
         cts++;
         PlayerPrefs.SetInt("counttalkst", cts);
         Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
-        if (cts >= 20 && PlayerPrefs.GetInt("talkst", 0) < 3)
+        if (cts >= 500 && PlayerPrefs.GetInt("talkst", 0) < 3)
         {
             PlayerPrefs.SetInt("talkst", 3);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 2);
         }
-        else if (cts >= 10 && PlayerPrefs.GetInt("talkst", 0) < 2)
+        else if (cts >= 100 && PlayerPrefs.GetInt("talkst", 0) < 2)
         {
             PlayerPrefs.SetInt("talkst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 1);

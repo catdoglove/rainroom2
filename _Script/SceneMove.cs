@@ -96,12 +96,12 @@ public class SceneMove : MonoBehaviour {
         cts++;
         PlayerPrefs.SetInt("countladderst", cts);
 
-        if (cts >= 50 && PlayerPrefs.GetInt("downst", 0) < 3)
+        if (cts >= 100 && PlayerPrefs.GetInt("downst", 0) < 3)
         {
             PlayerPrefs.SetInt("downst", 3);
             secondGM.GetComponent<AchievementShow>().achievementCheck(2, 2);
         }
-        else if (cts >= 10 && PlayerPrefs.GetInt("downst", 0) < 2)
+        else if (cts >= 20 && PlayerPrefs.GetInt("downst", 0) < 2)
         {
             PlayerPrefs.SetInt("downst", 2);
             secondGM.GetComponent<AchievementShow>().achievementCheck(2, 1);

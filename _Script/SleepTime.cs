@@ -102,12 +102,12 @@ public class SleepTime : MonoBehaviour {
         int s = PlayerPrefs.GetInt("countinsleepst", 0);
         s++;
         PlayerPrefs.SetInt("countinsleepst", s);
-        if (s >= 5 && PlayerPrefs.GetInt("insleepst", 0) < 3)
+        if (s >= 50 && PlayerPrefs.GetInt("insleepst", 0) < 3)
         {
             PlayerPrefs.SetInt("insleepst", 3);
             firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
         }
-        else if (s >= 3 && PlayerPrefs.GetInt("insleepst", 0) < 2)
+        else if (s >= 10 && PlayerPrefs.GetInt("insleepst", 0) < 2)
         {
             PlayerPrefs.SetInt("insleepst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
@@ -135,8 +135,8 @@ public class SleepTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 2 - minute;
-        hours = 0 - hours;
+        minute = 59 - minute;
+        hours = 5 - hours;
         if (minute < 0)
         {
         }

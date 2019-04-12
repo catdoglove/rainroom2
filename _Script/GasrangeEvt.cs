@@ -381,12 +381,12 @@ public class GasrangeEvt : MonoBehaviour {
         int cts = PlayerPrefs.GetInt("countfirstcookst", 0);
         cts++;
         PlayerPrefs.SetInt("countfirstcookst", cts);
-        if (cts >= 5 && PlayerPrefs.GetInt("firstcookst", 0) < 3)
+        if (cts >= 100 && PlayerPrefs.GetInt("firstcookst", 0) < 3)
         {
             PlayerPrefs.SetInt("firstcookst", 3);
             GM2.GetComponent<AchievementShow>().achievementCheck(6, 2);
         }
-        else if (cts >= 3 && PlayerPrefs.GetInt("firstcookst", 0) < 2)
+        else if (cts >= 20 && PlayerPrefs.GetInt("firstcookst", 0) < 2)
         {
             PlayerPrefs.SetInt("firstcookst", 2);
             GM2.GetComponent<AchievementShow>().achievementCheck(6, 1);
