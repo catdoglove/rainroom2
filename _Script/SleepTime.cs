@@ -149,8 +149,12 @@ public class SleepTime : MonoBehaviour {
         while (aa == 0)
         {
             SleepTimeFlow();
+            if (minute <= 0 && hours == 0)
+            {
+                hours = -1;
+            }
             string str = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
-            if (minute <= 0)
+            if (hours <= 0)
             {
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);
@@ -176,6 +180,19 @@ public class SleepTime : MonoBehaviour {
     //꿈일기 창띄우기
     public void ShowDream()
     {
+        string str;
+        str = PlayerPrefs.GetString("code", "");
+        int c = PlayerPrefs.GetInt(str + "c", 0);
+        int h = PlayerPrefs.GetInt(str + "h", 0);
+        c = c + 100;
+        h = h + 25;
+        int loveExp = PlayerPrefs.GetInt("lovepoint", 0);
+        loveExp = loveExp + 10;
+        PlayerPrefs.SetInt("lovepoint", loveExp);
+        PlayerPrefs.SetInt(str + "c", c);
+        PlayerPrefs.SetInt(str + "h", h);
+        PlayerPrefs.Save();
+
         dream_obj.SetActive(true);
         dreamBtn_obj.SetActive(false);
 

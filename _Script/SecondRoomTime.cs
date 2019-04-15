@@ -64,7 +64,7 @@ public class SecondRoomTime : MonoBehaviour {
         int sec = (int)compareTime.TotalSeconds;
         sec = sec - (sec / 60) * 60;
         sec = 59 - sec;
-        m = 1 - m;
+        m = 59 - m;
         string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
         beadalTime_txt.text = strb;
         if (m < 0)

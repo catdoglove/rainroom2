@@ -52,8 +52,8 @@ public class SeedTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 1 - minute;
-        hours =  0 - hours;
+        minute = 59 - minute;
+        hours =  11 - hours;
 
         string strb = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
         seedTime_txt.text = strb;

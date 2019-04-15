@@ -57,6 +57,7 @@ public class MainBtnEvt : CavasData
     {
         Help_obj.SetActive(false);
     }
+
     void Awake()
     {
         if (PlayerPrefs.GetInt("helpf", 0) == 0)
@@ -247,6 +248,8 @@ public class MainBtnEvt : CavasData
         close_obj.SetActive(false);
         speed_obj.SetActive(false);
         YN_obj.SetActive(false);
+        Help_obj.SetActive(false);
+        helpfrist_obj.SetActive(false);
     }
 
     public void windowsOpen()
@@ -400,8 +403,18 @@ public class MainBtnEvt : CavasData
         }
 
         speed_obj.SetActive(false);
+        Color colorN;
+        colorN = new Color(1f, 1f, 1f);
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        speed_toast.GetComponent<Image>().color = colorN;
         speed_toast.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            speed_toast.GetComponent<Image>().color = colorN;
+            yield return null;
+        }
         speed_toast.SetActive(false);
 
     }

@@ -31,6 +31,7 @@ public class GasrangeEvt : MonoBehaviour {
     public Color colorB;
     public GameObject beadalYetToast_obj, beadalTime_obj;
     int point_i;
+    public GameObject dishBtn_obj;
 
 
     // Use this for initialization
@@ -234,6 +235,22 @@ public class GasrangeEvt : MonoBehaviour {
     public void closeIllust()
     {
         illust_obj.SetActive(false);
+        dishBtn_obj.SetActive(true);
+    }
+
+    public void cleanDish()
+    {
+        float xx = dishBtn_obj.transform.position.x;
+        float yy = dishBtn_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+        string str = PlayerPrefs.GetString("code", "");
+        int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        coldRain_i = coldRain_i + 20;
+        PlayerPrefs.SetInt(str + "c", coldRain_i);
+        PlayerPrefs.Save();
+        dishBtn_obj.SetActive(false);
+        GM2.GetComponent<GetFadeout>().getRainFade();
     }
 
     public void infoShow()

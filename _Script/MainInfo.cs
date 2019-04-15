@@ -27,6 +27,8 @@ public class MainInfo : MonoBehaviour {
     public GameObject sticker_obj;
 
     public Text loveLv_txt;
+    //도움말
+    public GameObject helpBtn_obj;
 
     //별명짓기
     public GameObject nicknameWrite_obj, nicknameYN_obj;
@@ -65,6 +67,8 @@ public class MainInfo : MonoBehaviour {
         }
     }
 
+
+    //뒤집기
 	public void infoWindowTurn(){
         reverseBtn_obj.SetActive(false);
         StopCoroutine ("backTurning2");
@@ -72,7 +76,9 @@ public class MainInfo : MonoBehaviour {
 		StopCoroutine ("turning2");
 		StartCoroutine ("turning");
         reverseBackBtn_obj.SetActive(true);
-	}
+        helpBtn_obj.SetActive(false);
+
+    }
 
 	public void infoBackWindowTurn(){
         reverseBackBtn_obj.SetActive(false);
@@ -81,6 +87,7 @@ public class MainInfo : MonoBehaviour {
 		StopCoroutine ("turning");
 		StartCoroutine ("backTurning2");
         reverseBtn_obj.SetActive(true);
+        helpBtn_obj.SetActive(true);
     }
 
 

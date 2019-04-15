@@ -35,8 +35,7 @@ public class MainTime : MonoBehaviour {
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
         StartCoroutine ("updateSec");
-		
-	}
+    }
 	
 	IEnumerator updateSec(){
 		int a = 0;
@@ -67,7 +66,7 @@ public class MainTime : MonoBehaviour {
             }
             else
             {
-                cat_i = Random.Range(0, 200);
+                cat_i = Random.Range(0, 242);
             }
             PlayerPrefs.SetInt("windowcatrand", cat_i);
 
@@ -124,9 +123,9 @@ public class MainTime : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
                 {
-                    randStar_i = Random.Range(0, 4);
+                    randStar_i = Random.Range(0, 15);
                     starX = Random.Range(-5, 5);
-                    starY = Random.Range(0, 5);
+                    starY = Random.Range(-1, 3);
                 }
             }
 
@@ -147,7 +146,7 @@ public class MainTime : MonoBehaviour {
         else
         {
             
-            randball1_i = Random.Range(0, 90);
+            randball1_i = Random.Range(0, 80);
             if (randball1_i == 1)
             {
                 moveX1 = -5.2f;
@@ -162,7 +161,7 @@ public class MainTime : MonoBehaviour {
         else
         {
             
-            randball2_i = Random.Range(0, 90);
+            randball2_i = Random.Range(0, 80);
             if (randball2_i == 1)
             {
                 moveX2 = 5.2f;
