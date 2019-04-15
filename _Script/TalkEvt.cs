@@ -52,6 +52,10 @@ public class TalkEvt : MonoBehaviour {
     //나가기
     public GameObject exitTalkBalln;
     public Text exitText;
+    int exCk = 0;
+    //종료
+    int exit_int, exitTalk;
+    int cnt_exit;
 
 
     // Use this for initialization
@@ -77,18 +81,21 @@ public class TalkEvt : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
+            {
 
             if (!exitTalkBalln.activeSelf)
             {
+                exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
-                //여기다 상황에 따른 문구 수정하면 될듯
+                                               //여기다 상황에 따른 문구 수정하면 될듯
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
+                    //여기다 <아이콘 false 깨어 있을 때는 true
                     exitText.text = "(자고있다. 조용히 나갈까?)\n뒤로두번 종료";
                 }
                 else
                 {
+                    //깨어 있을 때는 true
                     exitText.text = "가는거니?\n뒤로두번 종료";
                 }
             }
@@ -96,9 +103,35 @@ public class TalkEvt : MonoBehaviour {
             {
                 StartCoroutine("quitGame");
             }
-
-            //System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
+
+
+        if (exit_int == 1)
+        {
+            cnt_exit++;
+        }
+        if (cnt_exit == 150)
+        {
+            if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
+            {
+                //여기다 <아이콘 false 깨어 있을 때는 true
+                exitText.text = "(..흠)";
+            }
+            else
+            {
+                //깨어 있을 때는 true
+                exitText.text = "..음";
+            }
+
+        }
+        else if (cnt_exit == 250)
+        {
+            exitTalkBalln.SetActive(false);
+            exit_int = 0;
+            cnt_exit = 0;
+        }
+
+
     }
 
     void OnApplicationQuit()
@@ -121,6 +154,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 else
                 {
+                    //호감도에 따른 종료 메세지
                     exitText.text = "잘가";
                 }
                 
