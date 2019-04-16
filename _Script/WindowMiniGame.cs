@@ -38,6 +38,10 @@ public class WindowMiniGame : MonoBehaviour {
         if (time.ToString("tt") == "PM")
         {
             int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
             if (k >= 6)
             {
                 //밤
@@ -52,7 +56,7 @@ public class WindowMiniGame : MonoBehaviour {
         else
         {
             int k = int.Parse(time.ToString("hh"));
-            if (k <= 6)
+            if (k < 6)
             {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
             }

@@ -107,7 +107,7 @@ public class SleepTime : MonoBehaviour {
             PlayerPrefs.SetInt("insleepst", 3);
             firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
         }
-        else if (s >= 10 && PlayerPrefs.GetInt("insleepst", 0) < 2)
+        else if (s >= 25 && PlayerPrefs.GetInt("insleepst", 0) < 2)
         {
             PlayerPrefs.SetInt("insleepst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);

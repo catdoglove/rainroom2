@@ -18,14 +18,20 @@ public class SceneMove : MonoBehaviour {
     public GameObject achievement_obj;
     public float moveX, moveY;
 
+    //타이틀
+    public GameObject title_obj;
+
     void Start()
     {
         if(PlayerPrefs.GetInt("achievemove", 0) == 1)
         {
             PlayerPrefs.SetInt("achievemove", 0);
             achievementfunc();
+            if(PlayerPrefs.GetInt("place", 0) == 0)
+            {
+                title_obj.SetActive(false);
+            }
         }
-      
     }
 
 	IEnumerator Load()
@@ -96,12 +102,12 @@ public class SceneMove : MonoBehaviour {
         cts++;
         PlayerPrefs.SetInt("countladderst", cts);
 
-        if (cts >= 100 && PlayerPrefs.GetInt("downst", 0) < 3)
+        if (cts >= 500 && PlayerPrefs.GetInt("downst", 0) < 3)
         {
             PlayerPrefs.SetInt("downst", 3);
             secondGM.GetComponent<AchievementShow>().achievementCheck(2, 2);
         }
-        else if (cts >= 20 && PlayerPrefs.GetInt("downst", 0) < 2)
+        else if (cts >= 100 && PlayerPrefs.GetInt("downst", 0) < 2)
         {
             PlayerPrefs.SetInt("downst", 2);
             secondGM.GetComponent<AchievementShow>().achievementCheck(2, 1);

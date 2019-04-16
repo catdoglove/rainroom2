@@ -282,8 +282,13 @@ public class MainShop : ShopHandler {
                     GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
                     GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4 + itemLevel_i];
                     break;
+                case 8:
+                    if (PlayerPrefs.GetInt("switchshop", 0) == 0)
+                    {
+                        PlayerPrefs.SetInt("switchshop", 1);
 
-                
+                    }
+                    break;                
             }
         }
         else if (PlayerPrefs.GetInt("place", 0) == 1)
