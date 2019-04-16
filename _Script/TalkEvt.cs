@@ -11,7 +11,7 @@ public class TalkEvt : MonoBehaviour {
     string[] testText_cut; //대사 끊기
     string text_str; //실질적 대사출력
 
-    public GameObject talkbtn,itembtn, talkballoon, closeTB; //대화버튼 및 영역
+    public GameObject talkbtn,itembtn, talkballoon, closeTB, talkCursor; //대화버튼 및 영역
     bool ihaveitem;
 
     int[] allArr = new int[10]; //총 호감단계
@@ -59,8 +59,8 @@ public class TalkEvt : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
-        
+    void Start ()
+    {
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
@@ -81,21 +81,19 @@ public class TalkEvt : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            {
-
+        {
+            talkCursor.SetActive(true);
             if (!exitTalkBalln.activeSelf)
             {
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
-                                               //여기다 상황에 따른 문구 수정하면 될듯
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
-                    //여기다 <아이콘 false 깨어 있을 때는 true
+                    talkCursor.SetActive(false);
                     exitText.text = "(자고있다. 조용히 나갈까?)\n뒤로두번 종료";
                 }
                 else
                 {
-                    //깨어 있을 때는 true
                     exitText.text = "가는거니?\n뒤로두번 종료";
                 }
             }
@@ -114,12 +112,11 @@ public class TalkEvt : MonoBehaviour {
         {
             if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
             {
-                //여기다 <아이콘 false 깨어 있을 때는 true
+                talkCursor.SetActive(false);
                 exitText.text = "(..흠)";
             }
             else
             {
-                //깨어 있을 때는 true
                 exitText.text = "..음";
             }
 
@@ -150,12 +147,12 @@ public class TalkEvt : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
+                    talkCursor.SetActive(false);
                     exitText.text = "(잘자)";
                 }
                 else
                 {
-                    //호감도에 따른 종료 메세지
-                    exitText.text = "잘가";
+                    exitText.text = "..잘가";
                 }
                 
             }
@@ -249,7 +246,7 @@ public class TalkEvt : MonoBehaviour {
         PlayerPrefs.SetInt(str1 + "h", hRain);
 
         //대화속도
-        speedF = PlayerPrefs.GetFloat("talkspeed", 0);
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         Debug.Log(countTalkNum);
         
         if (countTalkNum == 0)
