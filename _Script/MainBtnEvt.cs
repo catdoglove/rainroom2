@@ -16,7 +16,7 @@ public class MainBtnEvt : CavasData
     //메뉴펼쳐주기
     public GameObject menuBack_obj;
     public Vector2 menuBack_vet;
-    public GameObject GM, GM2;
+    public GameObject GM, GM2,GMtag;
 
     //문장속도
     float speedF = 0.05f;
@@ -58,6 +58,45 @@ public class MainBtnEvt : CavasData
         Help_obj.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            allClose();
+            GMtag.GetComponent<MainShop>().CloseFuncCabinet();
+            if (PlayerPrefs.GetInt("place", 0) == 0)
+            {
+                if (GM == null)
+                {
+                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                }
+                GM.GetComponent<FirstRoomFunction>().closeTitle();
+                GM.GetComponent<WindowMiniGame>().CloseMiniGame();
+                GM.GetComponent<FirstRoomFunction>().closeBeadal();
+                GM.GetComponent<UnityADS>().closeAdYN();
+                GM.GetComponent<FirstRoomBookList>().closeItemList();
+                GM.GetComponent<FirstRoomSticker>().CloseFrame();
+                GM.GetComponent<FirstRoomFunction>().boxNo();
+                GM.GetComponent<SleepTime>().closeDiary();
+                GM.GetComponent<SleepTime>().CloseSleep();
+            }
+            if (PlayerPrefs.GetInt("place", 0) == 1)
+            {
+                if (GM2 == null)
+                {
+                    GM2 = GameObject.FindGameObjectWithTag("GM2");
+                }
+                GM2.GetComponent<secondRoomFunction>().AllClose();
+                GM2.GetComponent<secondRoomFunction>().boxClose();
+                GM2.GetComponent<GasrangeEvt>().Closefood();
+                GM2.GetComponent<GasrangeEvt>().CloseIceBox();
+                GM2.GetComponent<SeedTime>().CloseSeed();
+            }
+
+        }
+    }
+
+
     void Awake()
     {
         if (PlayerPrefs.GetInt("helpf", 0) == 0)
@@ -76,6 +115,10 @@ public class MainBtnEvt : CavasData
         if (GM == null)
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
+        }
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
         }
 		setScreen ();
 		//StartCoroutine ("testText");

@@ -395,6 +395,7 @@ public class secondRoomFunction : CavasData {
         close_obj.SetActive(false);
         WaterPurifilerWindow_obj.SetActive(false);
         CloseWaterYN();
+        goOutWindow_obj.SetActive(false);
     }
 
 

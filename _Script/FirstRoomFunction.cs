@@ -321,7 +321,7 @@ public class FirstRoomFunction : CavasData {
             case 4:
                 if (heart_i >= 7)
                 {
-                    heart_i = heart_i - 8;
+                    heart_i = heart_i - 7;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
                     point_i = point_i + 9;
