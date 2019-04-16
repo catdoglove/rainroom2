@@ -90,11 +90,11 @@ public class TalkEvt : MonoBehaviour {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
                     talkCursor.SetActive(false);
-                    exitText.text = "(자고있다. 조용히 나갈까?)\n뒤로두번 종료";
+                    exitText.text = "(자고있다. 조용히 나갈까?)\n(뒤로두번 종료)";
                 }
                 else
                 {
-                    exitText.text = "가는거니?\n뒤로두번 종료";
+                    exitText.text = "가는거니?\n(뒤로두번 종료)";
                 }
             }
             else
@@ -148,11 +148,38 @@ public class TalkEvt : MonoBehaviour {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
                     talkCursor.SetActive(false);
-                    exitText.text = "(잘자)";
+                    exitText.text = "(..잘자)";
                 }
                 else
                 {
-                    exitText.text = "..잘가";
+                    if (loveLv < 2)
+                    {
+                        exitText.text = "..그래 잘가";
+                    }
+                    else if (loveLv < 4)
+                    {
+                        exitText.text = "잘가렴.. 안녕";
+                    }
+                    else if (loveLv < 6)
+                    {
+                        exitText.text = "안녕.. 조심히 가";
+                    }
+                    else if (loveLv < 9)
+                    {
+                        exitText.text = "다음에 봐. 잘가렴";
+                    }
+                    else if (loveLv < 11)
+                    {
+                        exitText.text = "안녕 다음에 보자";
+                    }
+                    else if (loveLv < 13)
+                    {
+                        exitText.text = "즐거웠어 다음에 보자. 친구";
+                    }
+                    else if (loveLv > 12)
+                    {
+                        exitText.text = "즐거웠어 다음에 보자. 친구";
+                    }
                 }
                 
             }
