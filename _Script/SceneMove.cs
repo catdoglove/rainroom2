@@ -25,8 +25,8 @@ public class SceneMove : MonoBehaviour {
     {
         if(PlayerPrefs.GetInt("achievemove", 0) == 1)
         {
-            PlayerPrefs.SetInt("achievemove", 0);
             achievementfunc();
+            PlayerPrefs.SetInt("achievemove", 0);
             if(PlayerPrefs.GetInt("place", 0) == 0)
             {
                 title_obj.SetActive(false);

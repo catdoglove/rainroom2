@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class SeedTime : MonoBehaviour {
 
     public int seed_i,seedWater_i, coldRain_i;
-    public int[] seedCPrice_i;
+    public int[] seedCPrice_i,seedHtPrice_i;
 
     string lastTime;
 
     public GameObject seedWindow_obj, seedYetWindow_obj, needWaterWindow_obj;
     public GameObject seedImg_obj, waterPot_obj;
     public Sprite[] seed_spr, waterPot_spr;
-    public Text seed_txt;
+    public Text seed_txt,seedHt_txt;
 
     public GameObject seedTime_obj;
     
@@ -87,6 +87,7 @@ public class SeedTime : MonoBehaviour {
             if (seedWater_i == seed_i)
             {
                 seed_txt.text = ""+ seedCPrice_i[seed_i-1];
+                seedHt_txt.text = "" + seedHtPrice_i[seed_i - 1];
                 seedWindow_obj.SetActive(true);
             }
             else {
@@ -117,18 +118,28 @@ public class SeedTime : MonoBehaviour {
         {
             string str = PlayerPrefs.GetString("code", "");
             coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
-
+            int ht = PlayerPrefs.GetInt(str + "ht", 0);
             if (coldRain_i >= seedCPrice_i[seed_i - 1])
             {
-                waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
-                coldRain_i = coldRain_i - seedCPrice_i[seed_i - 1];
-                PlayerPrefs.SetInt(str + "c", coldRain_i);
-
-                PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
-                seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
-                seedWater_i++;
-                PlayerPrefs.SetInt("seedWater", seedWater_i);
-                PlayerPrefs.Save();
+                if (ht >= seedHtPrice_i[seed_i - 1])
+                {
+                    waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
+                    coldRain_i = coldRain_i - seedCPrice_i[seed_i - 1];
+                    ht = ht - seedHtPrice_i[seed_i - 1];
+                    PlayerPrefs.SetInt(str + "c", coldRain_i);
+                    PlayerPrefs.SetInt(str + "ht", ht);
+                    PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
+                    seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
+                    seedWater_i++;
+                    PlayerPrefs.SetInt("seedWater", seedWater_i);
+                    PlayerPrefs.Save();
+                }
+                else
+                {
+                    StopCoroutine("toastneedWaterFadeOut");
+                    StartCoroutine("toastneedWaterFadeOut");
+                }
+                
             }
             else
             {

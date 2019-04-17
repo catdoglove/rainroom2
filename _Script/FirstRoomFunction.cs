@@ -319,12 +319,12 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
             case 4:
-                if (heart_i >= 7)
+                if (heart_i >= 8)
                 {
-                    heart_i = heart_i - 7;
+                    heart_i = heart_i - 8;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 9;
+                    point_i = point_i + 11;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[0];
                     int cop = PlayerPrefs.GetInt("coupon1", 0);
@@ -355,12 +355,12 @@ public class FirstRoomFunction : CavasData {
                 }
                 break;
             case 6:
-                if (heart_i >= 7)
+                if (heart_i >= 8)
                 {
-                    heart_i = heart_i - 7;
+                    heart_i = heart_i - 8;
                     PlayerPrefs.SetInt(str1 + "ht", heart_i);
                     point_i = PlayerPrefs.GetInt("lovepoint", 0);
-                    point_i = point_i + 8;
+                    point_i = point_i + 11;
                     BeadalYesF();
                     beadalYesNo_obj.GetComponent<Image>().sprite = beadalYN_spr[1];
                     int cop = PlayerPrefs.GetInt("coupon2", 0);
@@ -431,6 +431,7 @@ public class FirstRoomFunction : CavasData {
         PlayerPrefs.SetFloat("watposx", xx);
         PlayerPrefs.SetFloat("watposy", yy);
 
+        PlayerPrefs.SetInt("dishw", 1);
         GM.GetComponent<GetFadeout>().getRainFade();
         dish_obj.SetActive(false);
         string str = PlayerPrefs.GetString("code", "");

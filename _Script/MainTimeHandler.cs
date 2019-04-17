@@ -98,7 +98,7 @@ public class MainTimeHandler : MonoBehaviour {
 			sec = (int)compareTime.TotalSeconds;
 			sec = sec - (sec / 60) * 60;
 			sec = 59 - sec;
-			minute = 1 - minute;
+			minute = 4 - minute;
 			if (minute < 0) {
 				while (minute < 0) {
 					minute = minute + 1;

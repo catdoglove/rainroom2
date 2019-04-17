@@ -145,7 +145,6 @@ public class MainTime : MonoBehaviour {
         }
         else
         {
-            
             randball1_i = Random.Range(0, 80);
             if (randball1_i == 1)
             {
@@ -172,7 +171,7 @@ public class MainTime : MonoBehaviour {
 	
 
 	
-    //음식시간아랫방에서도 추가할것
+    //배달시간
 	void beadal(){
 		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
 		System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;

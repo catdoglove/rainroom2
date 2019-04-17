@@ -76,9 +76,8 @@ public class MainSticker : MonoBehaviour
         }
         else
         {//EndOfIf
-
+            
         }
-
     }
 
 

@@ -55,10 +55,10 @@ public class SecondRoomTime : MonoBehaviour {
         }
     }
 
-    //음식시간아랫방에서도 추가할것
+    //음식시간아랫방
     void beadal()
     {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("foodLastTime", System.DateTime.Now.ToString()));
+        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("cookLastTime", System.DateTime.Now.ToString()));
         System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
         int sec = (int)compareTime.TotalSeconds;
@@ -71,7 +71,7 @@ public class SecondRoomTime : MonoBehaviour {
         {
             beadalTime_txt.text = "00:00";
             //배달이 온
-            PlayerPrefs.SetInt("beadal", 0);
+            PlayerPrefs.SetInt("cooked", 0);
             PlayerPrefs.Save();
         }
     }

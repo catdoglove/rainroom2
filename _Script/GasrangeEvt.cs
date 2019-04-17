@@ -96,7 +96,7 @@ public class GasrangeEvt : MonoBehaviour {
     
     public void OpenGasrange()
     {
-        if(PlayerPrefs.GetInt("beadal", 0) == 0)
+        if(PlayerPrefs.GetInt("cooked", 0) == 0)
         {
             gasrange_obj.SetActive(true);
             CheckIng();
@@ -194,9 +194,9 @@ public class GasrangeEvt : MonoBehaviour {
             allHeart_txt.text = "" + ht;
             PlayerPrefs.SetInt(str1 + "ht", ht);
             point_i = PlayerPrefs.GetInt("lovepoint", 0) + point_i;
-            PlayerPrefs.SetInt("beadal", 1);
+            PlayerPrefs.SetInt("cooked", 1);
             PlayerPrefs.SetInt("lovepoint", point_i);
-            PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
+            PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
         }
         else
@@ -244,6 +244,7 @@ public class GasrangeEvt : MonoBehaviour {
         float yy = dishBtn_obj.transform.position.y;
         PlayerPrefs.SetFloat("watposx", xx);
         PlayerPrefs.SetFloat("watposy", yy);
+        PlayerPrefs.SetInt("dishw", 1);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         coldRain_i = coldRain_i + 20;

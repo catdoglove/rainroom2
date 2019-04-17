@@ -16,6 +16,7 @@ public class GetFadeout : MonoBehaviour {
 
     Vector2 mouseDragPos;
 
+    public Sprite[] rain_spr;
 
 
     // Use this for initialization
@@ -49,7 +50,10 @@ public class GetFadeout : MonoBehaviour {
 
         wldObjectPos = Camera.main.ScreenToWorldPoint(mouseDragPos);
 
-        
+        if (PlayerPrefs.GetInt("dishw", 0) == 1)
+        {
+            fade_obj.GetComponent<Image>().sprite= rain_spr[1];
+        }
         
         moveY = PlayerPrefs.GetFloat("watposy", 11);
         moveX = PlayerPrefs.GetFloat("watposx", 11);
@@ -69,6 +73,11 @@ public class GetFadeout : MonoBehaviour {
             yield return null;
 		}
         fade_obj.transform.position = new Vector2(15f, 15f);
+        if (PlayerPrefs.GetInt("dishw", 0) == 1)
+        {
+            PlayerPrefs.SetInt("dishw", 0);
+            fade_obj.GetComponent<Image>().sprite = rain_spr[0];
+        }
     }
 
 

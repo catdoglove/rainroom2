@@ -91,6 +91,7 @@ public class MainBtnEvt : CavasData
                 GM2.GetComponent<GasrangeEvt>().Closefood();
                 GM2.GetComponent<GasrangeEvt>().CloseIceBox();
                 GM2.GetComponent<SeedTime>().CloseSeed();
+                GM2.GetComponent<UnityADS>().closeAdYN();
             }
 
         }

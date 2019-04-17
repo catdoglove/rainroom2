@@ -14,13 +14,14 @@ public class AchievementShow : MonoBehaviour {
 
     private void Awake()
     {
+        data = CSVReader.Read("rewardname");
+        infoData = CSVReader.Read("rewardinfo");
         //saveY = achievement_obj.transform.position.y;
     }
 
     // Use this for initialization
     void Start () {
-        data = CSVReader.Read("rewardname");
-        infoData = CSVReader.Read("rewardinfo");
+        
     }
 
     //업적

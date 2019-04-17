@@ -19,9 +19,11 @@ public class secondRoomFunction : CavasData {
     public Sprite[] wall_spr, wall2_spr;
     public GameObject iceBoxBtn_obj;
 
+    //정수기
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
     public Text WaterPurifilerH_txt, WaterPurifilerC_txt;
+    public GameObject hot_obj,cold_obj;
 
     public GameObject needhRain_obj, needcRain_obj, needMore_obj;
 
@@ -206,6 +208,7 @@ public class secondRoomFunction : CavasData {
         hotRain_i = PlayerPrefs.GetInt(str1 + "h", 0);
         if (coldRain_i >= 400)
         {
+            hot_obj.SetActive(true);
             coldRain_i = coldRain_i - 400;
             hotRain_i = hotRain_i + 10;
             PlayerPrefs.SetInt(str1 + "c", coldRain_i);
@@ -231,6 +234,7 @@ public class secondRoomFunction : CavasData {
         hotRain_i = PlayerPrefs.GetInt(str1 + "h", 0);
         if (hotRain_i >= 20)
         {
+            cold_obj.SetActive(true);
             coldRain_i = coldRain_i + 200;
             hotRain_i = hotRain_i - 20;
             PlayerPrefs.SetInt(str1 + "c", coldRain_i);
@@ -246,6 +250,12 @@ public class secondRoomFunction : CavasData {
         }
 
         hotToCold_obj.SetActive(false);
+    }
+
+    public void closeCH()
+    {
+        hot_obj.SetActive(false);
+        cold_obj.SetActive(false);
     }
 
     public void CloseWaterYN()
@@ -445,6 +455,18 @@ public class secondRoomFunction : CavasData {
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
+    }
+    public void GoOutY()
+    {
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        int hp = 20;
+        if(heart_i >= hp)
+        {
+            heart_i = heart_i - hp;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+        }
     }
 
     //업적
