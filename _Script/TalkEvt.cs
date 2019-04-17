@@ -61,6 +61,8 @@ public class TalkEvt : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        loveLv = PlayerPrefs.GetInt("lovelv", 0);
+
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
@@ -141,9 +143,7 @@ public class TalkEvt : MonoBehaviour {
         float fl;
         for (fl = 0; fl <= 40; fl++)
         {
-
-            Debug.Log(fl);
-            if (fl >= 40)
+            if (fl >= 80)
             {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
@@ -152,6 +152,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 else
                 {
+                    charAni.Play("bye");
                     if (loveLv < 2)
                     {
                         exitText.text = "..그래 잘가";
