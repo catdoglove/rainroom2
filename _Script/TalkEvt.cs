@@ -61,8 +61,6 @@ public class TalkEvt : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        loveLv = PlayerPrefs.GetInt("lovelv", 0);
-
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
@@ -141,9 +139,9 @@ public class TalkEvt : MonoBehaviour {
     IEnumerator quitGame()
     {
         float fl;
-        for (fl = 0; fl <= 40; fl++)
+        for (fl = 0; fl <= 300; fl++)
         {
-            if (fl >= 80)
+            if (fl >= 200)
             {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
@@ -152,6 +150,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 else
                 {
+                    loveLv = PlayerPrefs.GetInt("lovelv", 0);
                     charAni.Play("bye");
                     if (loveLv < 2)
                     {
@@ -182,25 +181,15 @@ public class TalkEvt : MonoBehaviour {
                         exitText.text = "즐거웠어 다음에 보자. 친구";
                     }
                 }
-                
+
+            }
+            if (fl == 245)
+            {
+                Application.Quit();
             }
         }
-        Application.Quit();
         yield return new WaitForSeconds(fl);
     }
-    //--------------
-
-    /*
-        if (exCk >= 1 && exCk < 40) {
-        exCk++;
-    } else if (exCk >= 40) {
-        Application.Quit ();
-    } else { 
-
-     */
-
-
-
 
 
     void lovetalk() { //호감도에 또는 사물에 따른 대화
