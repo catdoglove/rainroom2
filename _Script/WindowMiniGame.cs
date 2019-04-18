@@ -18,8 +18,9 @@ public class WindowMiniGame : MonoBehaviour {
     public float moveX, moveY;
 
     //낮밤
-    public GameObject dayLight_obj;
+    public GameObject dayLight_obj,dayRoom_obj,dayWindow_obj;
     public Sprite[] dayLight_spr;
+
 
     // Use this for initialization
     void Start () {
@@ -32,9 +33,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void OpenMiniGame()
     {
-
         System.DateTime time = System.DateTime.Now;
-
         if (time.ToString("tt") == "PM")
         {
             int k = int.Parse(time.ToString("hh"));
@@ -46,11 +45,17 @@ public class WindowMiniGame : MonoBehaviour {
             {
                 //밤
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
+                dayWindow_obj.SetActive(true);
+                dayRoom_obj.SetActive(true);
+                PlayerPrefs.SetInt("dayday",1);
             }
             else
             {
                 //낮
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
+                dayWindow_obj.SetActive(false);
+                dayRoom_obj.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 0);
             }
         }
         else
@@ -59,11 +64,17 @@ public class WindowMiniGame : MonoBehaviour {
             if (k < 6)
             {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
+                dayWindow_obj.SetActive(true);
+                dayRoom_obj.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 1);
             }
             else
             {
                 //낮
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
+                dayRoom_obj.SetActive(false);
+                dayWindow_obj.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 0);
             }
         }
 

@@ -314,8 +314,7 @@ public class TalkEvt : MonoBehaviour {
     {
         falseObject();
         closeTB.SetActive(false);
-        //quesBack.SetActive(true);
-        //여기다가 
+        quesBack.SetActive(true);
         quesStr = " ";
         for (int i = 0; i < testText_cut.Length; i++)
         {
@@ -572,7 +571,7 @@ public class TalkEvt : MonoBehaviour {
 
         talkbtn.SetActive(false);
         quesBtmArea.SetActive(false);
-        //quesBack.SetActive(false);
+        quesBack.SetActive(false);
 
     }
 

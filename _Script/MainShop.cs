@@ -65,10 +65,10 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
-        PlayerPrefs.SetInt(str + "c", 999999);
-        PlayerPrefs.SetInt(str + "h", 99999);
-        PlayerPrefs.SetInt(str + "ht", 999);
-        PlayerPrefs.SetInt("lovelv", 3);
+        //PlayerPrefs.SetInt(str + "c", 999999);
+        //PlayerPrefs.SetInt(str + "h", 99999);
+        //PlayerPrefs.SetInt(str + "ht", 999);
+        //PlayerPrefs.SetInt("lovelv", 3);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -282,12 +282,8 @@ public class MainShop : ShopHandler {
                     GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
                     GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4 + itemLevel_i];
                     break;
-                case 8:
-                    if (PlayerPrefs.GetInt("switchshop", 0) == 0)
-                    {
-                        PlayerPrefs.SetInt("switchshop", 1);
-
-                    }
+                case 6:
+                    
                     break;                
             }
         }
@@ -298,11 +294,6 @@ public class MainShop : ShopHandler {
                 case 6:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[13].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
-                    if(PlayerPrefs.GetInt("switchshop", 0) == 0)
-                    {
-                        PlayerPrefs.SetInt("switchshop", 1);
-
-                    }
                     break;
                 case 7:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().window_spr[itemLevel_i];
@@ -359,6 +350,14 @@ public class MainShop : ShopHandler {
 
             if (hotRainPrice_i == 0 && coldRainPrice_i == 0)
             {
+                if (itemIndex_i == 6)
+                {
+                    if (PlayerPrefs.GetInt("switchshop", 0) == 0)
+                    {
+                        PlayerPrefs.SetInt("switchshop", 1);
+
+                    }
+                }
                 itemName_str = shopItems_btn[i].name;
                 itemLevel_i = PlayerPrefs.GetInt(itemName_str + "lv", 0);
                 levels_txt[i].text = "" + data_itemName[itemLevel_i][itemName_str];

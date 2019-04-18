@@ -78,6 +78,8 @@ public class FirstRoomFunction : CavasData {
 
     public GameObject GM;
 
+    //밤
+    public GameObject dayRoom;
 
 
     //타이틀닫기
@@ -161,6 +163,12 @@ public class FirstRoomFunction : CavasData {
             ladderBox_obj.SetActive(true);
         }
         setItems();
+
+        //낮밤
+        if(PlayerPrefs.GetInt("dayday", 0) == 1)
+        {
+            dayRoom.SetActive(true);
+        }
     }
 
     public void setItems()

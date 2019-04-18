@@ -226,61 +226,85 @@ public class MainBtnEvt : CavasData
     /// 메뉴를펼쳐준다
     /// </summary>
     public void showButtons(){
-		allClose ();
-		if (MainBtn_obj [0].activeSelf == true) {
-            StopCoroutine("menuFlowBack");
-            StartCoroutine("menuFlow");
-            MainBtn_obj[0].SetActive(false);
-        } else {
-            StopCoroutine("menuFlow");
-            StartCoroutine("menuFlowBack");
-            MainBtn_obj[0].SetActive(true);
+        if(PlayerPrefs.GetInt("achievemove", 0) == 0)
+        {
+            allClose();
+            if (MainBtn_obj[0].activeSelf == true)
+            {
+                StopCoroutine("menuFlowBack");
+                StartCoroutine("menuFlow");
+                MainBtn_obj[0].SetActive(false);
+            }
+            else
+            {
+                StopCoroutine("menuFlow");
+                StartCoroutine("menuFlowBack");
+                MainBtn_obj[0].SetActive(true);
+            }
         }
 	}
 
 	public void openInfoWindow(){
-		if (MainWindow_obj [0].activeSelf == true) {
-			MainWindow_obj [0].SetActive (false);
-			MainWindow_obj [3].SetActive (false);
-            if (PlayerPrefs.GetInt("infohelpfirst", 0) == 0)
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
+        {
+            if (MainWindow_obj[0].activeSelf == true)
             {
-                OpenHelpInfo();
-                PlayerPrefs.SetInt("infohelpfirst", 1);
+                MainWindow_obj[0].SetActive(false);
+                MainWindow_obj[3].SetActive(false);
+                if (PlayerPrefs.GetInt("infohelpfirst", 0) == 0)
+                {
+                    OpenHelpInfo();
+                    PlayerPrefs.SetInt("infohelpfirst", 1);
+                }
             }
-        } else {
-			allClose ();
-            windowsOpen();
-            MainWindow_obj [0].SetActive (true);
-			MainWindow_obj [3].SetActive (true);
-		}
+            else
+            {
+                allClose();
+                windowsOpen();
+                MainWindow_obj[0].SetActive(true);
+                MainWindow_obj[3].SetActive(true);
+            }
+        }
 	}
 	public void openShopWindow(){
-		if (MainWindow_obj [1].activeSelf == true) {
-			MainWindow_obj [1].SetActive (false);
-            if (PlayerPrefs.GetInt("shophelpfirst", 0) == 0)
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
+        {
+            if (MainWindow_obj[1].activeSelf == true)
             {
-                OpenHelpShop();
-                PlayerPrefs.SetInt("shophelpfirst", 1);
+                MainWindow_obj[1].SetActive(false);
+                if (PlayerPrefs.GetInt("shophelpfirst", 0) == 0)
+                {
+                    OpenHelpShop();
+                    PlayerPrefs.SetInt("shophelpfirst", 1);
+                }
             }
-        } else {
-			allClose ();
-            windowsOpen();
-            MainWindow_obj [1].SetActive (true);
-		}
+            else
+            {
+                allClose();
+                windowsOpen();
+                MainWindow_obj[1].SetActive(true);
+            }
+        }
 	}
 	public void openOptionWindow(){
-		if (MainWindow_obj [2].activeSelf == true) {
-			MainWindow_obj [2].SetActive (false);
-            if (PlayerPrefs.GetInt("optionhelpfirst", 0) == 0)
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
+        {
+            if (MainWindow_obj[2].activeSelf == true)
             {
-                OpenHelpOption();
-                PlayerPrefs.SetInt("optionhelpfirst", 1);
+                MainWindow_obj[2].SetActive(false);
+                if (PlayerPrefs.GetInt("optionhelpfirst", 0) == 0)
+                {
+                    OpenHelpOption();
+                    PlayerPrefs.SetInt("optionhelpfirst", 1);
+                }
             }
-        } else {
-			allClose ();
-            windowsOpen();
-            MainWindow_obj [2].SetActive (true);
-		}
+            else
+            {
+                allClose();
+                windowsOpen();
+                MainWindow_obj[2].SetActive(true);
+            }
+        }
 	}
 	public void allClose(){
 		MainWindow_obj[0].SetActive(false);
@@ -348,25 +372,35 @@ public class MainBtnEvt : CavasData
 
     public void Sight()
     {
-        if (PlayerPrefs.GetInt("place", 0) == 1)
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
-            if (GM2 == null)
+            if (PlayerPrefs.GetInt("place", 0) == 1)
             {
-                GM2 = GameObject.FindGameObjectWithTag("GM2");
+                if (GM2 == null)
+                {
+                    GM2 = GameObject.FindGameObjectWithTag("GM2");
+                }
+                GM2.GetComponent<secondRoomFunction>().changeSight();
+                GM2.GetComponent<secondRoomFunction>().characterTurn();
+                if (PlayerPrefs.GetInt("dayday", 0) == 1)
+                {
+                    GM2.GetComponent<secondRoomFunction>().dayRoom.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
-            GM2.GetComponent<secondRoomFunction>().changeSight();
-            GM2.GetComponent<secondRoomFunction>().characterTurn();
-        }
-        else if(PlayerPrefs.GetInt("place", 0) == 0)
-        {
-            if (GM == null)
+            else if (PlayerPrefs.GetInt("place", 0) == 0)
             {
-                GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                if (GM == null)
+                {
+                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                }
+                GM.GetComponent<FirstRoomFunction>().changeSight();
+                GM.GetComponent<FirstRoomFunction>().characterTurn();
+                if (PlayerPrefs.GetInt("dayday", 0) == 1)
+                {
+                    GM.GetComponent<FirstRoomFunction>().dayRoom.transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
             }
-            GM.GetComponent<FirstRoomFunction>().changeSight();
-            GM.GetComponent<FirstRoomFunction>().characterTurn();
         }
-        
     }
     
     IEnumerator menuFlow()

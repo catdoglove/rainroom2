@@ -60,6 +60,8 @@ public class secondRoomFunction : CavasData {
     public GameObject goOutWindow_obj;
 
     public GameObject GM2;
+    //밤
+    public GameObject dayRoom;
 
     // Use this for initialization
     void Start ()
@@ -166,6 +168,11 @@ public class secondRoomFunction : CavasData {
         else
         {
             umb_obj.SetActive(false);
+        }
+        //낮밤
+        if (PlayerPrefs.GetInt("dayday", 0) == 1)
+        {
+            dayRoom.SetActive(true);
         }
     }
 
