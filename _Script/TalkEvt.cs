@@ -534,6 +534,14 @@ public class TalkEvt : MonoBehaviour {
         closeTB.GetComponent<Button>().interactable = false;
     }
 
+    public void closeExitBoon()
+    {
+        exitTalkBalln.SetActive(false);
+    }
+
+
+    
+
 
     //대화횟수차감
     public void countTalk()
