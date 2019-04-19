@@ -73,7 +73,7 @@ public class WindowMiniGame : MonoBehaviour {
                 //낮
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
                 dayRoom_obj.SetActive(false);
-                dayWindow_obj.SetActive(true);
+                dayWindow_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }

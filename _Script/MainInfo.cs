@@ -90,9 +90,7 @@ public class MainInfo : MonoBehaviour {
         helpBtn_obj.SetActive(true);
     }
 
-
-
-
+    
 	IEnumerator turning(){
 		rect_scl = infoWindow_obj.transform.localScale;
 
@@ -102,10 +100,8 @@ public class MainInfo : MonoBehaviour {
 				yield return null;
 			}
 		StartCoroutine ("backTurning");
-
 	}
-
-
+    
 	IEnumerator backTurning(){
 		backRect_scl = infoBackWindow_obj.transform.localScale;
 
@@ -115,9 +111,10 @@ public class MainInfo : MonoBehaviour {
             infoBackWindow_obj.transform.localScale = backRect_scl;
             yield return null;
         }
-	}
+        infoBackWindow_obj.SetActive(false);
+        infoBackWindow_obj.SetActive(true);
 
-
+    }
 
 	IEnumerator turning2(){
 		rect_scl = infoWindow_obj.transform.localScale;
@@ -131,7 +128,10 @@ public class MainInfo : MonoBehaviour {
 		rect_scl.x = 1f;
 		infoWindow_obj.transform.localScale = rect_scl;
 
-	}
+        infoWindow_obj.SetActive(false);
+        infoWindow_obj.SetActive(true);
+
+    }
 
 
 	IEnumerator backTurning2(){

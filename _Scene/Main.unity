@@ -17195,6 +17195,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 590788916}
   m_CullTransparentMesh: 0
+--- !u!1 &593589660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593589663}
+  - component: {fileID: 593589662}
+  - component: {fileID: 593589661}
+  m_Layer: 0
+  m_Name: "\uBCC4\uB4E4"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &593589661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 593589660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 916d451e41b9b674baffd659fa568599, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &593589662
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 593589660}
+  m_CullTransparentMesh: 0
+--- !u!224 &593589663
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 593589660}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1437834245}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.9, y: 150}
+  m_SizeDelta: {x: 1280, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &595220326
 GameObject:
   m_ObjectHideFlags: 0
@@ -29683,7 +29752,7 @@ RectTransform:
   m_Children:
   - {fileID: 1485673494}
   m_Father: {fileID: 1437834245}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -44655,6 +44724,7 @@ RectTransform:
   - {fileID: 1352235229}
   - {fileID: 1110019556}
   - {fileID: 1576930905}
+  - {fileID: 593589663}
   - {fileID: 1548980980}
   - {fileID: 958673801}
   m_Father: {fileID: 1781705875}
@@ -47960,7 +48030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1548980980
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47972,7 +48042,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1437834245}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48017,7 +48087,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1548980982}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128228833}
+        m_MethodName: TurnOnSwitch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1548980982
@@ -61158,7 +61239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1961590869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65541,8 +65622,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sleepWindow_obj: {fileID: 100173637}
   sleepBlind_obj: {fileID: 1437834244}
-  sleepLight_obj: {fileID: 0}
-  sleepStar_obj: {fileID: 0}
   sleepGone_obj: {fileID: 1428259747}
   sleepTime_txt: {fileID: 1576930906}
   minute: 0
@@ -65562,6 +65641,11 @@ MonoBehaviour:
   - {fileID: 1094033788}
   diary_today: {fileID: 432300454}
   diary_dream: {fileID: 1088671673}
+  stars_obj: {fileID: 593589660}
+  switchBtn_obj: {fileID: 1548980979}
+  switch_spr:
+  - {fileID: 21300002, guid: 052e2cf1f54675e40935d63ab23a784f, type: 3}
+  - {fileID: 21300000, guid: 052e2cf1f54675e40935d63ab23a784f, type: 3}
 --- !u!114 &2128228834
 MonoBehaviour:
   m_ObjectHideFlags: 0

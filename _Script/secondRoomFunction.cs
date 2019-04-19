@@ -16,6 +16,7 @@ public class secondRoomFunction : CavasData {
 	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
     public GameObject wallImg_obj, wallImg2_obj;
     public GameObject switch_obj;
+    public Sprite[] switch_spr;
     public Sprite[] wall_spr, wall2_spr;
     public GameObject iceBoxBtn_obj;
 
@@ -62,6 +63,7 @@ public class secondRoomFunction : CavasData {
     public GameObject GM2;
     //밤
     public GameObject dayRoom;
+    public Sprite[] day_spr;
 
     // Use this for initialization
     void Start ()
@@ -134,6 +136,11 @@ public class secondRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("switchshop", 0) == 2)
         {
             switch_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("lightover", 0) == 1)
+            {
+                switch_obj.GetComponent<Image>().sprite = switch_spr[1];
+            }
+
         }
         //박스
         if (PlayerPrefs.GetInt("iceboxbox", 0) == 10)
@@ -174,6 +181,29 @@ public class secondRoomFunction : CavasData {
         {
             dayRoom.SetActive(true);
         }
+    }
+    /// <summary>
+    /// 단칸방 스위치 켜기
+    /// </summary>
+    public void TurnOnSwitch()
+    {
+        if (PlayerPrefs.GetInt("lightover", 0)==1)
+        {
+            //꺼짐
+            dayRoom.GetComponent<Image>().sprite = day_spr[0];
+            switch_obj.GetComponent<Image>().sprite = switch_spr[0];
+            PlayerPrefs.SetInt("lightover", 0);
+        }
+        else
+        {
+            //켜짐
+            dayRoom.GetComponent<Image>().sprite = day_spr[1];
+            
+            switch_obj.GetComponent<Image>().sprite = switch_spr[1];
+            PlayerPrefs.SetInt("lightover", 1);
+        }
+        
+        
     }
 
 

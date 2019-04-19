@@ -7,7 +7,7 @@ using System.Linq; //랜덤필
 public class SleepTime : MonoBehaviour {
 
     //잠
-    public GameObject sleepWindow_obj, sleepBlind_obj, sleepLight_obj, sleepStar_obj,sleepGone_obj;
+    public GameObject sleepWindow_obj, sleepBlind_obj,sleepGone_obj;
     public Text sleepTime_txt;
     public int minute, hours;
     string lastTime;
@@ -31,6 +31,11 @@ public class SleepTime : MonoBehaviour {
     public GameObject[] diary_obj;
     public Text diary_today, diary_dream; //선언 및 보여질
 
+    //스위치 별
+    public GameObject stars_obj;
+    public GameObject switchBtn_obj;
+    public Sprite[] switch_spr;
+
 
     // Use this for initialization
     void Start () {
@@ -41,6 +46,15 @@ public class SleepTime : MonoBehaviour {
             sleepBlind_obj.SetActive(true);
             sleep_obj[n-1].SetActive(true);
             sleepGone_obj.SetActive(false);
+            if(PlayerPrefs.GetInt("switchshop", 0) == 2)
+            {
+                switchBtn_obj.SetActive(true);
+            }
+            if(PlayerPrefs.GetInt("starsover", 0) == 1)
+            {
+                stars_obj.SetActive(true);
+                switchBtn_obj.GetComponent<Image>().sprite = switch_spr[1];
+            }
         }
         else
         {
@@ -49,6 +63,25 @@ public class SleepTime : MonoBehaviour {
 
 
         data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
+
+    }
+
+    public void TurnOnSwitch()
+    {
+        if (stars_obj.activeSelf == true)
+        {
+            //꺼짐
+            stars_obj.SetActive(false);
+            switchBtn_obj.GetComponent<Image>().sprite = switch_spr[0];
+            PlayerPrefs.SetInt("starsover", 0);
+        }
+        else
+        {
+            //켜짐
+            stars_obj.SetActive(true);
+            switchBtn_obj.GetComponent<Image>().sprite = switch_spr[1];
+            PlayerPrefs.SetInt("starsover", 1);
+        }
 
     }
 
@@ -124,6 +157,10 @@ public class SleepTime : MonoBehaviour {
         sleepGone_obj.SetActive(false);
         dreamBtn_obj.SetActive(false);
         PlayerPrefs.Save();
+        if (PlayerPrefs.GetInt("switchshop", 0) == 2)
+        {
+            switchBtn_obj.SetActive(true);
+        }
     }
 
     void SleepTimeFlow()
