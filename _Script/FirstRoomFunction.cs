@@ -165,10 +165,7 @@ public class FirstRoomFunction : CavasData {
         setItems();
 
         //낮밤
-        if(PlayerPrefs.GetInt("dayday", 0) == 1)
-        {
-            dayRoom.SetActive(true);
-        }
+        setDay();
     }
 
     public void setItems()
@@ -866,5 +863,48 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
+
+    public void setDay()
+    {
+        System.DateTime time = System.DateTime.Now;
+        if (time.ToString("tt") == "PM")
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k >= 6)
+            {
+                dayRoom.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
+        else
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k < 6)
+            {
+                dayRoom.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
+    }
 
 }

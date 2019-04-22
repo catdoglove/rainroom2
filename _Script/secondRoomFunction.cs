@@ -177,10 +177,7 @@ public class secondRoomFunction : CavasData {
             umb_obj.SetActive(false);
         }
         //낮밤
-        if (PlayerPrefs.GetInt("dayday", 0) == 1)
-        {
-            dayRoom.SetActive(true);
-        }
+        setDay();
     }
     /// <summary>
     /// 단칸방 스위치 켜기
@@ -527,6 +524,57 @@ public class secondRoomFunction : CavasData {
         {
             PlayerPrefs.SetInt("boxst", 1);
             GM2.GetComponent<AchievementShow>().achievementCheck(1, 0);
+        }
+    }
+
+    //낮밤
+    public void setDay()
+    {
+        System.DateTime time = System.DateTime.Now;
+        if (time.ToString("tt") == "PM")
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k >= 6)
+            {
+                dayRoom.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
+        else
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k < 6)
+            {
+                dayRoom.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
+
+        if (PlayerPrefs.GetInt("lightover", 0) == 1)
+        {
+            //켜짐
+            dayRoom.GetComponent<Image>().sprite = day_spr[1];
+            switch_obj.GetComponent<Image>().sprite = switch_spr[1];
         }
     }
 }
