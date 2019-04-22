@@ -50,7 +50,7 @@ public class TalkEvt : MonoBehaviour {
     public GameObject firstGM;
 
     //나가기
-    public GameObject exitTalkBalln;
+    public GameObject exitTalkBalln, closeTB_exit;
     public Text exitText;
     int exCk = 0;
     //종료
@@ -87,6 +87,7 @@ public class TalkEvt : MonoBehaviour {
             {
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
+                closeTB_exit.SetActive(true);
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
                     talkCursor.SetActive(false);
@@ -124,6 +125,7 @@ public class TalkEvt : MonoBehaviour {
         else if (cnt_exit == 250)
         {
             exitTalkBalln.SetActive(false);
+            closeTB_exit.SetActive(false);
             exit_int = 0;
             cnt_exit = 0;
         }
@@ -537,6 +539,7 @@ public class TalkEvt : MonoBehaviour {
     public void closeExitBoon()
     {
         exitTalkBalln.SetActive(false);
+        closeTB_exit.SetActive(false);
     }
 
 
@@ -1063,4 +1066,5 @@ public class TalkEvt : MonoBehaviour {
         }
         leveUpToast_obj.SetActive(false);
     }
+    
 }

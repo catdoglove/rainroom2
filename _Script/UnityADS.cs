@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.UI;
 
 public class UnityADS : MonoBehaviour {
 
@@ -11,11 +12,15 @@ public class UnityADS : MonoBehaviour {
 
 	int sG,mG;
     int sG2, mG2;
+   
+    Color color;
+    public GameObject Toast_obj;
 
     // Use this for initialization
     void Start () {
-        
-        if(PlayerPrefs.GetInt("place", 1) == 1)
+        color = new Color(1f, 1f, 1f);
+
+        if (PlayerPrefs.GetInt("place", 1) == 1)
         {
             StartCoroutine("adTimeFlow2");
             StartCoroutine("adAniTime2");
@@ -44,6 +49,7 @@ public class UnityADS : MonoBehaviour {
         }
         else
         {
+            StartCoroutine("ToastImgFadeOut");
         }
     }
 
@@ -171,5 +177,22 @@ public class UnityADS : MonoBehaviour {
             yield return null;
         }
 
+    }
+
+
+
+    IEnumerator ToastImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        Toast_obj.GetComponent<Image>().color = color;
+        Toast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            Toast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        Toast_obj.SetActive(false);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using UnityEngine.UI;
 
 public class AdmobADS : MonoBehaviour {
 
@@ -14,14 +15,16 @@ public class AdmobADS : MonoBehaviour {
     string adUnitIdvideo;
     
     int rewardCoin;
-    
+    Color color;
+    public GameObject Toast_obj;
+
 
     // Use this for initialization
     void Start () {
-        
+        color = new Color(1f, 1f, 1f);
 
 #if UNITY_ANDROID
-            string appId = "ca-app-pub-3940256099942544~3347511713";
+        string appId = "ca-app-pub-3940256099942544~3347511713";
 #elif UNITY_IPHONE
             string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
@@ -104,7 +107,7 @@ public class AdmobADS : MonoBehaviour {
         }
         else
         {
-
+            StartCoroutine("ToastImgFadeOut");
         }
     }
     
@@ -113,6 +116,22 @@ public class AdmobADS : MonoBehaviour {
     public void callBanner()
     {
         this.RequestBanner();
+    }
+
+    
+    IEnumerator ToastImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        Toast_obj.GetComponent<Image>().color = color;
+        Toast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            Toast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        Toast_obj.SetActive(false);
     }
 
 
