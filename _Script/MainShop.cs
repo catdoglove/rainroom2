@@ -65,9 +65,9 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
-        //PlayerPrefs.SetInt(str + "c", 999999);
-       // PlayerPrefs.SetInt(str + "h", 99999);
-       // PlayerPrefs.SetInt(str + "ht", 999);
+        //PlayerPrefs.SetInt(str + "c", 1000);
+        //PlayerPrefs.SetInt(str + "h", 100);
+        //PlayerPrefs.SetInt(str + "ht", 5);
         //PlayerPrefs.SetInt("lovelv", 3);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);

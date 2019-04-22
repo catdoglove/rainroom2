@@ -50,31 +50,42 @@ public class MainTimeHandler : MonoBehaviour {
 		//1분당1씩줍니다
 		getRain = (int)compareTimem .TotalMinutes;
 
-		//최초실행
-		//if(PlayerPrefs.GetInt("coin",-1)==-1&&getRain>20000){
-		//	getRain = 0;
-		//}
-		//부정행위방지
-		if (getRain>36000) {//5일치 이상 모았을때
-			if (getRain > 100000) {//2주일 되었을 때
-				getRain = 0;
-				//warningTxt.text = "빗물이 너무 모여 물탱크가 터져버렸다."+"\n겨우 수리했다.";
-				//warningBtn.SetActive(true);
-			} else {
-				getRain = 36000; //물탱크가 꽉 찼다
-				//warningTxt.text = "장기간 방치로 인해 물탱크기능이 멈췄다."+"\n이제 작동한다.";
-				//warningBtn.SetActive(true);
-			}
-		}else if(getRain<0){
-            //경고 물이 마이너스 됐을때 일단 0으로 만들어준다
-            getRain = 0;
-		}
+        //최초실행
+        //if(PlayerPrefs.GetInt("coin",-1)==-1&&getRain>20000){
+        //	getRain = 0;
+        //}
+        //부정행위방지
+        if (getRain > 36000)
+        {//5일치 이상 모았을때
+            if (getRain > 100000)
+            {//2주일 되었을 때
+                getRain = 0;
+                //warningTxt.text = "빗물이 너무 모여 물탱크가 터져버렸다."+"\n겨우 수리했다.";
+                //warningBtn.SetActive(true);
+            }
+            else
+            {
+                getRain = 36000; //물탱크가 꽉 찼다
+                                 //warningTxt.text = "장기간 방치로 인해 물탱크기능이 멈췄다."+"\n이제 작동한다.";
+                                 //warningBtn.SetActive(true);
+            }
+        }
+        else if (getRain < 0)
+        {
+        }
 
         coldRain_i = coldRain_i + getRain;
 		PlayerPrefs.SetInt (str + "c", coldRain_i);
 		//rainNum.text = coldRain_i.ToString();
 		PlayerPrefs.SetString("lastTime",dateTimenow.ToString());
 		PlayerPrefs.Save ();
+
+        //빗물이 마이너스일때
+        if (coldRain_i<0)
+        {
+            PlayerPrefs.SetInt(str + "c", 0);
+            PlayerPrefs.Save();
+        }
 		
 	}
 
