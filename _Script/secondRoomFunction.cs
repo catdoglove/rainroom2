@@ -61,14 +61,17 @@ public class secondRoomFunction : CavasData {
     public GameObject goOutWindow_obj;
 
     public GameObject GM2;
+
     //밤
     public GameObject dayRoom;
     public Sprite[] day_spr;
-
+    public GameObject switchToast_obj;
+    Color colorS;
     // Use this for initialization
     void Start ()
     {
         color = new Color(1f, 1f, 1f);
+        colorS = new Color(1f, 1f, 1f);
         //씬이동
         if (menuBlock_obj == null)
         {
@@ -184,21 +187,32 @@ public class secondRoomFunction : CavasData {
     /// </summary>
     public void TurnOnSwitch()
     {
-        if (PlayerPrefs.GetInt("lightover", 0)==1)
+        if (PlayerPrefs.GetInt("dayday", 0) == 1)
         {
-            //꺼짐
-            dayRoom.GetComponent<Image>().sprite = day_spr[0];
-            switch_obj.GetComponent<Image>().sprite = switch_spr[0];
-            PlayerPrefs.SetInt("lightover", 0);
+            //밤
+            if (PlayerPrefs.GetInt("lightover", 0) == 1)
+            {
+                //꺼짐
+                dayRoom.GetComponent<Image>().sprite = day_spr[0];
+                switch_obj.GetComponent<Image>().sprite = switch_spr[0];
+                PlayerPrefs.SetInt("lightover", 0);
+            }
+            else
+            {
+                //켜짐
+                dayRoom.GetComponent<Image>().sprite = day_spr[1];
+
+                switch_obj.GetComponent<Image>().sprite = switch_spr[1];
+                PlayerPrefs.SetInt("lightover", 1);
+            }
         }
         else
         {
-            //켜짐
-            dayRoom.GetComponent<Image>().sprite = day_spr[1];
-            
-            switch_obj.GetComponent<Image>().sprite = switch_spr[1];
-            PlayerPrefs.SetInt("lightover", 1);
+            //낮
+            StopCoroutine("SwitchToastFadeOut");
+            StartCoroutine("SwitchToastFadeOut");
         }
+        
         
         
     }
@@ -423,6 +437,22 @@ public class secondRoomFunction : CavasData {
         needToast_obj.SetActive(false);
     }
 
+    //스위치토스트페이드아웃
+    IEnumerator SwitchToastFadeOut()
+    {
+        colorS.a = Mathf.Lerp(0f, 1f, 1f);
+        switchToast_obj.GetComponent<Image>().color = colorS;
+        switchToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorS.a = Mathf.Lerp(0f, 1f, i);
+            switchToast_obj.GetComponent<Image>().color = colorS;
+            yield return null;
+        }
+        switchToast_obj.SetActive(false);
+    }
+
     public void boxClose()
     {
         boxClean_obj.SetActive(false);
@@ -465,10 +495,12 @@ public class secondRoomFunction : CavasData {
         if (character_obj.transform.rotation.y == 0)
         {
             character_obj.transform.rotation = new Quaternion(0, 180, 0, 0);
+            //dayRoom.transform.rotation = new Quaternion(0, 180, 0, 0);
         }
         else
         {
             character_obj.transform.rotation = new Quaternion(0, 0, 0, 0);
+            //dayRoom.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
 

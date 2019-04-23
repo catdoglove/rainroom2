@@ -453,6 +453,7 @@ public class MainShop : ShopHandler {
             funcImgs_obj[1].GetComponent<Image>().sprite = funcImg_spr[1];
             funcPrice_obj[2].SetActive(true);
             funcPrice_obj[3].SetActive(false);
+            functionTape_obj[4].SetActive(false);
         }
         else if (waterCan_i == 0)
         {

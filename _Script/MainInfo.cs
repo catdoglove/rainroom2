@@ -35,6 +35,8 @@ public class MainInfo : MonoBehaviour {
     public Text nickname_txt, InputField_txt, nickYN_txt;
     public InputField InputField;
     public GameObject nickBtn_obj;
+    //마음
+    public Text h_txt;
 
     // Use this for initialization
     void Start () {
@@ -65,6 +67,9 @@ public class MainInfo : MonoBehaviour {
         {
             nickBtn_obj.SetActive(false);
         }
+        //마음
+        string str = PlayerPrefs.GetString("code", "");
+        h_txt.text = "" + PlayerPrefs.GetInt(str + "ht", 0);
     }
 
 

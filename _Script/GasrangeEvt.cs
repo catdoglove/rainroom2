@@ -33,10 +33,13 @@ public class GasrangeEvt : MonoBehaviour {
     int point_i;
     public GameObject dishBtn_obj;
 
+    Color colorC;
+    public GameObject cookHToast_obj;
 
     // Use this for initialization
     void Start () {
         colorB = new Color(1f, 1f, 1f);
+        colorC = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
     }
@@ -201,7 +204,8 @@ public class GasrangeEvt : MonoBehaviour {
         }
         else
         {
-
+            StopCoroutine("cookToastFadeOut");
+            StartCoroutine("cookToastFadeOut");
         }
         
     }
@@ -417,4 +421,20 @@ public class GasrangeEvt : MonoBehaviour {
         PlayerPrefs.Save();
     }
 
+
+    //요리마음부족토스트페이드아웃
+    IEnumerator cookToastFadeOut()
+    {
+        colorC.a = Mathf.Lerp(0f, 1f, 1f);
+        cookHToast_obj.GetComponent<Image>().color = colorC;
+        cookHToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorC.a = Mathf.Lerp(0f, 1f, i);
+            cookHToast_obj.GetComponent<Image>().color = colorC;
+            yield return null;
+        }
+        cookHToast_obj.SetActive(false);
+    }
 }

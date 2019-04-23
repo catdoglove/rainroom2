@@ -382,10 +382,6 @@ public class MainBtnEvt : CavasData
                 }
                 GM2.GetComponent<secondRoomFunction>().changeSight();
                 GM2.GetComponent<secondRoomFunction>().characterTurn();
-                if (PlayerPrefs.GetInt("dayday", 0) == 1)
-                {
-                    
-                }
             }
             else if (PlayerPrefs.GetInt("place", 0) == 0)
             {
@@ -395,10 +391,6 @@ public class MainBtnEvt : CavasData
                 }
                 GM.GetComponent<FirstRoomFunction>().changeSight();
                 GM.GetComponent<FirstRoomFunction>().characterTurn();
-                if (PlayerPrefs.GetInt("dayday", 0) == 1)
-                {
-                    
-                }
             }
         }
     }
