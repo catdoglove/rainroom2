@@ -153,7 +153,9 @@ public class TalkEvt : MonoBehaviour {
                 else
                 {
                     loveLv = PlayerPrefs.GetInt("lovelv", 0);
-                    charAni.Play("bye");
+
+                    if (loveLv >= 3) { charAni.Play("bye"); }
+
                     if (loveLv < 2)
                     {
                         exitText.text = "..그래 잘가";
