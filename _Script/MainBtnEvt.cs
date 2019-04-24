@@ -19,9 +19,11 @@ public class MainBtnEvt : CavasData
     public GameObject GM, GM2,GMtag;
 
     //문장속도
-    float speedF = 0.05f;
+    float speedF = 0.06f;
     public Text tspeed_txt;
     public GameObject speed_obj, speed_toast;
+    public GameObject [] speedBtn;
+    public Sprite[] speedbtnCK;
 
     //닫을때같이닫는것
     public GameObject YN_obj;
@@ -111,7 +113,8 @@ public class MainBtnEvt : CavasData
 
     // Use this for initialization
     void Start () {
-        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.06f);
+        speedBtnCKFunction(PlayerPrefs.GetInt("speedTalkCheck", 0));
 
         if (GM == null)
         {
@@ -435,7 +438,7 @@ public class MainBtnEvt : CavasData
 
     public void TalkSpeedNor()
     {
-        speedF = 0.05f;
+        speedF = 0.06f;
         StartCoroutine("closeToast");
     }
 
@@ -461,14 +464,19 @@ public class MainBtnEvt : CavasData
         if (speedF == 0.03f)
         {
             tspeed_txt.text = "대화 속도 '빠름'으로 변경";
+            speedBtnCKFunction(3);
         }
-        else if (speedF == 0.05f)
+        else if (speedF == 0.06f)
         {
             tspeed_txt.text = "대화 속도 '보통'으로 변경";
+            speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[1];
+            speedBtnCKFunction(5);
         }
         else if (speedF == 0.08f)
         {
             tspeed_txt.text = "대화 속도 '느림'으로 변경";
+            speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[0];
+            speedBtnCKFunction(8);
         }
 
         speed_obj.SetActive(false);
@@ -508,6 +516,38 @@ public class MainBtnEvt : CavasData
     public void OpenHelpf()
     {
         helpfrist_obj.SetActive(true);
+    }
+
+
+    void speedBtnCKFunction(int speedF)
+    {
+        int sf = speedF;
+        switch (sf)
+        {//0,1,2 - 3,4,5
+            //느림
+            case 8:
+                speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[0];
+                speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[4];
+                speedBtn[2].GetComponent<Image>().sprite = speedbtnCK[5];
+                break;
+                
+            //보통
+            case 5:
+                speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[3];
+                speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[1];
+                speedBtn[2].GetComponent<Image>().sprite = speedbtnCK[5];
+                break;
+            
+            //빠름
+            case 3:
+                speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[3];
+                speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[4];
+                speedBtn[2].GetComponent<Image>().sprite = speedbtnCK[2];
+                break;
+
+        }
+
+        PlayerPrefs.SetInt("speedTalkCheck", sf);
     }
 
 }
