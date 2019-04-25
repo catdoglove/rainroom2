@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SoundHandler : MonoBehaviour {
 
     public Slider BGM_sld, SE_sld, BGS_sld;
-    public AudioSource BGM,BGS,SE;
+    public AudioSource BGM,BGS,SE,SE_2;
     float BGMVol_f, BGSVol_f, SEVol_f;
 
     public GameObject audio_obj; 
@@ -47,6 +47,7 @@ public class SoundHandler : MonoBehaviour {
         SE.volume = SE_sld.value;
         SEVol_f = SE_sld.value;
         PlayerPrefs.SetFloat("se", SEVol_f);
+        SE_2.volume = SE_sld.value;
     }
 
     public void OnLoadSound()

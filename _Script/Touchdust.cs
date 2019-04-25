@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Touchdust : MonoBehaviour {
 	public GameObject GM;
+    public GameObject audio_obj;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +30,8 @@ public class Touchdust : MonoBehaviour {
 			GM.GetComponent<SecondRoomTime> ().randDust2_i = 0;
 			gameObject.transform.position = new Vector3 (10f, -4f, gameObject.transform.position.z);
 		}
-
-		str = PlayerPrefs.GetString ("code", "");
+        audio_obj.GetComponent<SoundEvt>().spiderSound();
+        str = PlayerPrefs.GetString ("code", "");
 		int coldRain_i = PlayerPrefs.GetInt (str+"c", 0);
 		int hotRain_i = PlayerPrefs.GetInt (str+"h", 0);
 		coldRain_i = coldRain_i + 5;

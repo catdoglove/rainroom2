@@ -36,6 +36,8 @@ public class GasrangeEvt : MonoBehaviour {
     Color colorC;
     public GameObject cookHToast_obj;
 
+    public GameObject audio_obj;
+
     // Use this for initialization
     void Start () {
         colorB = new Color(1f, 1f, 1f);
@@ -201,6 +203,8 @@ public class GasrangeEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", point_i);
             PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
+
+            audio_obj.GetComponent<SoundEvt>().cookSound();
         }
         else
         {

@@ -33,10 +33,11 @@ public class secondRoomFunction : CavasData {
     public GameObject seedBox_obj,iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj,doorBox_obj;
     public GameObject boxClean_obj;
     public string boxName_str;
+    public GameObject Audio_obj;
 
     public GameObject close_obj;
-
     public GameObject umb_obj;
+
 
     //물부족창
     public GameObject needToast_obj;
@@ -264,6 +265,7 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.Save();
             WaterPurifilerC_txt.text = "" + coldRain_i;
             WaterPurifilerH_txt.text = "" + hotRain_i;
+            Audio_obj.GetComponent<SoundEvt>().waterSound();
         }
         else
         {
@@ -290,6 +292,7 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.Save();
             WaterPurifilerC_txt.text = "" + coldRain_i;
             WaterPurifilerH_txt.text = "" + hotRain_i;
+            Audio_obj.GetComponent<SoundEvt>().waterSound();
         }
         else
         {
