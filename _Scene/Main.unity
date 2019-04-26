@@ -15908,6 +15908,7 @@ MonoBehaviour:
   close_obj: {fileID: 1579614253}
   back_obj: {fileID: 907067737}
   needToast_obj: {fileID: 0}
+  audio_obj: {fileID: 0}
 --- !u!114 &534253878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42939,9 +42940,9 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
+  m_Elasticity: 0.01
   m_Inertia: 1
-  m_DecelerationRate: 0.135
+  m_DecelerationRate: 0.01
   m_ScrollSensitivity: 0.1
   m_Viewport: {fileID: 1176565734}
   m_HorizontalScrollbar: {fileID: 0}
@@ -62818,7 +62819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1961590869
 SpriteRenderer:
   m_ObjectHideFlags: 0
