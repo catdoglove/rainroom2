@@ -57,6 +57,9 @@ public class TalkEvt : MonoBehaviour {
     int exit_int, exitTalk;
     int cnt_exit;
 
+    //소리
+    public GameObject Audio_obj;
+
 
     // Use this for initialization
     void Start ()
@@ -227,49 +230,14 @@ public class TalkEvt : MonoBehaviour {
         loveLv = PlayerPrefs.GetInt("lovelv", 0);
 
 
-        //하트를 5번째마다 더해주는 함수
-        getTalkHeart();
-
-        //온수를 레벨에 알맞게 더해주기
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        int hRain = PlayerPrefs.GetInt(str1 + "h", 0);
-        int sum=loveLv;
-        if (sum < 2)
-        {
-            sum = 1;
-        }
-        else if (sum < 4)
-        {
-            sum = 2;
-        }
-        else if (sum < 6)
-        {
-            sum = 3;
-        }
-        else if (sum < 9)
-        {
-            sum = 4;
-        }
-        else if (sum < 11)
-        {
-            sum = 5;
-        }
-        else if (sum < 13)
-        {
-            sum = 6;
-        }
-        else if (sum > 12)
-        {
-            sum = 6;
-        }
-        hRain = hRain + sum;
-        PlayerPrefs.SetInt(str1 + "h", hRain);
+        
 
         //대화속도
         speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         Debug.Log(countTalkNum);
-        
+
+
+
         if (countTalkNum == 0)
         {
             //대화못함
@@ -277,6 +245,48 @@ public class TalkEvt : MonoBehaviour {
         }
         else
         {
+            //하트를 5번째마다 더해주는 함수
+            getTalkHeart();
+
+            //온수를 레벨에 알맞게 더해주기
+            string str1;
+            str1 = PlayerPrefs.GetString("code", "");
+            int hRain = PlayerPrefs.GetInt(str1 + "h", 0);
+            int sum = loveLv;
+            if (sum < 2)
+            {
+                sum = 1;
+            }
+            else if (sum < 4)
+            {
+                sum = 2;
+            }
+            else if (sum < 6)
+            {
+                sum = 3;
+            }
+            else if (sum < 9)
+            {
+                sum = 4;
+            }
+            else if (sum < 11)
+            {
+                sum = 5;
+            }
+            else if (sum < 13)
+            {
+                sum = 6;
+            }
+            else if (sum > 12)
+            {
+                sum = 6;
+            }
+            hRain = hRain + sum;
+            PlayerPrefs.SetInt(str1 + "h", hRain);
+            
+            //소리
+            Audio_obj.GetComponent<SoundEvt>().buttonSound();
+
             checkach();
             lovetalk();
             testText_cut = text_str.Split('/'); //끊기
@@ -856,14 +866,12 @@ public class TalkEvt : MonoBehaviour {
             case 5:
                 if (PlayerPrefs.GetInt("windowlv", 0) >= 5)
                 {
-                    if (PlayerPrefs.GetInt("doorbox", 0) == 1)
-                    {
+                    
                         if (PlayerPrefs.GetInt("iceboxlv") >= 1)
                         {
                             a = 1;
                             PlayerPrefs.SetInt("lovemax", 290);
                         }
-                    }
                 }
                 break;
             case 6:
@@ -871,8 +879,11 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("drawerlv", 0) >= 1)
                     {
-                        a = 1;
-                        PlayerPrefs.SetInt("lovemax", 350);
+                        if (PlayerPrefs.GetInt("doorbox", 0) == 1)
+                        {
+                            a = 1;
+                            PlayerPrefs.SetInt("lovemax", 350);
+                        }
                     }
                 }
                 break;

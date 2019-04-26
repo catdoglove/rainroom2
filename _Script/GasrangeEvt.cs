@@ -168,6 +168,8 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void CloseIceBox()
     {
+
+        cookYN_obj.SetActive(false);
         iceBox_obj.SetActive(false);
         gasrange_obj.SetActive(false);
     }
@@ -208,6 +210,7 @@ public class GasrangeEvt : MonoBehaviour {
         }
         else
         {
+            audio_obj.GetComponent<SoundEvt>().cancleSound();
             StopCoroutine("cookToastFadeOut");
             StartCoroutine("cookToastFadeOut");
         }

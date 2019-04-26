@@ -58,6 +58,9 @@ public class MainShop : ShopHandler {
     Color color;
     public GameObject needToast_obj;
 
+    //소리
+    public GameObject audio_obj;
+
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -187,7 +190,7 @@ public class MainShop : ShopHandler {
                     hotRain_txt.text = "" + hotRain_i;
                     LvChange();
                     CloseShopBuy();
-                    
+                    audio_obj.GetComponent<SoundEvt>().buttonSound();
 
                 }
                 else
@@ -196,6 +199,7 @@ public class MainShop : ShopHandler {
                     needhRain_obj.SetActive(true);
                     CloseShopBuy();
                     //따듯한물부족
+                    audio_obj.GetComponent<SoundEvt>().cancleSound();
                 }
             }
             else
@@ -204,6 +208,7 @@ public class MainShop : ShopHandler {
                 needcRain_obj.SetActive(true);
                 CloseShopBuy();
                 //빗물부족
+                audio_obj.GetComponent<SoundEvt>().cancleSound();
             }
         }//endOfElse
     }

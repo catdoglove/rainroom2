@@ -269,6 +269,7 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
+            Audio_obj.GetComponent<SoundEvt>().cancleSound();
             //찬물부족
             needcRain_obj.SetActive(true);
             StartCoroutine("toastCImgFadeOut");
@@ -296,6 +297,8 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
+
+            Audio_obj.GetComponent<SoundEvt>().cancleSound();
             //따듯한물부족
             needhRain_obj.SetActive(true);
         }

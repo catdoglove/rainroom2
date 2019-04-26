@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SoundEvt : MonoBehaviour {
 
-    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water;
-    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water;
+    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle;
+    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle;
     
     public AudioSource BGM, BGS;
     float BGMVol_f, BGSVol_f;
@@ -156,5 +156,13 @@ public class SoundEvt : MonoBehaviour {
         se_water.clip = sp_water;
         se_water.loop = false;
         se_water.Play();
+    }
+    //취소
+    public void cancleSound()
+    {
+        se_cancle = gameObject.GetComponent<AudioSource>();
+        se_cancle.clip = sp_cancle;
+        se_cancle.loop = false;
+        se_cancle.Play();
     }
 }

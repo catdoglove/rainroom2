@@ -9511,6 +9511,7 @@ MonoBehaviour:
   se_ball: {fileID: 0}
   se_airplane: {fileID: 0}
   se_water: {fileID: 0}
+  se_cancle: {fileID: 0}
   sp_book: {fileID: 8300000, guid: fa6ac01f531babe448eab06c767ff5ac, type: 3}
   sp_window: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_cat: {fileID: 8300000, guid: ff58151ff5181204f9f56f232b22cd05, type: 3}
@@ -9528,6 +9529,7 @@ MonoBehaviour:
   sp_ball: {fileID: 8300000, guid: 38447c814bd2e4f40a012d53739134d4, type: 3}
   sp_airplane: {fileID: 8300000, guid: 38447c814bd2e4f40a012d53739134d4, type: 3}
   sp_water: {fileID: 8300000, guid: 641594b5ffde571439a2b34d6cf1b158, type: 3}
+  sp_cancle: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   BGM: {fileID: 0}
   BGS: {fileID: 0}
 --- !u!4 &365005796
@@ -19780,17 +19782,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 365005795}
-        m_MethodName: buttonSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &666597580
@@ -27569,7 +27560,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8eb67bb0ec3c1b040ace0914d5a57227, type: 3}
-    m_FontSize: 45
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -27579,7 +27570,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.8
+    m_LineSpacing: 0.85
   m_Text: "\uD558\uACE0\uC2F6\uC740 \uC77C\uC774 \uB108\uBB34 \uB9CE\uC544 \uC54C\uC544\uB098\uB3C4
     \uD558\uACE0\uC2F6\uC740\uAC83\uB9CC \uD558\uACE0 \uC0B4\uC21C\uC5C6\uC5B4."
 --- !u!222 &875021232
@@ -43801,17 +43792,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1567872174}
-        m_MethodName: buttonSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1379280329
@@ -44796,17 +44776,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 534253877}
         m_MethodName: FunctionYes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1567872174}
-        m_MethodName: buttonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -50035,6 +50004,7 @@ MonoBehaviour:
   se_ball: {fileID: 0}
   se_airplane: {fileID: 0}
   se_water: {fileID: 0}
+  se_cancle: {fileID: 0}
   sp_book: {fileID: 8300000, guid: fa6ac01f531babe448eab06c767ff5ac, type: 3}
   sp_window: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_cat: {fileID: 8300000, guid: ff58151ff5181204f9f56f232b22cd05, type: 3}
@@ -50052,6 +50022,7 @@ MonoBehaviour:
   sp_ball: {fileID: 8300000, guid: 38447c814bd2e4f40a012d53739134d4, type: 3}
   sp_airplane: {fileID: 8300000, guid: 38447c814bd2e4f40a012d53739134d4, type: 3}
   sp_water: {fileID: 8300000, guid: 641594b5ffde571439a2b34d6cf1b158, type: 3}
+  sp_cancle: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   BGM: {fileID: 0}
   BGS: {fileID: 0}
 --- !u!4 &1567872175
@@ -62847,7 +62818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1961590869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67108,6 +67079,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0530fe55192d51042937dac3ebecf595, type: 3}
   GM: {fileID: 2128228821}
   dayRoom: {fileID: 77018726}
+  audio_obj: {fileID: 0}
   titleImg: {fileID: 1961590868}
 --- !u!114 &2128228825
 MonoBehaviour:
@@ -67231,6 +67203,7 @@ MonoBehaviour:
   exitTalkBalln: {fileID: 393979702}
   closeTB_exit: {fileID: 1496301631}
   exitText: {fileID: 57142444}
+  Audio_obj: {fileID: 365005793}
 --- !u!114 &2128228831
 MonoBehaviour:
   m_ObjectHideFlags: 0

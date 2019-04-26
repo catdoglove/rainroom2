@@ -269,9 +269,8 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[1].SetActive(true);
                 }
-                cBox_obj.SetActive(true);
-                itemList_txt[11].text = "현관 박스 정리";
-                checkLine_obj[11].SetActive(false);
+                
+                
                 cIcebox_obj.SetActive(true);
                 itemList_txt[9].text = "식품용박스꺼내기";
                 checkLine_obj[9].SetActive(false);
@@ -279,15 +278,15 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[9].SetActive(true);
                 }
-                if (PlayerPrefs.GetInt("doorbox", 0) >= 1)
-                {
-                    checkLine_obj[11].SetActive(true);
-                }
+                
                 break;
             case 6:
                 cLight_obj.SetActive(true);
                 itemList_txt[6].text = "Lv.1  달성";
                 checkLine_obj[6].SetActive(false);
+                cBox_obj.SetActive(true);
+                itemList_txt[11].text = "현관 박스 정리";
+                checkLine_obj[11].SetActive(false);
                 if (PlayerPrefs.GetInt("lightlv", 0) >= 1)
                 {
                     checkLine_obj[6].SetActive(true);
@@ -298,6 +297,10 @@ public class MainInfo : MonoBehaviour {
                 if (PlayerPrefs.GetInt("drawerlv", 0) >= 1)
                 {
                     checkLine_obj[7].SetActive(true);
+                }
+                if (PlayerPrefs.GetInt("doorbox", 0) >= 1)
+                {
+                    checkLine_obj[11].SetActive(true);
                 }
                 break;
             case 7:

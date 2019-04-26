@@ -81,6 +81,9 @@ public class FirstRoomFunction : CavasData {
     //밤
     public GameObject dayRoom;
 
+    //소리
+    public GameObject audio_obj;
+
 
     //타이틀닫기
     public GameObject titleImg;
@@ -427,6 +430,7 @@ public class FirstRoomFunction : CavasData {
         closeBeadal();
         beadalIllust_obj.SetActive(true);
         PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
     }
 
     public void CleanDish()
@@ -502,6 +506,7 @@ public class FirstRoomFunction : CavasData {
     {
         StopCoroutine("toastNImgFadeOut");
         StartCoroutine("toastNImgFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
     }
 
 	public void boxOpen(){
@@ -562,7 +567,8 @@ public class FirstRoomFunction : CavasData {
                     PlayerPrefs.SetInt(boxName_str + "box", 1);
                     PlayerPrefs.SetInt(boxName_str + "lv", 1);
                     PlayerPrefs.Save();
-
+                    //소리
+                    audio_obj.GetComponent<SoundEvt>().buttonSound();
                     if (PlayerPrefs.GetInt("bedbox", 0) == 1)
                     {
                         bedBox_obj.SetActive(false);
@@ -630,7 +636,8 @@ public class FirstRoomFunction : CavasData {
                 PlayerPrefs.SetInt(boxName_str + "box", 1);
                 PlayerPrefs.SetInt(boxName_str + "lv", 1);
                 PlayerPrefs.Save();
-
+                //소리
+                audio_obj.GetComponent<SoundEvt>().buttonSound();
                 if (PlayerPrefs.GetInt("bedbox", 0) == 1)
                 {
                     bedBox_obj.SetActive(false);
