@@ -85,6 +85,7 @@ public class TalkEvt : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            closeTalkBoon();
             talkCursor.SetActive(true);
             if (!exitTalkBalln.activeSelf)
             {
@@ -664,6 +665,10 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkSeed()
     {
+        if (PlayerPrefs.GetInt("seedlv", 0) >= 10)
+        {
+            achvcheck();
+        }
         callTalkItem();
         itemLineReload(289);
         text_str = "" + data_seed[itemNowArr]["seed" + itemLv[4]];
@@ -672,10 +677,19 @@ public class TalkEvt : MonoBehaviour {
 
         StartCoroutine("itemTalkRun");
     }
+    void achvcheck()
+    {
+        //업적
+        if(PlayerPrefs.GetInt("allflower", 0) == 0)
+        {
+            PlayerPrefs.SetInt("allflower", 1);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(25, 0);
+        }
+    }
 
-    
-    //아이템대사 출력
-    IEnumerator itemTalkRun()
+
+        //아이템대사 출력
+        IEnumerator itemTalkRun()
     {
         speedF = PlayerPrefs.GetFloat("talkspeed", 0);
         falseObject();

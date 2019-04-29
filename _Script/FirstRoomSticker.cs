@@ -117,6 +117,9 @@ public class FirstRoomSticker : MonoBehaviour {
                 break;
             case 25:
                 break;
+            case 26:
+                show_i = 66;
+                break;
         }
         frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
     }
@@ -125,7 +128,7 @@ public class FirstRoomSticker : MonoBehaviour {
     {
         show_i++;
         int c=0;
-        for (int i = 0; i < 28; i++)
+        for (int i = 0; i < 29; i++)
         {
             if(show_i == showNum_i[i])
             {
@@ -140,7 +143,6 @@ public class FirstRoomSticker : MonoBehaviour {
         {
             frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
         }
-
     }
 
     void LoadFrame()
@@ -164,7 +166,7 @@ public class FirstRoomSticker : MonoBehaviour {
                 }
             }
         }
-        for (int i = 20; i < 22; i++)
+        for (int i = 20; i < 26; i++)
         {
             int c = PlayerPrefs.GetInt(sticker_str[i], 0);
             if (c >= 1)
@@ -189,6 +191,7 @@ public class FirstRoomSticker : MonoBehaviour {
         sticker_str[22] = "allfoodplus";
         sticker_str[23] = "allingredientplus";
         sticker_str[24] = "_thank_you_for_playplus";
+        sticker_str[25] = "allflowerplus";
     }
 
     public void frameNum0()
@@ -294,5 +297,9 @@ public class FirstRoomSticker : MonoBehaviour {
     public void frameNum25()
     {
         frame_i = 25;
+    }
+    public void frameNum26()
+    {
+        frame_i = 26;
     }
 }

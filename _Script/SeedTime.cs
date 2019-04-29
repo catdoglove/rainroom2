@@ -27,6 +27,9 @@ public class SeedTime : MonoBehaviour {
     //씨앗
     public Text seedTime_txt;
 
+    //소리
+    public GameObject audio_obj;
+
     // Use this for initialization
     void Start () {
         colorN = new Color(1f, 1f, 1f);
@@ -80,26 +83,34 @@ public class SeedTime : MonoBehaviour {
 
     public void TouchSeed()
     {
-        SeedTimeFlow();
-        
-        if (hours < 0)
+        if (seed_i >= 10)
         {
-            if (seedWater_i == seed_i)
-            {
-                seed_txt.text = ""+ seedCPrice_i[seed_i-1];
-                seedHt_txt.text = "" + seedHtPrice_i[seed_i - 1];
-                seedWindow_obj.SetActive(true);
-            }
-            else {
-                seedYetWindow_obj.SetActive(true);
-            }
-            
+
         }
         else
         {
-            StopCoroutine("toastYetWaterFadeOut");
-            StartCoroutine("toastYetWaterFadeOut");
-            seedYetWindow_obj.SetActive(true);
+            SeedTimeFlow();
+
+            if (hours < 0)
+            {
+                if (seedWater_i == seed_i)
+                {
+                    seed_txt.text = "" + seedCPrice_i[seed_i - 1];
+                    seedHt_txt.text = "" + seedHtPrice_i[seed_i - 1];
+                    seedWindow_obj.SetActive(true);
+                }
+                else
+                {
+                    seedYetWindow_obj.SetActive(true);
+                }
+
+            }
+            else
+            {
+                StopCoroutine("toastYetWaterFadeOut");
+                StartCoroutine("toastYetWaterFadeOut");
+                seedYetWindow_obj.SetActive(true);
+            }
         }
     }
 
@@ -133,11 +144,13 @@ public class SeedTime : MonoBehaviour {
                     seedWater_i++;
                     PlayerPrefs.SetInt("seedWater", seedWater_i);
                     PlayerPrefs.Save();
+                    audio_obj.GetComponent<SoundEvt>().waterSound();
                 }
                 else
                 {
                     StopCoroutine("toastneedWaterFadeOut");
                     StartCoroutine("toastneedWaterFadeOut");
+                    audio_obj.GetComponent<SoundEvt>().cancleSound();
                 }
                 
             }
@@ -147,6 +160,7 @@ public class SeedTime : MonoBehaviour {
                 StopCoroutine("toastneedWaterFadeOut");
                 StartCoroutine("toastneedWaterFadeOut");
                 needWaterWindow_obj.SetActive(true);
+                audio_obj.GetComponent<SoundEvt>().cancleSound();
             }
         }
         

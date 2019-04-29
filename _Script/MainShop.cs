@@ -68,10 +68,14 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
-        //PlayerPrefs.SetInt(str + "c", 1000);
-        //PlayerPrefs.SetInt(str + "h", 100);
-        //PlayerPrefs.SetInt(str + "ht", 5);
+        //PlayerPrefs.SetInt(str + "c", 99999);
+        //PlayerPrefs.SetInt(str + "h", 9999);
+        //PlayerPrefs.SetInt(str + "ht", 99);
         //PlayerPrefs.SetInt("lovelv", 3);
+        //PlayerPrefs.SetInt("seedlv", 10);
+        //PlayerPrefs.SetInt("allflower", 0);
+        //PlayerPrefs.SetInt("allflowerplus", 0);
+        //PlayerPrefs.SetInt("allflowerb", 0);
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -611,7 +615,6 @@ public class MainShop : ShopHandler {
                         case 3:
                             break;
                     }
-                
             }
             else
             {

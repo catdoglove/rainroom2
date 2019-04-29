@@ -204,7 +204,7 @@ public class MainSticker : MonoBehaviour
 
     void allsticker()
     {
-        for (int i = 20; i < 22; i++)
+        for (int i = 20; i < 26; i++)
         {
             if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)
             {
