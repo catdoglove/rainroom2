@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SoundEvt : MonoBehaviour {
 
-    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle, se_box;
-    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle, sp_box;
+    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle, se_box, se_foods;
+    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle, sp_box, sp_foods;
     
     public AudioSource BGM, BGS;
     float BGMVol_f, BGSVol_f;
@@ -172,5 +172,13 @@ public class SoundEvt : MonoBehaviour {
         se_box.clip = sp_box;
         se_box.loop = false;
         se_box.Play();
+    }
+    //음식소리
+    public void foodsSound()
+    {
+        se_foods = gameObject.GetComponent<AudioSource>();
+        se_foods.clip = sp_foods;
+        se_foods.loop = false;
+        se_foods.Play();
     }
 }
