@@ -23,7 +23,10 @@ public class MainSticker : MonoBehaviour
     public GameObject FGM, GM2,GM;
     public GameObject frame_obj;
     public Sprite frameOpen_spr;
-    
+
+    //소리
+    public GameObject audio_obj;
+
     // Use this for initialization
     void Start()
     {
@@ -83,12 +86,21 @@ public class MainSticker : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (check)
+        {
+
+        }
+        else
+        {
+            audio_obj.GetComponent<SoundEvt>().stickerSound();
+        }
         check = true;
 
     }//EndOfOnMouseDown
 
     public void OnMouseUp()
     {
+        audio_obj.GetComponent<SoundEvt>().stickerSound();
         if (wldObjectPos.x > -3.7 && wldObjectPos.x < 3.7)
         {
             if (wldObjectPos.y < 3.64 && wldObjectPos.y > -3.97)

@@ -241,6 +241,7 @@ public class GasrangeEvt : MonoBehaviour {
         illust_obj.SetActive(true);
         gasrange_obj.SetActive(false);
         block_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().foodSound();
     }
 
     public void closeIllust()

@@ -373,6 +373,7 @@ public class secondRoomFunction : CavasData {
         boxTxt_txt.text = "" + boxs_i;
         if (heart_i >= boxs_i)
         {
+            Audio_obj.GetComponent<SoundEvt>().boxSound();
             heart_i = heart_i - boxs_i;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
 
@@ -416,6 +417,7 @@ public class secondRoomFunction : CavasData {
         }
         else
         {
+            Audio_obj.GetComponent<SoundEvt>().cancleSound();
             needMoney();
             boxClean_obj.SetActive(false);
             //돈부족

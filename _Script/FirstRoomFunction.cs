@@ -430,7 +430,7 @@ public class FirstRoomFunction : CavasData {
         closeBeadal();
         beadalIllust_obj.SetActive(true);
         PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
-        audio_obj.GetComponent<SoundEvt>().buttonSound();
+        audio_obj.GetComponent<SoundEvt>().foodSound();
     }
 
     public void CleanDish()
@@ -568,7 +568,7 @@ public class FirstRoomFunction : CavasData {
                     PlayerPrefs.SetInt(boxName_str + "lv", 1);
                     PlayerPrefs.Save();
                     //소리
-                    audio_obj.GetComponent<SoundEvt>().buttonSound();
+                    audio_obj.GetComponent<SoundEvt>().boxSound();
                     if (PlayerPrefs.GetInt("bedbox", 0) == 1)
                     {
                         bedBox_obj.SetActive(false);
@@ -616,6 +616,7 @@ public class FirstRoomFunction : CavasData {
                 {
                     needMoney();
                     boxClean_obj.SetActive(false);
+                    audio_obj.GetComponent<SoundEvt>().cancleSound();
                 }
             }
             else
@@ -637,7 +638,7 @@ public class FirstRoomFunction : CavasData {
                 PlayerPrefs.SetInt(boxName_str + "lv", 1);
                 PlayerPrefs.Save();
                 //소리
-                audio_obj.GetComponent<SoundEvt>().buttonSound();
+                audio_obj.GetComponent<SoundEvt>().boxSound();
                 if (PlayerPrefs.GetInt("bedbox", 0) == 1)
                 {
                     bedBox_obj.SetActive(false);
@@ -681,6 +682,7 @@ public class FirstRoomFunction : CavasData {
             else
             {
                 needMoney();
+                audio_obj.GetComponent<SoundEvt>().cancleSound();
                 boxClean_obj.SetActive(false);
             }
 
