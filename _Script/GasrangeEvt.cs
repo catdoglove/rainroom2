@@ -114,43 +114,53 @@ public class GasrangeEvt : MonoBehaviour {
                 case 2:
                     break;
             }
-
+            //PlayerPrefs.
+            //계란
             if (egg_i == 1)
             {
                 cookFood_obj[0].SetActive(true);
             }
+            //볶음밥
             if (egg_i + ham_i + carot_i == 3)
             {
                 cookFood_obj[1].SetActive(true);
             }
+            //야채복음
             if (carot_i + paprika_i + cucumber_i == 3)
             {
                 cookFood_obj[2].SetActive(true);
             }
+            //샌드위치
             if (ham_i + egg_i + bread_i == 3)
             {
                 cookFood_obj[3].SetActive(true);
             }
+            //두부
             if (tofu_i == 1)
             {
                 cookFood_obj[4].SetActive(true);
             }
+            //소시지빵
             if (bread_i + ham_i == 2)
             {
                 cookFood_obj[5].SetActive(true);
             }
+            //계란찜
             if (milk_i + egg_i == 2)
             {
                 cookFood_obj[6].SetActive(true);
             }
+            //미역국
             if (seeweed_i == 1)
             {
                 cookFood_obj[7].SetActive(true);
             }
+            //오이냉채
             if (cucumber_i + seeweed_i == 2)
             {
                 cookFood_obj[8].SetActive(true);
             }
+            //버섯볶음밥
             if (mushroom_i + carot_i == 1)
             {
                 cookFood_obj[9].SetActive(true);
@@ -362,45 +372,64 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void RightButtonG()
     {
-        if (page_i < 2)
+        if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
+        {
+
+        }else if (page_i < 2)
         {
             page_i++;
             cookPage_obj[0].SetActive(false);
             cookPage_obj[1].SetActive(false);
             cookPage_obj[2].SetActive(false);
             cookPage_obj[page_i].SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
     }
 
     public void LeftButtonG()
     {
-        if (page_i > 0)
+        if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
+        {
+
+        }
+        else if (page_i > 0)
         {
             page_i--;
             cookPage_obj[0].SetActive(false);
             cookPage_obj[1].SetActive(false);
             cookPage_obj[2].SetActive(false);
             cookPage_obj[page_i].SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
     }
 
     public void RightButtonI()
     {
-        if (pageIce_i < 1)
+        if (PlayerPrefs.GetInt("iceboxlv", 0) <= 2)
+        {
+
+        }
+        else if (pageIce_i < 1)
         {
             pageIce_i++;
             ingredientPage_obj[0].SetActive(false);
             ingredientPage_obj[1].SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
     }
 
     public void LeftButtonI()
     {
-        if (pageIce_i > 0)
+        if (PlayerPrefs.GetInt("iceboxlv", 0) <= 2)
+        {
+
+        }
+        else if (pageIce_i > 0)
         {
             pageIce_i--;
             ingredientPage_obj[0].SetActive(true);
             ingredientPage_obj[1].SetActive(false);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
     }
 

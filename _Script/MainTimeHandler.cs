@@ -16,7 +16,8 @@ public class MainTimeHandler : MonoBehaviour {
 
     public int coldRain_i, hotRain_i;
 
-
+    //경고
+    public GameObject warring_obj;
 
     // Use this for initialization
     void Start () {
@@ -58,8 +59,7 @@ public class MainTimeHandler : MonoBehaviour {
         if (getRain > 10080)//7200
         {//7일치 이상 모았을때
                 getRain = 0;
-                //warningTxt.text = "빗물이 너무 모여 물탱크가 터져버렸다."+"\n겨우 수리했다.";
-                //warningBtn.SetActive(true);
+            warring_obj.SetActive(true);
         }
 
         coldRain_i = coldRain_i + getRain;
@@ -76,6 +76,10 @@ public class MainTimeHandler : MonoBehaviour {
         }
 		
 	}
+    public void closeWarring()
+    {
+        warring_obj.SetActive(false);
+    }
 
 
 
