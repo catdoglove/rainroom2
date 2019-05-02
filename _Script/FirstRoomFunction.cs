@@ -780,6 +780,7 @@ public class FirstRoomFunction : CavasData {
 
     public void useCouponY()
     {
+        audio_obj.GetComponent<SoundEvt>().foodSound();
         point_i = PlayerPrefs.GetInt("lovepoint", 0);
         point_i = point_i + 3;
         PayCoupon();

@@ -98,10 +98,12 @@ public class SeedTime : MonoBehaviour {
                     seed_txt.text = "" + seedCPrice_i[seed_i - 1];
                     seedHt_txt.text = "" + seedHtPrice_i[seed_i - 1];
                     seedWindow_obj.SetActive(true);
+                    audio_obj.GetComponent<SoundEvt>().buttonSound();
                 }
                 else
                 {
                     seedYetWindow_obj.SetActive(true);
+                    audio_obj.GetComponent<SoundEvt>().buttonSound();
                 }
 
             }

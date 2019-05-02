@@ -55,23 +55,11 @@ public class MainTimeHandler : MonoBehaviour {
         //	getRain = 0;
         //}
         //부정행위방지
-        if (getRain > 36000)//7200
-        {//5일치 이상 모았을때
-            if (getRain > 100000)//20000
-            {//2주일 되었을 때
-                //getRain = 0;
+        if (getRain > 10080)//7200
+        {//7일치 이상 모았을때
+                getRain = 0;
                 //warningTxt.text = "빗물이 너무 모여 물탱크가 터져버렸다."+"\n겨우 수리했다.";
                 //warningBtn.SetActive(true);
-            }
-            else
-            {
-                //getRain = 36000; //물탱크가 꽉 찼다
-                                 //warningTxt.text = "장기간 방치로 인해 물탱크기능이 멈췄다."+"\n이제 작동한다.";
-                                 //warningBtn.SetActive(true);
-            }
-        }
-        else if (getRain < 0)
-        {
         }
 
         coldRain_i = coldRain_i + getRain;
