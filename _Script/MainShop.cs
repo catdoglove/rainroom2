@@ -65,7 +65,7 @@ public class MainShop : ShopHandler {
     void Start () {
         color = new Color(1f, 1f, 1f);
         //GM.GetComponent<LoadingData> ().;
-        PlayerPrefs.SetInt("booklv",14);
+        //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
         //PlayerPrefs.SetInt(str + "c", 99999);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class secondRoomFunction : CavasData {
 
@@ -46,6 +47,8 @@ public class secondRoomFunction : CavasData {
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
+    //미리 씬을 불러오기
+    AsyncOperation async;
 
     //하트
     public int heart_i;
@@ -615,6 +618,39 @@ public class secondRoomFunction : CavasData {
             //켜짐
             dayRoom.GetComponent<Image>().sprite = day_spr[1];
             switch_obj.GetComponent<Image>().sprite = switch_spr[1];
+        }
+    }
+
+    public void walkOut()
+    {
+        //
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        int heart_i;
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i >= 30)
+        {
+            //PlayerPrefs.SetInt("outtrip", 1);
+            //heart_i = heart_i - 30;
+            //PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            //StartCoroutine("LoadOut");
+        }
+        else
+        {
+            Audio_obj.GetComponent<SoundEvt>().cancleSound();
+            needMoney();
+            goOutWindow_obj.SetActive(false);
+            //돈부족
+        }
+
+    }
+
+    IEnumerator LoadOut()
+    {
+        async = SceneManager.LoadSceneAsync("SubLoadOut");
+        while (!async.isDone)
+        {
+            yield return true;
         }
     }
 }

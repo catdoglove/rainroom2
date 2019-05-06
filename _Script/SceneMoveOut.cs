@@ -26,6 +26,15 @@ public class SceneMoveOut : MonoBehaviour {
     public void walkOut()
     {
         //StartCoroutine("LoadOut");
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        int heart_i;
+        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
+        if (heart_i < 30)
+        {
+
+        }
+        PlayerPrefs.SetInt("outtrip",1);
     }
 
     IEnumerator LoadOut()

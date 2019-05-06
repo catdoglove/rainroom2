@@ -21,8 +21,9 @@ public class MainTimeHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		//빗물
-		collectRain ();
+        PlayerPrefs.SetInt("outtrip", 0);
+        //빗물
+        collectRain ();
 		//대화
 		StartCoroutine ("talkTimeFlow");
         //이부분은 생성될때 한번만 실행된다
@@ -50,7 +51,6 @@ public class MainTimeHandler : MonoBehaviour {
 		System.TimeSpan compareTimem =  System.DateTime.Now - lastDateTimem;
 		//1분당1씩줍니다
 		getRain = (int)compareTimem .TotalMinutes;
-
         //최초실행
         //if(PlayerPrefs.GetInt("coin",-1)==-1&&getRain>20000){
         //	getRain = 0;
@@ -61,7 +61,6 @@ public class MainTimeHandler : MonoBehaviour {
                 getRain = 0;
             warring_obj.SetActive(true);
         }
-
         coldRain_i = coldRain_i + getRain;
 		PlayerPrefs.SetInt (str + "c", coldRain_i);
 		//rainNum.text = coldRain_i.ToString();
@@ -71,10 +70,9 @@ public class MainTimeHandler : MonoBehaviour {
         //빗물이 마이너스일때
         if (coldRain_i<0)
         {
-            PlayerPrefs.SetInt(str + "c", 0);
+            PlayerPrefs.SetInt(str + "c", -9);
             PlayerPrefs.Save();
         }
-		
 	}
     public void closeWarring()
     {

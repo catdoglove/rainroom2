@@ -9851,13 +9851,14 @@ MonoBehaviour:
   se_cancle: {fileID: 0}
   se_box: {fileID: 0}
   se_foods: {fileID: 0}
+  se_talk: {fileID: 0}
   sp_book: {fileID: 8300000, guid: fa6ac01f531babe448eab06c767ff5ac, type: 3}
   sp_window: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_cat: {fileID: 8300000, guid: ff58151ff5181204f9f56f232b22cd05, type: 3}
-  sp_cook: {fileID: 8300000, guid: c8fa3d605f8141e489c716a2c5d1111b, type: 3}
+  sp_cook: {fileID: 8300000, guid: 4f7d1bdca274f1b409786218558254a2, type: 3}
   sp_food: {fileID: 8300000, guid: 36f3bc8e9af61674cb83cc538e3107c8, type: 3}
   sp_light: {fileID: 8300000, guid: bdc2a1116fb68a34ca5c73fcafa2486c, type: 3}
-  sp_button: {fileID: 8300000, guid: 5599f2f8cc4e7a641ae873e66727c903, type: 3}
+  sp_button: {fileID: 8300000, guid: 0de6fba1e06578c47821ac821c438c7a, type: 3}
   sp_TV: {fileID: 8300000, guid: 24432065288284544b4c800927599c5b, type: 3}
   sp_sticker: {fileID: 8300000, guid: b3f679162363c7944aae207baa75d937, type: 3}
   sp_bed: {fileID: 8300000, guid: c6f7a80896aac494aa58b6040b9e2465, type: 3}
@@ -9871,6 +9872,7 @@ MonoBehaviour:
   sp_cancle: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_box: {fileID: 8300000, guid: c6f7a80896aac494aa58b6040b9e2465, type: 3}
   sp_foods: {fileID: 8300000, guid: 21fd32693f467204591333ecb36083f8, type: 3}
+  sp_talk: {fileID: 8300000, guid: 5599f2f8cc4e7a641ae873e66727c903, type: 3}
   BGM: {fileID: 0}
   BGS: {fileID: 0}
 --- !u!4 &365005796
@@ -15624,6 +15626,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2128228830}
         m_MethodName: choiceBtn2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 365005795}
+        m_MethodName: talkSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32040,6 +32053,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2128228830}
         m_MethodName: choiceBtn1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 365005795}
+        m_MethodName: talkSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -51795,13 +51819,14 @@ MonoBehaviour:
   se_cancle: {fileID: 0}
   se_box: {fileID: 0}
   se_foods: {fileID: 0}
+  se_talk: {fileID: 0}
   sp_book: {fileID: 8300000, guid: fa6ac01f531babe448eab06c767ff5ac, type: 3}
   sp_window: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_cat: {fileID: 8300000, guid: ff58151ff5181204f9f56f232b22cd05, type: 3}
-  sp_cook: {fileID: 8300000, guid: c8fa3d605f8141e489c716a2c5d1111b, type: 3}
+  sp_cook: {fileID: 8300000, guid: 4f7d1bdca274f1b409786218558254a2, type: 3}
   sp_food: {fileID: 8300000, guid: 36f3bc8e9af61674cb83cc538e3107c8, type: 3}
   sp_light: {fileID: 8300000, guid: bdc2a1116fb68a34ca5c73fcafa2486c, type: 3}
-  sp_button: {fileID: 8300000, guid: 5599f2f8cc4e7a641ae873e66727c903, type: 3}
+  sp_button: {fileID: 8300000, guid: 0de6fba1e06578c47821ac821c438c7a, type: 3}
   sp_TV: {fileID: 8300000, guid: 24432065288284544b4c800927599c5b, type: 3}
   sp_sticker: {fileID: 8300000, guid: b3f679162363c7944aae207baa75d937, type: 3}
   sp_bed: {fileID: 8300000, guid: c6f7a80896aac494aa58b6040b9e2465, type: 3}
@@ -51815,6 +51840,7 @@ MonoBehaviour:
   sp_cancle: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_box: {fileID: 8300000, guid: c6f7a80896aac494aa58b6040b9e2465, type: 3}
   sp_foods: {fileID: 8300000, guid: 21fd32693f467204591333ecb36083f8, type: 3}
+  sp_talk: {fileID: 8300000, guid: 5599f2f8cc4e7a641ae873e66727c903, type: 3}
   BGM: {fileID: 0}
   BGS: {fileID: 0}
 --- !u!4 &1567872175
@@ -69616,6 +69642,9 @@ MonoBehaviour:
   firstGM: {fileID: 2128228821}
   exitTalkBalln: {fileID: 393979702}
   closeTB_exit: {fileID: 1496301631}
+  ballnSpr:
+  - {fileID: 21300000, guid: 8d67e7315dfc0704e83c28ff738ce30c, type: 3}
+  - {fileID: 21300000, guid: 565dba82911256a46ad004da77d29ce1, type: 3}
   exitText: {fileID: 57142444}
   Audio_obj: {fileID: 365005793}
 --- !u!114 &2128228831

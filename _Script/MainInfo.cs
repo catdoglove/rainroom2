@@ -346,7 +346,7 @@ public class MainInfo : MonoBehaviour {
                 cWindow_obj.SetActive(true);
                 itemList_txt[1].text = "Lv.8  달성";
                 checkLine_obj[1].SetActive(false);
-                if (PlayerPrefs.GetInt("windowlv", 0) >= 9)
+                if (PlayerPrefs.GetInt("windowlv", 0) >= 8)
                 {
                     checkLine_obj[1].SetActive(true);
                 }

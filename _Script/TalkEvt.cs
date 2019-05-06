@@ -291,7 +291,7 @@ public class TalkEvt : MonoBehaviour {
             PlayerPrefs.SetInt(str1 + "h", hRain);
             
             //소리
-            Audio_obj.GetComponent<SoundEvt>().buttonSound();
+            Audio_obj.GetComponent<SoundEvt>().talkSound();
 
             checkach();
             lovetalk();
@@ -944,7 +944,7 @@ public class TalkEvt : MonoBehaviour {
                 }
                 break;
             case 11:
-                if (PlayerPrefs.GetInt("booklv", 0) >= 12)
+                if (PlayerPrefs.GetInt("booklv", 0) >= 14)
                 {
                     a = 1;
                     PlayerPrefs.SetInt("lovemax", 400);
