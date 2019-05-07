@@ -628,11 +628,11 @@ public class secondRoomFunction : CavasData {
         str1 = PlayerPrefs.GetString("code", "");
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 30)
+        if (heart_i >= 0)//30테스트
         {
             PlayerPrefs.SetInt("outtrip", 1);
-            heart_i = heart_i - 30;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            //heart_i = heart_i - 30;
+            //PlayerPrefs.SetInt(str1 + "ht", heart_i);
             StartCoroutine("LoadOut");
         }
         else

@@ -375,6 +375,22 @@ public class MainBtnEvt : CavasData
 
     public void Sight()
     {
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("parkGM");
+            }
+            GM2.GetComponent<Parkfunction>().changeSight();
+        }
+        else
+        {
+            HomeSight();
+        }
+    }
+
+    void HomeSight()
+    {
         if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
             if (PlayerPrefs.GetInt("place", 0) == 1)

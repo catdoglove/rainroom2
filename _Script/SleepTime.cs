@@ -82,9 +82,7 @@ public class SleepTime : MonoBehaviour {
             switchBtn_obj.GetComponent<Image>().sprite = switch_spr[1];
             PlayerPrefs.SetInt("starsover", 1);
         }
-
     }
-
     public int[] GetRandomInt(int length) //66
     {
         randArr = new int[length];

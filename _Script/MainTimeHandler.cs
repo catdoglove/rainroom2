@@ -21,7 +21,6 @@ public class MainTimeHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetInt("outtrip", 0);
         //빗물
         collectRain ();
 		//대화

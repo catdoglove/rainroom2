@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parkfunction : MonoBehaviour {
+public class Parkfunction : CavasData
+{
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
@@ -16,7 +17,6 @@ public class Parkfunction : MonoBehaviour {
     void Start () {
 
         //씬이동
-        PlayerPrefs.SetInt("outtrip", 0);
         if (menuBlock_obj == null)
         {
             menuBlock_obj = GameObject.FindGameObjectWithTag("scene");

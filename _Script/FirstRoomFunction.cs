@@ -96,7 +96,8 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
-       // PlayerPrefs.SetInt("downst", 0);
+        PlayerPrefs.SetInt("outtrip", 0);
+        // PlayerPrefs.SetInt("downst", 0);
         //PlayerPrefs.SetInt("countladderst", 0);
         //만약 잠을 자고 있다면 들어왔을때 첫화면이 침대쪽 화면으로
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
