@@ -51,6 +51,7 @@ public class TalkEvt : MonoBehaviour {
 
     //나가기
     public GameObject exitTalkBalln, closeTB_exit;
+    public Sprite[] ballnSpr;
     public Text exitText;
     int exCk = 0;
     //종료
@@ -92,9 +93,11 @@ public class TalkEvt : MonoBehaviour {
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
                 closeTB_exit.SetActive(true);
+                exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[0];
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
                     talkCursor.SetActive(false);
+                    exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
                     exitText.text = "(자고있다. 조용히 나갈까?)\n(뒤로두번 종료)";
                 }
                 else
@@ -118,6 +121,7 @@ public class TalkEvt : MonoBehaviour {
             if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
             {
                 talkCursor.SetActive(false);
+                exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
                 exitText.text = "(..흠)";
             }
             else
@@ -152,6 +156,7 @@ public class TalkEvt : MonoBehaviour {
                 if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
                 {
                     talkCursor.SetActive(false);
+                    exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
                     exitText.text = "(..잘자)";
                 }
                 else
