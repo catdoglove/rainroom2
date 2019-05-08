@@ -630,10 +630,10 @@ public class secondRoomFunction : CavasData {
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
         if (heart_i >= 30)
         {
-            //PlayerPrefs.SetInt("outtrip", 1);
-            //heart_i = heart_i - 30;
-            //PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            //StartCoroutine("LoadOut");
+            PlayerPrefs.SetInt("outtrip", 1);
+            heart_i = heart_i - 30;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            StartCoroutine("LoadOut");
         }
         else
         {

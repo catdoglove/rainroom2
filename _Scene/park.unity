@@ -6070,11 +6070,10 @@ GameObject:
   - component: {fileID: 2128228830}
   - component: {fileID: 2128228831}
   - component: {fileID: 2128228832}
-  - component: {fileID: 2128228833}
-  - component: {fileID: 2128228834}
   - component: {fileID: 2128228835}
+  - component: {fileID: 2128228833}
   m_Layer: 0
-  m_Name: firstroomGM
+  m_Name: parkGM
   m_TagString: firstroomGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6481,74 +6480,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2128228821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8eaac31514aab541a7ed0b850d24335, type: 3}
+  m_Script: {fileID: 11500000, guid: c86b1dbee070c534b9a2acde8b683edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sleepWindow_obj: {fileID: 0}
-  sleepBlind_obj: {fileID: 0}
-  sleepGone_obj: {fileID: 1428259747}
-  sleepTime_txt: {fileID: 0}
-  minute: 0
-  hours: 0
-  sleep_obj:
-  - {fileID: 1441995582}
-  - {fileID: 964718678}
-  - {fileID: 1264695439}
-  - {fileID: 1125267696}
-  - {fileID: 1960841318}
-  sleepBed_i: 0
-  dream_obj: {fileID: 0}
-  dreamBtn_obj: {fileID: 0}
-  firstGM: {fileID: 2128228821}
-  diary_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  diary_today: {fileID: 0}
-  diary_dream: {fileID: 0}
-  stars_obj: {fileID: 0}
-  switchBtn_obj: {fileID: 0}
-  switch_spr:
-  - {fileID: 21300002, guid: 052e2cf1f54675e40935d63ab23a784f, type: 3}
-  - {fileID: 21300000, guid: 052e2cf1f54675e40935d63ab23a784f, type: 3}
---- !u!114 &2128228834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17170cf2b9d494e449887d5b6ae01adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemListText_obj: {fileID: 0}
-  itemListText_BG: {fileID: 0}
-  itemListText_txt: {fileID: 0}
-  itemListText_left: {fileID: 0}
-  itemListText_book: {fileID: 0}
-  itemListText_light: {fileID: 0}
-  itemListText_seed: {fileID: 0}
-  itemListText_wall: {fileID: 0}
-  itemListText_window: {fileID: 0}
-  bookArea: {fileID: 0}
-  lightArea: {fileID: 0}
-  seedArea: {fileID: 0}
-  wallArea: {fileID: 0}
-  windowArea: {fileID: 0}
-  nextPage: {fileID: 0}
-  itemListBG:
-  - {fileID: 21300000, guid: 85c2613df1c62424e9c0210467a3e23a, type: 3}
-  - {fileID: 21300000, guid: fbee71f7c3bf91149aaff021aacffc8e, type: 3}
-  itemListTxt:
-  - {fileID: 21300000, guid: 0db223e0c57e4a148991134b100f9c4d, type: 3}
-  - {fileID: 21300000, guid: 96668ed60963cb24cb0708b7fe4829dd, type: 3}
-  - {fileID: 21300000, guid: 1e1e02d01df490e468bf68828ec988b3, type: 3}
-  - {fileID: 21300000, guid: 534ea059c6af14d4387ddceafa6bd11a, type: 3}
-  - {fileID: 21300000, guid: da88f6ee54c575c4183bf8c78d1a9419, type: 3}
-  itemLeftBG:
-  - {fileID: 21300000, guid: 92c9f6d296facb84eaa262f1ad1c90f5, type: 3}
-  - {fileID: 21300002, guid: 92c9f6d296facb84eaa262f1ad1c90f5, type: 3}
-  itemTxt: {fileID: 0}
+  menuBlock_obj: {fileID: 0}
+  menuBlock_vet: {x: 0, y: 0}
+  dayRoom: {fileID: 0}
+  audio_obj: {fileID: 0}
 --- !u!114 &2128228835
 MonoBehaviour:
   m_ObjectHideFlags: 0

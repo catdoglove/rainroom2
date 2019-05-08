@@ -873,7 +873,7 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
-
+    //밤낮
     public void setDay()
     {
         System.DateTime time = System.DateTime.Now;
