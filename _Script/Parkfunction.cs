@@ -16,23 +16,26 @@ public class Parkfunction : CavasData
     //랜덤
     public int eventRand_i;
     public GameObject eventPet_obj, eventPaint_obj, event_obj;
-    public Sprite event_spr;
+    public Sprite[] event_spr;
     // Use this for initialization
     void Start () {
-
-        //랜덤
-        eventRand_i=Random.Range(0, 4);
+        //밤낮
+        setDay();
+        //이밴트 랜덤 -첫외출에는 무조건 안나오면 어떨까?
+        eventRand_i = Random.Range(0, 3);
         if (eventRand_i == 0)
         {
             eventPet_obj.SetActive(true);
+            event_obj.GetComponent<Image>().sprite = event_spr[1];
         }
         else if(eventRand_i == 1)
         {
             eventPaint_obj.SetActive(true);
+            event_obj.GetComponent<Image>().sprite = event_spr[2];
         }
         else
         {
-            event_obj.GetComponent<Image>().sprite = event_spr;
+            event_obj.GetComponent<Image>().sprite = event_spr[0];
         }
 
         //씬이동
@@ -59,8 +62,12 @@ public class Parkfunction : CavasData
             }
             if (k >= 6)
             {
-                dayRoom.SetActive(true);
+                if (canvasPack_cvs[0].activeSelf == true)
+                {
+                    dayRoom.SetActive(true);
+                }
                 nightShop_obj.SetActive(true);
+                dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
             }
             else
@@ -68,6 +75,7 @@ public class Parkfunction : CavasData
                 //낮
                 dayRoom.SetActive(false);
                 nightShop_obj.SetActive(false);
+                dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
@@ -80,8 +88,12 @@ public class Parkfunction : CavasData
             }
             if (k < 6)
             {
-                dayRoom.SetActive(true);
+                if (canvasPack_cvs[0].activeSelf == true)
+                {
+                    dayRoom.SetActive(true);
+                }
                 nightShop_obj.SetActive(true);
+                dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
             }
             else
@@ -89,6 +101,7 @@ public class Parkfunction : CavasData
                 //낮
                 dayRoom.SetActive(false);
                 nightShop_obj.SetActive(false);
+                dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
