@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Parkfunction : CavasData
 {
@@ -12,9 +13,27 @@ public class Parkfunction : CavasData
     public GameObject nightShop_obj,dayShop_obj;
     //소리
     public GameObject audio_obj;
-
+    //랜덤
+    public int eventRand_i;
+    public GameObject eventPet_obj, eventPaint_obj, event_obj;
+    public Sprite event_spr;
     // Use this for initialization
     void Start () {
+
+        //랜덤
+        eventRand_i=Random.Range(0, 4);
+        if (eventRand_i == 0)
+        {
+            eventPet_obj.SetActive(true);
+        }
+        else if(eventRand_i == 1)
+        {
+            eventPaint_obj.SetActive(true);
+        }
+        else
+        {
+            event_obj.GetComponent<Image>().sprite = event_spr;
+        }
 
         //씬이동
         if (menuBlock_obj == null)
