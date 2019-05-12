@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Parkfunction : CavasData
 {
     //씬이동
@@ -17,8 +18,24 @@ public class Parkfunction : CavasData
     public int eventRand_i;
     public GameObject eventPet_obj, eventPaint_obj, event_obj;
     public Sprite[] event_spr;
+
+    //
+    public GameObject GMtag;
+
+
+    private void Awake()
+    {
+        if (GMtag == null)
+        {
+            GMtag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMtag.GetComponent<MainBtnEvt>().comeHome_obj.SetActive(true);
+        GMtag.GetComponent<MainBtnEvt>().shop_obj.SetActive(false);
+    }
+
     // Use this for initialization
     void Start () {
+        
         //밤낮
         setDay();
         //이밴트 랜덤 -첫외출에는 무조건 안나오면 어떨까?

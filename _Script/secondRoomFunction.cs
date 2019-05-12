@@ -51,6 +51,8 @@ public class secondRoomFunction : CavasData {
     //미리 씬을 불러오기
     AsyncOperation async;
 
+    public Sprite menuShop_spr;
+
     //하트
     public int heart_i;
     public Text boxHeart_txt;
@@ -72,6 +74,7 @@ public class secondRoomFunction : CavasData {
     public Sprite[] day_spr;
     public GameObject switchToast_obj;
     Color colorS;
+    
     // Use this for initialization
     void Start ()
     {
@@ -85,7 +88,12 @@ public class secondRoomFunction : CavasData {
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
-        
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuShop_spr;
+
         //GM을 찾아불러온 데이터들 가져오기
         GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
 		window_i = PlayerPrefs.GetInt ("windowlv",0);
@@ -529,11 +537,25 @@ public class secondRoomFunction : CavasData {
     public void OpenGoOut()
     {
         goOutWindow_obj.SetActive(true);
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        //메뉴
+        if (GMTag.GetComponent<MainBtnEvt>().MainBtn_obj[0].activeSelf == false)
+        {
+            GMTag.GetComponent<MainBtnEvt>().showButtons();
+        }
+
+        
     }
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
     }
+    /// <summary>
+    /// 나가는함수
+    /// </summary>
     public void GoOutY()
     {
         string str1;
@@ -545,11 +567,6 @@ public class secondRoomFunction : CavasData {
             heart_i = heart_i - hp;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
         }
-        if (GMTag == null)
-        {
-            GameObject.FindGameObjectWithTag("GMtag");
-        }
-        GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
     }
 
     //업적
@@ -626,7 +643,9 @@ public class secondRoomFunction : CavasData {
             switch_obj.GetComponent<Image>().sprite = switch_spr[1];
         }
     }
-
+    /// <summary>
+    /// 외출함수
+    /// </summary>
     public void walkOut()
     {
         //
@@ -648,7 +667,12 @@ public class secondRoomFunction : CavasData {
             goOutWindow_obj.SetActive(false);
             //돈부족
         }
-
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+            GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
+        
     }
 
     IEnumerator LoadOut()

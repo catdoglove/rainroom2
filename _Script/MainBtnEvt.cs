@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class MainBtnEvt : CavasData
 {
 
@@ -34,6 +36,13 @@ public class MainBtnEvt : CavasData
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
     int help = 0;
+
+    //외출
+    public GameObject comeHome_obj;
+    public GameObject shop_obj;
+
+    //미리 씬을 불러오기
+    AsyncOperation async;
 
     public void CloseHelpf()
     {
@@ -566,4 +575,26 @@ public class MainBtnEvt : CavasData
         PlayerPrefs.SetInt("speedTalkCheck", sf);
     }
 
+    public void goHome()
+    {
+        PlayerPrefs.SetInt("outtrip", 0);
+        PlayerPrefs.SetInt("front", 2);
+        StartCoroutine("LoadOut");
+        comeHome_obj.SetActive(false);
+        shop_obj.SetActive(true);
+    }
+
+
+    /// <summary>
+    /// 집으로 돌아가기 코루틴
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LoadOut()
+    {
+        async = SceneManager.LoadSceneAsync("SubLoadOut");
+        while (!async.isDone)
+        {
+            yield return true;
+        }
+    }
 }
