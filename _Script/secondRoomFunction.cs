@@ -658,6 +658,7 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt("outtrip", 1);
             //heart_i = heart_i - 30;
             //PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            checkachOut();
             StartCoroutine("LoadOut");
         }
         else
@@ -682,5 +683,30 @@ public class secondRoomFunction : CavasData {
         {
             yield return true;
         }
+    }
+
+    //외출업적
+    void checkachOut()
+    {
+        int cts = PlayerPrefs.GetInt("countgooutst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countgooutst", cts);
+        Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
+        if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("gooutst", 3);
+            GM2.GetComponent<AchievementShow>().achievementCheck(7, 2);
+        }
+        else if (cts >= 30 && PlayerPrefs.GetInt("gooutst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("gooutst", 2);
+            GM2.GetComponent<AchievementShow>().achievementCheck(7, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("gooutst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("gooutst", 1);
+            GM2.GetComponent<AchievementShow>().achievementCheck(7, 0);
+        }
+        PlayerPrefs.Save();
     }
 }

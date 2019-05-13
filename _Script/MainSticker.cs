@@ -30,8 +30,7 @@ public class MainSticker : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-
+        
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
             GM2 = GameObject.FindGameObjectWithTag("GM2");
@@ -44,8 +43,7 @@ public class MainSticker : MonoBehaviour
         }
         //Debug.Log("talkstb" + PlayerPrefs.GetInt("talkstb", 0));
         //Debug.Log("talkst" + PlayerPrefs.GetInt("talkst", 0));
-
-        //PlayerPrefs.SetInt("insleepst", 3);
+        //PlayerPrefs.SetInt("gooutst", 3);
         //PlayerPrefs.SetInt("firstcookst", 3);
         //PlayerPrefs.SetInt("airplanest", 3);
         //PlayerPrefs.SetInt("petcatst", 3);
@@ -65,7 +63,6 @@ public class MainSticker : MonoBehaviour
         {
             showSticker();
         }
-
     }
 
     // Update is called once per frame
@@ -92,6 +89,10 @@ public class MainSticker : MonoBehaviour
         }
         else
         {
+            if (audio_obj == null)
+            {
+                audio_obj = GameObject.FindGameObjectWithTag("sound");
+            }
             audio_obj.GetComponent<SoundEvt>().stickerSound();
         }
         check = true;
@@ -100,6 +101,10 @@ public class MainSticker : MonoBehaviour
 
     public void OnMouseUp()
     {
+        if (audio_obj == null)
+        {
+            audio_obj = GameObject.FindGameObjectWithTag("sound");
+        }
         audio_obj.GetComponent<SoundEvt>().stickerSound();
         if (wldObjectPos.x > -3.7 && wldObjectPos.x < 3.7)
         {
@@ -160,7 +165,7 @@ public class MainSticker : MonoBehaviour
     public void showSticker()
     {
         
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 8; i++)
         {
             if (PlayerPrefs.GetInt(sticker_str[i], 0) >= 1)
             {

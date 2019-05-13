@@ -819,7 +819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2128228835}
-        m_MethodName: frameNum20
+        m_MethodName: frameNum28
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1872,6 +1872,84 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51862809}
   m_CullTransparentMesh: 0
+--- !u!1 &53536337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 53536338}
+  - component: {fileID: 53536339}
+  m_Layer: 5
+  m_Name: "1000 (11)\uC678\uCD9C"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &53536338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53536337}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 90.99999, z: 0}
+  m_LocalScale: {x: 100, y: 99.999794, z: 1}
+  m_Children:
+  - {fileID: 1754531596}
+  - {fileID: 1155441998}
+  - {fileID: 712161472}
+  m_Father: {fileID: 843628224}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &53536339
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53536337}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 4.48, y: 3.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &56489020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3641,7 +3719,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -3668,7 +3746,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -3695,7 +3773,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -3722,7 +3800,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -3746,6 +3824,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -3754,6 +3833,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -3762,6 +3842,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -3770,7 +3851,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &91892770
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3849,7 +3930,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 91892768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5799997, y: -0.59999996, z: -6479.734}
+  m_LocalPosition: {x: -0.93000066, y: -1.6799994, z: -6479.734}
   m_LocalScale: {x: 1, y: 1, z: 132.56778}
   m_Children: []
   m_Father: {fileID: 29952170}
@@ -4581,7 +4662,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -4608,7 +4689,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -4635,7 +4716,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -4662,7 +4743,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -4686,6 +4767,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -4694,6 +4776,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -4702,6 +4785,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -4710,7 +4794,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &119810279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16163,7 +16247,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -16190,7 +16274,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -16217,7 +16301,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -16244,7 +16328,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -16268,6 +16352,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -16276,6 +16361,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -16284,6 +16370,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -16292,7 +16379,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &477308674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17855,7 +17942,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -17882,7 +17969,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -17909,7 +17996,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -17936,7 +18023,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -17960,6 +18047,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -17968,6 +18056,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -17976,6 +18065,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -17984,7 +18074,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &516217257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23114,7 +23204,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -23141,7 +23231,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -23168,7 +23258,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -23195,7 +23285,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -23219,6 +23309,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -23227,6 +23318,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -23235,6 +23327,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -23243,7 +23336,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &666671588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24243,7 +24336,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -24270,7 +24363,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -24297,7 +24390,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -24324,7 +24417,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -24348,6 +24441,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -24356,6 +24450,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -24364,6 +24459,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -24372,7 +24468,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &693739220
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24529,6 +24625,260 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 700083413}
   m_CullTransparentMesh: 0
+--- !u!1 &712161468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 712161472}
+  - component: {fileID: 712161471}
+  - component: {fileID: 712161470}
+  - component: {fileID: 712161469}
+  m_Layer: 0
+  m_Name: g7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &712161469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712161468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ff5aeaa456fa54280273d2d2ac92d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sticker_str:
+  - talkst
+  - boxst
+  - downst
+  - airplanest
+  - petcatst
+  - insleepst
+  - firstcookst
+  - gooutst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - allwindow
+  - allbook
+  - allfood
+  - allingredient
+  - _thank_you_for_play
+  - allflower
+  sticker_obj:
+  - {fileID: 628240696}
+  - {fileID: 1915077986}
+  - {fileID: 1996013280}
+  - {fileID: 1390552998}
+  - {fileID: 1242960084}
+  - {fileID: 1979589873}
+  - {fileID: 1016272311}
+  - {fileID: 901406549}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1233714836}
+  - {fileID: 1669182420}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 1665001550}
+  newStickerB_obj:
+  - {fileID: 1048494686}
+  - {fileID: 1728041586}
+  - {fileID: 1509737831}
+  - {fileID: 1555215062}
+  - {fileID: 815613287}
+  - {fileID: 2092458138}
+  - {fileID: 477308672}
+  - {fileID: 1754531595}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 1769409577}
+  - {fileID: 1697447343}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1519071990}
+  newStickerS_obj:
+  - {fileID: 1286768322}
+  - {fileID: 1364701840}
+  - {fileID: 1278217001}
+  - {fileID: 1628448619}
+  - {fileID: 895424204}
+  - {fileID: 1449751141}
+  - {fileID: 866371021}
+  - {fileID: 1155441997}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  newStickerG_obj:
+  - {fileID: 1087667198}
+  - {fileID: 91892768}
+  - {fileID: 1028379599}
+  - {fileID: 693739218}
+  - {fileID: 1532868180}
+  - {fileID: 516217255}
+  - {fileID: 1022697064}
+  - {fileID: 712161468}
+  stickerS_spr:
+  - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300002, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300002, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  stickerG_spr:
+  - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300004, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300004, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  name_str: 
+  check: 0
+  wldObjectPos: {x: 0, y: 0}
+  FGM: {fileID: 0}
+  GM2: {fileID: 0}
+  GM: {fileID: 0}
+  frame_obj: {fileID: 769099737}
+  frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
+  audio_obj: {fileID: 365005793}
+--- !u!61 &712161470
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712161468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 1}
+    newSize: {x: 2.61, y: 1.93}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &712161471
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712161468}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 103
+  m_Sprite: {fileID: 21300004, guid: 8c5f7834280c0234b8cce0bac7225a68, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.61, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &712161472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712161468}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.479999, y: -3.769999, z: -6479.734}
+  m_LocalScale: {x: 1, y: 1, z: 132.56778}
+  m_Children: []
+  m_Father: {fileID: 53536338}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713800020
 GameObject:
   m_ObjectHideFlags: 0
@@ -28543,7 +28893,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -28570,7 +28920,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -28597,7 +28947,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -28624,7 +28974,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -28648,6 +28998,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -28656,6 +29007,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -28664,6 +29016,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -28672,7 +29025,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &815613289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30311,6 +30664,7 @@ RectTransform:
   - {fileID: 2028968671}
   - {fileID: 1263739627}
   - {fileID: 147843907}
+  - {fileID: 53536338}
   - {fileID: 1287417519}
   - {fileID: 1902970261}
   - {fileID: 1030585678}
@@ -30635,7 +30989,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2128228835}
-        m_MethodName: frameNum20
+        m_MethodName: frameNum27
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31150,7 +31504,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -31177,7 +31531,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -31204,7 +31558,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -31231,7 +31585,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -31255,6 +31609,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -31263,6 +31618,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -31271,6 +31627,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -31279,7 +31636,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &866371023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32719,7 +33076,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -32746,7 +33103,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -32773,7 +33130,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -32800,7 +33157,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -32824,6 +33181,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -32832,6 +33190,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -32840,6 +33199,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -32848,7 +33208,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &895424206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35793,7 +36153,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -35820,7 +36180,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -35847,7 +36207,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -35874,7 +36234,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -35898,6 +36258,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -35906,6 +36267,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -35914,6 +36276,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -35922,7 +36285,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &979727346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37860,7 +38223,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -37887,7 +38250,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -37914,7 +38277,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -37941,7 +38304,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -37965,6 +38328,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -37973,6 +38337,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -37981,6 +38346,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -37989,7 +38355,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1022697067
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38242,7 +38608,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -38269,7 +38635,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -38296,7 +38662,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -38323,7 +38689,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -38347,6 +38713,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -38355,6 +38722,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -38363,6 +38731,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -38371,7 +38740,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1028379601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38629,7 +38998,7 @@ Transform:
   - {fileID: 2015162596}
   - {fileID: 979727344}
   m_Father: {fileID: 843628224}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1030585679
 SpriteRenderer:
@@ -39118,7 +39487,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -39145,7 +39514,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -39172,7 +39541,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -39199,7 +39568,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -39223,6 +39592,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -39231,6 +39601,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -39239,6 +39610,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -39247,7 +39619,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1048494689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39795,7 +40167,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -39822,7 +40194,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -39849,7 +40221,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -39876,7 +40248,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -39900,6 +40272,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -39908,6 +40281,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -39916,6 +40290,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -39924,7 +40299,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1059995341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40613,7 +40988,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -40640,7 +41015,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -40667,7 +41042,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -40694,7 +41069,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -40718,6 +41093,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -40726,6 +41102,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -40734,6 +41111,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -40742,7 +41120,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1087667201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42705,6 +43083,260 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1150323761}
   m_CullTransparentMesh: 0
+--- !u!1 &1155441997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155441998}
+  - component: {fileID: 1155442001}
+  - component: {fileID: 1155442000}
+  - component: {fileID: 1155441999}
+  m_Layer: 0
+  m_Name: s7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1155441998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155441997}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.4999995, y: -3.3399997, z: -6479.734}
+  m_LocalScale: {x: 1, y: 1, z: 132.56778}
+  m_Children: []
+  m_Father: {fileID: 53536338}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155441999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155441997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ff5aeaa456fa54280273d2d2ac92d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sticker_str:
+  - talkst
+  - boxst
+  - downst
+  - airplanest
+  - petcatst
+  - insleepst
+  - firstcookst
+  - gooutst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - allwindow
+  - allbook
+  - allfood
+  - allingredient
+  - _thank_you_for_play
+  - allflower
+  sticker_obj:
+  - {fileID: 628240696}
+  - {fileID: 1915077986}
+  - {fileID: 1996013280}
+  - {fileID: 1390552998}
+  - {fileID: 1242960084}
+  - {fileID: 1979589873}
+  - {fileID: 1016272311}
+  - {fileID: 901406549}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1233714836}
+  - {fileID: 1669182420}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 1665001550}
+  newStickerB_obj:
+  - {fileID: 1048494686}
+  - {fileID: 1728041586}
+  - {fileID: 1509737831}
+  - {fileID: 1555215062}
+  - {fileID: 815613287}
+  - {fileID: 2092458138}
+  - {fileID: 477308672}
+  - {fileID: 1754531595}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 1769409577}
+  - {fileID: 1697447343}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1519071990}
+  newStickerS_obj:
+  - {fileID: 1286768322}
+  - {fileID: 1364701840}
+  - {fileID: 1278217001}
+  - {fileID: 1628448619}
+  - {fileID: 895424204}
+  - {fileID: 1449751141}
+  - {fileID: 866371021}
+  - {fileID: 1155441997}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  newStickerG_obj:
+  - {fileID: 1087667198}
+  - {fileID: 91892768}
+  - {fileID: 1028379599}
+  - {fileID: 693739218}
+  - {fileID: 1532868180}
+  - {fileID: 516217255}
+  - {fileID: 1022697064}
+  - {fileID: 712161468}
+  stickerS_spr:
+  - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300002, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300002, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  stickerG_spr:
+  - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300004, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300004, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  name_str: 
+  check: 0
+  wldObjectPos: {x: 0, y: 0}
+  FGM: {fileID: 0}
+  GM2: {fileID: 0}
+  GM: {fileID: 0}
+  frame_obj: {fileID: 769099737}
+  frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
+  audio_obj: {fileID: 365005793}
+--- !u!61 &1155442000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155441997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 1}
+    newSize: {x: 2.61, y: 1.93}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1155442001
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155441997}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
+  m_Sprite: {fileID: 21300002, guid: 8c5f7834280c0234b8cce0bac7225a68, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.61, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1158138308
 GameObject:
   m_ObjectHideFlags: 0
@@ -43107,7 +43739,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -43134,7 +43766,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -43161,7 +43793,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -43188,7 +43820,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -43212,6 +43844,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -43220,6 +43853,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -43228,6 +43862,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -43236,7 +43871,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1178631821
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43315,7 +43950,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1178631819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.68, y: -2.12, z: -6479.734}
+  m_LocalPosition: {x: -1.09, y: 0.69, z: -6479.734}
   m_LocalScale: {x: 1, y: 1, z: 132.56778}
   m_Children: []
   m_Father: {fileID: 1030585678}
@@ -45386,7 +46021,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -45413,7 +46048,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -45440,7 +46075,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -45467,7 +46102,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -45491,6 +46126,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -45499,6 +46135,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -45507,6 +46144,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -46434,7 +47072,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -46461,7 +47099,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -46488,7 +47126,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -46515,7 +47153,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -46539,6 +47177,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -46547,6 +47186,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -46555,6 +47195,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -46563,7 +47204,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1278217003
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46871,7 +47512,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -46898,7 +47539,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -46925,7 +47566,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -46952,7 +47593,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -46976,6 +47617,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -46984,6 +47626,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -46992,6 +47635,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -47000,7 +47644,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1286768325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -47172,7 +47816,7 @@ Transform:
   - {fileID: 1772759987}
   - {fileID: 666671586}
   m_Father: {fileID: 843628224}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1287417520
 SpriteRenderer:
@@ -50109,7 +50753,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -50136,7 +50780,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -50163,7 +50807,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -50190,7 +50834,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -50214,6 +50858,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -50222,6 +50867,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -50230,6 +50876,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -50238,7 +50885,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1364701842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50317,7 +50964,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1364701840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55999905, y: -0.17000061, z: -6479.734}
+  m_LocalPosition: {x: -0.90999997, y: -1.25, z: -6479.734}
   m_LocalScale: {x: 1, y: 1, z: 132.56778}
   m_Children: []
   m_Father: {fileID: 29952170}
@@ -53704,7 +54351,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -53731,7 +54378,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -53758,7 +54405,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -53785,7 +54432,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -53809,6 +54456,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -53817,6 +54465,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -53825,6 +54474,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -53833,7 +54483,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1449751143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54774,7 +55424,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2128228835}
-        m_MethodName: frameNum20
+        m_MethodName: frameNum29
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55918,7 +56568,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -55945,7 +56595,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -55972,7 +56622,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -55999,7 +56649,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -56023,6 +56673,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -56031,6 +56682,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -56039,6 +56691,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -56047,7 +56700,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1509737833
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56601,7 +57254,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -56628,7 +57281,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -56655,7 +57308,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -56682,7 +57335,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -56706,6 +57359,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -56714,6 +57368,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -56722,6 +57377,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -56730,7 +57386,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1519071993
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -56914,7 +57570,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -56941,7 +57597,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -56968,7 +57624,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -56995,7 +57651,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -57019,6 +57675,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -57027,6 +57684,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -57035,6 +57693,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -57043,7 +57702,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1532868182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57886,7 +58545,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -57913,7 +58572,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -57940,7 +58599,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -57967,7 +58626,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -57991,6 +58650,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -57999,6 +58659,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -58007,6 +58668,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -58015,7 +58677,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1555215064
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -61215,7 +61877,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -61242,7 +61904,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -61269,7 +61931,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -61296,7 +61958,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -61320,6 +61982,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -61328,6 +61991,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -61336,6 +62000,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -61344,7 +62009,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1628448621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63570,7 +64235,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -63597,7 +64262,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -63624,7 +64289,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -63651,7 +64316,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -63675,6 +64340,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -63683,6 +64349,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -63691,6 +64358,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -63699,7 +64367,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1697447345
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63778,7 +64446,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697447343}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5699991, y: 0.30999953, z: -6479.734}
+  m_LocalPosition: {x: -9.43, y: -1.22, z: -6479.734}
   m_LocalScale: {x: 1, y: 1, z: 132.56778}
   m_Children: []
   m_Father: {fileID: 1902970261}
@@ -65074,7 +65742,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -65101,7 +65769,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -65128,7 +65796,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -65155,7 +65823,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -65179,6 +65847,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -65187,6 +65856,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -65195,6 +65865,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -65203,7 +65874,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1728041588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -65282,7 +65953,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1728041586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5699991, y: 0.30999953, z: -6479.734}
+  m_LocalPosition: {x: -0.92, y: -0.77, z: -6479.734}
   m_LocalScale: {x: 1, y: 1, z: 132.56778}
   m_Children: []
   m_Father: {fileID: 29952170}
@@ -66002,6 +66673,260 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1753041775}
   m_CullTransparentMesh: 0
+--- !u!1 &1754531595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754531596}
+  - component: {fileID: 1754531599}
+  - component: {fileID: 1754531598}
+  - component: {fileID: 1754531597}
+  m_Layer: 0
+  m_Name: b7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1754531596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754531595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.49, y: -2.86, z: -6479.734}
+  m_LocalScale: {x: 1, y: 1, z: 132.56778}
+  m_Children: []
+  m_Father: {fileID: 53536338}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1754531597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754531595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ff5aeaa456fa54280273d2d2ac92d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sticker_str:
+  - talkst
+  - boxst
+  - downst
+  - airplanest
+  - petcatst
+  - insleepst
+  - firstcookst
+  - gooutst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - firstcookst
+  - allwindow
+  - allbook
+  - allfood
+  - allingredient
+  - _thank_you_for_play
+  - allflower
+  sticker_obj:
+  - {fileID: 628240696}
+  - {fileID: 1915077986}
+  - {fileID: 1996013280}
+  - {fileID: 1390552998}
+  - {fileID: 1242960084}
+  - {fileID: 1979589873}
+  - {fileID: 1016272311}
+  - {fileID: 901406549}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1016272311}
+  - {fileID: 1233714836}
+  - {fileID: 1669182420}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 958225541}
+  - {fileID: 1665001550}
+  newStickerB_obj:
+  - {fileID: 1048494686}
+  - {fileID: 1728041586}
+  - {fileID: 1509737831}
+  - {fileID: 1555215062}
+  - {fileID: 815613287}
+  - {fileID: 2092458138}
+  - {fileID: 477308672}
+  - {fileID: 1754531595}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 477308672}
+  - {fileID: 1769409577}
+  - {fileID: 1697447343}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1178631819}
+  - {fileID: 1519071990}
+  newStickerS_obj:
+  - {fileID: 1286768322}
+  - {fileID: 1364701840}
+  - {fileID: 1278217001}
+  - {fileID: 1628448619}
+  - {fileID: 895424204}
+  - {fileID: 1449751141}
+  - {fileID: 866371021}
+  - {fileID: 1155441997}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  - {fileID: 866371021}
+  newStickerG_obj:
+  - {fileID: 1087667198}
+  - {fileID: 91892768}
+  - {fileID: 1028379599}
+  - {fileID: 693739218}
+  - {fileID: 1532868180}
+  - {fileID: 516217255}
+  - {fileID: 1022697064}
+  - {fileID: 712161468}
+  stickerS_spr:
+  - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300002, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300002, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  stickerG_spr:
+  - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
+  - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
+  - {fileID: 21300004, guid: 29bb7721c5320054182675de62fd600a, type: 3}
+  - {fileID: 21300004, guid: 21669986d1595494b8ebc0bfe0fba0d5, type: 3}
+  - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
+  - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
+  - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
+  name_str: 
+  check: 0
+  wldObjectPos: {x: 0, y: 0}
+  FGM: {fileID: 0}
+  GM2: {fileID: 0}
+  GM: {fileID: 0}
+  frame_obj: {fileID: 769099737}
+  frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
+  audio_obj: {fileID: 365005793}
+--- !u!61 &1754531598
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754531595}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 1}
+    newSize: {x: 2.61, y: 1.93}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1754531599
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754531595}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 102
+  m_Sprite: {fileID: 21300000, guid: 8c5f7834280c0234b8cce0bac7225a68, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.61, y: 1.93}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1756131090
 GameObject:
   m_ObjectHideFlags: 0
@@ -66319,7 +67244,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -66346,7 +67271,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -66373,7 +67298,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -66400,7 +67325,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -66424,6 +67349,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -66432,6 +67358,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -66440,6 +67367,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -66448,7 +67376,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1769409579
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -66727,7 +67655,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -66754,7 +67682,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -66781,7 +67709,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -66808,7 +67736,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -66832,6 +67760,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -66840,6 +67769,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -66848,6 +67778,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -66856,7 +67787,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1772759989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67371,7 +68302,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -67398,7 +68329,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -67425,7 +68356,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -67452,7 +68383,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -67476,6 +68407,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -67484,6 +68416,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -67492,6 +68425,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -67500,7 +68434,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1782216362
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70499,7 +71433,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -70526,7 +71460,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -70553,7 +71487,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -70580,7 +71514,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -70604,6 +71538,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -70612,6 +71547,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -70620,6 +71556,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -70628,7 +71565,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &1860795205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71359,7 +72296,7 @@ Transform:
   - {fileID: 1860795203}
   - {fileID: 1059995339}
   m_Father: {fileID: 843628224}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1902970262
 SpriteRenderer:
@@ -72310,7 +73247,7 @@ Transform:
   - {fileID: 119810277}
   - {fileID: 1782216360}
   m_Father: {fileID: 843628224}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1945682888
 SpriteRenderer:
@@ -74577,7 +75514,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -74604,7 +75541,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -74631,7 +75568,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -74658,7 +75595,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -74682,6 +75619,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -74690,6 +75628,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -74698,6 +75637,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -74706,7 +75646,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &2015162598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76688,7 +77628,7 @@ MonoBehaviour:
   - petcatst
   - insleepst
   - firstcookst
-  - firstcookst
+  - gooutst
   - firstcookst
   - firstcookst
   - firstcookst
@@ -76715,7 +77655,7 @@ MonoBehaviour:
   - {fileID: 1242960084}
   - {fileID: 1979589873}
   - {fileID: 1016272311}
-  - {fileID: 1016272311}
+  - {fileID: 901406549}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
   - {fileID: 1016272311}
@@ -76742,7 +77682,7 @@ MonoBehaviour:
   - {fileID: 815613287}
   - {fileID: 2092458138}
   - {fileID: 477308672}
-  - {fileID: 477308672}
+  - {fileID: 1754531595}
   - {fileID: 477308672}
   - {fileID: 477308672}
   - {fileID: 477308672}
@@ -76769,7 +77709,7 @@ MonoBehaviour:
   - {fileID: 895424204}
   - {fileID: 1449751141}
   - {fileID: 866371021}
-  - {fileID: 866371021}
+  - {fileID: 1155441997}
   - {fileID: 866371021}
   - {fileID: 866371021}
   - {fileID: 866371021}
@@ -76793,6 +77733,7 @@ MonoBehaviour:
   - {fileID: 1532868180}
   - {fileID: 516217255}
   - {fileID: 1022697064}
+  - {fileID: 712161468}
   stickerS_spr:
   - {fileID: 21300002, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300002, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -76801,6 +77742,7 @@ MonoBehaviour:
   - {fileID: 21300002, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300002, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300004, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300002, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   stickerG_spr:
   - {fileID: 21300004, guid: dadc5c8873780714a9b569337a8deb4d, type: 3}
   - {fileID: 21300004, guid: 259cead773adf71449d92867418f28b7, type: 3}
@@ -76809,6 +77751,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: bc8bd1fe5be55b5429a5708d6df6a0b2, type: 3}
   - {fileID: 21300004, guid: 6b0a11943c170514f89647e71cd1adc1, type: 3}
   - {fileID: 21300002, guid: cd9a6f26868524d4c82dcadb7826e31d, type: 3}
+  - {fileID: 21300004, guid: 2c72390bfc923c747b14622fa6bb7f7c, type: 3}
   name_str: 
   check: 0
   wldObjectPos: {x: 0, y: 0}
@@ -76817,7 +77760,7 @@ MonoBehaviour:
   GM: {fileID: 0}
   frame_obj: {fileID: 769099737}
   frameOpen_spr: {fileID: 21300002, guid: 109b59b29c1520541be91bee90149360, type: 3}
-  audio_obj: {fileID: 1567872171}
+  audio_obj: {fileID: 365005793}
 --- !u!61 &2092458140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -77950,6 +78893,9 @@ MonoBehaviour:
   - {fileID: 670753227}
   - {fileID: 40266553}
   - {fileID: 1344563206}
+  - {fileID: 849570927}
+  - {fileID: 29833134}
+  - {fileID: 1478343958}
   frameABtn_obj:
   - {fileID: 658468748}
   - {fileID: 753976701}

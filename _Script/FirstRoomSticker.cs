@@ -120,6 +120,15 @@ public class FirstRoomSticker : MonoBehaviour {
             case 26:
                 show_i = 66;
                 break;
+            case 27:
+                show_i = 42;
+                break;
+            case 28:
+                show_i = 44;
+                break;
+            case 29:
+                show_i = 46;
+                break;
         }
         frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
     }
@@ -147,7 +156,7 @@ public class FirstRoomSticker : MonoBehaviour {
 
     void LoadFrame()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 8; i++)
         {
             int c = PlayerPrefs.GetInt(sticker_str[i], 0);
             if (c >= 1)
@@ -177,6 +186,9 @@ public class FirstRoomSticker : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 키값
+    /// </summary>
     void StartFrame()
     {
         sticker_str[0] = "talkstplus";
@@ -186,6 +198,7 @@ public class FirstRoomSticker : MonoBehaviour {
         sticker_str[4] = "petcatstplus";
         sticker_str[5] = "insleepstplus";
         sticker_str[6] = "firstcookstplus";
+        sticker_str[7] = "gooutstplus";
         sticker_str[20] = "allwindowplus";
         sticker_str[21] = "allbookplus";
         sticker_str[22] = "allfoodplus";
@@ -194,6 +207,7 @@ public class FirstRoomSticker : MonoBehaviour {
         sticker_str[25] = "allflowerplus";
     }
 
+#region
     public void frameNum0()
     {
         frame_i = 0;
@@ -302,4 +316,17 @@ public class FirstRoomSticker : MonoBehaviour {
     {
         frame_i = 26;
     }
+    public void frameNum27()
+    {
+        frame_i = 27;
+    }
+    public void frameNum28()
+    {
+        frame_i = 28;
+    }
+    public void frameNum29()
+    {
+        frame_i = 29;
+    }
+#endregion
 }
