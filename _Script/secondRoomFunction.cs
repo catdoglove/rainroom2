@@ -47,6 +47,7 @@ public class secondRoomFunction : CavasData {
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
+    public Sprite menuOut_spr;
     //미리 씬을 불러오기
     AsyncOperation async;
 
@@ -64,7 +65,7 @@ public class secondRoomFunction : CavasData {
 
     public GameObject goOutWindow_obj;
 
-    public GameObject GM2;
+    public GameObject GM2,GMTag;
 
     //밤
     public GameObject dayRoom;
@@ -544,6 +545,11 @@ public class secondRoomFunction : CavasData {
             heart_i = heart_i - hp;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
         }
+        if (GMTag == null)
+        {
+            GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
     }
 
     //업적
