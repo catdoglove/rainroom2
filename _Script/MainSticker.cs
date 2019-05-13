@@ -89,10 +89,9 @@ public class MainSticker : MonoBehaviour
         }
         else
         {
-            if (audio_obj == null)
-            {
-                audio_obj = GameObject.FindGameObjectWithTag("sound");
-            }
+
+            audio_obj = GameObject.Find("AudioSound");
+
             audio_obj.GetComponent<SoundEvt>().stickerSound();
         }
         check = true;
@@ -101,10 +100,9 @@ public class MainSticker : MonoBehaviour
 
     public void OnMouseUp()
     {
-        if (audio_obj == null)
-        {
-            audio_obj = GameObject.FindGameObjectWithTag("sound");
-        }
+        
+            audio_obj = GameObject.Find("AudioSound");
+        
         audio_obj.GetComponent<SoundEvt>().stickerSound();
         if (wldObjectPos.x > -3.7 && wldObjectPos.x < 3.7)
         {
