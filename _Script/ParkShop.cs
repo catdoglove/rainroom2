@@ -8,12 +8,14 @@ public class ParkShop : MonoBehaviour {
     //이밴트와 상점창
     public GameObject eventPaint_obj, eventPet_obj, foodShop_obj, inShop_obj, basicShop_obj;
     public GameObject blackClose_obj;
-
+    public int shopNum;
     //거리의화가
     public int[] eventPaint_i;
     public GameObject[] eventPaintImg_obj;
     public GameObject allPaint_obj;
     public Sprite[] moviePaint_spr, specialPaint_spr, storyPaint_spr;
+    //야시장
+    public GameObject foodBuy_obj;
     // Use this for initialization
     void Start () {
 		
@@ -84,4 +86,47 @@ public class ParkShop : MonoBehaviour {
         basicShop_obj.SetActive(true);
     }
 
+    public void BuyFoodShop()
+    {
+        foodBuy_obj.SetActive(true);
+    }
+    public void BuyFoodShopY()
+    {
+        foodBuy_obj.SetActive(false);
+    }
+
+
+    /// <summary>
+    /// 상점넘버
+    /// </summary>
+    #region
+    public void num0()
+    {
+        shopNum = 0;
+    }
+    public void num1()
+    {
+        shopNum = 1;
+    }
+    public void num2()
+    {
+        shopNum = 2;
+    }
+    public void num3()
+    {
+        shopNum = 3;
+    }
+    public void num4()
+    {
+        shopNum = 4;
+    }
+    public void num5()
+    {
+        shopNum = 5;
+    }
+    public void num6()
+    {
+        shopNum = 6;
+    }
+    #endregion
 }
