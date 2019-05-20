@@ -31,6 +31,7 @@ public class Parkfunction : CavasData
         }
         GMtag.GetComponent<MainBtnEvt>().comeHome_obj.SetActive(true);
         GMtag.GetComponent<MainBtnEvt>().shop_obj.SetActive(false);
+        GMtag.GetComponent<MainBtnEvt>().SetClover();
     }
 
     // Use this for initialization

@@ -41,6 +41,9 @@ public class MainBtnEvt : CavasData
     public GameObject comeHome_obj;
     public GameObject shop_obj;
 
+    //화폐변환
+    public GameObject h_obj,c_obj;
+
     //미리 씬을 불러오기
     AsyncOperation async;
 
@@ -596,5 +599,17 @@ public class MainBtnEvt : CavasData
         {
             yield return true;
         }
+    }
+
+   
+    public void SetClover()
+    {
+        h_obj.SetActive(false);
+        c_obj.SetActive(true);
+    }
+    public void SetH()
+    {
+        h_obj.SetActive(true);
+        c_obj.SetActive(false);
     }
 }
