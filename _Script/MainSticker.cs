@@ -119,6 +119,10 @@ public class MainSticker : MonoBehaviour
                         FGM = GameObject.FindGameObjectWithTag("firstroomGM");
                         GM = FGM;
                     }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+                {
+                    GM= GameObject.FindGameObjectWithTag("parkGM");
+                }
                 gameObject.SetActive(false);
                 name_str = this.gameObject.name;
                 if (name_str.Length == 3)

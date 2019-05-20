@@ -16,6 +16,7 @@ public class ParkShop : MonoBehaviour {
     public Sprite[] moviePaint_spr, specialPaint_spr, storyPaint_spr;
     //야시장
     public GameObject foodBuy_obj;
+    public int point_i;
     // Use this for initialization
     void Start () {
 		
@@ -87,11 +88,64 @@ public class ParkShop : MonoBehaviour {
         basicShop_obj.SetActive(true);
     }
 
+    //야시장
     public void BuyFoodShop()
     {
         foodBuy_obj.SetActive(true);
     }
     public void BuyFoodShopY()
+    {
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        int p_i;
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        //붕어빵,핫도그,닭강정,문어빵0~3
+        switch (shopNum)
+        {
+            case 0:
+                if (p_i >= 6)
+                {
+                    p_i = p_i - 4;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
+                    point_i = point_i + 3;
+                    
+                }
+                else
+                {
+
+                }
+                break;
+            case 1:
+                if (p_i >= 7)
+                {
+
+                }
+                else
+                {
+
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        foodBuy_obj.SetActive(false);
+    }
+
+    void BeadalYesF()
+    {
+        PlayerPrefs.SetInt("beadal", 1);
+        PlayerPrefs.SetInt("lovepoint", point_i);
+        //closeBeadal();
+        //beadalIllust_obj.SetActive(true);
+        PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
+        //audio_obj.GetComponent<SoundEvt>().foodSound();
+    }
+
+
+    public void BuyFoodShopN()
     {
         foodBuy_obj.SetActive(false);
     }
