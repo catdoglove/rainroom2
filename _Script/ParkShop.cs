@@ -17,10 +17,17 @@ public class ParkShop : MonoBehaviour {
     //야시장
     public GameObject foodBuy_obj;
     public int point_i;
+    public Color colorP;
+    public GameObject needToast_obj;
+    //공원상점
+    public GameObject shopReform_obj, shopIng_obj;
+    public GameObject shopNY_obj,met_obj,met2_obj,icebox_obj,shelf_obj;
+    //소리
+    public GameObject audio_obj;
     // Use this for initialization
     void Start () {
-		
-	}
+        colorP = new Color(1f, 1f, 1f);
+    }
 
     public void allClose()
     {
@@ -79,7 +86,6 @@ public class ParkShop : MonoBehaviour {
     }
     public void OpenInShop()
     {
-        OpenClose();
         inShop_obj.SetActive(true);
     }
     public void OpenBasicShop()
@@ -87,6 +93,71 @@ public class ParkShop : MonoBehaviour {
         OpenClose();
         basicShop_obj.SetActive(true);
     }
+
+
+    //상점
+    public void BuyShopY()
+    {
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        int p_i;
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        //붕어빵,핫도그,닭강정,문어빵0~3
+        switch (shopNum)
+        {
+            case 0:
+                if (p_i >= 6)
+                {
+                    p_i = p_i - 6;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 1:
+                if (p_i >= 7)
+                {
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 2:
+                if (p_i >= 7)
+                {
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 3:
+                if (p_i >= 7)
+                {
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+        }
+        foodBuy_obj.SetActive(false);
+    }
+
+
 
     //야시장
     public void BuyFoodShop()
@@ -99,55 +170,101 @@ public class ParkShop : MonoBehaviour {
         str1 = PlayerPrefs.GetString("code", "");
         int p_i;
         p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        point_i = PlayerPrefs.GetInt("lovepoint", 0);
         //붕어빵,핫도그,닭강정,문어빵0~3
         switch (shopNum)
         {
             case 0:
                 if (p_i >= 6)
                 {
-                    p_i = p_i - 4;
+                    p_i = p_i - 6;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
-                    point_i = PlayerPrefs.GetInt("lovepoint", 0);
                     point_i = point_i + 3;
-                    
+                    BuyFoodOk();
                 }
                 else
                 {
-
+                    needMoney();
                 }
                 break;
             case 1:
                 if (p_i >= 7)
                 {
-
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
                 }
                 else
                 {
-
+                    needMoney();
                 }
                 break;
             case 2:
+                if (p_i >= 7)
+                {
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
                 break;
             case 3:
+                if (p_i >= 7)
+                {
+                    p_i = p_i - 7;
+                    PlayerPrefs.SetInt(str1 + "cv", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
                 break;
         }
         foodBuy_obj.SetActive(false);
     }
 
-    void BeadalYesF()
+    void BuyFoodOk()
     {
-        PlayerPrefs.SetInt("beadal", 1);
         PlayerPrefs.SetInt("lovepoint", point_i);
-        //closeBeadal();
-        //beadalIllust_obj.SetActive(true);
-        PlayerPrefs.SetString("foodLastTime", System.DateTime.Now.ToString());
-        //audio_obj.GetComponent<SoundEvt>().foodSound();
+        allClose();
+        audio_obj.GetComponent<SoundEvt>().foodSound();
+        PlayerPrefs.Save();
     }
 
 
     public void BuyFoodShopN()
     {
         foodBuy_obj.SetActive(false);
+    }
+
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        colorP.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = colorP;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorP.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = colorP;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
     }
 
 
