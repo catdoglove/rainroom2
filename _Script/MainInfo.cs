@@ -36,7 +36,7 @@ public class MainInfo : MonoBehaviour {
     public InputField InputField;
     public GameObject nickBtn_obj;
     //마음
-    public Text h_txt;
+    public Text h_txt, c_txt;
 
     // Use this for initialization
     void Start () {
@@ -47,7 +47,7 @@ public class MainInfo : MonoBehaviour {
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
     }
 
-   public void infoShow()
+    public void infoShow()
     {
         PlayerPrefs.SetInt("talk", 5);///////////////////////////////////////테스트용나중에꼭지울것/////////////////////////////////////
         //호감도
@@ -63,13 +63,19 @@ public class MainInfo : MonoBehaviour {
         sticker_obj.GetComponent<MainSticker>().showSticker();
         //별명
         nickname_txt.text = PlayerPrefs.GetString("nickname", "별명짓기");
-        if (PlayerPrefs.GetInt("setnick", 0)==99)
+        if (PlayerPrefs.GetInt("setnick", 0) == 99)
         {
             nickBtn_obj.SetActive(false);
         }
         //마음
         string str = PlayerPrefs.GetString("code", "");
         h_txt.text = "" + PlayerPrefs.GetInt(str + "ht", 0);
+
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+        {
+            h_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+        }
+
     }
 
 
@@ -154,7 +160,9 @@ public class MainInfo : MonoBehaviour {
 
 
 
-
+    /// <summary>
+    /// 레벨업조건
+    /// </summary>
     void InfoCheckList()
     {
         closeListAll();

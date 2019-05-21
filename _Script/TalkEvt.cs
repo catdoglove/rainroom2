@@ -986,9 +986,21 @@ public class TalkEvt : MonoBehaviour {
             talkHeart_i = 0;
             string str1;
             str1 = PlayerPrefs.GetString("code", "");
-            int ht = PlayerPrefs.GetInt(str1 + "ht", 0);
-            ht++;
-            PlayerPrefs.SetInt(str1 + "ht", ht);
+            int ht;
+            if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+            {
+                ht = PlayerPrefs.GetInt(str1 + "cv", 0);
+                ht++;
+                PlayerPrefs.SetInt(str1 + "cv", ht);
+            }
+            else
+            {
+                ht = PlayerPrefs.GetInt(str1 + "ht", 0);
+                ht++;
+                PlayerPrefs.SetInt(str1 + "ht", ht);
+            }
+            
+            
         }
         PlayerPrefs.SetInt("talkheartcount", talkHeart_i);
 

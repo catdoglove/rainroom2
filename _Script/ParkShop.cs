@@ -50,6 +50,7 @@ public class ParkShop : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
+            PlayerPrefs.GetInt("paint",0);
             eventPaint_i[i] = Random.Range(0, 3);
             switch (i)
             {
