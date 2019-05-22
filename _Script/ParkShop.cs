@@ -156,6 +156,17 @@ public class ParkShop : MonoBehaviour {
         }
         foodBuy_obj.SetActive(false);
     }
+    public void OpenRe()
+    {
+        shopReform_obj.SetActive(true);
+        shopIng_obj.SetActive(false);
+    }
+
+    public void OpenIn()
+    {
+        shopReform_obj.SetActive(false);
+        shopIng_obj.SetActive(true);
+    }
 
 
 
