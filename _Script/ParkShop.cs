@@ -14,8 +14,10 @@ public class ParkShop : MonoBehaviour {
     //거리의화가
     public int[] eventPaint_i;
     public GameObject[] eventPaintImg_obj;
-    public GameObject allPaint_obj;
+    public GameObject buyPaintYN_obj;
     public Sprite[] moviePaint_spr, specialPaint_spr, storyPaint_spr;
+    public int special_i,movie_i,story_i,paint_i;
+    public string paint_str;
     //야시장
     public GameObject foodBuy_obj;
     public int point_i;
@@ -33,6 +35,7 @@ public class ParkShop : MonoBehaviour {
     void Start () {
         colorP = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
+        //paintImg();
     }
 
     public void allClose()
@@ -62,16 +65,108 @@ public class ParkShop : MonoBehaviour {
     //그림 랜덤 바꿔주기
     void paintImg()
     {
-        PlayerPrefs.GetInt("paint", 0);
+        //기본값이9이고 9일경우 다시랜덤을돌린다
+        //아직수집못한것만 값을 넣어준다
 
-        eventPaint_i[0] = Random.Range(0, 4);
-        eventPaintImg_obj[0].GetComponent<Image>().sprite = moviePaint_spr[eventPaint_i[0]];
-        eventPaint_i[1] = Random.Range(0, 4);
-        eventPaintImg_obj[1].GetComponent<Image>().sprite = moviePaint_spr[eventPaint_i[1]];
-        eventPaint_i[2] = Random.Range(0, 4);
-        eventPaintImg_obj[2].GetComponent<Image>().sprite = moviePaint_spr[eventPaint_i[2]];
+        //명화
+        special_i = 9;
+        for (int i = 0; i < 4; i++)
+        {
+            if (PlayerPrefs.GetInt("paintp"+i, 0) == 0)
+            {
+                eventPaint_i[i] = i;
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (special_i == 9)
+            {
+                special_i = eventPaint_i[Random.Range(i, 4)];
+            }
+        }
+        if (special_i != 9)
+        {
+            eventPaintImg_obj[0].GetComponent<Image>().sprite = specialPaint_spr[special_i];
+        }
 
+        //영화
+        for (int i = 0; i < 4; i++)
+        {
+            eventPaint_i[i] = 9;
+            if (PlayerPrefs.GetInt("paintm" + i, 0) == 0)
+            {
+                eventPaint_i[i] = i;
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (movie_i == 9)
+            {
+                movie_i = eventPaint_i[Random.Range(i, 4)];
+            }
+        }
+        if (movie_i != 9)
+        {
+            eventPaintImg_obj[0].GetComponent<Image>().sprite = specialPaint_spr[movie_i];
+        }
+
+        //스토리
+        //eventPaint_i[2] = Random.Range(0, 4);
+        //eventPaintImg_obj[2].GetComponent<Image>().sprite = storyPaint_spr[eventPaint_i[2]];
     }
+    public void buyMovie()
+    {
+        paint_str = "m";
+        paint_i = movie_i;
+        if (paint_i != 9)
+        {
+            buyPaintYN_obj.SetActive(true);
+        }
+    }
+    public void buySpecial()
+    {
+        paint_str = "p";
+        paint_i = special_i;
+        if (paint_i != 9)
+        {
+            buyPaintYN_obj.SetActive(true);
+        }
+    }
+    public void buyStory()
+    {
+        paint_str = "s";
+        paint_i = story_i;
+        if (paint_i != 9)
+        {
+            buyPaintYN_obj.SetActive(true);
+        }
+    }
+
+    public void buyPaintY()
+    {
+        p_i = PlayerPrefs.GetInt(str + "h", 0);
+        c_i = PlayerPrefs.GetInt(str + "c", 0);
+        if (p_i >= 6 && c_i >= 10)
+        {
+            p_i = p_i - 6;
+            c_i = c_i - 6;
+            PlayerPrefs.SetInt(str + "h", p_i);
+            PlayerPrefs.SetInt(str + "c", c_i);
+            PlayerPrefs.SetInt("paint" + paint_str + paint_i, 1);
+            PlayerPrefs.Save();
+            buyPaintYN_obj.SetActive(false);
+        }
+        else
+        {
+            needMoney();
+        }
+    }
+    public void buyPaintN()
+    {
+        buyPaintYN_obj.SetActive(false);
+    }
+
+
     public void OpenPetShop()
     {
         OpenClose();
@@ -135,6 +230,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
+                    PlayerPrefs.GetInt("mat1lv", 5);
                     shopOk();
                 }
                 else
@@ -147,6 +243,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
+                    PlayerPrefs.GetInt("mat2lv", 5);
                     shopOk();
                 }
                 else
@@ -159,6 +256,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
+                    PlayerPrefs.GetInt("shelflv", 4);
                     shopOk();
                 }
                 else
@@ -171,6 +269,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
+                    PlayerPrefs.GetInt("iceboxlv", 2);
                     shopOk();
                 }
                 else
@@ -179,7 +278,7 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
         }
-        foodBuy_obj.SetActive(false);
+        shopNY_obj.SetActive(false);
     }
     void shopOk()
     {
@@ -198,6 +297,10 @@ public class ParkShop : MonoBehaviour {
         shopIng_obj.SetActive(true);
     }
 
+    public void buyShopN()
+    {
+        shopNY_obj.SetActive(false);
+    }
 
 
     //야시장
