@@ -25,6 +25,8 @@ public class ParkShop : MonoBehaviour {
     //공원상점
     public GameObject shopReform_obj, shopIng_obj;
     public GameObject shopNY_obj,met_obj,met2_obj,icebox_obj,shelf_obj;
+    int c_i;
+    int p_i;
     //소리
     public GameObject audio_obj;
     // Use this for initialization
@@ -123,20 +125,17 @@ public class ParkShop : MonoBehaviour {
     }
     public void BuyShopY()
     {
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        int c_i;
-        int p_i;
-        p_i = PlayerPrefs.GetInt(str1 + "h", 0);
-        c_i = PlayerPrefs.GetInt(str1 + "c", 0);
+        p_i = PlayerPrefs.GetInt(str + "h", 0);
+        c_i = PlayerPrefs.GetInt(str + "c", 0);
         //도어,부엌,선반,아이스박스0~3
         switch (shopNum)
         {
             case 0:
-                if (p_i >= 6)
+                if (p_i >= 6&& c_i>=10)
                 {
                     p_i = p_i - 6;
-                    PlayerPrefs.SetInt(str1 + "h", p_i);
+                    c_i = c_i - 6;
+                    shopOk();
                 }
                 else
                 {
@@ -144,10 +143,11 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 7)
+                if (p_i >= 6 && c_i >= 10)
                 {
-                    p_i = p_i - 7;
-                    PlayerPrefs.SetInt(str1 + "h", p_i);
+                    p_i = p_i - 6;
+                    c_i = c_i - 6;
+                    shopOk();
                 }
                 else
                 {
@@ -155,10 +155,11 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 2:
-                if (p_i >= 7)
+                if (p_i >= 6 && c_i >= 10)
                 {
-                    p_i = p_i - 7;
-                    PlayerPrefs.SetInt(str1 + "h", p_i);
+                    p_i = p_i - 6;
+                    c_i = c_i - 6;
+                    shopOk();
                 }
                 else
                 {
@@ -166,10 +167,11 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 3:
-                if (p_i >= 7)
+                if (p_i >= 6 && c_i >= 10)
                 {
-                    p_i = p_i - 7;
-                    PlayerPrefs.SetInt(str1 + "h", p_i);
+                    p_i = p_i - 6;
+                    c_i = c_i - 6;
+                    shopOk();
                 }
                 else
                 {
@@ -178,6 +180,11 @@ public class ParkShop : MonoBehaviour {
                 break;
         }
         foodBuy_obj.SetActive(false);
+    }
+    void shopOk()
+    {
+        PlayerPrefs.SetInt(str + "h", p_i);
+        PlayerPrefs.SetInt(str + "c", c_i);
     }
     public void OpenRe()
     {
