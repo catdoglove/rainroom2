@@ -301,16 +301,7 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void OpenIceBox()
     {
-        switch (iceLv_i)
-        {
-            //계란, 
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-        }
+        
         CheckIng();
         iceBox_obj.SetActive(true);
         if (egg_i == 1)
