@@ -13,7 +13,7 @@ public class ParkShop : MonoBehaviour {
     public Text coldRain_txt, hotRain_txt;
     //거리의화가
     public int[] eventPaint_i;
-    public GameObject[] eventPaintImg_obj;
+    public GameObject[] eventPaintImg_obj,soldout_obj;
     public GameObject buyPaintYN_obj;
     public Sprite[] moviePaint_spr, specialPaint_spr, storyPaint_spr;
     public int special_i,movie_i,story_i,paint_i;
@@ -35,7 +35,7 @@ public class ParkShop : MonoBehaviour {
     void Start () {
         colorP = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
-        //paintImg();
+        paintImg();
     }
 
     public void allClose()
@@ -154,6 +154,21 @@ public class ParkShop : MonoBehaviour {
             PlayerPrefs.SetInt(str + "c", c_i);
             PlayerPrefs.SetInt("paint" + paint_str + paint_i, 1);
             PlayerPrefs.Save();
+            if (paint_str == "p")
+            {
+                eventPaintImg_obj[0].SetActive(false);
+                soldout_obj[0].SetActive(true);
+            }
+            else if (paint_str == "m")
+            {
+                eventPaintImg_obj[1].SetActive(false);
+                soldout_obj[1].SetActive(true);
+            }
+            else if (paint_str == "s")
+            {
+                eventPaintImg_obj[2].SetActive(false);
+                soldout_obj[2].SetActive(true);
+            }
             buyPaintYN_obj.SetActive(false);
         }
         else
