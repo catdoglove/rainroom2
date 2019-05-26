@@ -43,6 +43,7 @@ public class MainShop : ShopHandler {
     public Sprite[] funcImg_spr,funcTxt_spr;
 
     public GameObject[] funcPrice_obj;
+    //보관함
     public GameObject funcCabinet_obj;
     public GameObject[] funcBox_obj;
     public Sprite[] funcBox_spr;
@@ -52,6 +53,9 @@ public class MainShop : ShopHandler {
     public string[] func_str;
 
     public GameObject shop_obj,close_obj,back_obj;
+    //애완동물
+    public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj;
+    
     
 
     //부족하다창
@@ -501,7 +505,7 @@ public class MainShop : ShopHandler {
             functionTape_obj[3].SetActive(true);
         }
     }
-
+    
     public void Fswitch0()
     {
         func_i = 0;
@@ -698,6 +702,20 @@ public class MainShop : ShopHandler {
     public void CloseFuncCabinet()
     {
         funcCabinet_obj.SetActive(false);
+    }
+
+    //애완동물
+    public void OpenPetHotel()
+    {
+        shop_obj.SetActive(false);
+        close_obj.SetActive(false);
+        back_obj.SetActive(false);
+        petHotel_obj.SetActive(true);
+
+    }
+    public void ClosePetHotel()
+    {
+        petHotel_obj.SetActive(false);
     }
 
 

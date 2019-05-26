@@ -510,6 +510,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     PlayerPrefs.SetInt(str + "cv", p_i);
+                    PlayerPrefs.SetInt("marimo", 1);
                 }
                 else
                 {
@@ -521,6 +522,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
+                    PlayerPrefs.SetInt("rabbit", 1);
                 }
                 else
                 {
@@ -532,6 +534,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
+                    PlayerPrefs.SetInt("tutle", 1);
                 }
                 else
                 {
@@ -543,6 +546,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
+                    PlayerPrefs.SetInt("goldfish", 1);
                 }
                 else
                 {

@@ -7,6 +7,9 @@ public class CavasData : CommonDate {
 
 	public GameObject[] canvasPack_cvs;
 
+    /// <summary>
+    /// 시야 1앞 2뒤
+    /// </summary>
 	public void changeSight(){
 		if (canvasPack_cvs [0].activeSelf == true) {
 			for (int i = 3; i < 6; i++) {
