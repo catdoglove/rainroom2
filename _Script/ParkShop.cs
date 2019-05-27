@@ -34,7 +34,9 @@ public class ParkShop : MonoBehaviour {
     //애완동물
     public GameObject buyPetYN_obj;
     public GameObject petMarimo_obj,petRabbit_obj,petTutle_obj,petFish_obj;
+    public GameObject[] adopt_obj;
     public Sprite[] pet_spr;
+    public Sprite adopt_spr;
     //소리
     public GameObject audio_obj;
     // Use this for initialization
@@ -189,11 +191,30 @@ public class ParkShop : MonoBehaviour {
         buyPaintYN_obj.SetActive(false);
     }
 
-
     public void OpenPetShop()
     {
         OpenClose();
         eventPet_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("marimo", 0) == 1)
+        {
+            adopt_obj[0].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[0].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("rabbit", 0) == 1)
+        {
+            adopt_obj[1].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[1].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("tutle", 0) == 1)
+        {
+            adopt_obj[2].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[2].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("goldfish", 0) == 1)
+        {
+            adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[3].GetComponent<Button>().interactable = false;
+        }
     }
     public void OpenFoodShop()
     {
@@ -212,7 +233,9 @@ public class ParkShop : MonoBehaviour {
         basicShop_obj.SetActive(true);
         
     }
-
+    /// <summary>
+    /// 상점 불러오기
+    /// </summary>
     void shopLoad()
     {
         coldRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
@@ -235,8 +258,7 @@ public class ParkShop : MonoBehaviour {
             icebox_obj.SetActive(true);
         }
     }
-
-
+    
     //상점
     public void BuyShop()
     {
@@ -463,6 +485,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(false);
+        shopNum = 0;
     }
     public void pet1()
     {
@@ -472,6 +495,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(true);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(false);
+        shopNum = 1;
     }
     public void pet2()
     {
@@ -481,6 +505,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(true);
         petFish_obj.SetActive(false);
+        shopNum = 2;
     }
     public void pet3()
     {
@@ -490,6 +515,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(true);
+        shopNum = 3;
     }
     public void buyPetShop()
     {
@@ -511,6 +537,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 6;
                     PlayerPrefs.SetInt(str + "cv", p_i);
                     PlayerPrefs.SetInt("marimo", 1);
+                    petOk();
                 }
                 else
                 {
@@ -523,6 +550,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
                     PlayerPrefs.SetInt("rabbit", 1);
+                    petOk();
                 }
                 else
                 {
@@ -535,6 +563,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
                     PlayerPrefs.SetInt("tutle", 1);
+                    petOk();
                 }
                 else
                 {
@@ -547,6 +576,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 7;
                     PlayerPrefs.SetInt(str + "cv", p_i);
                     PlayerPrefs.SetInt("goldfish", 1);
+                    petOk();
                 }
                 else
                 {
@@ -555,6 +585,33 @@ public class ParkShop : MonoBehaviour {
                 break;
         }
         buyPetYN_obj.SetActive(false);
+    }
+    /// <summary>
+    /// 펫 구매성공 공통처리
+    /// </summary>
+    void petOk()
+    {
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
+        if (PlayerPrefs.GetInt("marimo", 0) == 1)
+        {
+            adopt_obj[0].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[0].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("rabbit", 0) == 1)
+        {
+            adopt_obj[1].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[1].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("tutle", 0) == 1)
+        {
+            adopt_obj[2].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[2].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("goldfish", 0) == 1)
+        {
+            adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
+            adopt_obj[3].GetComponent<Button>().interactable = false;
+        }
     }
 
     void needMoney()

@@ -10,7 +10,7 @@ public class Parkfunction : CavasData
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
     //밤
-    public GameObject dayRoom;
+    public GameObject dayRoom, dayRoom2;
     public GameObject nightShop_obj,dayShop_obj;
     //소리
     public GameObject audio_obj;
@@ -80,10 +80,8 @@ public class Parkfunction : CavasData
             }
             if (k >= 6)
             {
-                if (canvasPack_cvs[0].activeSelf == true)
-                {
-                    dayRoom.SetActive(true);
-                }
+                dayRoom.SetActive(true);
+                dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
                 dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
@@ -92,6 +90,7 @@ public class Parkfunction : CavasData
             {
                 //낮
                 dayRoom.SetActive(false);
+                dayRoom2.SetActive(false);
                 nightShop_obj.SetActive(false);
                 dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
@@ -106,10 +105,8 @@ public class Parkfunction : CavasData
             }
             if (k < 6)
             {
-                if (canvasPack_cvs[0].activeSelf == true)
-                {
-                    dayRoom.SetActive(true);
-                }
+                dayRoom.SetActive(true);
+                dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
                 dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
@@ -118,6 +115,7 @@ public class Parkfunction : CavasData
             {
                 //낮
                 dayRoom.SetActive(false);
+                dayRoom2.SetActive(false);
                 nightShop_obj.SetActive(false);
                 dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);

@@ -39,7 +39,7 @@ public class MainBtnEvt : CavasData
 
     //외출
     public GameObject comeHome_obj;
-    public GameObject shop_obj;
+    public GameObject shop_obj,goHome_obj;
 
     //화폐변환
     public GameObject h_obj,c_obj;
@@ -585,8 +585,17 @@ public class MainBtnEvt : CavasData
         StartCoroutine("LoadOut");
         comeHome_obj.SetActive(false);
         shop_obj.SetActive(true);
+        goHome_obj.SetActive(false);
     }
 
+    public void OpenGoHome()
+    {
+        goHome_obj.SetActive(true);
+    }
+    public void CloseGoHome()
+    {
+        goHome_obj.SetActive(false);
+    }
 
     /// <summary>
     /// 집으로 돌아가기 코루틴

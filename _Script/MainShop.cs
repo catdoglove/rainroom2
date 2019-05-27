@@ -56,8 +56,8 @@ public class MainShop : ShopHandler {
     //애완동물
     public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj;
     //리폼
-    public GameObject reform_obj;
-    
+    public GameObject reform_obj,palette_obj;
+    public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
 
     //부족하다창
     Color color;
@@ -221,6 +221,7 @@ public class MainShop : ShopHandler {
             }
         }//endOfElse
     }
+
     /// <summary>
     /// 물건을 살때 이름을 불러오고 살까요창을 띄워준다
     /// </summary>
@@ -712,7 +713,22 @@ public class MainShop : ShopHandler {
         close_obj.SetActive(false);
         back_obj.SetActive(false);
         petHotel_obj.SetActive(true);
-
+        if (PlayerPrefs.GetInt("marimo", 0) == 1)
+        {
+            petMarimo_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("rabbit", 0) == 1)
+        {
+            petRabbit_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("tutle", 0) == 1)
+        {
+            petTutle_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("goldfish", 0) == 1)
+        {
+            petFish_obj.SetActive(true);
+        }
     }
     public void ClosePetHotel()
     {
@@ -725,18 +741,35 @@ public class MainShop : ShopHandler {
         close_obj.SetActive(false);
         back_obj.SetActive(false);
         reform_obj.SetActive(true);
-
     }
     public void CloseReform()
     {
         reform_obj.SetActive(false);
+    }
+    //파레트
+    //도어
+    public void OpenMatPalette()
+    {
+        palette_obj.SetActive(true);
+        PlayerPrefs.GetInt("setmatpalette", 0);
+    }
+    //부엌
+    public void OpenMat2Palette()
+    {
+        palette_obj.SetActive(true);
+        PlayerPrefs.GetInt("setmat2palette", 0);
+    }
+    //선반
+    public void OpenShelfPalette()
+    {
+        palette_obj.SetActive(true);
+        PlayerPrefs.GetInt("setshelfpalette", 0);
     }
 
     void Needfalse()
     {
         fucnYN_obj.SetActive(false);
     }
-
     //온수가 부족하다
     IEnumerator toastHotImgFadeOut()
     {
@@ -768,7 +801,7 @@ public class MainShop : ShopHandler {
         }
         needcRain_obj.SetActive(false);
     }
-
+    //업적
     void achvcheck()
     {
         //업적
