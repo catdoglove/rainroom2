@@ -20,6 +20,8 @@ public class secondRoomFunction : CavasData {
     public Sprite[] switch_spr;
     public Sprite[] wall_spr, wall2_spr;
     public GameObject iceBoxBtn_obj;
+    //애완동물
+    public GameObject roomTutle_obj, roomGoldfish_obj;
 
     //정수기
     public GameObject WaterPurifilerWindow_obj;
@@ -191,6 +193,16 @@ public class secondRoomFunction : CavasData {
         else
         {
             umb_obj.SetActive(false);
+        }
+
+        //애완동물
+        if (PlayerPrefs.GetInt("settutle", 0) == 1)
+        {
+            roomTutle_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("setgoldfish", 0) == 1)
+        {
+            roomGoldfish_obj.SetActive(true);
         }
         //낮밤
         setDay();

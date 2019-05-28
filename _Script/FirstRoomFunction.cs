@@ -61,6 +61,8 @@ public class FirstRoomFunction : CavasData {
     public int boxs_i;
     public Text boxTxt_txt, boxneed_txt;
 
+    public GameObject roomRabbit_obj, roomMarimo_obj;
+
     public GameObject loadGM;
 
     //씬이동
@@ -198,6 +200,15 @@ public class FirstRoomFunction : CavasData {
         if (ladderBox_obj.activeSelf == false)
         {
             ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
+        }
+        //애완동물
+        if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
+        {
+            roomMarimo_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+        {
+            roomRabbit_obj.SetActive(true);
         }
     }
 

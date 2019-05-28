@@ -5702,7 +5702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &152135016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5759,7 +5759,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 152135018}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: moveFish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1567872174}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &152135018
@@ -5781,7 +5803,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300006, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 7df08377208ede64ea144519ff466211, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16458,7 +16480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &477303686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16515,7 +16537,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 477303688}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: moveMarimo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1567872174}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &477303688
@@ -16537,7 +16581,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7df08377208ede64ea144519ff466211, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19425,7 +19469,18 @@ MonoBehaviour:
   petRabbit_obj: {fileID: 987269575}
   petTutle_obj: {fileID: 1804038679}
   petFish_obj: {fileID: 152135015}
-  marimo_spr: []
+  marimo_spr:
+  - {fileID: 21300002, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  - {fileID: 21300000, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  rabbit_spr:
+  - {fileID: 21300014, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  - {fileID: 21300012, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  tutle_spr:
+  - {fileID: 21300010, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  - {fileID: 21300008, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  goldfish_spr:
+  - {fileID: 21300006, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  - {fileID: 21300004, guid: 7df08377208ede64ea144519ff466211, type: 3}
   reform_obj: {fileID: 424684378}
   palette_obj: {fileID: 0}
   matPalette_obj: []
@@ -37152,7 +37207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &987269576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37209,7 +37264,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987269578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: moveRabbit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1567872174}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &987269578
@@ -37231,7 +37308,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300014, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 7df08377208ede64ea144519ff466211, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -70073,7 +70150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1804038680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70130,7 +70207,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1804038682}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 534253877}
+        m_MethodName: moveTutle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1567872174}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1804038682
@@ -70152,7 +70251,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300010, guid: 7df08377208ede64ea144519ff466211, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 7df08377208ede64ea144519ff466211, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79761,6 +79860,8 @@ MonoBehaviour:
   boxs_i: 0
   boxTxt_txt: {fileID: 126195146}
   boxneed_txt: {fileID: 1441525040}
+  roomRabbit_obj: {fileID: 70706554}
+  roomMarimo_obj: {fileID: 969789553}
   loadGM: {fileID: 0}
   menuBlock_obj: {fileID: 0}
   menuBlock_vet: {x: 0, y: 0}
