@@ -55,7 +55,8 @@ public class MainShop : ShopHandler {
     public GameObject shop_obj,close_obj,back_obj;
     //애완동물
     public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj;
-    
+    //리폼
+    public GameObject reform_obj;
     
 
     //부족하다창
@@ -717,7 +718,19 @@ public class MainShop : ShopHandler {
     {
         petHotel_obj.SetActive(false);
     }
+    //리폼
+    public void OpenReform()
+    {
+        shop_obj.SetActive(false);
+        close_obj.SetActive(false);
+        back_obj.SetActive(false);
+        reform_obj.SetActive(true);
 
+    }
+    public void CloseReform()
+    {
+        reform_obj.SetActive(false);
+    }
 
     void Needfalse()
     {
