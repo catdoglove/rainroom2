@@ -55,6 +55,7 @@ public class MainShop : ShopHandler {
     public GameObject shop_obj,close_obj,back_obj;
     //애완동물
     public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj;
+    public Sprite[] marimo_spr;
     //리폼
     public GameObject reform_obj,palette_obj;
     public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
@@ -734,6 +735,59 @@ public class MainShop : ShopHandler {
     {
         petHotel_obj.SetActive(false);
     }
+    public void moveMarimo()
+    {
+        if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[0];
+            PlayerPrefs.SetInt("setmarimo", 0);
+        }
+        else
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[1];
+            PlayerPrefs.SetInt("setmarimo", 1);
+        }
+    }
+    public void moveRabbit()
+    {
+        if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[0];
+            PlayerPrefs.SetInt("setmarimo", 0);
+        }
+        else
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[1];
+            PlayerPrefs.SetInt("setmarimo", 1);
+        }
+    }
+    public void moveTutle()
+    {
+        if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[0];
+            PlayerPrefs.SetInt("setmarimo", 0);
+        }
+        else
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[1];
+            PlayerPrefs.SetInt("setmarimo", 1);
+        }
+    }
+    public void moveFish()
+    {
+        if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[0];
+            PlayerPrefs.SetInt("setmarimo", 0);
+        }
+        else
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[1];
+            PlayerPrefs.SetInt("setmarimo", 1);
+        }
+    }
+
     //리폼
     public void OpenReform()
     {
