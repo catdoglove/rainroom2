@@ -55,6 +55,12 @@ public class Parkfunction : CavasData
         {
             event_obj.GetComponent<Image>().sprite = event_spr[0];
         }
+        if (PlayerPrefs.GetInt("dayday", 0) == 1)
+        {
+            eventPaint_obj.SetActive(false);
+            eventPet_obj.SetActive(false);
+            event_obj.GetComponent<Image>().sprite = event_spr[0];
+        }
 
         //씬이동
         if (menuBlock_obj == null)
