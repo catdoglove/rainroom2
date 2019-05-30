@@ -37,6 +37,7 @@ public class ParkShop : MonoBehaviour {
     public GameObject[] adopt_obj;
     public Sprite[] pet_spr;
     public Sprite adopt_spr;
+    Text pet_txt;
     //소리
     public GameObject audio_obj;
     // Use this for initialization
@@ -522,6 +523,21 @@ public class ParkShop : MonoBehaviour {
     public void buyPetShop()
     {
         buyPetYN_obj.SetActive(true);
+        switch (shopNum)
+        {
+            case 0:
+                pet_txt.text = "책상 필요";
+                break;
+            case 1:
+                pet_txt.text = "침대 필요";
+                break;
+            case 2:
+                pet_txt.text = "";
+                break;
+            case 3:
+                pet_txt.text = "정수기 필요";
+                break;
+        }
     }
     public void buyPetN()
     {
