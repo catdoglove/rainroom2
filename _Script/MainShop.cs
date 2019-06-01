@@ -58,7 +58,9 @@ public class MainShop : ShopHandler {
     public Sprite[] marimo_spr, rabbit_spr, tutle_spr, goldfish_spr;
     //리폼
     public GameObject reform_obj,palette_obj;
+    public GameObject[] paintcan_obj;
     public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
+    public Sprite[] paintcan_spr;
 
     //부족하다창
     Color color;
@@ -77,7 +79,7 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt(str + "c", 99999);
         //PlayerPrefs.SetInt(str + "h", 9999);
         //PlayerPrefs.SetInt(str + "ht", 99);
-        PlayerPrefs.SetInt(str + "cv", 999);
+        //PlayerPrefs.SetInt(str + "cv", 999);
         //PlayerPrefs.SetInt("lovelv", 3);
         //PlayerPrefs.SetInt("seedlv", 10);
         //PlayerPrefs.SetInt("allflower", 0);
@@ -845,6 +847,13 @@ public class MainShop : ShopHandler {
         close_obj.SetActive(false);
         back_obj.SetActive(false);
         reform_obj.SetActive(true);
+        for(int i = 0; i < 6; i++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette"+i, 0) == 1)
+            {
+                paintcan_obj[i].GetComponent<Image>().sprite = paintcan_spr[i];
+            }
+        }
     }
     public void CloseReform()
     {

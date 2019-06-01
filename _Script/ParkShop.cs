@@ -16,22 +16,27 @@ public class ParkShop : MonoBehaviour {
     public GameObject[] eventPaintImg_obj,soldout_obj;
     public GameObject buyPaintYN_obj;
     public Sprite[] moviePaint_spr, specialPaint_spr, storyPaint_spr;
+    public string[] moviePaint_str, specialPaint_str, storyPaint_str;
     public int special_i,movie_i,story_i,paint_i;
     public string paint_str;
     public Text paint_txt;
     public Text paintPrice_txt;
+    public Sprite[] soldOut_spr;
     //야시장
-    public GameObject foodBuy_obj;
+    public GameObject foodBuy_obj,selectFood_obj,foodIlust_obj;
+    public Sprite[] selectFood_spr;
     public int point_i;
     public Color colorP;
     public GameObject needToast_obj;
     public Text clover_txt;
     //공원상점
-    public GameObject shopReform_obj, shopIng_obj;
+    public GameObject shopReform_obj, shopIng_obj,shopSelect_obj, inSelect_obj;
     public GameObject shopNY_obj,met_obj,met2_obj,icebox_obj,shelf_obj;
     public GameObject inYN_obj;
+    public Sprite[] shop_spr,in_spr;
     int c_i;
     int p_i;
+
     public GameObject inIceboxTxt_obj;
     //애완동물
     public GameObject buyPetYN_obj;
@@ -42,6 +47,9 @@ public class ParkShop : MonoBehaviour {
     public Text pet_txt;
     //소리
     public GameObject audio_obj;
+    //도움말
+    public GameObject help_obj;
+    public Sprite[] help_spr;
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -69,9 +77,9 @@ public class ParkShop : MonoBehaviour {
     /// </summary>
     public void OpenPaintShop()
     {
-        //paintImg();
         OpenClose();
         eventPaint_obj.SetActive(true);
+        paintPrice_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
     }
     //그림 랜덤 바꿔주기
     void paintImg()
@@ -100,6 +108,10 @@ public class ParkShop : MonoBehaviour {
         {
             eventPaintImg_obj[0].GetComponent<Image>().sprite = specialPaint_spr[special_i];
         }
+        else
+        {
+            eventPaintImg_obj[0].GetComponent<Image>().sprite = soldOut_spr[1];
+        }
 
         //영화
         for (int i = 0; i < 4; i++)
@@ -122,11 +134,22 @@ public class ParkShop : MonoBehaviour {
         {
             eventPaintImg_obj[1].GetComponent<Image>().sprite = moviePaint_spr[movie_i];
         }
+        else
+        {
+            eventPaintImg_obj[1].GetComponent<Image>().sprite = soldOut_spr[1];
+        }
 
         //스토리
-        story_i=PlayerPrefs.GetInt("paints", 0);
-        eventPaintImg_obj[2].GetComponent<Image>().sprite = storyPaint_spr[story_i];
-        
+        story_i =PlayerPrefs.GetInt("paints", 0);
+        if(PlayerPrefs.GetInt("paints", 0) == 9)
+        {
+            eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[1];
+        }
+        else
+        {
+            eventPaintImg_obj[2].GetComponent<Image>().sprite = storyPaint_spr[story_i];
+        }
+
     }
     public void buyMovie()
     {
@@ -135,6 +158,7 @@ public class ParkShop : MonoBehaviour {
         if (paint_i != 9)
         {
             buyPaintYN_obj.SetActive(true);
+            paint_txt.text = specialPaint_str[movie_i];
         }
     }
     public void buySpecial()
@@ -144,6 +168,7 @@ public class ParkShop : MonoBehaviour {
         if (paint_i != 9)
         {
             buyPaintYN_obj.SetActive(true);
+            paint_txt.text = moviePaint_str[special_i];
         }
     }
     public void buyStory()
@@ -153,6 +178,7 @@ public class ParkShop : MonoBehaviour {
         if (paint_i != 9)
         {
             buyPaintYN_obj.SetActive(true);
+            paint_txt.text = storyPaint_str[story_i];
         }
     }
 
@@ -174,18 +200,15 @@ public class ParkShop : MonoBehaviour {
             PlayerPrefs.Save();
             if (paint_str == "p")
             {
-                eventPaintImg_obj[0].SetActive(false);
-                soldout_obj[0].SetActive(true);
+                eventPaintImg_obj[0].GetComponent<Image>().sprite = soldOut_spr[0];
             }
             else if (paint_str == "m")
             {
-                eventPaintImg_obj[1].SetActive(false);
-                soldout_obj[1].SetActive(true);
+                eventPaintImg_obj[1].GetComponent<Image>().sprite = soldOut_spr[0];
             }
             else if (paint_str == "s")
             {
-                eventPaintImg_obj[2].SetActive(false);
-                soldout_obj[2].SetActive(true);
+                eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[0];
             }
             PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
@@ -274,6 +297,7 @@ public class ParkShop : MonoBehaviour {
     //상점
     public void BuyShop()
     {
+        shopSelect_obj.GetComponent<Image>().sprite = shop_spr[shopNum];
         shopNY_obj.SetActive(true);
     }
     public void BuyShopY()
@@ -289,6 +313,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
                     PlayerPrefs.GetInt("mat1lv", 5);
+                    PlayerPrefs.SetInt("shoppalette"+shopNum,1);
                     shopOk();
                 }
                 else
@@ -302,6 +327,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
                     PlayerPrefs.GetInt("mat2lv", 5);
+                    PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     shopOk();
                 }
                 else
@@ -315,6 +341,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
                     PlayerPrefs.GetInt("shelflv", 4);
+                    PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     shopOk();
                 }
                 else
@@ -363,7 +390,8 @@ public class ParkShop : MonoBehaviour {
     //재료
     public void buyIn()
     {
-            inYN_obj.SetActive(true);
+        inSelect_obj.GetComponent<Image>().sprite = in_spr[shopNum];
+        inYN_obj.SetActive(true);
     }
     public void buyInY()
     {
@@ -410,6 +438,7 @@ public class ParkShop : MonoBehaviour {
     public void BuyFoodShop()
     {
         foodBuy_obj.SetActive(true);
+        selectFood_obj.GetComponent<Image>().sprite = selectFood_spr[shopNum];
     }
     public void BuyFoodShopY()
     {
@@ -480,8 +509,14 @@ public class ParkShop : MonoBehaviour {
         clover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
-        audio_obj.GetComponent<SoundEvt>().foodSound();
+        foodIlust_obj.SetActive(true);
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
         PlayerPrefs.Save();
+    }
+    public void CloseFoodIlust()
+    {
+        foodIlust_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().foodSound();
     }
     public void BuyFoodShopN()
     {
@@ -664,6 +699,17 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
+    }
+
+    public void OpenHelp()
+    {
+        help_obj.SetActive(true);
+        help_obj.GetComponent<Image>().sprite = help_spr[shopNum];
+    }
+
+    public void CloseHelp()
+    {
+        help_obj.SetActive(false);
     }
 
     void needMoney()
