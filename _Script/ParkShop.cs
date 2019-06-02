@@ -186,6 +186,7 @@ public class ParkShop : MonoBehaviour {
                 eventPaintImg_obj[2].SetActive(false);
                 soldout_obj[2].SetActive(true);
             }
+            PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
         }
         else

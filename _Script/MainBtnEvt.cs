@@ -36,6 +36,7 @@ public class MainBtnEvt : CavasData
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
     public GameObject helpPark_obj;
+    public Sprite[] helpP_spr;
     int help = 0;
 
     //외출
@@ -560,19 +561,14 @@ public class MainBtnEvt : CavasData
         if (help == 0)
         {
             help = 1;
-            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[1];
-        }
-        else if (help == 1)
-        {
-            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[2];
-            help = 2;
-        }
-        else
+            helpPark_obj.GetComponent<Image>().sprite = helpP_spr[1];
+        }else
         {
             help = 0;
-            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[0];
+            helpPark_obj.GetComponent<Image>().sprite = helpP_spr[0];
             helpPark_obj.SetActive(false);
         }
+
     }
 
 

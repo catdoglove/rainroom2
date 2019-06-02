@@ -18,7 +18,10 @@ public class Parkfunction : CavasData
     public int eventRand_i;
     public GameObject eventPet_obj, eventPaint_obj, event_obj;
     public Sprite[] event_spr;
-
+    //도움말
+    public GameObject helpPark_obj;
+    public Sprite[] helpP_spr;
+    int help;
     //
     public GameObject GMtag;
 
@@ -32,11 +35,18 @@ public class Parkfunction : CavasData
         GMtag.GetComponent<MainBtnEvt>().comeHome_obj.SetActive(true);
         GMtag.GetComponent<MainBtnEvt>().shop_obj.SetActive(false);
         GMtag.GetComponent<MainBtnEvt>().SetClover();
+        //공원에 처음 왔을때
+        if (PlayerPrefs.GetInt("parkfirst", 0)==0)
+        {
+            helpPark_obj.SetActive(true);
+            PlayerPrefs.SetInt("parkfirst", 1);
+            PlayerPrefs.Save();
+        }
     }
 
     // Use this for initialization
     void Start () {
-        
+
         //밤낮
         setDay();
         //이밴트 랜덤 -첫외출에는 무조건 안나오면 어떨까?
@@ -61,7 +71,6 @@ public class Parkfunction : CavasData
             eventPet_obj.SetActive(false);
             event_obj.GetComponent<Image>().sprite = event_spr[0];
         }
-
         //씬이동
         if (menuBlock_obj == null)
         {
@@ -70,6 +79,21 @@ public class Parkfunction : CavasData
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
+    }
+    //도움말
+    public void CloseHelpP()
+    {
+        if (help == 0)
+        {
+            help = 1;
+            helpPark_obj.GetComponent<Image>().sprite = helpP_spr[1];
+        }
+        else
+        {
+            help = 0;
+            helpPark_obj.GetComponent<Image>().sprite = helpP_spr[0];
+            helpPark_obj.SetActive(false);
+        }
 
     }
 
