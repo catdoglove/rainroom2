@@ -51,7 +51,6 @@ public class TalkEvtOut : MonoBehaviour
 
     //나가기
     public GameObject exitTalkBalln, closeTB_exit;
-    public Sprite[] ballnSpr;
     public Text exitText;
     int exCk = 0;
     //종료
@@ -67,7 +66,7 @@ public class TalkEvtOut : MonoBehaviour
 
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
-        setCharAni();
+        charAni.Play("char_park");
 
 
         data_out = CSVReader.Read("Talk/talk_out"); //대사 불러오기   
@@ -80,6 +79,7 @@ public class TalkEvtOut : MonoBehaviour
     void Update()
     {
 
+        //charAni.Play("char_park");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeTalkBoon();
@@ -89,8 +89,7 @@ public class TalkEvtOut : MonoBehaviour
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
                 closeTB_exit.SetActive(true);
-                exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[0];
-                    exitText.text = "가는거니?\n(뒤로두번 종료)";
+                exitText.text = "가는거니?\n(뒤로두번 종료)";
             }
             else
             {
@@ -214,6 +213,7 @@ public class TalkEvtOut : MonoBehaviour
             Audio_obj.GetComponent<SoundEvt>().talkSound();
 
             checkach();
+            lineReload();
             text_str = "" + data_out[randArr[nowArr - 1]]["공원"];
             testText_cut = text_str.Split('/'); //끊기
             cleantalk();
@@ -399,7 +399,7 @@ public class TalkEvtOut : MonoBehaviour
     //버튼 가리기(대화할 때 안 눌리기 위해서)
     void falseObject()
     {
-        charAni.Play("talk2");
+        charAni.Play("char_park_talk");
 
         talkballoon.SetActive(true);
         closeTB.GetComponent<Button>().interactable = false;
@@ -417,7 +417,8 @@ public class TalkEvtOut : MonoBehaviour
         //closeTB.SetActive(true);
         talkbtn.SetActive(true);
 
-        setCharAni();
+
+        charAni.Play("char_park");
 
     }
 
@@ -491,11 +492,7 @@ public class TalkEvtOut : MonoBehaviour
         exitTalkBalln.SetActive(false);
         closeTB_exit.SetActive(false);
     }
-
-    void setCharAni()
-    {
-        charAni.Play("char_park");
-    }
+    
 
     //업적
     void checkach()
