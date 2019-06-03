@@ -133,9 +133,9 @@ public class MainSticker : MonoBehaviour
                 {
                     int name_i = int.Parse(name_str.Substring(1, 1));
                     sticker_obj[name_i].SetActive(true);
-                    int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0);
+                    int plus = PlayerPrefs.GetInt(sticker_str[name_i] + "plus", 0); if (name_i == 7) { name_i = name_i + 2; }
                     GM.GetComponent<FirstRoomSticker>().frame_i = (name_i * 3) + plus;
-                    GM.GetComponent<FirstRoomSticker>().ShowFrame();
+                    GM.GetComponent<FirstRoomSticker>().ShowFrame(); if (name_i == 9) { name_i = name_i - 2; }
                     if (plus == 1)
                     {
                         sticker_obj[name_i].GetComponent<SpriteRenderer>().sprite = stickerS_spr[name_i];

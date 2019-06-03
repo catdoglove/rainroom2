@@ -35,6 +35,7 @@ public class MainBtnEvt : CavasData
     public Sprite[] help_spr;
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
+    public GameObject helpPark_obj;
     int help = 0;
 
     //외출
@@ -543,7 +544,35 @@ public class MainBtnEvt : CavasData
 
     public void OpenHelpf()
     {
-        helpfrist_obj.SetActive(true);
+        
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+        {
+            helpPark_obj.SetActive(true);
+        }
+        else
+        {
+            helpfrist_obj.SetActive(true);
+        }
+    }
+
+    public void CloseHelpP()
+    {
+        if (help == 0)
+        {
+            help = 1;
+            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[1];
+        }
+        else if (help == 1)
+        {
+            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[2];
+            help = 2;
+        }
+        else
+        {
+            help = 0;
+            helpPark_obj.GetComponent<Image>().sprite = helpf_spr[0];
+            helpPark_obj.SetActive(false);
+        }
     }
 
 
