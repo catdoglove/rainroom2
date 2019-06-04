@@ -15,7 +15,7 @@ public class TalkEvtOut : MonoBehaviour
     public GameObject talkbtn, talkballoon, closeTB, talkCursor; //대화버튼 및 영역
     bool ihaveitem;
 
-    int allArr = 100; //총 줄수
+    int allArr = 150; //총 줄수
     int loveLv = 1; //호감도 단계라고 생각하면 됨
     int countTalkNum;//대화횟수
 
@@ -78,8 +78,14 @@ public class TalkEvtOut : MonoBehaviour
     // 종료 함수
     void Update()
     {
+        //클립초기화
+        if(PlayerPrefs.GetInt("frontpark", 0) == 1)
+        {
+            PlayerPrefs.SetInt("frontpark", 99);
+            charAni.Play("char_park");
+        }
 
-        //charAni.Play("char_park");
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeTalkBoon();
@@ -89,7 +95,7 @@ public class TalkEvtOut : MonoBehaviour
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
                 closeTB_exit.SetActive(true);
-                exitText.text = "가는거니?\n(뒤로두번 종료)";
+                exitText.text = "집으로 돌아갈까..\n(종료는 집에서 가능)";
             }
             else
             {
@@ -114,29 +120,6 @@ public class TalkEvtOut : MonoBehaviour
             cnt_exit = 0;
         }
 
-    }
-
-    void OnApplicationQuit()
-    {
-        /* 앱이 종료 될 때 처리 */
-    }
-
-    IEnumerator quitGame()
-    {
-        float fl;
-        for (fl = 0; fl <= 300; fl++)
-        {
-            if (fl >= 200)
-            {
-                exitText.text = "잘가. 나중에 집에서 보자";           
-
-            }
-            if (fl == 245)
-            {
-                Application.Quit();
-            }
-        }
-        yield return new WaitForSeconds(fl);
     }
 
     void cleantalk() //대화 초기화
