@@ -6,9 +6,9 @@ public class MainPaint : MonoBehaviour {
 
     public GameObject[] lightPaint_obj;
     public GameObject[] paintP_obj, paintM_obj, paintS_obj;
-    public Sprite[] light_spr;
+    public Sprite[] light_spr,paint_spr;
     public Text paint_txt;
-    public GameObject paintFrame_obj, paintFrameWindow_obj;
+    public GameObject paintFrame_obj, paintFrameWindow_obj,roomPaint_obj;
 
     // Use this for initialization
     void Start () {
@@ -43,15 +43,13 @@ public class MainPaint : MonoBehaviour {
                 paintM_obj[i].SetActive(true);
             }
         }
-        /*
         for (int i = 0; i < 10; i++)
         {
-            if (PlayerPrefs.GetInt("paints" + i, 0) == 1)
+            if (PlayerPrefs.GetInt("paints", 0) > i)
             {
-                paintS_obj[i] = i;
+                paintS_obj[i].SetActive(true);
             }
         }
-        */
     }
 
     public void paintSet0()
@@ -62,6 +60,8 @@ public class MainPaint : MonoBehaviour {
         }
         lightPaint_obj[0].GetComponent<Image>().sprite = light_spr[1];
         paint_txt.text= "<키스>\n사랑을 한다는 것은 어떤 느낌일까";
+        roomPaint_obj.GetComponent<Image>().sprite = paint_spr[0];
+        roomPaint_obj.SetActive(true);
     }
     public void paintSet1()
     {
@@ -71,6 +71,8 @@ public class MainPaint : MonoBehaviour {
         }
         lightPaint_obj[1].GetComponent<Image>().sprite = light_spr[1];
         paint_txt.text = "<절규>\n괴롭다는 것은 정말 힘든 일이야";
+        roomPaint_obj.GetComponent<Image>().sprite = paint_spr[1];
+        roomPaint_obj.SetActive(true);
     }
 
     public void paintSet2()
@@ -81,6 +83,8 @@ public class MainPaint : MonoBehaviour {
         }
         lightPaint_obj[2].GetComponent<Image>().sprite = light_spr[1];
         paint_txt.text = "<진주 귀걸이>\n살면서 진짜 진주를 본 적은 없어";
+        roomPaint_obj.GetComponent<Image>().sprite = paint_spr[2];
+        roomPaint_obj.SetActive(true);
     }
 
     public void ClosePaint()

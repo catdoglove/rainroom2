@@ -19,6 +19,7 @@ public class ParkShop : MonoBehaviour {
     public int special_i,movie_i,story_i,paint_i;
     public string paint_str;
     public Text paint_txt;
+    public Text paintPrice_txt;
     //야시장
     public GameObject foodBuy_obj;
     public int point_i;
@@ -188,6 +189,7 @@ public class ParkShop : MonoBehaviour {
             }
             PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
+            paintPrice_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
         }
         else
         {
