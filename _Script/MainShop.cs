@@ -840,7 +840,7 @@ public class MainShop : ShopHandler {
         }
     }
 
-    //리폼
+    //리폼 산것만 팔레트띄우기
     public void OpenReform()
     {
         shop_obj.SetActive(false);

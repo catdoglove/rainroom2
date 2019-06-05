@@ -32,11 +32,11 @@ public class ParkShop : MonoBehaviour {
     //공원상점
     public GameObject shopReform_obj, shopIng_obj,shopSelect_obj, inSelect_obj;
     public GameObject shopNY_obj,met_obj,met2_obj,icebox_obj,shelf_obj;
-    public GameObject inYN_obj;
+    public GameObject inYN_obj, inYNImg_obj;
     public Sprite[] shop_spr,in_spr;
     int c_i;
     int p_i;
-
+    public GameObject[] shopSoldout_obj,shopBtn_obj, inSoldout_obj, inBtn_obj;
     public GameObject inIceboxTxt_obj;
     //애완동물
     public GameObject buyPetYN_obj;
@@ -45,6 +45,7 @@ public class ParkShop : MonoBehaviour {
     public Sprite[] pet_spr;
     public Sprite adopt_spr;
     public Text pet_txt;
+    public Text petClover_txt;
     //소리
     public GameObject audio_obj;
     //도움말
@@ -201,14 +202,17 @@ public class ParkShop : MonoBehaviour {
             if (paint_str == "p")
             {
                 eventPaintImg_obj[0].GetComponent<Image>().sprite = soldOut_spr[0];
+                eventPaintImg_obj[0].GetComponent<Button>().interactable = false;
             }
             else if (paint_str == "m")
             {
                 eventPaintImg_obj[1].GetComponent<Image>().sprite = soldOut_spr[0];
+                eventPaintImg_obj[1].GetComponent<Button>().interactable = false;
             }
             else if (paint_str == "s")
             {
                 eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[0];
+                eventPaintImg_obj[2].GetComponent<Button>().interactable = false;
             }
             PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
@@ -250,6 +254,7 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
+        petClover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", p_i);
     }
     public void OpenFoodShop()
     {
@@ -292,6 +297,20 @@ public class ParkShop : MonoBehaviour {
         {
             icebox_obj.SetActive(true);
         }
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        {
+            shopBtn_obj[3].GetComponent<Button>().interactable = false;
+            shopSoldout_obj[3].SetActive(true);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette"+i, 1) == 1)
+            {
+                shopBtn_obj[i].GetComponent<Button>().interactable = false;
+                shopSoldout_obj[i].SetActive(true);
+            }
+        }
     }
     
     //상점
@@ -312,8 +331,11 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("mat1lv", 5);
+                    //PlayerPrefs.GetInt("mat1lv", 5);
                     PlayerPrefs.SetInt("shoppalette"+shopNum,1);
+                    PlayerPrefs.SetInt("reformshop", 1);
+                    shopBtn_obj[0].GetComponent<Button>().interactable = false;
+                    shopSoldout_obj[0].SetActive(true);
                     shopOk();
                 }
                 else
@@ -326,8 +348,11 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("mat2lv", 5);
+                    //PlayerPrefs.GetInt("mat2lv", 5);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("reformshop", 1);
+                    shopBtn_obj[1].GetComponent<Button>().interactable = false;
+                    shopSoldout_obj[1].SetActive(true);
                     shopOk();
                 }
                 else
@@ -340,8 +365,11 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("shelflv", 4);
+                    //PlayerPrefs.GetInt("shelflv", 4);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("reformshop", 1);
+                    shopBtn_obj[2].GetComponent<Button>().interactable = false;
+                    shopSoldout_obj[2].SetActive(true);
                     shopOk();
                 }
                 else
@@ -354,7 +382,9 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("iceboxlv", 2);
+                    PlayerPrefs.SetInt("iceboxlv", 2);
+                    shopBtn_obj[3].GetComponent<Button>().interactable = false;
+                    shopSoldout_obj[3].SetActive(true);
                     shopOk();
                 }
                 else
@@ -381,6 +411,16 @@ public class ParkShop : MonoBehaviour {
     {
         shopReform_obj.SetActive(false);
         shopIng_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("bread", 0) == 1)
+        {
+            inSoldout_obj[0].SetActive(true);
+            inBtn_obj[0].GetComponent<Button>().interactable = false;
+        }
+        if (PlayerPrefs.GetInt("ham", 0) == 1)
+        {
+            inSoldout_obj[1].SetActive(true);
+            inBtn_obj[1].GetComponent<Button>().interactable = false;
+        }
     }
     public void buyShopN()
     {
@@ -405,7 +445,9 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("bread", 1);
+                    PlayerPrefs.SetInt("bread", 1);
+                    inSoldout_obj[0].SetActive(true);
+                    inBtn_obj[0].GetComponent<Button>().interactable = false;
                     shopOk();
                 }
                 else
@@ -418,7 +460,9 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
-                    PlayerPrefs.GetInt("ham", 1);
+                    PlayerPrefs.SetInt("ham", 1);
+                    inSoldout_obj[1].SetActive(true);
+                    inBtn_obj[1].GetComponent<Button>().interactable = false;
                     shopOk();
                 }
                 else
@@ -699,6 +743,7 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
+        petClover_txt.text = ""+PlayerPrefs.GetInt(str + "cv", p_i);
     }
 
     public void OpenHelp()
