@@ -17,6 +17,7 @@ public class GasrangeEvt : MonoBehaviour {
     public GameObject text_obj;
     List<Dictionary<string, object>> data;
 
+    public GameObject iceLv_obj;
 
     //요리
     public GameObject cookYN_obj,cookImg_obj,GM2;
@@ -301,7 +302,10 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void OpenIceBox()
     {
-        
+        if(PlayerPrefs.GetInt("iceboxlv", 0) == 2)
+        {
+            iceLv_obj.SetActive(true);
+        }
         CheckIng();
         iceBox_obj.SetActive(true);
         if (egg_i == 1)
@@ -358,6 +362,7 @@ public class GasrangeEvt : MonoBehaviour {
         seeweed_i = PlayerPrefs.GetInt("seeweed", 0);
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
+
     }
 
 

@@ -34,9 +34,10 @@ public class ParkShop : MonoBehaviour {
     public GameObject shopNY_obj,met_obj,met2_obj,icebox_obj,shelf_obj;
     public GameObject inYN_obj, inYNImg_obj;
     public Sprite[] shop_spr,in_spr;
+    public GameObject shopImg_obj, shopText_obj, ingblock_obj;
     int c_i;
     int p_i;
-    public GameObject[] shopSoldout_obj,shopBtn_obj, inSoldout_obj, inBtn_obj;
+    public GameObject[] shopSoldout_obj,shopBtn_obj, inSoldout_obj, inBtn_obj, shopGet_obj;
     public GameObject inIceboxTxt_obj;
     //애완동물
     public GameObject buyPetYN_obj;
@@ -301,6 +302,7 @@ public class ParkShop : MonoBehaviour {
         {
             shopBtn_obj[3].GetComponent<Button>().interactable = false;
             shopSoldout_obj[3].SetActive(true);
+            shopGet_obj[3].SetActive(false);
         }
 
         for (int i = 0; i < 3; i++)
@@ -309,6 +311,7 @@ public class ParkShop : MonoBehaviour {
             {
                 shopBtn_obj[i].GetComponent<Button>().interactable = false;
                 shopSoldout_obj[i].SetActive(true);
+                shopGet_obj[i].SetActive(false);
             }
         }
     }
@@ -318,6 +321,13 @@ public class ParkShop : MonoBehaviour {
     {
         shopSelect_obj.GetComponent<Image>().sprite = shop_spr[shopNum];
         shopNY_obj.SetActive(true);
+        shopImg_obj.SetActive(true);
+        shopText_obj.SetActive(false);
+        if (shopNum == 3)
+        {
+            shopImg_obj.SetActive(false);
+            shopText_obj.SetActive(true);
+        }
     }
     public void BuyShopY()
     {
@@ -336,6 +346,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[0].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[0].SetActive(true);
+                    shopGet_obj[0].SetActive(false);
                     shopOk();
                 }
                 else
@@ -353,6 +364,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[1].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[1].SetActive(true);
+                    shopGet_obj[1].SetActive(false);
                     shopOk();
                 }
                 else
@@ -370,6 +382,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[2].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[2].SetActive(true);
+                    shopGet_obj[2].SetActive(false);
                     shopOk();
                 }
                 else
@@ -385,6 +398,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("iceboxlv", 2);
                     shopBtn_obj[3].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[3].SetActive(true);
+                    shopGet_obj[3].SetActive(false);
                     shopOk();
                 }
                 else
@@ -409,6 +423,10 @@ public class ParkShop : MonoBehaviour {
     }
     public void OpenIn()
     {
+        if(PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        {
+            ingblock_obj.SetActive(false);
+        }
         shopReform_obj.SetActive(false);
         shopIng_obj.SetActive(true);
         if (PlayerPrefs.GetInt("bread", 0) == 1)
