@@ -20,7 +20,7 @@ public class ParkShop : MonoBehaviour {
     public int special_i,movie_i,story_i,paint_i;
     public string paint_str;
     public Text paint_txt;
-    public Text paintPrice_txt;
+    public Text paintPrice_txt,paintP_txt;
     public Sprite[] soldOut_spr;
     //야시장
     public GameObject foodBuy_obj,selectFood_obj,foodIlust_obj;
@@ -67,6 +67,7 @@ public class ParkShop : MonoBehaviour {
         inShop_obj.SetActive(false);
         basicShop_obj.SetActive(false);
         blackClose_obj.SetActive(false);
+        buyPaintN();
     }
 
     void OpenClose()
@@ -161,6 +162,7 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = specialPaint_str[movie_i];
+            paintP_txt.text = "20";
         }
     }
     public void buySpecial()
@@ -171,6 +173,7 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = moviePaint_str[special_i];
+            paintP_txt.text = "20";
         }
     }
     public void buyStory()
@@ -181,19 +184,26 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = storyPaint_str[story_i];
+            paintP_txt.text = ""+PlayerPrefs.GetInt("pra", 5);
         }
     }
+
 
     public void buyPaintY()
     {
         p_i = PlayerPrefs.GetInt(str + "cv", 0);
-        if (p_i >= 25)
+        int pra = 20;
+        if (paint_str == "s")
         {
-            p_i = p_i - 25;
+            pra = PlayerPrefs.GetInt("pra", 5);
+        }
+        if (p_i >= pra)
+        {
+            p_i = p_i - pra;
             PlayerPrefs.SetInt(str + "cv", p_i);
             if (paint_str == "s")
             {
-                PlayerPrefs.SetInt("paints", story_i+1);
+                PlayerPrefs.SetInt("paints", story_i + 1);
             }
             else
             {
@@ -214,6 +224,8 @@ public class ParkShop : MonoBehaviour {
             {
                 eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[0];
                 eventPaintImg_obj[2].GetComponent<Button>().interactable = false;
+                pra = PlayerPrefs.GetInt("pra", 5) + 5;
+                PlayerPrefs.SetInt("pra", pra);
             }
             PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
@@ -679,7 +691,7 @@ public class ParkShop : MonoBehaviour {
             case 1:
                 if (p_i >= 7)
                 {
-                    if (PlayerPrefs.GetInt("bedlv") >= 1)
+                    if (PlayerPrefs.GetInt("bedlv") >= 5)
                     {
                         p_i = p_i - 7;
                         PlayerPrefs.SetInt(str + "cv", p_i);

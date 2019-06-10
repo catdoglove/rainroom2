@@ -20,7 +20,21 @@ public class UnityADS : MonoBehaviour {
     void Start () {
         color = new Color(1f, 1f, 1f);
 
-        if (PlayerPrefs.GetInt("place", 1) == 1)
+
+        StopCoroutine("adTimeFlow2");
+        StopCoroutine("adAniTime2");
+        StopCoroutine("adTimeFlow");
+        StopCoroutine("adAniTime");
+
+        
+        
+
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            StartCoroutine("adTimeFlow");
+            StartCoroutine("adAniTime");
+        }
+        else if(PlayerPrefs.GetInt("outtrip", 0) == 0)
         {
             StartCoroutine("adTimeFlow2");
             StartCoroutine("adAniTime2");
@@ -30,7 +44,9 @@ public class UnityADS : MonoBehaviour {
             StartCoroutine("adTimeFlow");
             StartCoroutine("adAniTime");
         }
-        
+
+
+
         if (Advertisement.isSupported)
           {
               Advertisement.Initialize(gameId, true);
@@ -74,7 +90,12 @@ public class UnityADS : MonoBehaviour {
         {
             radio_ani.SetActive(false);
             adBtn_obj.SetActive(false);
+            StopCoroutine("adTimeFlow");
+            StopCoroutine("adAniTime");
+            StartCoroutine("adTimeFlow");
+            StartCoroutine("adAniTime");
             PlayerPrefs.SetInt("talk", 5);
+            PlayerPrefs.SetInt("secf", 300);
         }
     }
 
@@ -100,7 +121,8 @@ public class UnityADS : MonoBehaviour {
 			}
 			PlayerPrefs.SetInt("secf",sG);
 			yield return new WaitForSeconds(1f);
-		}
+            //Debug.Log("sg" + sG);
+        }
 	}
     IEnumerator adAniTime()
     {
@@ -109,7 +131,13 @@ public class UnityADS : MonoBehaviour {
         {
             if (sG < 0)
             {
-                
+                if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+                {
+                    radio_ani.SetActive(true);
+                    adBtn_obj.SetActive(true);
+                }
+                else
+                {
                     if (PlayerPrefs.GetInt("front", 1) == 1)
                     {
                         radio_ani.SetActive(true);
@@ -120,8 +148,8 @@ public class UnityADS : MonoBehaviour {
                         radio_ani.SetActive(false);
                         adBtn_obj.SetActive(false);
                     }
+                }
             }
-            
             yield return null;
         }
 
@@ -153,6 +181,7 @@ public class UnityADS : MonoBehaviour {
                 sG2 = -1;
             }
             PlayerPrefs.SetInt("secf2", sG2);
+            //Debug.Log("sg2" + sG2);
             yield return new WaitForSeconds(1f);
         }
     }
@@ -165,12 +194,7 @@ public class UnityADS : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("outtrip", 0) == 1)
                 {
-                    radio_ani.SetActive(true);
-                    adBtn_obj.SetActive(true);
-                }
-                else
-                {
-                    if (PlayerPrefs.GetInt("front", 1) == 1)
+                } else if (PlayerPrefs.GetInt("front", 1) == 1)
                     {
                         radio_ani.SetActive(true);
                         adBtn_obj.SetActive(true);
@@ -180,7 +204,6 @@ public class UnityADS : MonoBehaviour {
                         radio_ani.SetActive(false);
                         adBtn_obj.SetActive(false);
                     }
-                }
                     
             }
 

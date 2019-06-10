@@ -9,6 +9,7 @@ public class ParkTime : MonoBehaviour
     int randLeaf_i;
     float lx,ly;
     public GameObject leaf_obj;
+    public GameObject GMP;
     // Use this for initialization
     void Start()
     {
@@ -55,7 +56,7 @@ public class ParkTime : MonoBehaviour
                 {
                     randLeaf_i = Random.Range(0, 2);
                     lx = Random.Range(-6, 4);
-                    ly = Random.Range(-4, 1);
+                    ly = Random.Range(-4, -1);
                 }
             }
 
@@ -68,11 +69,17 @@ public class ParkTime : MonoBehaviour
     //나뭇잎 눌렀을때
     public void touchLeaf()
     {
+        PlayerPrefs.SetFloat("watposy", ly);
+        PlayerPrefs.SetFloat("watposx", lx);
+        GMP.GetComponent<GetFadeout>().getRainFade();
         leaf_obj.SetActive(false);
         randLeaf_i = 0;
         int c = PlayerPrefs.GetInt(str + "c", 0);
-        c = c + 20;
+        c = c + 5;
         PlayerPrefs.SetInt(str + "c", c);
+        int h = PlayerPrefs.GetInt(str + "h", 0);
+        h = h + 3;
+        PlayerPrefs.SetInt(str + "h", c);
     }
 
 }
