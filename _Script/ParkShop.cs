@@ -307,7 +307,7 @@ public class ParkShop : MonoBehaviour {
 
         for (int i = 0; i < 3; i++)
         {
-            if (PlayerPrefs.GetInt("shoppalette"+i, 1) == 1)
+            if (PlayerPrefs.GetInt("shoppalette"+i, 0) == 1)
             {
                 shopBtn_obj[i].GetComponent<Button>().interactable = false;
                 shopSoldout_obj[i].SetActive(true);
@@ -411,10 +411,10 @@ public class ParkShop : MonoBehaviour {
     }
     void shopOk()
     {
-        coldRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
-        hotRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
         PlayerPrefs.SetInt(str + "h", p_i);
         PlayerPrefs.SetInt(str + "c", c_i);
+        coldRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
     }
     public void OpenRe()
     {
@@ -525,9 +525,9 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 7)
+                if (p_i >= 8)
                 {
-                    p_i = p_i - 7;
+                    p_i = p_i - 8;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     point_i = point_i + 4;
                     BuyFoodOk();
@@ -538,9 +538,9 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 2:
-                if (p_i >= 7)
+                if (p_i >= 12)
                 {
-                    p_i = p_i - 7;
+                    p_i = p_i - 12;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     point_i = point_i + 4;
                     BuyFoodOk();
@@ -551,9 +551,9 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 3:
-                if (p_i >= 7)
+                if (p_i >= 10)
                 {
-                    p_i = p_i - 7;
+                    p_i = p_i - 10;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     point_i = point_i + 4;
                     BuyFoodOk();
