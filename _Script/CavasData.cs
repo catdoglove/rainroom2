@@ -19,6 +19,7 @@ public class CavasData : CommonDate {
 				canvasPack_cvs [i].SetActive (false);
 			}
             PlayerPrefs.SetInt("front", 2);
+            PlayerPrefs.SetInt("frontpark", 2);
         } else {
 			for (int i = 3; i < 6; i++) {
 				canvasPack_cvs [i].SetActive (false);

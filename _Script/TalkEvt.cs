@@ -18,7 +18,7 @@ public class TalkEvt : MonoBehaviour {
     int loveLv = 1; //호감도 단계라고 생각하면 됨
     int countTalkNum;//대화횟수
 
-    float speedF = 0.08f;
+    float speedF = 0.05f;
     int nowArr =0; //현재 줄
     int[] randArr;//난수 필
     int loveExp;//호감도
@@ -696,7 +696,7 @@ public class TalkEvt : MonoBehaviour {
         //아이템대사 출력
         IEnumerator itemTalkRun()
     {
-        speedF = PlayerPrefs.GetFloat("talkspeed", 0);
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
         for (int i = 0; i < testText_cut.Length; i++)
         {
