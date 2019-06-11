@@ -104,7 +104,7 @@ public class MainSticker : MonoBehaviour
             audio_obj = GameObject.Find("AudioSound");
         
         audio_obj.GetComponent<SoundEvt>().stickerSound();
-        if (wldObjectPos.x > -3.7 && wldObjectPos.x < 3.7)
+        if (wldObjectPos.x > -2.5 && wldObjectPos.x < 2.5)
         {
             if (wldObjectPos.y < 3.64 && wldObjectPos.y > -3.97)
             {

@@ -428,6 +428,7 @@ public class secondRoomFunction : CavasData {
             {
                 iceBoxBox_obj.SetActive(false);
                 iceBoxBtn_obj.SetActive(true);
+                PlayerPrefs.SetInt("egg", 1);
             }
             if (PlayerPrefs.GetInt("doorbox", 0) == 1)
             {
