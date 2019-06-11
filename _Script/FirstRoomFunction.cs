@@ -31,7 +31,10 @@ public class FirstRoomFunction : CavasData {
 
 
     public GameObject needToast_obj, beadalYetToast_obj;
-    Color colorN,colorB,colorL;
+    Color colorN,colorB,colorL,colorA;
+
+    //아티팩트
+    public GameObject atoast_obj;
 
     //하트
     public int heart_i;
@@ -107,7 +110,8 @@ public class FirstRoomFunction : CavasData {
             changeSight();
             characterTurn();
         }
-        colorN = new Color(1f,1f,1f);
+        colorA = new Color(1f, 1f, 1f);
+        colorN = new Color(1f, 1f, 1f);
         colorB = new Color(1f, 1f, 1f);
         colorL = new Color(1f, 1f, 1f);
         PlayerPrefs.SetInt("place", 0);
@@ -758,6 +762,29 @@ public class FirstRoomFunction : CavasData {
             yield return null;
         }
         boxLv_obj.SetActive(false);
+    }
+
+    //아티팩트페이드아웃
+    IEnumerator toastAFadeOut()
+    {
+        colorA.a = Mathf.Lerp(0f, 1f, 1f);
+        atoast_obj.GetComponent<Image>().color = colorA;
+        atoast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorA.a = Mathf.Lerp(0f, 1f, i);
+            atoast_obj.GetComponent<Image>().color = colorA;
+            yield return null;
+        }
+        atoast_obj.SetActive(false);
+    }
+
+    public void AtoastShow()
+    {
+        StopCoroutine("toastAFadeOut");
+        StartCoroutine("toastAFadeOut");
+
     }
 
     public void OpenCoupon()

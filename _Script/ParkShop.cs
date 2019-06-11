@@ -774,6 +774,7 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
         petClover_txt.text = ""+PlayerPrefs.GetInt(str + "cv", p_i);
+        PlayerPrefs.SetInt("shopfpethotel",1);
     }
 
     public void OpenHelp()

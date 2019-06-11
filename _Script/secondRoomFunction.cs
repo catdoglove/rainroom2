@@ -65,7 +65,8 @@ public class secondRoomFunction : CavasData {
     public GameObject Help_obj;
 
     public int boxs_i;
-
+    public Text boxLv_txt;
+    public GameObject boxLv_obj;
 
     public GameObject goOutWindow_obj;
 
@@ -76,10 +77,12 @@ public class secondRoomFunction : CavasData {
     public Sprite[] day_spr;
     public GameObject switchToast_obj;
     Color colorS;
-    
+    Color colorL;
+
     // Use this for initialization
     void Start ()
     {
+        colorL = new Color(1f, 1f, 1f);
         color = new Color(1f, 1f, 1f);
         colorS = new Color(1f, 1f, 1f);
         //씬이동
@@ -392,6 +395,7 @@ public class secondRoomFunction : CavasData {
     {
         boxName_str = "door";
         boxs_i = 10;
+        boxLv_txt.text = "호감Lv.6 달성하기";
     }
 
 
@@ -402,7 +406,41 @@ public class secondRoomFunction : CavasData {
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
         boxTxt_txt.text = "" + boxs_i;
-        if (heart_i >= boxs_i)
+        if (boxName_str == "door")
+        {
+            if (PlayerPrefs.GetInt("lovelv", 0) >= 6)//6
+            {
+                if (heart_i >= boxs_i)
+                {
+                    Audio_obj.GetComponent<SoundEvt>().boxSound();
+                    heart_i = heart_i - boxs_i;
+                    PlayerPrefs.SetInt(str1 + "ht", heart_i);
+                    PlayerPrefs.SetInt(boxName_str + "box", 1);
+                    PlayerPrefs.SetInt(boxName_str + "lv", 1);
+                    checkach();
+                    PlayerPrefs.Save();
+                    if (PlayerPrefs.GetInt("doorbox", 0) == 1)
+                    {
+                        doorBox_obj.SetActive(false);
+                        umb_obj.SetActive(true);
+                    }
+                    boxClean_obj.SetActive(false);
+                }
+                else
+                {
+                    needMoney();
+                    boxClean_obj.SetActive(false);
+                    Audio_obj.GetComponent<SoundEvt>().cancleSound();
+                }
+            }
+            else
+            {
+                StopCoroutine("toastLadderFadeOut");
+                StartCoroutine("toastLadderFadeOut");
+                boxLv_obj.SetActive(true);
+            }
+        }
+        else if (heart_i >= boxs_i)
         {
             Audio_obj.GetComponent<SoundEvt>().boxSound();
             heart_i = heart_i - boxs_i;
@@ -459,6 +497,22 @@ public class secondRoomFunction : CavasData {
     {
         StopCoroutine("toastNImgFadeOut");
         StartCoroutine("toastNImgFadeOut");
+    }
+
+    //외출페이드아웃
+    IEnumerator toastLadderFadeOut()
+    {
+        colorL.a = Mathf.Lerp(0f, 1f, 1f);
+        boxLv_obj.GetComponent<Image>().color = colorL;
+        boxLv_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorL.a = Mathf.Lerp(0f, 1f, i);
+            boxLv_obj.GetComponent<Image>().color = colorL;
+            yield return null;
+        }
+        boxLv_obj.SetActive(false);
     }
 
     //토스트페이드아웃

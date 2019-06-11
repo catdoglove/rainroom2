@@ -83,6 +83,7 @@ public class MainShop : ShopHandler {
         PlayerPrefs.SetInt(str + "cv", 999);
         PlayerPrefs.SetInt("lovelv", 3);
         */
+        //PlayerPrefs.SetInt("lovelv", 6);
         //PlayerPrefs.SetInt("seedlv", 10);
         //PlayerPrefs.SetInt("allflower", 0);
         //PlayerPrefs.SetInt("allflowerplus", 0);
@@ -511,6 +512,10 @@ public class MainShop : ShopHandler {
         else if (reform_i == 0)
         {
             functionTape_obj[3].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("shopfpethotel", 0) == 1)
+        {
+            functionTape_obj[5].SetActive(false);
         }
     }
     

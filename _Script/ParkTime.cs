@@ -56,7 +56,7 @@ public class ParkTime : MonoBehaviour
                 {
                     randLeaf_i = Random.Range(0, 2);
                     lx = Random.Range(-6, 4);
-                    ly = Random.Range(-4, -1);
+                    ly = Random.Range(-4, -2);
                 }
             }
 

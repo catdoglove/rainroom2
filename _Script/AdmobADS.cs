@@ -13,7 +13,10 @@ public class AdmobADS : MonoBehaviour {
     //영상
     private RewardBasedVideoAd rewardBasedVideo;
     string adUnitIdvideo;
-    
+
+    //전면
+    private InterstitialAd interstitial;
+
     int rewardCoin;
     Color color;
     public GameObject Toast_obj;
@@ -44,6 +47,8 @@ public class AdmobADS : MonoBehaviour {
         rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
+
+
     }
 
 
@@ -134,6 +139,20 @@ public class AdmobADS : MonoBehaviour {
         Toast_obj.SetActive(false);
     }
 
+    //전면광고
+    private void RequestInterstitial()
+    {
+#if UNITY_ANDROID
+        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+#elif UNITY_IPHONE
+        string adUnitId = "ca-app-pub-3940256099942544/4411468910";
+#else
+        string adUnitId = "unexpected_platform";
+#endif
+
+        // Initialize an InterstitialAd.
+        this.interstitial = new InterstitialAd(adUnitId);
+    }
 
 
 }
