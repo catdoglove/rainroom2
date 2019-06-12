@@ -50,7 +50,7 @@ public class TalkEvtOut : MonoBehaviour
     public GameObject firstGM;
 
     //나가기
-    public GameObject exitTalkBalln, closeTB_exit;
+    public GameObject exitTalkBalln, closeTB_exit, exitBbg;
     public Text exitText;
     int exCk = 0;
     //종료
@@ -79,7 +79,6 @@ public class TalkEvtOut : MonoBehaviour
     // 종료 함수
     void Update()
     {
-        Debug.Log((PlayerPrefs.GetInt("frontpark", 0)));
         //클립초기화
         if(PlayerPrefs.GetInt("frontpark", 0) == 1)
         {
@@ -91,21 +90,22 @@ public class TalkEvtOut : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeTalkBoon();
-            talkCursor.SetActive(true);
             if (!exitTalkBalln.activeSelf)
             {
                 exit_int = 1;
                 exitTalkBalln.SetActive(true); //대화창 새로만들기
                 closeTB_exit.SetActive(true);
+                exitBbg.GetComponent<Image>().sprite = ballnSpr[0];
 
                 if (PlayerPrefs.GetInt("frontpark", 0) == 99)
                 {
+                    talkCursor.SetActive(true);
                     exitText.text = "집으로 돌아갈까..\n(종료는 집에서 가능)";
                 }
                 else if (PlayerPrefs.GetInt("frontpark", 0) == 2)
                 {
                     talkCursor.SetActive(false);
-                   // exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
+                    exitBbg.GetComponent<Image>().sprite = ballnSpr[1];
                     exitText.text = "(가려면 집으로 돌아가야 할 거 같다.)";
                 }
 
@@ -130,8 +130,6 @@ public class TalkEvtOut : MonoBehaviour
             }
             else if (PlayerPrefs.GetInt("frontpark", 0) == 2)
             {
-                talkCursor.SetActive(false);
-                // exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
                 exitText.text = "(..흠)";
             }
         }
