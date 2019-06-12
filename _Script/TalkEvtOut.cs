@@ -56,6 +56,7 @@ public class TalkEvtOut : MonoBehaviour
     //종료
     int exit_int, exitTalk;
     int cnt_exit;
+    public Sprite[] ballnSpr;
 
     //소리
     public GameObject Audio_obj;
