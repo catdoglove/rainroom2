@@ -79,6 +79,10 @@ public class secondRoomFunction : CavasData {
     Color colorS;
     Color colorL;
 
+    //외출
+    public Text outPrice_txt,outTime_txt;
+    public GameObject outP_obj;
+
     // Use this for initialization
     void Start ()
     {
@@ -732,7 +736,9 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt("outtrip", 1);
             //heart_i = heart_i - 30;
             //PlayerPrefs.SetInt(str1 + "ht", heart_i);
-            checkachOut();
+            //외출업적
+            PlayerPrefs.SetInt("acgocheck",1);
+            //checkachOut();
             StartCoroutine("LoadOut");
         }
         else
@@ -747,8 +753,15 @@ public class secondRoomFunction : CavasData {
             GMTag = GameObject.FindGameObjectWithTag("GMtag");
         }
             GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
-        
     }
+
+    public void OpenWalkOut()
+    {
+        outPrice_txt.text = "30";
+        outTime_txt.text = "";
+    }
+    
+
 
     IEnumerator LoadOut()
     {

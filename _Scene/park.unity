@@ -7230,7 +7230,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228826}
+      - m_Target: {fileID: 0}
         m_MethodName: getSpider
         m_Mode: 1
         m_Arguments:
@@ -22633,9 +22633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128228822}
-  - component: {fileID: 2128228823}
   - component: {fileID: 2128228825}
-  - component: {fileID: 2128228826}
   - component: {fileID: 2128228827}
   - component: {fileID: 2128228829}
   - component: {fileID: 2128228831}
@@ -22665,44 +22663,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2128228823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac79c231d6f09642b2391781aa34bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spiX: 0
-  spiY: 0
-  randSpider_i: 0
-  spider_obj: {fileID: 225968052}
-  bMoveX: 15
-  bMoveY: 0
-  moveX1: 16
-  moveX2: -16
-  moveY: 1
-  moveY2: 2.5
-  endBMove_i: 0
-  pMoveX: 5.4
-  pMoveY: 0
-  endPMove_i: 0
-  balloon_obj: {fileID: 0}
-  balloonR_obj: {fileID: 0}
-  airplane_obj: {fileID: 0}
-  randball1_i: 0
-  randball2_i: 0
-  airplane_i: 0
-  cat_i: 0
-  plane_i: 0
-  beadalTime_txt: {fileID: 0}
-  randStar_i: 0
-  star_obj: {fileID: 0}
-  starX: 0
-  starY: 0
 --- !u!114 &2128228824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22753,20 +22713,6 @@ MonoBehaviour:
   moveX: 0
   moveY: 0
   title_obj: {fileID: 0}
---- !u!114 &2128228826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9049b0582ce33d84ba0ed4b0e4a3fc6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GM: {fileID: 2128228821}
-  spider_obj: {fileID: 225968052}
-  star_obj: {fileID: 0}
 --- !u!114 &2128228827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22906,6 +22852,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5db216b463450e643861d2baf5d4df9f, type: 3}
   - {fileID: 21300000, guid: f15e8abfc81764a4ea39348a192e49a4, type: 3}
   GMtag: {fileID: 0}
+  GMP: {fileID: 2128228821}
 --- !u!114 &2128228834
 MonoBehaviour:
   m_ObjectHideFlags: 0

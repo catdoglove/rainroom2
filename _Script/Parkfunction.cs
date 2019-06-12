@@ -23,11 +23,19 @@ public class Parkfunction : CavasData
     public Sprite[] helpP_spr;
     int help;
     //
-    public GameObject GMtag;
+    public GameObject GMtag,GMP;
 
 
     private void Awake()
     {
+        //외출업적
+        if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
+        {
+            checkachOut();
+            PlayerPrefs.SetInt("acgocheck", 0);
+        }
+
+
         if (GMtag == null)
         {
             GMtag = GameObject.FindGameObjectWithTag("GMtag");
@@ -153,5 +161,29 @@ public class Parkfunction : CavasData
         }
     }
 
+    //외출업적
+    void checkachOut()
+    {
+        int cts = PlayerPrefs.GetInt("countgooutst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countgooutst", cts);
+        Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
+        if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("gooutst", 3);
+            GMP.GetComponent<AchievementShow>().achievementCheck(7, 2);
+        }
+        else if (cts >= 30 && PlayerPrefs.GetInt("gooutst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("gooutst", 2);
+            GMP.GetComponent<AchievementShow>().achievementCheck(7, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("gooutst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("gooutst", 1);
+            GMP.GetComponent<AchievementShow>().achievementCheck(7, 0);
+        }
+        PlayerPrefs.Save();
+    }
 
 }
