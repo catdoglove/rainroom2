@@ -4,6 +4,7 @@ using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
 
+
 public class AdmobADS : MonoBehaviour {
 
     //배너
@@ -47,6 +48,7 @@ public class AdmobADS : MonoBehaviour {
         rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
+        RequestInterstitial();
 
 
     }
@@ -152,7 +154,38 @@ public class AdmobADS : MonoBehaviour {
 
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
+        // Called when the ad is closed.
+        //this.interstitial.OnAdClosed += HandleOnAdClosed;
+        // Create an empty ad request.
+
+        // Called when an ad is shown.
+        //this.interstitial.OnAdOpening += HandleOnAdOpened;
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the interstitial with the request.
+        this.interstitial.LoadAd(request);
+        
+    }
+    
+
+    public void ShowAdInterstitial()
+    {
+        if (this.interstitial.IsLoaded())
+        {
+            this.interstitial.Show();
+            PlayerPrefs.SetInt("bouttime", 9);
+        }
     }
 
+    /*
+    public void HandleOnAdClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdClosed event received");
+        interstitial.Destroy();
+    }
+    public void HandleOnAdOpened(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdOpened event received");
+    }
+    */
 
 }

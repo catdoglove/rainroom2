@@ -81,7 +81,7 @@ public class secondRoomFunction : CavasData {
 
     //외출
     public Text outPrice_txt,outTime_txt;
-    public GameObject outP_obj;
+    public GameObject outP_obj,outGo_obj,outAd_obj,outAdBtn_obj;
 
     // Use this for initialization
     void Start ()
@@ -614,6 +614,13 @@ public class secondRoomFunction : CavasData {
     //외출창띄우기
     public void OpenGoOut()
     {
+        StopCoroutine("outTime");
+        StartCoroutine("outTime");
+        outPrice_txt.text = "30";
+        if (PlayerPrefs.GetInt("bouttime", 14) == 9)
+        {
+            outPrice_txt.text = "20";
+        }
         goOutWindow_obj.SetActive(true);
         if (GMTag == null)
         {
@@ -630,21 +637,7 @@ public class secondRoomFunction : CavasData {
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
-    }
-    /// <summary>
-    /// 나가는함수
-    /// </summary>
-    public void GoOutY()
-    {
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        int hp = 20;
-        if(heart_i >= hp)
-        {
-            heart_i = heart_i - hp;
-            PlayerPrefs.SetInt(str1 + "ht", heart_i);
-        }
+        outP_obj.SetActive(false);
     }
 
     //업적
@@ -731,11 +724,18 @@ public class secondRoomFunction : CavasData {
         str1 = PlayerPrefs.GetString("code", "");
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        if (heart_i >= 0)//30테스트
+        int hp_i=30;
+        if (PlayerPrefs.GetInt("bouttime", 14) == 9)
         {
+            hp_i = hp_i - 10;
+        }
+        if (heart_i >= hp_i)//30테스트
+        {
+            PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.SetInt("outtrip", 1);
-            //heart_i = heart_i - 30;
-            //PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            heart_i = heart_i - hp_i;
+            PlayerPrefs.SetInt(str1 + "ht", heart_i);
+            PlayerPrefs.SetInt("bouttime", 14);
             //외출업적
             PlayerPrefs.SetInt("acgocheck",1);
             //checkachOut();
@@ -757,10 +757,62 @@ public class secondRoomFunction : CavasData {
 
     public void OpenWalkOut()
     {
-        outPrice_txt.text = "30";
-        outTime_txt.text = "";
+        outP_obj.SetActive(true);
     }
-    
+    public void OpenOutAd()
+    {
+        outAd_obj.SetActive(true);
+    }
+    public void CloseOutAd()
+    {
+        outAd_obj.SetActive(false);
+        
+    }
+
+    IEnumerator outTime()
+    {
+        int a = 0;
+        while (a == 0)
+        {
+            if (PlayerPrefs.GetInt("bouttime", 14) == 9)
+            {
+                outAdBtn_obj.GetComponent<Button>().interactable = false;
+                outPrice_txt.text = "20";
+            }
+            if (PlayerPrefs.GetInt("outtimeon", 0) == 0)
+            {
+                outTime_txt.text = "00:00";
+                outGo_obj.GetComponent<Button>().interactable = true;
+                PlayerPrefs.SetInt("outtimeon", 1);
+            }
+            else
+            {
+                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", System.DateTime.Now.ToString()));
+                System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+                int m = (int)compareTime.TotalMinutes;
+                int sec = (int)compareTime.TotalSeconds;
+                sec = sec - (sec / 60) * 60;
+                sec = 59 - sec;
+                m = PlayerPrefs.GetInt("bouttime", 14) - m;
+                string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
+                outTime_txt.text = strb;
+                if (m < 0)
+                {
+                    outTime_txt.text = "00:00";
+                    PlayerPrefs.SetInt("outtimeon", 0);
+                    PlayerPrefs.Save();
+                    outGo_obj.GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    outGo_obj.GetComponent<Button>().interactable = false;
+                }
+            }            yield return new WaitForSeconds(1f);
+        }
+    }
+
+       
+
 
 
     IEnumerator LoadOut()

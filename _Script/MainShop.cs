@@ -870,8 +870,15 @@ public class MainShop : ShopHandler {
     //도어
     public void OpenMatPalette()
     {
-        palette_obj.SetActive(true);
-        PlayerPrefs.GetInt("setmatpalette", 0);
+        if(PlayerPrefs.GetInt("shoppalette1", 0) == 1)
+        {
+            palette_obj.SetActive(true);
+            PlayerPrefs.GetInt("setmatpalette", 0);
+        }
+        for(int i = 0; i < 7; i++)
+        {
+
+        }
     }
     //부엌
     public void OpenMat2Palette()
