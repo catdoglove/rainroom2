@@ -355,6 +355,7 @@ public class ParkShop : MonoBehaviour {
                     c_i = c_i - 6;
                     //PlayerPrefs.GetInt("mat1lv", 5);
                     PlayerPrefs.SetInt("shoppalette"+shopNum,1);
+                    PlayerPrefs.SetInt("shoppalette"+shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[0].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[0].SetActive(true);
@@ -373,6 +374,7 @@ public class ParkShop : MonoBehaviour {
                     c_i = c_i - 6;
                     //PlayerPrefs.GetInt("mat2lv", 5);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[1].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[1].SetActive(true);
@@ -391,6 +393,7 @@ public class ParkShop : MonoBehaviour {
                     c_i = c_i - 6;
                     //PlayerPrefs.GetInt("shelflv", 4);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
                     shopBtn_obj[2].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[2].SetActive(true);

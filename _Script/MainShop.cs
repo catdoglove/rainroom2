@@ -877,7 +877,11 @@ public class MainShop : ShopHandler {
         }
         for(int i = 0; i < 7; i++)
         {
+            if (PlayerPrefs.GetInt("shoppalette1" + i, 0) == 1)
+            {
 
+            }
+            
         }
     }
     //부엌
