@@ -539,7 +539,7 @@ public class FirstRoomFunction : CavasData {
     {
         boxName_str = "bed";
         boxneed_txt.text = "";
-        boxs_i = 3;
+        boxs_i = 10;
     }
     public void boxCabinet()
     {
@@ -563,7 +563,7 @@ public class FirstRoomFunction : CavasData {
     {
         boxName_str = "ladder";
         boxneed_txt.text = "호감Lv.3 달성하기";
-        boxs_i = 5;
+        boxs_i = 10;
     }
 
     public void boxYes(){

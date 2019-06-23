@@ -378,21 +378,25 @@ public class secondRoomFunction : CavasData {
     {
         boxName_str = "seed";
         boxs_i = 4;
+        boxLv_txt.text = "";
     }
     public void boxDrawer()
     {
         boxName_str = "drawer";
         boxs_i = 1;
+        boxLv_txt.text = "";
     }
     public void boxGas()
     {
         boxName_str = "gasrange";
         boxs_i = 4;
+        boxLv_txt.text = "";
     }
     public void boxIce()
     {
         boxName_str = "icebox";
         boxs_i = 4;
+        boxLv_txt.text = "";
     }
 
     public void boxDoor()

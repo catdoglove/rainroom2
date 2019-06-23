@@ -54,7 +54,7 @@ public class ParkTime : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
-                    randLeaf_i = Random.Range(0, 2);
+                    randLeaf_i = Random.Range(0, 15);
                     lx = Random.Range(-6, 4);
                     ly = Random.Range(-4, -2);
                 }

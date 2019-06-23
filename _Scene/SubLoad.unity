@@ -350,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449734436}
   - component: {fileID: 1449734435}
+  - component: {fileID: 1449734437}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -465,6 +466,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1449734437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1449734434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254027fc84e17b64b90a3a4b22052b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM: {fileID: 0}
+  BGS: {fileID: 0}
+  SE: {fileID: 0}
+  SE_2: {fileID: 0}
+  audio_obj: {fileID: 1449734434}
 --- !u!1 &1541307798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1020,8 @@ MonoBehaviour:
   se_water: {fileID: 0}
   se_cancle: {fileID: 0}
   se_box: {fileID: 0}
+  se_foods: {fileID: 0}
+  se_talk: {fileID: 0}
   sp_book: {fileID: 8300000, guid: fa6ac01f531babe448eab06c767ff5ac, type: 3}
   sp_window: {fileID: 8300000, guid: 047c8e5b25ef5774ebb5a5ee25ff7622, type: 3}
   sp_cat: {fileID: 8300000, guid: ff58151ff5181204f9f56f232b22cd05, type: 3}
@@ -1022,6 +1041,8 @@ MonoBehaviour:
   sp_water: {fileID: 0}
   sp_cancle: {fileID: 0}
   sp_box: {fileID: 0}
+  sp_foods: {fileID: 0}
+  sp_talk: {fileID: 0}
   BGM: {fileID: 0}
   BGS: {fileID: 0}
 --- !u!4 &2030558521

@@ -83,6 +83,7 @@ public class MainShop : ShopHandler {
         PlayerPrefs.SetInt(str + "cv", 999);
         PlayerPrefs.SetInt("lovelv", 3);
         */
+
         //PlayerPrefs.SetInt("lovelv", 6);
         //PlayerPrefs.SetInt("seedlv", 10);
         //PlayerPrefs.SetInt("allflower", 0);
