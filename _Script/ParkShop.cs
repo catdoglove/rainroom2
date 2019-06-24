@@ -349,7 +349,7 @@ public class ParkShop : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
-                if (p_i >= 6&& c_i>=10)
+                if (p_i >= 90&& c_i>=700)
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
@@ -368,7 +368,7 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 6 && c_i >= 10)
+                if (p_i >= 90 && c_i >= 700)
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
@@ -387,7 +387,7 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 2:
-                if (p_i >= 6 && c_i >= 10)
+                if (p_i >= 200 && c_i >= 1000)
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;
@@ -406,7 +406,7 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 3:
-                if (p_i >= 6 && c_i >= 10)
+                if (p_i >= 250 && c_i >= 2000)
                 {
                     p_i = p_i - 6;
                     c_i = c_i - 6;

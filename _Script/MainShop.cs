@@ -61,7 +61,7 @@ public class MainShop : ShopHandler {
     public GameObject[] paintcan_obj;
     public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
     public Sprite[] paintcan_spr;
-
+    Color mColor;
     //부족하다창
     Color color;
     public GameObject needToast_obj;
@@ -855,7 +855,8 @@ public class MainShop : ShopHandler {
         close_obj.SetActive(false);
         back_obj.SetActive(false);
         reform_obj.SetActive(true);
-        for(int i = 0; i < 6; i++)
+        palette_obj.SetActive(false);
+        for (int i = 0; i < 6; i++)
         {
             if (PlayerPrefs.GetInt("shoppalette"+i, 0) == 1)
             {
@@ -866,22 +867,33 @@ public class MainShop : ShopHandler {
     public void CloseReform()
     {
         reform_obj.SetActive(false);
+        palette_obj.SetActive(false);
     }
     //파레트
     //도어
     public void OpenMatPalette()
     {
-        if(PlayerPrefs.GetInt("shoppalette1", 0) == 1)
+        if(PlayerPrefs.GetInt("shoppalette0", 0) == 1)
         {
             palette_obj.SetActive(true);
             PlayerPrefs.GetInt("setmatpalette", 0);
         }
         for(int i = 0; i < 7; i++)
         {
-            if (PlayerPrefs.GetInt("shoppalette1" + i, 0) == 1)
+            matPalette_obj[i].SetActive(false);
+            if (PlayerPrefs.GetInt("shoppalette0" + i, 0) == 1)
             {
-
+                matPalette_obj[i].SetActive(true);
             }
+            
+        }
+    }
+    public void SetMatPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            mColor = new Color(0.7f, 0.9f, 0.7f);
+            GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
             
         }
     }
