@@ -641,7 +641,7 @@ public class secondRoomFunction : CavasData {
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
-        outP_obj.SetActive(false);
+        //outP_obj.SetActive(false);
     }
 
     //업적
@@ -761,7 +761,7 @@ public class secondRoomFunction : CavasData {
 
     public void OpenWalkOut()
     {
-        outP_obj.SetActive(true);
+        //outP_obj.SetActive(true);
     }
     public void OpenOutAd()
     {
@@ -791,7 +791,8 @@ public class secondRoomFunction : CavasData {
             }
             else
             {
-                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", System.DateTime.Now.ToString()));
+                System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", dateTime.ToString()));
                 System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;

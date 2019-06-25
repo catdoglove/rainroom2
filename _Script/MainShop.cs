@@ -76,13 +76,13 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
-        /*
+        
         PlayerPrefs.SetInt(str + "c", 99999);
         PlayerPrefs.SetInt(str + "h", 9999);
         PlayerPrefs.SetInt(str + "ht", 99);
         PlayerPrefs.SetInt(str + "cv", 999);
-        PlayerPrefs.SetInt("lovelv", 3);
-        */
+        PlayerPrefs.SetInt("lovelv", 6);
+        
 
         //PlayerPrefs.SetInt("lovelv", 6);
         //PlayerPrefs.SetInt("seedlv", 10);
@@ -164,8 +164,7 @@ public class MainShop : ShopHandler {
             {
                 boxs_obj[0].SetActive(false);
             }
-        }else if(PlayerPrefs.GetInt("place", 0) == 1)//단칸방
-        {
+        }
             if (PlayerPrefs.GetInt("drawerbox", 0) == 10)
             {
                 boxs_obj[4].SetActive(true);
@@ -174,8 +173,7 @@ public class MainShop : ShopHandler {
             {
                 boxs_obj[4].SetActive(false);
             }
-
-        }
+            
     }
 
     public void ShopBuyYes()
