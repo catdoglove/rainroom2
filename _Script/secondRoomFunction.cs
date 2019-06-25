@@ -83,6 +83,8 @@ public class secondRoomFunction : CavasData {
     public Text outPrice_txt,outTime_txt;
     public GameObject outP_obj,outGo_obj,outAd_obj,outAdBtn_obj;
 
+    public Sprite[] matPaint_spr, mat2Paint_spr, shelfPaint_spr;
+
     // Use this for initialization
     void Start ()
     {
@@ -220,6 +222,24 @@ public class secondRoomFunction : CavasData {
         }
         //낮밤
         setDay();
+
+        //리폼
+
+        if (PlayerPrefs.GetInt("setmatpalette", 0)==1)
+        {
+            matImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+            matImg_obj.GetComponent<Image>().sprite = matPaint_spr[1];
+        }
+        if (PlayerPrefs.GetInt("setmat2palette", 0) == 1)
+        {
+            matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+            matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[1];
+        }
+        if (PlayerPrefs.GetInt("setshelfpalette", 0) == 1)
+        {
+            shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+            shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
+        }
     }
     /// <summary>
     /// 단칸방 스위치 켜기
@@ -641,7 +661,7 @@ public class secondRoomFunction : CavasData {
     public void CloseGoOut()
     {
         goOutWindow_obj.SetActive(false);
-        //outP_obj.SetActive(false);
+        outP_obj.SetActive(false);
     }
 
     //업적
@@ -761,7 +781,7 @@ public class secondRoomFunction : CavasData {
 
     public void OpenWalkOut()
     {
-        //outP_obj.SetActive(true);
+        outP_obj.SetActive(true);
     }
     public void OpenOutAd()
     {

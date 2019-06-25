@@ -351,8 +351,8 @@ public class ParkShop : MonoBehaviour {
             case 0:
                 if (p_i >= 90&& c_i>=700)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 90;
+                    c_i = c_i - 700;
                     //PlayerPrefs.GetInt("mat1lv", 5);
                     PlayerPrefs.SetInt("shoppalette"+shopNum,1);
                     PlayerPrefs.SetInt("shoppalette"+shopNum + "0", 1);
@@ -370,8 +370,8 @@ public class ParkShop : MonoBehaviour {
             case 1:
                 if (p_i >= 90 && c_i >= 700)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 90;
+                    c_i = c_i - 700;
                     //PlayerPrefs.GetInt("mat2lv", 5);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
@@ -389,8 +389,8 @@ public class ParkShop : MonoBehaviour {
             case 2:
                 if (p_i >= 200 && c_i >= 1000)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 200;
+                    c_i = c_i - 1000;
                     //PlayerPrefs.GetInt("shelflv", 4);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
@@ -408,8 +408,8 @@ public class ParkShop : MonoBehaviour {
             case 3:
                 if (p_i >= 250 && c_i >= 2000)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 250;
+                    c_i = c_i - 2000;
                     PlayerPrefs.SetInt("iceboxlv", 2);
                     shopBtn_obj[3].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[3].SetActive(true);

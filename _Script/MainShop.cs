@@ -58,10 +58,12 @@ public class MainShop : ShopHandler {
     public Sprite[] marimo_spr, rabbit_spr, tutle_spr, goldfish_spr;
     //리폼
     public GameObject reform_obj,palette_obj;
-    public GameObject[] paintcan_obj;
+    public GameObject[] paintcan_obj,paletteImg_obj;
     public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
-    public Sprite[] paintcan_spr;
+    public Sprite[] paintcan_spr,matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     Color mColor;
+    public GameObject[] selectMatPaint_obj, selectMat2Paint_obj, selectShelfPaint_obj;
+
     //부족하다창
     Color color;
     public GameObject needToast_obj;
@@ -76,14 +78,13 @@ public class MainShop : ShopHandler {
         //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
         //PlayerPrefs.SetInt("seedlv",0);
-        
+        /*
         PlayerPrefs.SetInt(str + "c", 99999);
         PlayerPrefs.SetInt(str + "h", 9999);
         PlayerPrefs.SetInt(str + "ht", 99);
         PlayerPrefs.SetInt(str + "cv", 999);
         PlayerPrefs.SetInt("lovelv", 6);
-        
-
+        */
         //PlayerPrefs.SetInt("lovelv", 6);
         //PlayerPrefs.SetInt("seedlv", 10);
         //PlayerPrefs.SetInt("allflower", 0);
@@ -874,7 +875,10 @@ public class MainShop : ShopHandler {
         if(PlayerPrefs.GetInt("shoppalette0", 0) == 1)
         {
             palette_obj.SetActive(true);
-            PlayerPrefs.GetInt("setmatpalette", 0);
+            paletteImg_obj[0].SetActive(true);
+            paletteImg_obj[1].SetActive(false);
+            paletteImg_obj[2].SetActive(false);
+            selectMatPaint_obj[PlayerPrefs.GetInt("setmatpalette", 0)].SetActive(true);
         }
         for(int i = 0; i < 7; i++)
         {
@@ -890,22 +894,108 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
-            mColor = new Color(0.7f, 0.9f, 0.7f);
+            GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite= matPaint_spr[1];
+            mColor = new Color(0.99f, 0.81f, 0.80f);
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
-            
         }
+        PlayerPrefs.SetInt("setmatpalette", 1);
+        selectMatPaint_obj[1].SetActive(true);
+        selectMatPaint_obj[0].SetActive(false);
+    }
+    public void returnMat()
+    {
+        mColor = new Color(1f, 1f, 1f);
+        GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
+        GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = matPaint_spr[0];
+        PlayerPrefs.SetInt("setmatpalette", 0);
+        selectMatPaint_obj[1].SetActive(false);
+        selectMatPaint_obj[0].SetActive(true);
+    }
+    public void returnMat2()
+    {
+        mColor = new Color(1f, 1f, 1f);
+        GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
+        GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[0];
+        PlayerPrefs.SetInt("setmat2palette", 0);
+        selectMat2Paint_obj[1].SetActive(false);
+        selectMat2Paint_obj[0].SetActive(true);
+    }
+    public void returnShelf()
+    {
+        mColor = new Color(1f, 1f, 1f);
+        GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
+        GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[0];
+        PlayerPrefs.SetInt("setshelfpalette", 0);
+        selectShelfPaint_obj[1].SetActive(false);
+        selectShelfPaint_obj[0].SetActive(true);
+    }
+
+    public void SetMa2tPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[1];
+            mColor = new Color(0.99f, 0.81f, 0.80f);
+            GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setmat2palette", 1);
+        selectMat2Paint_obj[1].SetActive(true);
+        selectMat2Paint_obj[0].SetActive(false);
+    }
+
+    public void SetShelfPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
+            mColor = new Color(0.99f, 0.81f, 0.80f);
+            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setshelfpalette", 1);
+        selectShelfPaint_obj[1].SetActive(true);
+        selectShelfPaint_obj[0].SetActive(false);
     }
     //부엌
     public void OpenMat2Palette()
     {
-        palette_obj.SetActive(true);
-        PlayerPrefs.GetInt("setmat2palette", 0);
+        if (PlayerPrefs.GetInt("shoppalette1", 0) == 1)
+        {
+            palette_obj.SetActive(true);
+            paletteImg_obj[0].SetActive(false);
+            paletteImg_obj[1].SetActive(true);
+            paletteImg_obj[2].SetActive(false);
+            selectMat2Paint_obj[PlayerPrefs.GetInt("setmat2palette", 0)].SetActive(true);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            mat2Palette_obj[i].SetActive(false);
+            if (PlayerPrefs.GetInt("shoppalette1" + i, 0) == 1)
+            {
+                mat2Palette_obj[i].SetActive(true);
+            }
+
+        }
     }
     //선반
     public void OpenShelfPalette()
     {
-        palette_obj.SetActive(true);
-        PlayerPrefs.GetInt("setshelfpalette", 0);
+        if (PlayerPrefs.GetInt("shoppalette2", 0) == 1)
+        {
+            palette_obj.SetActive(true);
+            paletteImg_obj[0].SetActive(false);
+            paletteImg_obj[1].SetActive(false);
+            paletteImg_obj[2].SetActive(true);
+            selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            shelfPalette_obj[i].SetActive(false);
+            if (PlayerPrefs.GetInt("shoppalette2" + i, 0) == 1)
+            {
+                shelfPalette_obj[i].SetActive(true);
+            }
+
+        }
     }
 
     void Needfalse()

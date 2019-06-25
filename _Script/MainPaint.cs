@@ -171,7 +171,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[8].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<어둠속에>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[8];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 8);
@@ -183,7 +183,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[9].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<일어나서>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[9];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 9);
@@ -195,7 +195,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[10].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<헤메는 중>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[10];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 10);
@@ -207,7 +207,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[11].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<저 멀리>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[11];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 11);
@@ -219,7 +219,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[12].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<발견>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[12];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 12);
@@ -231,7 +231,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[13].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<거기 있는 것>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[13];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 13);
@@ -243,7 +243,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[14].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<나아가>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[14];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 14);
@@ -255,10 +255,34 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[15].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<스토리>\n뭔가내용";
+        paint_txt.text = "<밖으로>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[15];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 15);
+    }
+    public void paintSet16()
+    {
+        for (int i = 0; i < 18; i++)
+        {
+            lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
+        }
+        lightPaint_obj[16].GetComponent<Image>().sprite = light_spr[1];
+        paint_txt.text = "<온 몸으로>";
+        roomPaint_obj.GetComponent<Image>().sprite = paint_spr[16];
+        roomPaint_obj.SetActive(true);
+        PlayerPrefs.SetInt("setPaint", 16);
+    }
+    public void paintSet17()
+    {
+        for (int i = 0; i < 18; i++)
+        {
+            lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
+        }
+        lightPaint_obj[17].GetComponent<Image>().sprite = light_spr[1];
+        paint_txt.text = "<느끼다>";
+        roomPaint_obj.GetComponent<Image>().sprite = paint_spr[17];
+        roomPaint_obj.SetActive(true);
+        PlayerPrefs.SetInt("setPaint", 17);
     }
 
     public void ClosePaint()
