@@ -45,7 +45,7 @@ public class ParkShop : MonoBehaviour {
     public GameObject[] adopt_obj;
     public Sprite[] pet_spr;
     public Sprite adopt_spr;
-    public Text pet_txt;
+    public Text pet_txt,petP_txt;
     public Text petClover_txt;
     //소리
     public GameObject audio_obj;
@@ -162,7 +162,7 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = specialPaint_str[movie_i];
-            paintP_txt.text = "20";
+            paintP_txt.text = "15";
         }
     }
     public void buySpecial()
@@ -173,7 +173,7 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = moviePaint_str[special_i];
-            paintP_txt.text = "20";
+            paintP_txt.text = "15";
         }
     }
     public void buyStory()
@@ -184,7 +184,7 @@ public class ParkShop : MonoBehaviour {
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = storyPaint_str[story_i];
-            paintP_txt.text = ""+PlayerPrefs.GetInt("pra", 5);
+            paintP_txt.text = ""+PlayerPrefs.GetInt("pra", 4);
         }
     }
 
@@ -192,10 +192,10 @@ public class ParkShop : MonoBehaviour {
     public void buyPaintY()
     {
         p_i = PlayerPrefs.GetInt(str + "cv", 0);
-        int pra = 20;
+        int pra = 15;
         if (paint_str == "s")
         {
-            pra = PlayerPrefs.GetInt("pra", 5);
+            pra = PlayerPrefs.GetInt("pra", 4);
         }
         if (p_i >= pra)
         {
@@ -224,7 +224,7 @@ public class ParkShop : MonoBehaviour {
             {
                 eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[0];
                 eventPaintImg_obj[2].GetComponent<Button>().interactable = false;
-                pra = PlayerPrefs.GetInt("pra", 5) + 5;
+                pra = PlayerPrefs.GetInt("pra", 4) + 4;
                 PlayerPrefs.SetInt("pra", pra);
             }
             PlayerPrefs.SetInt("paintinroom", 1);
@@ -587,13 +587,13 @@ public class ParkShop : MonoBehaviour {
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
         foodIlust_obj.SetActive(true);
-        audio_obj.GetComponent<SoundEvt>().buttonSound();
+        audio_obj.GetComponent<SoundEvt>().foodSound();
         PlayerPrefs.Save();
     }
     public void CloseFoodIlust()
     {
         foodIlust_obj.SetActive(false);
-        audio_obj.GetComponent<SoundEvt>().foodSound();
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
     }
     public void BuyFoodShopN()
     {
@@ -648,15 +648,19 @@ public class ParkShop : MonoBehaviour {
         {
             case 0:
                 pet_txt.text = "큰 책상이 필요해";
+                petP_txt.text = "10";
                 break;
             case 1:
                 pet_txt.text = "침대가 필요해";
+                petP_txt.text = "20";
                 break;
             case 2:
                 pet_txt.text = "";
+                petP_txt.text = "10";
                 break;
             case 3:
                 pet_txt.text = "정수기가 필요해";
+                petP_txt.text = "15";
                 break;
         }
     }
@@ -671,11 +675,11 @@ public class ParkShop : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
-                if (p_i >= 6)
+                if (p_i >= 10)
                 {
                     if (PlayerPrefs.GetInt("desklv") >= 5)
                     {
-                        p_i = p_i - 6;
+                        p_i = p_i - 10;
                         PlayerPrefs.SetInt(str + "cv", p_i);
                         PlayerPrefs.SetInt("marimo", 1);
                         PlayerPrefs.SetInt("setmarimo", 1);
@@ -692,11 +696,11 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 7)
+                if (p_i >= 20)
                 {
                     if (PlayerPrefs.GetInt("bedlv") >= 5)
                     {
-                        p_i = p_i - 7;
+                        p_i = p_i - 20;
                         PlayerPrefs.SetInt(str + "cv", p_i);
                         PlayerPrefs.SetInt("rabbit", 1);
                         PlayerPrefs.SetInt("setrabbit", 1);
@@ -713,9 +717,9 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 2:
-                if (p_i >= 7)
+                if (p_i >= 10)
                 {
-                    p_i = p_i - 7;
+                    p_i = p_i - 10;
                     PlayerPrefs.SetInt(str + "cv", p_i);
                     PlayerPrefs.SetInt("tutle", 1);
                     PlayerPrefs.SetInt("settutle", 1);
@@ -727,11 +731,11 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 3:
-                if (p_i >= 7)
+                if (p_i >= 15)
                 {
                     if (PlayerPrefs.GetInt("waterpurifiershop") >= 2)
                     {
-                        p_i = p_i - 7;
+                        p_i = p_i - 15;
                         PlayerPrefs.SetInt(str + "cv", p_i);
                         PlayerPrefs.SetInt("goldfish", 1);
                         PlayerPrefs.SetInt("setgoldfish", 1);

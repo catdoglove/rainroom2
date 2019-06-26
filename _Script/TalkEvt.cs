@@ -163,19 +163,19 @@ public class TalkEvt : MonoBehaviour {
                 {
                     loveLv = PlayerPrefs.GetInt("lovelv", 0);
 
-                    if (loveLv >= 3) { charAni.Play("bye"); }
+                    if (loveLv >= 6) { charAni.Play("bye"); }
 
                     if (loveLv < 2)
                     {
-                        exitText.text = "..그래 잘가";
+                        exitText.text = "..잘가";
                     }
                     else if (loveLv < 4)
                     {
-                        exitText.text = "잘가렴.. 안녕";
+                        exitText.text = "잘가렴..";
                     }
                     else if (loveLv < 6)
                     {
-                        exitText.text = "안녕.. 조심히 가";
+                        exitText.text = "안녕 잘가..";
                     }
                     else if (loveLv < 9)
                     {
@@ -187,11 +187,11 @@ public class TalkEvt : MonoBehaviour {
                     }
                     else if (loveLv < 13)
                     {
-                        exitText.text = "즐거웠어 다음에 보자. 친구";
+                        exitText.text = "반가웠어 다음에 보자. 친구";
                     }
                     else if (loveLv > 12)
                     {
-                        exitText.text = "즐거웠어 다음에 보자. 친구";
+                        exitText.text = "반가웠어 다음에 보자. 친구";
                     }
                 }
 
@@ -1051,12 +1051,12 @@ public class TalkEvt : MonoBehaviour {
         cts++;
         PlayerPrefs.SetInt("counttalkst", cts);
         Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
-        if (cts >= 1000 && PlayerPrefs.GetInt("talkst", 0) < 3)
+        if (cts >= 1500 && PlayerPrefs.GetInt("talkst", 0) < 3)
         {
             PlayerPrefs.SetInt("talkst", 3);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 2);
         }
-        else if (cts >= 500 && PlayerPrefs.GetInt("talkst", 0) < 2)
+        else if (cts >= 700 && PlayerPrefs.GetInt("talkst", 0) < 2)
         {
             PlayerPrefs.SetInt("talkst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 1);

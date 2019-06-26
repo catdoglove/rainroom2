@@ -505,12 +505,12 @@ public class TalkEvtOut : MonoBehaviour
         cts++;
         PlayerPrefs.SetInt("counttalkst", cts);
         Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
-        if (cts >= 1000 && PlayerPrefs.GetInt("talkst", 0) < 3)
+        if (cts >= 1500 && PlayerPrefs.GetInt("talkst", 0) < 3)
         {
             PlayerPrefs.SetInt("talkst", 3);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 2);
         }
-        else if (cts >= 500 && PlayerPrefs.GetInt("talkst", 0) < 2)
+        else if (cts >= 700 && PlayerPrefs.GetInt("talkst", 0) < 2)
         {
             PlayerPrefs.SetInt("talkst", 2);
             firstGM.GetComponent<AchievementShow>().achievementCheck(0, 1);

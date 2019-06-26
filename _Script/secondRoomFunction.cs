@@ -640,10 +640,10 @@ public class secondRoomFunction : CavasData {
     {
         StopCoroutine("outTime");
         StartCoroutine("outTime");
-        outPrice_txt.text = "30";
+        outPrice_txt.text = "20";
         if (PlayerPrefs.GetInt("bouttime", 14) == 9)
         {
-            outPrice_txt.text = "20";
+            outPrice_txt.text = "10";
         }
         goOutWindow_obj.SetActive(true);
         if (GMTag == null)
@@ -748,7 +748,7 @@ public class secondRoomFunction : CavasData {
         str1 = PlayerPrefs.GetString("code", "");
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        int hp_i=30;
+        int hp_i=20;
         if (PlayerPrefs.GetInt("bouttime", 14) == 9)
         {
             hp_i = hp_i - 10;
@@ -801,7 +801,7 @@ public class secondRoomFunction : CavasData {
             if (PlayerPrefs.GetInt("bouttime", 14) == 9)
             {
                 outAdBtn_obj.GetComponent<Button>().interactable = false;
-                outPrice_txt.text = "20";
+                outPrice_txt.text = "10";
             }
             if (PlayerPrefs.GetInt("outtimeon", 0) == 0)
             {

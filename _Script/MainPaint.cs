@@ -171,7 +171,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[8].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<어둠속에>";
+        paint_txt.text = "<어둠 속에>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[8];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 8);
@@ -195,7 +195,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[10].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<헤메는 중>";
+        paint_txt.text = "<헤매는 중>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[10];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 10);
@@ -267,7 +267,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[16].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<온 몸으로>";
+        paint_txt.text = "<온몸으로>";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[16];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 16);
