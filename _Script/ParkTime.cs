@@ -61,6 +61,7 @@ public class ParkTime : MonoBehaviour
             }
 
             //저장하고 1초동안 대기
+            PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
         }

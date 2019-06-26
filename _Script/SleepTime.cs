@@ -35,7 +35,7 @@ public class SleepTime : MonoBehaviour {
     public GameObject stars_obj;
     public GameObject switchBtn_obj;
     public Sprite[] switch_spr;
-
+    public GameObject rabbit_obj, rabbitSleep_obj;
 
     // Use this for initialization
     void Start () {
@@ -54,6 +54,11 @@ public class SleepTime : MonoBehaviour {
             {
                 stars_obj.SetActive(true);
                 switchBtn_obj.GetComponent<Image>().sprite = switch_spr[1];
+            }
+            if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+            {
+                rabbit_obj.SetActive(false);
+                rabbitSleep_obj.SetActive(true);
             }
         }
         else
@@ -130,30 +135,19 @@ public class SleepTime : MonoBehaviour {
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
         PlayerPrefs.SetInt("sleepTxt", 1);
-        int s = PlayerPrefs.GetInt("countinsleepst", 0);
-        s++;
-        PlayerPrefs.SetInt("countinsleepst", s);
-        if (s >= 50 && PlayerPrefs.GetInt("insleepst", 0) < 3)
-        {
-            PlayerPrefs.SetInt("insleepst", 3);
-            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
-        }
-        else if (s >= 25 && PlayerPrefs.GetInt("insleepst", 0) < 2)
-        {
-            PlayerPrefs.SetInt("insleepst", 2);
-            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
-        }
-        else if (s >= 1 && PlayerPrefs.GetInt("insleepst", 0) < 1)
-        {
-            PlayerPrefs.SetInt("insleepst", 1);
-            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 0);
-        }
+        
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
         sleep_obj[n-1].SetActive(true);
         sleepGone_obj.SetActive(false);
         dreamBtn_obj.SetActive(false);
+
+        if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+        {
+            rabbit_obj.SetActive(false);
+            rabbitSleep_obj.SetActive(true);
+        }
         PlayerPrefs.Save();
         if (PlayerPrefs.GetInt("switchshop", 0) == 2)
         {
@@ -198,7 +192,30 @@ public class SleepTime : MonoBehaviour {
                 //StopCoroutine("sleepTimecheck");
                 if(PlayerPrefs.GetInt("nowsleep", 0) == 1)
                 {
+                    if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+                    {
+                        rabbit_obj.SetActive(true);
+                        rabbitSleep_obj.SetActive(false);
+                    }
                     dreamBtn_obj.SetActive(true);
+                    int s = PlayerPrefs.GetInt("countinsleepst", 0);
+                    s++;
+                    PlayerPrefs.SetInt("countinsleepst", s);
+                    if (s >= 50 && PlayerPrefs.GetInt("insleepst", 0) < 3)
+                    {
+                        PlayerPrefs.SetInt("insleepst", 3);
+                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
+                    }
+                    else if (s >= 25 && PlayerPrefs.GetInt("insleepst", 0) < 2)
+                    {
+                        PlayerPrefs.SetInt("insleepst", 2);
+                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
+                    }
+                    else if (s >= 1 && PlayerPrefs.GetInt("insleepst", 0) < 1)
+                    {
+                        PlayerPrefs.SetInt("insleepst", 1);
+                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 0);
+                    }
                 }
                 PlayerPrefs.SetInt("nowsleep", 0);
                 PlayerPrefs.SetInt("sleepTxt", 0);
