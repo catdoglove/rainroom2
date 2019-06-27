@@ -80,7 +80,7 @@ public class ParkTime : MonoBehaviour
         PlayerPrefs.SetInt(str + "c", c);
         int h = PlayerPrefs.GetInt(str + "h", 0);
         h = h + 3;
-        PlayerPrefs.SetInt(str + "h", c);
+        PlayerPrefs.SetInt(str + "h", h);
     }
 
 }

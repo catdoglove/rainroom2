@@ -37,7 +37,11 @@ public class MainInfo : MonoBehaviour {
     public GameObject nickBtn_obj;
     //마음
     public Text h_txt, c_txt;
-
+    //
+    public Text add_txt;
+    public GameObject addTxt_obj;
+    public string[] add_str;
+    public GameObject wf_obj;
     // Use this for initialization
     void Start () {
 
@@ -165,6 +169,11 @@ public class MainInfo : MonoBehaviour {
     /// </summary>
     void InfoCheckList()
     {
+        if(PlayerPrefs.GetInt("609102", 0) == 60)
+        {
+            wf_obj.SetActive(true);
+        }
+        
         closeListAll();
         switch (loveLv_i)
         {
@@ -376,6 +385,15 @@ public class MainInfo : MonoBehaviour {
                 {
                     checkLine_obj[0].SetActive(true);
                 }
+                break;
+
+            case 12:
+                addTxt_obj.SetActive(true);
+                add_txt.text = "...";
+                break;
+            case 13:
+                addTxt_obj.SetActive(true);
+                add_txt.text = ""+add_str[PlayerPrefs.GetInt("addtxt", 0)];
                 break;
         }
     }

@@ -185,7 +185,7 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            Debug.Log(itemIndex_i + "fd" + itemLevel_i);//////////////////////////////////////////////////////////////////
+            //Debug.Log(itemIndex_i + "fd" + itemLevel_i);//////////////////////////////////////////////////////////////////
 
             if (coldRain_i >= coldRainPrice_i)
             {
@@ -193,10 +193,10 @@ public class MainShop : ShopHandler {
                 {
                     coldRain_i = coldRain_i - coldRainPrice_i;
                     PlayerPrefs.SetInt(str + "c", coldRain_i);
-                    Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
+                    //Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
                     hotRain_i = hotRain_i - hotRainPrice_i;
                     PlayerPrefs.SetInt(str + "h", hotRain_i);
-                    Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
+                    //Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
                     achvcheck();
@@ -367,7 +367,7 @@ public class MainShop : ShopHandler {
             levels_txt[i].text = "" + data_itemName[itemLevel_i][itemName_str];
             lvNum_txt[i].text = "LV. " + itemLevel_i.ToString();
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
-            Debug.Log(""+ itemLevel_i+ itemName_str);
+            //Debug.Log(""+ itemLevel_i+ itemName_str);
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();
             hotPrice_txt[i].text = hotRainPrice_i.ToString();
@@ -571,8 +571,8 @@ public class MainShop : ShopHandler {
         switch (func_i)
         {
             case 0:
-                coldRainPrice_i = 100;
-                hotRainPrice_i = 50;
+                coldRainPrice_i = 0;
+                hotRainPrice_i = 600;
                 break;
             case 1:
                 coldRainPrice_i = 500;
@@ -583,8 +583,8 @@ public class MainShop : ShopHandler {
                 hotRainPrice_i = 200;
                 break;
             case 3:
-                coldRainPrice_i = 100;
-                hotRainPrice_i = 50;
+                coldRainPrice_i = 0;
+                hotRainPrice_i = 0;
                 break;
         }
         if (coldRain_i >= coldRainPrice_i)
@@ -1056,7 +1056,7 @@ public class MainShop : ShopHandler {
 
             }
         }
-        Debug.Log(itemName_str + PlayerPrefs.GetInt("windowlv") + "window" + PlayerPrefs.GetInt("allwindow", 0));
+        //Debug.Log(itemName_str + PlayerPrefs.GetInt("windowlv") + "window" + PlayerPrefs.GetInt("allwindow", 0));
         if (itemName_str == "window")
         {
             if (PlayerPrefs.GetInt("windowlv") >= 8 && PlayerPrefs.GetInt("allwindow", 0) == 0)

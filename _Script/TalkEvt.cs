@@ -240,14 +240,14 @@ public class TalkEvt : MonoBehaviour {
 
         //대화속도
         speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
-        Debug.Log(countTalkNum);
+        //Debug.Log(countTalkNum);
 
 
 
         if (countTalkNum == 0)
         {
             //대화못함
-            Debug.Log("대화횟수마감");
+            //Debug.Log("대화횟수마감");
         }
         else
         {
@@ -497,7 +497,7 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp= loveExp + 1;
+            loveExp= loveExp + 100;
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
@@ -505,11 +505,12 @@ public class TalkEvt : MonoBehaviour {
         }
         else if (loveExp >= loveMax)
         {
-            if (loveLv > 11)
+            if (loveLv > 12)
             {
                 //최대 레벨
                 //대화집 또는 해당 레벨에 언락되어서 뭔가 살 수 있는 무언가를 생각해보자
-                Debug.Log("레벨멈춤");
+                //Debug.Log("레벨멈춤");
+                checkList();
             }
             else {
                 checkList();
@@ -809,12 +810,12 @@ public class TalkEvt : MonoBehaviour {
         if (itemNowArr < itemAllArr) //대화 차례대로 보이기
         {
             itemNowArr++;
-            Debug.Log(itemNowArr);
+            //Debug.Log(itemNowArr);
         }
         else if (itemNowArr >= itemAllArr) //대화 줄 초기화
         {
             itemNowArr = 0;
-            Debug.Log("리셋");
+            //Debug.Log("리셋");
         }
     }
 
@@ -949,6 +950,24 @@ public class TalkEvt : MonoBehaviour {
                     a = 1;
                     PlayerPrefs.SetInt("lovemax", 400);
                 }
+                break;
+            case 12:
+                    a = 1;
+                    PlayerPrefs.SetInt("lovemax", 400);
+                break;
+            case 13:
+                loveExp = 0;
+                PlayerPrefs.SetInt("lovepoint", loveExp);
+                int add = PlayerPrefs.GetInt("addtxt",0);
+                add++;
+                if (add == 10)
+                {
+                    add = 0;
+                }
+                PlayerPrefs.SetInt("addtxt",add);
+                StopCoroutine("leveUpToastImgFadeOut");
+                StartCoroutine("leveUpToastImgFadeOut");
+                leveUpToast_obj.SetActive(true);
                 break;
         }
         //조금 친해진 것 같다 호감레벨 상승

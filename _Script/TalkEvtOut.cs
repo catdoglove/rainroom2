@@ -450,7 +450,7 @@ public class TalkEvtOut : MonoBehaviour
             {
                 //최대 레벨
                 //대화집 또는 해당 레벨에 언락되어서 뭔가 살 수 있는 무언가를 생각해보자
-                Debug.Log("레벨멈춤");
+                //Debug.Log("레벨멈춤");
             }
 
         }
@@ -504,7 +504,7 @@ public class TalkEvtOut : MonoBehaviour
         int cts = PlayerPrefs.GetInt("counttalkst", 0);
         cts++;
         PlayerPrefs.SetInt("counttalkst", cts);
-        Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
+        //Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
         if (cts >= 1500 && PlayerPrefs.GetInt("talkst", 0) < 3)
         {
             PlayerPrefs.SetInt("talkst", 3);

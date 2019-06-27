@@ -238,7 +238,7 @@ public class WindowMiniGame : MonoBehaviour {
             PlayerPrefs.SetInt("petcatst", 1);
             GM.GetComponent<AchievementShow>().achievementCheck(4, 0);
         }
-        Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
+        //Debug.Log("cat" + PlayerPrefs.GetInt("petcatst", 0) + "count" + PlayerPrefs.GetInt("countpetcatst", 0));
     }
 
     void achievement()

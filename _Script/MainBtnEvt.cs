@@ -49,6 +49,11 @@ public class MainBtnEvt : CavasData
     //미리 씬을 불러오기
     AsyncOperation async;
 
+    //쿠폰
+    public GameObject coupon_obj,couponTxt_obj, couponTxtF_obj;
+    public InputField InputField;
+    public Text InputField_txt;
+
     public void CloseHelpf()
     {
         if (help == 0)
@@ -574,6 +579,37 @@ public class MainBtnEvt : CavasData
             helpPark_obj.SetActive(false);
         }
 
+    }
+
+    //쿠폰입력
+    public void openCoupon()
+    {
+        coupon_obj.SetActive(true);
+        InputField.text = "";
+        InputField_txt.text = "";
+    }
+    public void SetCoupon()
+    {
+        if(InputField_txt.text== "welcomerain2")
+        {
+            if (PlayerPrefs.GetInt("609102", 0) == 0)
+            {
+                PlayerPrefs.SetInt("609102", 60);
+                couponTxt_obj.SetActive(true);
+                coupon_obj.SetActive(false);
+            }
+        }
+        else
+        {
+            couponTxtF_obj.SetActive(true);
+        }
+        PlayerPrefs.Save();
+    }
+    public void closeCoupon()
+    {
+        coupon_obj.SetActive(false);
+        couponTxt_obj.SetActive(false);
+        couponTxtF_obj.SetActive(false);
     }
 
 

@@ -246,6 +246,7 @@ public class ParkShop : MonoBehaviour {
         //조건에따라 비활성화
         //마리모 책상 금붕어 정수기 토끼 침대 거북이 조건없음
         OpenClose();
+        buyPetYN_obj.SetActive(false);
         eventPet_obj.SetActive(true);
         if (PlayerPrefs.GetInt("marimo", 0) == 1)
         {
@@ -267,7 +268,8 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Image>().sprite = adopt_spr;
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
-        petClover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", p_i);
+        petClover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+        buyPetYN_obj.SetActive(true);
     }
     public void OpenFoodShop()
     {
@@ -349,10 +351,10 @@ public class ParkShop : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
-                if (p_i >= 90&& c_i>=700)
+                if (p_i >= 100&& c_i>=900)
                 {
-                    p_i = p_i - 90;
-                    c_i = c_i - 700;
+                    p_i = p_i - 100;
+                    c_i = c_i - 900;
                     //PlayerPrefs.GetInt("mat1lv", 5);
                     PlayerPrefs.SetInt("shoppalette"+shopNum,1);
                     PlayerPrefs.SetInt("shoppalette"+shopNum + "0", 1);
@@ -368,10 +370,10 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 90 && c_i >= 700)
+                if (p_i >= 100 && c_i >= 900)
                 {
-                    p_i = p_i - 90;
-                    c_i = c_i - 700;
+                    p_i = p_i - 100;
+                    c_i = c_i - 900;
                     //PlayerPrefs.GetInt("mat2lv", 5);
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);

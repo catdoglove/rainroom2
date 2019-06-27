@@ -669,7 +669,7 @@ public class secondRoomFunction : CavasData {
     {
         int cts = PlayerPrefs.GetInt("countboxst", 0);
         cts++;
-        Debug.Log("boxst");
+        //Debug.Log("boxst");
         PlayerPrefs.SetInt("countboxst", cts);
         if (cts >= 10 && PlayerPrefs.GetInt("boxst", 0) < 3)
         {
@@ -764,6 +764,7 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt("acgocheck",1);
             //checkachOut();
             StartCoroutine("LoadOut");
+            GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
         }
         else
         {
@@ -776,7 +777,6 @@ public class secondRoomFunction : CavasData {
         {
             GMTag = GameObject.FindGameObjectWithTag("GMtag");
         }
-            GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
     }
 
     public void OpenWalkOut()
@@ -855,7 +855,7 @@ public class secondRoomFunction : CavasData {
         int cts = PlayerPrefs.GetInt("countgooutst", 0);
         cts++;
         PlayerPrefs.SetInt("countgooutst", cts);
-        Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
+        //Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
         if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
         {
             PlayerPrefs.SetInt("gooutst", 3);
