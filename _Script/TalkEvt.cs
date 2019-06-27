@@ -497,7 +497,7 @@ public class TalkEvt : MonoBehaviour {
                 //아이템 효과는 이렇게 if문으로 추가하기
                 loveExp++;
             }
-            loveExp= loveExp + 100;
+            loveExp= loveExp + 1;
             PlayerPrefs.SetInt("lovepoint", loveExp);
             // 이 변수는 나중에 GetInt되어서 공유됨, 또한 조건문을 이용하여 호감단계에 따른 경험치 획득 및 아이템 장착효과도 넣을 수 있다.  
 
