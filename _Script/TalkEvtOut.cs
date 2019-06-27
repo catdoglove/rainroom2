@@ -89,6 +89,7 @@ public class TalkEvtOut : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            firstGM.GetComponent<ParkShop>().allClose();
             closeTalkBoon();
             if (!exitTalkBalln.activeSelf)
             {

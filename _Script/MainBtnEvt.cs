@@ -594,6 +594,9 @@ public class MainBtnEvt : CavasData
         {
             if (PlayerPrefs.GetInt("609102", 0) == 0)
             {
+                string str = PlayerPrefs.GetString("code", "");
+                int h = PlayerPrefs.GetInt(str + "ht", 0) + 5;
+                PlayerPrefs.SetInt(str + "ht", h);
                 PlayerPrefs.SetInt("609102", 60);
                 couponTxt_obj.SetActive(true);
                 coupon_obj.SetActive(false);

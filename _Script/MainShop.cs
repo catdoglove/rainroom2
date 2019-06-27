@@ -86,6 +86,7 @@ public class MainShop : ShopHandler {
         PlayerPrefs.SetInt(str + "ht", 999);
         */
 
+
         //PlayerPrefs.SetInt("lovelv", 6);
         //PlayerPrefs.SetInt("seedlv", 10);
         //PlayerPrefs.SetInt("allflower", 0);
@@ -905,27 +906,36 @@ public class MainShop : ShopHandler {
     }
     public void returnMat()
     {
-        mColor = new Color(1f, 1f, 1f);
-        GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
-        GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = matPaint_spr[0];
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = matPaint_spr[0];
+        }
         PlayerPrefs.SetInt("setmatpalette", 0);
         selectMatPaint_obj[1].SetActive(false);
         selectMatPaint_obj[0].SetActive(true);
     }
     public void returnMat2()
     {
-        mColor = new Color(1f, 1f, 1f);
-        GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
-        GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[0];
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[0];
+        }
         PlayerPrefs.SetInt("setmat2palette", 0);
         selectMat2Paint_obj[1].SetActive(false);
         selectMat2Paint_obj[0].SetActive(true);
     }
     public void returnShelf()
     {
-        mColor = new Color(1f, 1f, 1f);
-        GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
-        GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[0];
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[0];
+        }
         PlayerPrefs.SetInt("setshelfpalette", 0);
         selectShelfPaint_obj[1].SetActive(false);
         selectShelfPaint_obj[0].SetActive(true);

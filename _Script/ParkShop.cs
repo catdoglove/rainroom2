@@ -8,7 +8,7 @@ public class ParkShop : MonoBehaviour {
     //이밴트와 상점창
     public GameObject eventPaint_obj, eventPet_obj, foodShop_obj, inShop_obj, basicShop_obj;
     public GameObject blackClose_obj;
-    public int shopNum;
+    public int shopNum, helpNum;
     public string str;
     public Text coldRain_txt, hotRain_txt;
     //거리의화가
@@ -67,6 +67,10 @@ public class ParkShop : MonoBehaviour {
         inShop_obj.SetActive(false);
         basicShop_obj.SetActive(false);
         blackClose_obj.SetActive(false);
+        help_obj.SetActive(false);
+        buyPetYN_obj.SetActive(false);
+        buyPaintYN_obj.SetActive(false);
+        inYN_obj.SetActive(false);
         buyPaintN();
     }
 
@@ -269,7 +273,6 @@ public class ParkShop : MonoBehaviour {
             adopt_obj[3].GetComponent<Button>().interactable = false;
         }
         petClover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
-        buyPetYN_obj.SetActive(true);
     }
     public void OpenFoodShop()
     {
@@ -359,6 +362,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("shoppalette"+shopNum,1);
                     PlayerPrefs.SetInt("shoppalette"+shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
+                    PlayerPrefs.SetInt("setmatpalette", 1);
                     shopBtn_obj[0].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[0].SetActive(true);
                     shopGet_obj[0].SetActive(false);
@@ -378,6 +382,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
+                    PlayerPrefs.SetInt("setmat2palette", 1);
                     shopBtn_obj[1].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[1].SetActive(true);
                     shopGet_obj[1].SetActive(false);
@@ -397,6 +402,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("shoppalette" + shopNum, 1);
                     PlayerPrefs.SetInt("shoppalette" + shopNum + "0", 1);
                     PlayerPrefs.SetInt("reformshop", 1);
+                    PlayerPrefs.SetInt("setshelfpalette", 1);
                     shopBtn_obj[2].GetComponent<Button>().interactable = false;
                     shopSoldout_obj[2].SetActive(true);
                     shopGet_obj[2].SetActive(false);
@@ -789,7 +795,7 @@ public class ParkShop : MonoBehaviour {
     public void OpenHelp()
     {
         help_obj.SetActive(true);
-        help_obj.GetComponent<Image>().sprite = help_spr[shopNum];
+        help_obj.GetComponent<Image>().sprite = help_spr[helpNum];
     }
 
     public void CloseHelp()
@@ -848,6 +854,26 @@ public class ParkShop : MonoBehaviour {
     void num5()
     {
         shopNum = 5;
+    }
+    public void numH0()
+    {
+        helpNum = 0;
+    }
+    public void numH1()
+    {
+        helpNum = 1;
+    }
+    public void numH2()
+    {
+        helpNum = 2;
+    }
+    public void numH3()
+    {
+        helpNum = 3;
+    }
+    public void numH4()
+    {
+        helpNum = 4;
     }
     #endregion
 }
