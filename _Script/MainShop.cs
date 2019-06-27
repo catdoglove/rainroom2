@@ -871,6 +871,10 @@ public class MainShop : ShopHandler {
         palette_obj.SetActive(false);
     }
     //파레트
+    public void ClosePalette()
+    {
+        palette_obj.SetActive(false);
+    }
     //도어
     public void OpenMatPalette()
     {

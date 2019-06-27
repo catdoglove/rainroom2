@@ -58,13 +58,13 @@ public class Parkfunction : CavasData
         //밤낮
         setDay();
         //이밴트 랜덤 -첫외출에는 무조건 안나오면 어떨까?
-        eventRand_i = Random.Range(0, 3);
-        if (eventRand_i == 0)
+        eventRand_i = Random.Range(0, 5);
+        if (eventRand_i < 2)
         {
             eventPet_obj.SetActive(true);
             event_obj.GetComponent<Image>().sprite = event_spr[1];
         }
-        else if(eventRand_i == 1)
+        else if(eventRand_i < 4)
         {
             eventPaint_obj.SetActive(true);
             event_obj.GetComponent<Image>().sprite = event_spr[2];
@@ -167,7 +167,7 @@ public class Parkfunction : CavasData
         int cts = PlayerPrefs.GetInt("countgooutst", 0);
         cts++;
         PlayerPrefs.SetInt("countgooutst", cts);
-        Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
+        //Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
         if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
         {
             PlayerPrefs.SetInt("gooutst", 3);

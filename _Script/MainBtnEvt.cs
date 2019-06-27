@@ -105,6 +105,7 @@ public class MainBtnEvt : CavasData
                 GM.GetComponent<FirstRoomFunction>().boxNo();
                 GM.GetComponent<SleepTime>().closeDiary();
                 GM.GetComponent<SleepTime>().CloseSleep();
+                GM.GetComponent<MainShop>().palette_obj.SetActive(false);
             }
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
@@ -595,6 +596,7 @@ public class MainBtnEvt : CavasData
             if (PlayerPrefs.GetInt("609102", 0) == 0)
             {
                 string str = PlayerPrefs.GetString("code", "");
+                //쿠폰보상
                 int h = PlayerPrefs.GetInt(str + "ht", 0) + 5;
                 PlayerPrefs.SetInt(str + "ht", h);
                 PlayerPrefs.SetInt("609102", 60);

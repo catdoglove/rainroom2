@@ -33,7 +33,7 @@ public class AchievementShow : MonoBehaviour {
             achSticker_obj.GetComponent<Image>().sprite = achievementImg2_spr[achv_i-20];
             tier_i++;
             string str = "lv" + tier_i;
-            Debug.Log("achv" + achv_i + "lv" + tier_i );
+            //Debug.Log("achv" + achv_i + "lv" + tier_i );
             //Debug.Log(data[20]["lv1"]);
             tier_i--;
             title_txt.text = "" + data[achv_i][str];

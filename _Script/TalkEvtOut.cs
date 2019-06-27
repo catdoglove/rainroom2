@@ -47,7 +47,7 @@ public class TalkEvtOut : MonoBehaviour
     //업적
     public GameObject achievement_obj;
     public float moveX, moveY;
-    public GameObject firstGM;
+    public GameObject firstGM,GM;
 
     //나가기
     public GameObject exitTalkBalln, closeTB_exit, exitBbg;
@@ -64,7 +64,7 @@ public class TalkEvtOut : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        GM = GameObject.FindGameObjectWithTag("GMtag");
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         charAni.Play("char_park");
@@ -89,6 +89,8 @@ public class TalkEvtOut : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GM.GetComponent<MainBtnEvt>().goHome_obj.SetActive(false);
+            GM.GetComponent<MainBtnEvt>().helpfrist_obj.SetActive(false);
             firstGM.GetComponent<ParkShop>().allClose();
             closeTalkBoon();
             if (!exitTalkBalln.activeSelf)

@@ -659,7 +659,7 @@ public class ParkShop : MonoBehaviour {
                 petP_txt.text = "10";
                 break;
             case 1:
-                pet_txt.text = "침대가 필요해";
+                pet_txt.text = "깨끗한 침구가 필요해";
                 petP_txt.text = "20";
                 break;
             case 2:

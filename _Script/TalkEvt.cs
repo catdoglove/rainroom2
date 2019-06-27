@@ -1069,7 +1069,7 @@ public class TalkEvt : MonoBehaviour {
         int cts = PlayerPrefs.GetInt("counttalkst", 0);
         cts++;
         PlayerPrefs.SetInt("counttalkst", cts);
-        Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
+        //Debug.Log("tal" + PlayerPrefs.GetInt("talkst", 0) + "cts" + cts);
         if (cts >= 1500 && PlayerPrefs.GetInt("talkst", 0) < 3)
         {
             PlayerPrefs.SetInt("talkst", 3);
