@@ -148,7 +148,7 @@ public class ParkShop : MonoBehaviour {
 
         //스토리
         story_i =PlayerPrefs.GetInt("paints", 0);
-        if(PlayerPrefs.GetInt("paints", 0) == 9)
+        if(PlayerPrefs.GetInt("paints", 0) == 10)
         {
             eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[1];
         }
@@ -184,7 +184,7 @@ public class ParkShop : MonoBehaviour {
     {
         paint_str = "s";
         paint_i = story_i;
-        if (paint_i != 9)
+        if (paint_i != 10)
         {
             buyPaintYN_obj.SetActive(true);
             paint_txt.text = storyPaint_str[story_i];
@@ -213,7 +213,7 @@ public class ParkShop : MonoBehaviour {
             {
                 PlayerPrefs.SetInt("paint" + paint_str + paint_i, 1);
             }
-            PlayerPrefs.Save();
+            
             if (paint_str == "p")
             {
                 eventPaintImg_obj[0].GetComponent<Image>().sprite = soldOut_spr[0];
@@ -234,6 +234,7 @@ public class ParkShop : MonoBehaviour {
             PlayerPrefs.SetInt("paintinroom", 1);
             buyPaintYN_obj.SetActive(false);
             paintPrice_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+            PlayerPrefs.Save();
         }
         else
         {
@@ -482,10 +483,10 @@ public class ParkShop : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
-                if (p_i >= 6 && c_i >= 10)
+                if (p_i >= 100 && c_i >= 1000)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 100;
+                    c_i = c_i - 1000;
                     PlayerPrefs.SetInt("bread", 1);
                     inSoldout_obj[0].SetActive(true);
                     inBtn_obj[0].GetComponent<Button>().interactable = false;
@@ -497,10 +498,10 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 1:
-                if (p_i >= 6 && c_i >= 10)
+                if (p_i >= 120 && c_i >= 800)
                 {
-                    p_i = p_i - 6;
-                    c_i = c_i - 6;
+                    p_i = p_i - 120;
+                    c_i = c_i - 800;
                     PlayerPrefs.SetInt("ham", 1);
                     inSoldout_obj[1].SetActive(true);
                     inBtn_obj[1].GetComponent<Button>().interactable = false;
