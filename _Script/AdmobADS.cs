@@ -97,7 +97,7 @@ public class AdmobADS : MonoBehaviour {
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
         PlayerPrefs.SetInt("talk", 5);
-        PlayerPrefs.SetInt("secf2", 300);
+        PlayerPrefs.SetInt("secf2", 240);
     }
 
     //동영상닫음

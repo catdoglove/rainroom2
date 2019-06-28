@@ -832,7 +832,7 @@ public class secondRoomFunction : CavasData {
                 {
                     outGo_obj.GetComponent<Button>().interactable = false;
                 }
-            }            yield return new WaitForSeconds(1f);
+            }            yield return new WaitForSeconds(0.5f);
         }
     }
 

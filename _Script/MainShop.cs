@@ -380,7 +380,10 @@ public class MainShop : ShopHandler {
                 {
                     if (PlayerPrefs.GetInt("switchshop", 0) == 0)
                     {
-                        PlayerPrefs.SetInt("switchshop", 1);
+                        if (PlayerPrefs.GetInt("lightlv", 0) >= 4)
+                        {
+                            PlayerPrefs.SetInt("switchshop", 1);
+                        }
 
                     }
                 }
@@ -390,6 +393,8 @@ public class MainShop : ShopHandler {
                 lvNum_txt[i].text = "LV.MAX";
                 coldPrice_txt[i].text = "-";
                 hotPrice_txt[i].text = "-";
+
+
             }else{ }
         }
         

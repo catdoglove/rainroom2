@@ -111,6 +111,16 @@ public class ParkShop : MonoBehaviour {
                 special_i = eventPaint_i[Random.Range(i, 4)];
             }
         }
+        if (special_i == 9)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (eventPaint_i[i] != 9)
+                {
+                    special_i = eventPaint_i[i];
+                }
+            }
+        }
         if (special_i != 9)
         {
             eventPaintImg_obj[0].GetComponent<Image>().sprite = specialPaint_spr[special_i];
@@ -118,6 +128,7 @@ public class ParkShop : MonoBehaviour {
         else
         {
             eventPaintImg_obj[0].GetComponent<Image>().sprite = soldOut_spr[1];
+            eventPaintImg_obj[0].GetComponent<Button>().interactable = false;
         }
 
         //영화
@@ -137,6 +148,18 @@ public class ParkShop : MonoBehaviour {
                 movie_i = eventPaint_i[Random.Range(i, 4)];
             }
         }
+        if (movie_i == 9)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (eventPaint_i[i] != 9)
+                {
+                    movie_i = eventPaint_i[i];
+                }
+            }
+        }
+            
+
         if (movie_i != 9)
         {
             eventPaintImg_obj[1].GetComponent<Image>().sprite = moviePaint_spr[movie_i];
@@ -144,6 +167,7 @@ public class ParkShop : MonoBehaviour {
         else
         {
             eventPaintImg_obj[1].GetComponent<Image>().sprite = soldOut_spr[1];
+            eventPaintImg_obj[1].GetComponent<Button>().interactable = false;
         }
 
         //스토리
@@ -151,6 +175,7 @@ public class ParkShop : MonoBehaviour {
         if(PlayerPrefs.GetInt("paints", 0) == 10)
         {
             eventPaintImg_obj[2].GetComponent<Image>().sprite = soldOut_spr[1];
+            eventPaintImg_obj[2].GetComponent<Button>().interactable = false;
         }
         else
         {

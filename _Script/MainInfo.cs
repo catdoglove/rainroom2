@@ -61,6 +61,12 @@ public class MainInfo : MonoBehaviour {
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         loveLv_txt.text = "" + loveLv_i;
+
+        if(PlayerPrefs.GetInt("lovelv", 0) >= 13)
+        {
+            loveLv_txt.text = "♥";
+        }
+
         face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
         InfoCheckList();
         //업적
