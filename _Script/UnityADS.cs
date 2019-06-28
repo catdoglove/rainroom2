@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UnityADS : MonoBehaviour {
 
-    private string gameId = "1486550";//★테스트ID , Window > Services 설정 테스트 바꿀것 test 1486550
+    private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
     public int soundck;
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
@@ -103,7 +103,7 @@ public class UnityADS : MonoBehaviour {
 
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
-			sG = PlayerPrefs.GetInt("secf",240);
+			sG = PlayerPrefs.GetInt("secf", 240);
             //Debug.Log(sG);
             mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
@@ -114,7 +114,7 @@ public class UnityADS : MonoBehaviour {
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-			sG = PlayerPrefs.GetInt("secf",240);
+			sG = PlayerPrefs.GetInt("secf", 240);
 			sG = sG - 1;
 			if (sG < 0) {
 				sG = -1;

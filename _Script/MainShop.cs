@@ -74,27 +74,13 @@ public class MainShop : ShopHandler {
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
-        //GM.GetComponent<LoadingData> ().;
-        //PlayerPrefs.SetInt("booklv",14);
         string str = PlayerPrefs.GetString("code", "");
-        //PlayerPrefs.SetInt("seedlv",0);
         /*
-        PlayerPrefs.SetInt(str + "ht", 999);
-        PlayerPrefs.SetInt(str + "cv", 999);
-        PlayerPrefs.SetInt(str + "c", 99999);
-        PlayerPrefs.SetInt(str + "h", 9999);
-        PlayerPrefs.SetInt(str + "cv", 999);
-        PlayerPrefs.SetInt("lovelv", 6);
+         * 마법의 코드 자리
         */
 
+        //초기화 코드 자리
 
-        //PlayerPrefs.SetInt("lovelv", 6);
-        //PlayerPrefs.SetInt("seedlv", 10);
-        //PlayerPrefs.SetInt("allflower", 0);
-        //PlayerPrefs.SetInt("allflowerplus", 0);
-        //PlayerPrefs.SetInt("allflowerb", 0);
-        //PlayerPrefs.DeleteAll();
-        //PlayerPrefs.SetInt("bedlv", 0);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");

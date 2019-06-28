@@ -53,7 +53,6 @@ public class MainInfo : MonoBehaviour {
 
     public void infoShow()
     {
-        PlayerPrefs.SetInt("talk", 5);///////////////////////////////////////테스트용나중에꼭지울것/////////////////////////////////////
         //호감도
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
         love_sld.maxValue = PlayerPrefs.GetInt("lovemax", 40);

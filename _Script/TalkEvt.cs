@@ -957,10 +957,11 @@ public class TalkEvt : MonoBehaviour {
                 break;
             case 13:
                 loveExp = 0;
+                PlayerPrefs.SetInt("lovemax", 200);
                 PlayerPrefs.SetInt("lovepoint", loveExp);
                 int add = PlayerPrefs.GetInt("addtxt",0);
                 add++;
-                if (add == 10)
+                if (add == 50)
                 {
                     add = 0;
                 }

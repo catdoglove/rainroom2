@@ -23,12 +23,12 @@ public class AdmobADS : MonoBehaviour {
     public GameObject Toast_obj;
 
 
-    // Use this for initialization
+    // Use this for initialization 앱 ID
     void Start () {
         color = new Color(1f, 1f, 1f);
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713";
+        string appId = "ca-app-pub-9179569099191885~5921342761"; //  테스트 ca-app-pub-3940256099942544~3347511713
 #elif UNITY_IPHONE
             string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
@@ -53,7 +53,7 @@ public class AdmobADS : MonoBehaviour {
 
     }
 
-
+    //배너
     private void RequestBanner()
     {
 #if UNITY_ANDROID
@@ -76,12 +76,12 @@ public class AdmobADS : MonoBehaviour {
 
 
     
-
+    //동영상
     private void RequestRewardedVideo()
     {
 
 #if UNITY_ANDROID
-            adUnitIdvideo = "ca-app-pub-3940256099942544/5224354917";
+            adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트ca-app-pub-3940256099942544/5224354917
 #elif UNITY_IPHONE
             adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
 #else
@@ -145,7 +145,7 @@ public class AdmobADS : MonoBehaviour {
     private void RequestInterstitial()
     {
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        string adUnitId = "ca-app-pub-9179569099191885/1598954374"; // 테스트ca-app-pub-3940256099942544/1033173712
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/4411468910";
 #else
@@ -154,12 +154,6 @@ public class AdmobADS : MonoBehaviour {
 
         // Initialize an InterstitialAd.
         this.interstitial = new InterstitialAd(adUnitId);
-        // Called when the ad is closed.
-        //this.interstitial.OnAdClosed += HandleOnAdClosed;
-        // Create an empty ad request.
-
-        // Called when an ad is shown.
-        //this.interstitial.OnAdOpening += HandleOnAdOpened;
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
