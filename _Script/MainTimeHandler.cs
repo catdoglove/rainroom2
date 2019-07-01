@@ -21,13 +21,19 @@ public class MainTimeHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        
         //빗물
         collectRain ();
 		//대화
 		StartCoroutine ("talkTimeFlow");
         //이부분은 생성될때 한번만 실행된다
         //돈디스트로이로 씬을 넘어가도 다시 실행되지 않는다
-	}
+        if (talk >= 5)
+        {
+            PlayerPrefs.SetString("TalkLastTime", System.DateTime.Now.ToString());
+        }
+    }
 
 
 
@@ -94,19 +100,25 @@ public class MainTimeHandler : MonoBehaviour {
             {
                 compareTime = System.DateTime.Now - System.DateTime.Now;
             }
-			minute = (int)compareTime.TotalMinutes;
+            minute = (int)compareTime.TotalMinutes;
 			sec = (int)compareTime.TotalSeconds;
-			sec = sec - (sec / 60) * 60;
-			sec = 59 - sec;
+            sec = sec - (sec / 60) * 60;
+            sec = 59 - sec;
 			minute = 4 - minute;
-			if (minute < 0) {
+            
+            if (minute < 0) {
 				while (minute < 0) {
-					minute = minute + 1;
-					sec = sec + 59;
+					minute = minute + 5;
+					//sec = sec + 59;
 					talk++;
 				}
-				PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
-				talkTime_txt.text = "01:59";
+                //시간을 중간부터 하기위해
+                //PlayerPrefs.SetInt("timeminhelp", 4-minute);
+                //PlayerPrefs.SetInt("timesechelp", 59-sec);
+                Debug.Log("minute" + minute+ "sec" + sec);
+                Debug.Log(""+System.DateTime.Now.ToString());
+                PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
+				//talkTime_txt.text = "04:59";
 			} else {
 				string str = string.Format (@"{0:00}" + ":", minute) + string.Format (@"{0:00}", sec);
 				talkTime_txt.text = "" + str;
@@ -117,8 +129,7 @@ public class MainTimeHandler : MonoBehaviour {
 				talkTime_txt.text = "00:00";
 				talk = 5;
 				talkNum.text = talk.ToString ();
-				PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
-			} 
+            }
 			PlayerPrefs.SetInt ("talk", talk);
 			PlayerPrefs.Save ();
 		

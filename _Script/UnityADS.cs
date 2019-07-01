@@ -49,7 +49,7 @@ public class UnityADS : MonoBehaviour {
 
         if (Advertisement.isSupported)
           {
-              Advertisement.Initialize(gameId, true);
+              Advertisement.Initialize(gameId, false);
           }
       }
       

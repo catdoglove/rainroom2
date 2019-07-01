@@ -489,7 +489,7 @@ public class TalkEvt : MonoBehaviour {
     //대화에 따른 호감도 증가
     void ExpCk_talk() 
     {
-
+        
         if (loveExp < loveMax) // 필요량 - 1
         {
             if (ihaveitem)
@@ -849,7 +849,7 @@ public class TalkEvt : MonoBehaviour {
                 {
                     if (PlayerPrefs.GetInt("bedlv", 0) >= 1)
                     {
-                        if (PlayerPrefs.GetInt("walllv", 0) == 1)
+                        if (PlayerPrefs.GetInt("walllv", 0) >= 1)
                         {
                             a = 1;
                             PlayerPrefs.SetInt("lovemax", 220);
@@ -974,6 +974,7 @@ public class TalkEvt : MonoBehaviour {
         //조금 친해진 것 같다 호감레벨 상승
         if (a == 1)
         {
+            PlayerPrefs.SetInt("talk", 5);
             loveLv++;
             loveExp = 0;
             nowArr = 1;
