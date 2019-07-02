@@ -6,7 +6,7 @@ public class ParkTime : MonoBehaviour
 {
 
     string str;
-    int randLeaf_i;
+    int randLeaf_i, bas_i, rainBas_i;
     float lx,ly;
     public GameObject leaf_obj;
     public GameObject GMP;
@@ -59,12 +59,23 @@ public class ParkTime : MonoBehaviour
                     ly = Random.Range(-4, -2);
                 }
             }
+            //양동이
+            bas_i = PlayerPrefs.GetInt("basket", 0);
+            bas_i++;
+            PlayerPrefs.SetInt("basket", bas_i);
+            if (bas_i >= 60)
+            {
+                rainBas_i = PlayerPrefs.GetInt("basketrain", 0);
+                rainBas_i++;
+                PlayerPrefs.SetInt("basketrain", rainBas_i);
+                PlayerPrefs.SetInt("basket", 0);
+            }
 
             //저장하고 1초동안 대기
             PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
-        }
+        }//endOfWhile
     }
 
     //나뭇잎 눌렀을때

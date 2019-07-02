@@ -186,4 +186,14 @@ public class Parkfunction : CavasData
         PlayerPrefs.Save();
     }
 
+    //양동이
+    public void getBas()
+    {
+        string str = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+
+        coldRain_i = coldRain_i + PlayerPrefs.GetInt("basketrain", 0);
+        PlayerPrefs.SetInt("basketrain", 0);
+    }
+
 }
