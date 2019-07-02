@@ -115,8 +115,8 @@ public class MainTimeHandler : MonoBehaviour {
                 //시간을 중간부터 하기위해
                 //PlayerPrefs.SetInt("timeminhelp", 4-minute);
                 //PlayerPrefs.SetInt("timesechelp", 59-sec);
-                Debug.Log("minute" + minute+ "sec" + sec);
-                Debug.Log(""+System.DateTime.Now.ToString());
+                //Debug.Log("minute" + minute+ "sec" + sec);
+                //Debug.Log(""+System.DateTime.Now.ToString());
                 PlayerPrefs.SetString ("TalkLastTime", System.DateTime.Now.ToString ());
 				//talkTime_txt.text = "04:59";
 			} else {

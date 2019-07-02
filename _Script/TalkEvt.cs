@@ -246,7 +246,6 @@ public class TalkEvt : MonoBehaviour {
 
         if (countTalkNum == 0)
         {
-            //대화못함
             //Debug.Log("대화횟수마감");
         }
         else
@@ -293,7 +292,7 @@ public class TalkEvt : MonoBehaviour {
             //소리
             Audio_obj.GetComponent<SoundEvt>().talkSound();
 
-            checkach();
+            checkach();//업적체크
             lovetalk();
             testText_cut = text_str.Split('/'); //끊기
             cleantalk();
@@ -307,6 +306,7 @@ public class TalkEvt : MonoBehaviour {
                 StartCoroutine("talkRun");
             }
 
+            countTalk();
             //경험치
             ExpCk_talk();
         }
@@ -566,7 +566,7 @@ public class TalkEvt : MonoBehaviour {
 
 
     //대화횟수차감
-    public void countTalk()
+    void countTalk()
     {        
         if (countTalkNum <= 0)
         {
@@ -733,7 +733,7 @@ public class TalkEvt : MonoBehaviour {
         {
             itemAllArr = 7;
         }
-        else if (itemLv[0] <= 2)
+        else if (itemLv[1] <= 2)
         {
             itemAllArr = 3;
         }
@@ -969,12 +969,15 @@ public class TalkEvt : MonoBehaviour {
                 StopCoroutine("leveUpToastImgFadeOut");
                 StartCoroutine("leveUpToastImgFadeOut");
                 leveUpToast_obj.SetActive(true);
+
+
+                countTalkNum = 5;
+                PlayerPrefs.SetInt("talk", countTalkNum);
                 break;
         }
         //조금 친해진 것 같다 호감레벨 상승
         if (a == 1)
         {
-            PlayerPrefs.SetInt("talk", 5);
             loveLv++;
             loveExp = 0;
             nowArr = 1;
@@ -989,6 +992,10 @@ public class TalkEvt : MonoBehaviour {
             
             PlayerPrefs.SetInt("lovepoint", loveExp);
             PlayerPrefs.SetInt("lovelv", loveLv);
+
+            countTalkNum = 5;
+            PlayerPrefs.SetInt("talk", countTalkNum);
+            
             PlayerPrefs.Save();
             StopCoroutine("leveUpToastImgFadeOut");
             StartCoroutine("leveUpToastImgFadeOut");

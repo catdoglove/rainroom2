@@ -836,18 +836,32 @@ public class FirstRoomFunction : CavasData {
         int coup = PlayerPrefs.GetInt("coupon1", 0);
         for(int i = 0; i < coup; i++)
         {
-            couponType1_obj[i].SetActive(true);
+            if (coup > 10)
+            {                
+            }
+            else
+            {
+                couponType1_obj[i].SetActive(true);
+            }
+            
         }
-        if (coup == 10)
+        if (coup >= 10)
         {
             couponComplete_obj[0].SetActive(true);
         }
         coup = PlayerPrefs.GetInt("coupon2", 0);
         for (int i = 0; i < coup; i++)
         {
-            couponType2_obj[i].SetActive(true);
+            if (coup > 10)
+            {
+            }
+            else
+            {
+                couponType2_obj[i].SetActive(true);
+            }
+            
         }
-        if (coup == 10)
+        if (coup >= 10)
         {
             couponComplete_obj[1].SetActive(true);
         }
