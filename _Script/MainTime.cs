@@ -24,10 +24,10 @@ public class MainTime : MonoBehaviour {
     public Text beadalTime_txt;
 
     //별
-
     public int randStar_i;
     public GameObject star_obj;
     public float starX, starY;
+
 
     string str;
     // Use this for initialization
@@ -189,6 +189,7 @@ public class MainTime : MonoBehaviour {
             PlayerPrefs.Save();
 		}
 	}
+    
 
 
     /*

@@ -21,6 +21,10 @@ public class WindowMiniGame : MonoBehaviour {
     public GameObject dayLight_obj,dayRoom_obj,dayWindow_obj;
     public Sprite[] dayLight_spr;
 
+    //우유
+    public GameObject milk_obj, milkBtn_obj,milkWindow_obj;
+    public GameObject[] milk_spr;
+    public Text milk_txt, milkDay_txt;
 
     // Use this for initialization
     void Start () {
@@ -33,6 +37,8 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void OpenMiniGame()
     {
+        //우유확인
+        //milk();
         System.DateTime time = System.DateTime.Now;
         if (time.ToString("tt") == "PM")
         {
@@ -160,8 +166,8 @@ public class WindowMiniGame : MonoBehaviour {
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
-        coldRain_i = coldRain_i + 5;
-        hotRain_i = hotRain_i + 3;
+        coldRain_i = coldRain_i + 10;
+        hotRain_i = hotRain_i + 6;
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.SetInt("windowcatrand", 19);
@@ -181,8 +187,8 @@ public class WindowMiniGame : MonoBehaviour {
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
-        coldRain_i = coldRain_i + 5;
-        hotRain_i = hotRain_i + 3;
+        coldRain_i = coldRain_i + 50;
+        hotRain_i = hotRain_i + 20;
         PlayerPrefs.SetInt(str + "c", coldRain_i);
         PlayerPrefs.SetInt(str + "h", hotRain_i);
         PlayerPrefs.SetInt("windowairplane", 999);
@@ -192,6 +198,45 @@ public class WindowMiniGame : MonoBehaviour {
         //돈+표시
         GM.GetComponent<GetFadeout>().getRainFade();
     }
+
+
+    void milk()
+    {
+        //초기값을가져옵니다
+        System.DateTime dateTimenow = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        //str로장되어있는과거접속시간을가져옵니다
+        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+        //형변환을해줍니다
+        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
+        //계산
+        System.TimeSpan compareTimem = System.DateTime.Now - lastDateTimem;
+        int hour;
+        int minute;
+        hour = 11 - (int)compareTimem.TotalHours;
+        minute = 59 - (int)compareTimem.TotalMinutes;
+        if (hour < 0)
+        {
+            //milk_obj.GetComponent<Image>().sprite = milk_spr[1];
+            milkBtn_obj.SetActive(true);
+        }
+        else
+        {
+            //milk_obj.GetComponent<Image>().sprite = milk_spr[0];
+            milkBtn_obj.SetActive(false);
+        }
+    }
+
+    public void GetMilk()
+    {
+        string str = PlayerPrefs.GetString("code", "");
+        milkWindow_obj.SetActive(true);
+        milkDay_txt.text = "제조일자:"+ System.DateTime.Now.ToString("yyyy년mm월dd일");
+        milk_txt.text = "";
+
+        //시간초기화
+        PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
+    }
+
 
     //업적
     void achievementfunc()

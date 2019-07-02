@@ -102,7 +102,6 @@ public class Parkfunction : CavasData
             helpPark_obj.GetComponent<Image>().sprite = helpP_spr[0];
             helpPark_obj.SetActive(false);
         }
-
     }
 
     //밤낮
@@ -191,7 +190,10 @@ public class Parkfunction : CavasData
     {
         string str = PlayerPrefs.GetString("code", "");
         int myc = PlayerPrefs.GetInt(str + "c", 0);
-        
+        if (PlayerPrefs.GetInt("basketrain", 0) != 0)
+        {
+            audio_obj.GetComponent<SoundEvt>().waterSound();
+        }
         myc = myc + PlayerPrefs.GetInt("basketrain", 0);
         PlayerPrefs.SetInt(str + "c", myc);
         PlayerPrefs.SetInt("basketrain", 0);
