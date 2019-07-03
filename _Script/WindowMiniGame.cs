@@ -24,10 +24,13 @@ public class WindowMiniGame : MonoBehaviour {
     //우유
     public GameObject milk_obj, milkBtn_obj,milkWindow_obj;
     public Sprite[] milk_spr;
-    public Text milk_txt, milkDay_txt;
+    public Text milk_txt, milkDay_txt, milkTime_txt;
+    public GameObject toast_obj;
+    Color color;
 
     // Use this for initialization
     void Start () {
+        color = new Color(1f, 1f, 1f);
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
@@ -213,9 +216,12 @@ public class WindowMiniGame : MonoBehaviour {
         System.TimeSpan compareTimem = System.DateTime.Now - lastDateTimem;
         int hour;
         int minute;
-        hour = 11 - (int)compareTimem.TotalHours;
-        minute = 59 - (int)compareTimem.TotalMinutes;
-        if (hour < 0)
+        hour = (int)compareTimem.TotalHours;
+        minute =(int)compareTimem.TotalMinutes;
+        minute = minute - (minute / 60) * 60;
+        hour = 11 - hour;
+        minute = 59 - minute;
+        if (hour <= 0 && minute<=0)
         {
             milk_obj.GetComponent<Image>().sprite = milk_spr[1];
             milkBtn_obj.SetActive(true);
@@ -244,7 +250,14 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt(str + "ht", htm);
 
         //시간초기화
-        //PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
+        milk_obj.GetComponent<Image>().sprite = milk_spr[0];
+        milkBtn_obj.SetActive(false);
+    }
+    public void toastMilk()
+    {
+        StopCoroutine("toastMilkTime");
+        StartCoroutine("toastMilkTime");
     }
 
     public void CloseMlik()
@@ -328,4 +341,44 @@ public class WindowMiniGame : MonoBehaviour {
         StartCoroutine("achievementOut");
     }
 
+
+    IEnumerator toastMilkTime()
+    {
+        //초기값을가져옵니다
+        System.DateTime dateTimenow = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        //str로장되어있는과거접속시간을가져옵니다
+        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+        //형변환을해줍니다
+        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
+        //계산
+        System.TimeSpan compareTimem = System.DateTime.Now - lastDateTimem;
+        int hour;
+        int minute;
+        hour = (int)compareTimem.TotalHours;
+        minute = (int)compareTimem.TotalMinutes;
+        minute = minute - (minute / 60) * 60;
+        hour = 11 - hour;
+        minute = 59 - minute;
+        if (minute < 0)
+        {
+            minute = 0;
+        }
+        if (hour < 0)
+        {
+            hour = 0;
+        }
+        milkTime_txt.text = string.Format(@"{0:00}" + ":", hour) + string.Format(@"{0:00}", minute);
+
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        toast_obj.GetComponent<Image>().color = color;
+        toast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            toast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        toast_obj.SetActive(false);
+    }
 }
