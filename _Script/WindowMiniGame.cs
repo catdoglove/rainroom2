@@ -24,9 +24,16 @@ public class WindowMiniGame : MonoBehaviour {
     //우유
     public GameObject milk_obj, milkBtn_obj,milkWindow_obj;
     public Sprite[] milk_spr;
-    public Text milk_txt, milkDay_txt, milkTime_txt;
+    public Text milk_txt1, milk_txt2, milk_txt3, milkDay_txt, milkTime_txt;
     public GameObject toast_obj;
     Color color;
+
+
+
+    List<Dictionary<string, object>> data_milk;
+    string text_str; //실질적 대사출력
+    string Text_cut; //대사 끊기
+    int nowArr = 1; //현재 줄
 
     // Use this for initialization
     void Start () {
@@ -35,6 +42,9 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
+
+
+        data_milk = CSVReader.Read("Talk/todaymilk");
     }
 	
 
@@ -237,8 +247,10 @@ public class WindowMiniGame : MonoBehaviour {
     {
         string str = PlayerPrefs.GetString("code", "");
         milkWindow_obj.SetActive(true);
-        milkDay_txt.text = "제조일자:"+ System.DateTime.Now.ToString("yyyy년MM월dd일");
-        milk_txt.text = "";
+        milkDay_txt.text = System.DateTime.Now.ToString("yyyy.MM.dd");
+        milk_txt1.text = "";
+        milk_txt2.text = "";
+        milk_txt3.text = "";
         int cm = PlayerPrefs.GetInt(str + "c", 0);
         int hm = PlayerPrefs.GetInt(str + "h", 0);
         int htm = PlayerPrefs.GetInt(str + "ht", 0);
@@ -253,6 +265,41 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
         milk_obj.GetComponent<Image>().sprite = milk_spr[0];
         milkBtn_obj.SetActive(false);
+
+
+
+        nowArr = PlayerPrefs.GetInt("milkText", 1);
+
+        if (nowArr == 1)
+        {
+            nowArr++;
+        }
+        else if (nowArr < 50) //대화 차례대로 보이기
+        {
+            nowArr++;
+        }
+        else if (nowArr >= 50) //대화 줄 초기화
+        {
+            nowArr = 0;
+            nowArr++;
+        }
+
+
+        text_str = " " + data_milk[nowArr - 1]["1"];
+        Text_cut = "오늘의" + text_str;
+        milk_txt1.text = Text_cut;
+        text_str = " " + data_milk[nowArr - 1]["2"];
+        Text_cut = text_str;
+        milk_txt2.text = Text_cut;
+        text_str = " " + data_milk[nowArr - 1]["3"];
+        Text_cut = text_str;
+        milk_txt3.text = Text_cut;
+
+
+        PlayerPrefs.SetInt("milkText", nowArr);
+
+
+
     }
     public void toastMilk()
     {
