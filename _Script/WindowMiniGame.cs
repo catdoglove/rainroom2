@@ -23,7 +23,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     //우유
     public GameObject milk_obj, milkBtn_obj,milkWindow_obj;
-    public GameObject[] milk_spr;
+    public Sprite[] milk_spr;
     public Text milk_txt, milkDay_txt;
 
     // Use this for initialization
@@ -38,7 +38,7 @@ public class WindowMiniGame : MonoBehaviour {
     public void OpenMiniGame()
     {
         //우유확인
-        //milk();
+        milk();
         System.DateTime time = System.DateTime.Now;
         if (time.ToString("tt") == "PM")
         {
@@ -104,6 +104,7 @@ public class WindowMiniGame : MonoBehaviour {
 
     public void CloseMiniGame()
     {
+        milkWindow_obj.SetActive(false);
         miniGameWindow_obj.SetActive(false);
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.SetInt("miniopen", 0);
@@ -216,12 +217,12 @@ public class WindowMiniGame : MonoBehaviour {
         minute = 59 - (int)compareTimem.TotalMinutes;
         if (hour < 0)
         {
-            //milk_obj.GetComponent<Image>().sprite = milk_spr[1];
+            milk_obj.GetComponent<Image>().sprite = milk_spr[1];
             milkBtn_obj.SetActive(true);
         }
         else
         {
-            //milk_obj.GetComponent<Image>().sprite = milk_spr[0];
+            milk_obj.GetComponent<Image>().sprite = milk_spr[0];
             milkBtn_obj.SetActive(false);
         }
     }
@@ -230,13 +231,26 @@ public class WindowMiniGame : MonoBehaviour {
     {
         string str = PlayerPrefs.GetString("code", "");
         milkWindow_obj.SetActive(true);
-        milkDay_txt.text = "제조일자:"+ System.DateTime.Now.ToString("yyyy년mm월dd일");
+        milkDay_txt.text = "제조일자:"+ System.DateTime.Now.ToString("yyyy년MM월dd일");
         milk_txt.text = "";
+        int cm = PlayerPrefs.GetInt(str + "c", 0);
+        int hm = PlayerPrefs.GetInt(str + "h", 0);
+        int htm = PlayerPrefs.GetInt(str + "ht", 0);
+        cm = cm + 100;
+        hm = hm + 10;
+        htm = htm + 2;
+        PlayerPrefs.SetInt(str + "c", cm);
+        PlayerPrefs.SetInt(str + "h", hm);
+        PlayerPrefs.SetInt(str + "ht", htm);
 
         //시간초기화
-        PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
+        //PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
     }
 
+    public void CloseMlik()
+    {
+        milkWindow_obj.SetActive(false);
+    }
 
     //업적
     void achievementfunc()
