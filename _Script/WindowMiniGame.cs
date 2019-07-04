@@ -278,11 +278,11 @@ public class WindowMiniGame : MonoBehaviour {
         {
             nowArr++;
         }
-        else if (nowArr < 50) //대화 차례대로 보이기
+        else if (nowArr < 100) //대화 차례대로 보이기
         {
             nowArr++;
         }
-        else if (nowArr >= 50) //대화 줄 초기화
+        else if (nowArr >= 100) //대화 줄 초기화
         {
             nowArr = 0;
             nowArr++;
