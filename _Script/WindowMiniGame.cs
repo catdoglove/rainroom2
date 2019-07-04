@@ -231,7 +231,11 @@ public class WindowMiniGame : MonoBehaviour {
         minute = minute - (minute / 60) * 60;
         hour = 11 - hour;
         minute = 59 - minute;
-        if (hour <= 0 && minute<=0)
+        if(hour==0&& minute == 0)
+        {
+            hour = -1;
+        }
+        if (hour <0)
         {
             milk_obj.GetComponent<Image>().sprite = milk_spr[1];
             milkBtn_obj.SetActive(true);
