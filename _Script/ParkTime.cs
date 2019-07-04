@@ -17,6 +17,8 @@ public class ParkTime : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlayerPrefs.SetInt("basketrain", 0);
+        PlayerPrefs.SetInt("basket", 0);
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
         StartCoroutine("updateSec");

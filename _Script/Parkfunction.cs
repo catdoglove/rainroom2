@@ -194,6 +194,10 @@ public class Parkfunction : CavasData
         {
             audio_obj.GetComponent<SoundEvt>().waterSound();
         }
+        if(PlayerPrefs.GetInt("basketrain", 0) >= 100)
+        {
+            PlayerPrefs.SetInt("basketrain", 100);
+        }
         myc = myc + PlayerPrefs.GetInt("basketrain", 0);
         PlayerPrefs.SetInt(str + "c", myc);
         PlayerPrefs.SetInt("basketrain", 0);
