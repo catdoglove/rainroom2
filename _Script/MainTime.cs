@@ -66,7 +66,7 @@ public class MainTime : MonoBehaviour {
             }
             else
             {
-                cat_i = Random.Range(0, 244);
+                cat_i = Random.Range(0, 245);
             }
             PlayerPrefs.SetInt("windowcatrand", cat_i);
 
@@ -104,7 +104,7 @@ public class MainTime : MonoBehaviour {
             } else {
                 if (PlayerPrefs.GetInt("front", 1) == 2)
                 {
-                    randSpider_i = Random.Range(0, 20);
+                    randSpider_i = Random.Range(0, 25);
                     spiX = Random.Range(-5, 5);
                 }
                 
