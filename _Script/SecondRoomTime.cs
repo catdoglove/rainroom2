@@ -39,7 +39,7 @@ public class SecondRoomTime : MonoBehaviour {
             }
             else
             {
-                randDust1_i = Random.Range(0, 70);
+                randDust1_i = Random.Range(0, 56);
             }
             if (randDust2_i == 1)
             {
@@ -48,7 +48,7 @@ public class SecondRoomTime : MonoBehaviour {
             }
             else
             {
-                randDust2_i = Random.Range(0, 70);
+                randDust2_i = Random.Range(0, 56);
             }
 
             yield return new WaitForSeconds(1f);

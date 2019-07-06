@@ -18,17 +18,17 @@ public class Touchdust : MonoBehaviour {
             float yy = gameObject.transform.position.y;
             PlayerPrefs.SetFloat("watposx", xx);
             PlayerPrefs.SetFloat("watposy", yy);
-            GM.GetComponent<SecondRoomTime> ().moveX1 = -10f;
+            GM.GetComponent<SecondRoomTime> ().moveX1 = -12f;
 			GM.GetComponent<SecondRoomTime> ().randDust1_i = 0;
-            gameObject.transform.position = new Vector3 (-10f, -4f, gameObject.transform.position.z);
+            gameObject.transform.position = new Vector3 (-12f, -4f, gameObject.transform.position.z);
 		} else {
             float xx = gameObject.transform.position.x;
             float yy = gameObject.transform.position.y;
             PlayerPrefs.SetFloat("watposx", xx);
             PlayerPrefs.SetFloat("watposy", yy);
-            GM.GetComponent<SecondRoomTime> ().moveX2 = 10f;
+            GM.GetComponent<SecondRoomTime> ().moveX2 = 12f;
 			GM.GetComponent<SecondRoomTime> ().randDust2_i = 0;
-			gameObject.transform.position = new Vector3 (10f, -4f, gameObject.transform.position.z);
+			gameObject.transform.position = new Vector3 (12f, -4f, gameObject.transform.position.z);
 		}
         audio_obj.GetComponent<SoundEvt>().spiderSound();
         str = PlayerPrefs.GetString ("code", "");
