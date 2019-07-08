@@ -28,14 +28,14 @@ public class Parkfunction : CavasData
 
     private void Awake()
     {
-        /*
+        
         //나뭇잎
         int lf = PlayerPrefs.GetInt("leafcount", 0);
         if (lf >= 100)
         {
             leafPr_obj.SetActive(true);
         }
-        */
+        
 
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
@@ -219,5 +219,9 @@ public class Parkfunction : CavasData
         leafWin_obj.SetActive(true);
         PlayerPrefs.SetInt("leafget", 1);
         PlayerPrefs.SetInt("leafcount", 0);
+    }
+    public void CloseLeaf()
+    {
+        leafWin_obj.SetActive(false);
     }
 }

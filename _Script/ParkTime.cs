@@ -108,6 +108,7 @@ public class ParkTime : MonoBehaviour
         int h = PlayerPrefs.GetInt(str + "h", 0);
         h = h + 3;
         PlayerPrefs.SetInt(str + "h", h);
+
         if (PlayerPrefs.GetInt("leafget", 0)==0)
         {
             int lf = PlayerPrefs.GetInt("leafcount", 0);

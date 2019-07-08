@@ -89,6 +89,7 @@ public class FirstRoomFunction : CavasData {
     //소리
     public GameObject audio_obj;
 
+    
 
     //타이틀닫기
     public GameObject titleImg;
