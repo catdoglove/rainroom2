@@ -24,10 +24,19 @@ public class Parkfunction : CavasData
     int help;
     //
     public GameObject GMtag,GMP;
-
+    public GameObject leafPr_obj,leafWin_obj;
 
     private void Awake()
     {
+        /*
+        //나뭇잎
+        int lf = PlayerPrefs.GetInt("leafcount", 0);
+        if (lf >= 100)
+        {
+            leafPr_obj.SetActive(true);
+        }
+        */
+
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
         {
@@ -204,4 +213,11 @@ public class Parkfunction : CavasData
 
     }
 
+    public void leafPlant()
+    {
+        leafPr_obj.SetActive(false);
+        leafWin_obj.SetActive(true);
+        PlayerPrefs.SetInt("leafget", 1);
+        PlayerPrefs.SetInt("leafcount", 0);
+    }
 }
