@@ -84,6 +84,8 @@ public class secondRoomFunction : CavasData {
     public GameObject outP_obj,outGo_obj,outAd_obj,outAdBtn_obj;
 
     public Sprite[] matPaint_spr, mat2Paint_spr, shelfPaint_spr;
+    int changeOut_i;
+    //public GameObject _obj;
 
     // Use this for initialization
     void Start ()
@@ -638,6 +640,10 @@ public class secondRoomFunction : CavasData {
     //외출창띄우기
     public void OpenGoOut()
     {
+        //나갈장소 어디인지  1공원 2도시
+        changeOut_i = 1;
+
+
         StopCoroutine("outTime");
         StartCoroutine("outTime");
         outPrice_txt.text = "20";
@@ -757,6 +763,14 @@ public class secondRoomFunction : CavasData {
         {
             PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.SetInt("outtrip", 1);
+
+            //외출 장소 정하기
+            if (changeOut_i == 2)
+            {
+                PlayerPrefs.SetInt("outtrip", 2);
+            }
+
+
             heart_i = heart_i - hp_i;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
             PlayerPrefs.SetInt("bouttime", 14);
@@ -872,5 +886,28 @@ public class secondRoomFunction : CavasData {
             GM2.GetComponent<AchievementShow>().achievementCheck(7, 0);
         }
         PlayerPrefs.Save();
+    }
+
+    void GoCity()
+    {
+        PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetInt("outtrip", 2);
+        PlayerPrefs.SetInt("bouttime", 14);
+        //외출업적
+        PlayerPrefs.SetInt("acgocheck", 1);
+        StartCoroutine("LoadOut");
+        GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
+    }
+
+    public void OutChange()//공원1 도시2
+    {
+        if (changeOut_i >= 0)
+        {
+            changeOut_i++;
+        }
+        if(changeOut_i >= 3)
+        {
+            changeOut_i = 1;
+        }
     }
 }

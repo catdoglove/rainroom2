@@ -408,6 +408,14 @@ public class MainBtnEvt : CavasData
             }
             GM2.GetComponent<Parkfunction>().changeSight();
         }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("cityGM");
+            }
+            GM2.GetComponent<CityFunction>().building();
+        }
         else
         {
             HomeSight();

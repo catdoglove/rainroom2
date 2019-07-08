@@ -29,6 +29,9 @@ public class LoadRoom : MonoBehaviour {
         if (PlayerPrefs.GetInt("outtrip", 0)==1)
         {
             async = SceneManager.LoadSceneAsync("park");
+        }else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            async = SceneManager.LoadSceneAsync("city");
         }
         else
         {
