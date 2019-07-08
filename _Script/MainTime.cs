@@ -33,6 +33,8 @@ public class MainTime : MonoBehaviour {
     int b;
     public Sprite[] plant_spr;
     string str;
+    
+
     // Use this for initialization
     void Start () {
         if(PlayerPrefs.GetInt("leafget", 0)>=1)
