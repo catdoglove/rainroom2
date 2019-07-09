@@ -27,24 +27,11 @@ public class MainTime : MonoBehaviour {
     public int randStar_i;
     public GameObject star_obj;
     public float starX, starY;
-
-    //식물
-    public GameObject plant_obj, plantWin_obj, plantBtn_obj, platMemo_obj;
-    int b;
-    public Sprite[] plant_spr;
     string str;
     
 
     // Use this for initialization
     void Start () {
-        if(PlayerPrefs.GetInt("leafget", 0)>=1)
-        {
-            plant_obj.SetActive(true);
-            if(PlayerPrefs.GetInt("leafget", 0) == 1)
-            {
-                platMemo_obj.SetActive(true);
-            }
-        }
         
 
         //업데이트대신쓴다
@@ -68,12 +55,7 @@ public class MainTime : MonoBehaviour {
             {
                 PlayerPrefs.SetInt(str + "ht", 999);
             }
-
-            //식물
-            if (PlayerPrefs.GetInt("leafget", 0) >= 1)
-            {
-                plant();
-            }
+            
             //고양이
             cat_i = PlayerPrefs.GetInt("windowcatrand", 0);
             if (cat_i == 999)
@@ -341,63 +323,6 @@ public class MainTime : MonoBehaviour {
     }
 
 
-    //식물시간
-    void plant()
-    {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("plantLastTime", System.DateTime.Now.ToString()));
-        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
-        int m = (int)compareTime.TotalMinutes;
-        int sec = (int)compareTime.TotalSeconds;
-        sec = sec - (sec / 60) * 60;
-        sec = 59 - sec;
-        m = 3 - m;
-
-        b = 0;
-        while (m < 0)
-        {
-            m = m + 4;
-            b = b + 1;
-        }
-        if (b >= 5)
-        {
-            b = 4;
-        }
-        plant_obj.GetComponent<Image>().sprite = plant_spr[b];
-        if (b >= 1)
-        {
-            plantBtn_obj.SetActive(true);
-        }
-        else
-        {
-            plantBtn_obj.SetActive(false);
-        }
-    }
-
-
-    public void GetPlant()
-    {
-        string str1;
-        str1 = PlayerPrefs.GetString("code", "");
-        int ph = PlayerPrefs.GetInt(str1 + "h", 0);
-        ph = ph + b;
-        PlayerPrefs.SetInt(str1 + "h", ph);
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.Now.ToString());
-    }
-
-    public void OpenPlantMemo()
-    {
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.Now.ToString());
-        PlayerPrefs.SetInt("leafget", 2);
-        if (plantWin_obj.activeSelf == false)
-        {
-            plantWin_obj.SetActive(true);
-            platMemo_obj.SetActive(false);
-        }
-        else
-        {
-            plantWin_obj.SetActive(false);
-            platMemo_obj.SetActive(false);
-        }
-    }
+    
 
 }
