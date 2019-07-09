@@ -888,7 +888,7 @@ public class secondRoomFunction : CavasData {
         PlayerPrefs.Save();
     }
 
-    void GoCity()
+    public void GoCity()
     {
         PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("outtrip", 2);
