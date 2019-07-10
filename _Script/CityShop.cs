@@ -9,6 +9,9 @@ public class CityShop : MonoBehaviour {
     public GameObject[] interiorTape_obj;
     public Sprite[] paintBtn_spr, fabricBtn_spr;
 
+    public GameObject audio_obj, needToast_obj;
+    Color colorP;
+
     // Use this for initialization
     void Start () {
 		
@@ -79,5 +82,29 @@ public class CityShop : MonoBehaviour {
 
             interiorWin_obj.SetActive(true);
         }
+    }
+
+
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        colorP.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = colorP;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorP.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = colorP;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
     }
 }
