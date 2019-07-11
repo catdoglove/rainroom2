@@ -157,12 +157,12 @@ public class SecondRoomTime : MonoBehaviour {
         int sec = (int)compareTime.TotalSeconds;
         sec = sec - (sec / 60) * 60;
         sec = 59 - sec;
-        m = 3 - m;
+        m = 4 - m;
 
         b = 0;
         while (m < 0)
         {
-            m = m + 4;
+            m = m + 5;
             b = b + 1;
         }
         if (b >= 5)

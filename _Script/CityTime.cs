@@ -5,6 +5,7 @@ using UnityEngine;
 public class CityTime : MonoBehaviour {
 
     string str;
+    public GameObject GMC;
     public GameObject paper_obj;
     public int randPaper_i;
     public float px, py;
@@ -13,7 +14,7 @@ public class CityTime : MonoBehaviour {
 
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
-        //StartCoroutine("updateSec");
+        StartCoroutine("updateSec");
 
 
     }
@@ -43,7 +44,7 @@ public class CityTime : MonoBehaviour {
                 PlayerPrefs.SetInt(str + "cv", 999);
             }
 
-            //나뭇잎
+            //전단지
             if (randPaper_i == 1)
             {
                 paper_obj.SetActive(false);
@@ -57,8 +58,8 @@ public class CityTime : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
-                    randPaper_i = Random.Range(0, 15);
-                    px = Random.Range(-6, 4);
+                    randPaper_i = Random.Range(0, 3);
+                    px = Random.Range(-2, 6);
                     py = Random.Range(-4, -2);
                 }
             }
@@ -68,6 +69,24 @@ public class CityTime : MonoBehaviour {
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
         }//endOfWhile
+    }
+
+
+
+    //전단지 눌렀을때
+    public void touchPaper()
+    {
+        PlayerPrefs.SetFloat("watposy", py);
+        PlayerPrefs.SetFloat("watposx", px);
+        GMC.GetComponent<GetFadeout>().getRainFade();
+        paper_obj.SetActive(false);
+        randPaper_i = 0;
+        int c = PlayerPrefs.GetInt(str + "c", 0);
+        c = c + 5;
+        PlayerPrefs.SetInt(str + "c", c);
+        int h = PlayerPrefs.GetInt(str + "h", 0);
+        h = h + 3;
+        PlayerPrefs.SetInt(str + "h", h);
     }
 
 }

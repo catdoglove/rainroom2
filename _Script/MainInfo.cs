@@ -42,6 +42,7 @@ public class MainInfo : MonoBehaviour {
     public GameObject addTxt_obj;
     public string[] add_str;
     public GameObject wf_obj;
+
     // Use this for initialization
     void Start () {
 
