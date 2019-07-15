@@ -85,6 +85,10 @@ public class MainInfo : MonoBehaviour {
         {
             c_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
         }
+        if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            c_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
+        }
 
     }
 
