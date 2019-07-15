@@ -80,11 +80,12 @@ public class secondRoomFunction : CavasData {
     Color colorL;
 
     //외출
-    public Text outPrice_txt,outTime_txt;
+    public Text outPrice_txt,outTime_txt,place_txt;
     public GameObject outP_obj,outGo_obj,outAd_obj,outAdBtn_obj;
 
     public Sprite[] matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     int changeOut_i;
+    
     //public GameObject _obj;
 
     // Use this for initialization
@@ -642,7 +643,7 @@ public class secondRoomFunction : CavasData {
     {
         //나갈장소 어디인지  1공원 2도시
         changeOut_i = 1;
-
+        place_txt.text = "공원";
 
         StopCoroutine("outTime");
         StartCoroutine("outTime");
@@ -905,9 +906,14 @@ public class secondRoomFunction : CavasData {
         {
             changeOut_i++;
         }
-        if(changeOut_i >= 3)
+        if (changeOut_i == 2)
+        {
+            place_txt.text = "도시";
+        }
+        if (changeOut_i >= 3)
         {
             changeOut_i = 1;
+            place_txt.text = "공원";
         }
     }
 }

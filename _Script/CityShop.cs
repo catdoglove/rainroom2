@@ -12,12 +12,16 @@ public class CityShop : MonoBehaviour {
     public GameObject audio_obj, needToast_obj;
     Color colorP;
 
-    public int itemIndex_i;
+    public int itemIndex_i, price_i;
+    public int[] fabricP_i;
+
+    string str;
+    int coldRain_i, hotRain_i;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        str = PlayerPrefs.GetString("code", "");
+    }
     //리폼상점창 열기
     public void OpenActReform()
     {
@@ -136,7 +140,7 @@ public class CityShop : MonoBehaviour {
         {
             paintTape_obj[1].SetActive(true);
         }
-        //테이블 6레벨일때 가능
+        //테이블 3레벨일때 가능
         if (PlayerPrefs.GetInt("desklv", 0) < 3)
         {
             paintTape_obj[2].SetActive(true);
@@ -144,30 +148,31 @@ public class CityShop : MonoBehaviour {
         //서랍장 6레벨일때 가능
         if (PlayerPrefs.GetInt("cabinetlv", 0) < 6)
         {
-            paintTape_obj[2].SetActive(true);
+            paintTape_obj[3].SetActive(true);
         }
-        //책장 6레벨일때 가능
-        if (PlayerPrefs.GetInt("booklv", 0) < 3)
+        //책장 15레벨일때 가능
+        if (PlayerPrefs.GetInt("booklv", 0) < 15)
         {
-            paintTape_obj[2].SetActive(true);
+            paintTape_obj[4].SetActive(true);
         }
         //전구? 4?5레벨일때 가능
         if (PlayerPrefs.GetInt("lightlv", 0) < 4)
         {
-            paintTape_obj[3].SetActive(true);
+            paintTape_obj[5].SetActive(true);
         }
     }
 
     void SetFabric()
     {
+        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장 9,10,11
         //물건 업그래이드 단계확인 부족하면 테이프로 가리기
         //부엌매트 5레벨 일때 가능
         if (PlayerPrefs.GetInt("mat2lv", 0) < 5)
         {
             fabricTape_obj[0].SetActive(true);
         }
-        //도어매트 2레벨일때 가능
-        if (PlayerPrefs.GetInt("mat1lv", 0) < 2)
+        //도어매트 5레벨일때 가능
+        if (PlayerPrefs.GetInt("mat1lv", 0) < 5)
         {
             fabricTape_obj[1].SetActive(true);
         }
@@ -179,18 +184,83 @@ public class CityShop : MonoBehaviour {
         //러그 3레벨일때 가능
         if (PlayerPrefs.GetInt("ruglv", 0) < 3)
         {
-            fabricTape_obj[2].SetActive(true);
+            fabricTape_obj[3].SetActive(true);
         }
-        //침대 6레벨일때 가능
-        if (PlayerPrefs.GetInt("bedlv", 0) < 3)
+        //침대 5레벨일때 가능
+        if (PlayerPrefs.GetInt("bedlv", 0) < 5)
         {
-            fabricTape_obj[2].SetActive(true);
+            fabricTape_obj[4].SetActive(true);
         }
         //벽지 3레벨일때 가능
         if (PlayerPrefs.GetInt("walllv", 0) < 3)
         {
-            fabricTape_obj[3].SetActive(true);
+            fabricTape_obj[5].SetActive(true);
         }
+    }
+
+    public void FabricY()
+    {
+
+        str = PlayerPrefs.GetString("code", "");
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
+
+        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장 9,10,11
+        switch (itemIndex_i)
+        {
+            case 0:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 1:
+                PlayerPrefs.SetInt("setmat2palette", 1);
+                break;
+            case 2:
+                PlayerPrefs.SetInt("setshelfpalette", 1);
+                break;
+            case 3:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 4:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 5:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 6:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 7:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 8:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 9:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+
+            case 10:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 11:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+            case 12:
+                PlayerPrefs.SetInt("setmatpalette", 1);
+                break;
+        }
+
+        if (coldRain_i > fabricP_i[itemIndex_i])
+        {
+            PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
+            PlayerPrefs.SetInt("shoppalette" + itemIndex_i + "0", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+    }
+
+    void FabricPrice()
+    {
+
     }
 
 
@@ -254,5 +324,38 @@ public class CityShop : MonoBehaviour {
     public void setIndex8()
     {
         itemIndex_i = 8;
+    }
+
+    public void setIndex9()
+    {
+        itemIndex_i = 9;
+    }
+
+    public void setIndex10()
+    {
+        itemIndex_i = 10;
+    }
+
+    public void setIndex11()
+    {
+        itemIndex_i = 11;
+    }
+
+    public void setIndex12()
+    {
+        itemIndex_i = 12;
+    }
+
+    public void setIndex13()
+    {
+        itemIndex_i = 13;
+    }
+    public void setIndex14()
+    {
+        itemIndex_i = 14;
+    }
+    public void setIndex15()
+    {
+        itemIndex_i = 15;
     }
 }
