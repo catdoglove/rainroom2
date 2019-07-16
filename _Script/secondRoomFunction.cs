@@ -243,7 +243,28 @@ public class secondRoomFunction : CavasData {
             shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
             shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
         }
+
+
+
+        if (PlayerPrefs.GetInt("setwindowpalette", 0) > 0)
+        {
+            windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window_spr[window_i];
+            windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
+        }
+        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        {
+            wallImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().wall_spr[wall_i];
+            wallImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().wall2_spr[wall_i];
+        }
+        if (PlayerPrefs.GetInt("setdrawerpalette", 0) > 0)
+        {
+            drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
+        }
     }
+
+
+
+
     /// <summary>
     /// 단칸방 스위치 켜기
     /// </summary>

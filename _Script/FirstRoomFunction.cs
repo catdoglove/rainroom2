@@ -199,9 +199,35 @@ public class FirstRoomFunction : CavasData {
         rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
-        //deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
         //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+
+
+
+        if (PlayerPrefs.GetInt("setdeskpalette", 0)>0)
+        {
+            deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
+        }
+        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        {
+            wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
+            wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
+        }
+        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        {
+            bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
+        }
+        if (PlayerPrefs.GetInt("setrugpalette", 0) > 0)
+        {
+            rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+            rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        }
+        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        {
+            cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+        }
+
+
         if (ladderBox_obj.activeSelf == false)
         {
             ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
