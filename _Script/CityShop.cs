@@ -13,11 +13,17 @@ public class CityShop : MonoBehaviour {
     Color colorP;
 
     //가격
-    public int itemIndex_i, price_i;
+    public int itemIndex_i, price_i,chip_i;
     public int[] fabricH_i, fabricD_i;
-    string str,chip_str;
+    public int interiorC_i, interiorH_i;
+    public string interior_str;
+    string str;
     int coldRain_i, hotRain_i,diamond_i;
-    public Text cRain_txt,hRain_txt,diamond_txt;
+    public Text cRain_txt,hRain_txt,diamond_txt, cIRain_txt, hIRain_txt;
+    public int[] paintPriceC_i, paintPriceD_i;
+
+    //비활성화
+    public Button[] paint0_btn, paint1_btn, paint2_btn, paint3_btn, paint4_btn, paint5_btn, paint6_btn, paint7_btn, paint8_btn, paint9_btn, paint10_btn, paint11_btn, paint12_btn;
     // Use this for initialization
     void Start () {
         str = PlayerPrefs.GetString("code", "");
@@ -69,33 +75,153 @@ public class CityShop : MonoBehaviour {
         }
         else
         {
+            cIRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+            hIRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
 
-
-            //물건 업그래이드 단계확인 부족하면 테이프로 가리기
-            //침대 5레벨 일때 가능
-            if (PlayerPrefs.GetInt("bedlv", 0) < 5)
-            {
-                interiorTape_obj[0].SetActive(true);
-            }
-            //냉장고 2레벨일때 가능
-            if (PlayerPrefs.GetInt("iceboxlv", 0) < 2)
-            {
-                interiorTape_obj[1].SetActive(true);
-            }
-            //테이블 3레벨일때 가능
-            if (PlayerPrefs.GetInt("desklv", 0) < 3)
-            {
-                interiorTape_obj[2].SetActive(true);
-            }
-            //전구? 4레벨일때 가능
-            if (PlayerPrefs.GetInt("lightlv", 0) < 4)
-            {
-                interiorTape_obj[3].SetActive(true);
-            }
-            
+            //SetInterior();
             interiorWin_obj.SetActive(true);
         }
     }
+
+    void SetInterior()
+    {
+        //물건 업그래이드 단계확인 부족하면 테이프로 가리기
+        //침대 5레벨 일때 가능
+        if (PlayerPrefs.GetInt("bedlv", 0) < 5)
+        {
+            interiorTape_obj[0].SetActive(true);
+        }
+        //냉장고 2레벨일때 가능
+        if (PlayerPrefs.GetInt("iceboxlv", 0) < 2)
+        {
+            interiorTape_obj[1].SetActive(true);
+        }
+        //테이블 3레벨일때 가능
+        if (PlayerPrefs.GetInt("desklv", 0) < 3)
+        {
+            interiorTape_obj[2].SetActive(true);
+        }
+        //전구? 4레벨일때 가능
+        if (PlayerPrefs.GetInt("lightlv", 0) < 4)
+        {
+            interiorTape_obj[3].SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("lightlv", 0) < 4)
+        {
+            interiorTape_obj[3].SetActive(true);
+        }
+    }
+
+
+
+    public void icebox()
+    {
+        interior_str = "iceboxlv";
+    }
+    public void bed()
+    {
+        interior_str = "bedmaxlv";
+    }
+    public void desk()
+    {
+        interior_str = "desklv";
+    }
+    public void light()
+    {
+        interior_str = "lightmaxlv";
+    }
+    public void gas()
+    {
+        interior_str = "gasrangelv";
+    }
+
+    public void InteriorY()
+    {
+        if (coldRain_i >= interiorC_i && hotRain_i >= interiorC_i)
+        {
+            int inum = PlayerPrefs.GetInt(interior_str, 0);
+            inum++;
+            PlayerPrefs.SetInt(interior_str, inum);
+        }
+        else
+        {
+            needMoney();
+        }
+    }
+    void CheckMaxInterior()
+    {
+
+        //냉장고 4
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 4)
+        {
+
+        }
+        //침대 완전한 2레벨
+        if (PlayerPrefs.GetInt("bedlv", 0) >= 2)
+        {
+
+        }
+        //테이블 6레벨
+        if (PlayerPrefs.GetInt("desklv", 0) >= 6)
+        {
+
+        }
+        //전구 완전한 2레벨
+        if (PlayerPrefs.GetInt("lightlv", 0) >= 2)
+        {
+            interiorTape_obj[3].SetActive(true);
+        }
+    }
+
+    void CheckMaxPaint()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 0 + j, 0) == 1)
+            {
+                paint0_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 1 + j, 0) == 1)
+            {
+                paint1_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 2 + j, 0) == 1)
+            {
+                paint2_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 3 + j, 0) == 1)
+            {
+                paint3_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 4 + j, 0) == 1)
+            {
+                paint4_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + 5 + j, 0) == 1)
+            {
+                paint5_btn[j].GetComponent<Button>().interactable = false;
+            }
+        }
+
+
+    }
+
 
     public void BuyInterior()
     {
@@ -134,6 +260,9 @@ public class CityShop : MonoBehaviour {
 
     void SetPaint()
     {
+
+
+        //matImg2_obj.GetComponent<Image>().color = new Color(99, 99, 99);
         //물건 업그래이드 단계확인 부족하면 테이프로 가리기
         //장식장 4레벨 일때 가능
         if (PlayerPrefs.GetInt("drawerlv", 0) < 4)
@@ -160,8 +289,8 @@ public class CityShop : MonoBehaviour {
         {
             paintTape_obj[4].SetActive(true);
         }
-        //전구? 4?5레벨일때 가능
-        if (PlayerPrefs.GetInt("lightlv", 0) < 4)
+        //전구 완전샵에서 2일때가능
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) < 2)
         {
             paintTape_obj[5].SetActive(true);
         }
@@ -169,7 +298,7 @@ public class CityShop : MonoBehaviour {
 
     void SetFabric()
     {
-        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장 9,10,11
+        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
         //물건 업그래이드 단계확인 부족하면 테이프로 가리기
         //부엌매트 5레벨 일때 가능
         if (PlayerPrefs.GetInt("mat2lv", 0) < 5)
@@ -191,8 +320,8 @@ public class CityShop : MonoBehaviour {
         {
             fabricTape_obj[3].SetActive(true);
         }
-        //침대 5레벨일때 가능
-        if (PlayerPrefs.GetInt("bedlv", 0) < 5)
+        //침대 완전샵에서 구매후 2단계일때 가능
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) < 2)
         {
             fabricTape_obj[4].SetActive(true);
         }
@@ -215,12 +344,15 @@ public class CityShop : MonoBehaviour {
         if (hotRain_i >= fabricH_i[itemIndex_i]&& diamond_i>= fabricD_i[itemIndex_i])
         {
             PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
-            PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_str, 1);
+            PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_i, 1);
             PlayerPrefs.SetInt("reformshop", 1);
+            Setpale();
         }
-        Setpale();
+        else
+        {
+            needMoney();
+        }
 
-        
 
     }
 
@@ -233,60 +365,65 @@ public class CityShop : MonoBehaviour {
         diamond_i = PlayerPrefs.GetInt(str + "dm", 0);
 
 
-        if (coldRain_i >= fabricH_i[itemIndex_i] && diamond_i >= fabricD_i[itemIndex_i])
+        if (coldRain_i >= paintPriceC_i[itemIndex_i] && diamond_i >= paintPriceD_i[itemIndex_i])
         {
             PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
-            PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_str, 1);
+            PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_i, 1);
             PlayerPrefs.SetInt("reformshop", 1);
-
             Setpale();
         }
+        else
+        {
+            needMoney();
+        }
     }
+    
 
-    void Setpale()
+
+        void Setpale()
     {
-        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장 9,10,11
+        //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
         switch (itemIndex_i)
         {
             case 0:
-                PlayerPrefs.SetInt("setmatpalette", 1);
+                PlayerPrefs.SetInt("setmatpalette", chip_i);
                 break;
             case 1:
-                PlayerPrefs.SetInt("setmat2palette", 1);
+                PlayerPrefs.SetInt("setmat2palette", chip_i);
                 break;
             case 2:
-                PlayerPrefs.SetInt("setshelfpalette", 1);
+                PlayerPrefs.SetInt("setshelfpalette", chip_i);
                 break;
             case 3:
-                PlayerPrefs.SetInt("setlightpalette", 1);
+                PlayerPrefs.SetInt("setlightpalette", chip_i);
                 break;
             case 4:
-                PlayerPrefs.SetInt("setwindowpalette", 1);
+                PlayerPrefs.SetInt("setwindowpalette", chip_i);
                 break;
             case 5:
-                PlayerPrefs.SetInt("setdrawerpalette", 1);
+                PlayerPrefs.SetInt("setdrawerpalette", chip_i);
                 break;
             case 6:
-                PlayerPrefs.SetInt("setbookpalette", 1);
+                PlayerPrefs.SetInt("setbookpalette", chip_i);
                 break;
             case 7:
-                PlayerPrefs.SetInt("setbedpalette", 1);
+                PlayerPrefs.SetInt("setbedpalette", chip_i);
                 break;
             case 8:
-                PlayerPrefs.SetInt("setdeskpalette", 1);
+                PlayerPrefs.SetInt("setdeskpalette", chip_i);
                 break;
             case 9:
-                PlayerPrefs.SetInt("setwallpalette", 1);
+                PlayerPrefs.SetInt("setwallpalette", chip_i);
                 break;
 
             case 10:
-                PlayerPrefs.SetInt("setrugpalette", 1);
+                PlayerPrefs.SetInt("setrugpalette", chip_i);
                 break;
             case 11:
-                PlayerPrefs.SetInt("setcabinetpalette", 1);
+                PlayerPrefs.SetInt("setcabinetpalette", chip_i);
                 break;
             case 12:
-                PlayerPrefs.SetInt("setmatpalette", 1);
+                //PlayerPrefs.SetInt("setgaspalette", chip_i);
                 break;
         }
     }
@@ -294,23 +431,24 @@ public class CityShop : MonoBehaviour {
 
 
 
-        public void ChipStr0()
+    public void ChipStr0()
     {
-        chip_str = "0";
+        chip_i = 0;
     }
     public void ChipStr1()
     {
-        chip_str = "1";
+        chip_i = 1;
     }
     public void ChipStr2()
     {
-        chip_str = "2";
+        chip_i = 2;
     }
 
 
     void FabricPrice()
     {
-
+        fabricH_i[0] = 0;
+        fabricD_i[0] = 0;
     }
 
 
