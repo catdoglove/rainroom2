@@ -22,6 +22,8 @@ public class CityShop : MonoBehaviour {
     public Text cRain_txt,hRain_txt,diamond_txt, cIRain_txt, hIRain_txt;
     public int[] paintPriceC_i, paintPriceD_i;
 
+    public int[] bedPriceH_i, bedPriceC_i, deskPriceH_i, deskPriceC_i, lightPriceH_i, lightPriceC_i, icePriceH_i, icePriceC_i;
+
     //비활성화
     public Button[] paint0_btn, paint1_btn, paint2_btn, paint3_btn, paint4_btn, paint5_btn, paint6_btn, paint7_btn, paint8_btn, paint9_btn, paint10_btn, paint11_btn, paint12_btn;
     // Use this for initialization
@@ -127,7 +129,7 @@ public class CityShop : MonoBehaviour {
     {
         interior_str = "desklv";
     }
-    public void light()
+    public void lights()
     {
         interior_str = "lightmaxlv";
     }
@@ -444,11 +446,44 @@ public class CityShop : MonoBehaviour {
         chip_i = 2;
     }
 
+    //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
 
-    void FabricPrice()
+    void Price()
     {
-        fabricH_i[0] = 0;
-        fabricD_i[0] = 0;
+        fabricH_i[0] = 40;
+        fabricD_i[0] = 2;
+        fabricH_i[1] = 40;
+        fabricD_i[1] = 2;
+
+        fabricH_i[2] = 200;
+        fabricD_i[2] = 3;
+        fabricH_i[3] = 1000;
+        fabricD_i[3] = 10;
+
+        fabricH_i[4] = 200;
+        fabricD_i[4] = 10;
+
+        fabricH_i[5] = 400;
+        fabricD_i[5] = 4;
+        fabricH_i[6] = 1400;
+        fabricD_i[6] = 15;
+
+        fabricH_i[7] = 200;
+        fabricD_i[7] = 15;
+
+        fabricH_i[8] = 800;
+        fabricD_i[8] = 7;
+        fabricH_i[9] = 100;
+        fabricD_i[9] = 8;
+
+        fabricH_i[10] = 60;
+        fabricD_i[10] = 3;
+
+        fabricH_i[11] = 200;
+        fabricD_i[11] = 5;
+
+        deskPriceC_i[1] = 2500;
+
     }
 
 

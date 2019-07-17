@@ -85,7 +85,10 @@ public class secondRoomFunction : CavasData {
 
     public Sprite[] matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     int changeOut_i;
-    
+
+    //리폼
+    public Sprite[] reformWindow_spr, reformWindow2_spr,reformWall_spr, reformWall2_spr, reformDrawer_spr;
+
     //public GameObject _obj;
 
     // Use this for initialization
@@ -245,20 +248,20 @@ public class secondRoomFunction : CavasData {
         }
 
 
-
+        
         if (PlayerPrefs.GetInt("setwindowpalette", 0) > 0)
         {
-            windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window_spr[window_i];
-            windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
+            windowImg_obj.GetComponent<Image>().sprite = reformWindow_spr[PlayerPrefs.GetInt("setwindowpalette", 0)];
+            windowImg2_obj.GetComponent<Image>().sprite = reformWindow2_spr[PlayerPrefs.GetInt("setwindowpalette", 0)];
         }
         if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
         {
-            wallImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().wall_spr[wall_i];
-            wallImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().wall2_spr[wall_i];
+            wallImg_obj.GetComponent<Image>().sprite = reformWall_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
+            wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
         }
         if (PlayerPrefs.GetInt("setdrawerpalette", 0) > 0)
         {
-            drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
+            drawerImg_obj.GetComponent<Image>().sprite = reformDrawer_spr[PlayerPrefs.GetInt("setdrawerpalette", 0)];
         }
     }
 

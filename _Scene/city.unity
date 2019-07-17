@@ -809,7 +809,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseFoodIlust
         m_Mode: 1
         m_Arguments:
@@ -1592,76 +1592,6 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 217529032}
-  m_CullTransparentMesh: 0
---- !u!1 &225968052
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 225968053}
-  - component: {fileID: 225968055}
-  - component: {fileID: 225968054}
-  m_Layer: 0
-  m_Name: "\uAC70\uBBF8"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &225968053
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225968052}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6479.3237}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 606251985}
-  m_Father: {fileID: 882829933}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1022, y: 344}
-  m_SizeDelta: {x: 93, y: 97}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &225968054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225968052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf5f85f62611dc54da102651ae60c744, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &225968055
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225968052}
   m_CullTransparentMesh: 0
 --- !u!1 &227339357
 GameObject:
@@ -4605,7 +4535,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: numH2
         m_Mode: 1
         m_Arguments:
@@ -4616,7 +4546,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenHelp
         m_Mode: 1
         m_Arguments:
@@ -4742,139 +4672,6 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 598633891}
-  m_CullTransparentMesh: 0
---- !u!1 &606251984
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 606251985}
-  - component: {fileID: 606251988}
-  - component: {fileID: 606251987}
-  - component: {fileID: 606251986}
-  m_Layer: 0
-  m_Name: Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &606251985
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606251984}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 225968053}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000070572, y: 0.000034332}
-  m_SizeDelta: {x: 69.3, y: 101.2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &606251986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606251984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 606251987}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: getSpider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 365005795}
-        m_MethodName: spiderSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &606251987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606251984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &606251988
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606251984}
   m_CullTransparentMesh: 0
 --- !u!1 &613259826
 GameObject:
@@ -5534,7 +5331,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: buyShopN
         m_Mode: 1
         m_Arguments:
@@ -6813,7 +6610,7 @@ Transform:
   m_LocalScale: {x: 108.36181, y: 108.36181, z: 108.36181}
   m_Children: []
   m_Father: {fileID: 882829933}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &750697895
 SpriteRenderer:
@@ -7215,7 +7012,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseHelp
         m_Mode: 1
         m_Arguments:
@@ -8406,7 +8203,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 225968053}
   - {fileID: 750697894}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -9125,7 +8921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenBasicShop
         m_Mode: 1
         m_Arguments:
@@ -11767,7 +11563,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseFoodIlust
         m_Mode: 1
         m_Arguments:
@@ -11958,7 +11754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: numH3
         m_Mode: 1
         m_Arguments:
@@ -11969,7 +11765,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenHelp
         m_Mode: 1
         m_Arguments:
@@ -16345,7 +16141,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: BuyShopY
         m_Mode: 1
         m_Arguments:
@@ -18280,7 +18076,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: allClose
         m_Mode: 1
         m_Arguments:
@@ -19053,7 +18849,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228834}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenFoodShop
         m_Mode: 1
         m_Arguments:
@@ -19485,7 +19281,6 @@ GameObject:
   - component: {fileID: 2128228832}
   - component: {fileID: 2128228835}
   - component: {fileID: 2128228833}
-  - component: {fileID: 2128228834}
   - component: {fileID: 2128228836}
   - component: {fileID: 2128228824}
   - component: {fileID: 2128228823}
@@ -19643,6 +19438,14 @@ MonoBehaviour:
   hIRain_txt: {fileID: 1478373403}
   paintPriceC_i: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   paintPriceD_i: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  bedPriceH_i: 
+  bedPriceC_i: 
+  deskPriceH_i: 
+  deskPriceC_i: 
+  lightPriceH_i: 
+  lightPriceC_i: 
+  icePriceH_i: 
+  icePriceC_i: 
   paint0_btn:
   - {fileID: 1581121061}
   - {fileID: 331558696}
@@ -19853,175 +19656,6 @@ MonoBehaviour:
   GMP: {fileID: 2128228821}
   leafPr_obj: {fileID: 772564719}
   leafWin_obj: {fileID: 0}
---- !u!114 &2128228834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9287b25f6d8f47542939fc8da9d85080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventPaint_obj: {fileID: 0}
-  eventPet_obj: {fileID: 0}
-  foodShop_obj: {fileID: 0}
-  inShop_obj: {fileID: 0}
-  basicShop_obj: {fileID: 0}
-  blackClose_obj: {fileID: 1512207145}
-  shopNum: 0
-  helpNum: 0
-  str: 
-  coldRain_txt: {fileID: 0}
-  hotRain_txt: {fileID: 0}
-  eventPaint_i: 09000000090000000900000009000000
-  eventPaintImg_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  soldout_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  buyPaintYN_obj: {fileID: 0}
-  moviePaint_spr:
-  - {fileID: 21300000, guid: 50b348392f5acc343807304402feb014, type: 3}
-  - {fileID: 21300002, guid: 50b348392f5acc343807304402feb014, type: 3}
-  - {fileID: 21300004, guid: 50b348392f5acc343807304402feb014, type: 3}
-  - {fileID: 21300006, guid: 50b348392f5acc343807304402feb014, type: 3}
-  specialPaint_spr:
-  - {fileID: 21300000, guid: bc040497355312140a833c9b21f92451, type: 3}
-  - {fileID: 21300002, guid: bc040497355312140a833c9b21f92451, type: 3}
-  - {fileID: 21300004, guid: bc040497355312140a833c9b21f92451, type: 3}
-  - {fileID: 21300006, guid: bc040497355312140a833c9b21f92451, type: 3}
-  storyPaint_spr:
-  - {fileID: 21300000, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300002, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300004, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300006, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300008, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300010, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300012, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300014, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300016, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  - {fileID: 21300018, guid: f1245feb0dc2dfc4982eea02514e6e07, type: 3}
-  moviePaint_str:
-  - "\uD0A4\uC2A4"
-  - "\uC808\uADDC"
-  - "\uC9C4\uC8FC \uADC0\uAC78\uC774"
-  - "\uBAA8\uB098\uB9AC\uC790"
-  specialPaint_str:
-  - "\uBC29\uBC14\uD0C0"
-  - "\uC704"
-  - "\uBBF8\uC639"
-  - "\uB2E4\uB77D\uC758 \uC6C0\uC9C1\uC774\uB294 \uC9D1"
-  storyPaint_str:
-  - "\uC5B4\uB460 \uC18D\uC5D0"
-  - "\uC77C\uC5B4\uB098\uC11C"
-  - "\uD5E4\uB9E4\uB294 \uC911"
-  - "\uC800 \uBA40\uB9AC"
-  - "\uBC1C\uACAC"
-  - "\uAC70\uAE30 \uC788\uB294 \uAC83"
-  - "\uB098\uC544\uAC00"
-  - "\uBC16\uC73C\uB85C"
-  - "\uC628\uBAB8\uC73C\uB85C"
-  - "\uB290\uB07C\uB2E4"
-  special_i: 0
-  movie_i: 0
-  story_i: 0
-  paint_i: 0
-  paint_str: 
-  paint_txt: {fileID: 0}
-  paintPrice_txt: {fileID: 0}
-  paintP_txt: {fileID: 0}
-  soldOut_spr:
-  - {fileID: 21300000, guid: 540db5cd19297454492e11a7b2e32737, type: 3}
-  - {fileID: 21300002, guid: 540db5cd19297454492e11a7b2e32737, type: 3}
-  foodBuy_obj: {fileID: 0}
-  selectFood_obj: {fileID: 0}
-  foodIlust_obj: {fileID: 69251868}
-  selectFood_spr:
-  - {fileID: 21300000, guid: d1f910688244f8348bc6fe15af2e911a, type: 3}
-  - {fileID: 21300002, guid: d1f910688244f8348bc6fe15af2e911a, type: 3}
-  - {fileID: 21300004, guid: d1f910688244f8348bc6fe15af2e911a, type: 3}
-  - {fileID: 21300006, guid: d1f910688244f8348bc6fe15af2e911a, type: 3}
-  point_i: 0
-  colorP: {r: 0, g: 0, b: 0, a: 0}
-  needToast_obj: {fileID: 595220326}
-  clover_txt: {fileID: 0}
-  shopReform_obj: {fileID: 0}
-  shopIng_obj: {fileID: 0}
-  shopSelect_obj: {fileID: 0}
-  inSelect_obj: {fileID: 0}
-  shopNY_obj: {fileID: 0}
-  met_obj: {fileID: 0}
-  met2_obj: {fileID: 0}
-  icebox_obj: {fileID: 0}
-  shelf_obj: {fileID: 0}
-  inYN_obj: {fileID: 0}
-  inYNImg_obj: {fileID: 0}
-  shop_spr:
-  - {fileID: 21300022, guid: a289ae5ac1045764abc520f6d093f347, type: 3}
-  - {fileID: 21300016, guid: a289ae5ac1045764abc520f6d093f347, type: 3}
-  - {fileID: 21300018, guid: a289ae5ac1045764abc520f6d093f347, type: 3}
-  - {fileID: 21300012, guid: 2eab597e5c51a3248bd5406fe1bac7d0, type: 3}
-  in_spr:
-  - {fileID: 21300010, guid: a897140634f12c3439876f612b8467a6, type: 3}
-  - {fileID: 21300016, guid: a897140634f12c3439876f612b8467a6, type: 3}
-  shopImg_obj: {fileID: 0}
-  shopText_obj: {fileID: 0}
-  ingblock_obj: {fileID: 0}
-  shopSoldout_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  shopBtn_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  inSoldout_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  inBtn_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  shopGet_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  inIceboxTxt_obj: {fileID: 0}
-  buyPetYN_obj: {fileID: 0}
-  petMarimo_obj: {fileID: 0}
-  petRabbit_obj: {fileID: 0}
-  petTutle_obj: {fileID: 0}
-  petFish_obj: {fileID: 0}
-  adopt_obj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pet_spr:
-  - {fileID: 21300000, guid: dccc58969f02d4140b968fc6ecb21bff, type: 3}
-  - {fileID: 21300000, guid: f3c40c2b9285b504491870997934c3ef, type: 3}
-  - {fileID: 21300000, guid: c95b6241f1512574ab6a0d50d6c74d7c, type: 3}
-  - {fileID: 21300000, guid: 9baaca477fd58b24abbcc377988ecb54, type: 3}
-  adopt_spr: {fileID: 21300000, guid: 63b05e93db3d23b42ab485a759534b7d, type: 3}
-  pet_txt: {fileID: 0}
-  petP_txt: {fileID: 0}
-  petClover_txt: {fileID: 0}
-  audio_obj: {fileID: 365005793}
-  help_obj: {fileID: 802757745}
-  help_spr:
-  - {fileID: 21300000, guid: 13903175ba374ac42be0920883da6893, type: 3}
-  - {fileID: 21300000, guid: 53003b0f654ac2a47ac05983a30ff68c, type: 3}
-  - {fileID: 21300000, guid: b5bccf47e79ee9d478424bc07df744a4, type: 3}
-  - {fileID: 21300000, guid: 3511f03017cbbee4eb290b9d0db14db7, type: 3}
-  - {fileID: 21300000, guid: 1b529a68f2548064298f83e1e6eccf2f, type: 3}
 --- !u!114 &2128228835
 MonoBehaviour:
   m_ObjectHideFlags: 0
