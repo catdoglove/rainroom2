@@ -43,6 +43,9 @@ public class MainInfo : MonoBehaviour {
     public string[] add_str;
     public GameObject wf_obj;
 
+    //미소
+    public GameObject smile_obj;
+
     // Use this for initialization
     void Start () {
 
@@ -62,9 +65,11 @@ public class MainInfo : MonoBehaviour {
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
         loveLv_txt.text = "" + loveLv_i;
 
+        //만렙
         if(PlayerPrefs.GetInt("lovelv", 0) >= 13)
         {
             loveLv_txt.text = "♥";
+            smile_obj.SetActive(true);
         }
 
         face_obj.GetComponent<Image>().sprite = face_spr[loveLv_i];
