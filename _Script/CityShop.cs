@@ -189,7 +189,7 @@ public class CityShop : MonoBehaviour {
     {
 
         //침대 완전한 2레벨
-        if (PlayerPrefs.GetInt("bedlv", 0) >= 2)
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
         {
             //soldInterior_obj[1].SetActive(true);
             interiorTape_obj[0].SetActive(true);
@@ -210,13 +210,13 @@ public class CityShop : MonoBehaviour {
             interiorTape_obj[2].GetComponent<Image>().sprite = soldOut_spr;
         }
         //전구 완전한 2레벨
-        if (PlayerPrefs.GetInt("lightlv", 0) >= 2)
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2)
         {
             //soldInterior_obj[3].SetActive(true);
             interiorTape_obj[3].SetActive(true);
             interiorTape_obj[3].GetComponent<Image>().sprite = soldOut_spr;
         }
-        //가스렌지 완전한 2레벨
+        //가스렌지 2레벨
         if (PlayerPrefs.GetInt("gasrangelv", 0) >= 3)
         {
             //soldInterior_obj[3].SetActive(true);

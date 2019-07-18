@@ -41,6 +41,7 @@ public class secondRoomFunction : CavasData {
     public GameObject close_obj;
     public GameObject umb_obj;
 
+    public Sprite[] lightMax_spr, lightMax2_spr;
 
     //물부족창
     public GameObject needToast_obj;
@@ -229,6 +230,15 @@ public class secondRoomFunction : CavasData {
         //낮밤
         setDay();
 
+
+
+
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 1)
+        {
+            lightImg_obj.GetComponent<Image>().sprite = lightMax_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
+            lightImg2_obj.GetComponent<Image>().sprite = lightMax2_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
+        }
+
         //리폼
 
         if (PlayerPrefs.GetInt("setmatpalette", 0)==1)
@@ -263,6 +273,8 @@ public class secondRoomFunction : CavasData {
         {
             drawerImg_obj.GetComponent<Image>().sprite = reformDrawer_spr[PlayerPrefs.GetInt("setdrawerpalette", 0)];
         }
+
+
     }
 
 

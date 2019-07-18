@@ -52,6 +52,8 @@ public class FirstRoomFunction : CavasData {
     public GameObject moreCoinWindow_obj;
     public GameObject bookcase_obj;
     public Sprite bookcase_spr;
+    public GameObject bedMax_obj;
+    public Sprite[] bedMax_spr;
 
     public int bookBox_i;
     public GameObject bookBox_obj, bedBox_obj, deskBox_obj, cabinetBox_obj, ladderBox_obj;
@@ -227,8 +229,15 @@ public class FirstRoomFunction : CavasData {
             cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
         }
 
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
+        {
+            bedImg_obj.SetActive(false);
+            bedMax_obj.SetActive(true);
+            bedMax_obj.GetComponent<Image>().sprite = bedMax_spr[PlayerPrefs.GetInt("bedmaxlv", 0)];
+        }
 
-        if (ladderBox_obj.activeSelf == false)
+
+            if (ladderBox_obj.activeSelf == false)
         {
             ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
         }
