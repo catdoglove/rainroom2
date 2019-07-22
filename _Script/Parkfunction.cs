@@ -43,8 +43,7 @@ public class Parkfunction : CavasData
             checkachOut();
             PlayerPrefs.SetInt("acgocheck", 0);
         }
-
-
+        
         if (GMtag == null)
         {
             GMtag = GameObject.FindGameObjectWithTag("GMtag");

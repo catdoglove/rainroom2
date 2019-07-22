@@ -39,6 +39,11 @@ public class UnityADS : MonoBehaviour {
             StartCoroutine("adTimeFlow2");
             StartCoroutine("adAniTime2");
         }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            StartCoroutine("adTimeFlow2");
+            StartCoroutine("adAniTime2");
+        }
         else
         {
             StartCoroutine("adTimeFlow");

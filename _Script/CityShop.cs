@@ -24,8 +24,9 @@ public class CityShop : MonoBehaviour {
 
     public int[] bedPriceH_i, bedPriceC_i, deskPriceH_i, deskPriceC_i, lightPriceH_i, lightPriceC_i, icePriceH_i, icePriceC_i,gasPriceH_i, gasPriceC_i;
     public Text paintBuyC_txt, paintBuyD_txt, fabricBuyH_txt, fabricBuyD_txt, interiorBuyC_txt, interiorBuyH_txt;
-    public Sprite[] reformItem_spr,InteriorItem_spr;
-    public GameObject paintItem_obj, fabricItem_obj,interiorItem_obj;
+    public Sprite[] reformItem_spr;
+    public GameObject paintItem_obj, fabricItem_obj;
+    public Text InteriorItem_txt;
     //솔드아웃
     public GameObject[] soldInterior_obj, soldPaint_obj, soldFabric_obj;
     public Sprite soldOut_spr;
@@ -40,14 +41,14 @@ public class CityShop : MonoBehaviour {
     //리폼상점창 열기
     public void OpenActReform()
     {
-        if(reformShopWin_obj.activeSelf == true)
+        paintBuy_obj.SetActive(false);
+        fabricBuy_obj.SetActive(false);
+        if (reformShopWin_obj.activeSelf == true)
         {
             reformShopWin_obj.SetActive(false);
         }
         else
         {
-
-
             cRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
             hRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             diamond_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
@@ -78,6 +79,7 @@ public class CityShop : MonoBehaviour {
     //인테리어 열기
     public void OpenActInterior()
     {
+        interiorBuy_obj.SetActive(false);
         if (interiorWin_obj.activeSelf == true)
         {
             interiorWin_obj.SetActive(false);
@@ -116,7 +118,12 @@ public class CityShop : MonoBehaviour {
             interiorTape_obj[3].SetActive(true);
         }
         //가스렌지 1레벨
-        if (PlayerPrefs.GetInt("gasrangelv", 0) < 1)
+        interiorTape_obj[4].SetActive(false);
+        if (PlayerPrefs.GetInt("gasrangelv", 0) < 1 || PlayerPrefs.GetInt("iceboxlv", 0) < 3)
+        {
+            interiorTape_obj[4].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("gasrangelv", 0) > 1 && PlayerPrefs.GetInt("iceboxlv", 0) < 4)
         {
             interiorTape_obj[4].SetActive(true);
         }
@@ -133,6 +140,21 @@ public class CityShop : MonoBehaviour {
         inm = inm - 2;
         interiorC_i = icePriceC_i[inm];
         interiorH_i = icePriceH_i[inm];
+        int hm = PlayerPrefs.GetInt(interior_str, 0);
+        if (hm == 2)
+        {
+            InteriorItem_txt.text = "미니냉장고";
+        }
+
+        if (hm == 3)
+        {
+            InteriorItem_txt.text = "2단냉장고";
+        }
+        else
+        {
+            InteriorItem_txt.text = "";
+        }
+        
     }
     public void bed()
     {
@@ -141,6 +163,20 @@ public class CityShop : MonoBehaviour {
         int inm = PlayerPrefs.GetInt(interior_str, 0);
         interiorC_i = bedPriceC_i[inm];
         interiorH_i = bedPriceH_i[inm];
+        int hm = PlayerPrefs.GetInt(interior_str, 0);
+        if (hm == 0)
+        {
+            InteriorItem_txt.text = "낡은 침대";
+        }
+
+        if (hm == 1)
+        {
+            InteriorItem_txt.text = "완전한 침대";
+        }
+        else
+        {
+            InteriorItem_txt.text = "";
+        }
 
     }
     public void desk()
@@ -152,6 +188,23 @@ public class CityShop : MonoBehaviour {
         inm = inm - 3;
         interiorC_i = deskPriceC_i[inm];
         interiorH_i = deskPriceH_i[inm];
+        int hm = PlayerPrefs.GetInt(interior_str, 0);
+        if (hm == 3)
+        {
+            InteriorItem_txt.text = "플라스틱 탁자";
+        }
+        if (hm == 4)
+        {
+            InteriorItem_txt.text = "작은 책상";
+        }
+        if (hm == 5)
+        {
+            InteriorItem_txt.text = "완전한 책상";
+        }
+        else
+        {
+            InteriorItem_txt.text = "";
+        }
     }
     public void lights()
     {
@@ -161,6 +214,19 @@ public class CityShop : MonoBehaviour {
         int inm = PlayerPrefs.GetInt(interior_str, 0);
         interiorC_i = lightPriceC_i[inm];
         interiorH_i = lightPriceH_i[inm];
+        int hm = PlayerPrefs.GetInt(interior_str, 0);
+        if (hm == 0)
+        {
+            InteriorItem_txt.text = "좋은 전등";
+        }
+        if (hm == 1)
+        {
+            InteriorItem_txt.text = "완전한 전등";
+        }
+        else
+        {
+            InteriorItem_txt.text = "";
+        }
     }
     public void gas()
     {
@@ -170,6 +236,27 @@ public class CityShop : MonoBehaviour {
         inm = inm - 1;
         interiorC_i = gasPriceC_i[inm];
         interiorH_i = gasPriceH_i[inm];
+        int hm = PlayerPrefs.GetInt(interior_str, 0);
+        if (hm == 1)
+        {
+            InteriorItem_txt.text = "낡은 렌지";
+        }
+        if (hm == 2)
+        {
+            InteriorItem_txt.text = "평범한 렌지";
+        }
+        if (hm == 3)
+        {
+            InteriorItem_txt.text = "투박한 가스렌지";
+        }
+        if (hm == 4)
+        {
+            InteriorItem_txt.text = "좋은 가스렌지";
+        }
+        else
+        {
+            InteriorItem_txt.text = "";
+        }
     }
 
     public void InteriorY()
@@ -193,6 +280,7 @@ public class CityShop : MonoBehaviour {
             PlayerPrefs.SetInt(interior_str, inum);
             BuyInterior();
             CheckMaxInterior();
+            SetInterior();
         }
         else
         {
@@ -342,7 +430,7 @@ public class CityShop : MonoBehaviour {
             interiorBuyC_txt.text = "" + interiorC_i;
             interiorBuyH_txt.text = "" + interiorH_i;
             interiorBuy_obj.SetActive(true);
-            interiorItem_obj.GetComponent<Image>().sprite = InteriorItem_spr[itemIndex_i];
+            //interiorItem_obj.GetComponent<Image>().sprite = InteriorItem_spr[itemIndex_i];
         }
     }
     public void BuyPaint()
@@ -596,9 +684,9 @@ public class CityShop : MonoBehaviour {
         fabricH_i[2] = 200;
         fabricD_i[2] = 3;
         fabricH_i[3] = 1000;
-        fabricD_i[3] = 10;
+        fabricD_i[3] = 8;
         //창문
-        fabricH_i[4] = 200;
+        fabricH_i[4] = 180;
         fabricD_i[4] = 10;
         //장식장책장
         fabricH_i[5] = 400;
@@ -611,8 +699,8 @@ public class CityShop : MonoBehaviour {
         //테이블벽지
         fabricH_i[8] = 800;
         fabricD_i[8] = 7;
-        fabricH_i[9] = 100;
-        fabricD_i[9] = 8;
+        fabricH_i[9] = 150;
+        fabricD_i[9] = 10;
         //러그
         fabricH_i[10] = 60;
         fabricD_i[10] = 3;
@@ -629,14 +717,16 @@ public class CityShop : MonoBehaviour {
         deskPriceH_i[2] = 270;
 
         //전구
-        lightPriceC_i[0] = 4700;
-        lightPriceH_i[0] = 340;
+        lightPriceC_i[0] = 4200;
+        lightPriceH_i[0] = 320;
+        lightPriceC_i[1] = 4500;
+        lightPriceH_i[1] = 340;
 
         //냉장고
-        icePriceC_i[0] = 3000;
-        icePriceH_i[0] = 270;
+        icePriceC_i[0] = 3500;
+        icePriceH_i[0] = 300;
         icePriceC_i[1] = 4000;
-        icePriceH_i[1] = 300;
+        icePriceH_i[1] = 350;
 
         //침대
         bedPriceC_i[0] = 6000;
@@ -645,8 +735,14 @@ public class CityShop : MonoBehaviour {
         bedPriceH_i[1] = 500;
 
         //가스렌지
-        gasPriceC_i[0] = 3000;
-        gasPriceH_i[0] = 300;
+        gasPriceC_i[0] = 2300;
+        gasPriceH_i[0] = 210;
+        gasPriceC_i[1] = 2700;
+        gasPriceH_i[1] = 250;
+        gasPriceC_i[2] = 3300;
+        gasPriceH_i[2] = 310;
+        gasPriceC_i[2] = 4400;
+        gasPriceH_i[2] = 360;
 
     }
 

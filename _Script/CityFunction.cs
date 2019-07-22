@@ -10,6 +10,11 @@ public class CityFunction : MonoBehaviour {
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
 
+
+    //밤
+    public GameObject dayRoom, dayRoom2;
+    public GameObject nightShop_obj, dayShop_obj;
+
     // Use this for initialization
     void Start () {
 
@@ -29,6 +34,9 @@ public class CityFunction : MonoBehaviour {
         GMtag.GetComponent<MainBtnEvt>().shop_obj.SetActive(false);
         GMtag.GetComponent<MainBtnEvt>().SetDiamond();
 
+
+        //밤낮
+        setDay();
     }
 
 
@@ -43,5 +51,63 @@ public class CityFunction : MonoBehaviour {
             buildToast_obj.SetActive(true);
         }
 
+    }
+
+
+
+    //밤낮
+    public void setDay()
+    {
+        System.DateTime time = System.DateTime.Now;
+        if (time.ToString("tt") == "PM")
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k >= 6)
+            {
+                dayRoom.SetActive(true);
+                dayRoom2.SetActive(true);
+                //nightShop_obj.SetActive(true);
+                //dayShop_obj.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                dayRoom2.SetActive(false);
+                //nightShop_obj.SetActive(false);
+                //dayShop_obj.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
+        else
+        {
+            int k = int.Parse(time.ToString("hh"));
+            if (k == 12)
+            {
+                k = 0;
+            }
+            if (k < 6)
+            {
+                dayRoom.SetActive(true);
+                dayRoom2.SetActive(true);
+                //nightShop_obj.SetActive(true);
+                //dayShop_obj.SetActive(false);
+                PlayerPrefs.SetInt("dayday", 1);
+            }
+            else
+            {
+                //낮
+                dayRoom.SetActive(false);
+                dayRoom2.SetActive(false);
+                //nightShop_obj.SetActive(false);
+                //dayShop_obj.SetActive(true);
+                PlayerPrefs.SetInt("dayday", 0);
+            }
+        }
     }
 }

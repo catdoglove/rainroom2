@@ -233,24 +233,23 @@ public class secondRoomFunction : CavasData {
 
 
 
-        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 1)
-        {
-            lightImg_obj.GetComponent<Image>().sprite = lightMax_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
-            lightImg2_obj.GetComponent<Image>().sprite = lightMax2_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
-        }
+        
 
         //리폼
 
+        //도어매트
         if (PlayerPrefs.GetInt("setmatpalette", 0)==1)
         {
             matImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
             matImg_obj.GetComponent<Image>().sprite = matPaint_spr[1];
         }
+        //부엌
         if (PlayerPrefs.GetInt("setmat2palette", 0) == 1)
         {
             matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
             matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[1];
         }
+        //선반
         if (PlayerPrefs.GetInt("setshelfpalette", 0) == 1)
         {
             shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
@@ -258,20 +257,34 @@ public class secondRoomFunction : CavasData {
         }
 
 
-        
-        if (PlayerPrefs.GetInt("setwindowpalette", 0) > 0)
+        //전등
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 1)
+        {
+            lightImg_obj.GetComponent<Image>().sprite = lightMax2_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
+            lightImg2_obj.GetComponent<Image>().sprite = lightMax2_spr[PlayerPrefs.GetInt("lightmaxlv", 0)];
+        }
+        if (PlayerPrefs.GetInt("shoppalette3", 0) >= 1)
+        {
+            lightImg_obj.GetComponent<Image>().sprite = lightMax_spr[PlayerPrefs.GetInt("setlightpalette", 0)];
+            lightImg2_obj.GetComponent<Image>().sprite = lightMax_spr[PlayerPrefs.GetInt("setlightpalette", 0)];
+        }
+
+        //창문
+        if (PlayerPrefs.GetInt("shoppalette4", 0) >= 1)
         {
             windowImg_obj.GetComponent<Image>().sprite = reformWindow_spr[PlayerPrefs.GetInt("setwindowpalette", 0)];
             windowImg2_obj.GetComponent<Image>().sprite = reformWindow2_spr[PlayerPrefs.GetInt("setwindowpalette", 0)];
         }
-        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        //장식장
+        if (PlayerPrefs.GetInt("shoppalette5", 0) > 0)
+        {
+            drawerImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+        }
+        //벽지
+        if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
         {
             wallImg_obj.GetComponent<Image>().sprite = reformWall_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
             wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
-        }
-        if (PlayerPrefs.GetInt("setdrawerpalette", 0) > 0)
-        {
-            drawerImg_obj.GetComponent<Image>().sprite = reformDrawer_spr[PlayerPrefs.GetInt("setdrawerpalette", 0)];
         }
 
 

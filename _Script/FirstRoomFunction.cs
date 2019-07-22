@@ -91,7 +91,9 @@ public class FirstRoomFunction : CavasData {
     //소리
     public GameObject audio_obj;
 
-    
+    //리폼
+    public Sprite[] reformWall_spr, reformWall2_spr, reformBookcase_spr, reformDesk_spr, reformBed_spr;
+
 
     //타이틀닫기
     public GameObject titleImg;
@@ -205,19 +207,16 @@ public class FirstRoomFunction : CavasData {
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
 
-
-        if (PlayerPrefs.GetInt("setdeskpalette", 0)>0)
-        {
-            deskImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().desk_spr [desk_i];
-        }
+        
         if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
         {
             wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
             wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
         }
-        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+        //침대
+        if (PlayerPrefs.GetInt("shoppalette7", 0) > 0)
         {
-            bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
+            bedImg_obj.GetComponent<Image>().sprite = reformDesk_spr[PlayerPrefs.GetInt("setbedpalette", 0)];
         }
         if (PlayerPrefs.GetInt("setrugpalette", 0) > 0)
         {
@@ -229,15 +228,26 @@ public class FirstRoomFunction : CavasData {
             cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
         }
 
+        //책장
         if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
         {
             bedImg_obj.SetActive(false);
             bedMax_obj.SetActive(true);
             bedMax_obj.GetComponent<Image>().sprite = bedMax_spr[PlayerPrefs.GetInt("bedmaxlv", 0)];
         }
+        if (PlayerPrefs.GetInt("shoppalette6", 0) > 0)
+        {
+            bookcase_obj.GetComponent<Image>().sprite = reformBookcase_spr[PlayerPrefs.GetInt("setbookpalette", 0)];
+        }
+
+        //책상
+        if (PlayerPrefs.GetInt("shoppalette8", 0) > 0)
+        {
+            deskImg_obj.GetComponent<Image>().sprite = reformDesk_spr[PlayerPrefs.GetInt("setdeskpalette", 0)];
+        }
 
 
-            if (ladderBox_obj.activeSelf == false)
+        if (ladderBox_obj.activeSelf == false)
         {
             ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;
         }

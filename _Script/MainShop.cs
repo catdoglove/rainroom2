@@ -1008,27 +1008,27 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("shoppalette"+itemIndex_i, 0) == 1)
         {
             palette_obj.SetActive(true);
-            paletteImg_obj[0].SetActive(false);
-            paletteImg_obj[1].SetActive(false);
-            paletteImg_obj[2].SetActive(true);
+            for(int i=0; i < 12; i++)
+            {
+                paletteImg_obj[i].SetActive(false);
+            }
             switch (itemIndex_i)
             {
                 case 0:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectMatPaint_obj[PlayerPrefs.GetInt("setmatpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
                             shelfPalette_obj[i].SetActive(true);
-
                         }
                     }
                     break;
                 case 1:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectMat2Paint_obj[PlayerPrefs.GetInt("setmat2palette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1040,7 +1040,7 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 2:
-                    paletteImg_obj[2].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
                     selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
@@ -1053,8 +1053,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 3:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setlightpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1066,8 +1066,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 4:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setwindowpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1079,8 +1079,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 5:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setdrawerpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1092,8 +1092,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 6:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setbookpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1105,8 +1105,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 7:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1118,8 +1118,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 8:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setdeskpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1131,8 +1131,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 9:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setwallpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1144,8 +1144,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 10:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setrugpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1157,8 +1157,8 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 11:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    paletteImg_obj[itemIndex_i].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setcabinetpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1170,17 +1170,6 @@ public class MainShop : ShopHandler {
                     }
                     break;
                 case 12:
-                    paletteImg_obj[2].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
-                    for (int i = 0; i < 6; i++)
-                    {
-                        shelfPalette_obj[i].SetActive(false);
-                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
-                        {
-                            shelfPalette_obj[i].SetActive(true);
-
-                        }
-                    }
                     break;
 
             }
