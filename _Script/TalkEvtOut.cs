@@ -221,7 +221,18 @@ public class TalkEvtOut : MonoBehaviour
 
             checkach();
             lineReload();
-            text_str = "" + data_out[randArr[nowArr - 1]]["공원"];
+
+            if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+            {
+                text_str = "" + data_out[randArr[nowArr - 1]]["공원"];
+            }
+            else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+            {
+                text_str = "" + data_out[randArr[nowArr - 1]]["도시"];
+            }
+
+
+
             testText_cut = text_str.Split('/'); //끊기
             cleantalk();
 
@@ -477,6 +488,9 @@ public class TalkEvtOut : MonoBehaviour
 
         }
         PlayerPrefs.SetInt("talkclovercount", talkClover_i);
+
+
+        //여기다 outtrip 가져다 다이아 정의하기
 
     }
 
