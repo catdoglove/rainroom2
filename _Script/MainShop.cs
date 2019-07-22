@@ -63,7 +63,6 @@ public class MainShop : ShopHandler {
     public Sprite[] paintcan_spr,matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     Color mColor;
     public GameObject[] selectMatPaint_obj, selectMat2Paint_obj, selectShelfPaint_obj;
-
     //부족하다창
     Color color;
     public GameObject needToast_obj;
@@ -1002,6 +1001,195 @@ public class MainShop : ShopHandler {
             }
 
         }
+    }
+
+    public void OpenSetPalette()
+    {
+        if (PlayerPrefs.GetInt("shoppalette"+itemIndex_i, 0) == 1)
+        {
+            palette_obj.SetActive(true);
+            paletteImg_obj[0].SetActive(false);
+            paletteImg_obj[1].SetActive(false);
+            paletteImg_obj[2].SetActive(true);
+            switch (itemIndex_i)
+            {
+                case 0:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 1:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 2:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 3:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 4:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 5:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 6:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 7:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 8:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 9:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 10:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 11:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+                case 12:
+                    paletteImg_obj[2].SetActive(true);
+                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        shelfPalette_obj[i].SetActive(false);
+                        if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
+                        {
+                            shelfPalette_obj[i].SetActive(true);
+
+                        }
+                    }
+                    break;
+
+            }
+        }
+    }
+
+    void SetPaletteSwitch()
+    {
+
     }
 
     void Needfalse()
