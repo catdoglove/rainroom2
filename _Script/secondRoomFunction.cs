@@ -280,10 +280,10 @@ public class secondRoomFunction : CavasData {
                     shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
                     break;
                 case 2:
-                    shelfImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    shelfImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.94f, 0.99f);
                     break;
                 case 3:
-                    shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.99f, 0.80f);
+                    shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.75f);
                     break;
             }
             shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
@@ -314,10 +314,10 @@ public class secondRoomFunction : CavasData {
             switch (PlayerPrefs.GetInt("setdrawerpalette", 0))
             {
                 case 1:
-                    drawerImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    drawerImg_obj.GetComponent<Image>().color = new Color(0.75f, 0.95f, 0.99f);
                     break;
                 case 2:
-                    drawerImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    drawerImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.85f, 0.60f);
                     break;
                 case 3:
                     drawerImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);

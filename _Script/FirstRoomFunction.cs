@@ -221,16 +221,16 @@ public class FirstRoomFunction : CavasData {
             switch (PlayerPrefs.GetInt("setrugpalette", 0))
             {
                 case 1:
-                    rugImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
-                    rugImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.76f, 0.9f, 0.99f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.76f, 0.9f, 0.99f);
                     break;
                 case 2:
-                    rugImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
-                    rugImg2_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.95f, 0.80f, 0.80f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.95f, 0.80f, 0.80f);
                     break;
                 case 3:
-                    rugImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.80f, 0.80f);
-                    rugImg2_obj.GetComponent<Image>().color = new Color(0.80f, 0.80f, 0.80f);
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
                     break;
             }
         }
@@ -241,13 +241,13 @@ public class FirstRoomFunction : CavasData {
             switch (PlayerPrefs.GetInt("setcabinetpalette", 0))
             {
                 case 1:
-                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.8f, 0.99f);
                     break;
                 case 2:
-                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.80f, 0.80f);
                     break;
                 case 3:
-                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
                     break;
             }
         }

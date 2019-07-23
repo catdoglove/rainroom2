@@ -1010,10 +1010,10 @@ public class MainShop : ShopHandler {
                     mColor = new Color(0.99f, 0.81f, 0.80f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.80f, 0.94f, 0.99f);
                     break;
                 case 3:
-                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    mColor = new Color(0.99f, 0.9f, 0.75f);
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
@@ -1089,10 +1089,10 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 1:
-                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    mColor = new Color(0.75f, 0.95f, 0.99f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.99f, 0.85f, 0.60f);
                     break;
                 case 3:
                     mColor = new Color(0.70f, 0.70f, 0.70f);
@@ -1247,13 +1247,13 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 1:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.76f, 0.9f, 0.99f);
                     break;
                 case 2:
-                    mColor = new Color(0.90f, 0.81f, 0.80f);
+                    mColor = new Color(0.95f, 0.80f, 0.80f);
                     break;
                 case 3:
-                    mColor = new Color(0.80f, 0.80f, 0.80f);
+                    mColor = new Color(0.65f, 0.65f, 0.65f);
                     break;
             }
             GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
@@ -1289,13 +1289,13 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 1:
-                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    mColor = new Color(0.6f, 0.80f, 0.99f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.99f, 0.80f, 0.80f);
                     break;
                 case 3:
-                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    mColor = new Color(0.60f, 0.60f, 0.60f);
                     break;
             }
             GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
