@@ -55,6 +55,7 @@ public class CityShop : MonoBehaviour {
             reformShopWin_obj.SetActive(true);
             SetPaint();
             SetFabric();
+            CheckMaxPaint();
         }
     }
 
@@ -123,7 +124,7 @@ public class CityShop : MonoBehaviour {
         {
             interiorTape_obj[4].SetActive(true);
         }
-        if (PlayerPrefs.GetInt("gasrangelv", 0) > 1 && PlayerPrefs.GetInt("iceboxlv", 0) < 4)
+        if (PlayerPrefs.GetInt("gasrangelv", 0) > 2 && PlayerPrefs.GetInt("iceboxlv", 0) < 4)
         {
             interiorTape_obj[4].SetActive(true);
         }
@@ -561,6 +562,9 @@ public class CityShop : MonoBehaviour {
             Setpale();
             CheckMaxPaint();
             BuyFabric();
+            cRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+            hRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+            diamond_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
 
         }
         else
@@ -595,6 +599,9 @@ public class CityShop : MonoBehaviour {
             Setpale();
             CheckMaxPaint();
             BuyPaint();
+            cRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+            hRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+            diamond_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         }
         else
         {

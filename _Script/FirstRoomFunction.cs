@@ -207,34 +207,64 @@ public class FirstRoomFunction : CavasData {
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
 
-        
-        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
+
+
+        //벽지
+        if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
         {
-            wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
-            wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
+            wallImg_obj.GetComponent<Image>().sprite = reformWall_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
+            wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
         }
-        //침대
-        if (PlayerPrefs.GetInt("shoppalette7", 0) > 0)
+        //러그
+        if (PlayerPrefs.GetInt("shoppalette10", 0) > 0)
         {
-            bedImg_obj.GetComponent<Image>().sprite = reformDesk_spr[PlayerPrefs.GetInt("setbedpalette", 0)];
-        }
-        if (PlayerPrefs.GetInt("setrugpalette", 0) > 0)
-        {
-            rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-            rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-        }
-        if (PlayerPrefs.GetInt("setwallpalette", 0) > 0)
-        {
-            cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+            switch (PlayerPrefs.GetInt("setrugpalette", 0))
+            {
+                case 1:
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.80f, 0.80f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.80f, 0.80f, 0.80f);
+                    break;
+            }
         }
 
-        //책장
+        if (PlayerPrefs.GetInt("shoppalette11", 0) > 0)
+        {
+            switch (PlayerPrefs.GetInt("setcabinetpalette", 0))
+            {
+                case 1:
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);
+                    break;
+            }
+        }
+
+        //침대
         if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
         {
             bedImg_obj.SetActive(false);
             bedMax_obj.SetActive(true);
             bedMax_obj.GetComponent<Image>().sprite = bedMax_spr[PlayerPrefs.GetInt("bedmaxlv", 0)];
         }
+
+        //침대
+        if (PlayerPrefs.GetInt("shoppalette7", 0) > 0)
+        {
+            bedMax_obj.GetComponent<Image>().sprite = reformBed_spr[PlayerPrefs.GetInt("setbedpalette", 0)];
+        }
+
         if (PlayerPrefs.GetInt("shoppalette6", 0) > 0)
         {
             bookcase_obj.GetComponent<Image>().sprite = reformBookcase_spr[PlayerPrefs.GetInt("setbookpalette", 0)];

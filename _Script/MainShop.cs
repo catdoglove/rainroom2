@@ -59,10 +59,12 @@ public class MainShop : ShopHandler {
     //리폼
     public GameObject reform_obj,palette_obj;
     public GameObject[] paintcan_obj,paletteImg_obj;
-    public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj;
+    public GameObject[] matPalette_obj, mat2Palette_obj, shelfPalette_obj,lightPalette_obj, windowPalette_obj, drawerPalette_obj, bookPalette_obj, bedPalette_obj, deskPalette_obj, wallPalette_obj, rugPalette_obj, cabinetPalette_obj;
     public Sprite[] paintcan_spr,matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     Color mColor;
-    public GameObject[] selectMatPaint_obj, selectMat2Paint_obj, selectShelfPaint_obj;
+    public GameObject[] selectMatPaint_obj, selectMat2Paint_obj, selectShelfPaint_obj, selectlight_obj, selectwindow_obj, selectdrawet_obj, selectbook_obj, selectbed_obj, selectdesk_obj, selectwall_obj, selectrug_obj, selectcabinet_obj, selectAll_obj;
+    public GameObject[] reformPage_obj;
+    //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
     //부족하다창
     Color color;
     public GameObject needToast_obj;
@@ -78,7 +80,7 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-
+        PlayerPrefs.SetInt(str + "h", 99999);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -847,14 +849,27 @@ public class MainShop : ShopHandler {
         back_obj.SetActive(false);
         reform_obj.SetActive(true);
         palette_obj.SetActive(false);
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 12; i++)
         {
             if (PlayerPrefs.GetInt("shoppalette"+i, 0) == 1)
             {
                 paintcan_obj[i].GetComponent<Image>().sprite = paintcan_spr[i];
+                paintcan_obj[i].GetComponent<Button>().interactable = true;
             }
         }
     }
+
+    public void reformRight()
+    {
+        reformPage_obj[0].SetActive(false);
+        reformPage_obj[1].SetActive(true);
+    }
+    public void reformLeft()
+    {
+        reformPage_obj[0].SetActive(true);
+        reformPage_obj[1].SetActive(false);
+    }
+
     public void CloseReform()
     {
         reform_obj.SetActive(false);
@@ -891,12 +906,26 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite= matPaint_spr[1];
-            mColor = new Color(0.99f, 0.81f, 0.80f);
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    break;
+            }
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
         }
-        PlayerPrefs.SetInt("setmatpalette", 1);
-        selectMatPaint_obj[1].SetActive(true);
-        selectMatPaint_obj[0].SetActive(false);
+        PlayerPrefs.SetInt("setmatpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnMat()
     {
@@ -907,8 +936,10 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = matPaint_spr[0];
         }
         PlayerPrefs.SetInt("setmatpalette", 0);
-        selectMatPaint_obj[1].SetActive(false);
-        selectMatPaint_obj[0].SetActive(true);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
     }
     public void returnMat2()
     {
@@ -919,8 +950,10 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[0];
         }
         PlayerPrefs.SetInt("setmat2palette", 0);
-        selectMat2Paint_obj[1].SetActive(false);
-        selectMat2Paint_obj[0].SetActive(true);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
     }
     public void returnShelf()
     {
@@ -931,8 +964,10 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[0];
         }
         PlayerPrefs.SetInt("setshelfpalette", 0);
-        selectShelfPaint_obj[1].SetActive(false);
-        selectShelfPaint_obj[0].SetActive(true);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
     }
 
     public void SetMa2tPalette()
@@ -940,12 +975,26 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[1];
-            mColor = new Color(0.99f, 0.81f, 0.80f);
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    break;
+            }
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
         }
-        PlayerPrefs.SetInt("setmat2palette", 1);
-        selectMat2Paint_obj[1].SetActive(true);
-        selectMat2Paint_obj[0].SetActive(false);
+        PlayerPrefs.SetInt("setmat2palette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
     }
 
     public void SetShelfPalette()
@@ -953,13 +1002,327 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
-            mColor = new Color(0.99f, 0.81f, 0.80f);
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    break;
+            }
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
         }
-        PlayerPrefs.SetInt("setshelfpalette", 1);
-        selectShelfPaint_obj[1].SetActive(true);
-        selectShelfPaint_obj[0].SetActive(false);
+        PlayerPrefs.SetInt("setshelfpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
     }
+    //전등
+    public void SetLightPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().lightImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[itemIndex_i];
+            GM2.GetComponent<secondRoomFunction>().lightImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setlightpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnLight()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().lightImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[0];
+            GM2.GetComponent<secondRoomFunction>().lightImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[0];
+        }
+        PlayerPrefs.SetInt("setlightpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+    //창문
+    public void SetWindowPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().windowImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[itemIndex_i];
+            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setwindowpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnWindow()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().windowImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[0];
+            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[0];
+        }
+        PlayerPrefs.SetInt("setwindowpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+    //장식장
+    public void SetDrawerPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[itemIndex_i];
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    break;
+            }
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setdrawerpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }   
+    public void returnDrawer()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[0];
+        }
+        PlayerPrefs.SetInt("setdrawerpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+
+    //책장
+    public void SetBookPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().bookImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setbookpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnBook()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().bookImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[0];
+        }
+        PlayerPrefs.SetInt("setbookpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+    //침대
+    public void SetBedPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().bedMax_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBed_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setbedpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnBed()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().bedMax_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBed_spr[0];
+        }
+        PlayerPrefs.SetInt("setbedpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+    //책상
+    public void SetDeskPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().deskImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformDesk_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setdeskpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnDesk()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().deskImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformDesk_spr[0];
+        }
+        PlayerPrefs.SetInt("setdeskpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+
+    //벽지
+    public void SetWallPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall_spr[itemIndex_i];
+            GM.GetComponent<FirstRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall2_spr[itemIndex_i];
+        }
+
+        if (PlayerPrefs.GetInt("place", 0) == 1)//방
+        {
+            GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall_spr[itemIndex_i];
+            GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[itemIndex_i];
+        }
+        PlayerPrefs.SetInt("setwallpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnWall()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            GM.GetComponent<FirstRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall_spr[0];
+            GM.GetComponent<FirstRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall2_spr[0];
+        }
+        if (PlayerPrefs.GetInt("place", 0) == 1)//방
+        {
+            GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall_spr[0];
+            GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[0];
+        }
+        PlayerPrefs.SetInt("setwallpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+    //러그
+    public void SetRugPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.80f, 0.80f, 0.80f);
+                    break;
+            }
+            GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
+            GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setrugpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnRug()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
+            GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setrugpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+
+    // 서랍장
+    public void SetCabinetPalette()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            switch (itemIndex_i)
+            {
+                case 1:
+                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    break;
+                case 2:
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    break;
+                case 3:
+                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    break;
+            }
+            GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setcabinetpalette", itemIndex_i);
+        selectAll_obj[0].SetActive(false);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+        selectAll_obj[itemIndex_i].SetActive(true);
+    }
+    public void returnCabinet()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)//방
+        {
+            mColor = new Color(1f, 1f, 1f);
+            GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
+        }
+        PlayerPrefs.SetInt("setcabinetpalette", 0);
+        selectAll_obj[0].SetActive(true);
+        selectAll_obj[1].SetActive(false);
+        selectAll_obj[2].SetActive(false);
+        selectAll_obj[3].SetActive(false);
+    }
+
+
+
     //부엌
     public void OpenMat2Palette()
     {
@@ -1012,36 +1375,42 @@ public class MainShop : ShopHandler {
             {
                 paletteImg_obj[i].SetActive(false);
             }
+            //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
+
+            selectAll_obj[0].SetActive(false);
+            selectAll_obj[1].SetActive(false);
+            selectAll_obj[2].SetActive(false);
+            selectAll_obj[3].SetActive(false);
             switch (itemIndex_i)
             {
                 case 0:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectMatPaint_obj[PlayerPrefs.GetInt("setmatpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setmatpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        matPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            matPalette_obj[i].SetActive(true);
                         }
                     }
                     break;
                 case 1:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectMat2Paint_obj[PlayerPrefs.GetInt("setmat2palette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setmat2palette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        mat2Palette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            mat2Palette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 2:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setshelfpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
                         shelfPalette_obj[i].SetActive(false);
@@ -1054,117 +1423,117 @@ public class MainShop : ShopHandler {
                     break;
                 case 3:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setlightpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setlightpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        lightPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            lightPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 4:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setwindowpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setwindowpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        windowPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            windowPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 5:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setdrawerpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setdrawerpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        drawerPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            drawerPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 6:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setbookpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setbookpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        bookPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            bookPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 7:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        bedPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            bedPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 8:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setdeskpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setdeskpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        deskPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            deskPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 9:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setwallpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setwallpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        wallPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            wallPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 10:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setrugpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setrugpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        rugPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            rugPalette_obj[i].SetActive(true);
 
                         }
                     }
                     break;
                 case 11:
                     paletteImg_obj[itemIndex_i].SetActive(true);
-                    selectShelfPaint_obj[PlayerPrefs.GetInt("setcabinetpalette", 0)].SetActive(true);
+                    selectAll_obj[PlayerPrefs.GetInt("setcabinetpalette", 0)].SetActive(true);
                     for (int i = 0; i < 6; i++)
                     {
-                        shelfPalette_obj[i].SetActive(false);
+                        cabinetPalette_obj[i].SetActive(false);
                         if (PlayerPrefs.GetInt("shoppalette" + itemIndex_i + i, 0) == 1)
                         {
-                            shelfPalette_obj[i].SetActive(true);
+                            cabinetPalette_obj[i].SetActive(true);
 
                         }
                     }

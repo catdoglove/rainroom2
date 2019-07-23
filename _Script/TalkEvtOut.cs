@@ -474,24 +474,41 @@ public class TalkEvtOut : MonoBehaviour
     
     void getTalkClover()
     {
-        talkClover_i = PlayerPrefs.GetInt("talkclovercount", 0);
-        talkClover_i++;
-        if (talkClover_i >= 5)
+        
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
         {
-            talkClover_i = 0;
-            string str1;
-            str1 = PlayerPrefs.GetString("code", "");
-            int cv;
-            cv = PlayerPrefs.GetInt(str1 + "cv", 0);
-            cv++;
-            PlayerPrefs.SetInt(str1 + "cv", cv);           
+            talkClover_i = PlayerPrefs.GetInt("talkclovercount", 0);
+            talkClover_i++;
+            if (talkClover_i >= 5)
+            {
+                talkClover_i = 0;
+                string str1;
+                str1 = PlayerPrefs.GetString("code", "");
+                int cv;
+                cv = PlayerPrefs.GetInt(str1 + "cv", 0);
+                cv++;
+                PlayerPrefs.SetInt(str1 + "cv", cv);
 
+            }
+            PlayerPrefs.SetInt("talkclovercount", talkClover_i);
         }
-        PlayerPrefs.SetInt("talkclovercount", talkClover_i);
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            talkClover_i = PlayerPrefs.GetInt("talkdiacount", 0);
+            talkClover_i++;
+            if (talkClover_i >= 5)
+            {
+                talkClover_i = 0;
+                string str1;
+                str1 = PlayerPrefs.GetString("code", "");
+                int cv;
+                cv = PlayerPrefs.GetInt(str1 + "dm", 0);
+                cv++;
+                PlayerPrefs.SetInt(str1 + "dm", cv);
 
-
-        //여기다 outtrip 가져다 다이아 정의하기
-
+            }
+            PlayerPrefs.SetInt("talkdiacount", talkClover_i);
+        }
     }
 
 

@@ -58,7 +58,7 @@ public class CityTime : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
-                    randPaper_i = Random.Range(0, 3);
+                    randPaper_i = Random.Range(0, 17);
                     px = Random.Range(-2, 6);
                     py = Random.Range(-4, -2);
                 }
