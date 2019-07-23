@@ -19,16 +19,12 @@ public class UnityADS : MonoBehaviour {
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
-
-
+        
         StopCoroutine("adTimeFlow2");
         StopCoroutine("adAniTime2");
         StopCoroutine("adTimeFlow");
         StopCoroutine("adAniTime");
-
         
-        
-
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
             StartCoroutine("adTimeFlow");

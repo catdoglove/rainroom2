@@ -36,7 +36,7 @@ public class SleepTime : MonoBehaviour {
     public GameObject switchBtn_obj;
     public Sprite[] switch_spr;
     public GameObject rabbit_obj, rabbitSleep_obj;
-
+    public GameObject[] MaxSleep_obj;
     // Use this for initialization
     void Start () {
         n = PlayerPrefs.GetInt("bedlv", 0);
@@ -44,7 +44,16 @@ public class SleepTime : MonoBehaviour {
         {
             StartCoroutine("sleepTimecheck");
             sleepBlind_obj.SetActive(true);
-            sleep_obj[n-1].SetActive(true);
+            /*
+            if (bedmaxlv >= 1)
+            {
+
+            }
+            else
+            {
+            }*/
+
+            sleep_obj[n - 1].SetActive(true);
             sleepGone_obj.SetActive(false);
             if(PlayerPrefs.GetInt("switchshop", 0) == 2)
             {

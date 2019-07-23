@@ -35,7 +35,7 @@ public class MainBtnEvt : CavasData
     public Sprite[] help_spr;
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
-    public GameObject helpPark_obj;
+    public GameObject helpPark_obj,helpCity_obj;
     public Sprite[] helpP_spr;
     int help = 0;
 
@@ -567,11 +567,15 @@ public class MainBtnEvt : CavasData
         if (PlayerPrefs.GetInt("outtrip", 0) == 1)
         {
             helpPark_obj.SetActive(true);
+        }else if(PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            helpCity_obj.SetActive(true);
         }
         else
         {
             helpfrist_obj.SetActive(true);
         }
+
     }
 
     public void CloseHelpP()
@@ -587,6 +591,10 @@ public class MainBtnEvt : CavasData
             helpPark_obj.SetActive(false);
         }
 
+    }
+    public void CloseHelpC()
+    {
+            helpCity_obj.SetActive(false);
     }
 
     //쿠폰입력

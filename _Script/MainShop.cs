@@ -1059,7 +1059,7 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
             GM2.GetComponent<secondRoomFunction>().windowImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[itemIndex_i];
-            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[itemIndex_i];
+            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow2_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setwindowpalette", itemIndex_i);
         selectAll_obj[0].SetActive(false);
@@ -1073,7 +1073,7 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
             GM2.GetComponent<secondRoomFunction>().windowImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[0];
-            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow_spr[0];
+            GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow2_spr[0];
         }
         PlayerPrefs.SetInt("setwindowpalette", 0);
         selectAll_obj[0].SetActive(true);
@@ -1126,7 +1126,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
-            GM.GetComponent<FirstRoomFunction>().bookImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[itemIndex_i];
+            GM.GetComponent<FirstRoomFunction>().bookcase_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setbookpalette", itemIndex_i);
         selectAll_obj[0].SetActive(false);
@@ -1139,7 +1139,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
-            GM.GetComponent<FirstRoomFunction>().bookImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[0];
+            GM.GetComponent<FirstRoomFunction>().bookcase_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[0];
         }
         PlayerPrefs.SetInt("setbookpalette", 0);
         selectAll_obj[0].SetActive(true);

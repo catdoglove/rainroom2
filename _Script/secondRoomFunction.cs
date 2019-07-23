@@ -257,7 +257,7 @@ public class secondRoomFunction : CavasData {
         //부엌
         if (PlayerPrefs.GetInt("setmat2palette", 0) >= 1)
         {
-            switch (PlayerPrefs.GetInt("setmatpalette", 0))
+            switch (PlayerPrefs.GetInt("setmat2palette", 0))
             {
                 case 1:
                     matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);
@@ -274,7 +274,7 @@ public class secondRoomFunction : CavasData {
         //선반
         if (PlayerPrefs.GetInt("setshelfpalette", 0) >= 1)
         {
-            switch (PlayerPrefs.GetInt("setmatpalette", 0))
+            switch (PlayerPrefs.GetInt("setshelfpalette", 0))
             {
                 case 1:
                     shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.81f, 0.80f);

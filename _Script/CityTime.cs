@@ -9,6 +9,9 @@ public class CityTime : MonoBehaviour {
     public GameObject paper_obj;
     public int randPaper_i;
     public float px, py;
+    public GameObject coin_obj;
+    public int randCoin_i;
+    public float cx, cy;
     // Use this for initialization
     void Start () {
 
@@ -64,6 +67,28 @@ public class CityTime : MonoBehaviour {
                 }
             }
 
+
+
+            //전단지
+            if (randCoin_i == 1)
+            {
+                coin_obj.SetActive(false);
+                coin_obj.transform.position = new Vector3(cx, cy, coin_obj.transform.position.z);
+                if (PlayerPrefs.GetInt("front", 1) == 1)
+                {
+                    coin_obj.SetActive(true);
+                }
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt("front", 1) == 1)
+                {
+                    randCoin_i = Random.Range(0, 15);
+                    cx = Random.Range(-2, 6);
+                    cy = Random.Range(-4, -2);
+                }
+            }
+
             //저장하고 1초동안 대기
             PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
@@ -87,6 +112,18 @@ public class CityTime : MonoBehaviour {
         int h = PlayerPrefs.GetInt(str + "h", 0);
         h = h + 3;
         PlayerPrefs.SetInt(str + "h", h);
+    }
+
+
+
+    //코인
+    public void touchCoin()
+    {
+        coin_obj.SetActive(false);
+        randCoin_i = 0;
+        int d = PlayerPrefs.GetInt(str + "dm", 0);
+        d = d + 1;
+        PlayerPrefs.SetInt(str + "dm", d);
     }
 
 }

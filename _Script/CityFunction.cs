@@ -10,10 +10,11 @@ public class CityFunction : MonoBehaviour {
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
 
+    public GameObject inHelp_obj, reHelp_obj;
 
     //밤
     public GameObject dayRoom, dayRoom2;
-    public GameObject nightShop_obj, dayShop_obj;
+    public GameObject nightShop_obj, dayShop_obj, helpCity_obj;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +38,50 @@ public class CityFunction : MonoBehaviour {
 
         //밤낮
         setDay();
+
+
+
+        //도시에 처음 왔을때
+        if (PlayerPrefs.GetInt("cityfirst", 0) == 0)
+        {
+            helpCity_obj.SetActive(true);
+            PlayerPrefs.SetInt("cityfirst", 1);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void OpenActHelpI()
+    {
+        if (inHelp_obj.activeSelf == true)
+        {
+            inHelp_obj.SetActive(false);
+        }
+        else
+        {
+            inHelp_obj.SetActive(true);
+        }
+    }
+    public void OpenActHelpR()
+    {
+        if (reHelp_obj.activeSelf == true)
+        {
+            reHelp_obj.SetActive(false);
+        }
+        else
+        {
+            reHelp_obj.SetActive(true);
+        }
+    }
+    public void OpenActHelpF()
+    {
+        if (helpCity_obj.activeSelf == true)
+        {
+            helpCity_obj.SetActive(false);
+        }
+        else
+        {
+            helpCity_obj.SetActive(true);
+        }
     }
 
 
