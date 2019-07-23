@@ -64,7 +64,9 @@ public class MainShop : ShopHandler {
     Color mColor;
     public GameObject[] selectMatPaint_obj, selectMat2Paint_obj, selectShelfPaint_obj, selectlight_obj, selectwindow_obj, selectdrawet_obj, selectbook_obj, selectbed_obj, selectdesk_obj, selectwall_obj, selectrug_obj, selectcabinet_obj, selectAll_obj;
     public GameObject[] reformPage_obj;
+
     //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
+
     //부족하다창
     Color color;
     public GameObject needToast_obj;
@@ -76,11 +78,11 @@ public class MainShop : ShopHandler {
     void Start () {
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
+
         /*
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-        PlayerPrefs.SetInt(str + "h", 99999);
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -912,10 +914,10 @@ public class MainShop : ShopHandler {
                     mColor = new Color(0.99f, 0.81f, 0.80f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.80f, 0.9f, 0.99f);
                     break;
                 case 3:
-                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    mColor = new Color(0.99f, 0.9f, 0.80f);
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
@@ -981,10 +983,10 @@ public class MainShop : ShopHandler {
                     mColor = new Color(0.99f, 0.81f, 0.80f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.80f, 0.9f, 0.99f);
                     break;
                 case 3:
-                    mColor = new Color(0.99f, 0.99f, 0.80f);
+                    mColor = new Color(0.99f, 0.9f, 0.80f);
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
@@ -1084,7 +1086,6 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
-            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[itemIndex_i];
             switch (itemIndex_i)
             {
                 case 1:
@@ -1112,7 +1113,6 @@ public class MainShop : ShopHandler {
         {
             mColor = new Color(1f, 1f, 1f);
             GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
-            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[0];
         }
         PlayerPrefs.SetInt("setdrawerpalette", 0);
         selectAll_obj[0].SetActive(true);
@@ -1247,10 +1247,10 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 1:
-                    mColor = new Color(0.99f, 0.81f, 0.80f);
+                    mColor = new Color(0.80f, 0.81f, 0.99f);
                     break;
                 case 2:
-                    mColor = new Color(0.80f, 0.81f, 0.99f);
+                    mColor = new Color(0.90f, 0.81f, 0.80f);
                     break;
                 case 3:
                     mColor = new Color(0.80f, 0.80f, 0.80f);

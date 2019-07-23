@@ -36,7 +36,7 @@ public class MainInfo : MonoBehaviour {
     public InputField InputField;
     public GameObject nickBtn_obj;
     //마음
-    public Text h_txt, c_txt;
+    public Text h_txt, c_txt,d_txt;
     //
     public Text add_txt;
     public GameObject addTxt_obj;
@@ -92,7 +92,7 @@ public class MainInfo : MonoBehaviour {
         }
         if (PlayerPrefs.GetInt("outtrip", 0) == 2)
         {
-            c_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
+            d_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         }
 
     }

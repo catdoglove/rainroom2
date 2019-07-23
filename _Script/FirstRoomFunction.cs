@@ -235,6 +235,7 @@ public class FirstRoomFunction : CavasData {
             }
         }
 
+        //서랍장
         if (PlayerPrefs.GetInt("shoppalette11", 0) > 0)
         {
             switch (PlayerPrefs.GetInt("setcabinetpalette", 0))

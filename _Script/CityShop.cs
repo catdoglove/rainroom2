@@ -49,6 +49,11 @@ public class CityShop : MonoBehaviour {
         }
         else
         {
+            for(int i = 0; i < 6; i++)
+            {
+                fabricTape_obj[i].SetActive(false);
+                paintTape_obj[i].SetActive(false);
+            }
             cRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
             hRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             diamond_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
@@ -142,6 +147,8 @@ public class CityShop : MonoBehaviour {
         interiorC_i = icePriceC_i[inm];
         interiorH_i = icePriceH_i[inm];
         int hm = PlayerPrefs.GetInt(interior_str, 0);
+
+        InteriorItem_txt.text = "";
         if (hm == 2)
         {
             InteriorItem_txt.text = "미니냉장고";
@@ -150,10 +157,6 @@ public class CityShop : MonoBehaviour {
         if (hm == 3)
         {
             InteriorItem_txt.text = "2단냉장고";
-        }
-        else
-        {
-            InteriorItem_txt.text = "";
         }
         
     }
@@ -165,6 +168,7 @@ public class CityShop : MonoBehaviour {
         interiorC_i = bedPriceC_i[inm];
         interiorH_i = bedPriceH_i[inm];
         int hm = PlayerPrefs.GetInt(interior_str, 0);
+        InteriorItem_txt.text = "";
         if (hm == 0)
         {
             InteriorItem_txt.text = "낡은 침대";
@@ -173,10 +177,6 @@ public class CityShop : MonoBehaviour {
         if (hm == 1)
         {
             InteriorItem_txt.text = "완전한 침대";
-        }
-        else
-        {
-            InteriorItem_txt.text = "";
         }
 
     }
@@ -190,6 +190,8 @@ public class CityShop : MonoBehaviour {
         interiorC_i = deskPriceC_i[inm];
         interiorH_i = deskPriceH_i[inm];
         int hm = PlayerPrefs.GetInt(interior_str, 0);
+
+        InteriorItem_txt.text = "";
         if (hm == 3)
         {
             InteriorItem_txt.text = "플라스틱 탁자";
@@ -202,10 +204,6 @@ public class CityShop : MonoBehaviour {
         {
             InteriorItem_txt.text = "완전한 책상";
         }
-        else
-        {
-            InteriorItem_txt.text = "";
-        }
     }
     public void lights()
     {
@@ -216,6 +214,8 @@ public class CityShop : MonoBehaviour {
         interiorC_i = lightPriceC_i[inm];
         interiorH_i = lightPriceH_i[inm];
         int hm = PlayerPrefs.GetInt(interior_str, 0);
+
+        InteriorItem_txt.text = "";
         if (hm == 0)
         {
             InteriorItem_txt.text = "좋은 전등";
@@ -223,10 +223,6 @@ public class CityShop : MonoBehaviour {
         if (hm == 1)
         {
             InteriorItem_txt.text = "완전한 전등";
-        }
-        else
-        {
-            InteriorItem_txt.text = "";
         }
     }
     public void gas()
@@ -238,6 +234,7 @@ public class CityShop : MonoBehaviour {
         interiorC_i = gasPriceC_i[inm];
         interiorH_i = gasPriceH_i[inm];
         int hm = PlayerPrefs.GetInt(interior_str, 0);
+        InteriorItem_txt.text = "";
         if (hm == 1)
         {
             InteriorItem_txt.text = "낡은 렌지";
@@ -254,10 +251,7 @@ public class CityShop : MonoBehaviour {
         {
             InteriorItem_txt.text = "좋은 가스렌지";
         }
-        else
-        {
-            InteriorItem_txt.text = "";
-        }
+        Debug.Log(InteriorItem_txt + "," + hm);
     }
 
     public void InteriorY()
@@ -320,7 +314,7 @@ public class CityShop : MonoBehaviour {
             interiorTape_obj[3].GetComponent<Image>().sprite = soldOut_spr;
         }
         //가스렌지 2레벨
-        if (PlayerPrefs.GetInt("gasrangelv", 0) >= 3)
+        if (PlayerPrefs.GetInt("gasrangelv", 0) >= 5)
         {
             //soldInterior_obj[3].SetActive(true);
             interiorTape_obj[4].SetActive(true);
@@ -466,8 +460,6 @@ public class CityShop : MonoBehaviour {
 
     void SetPaint()
     {
-
-
         //matImg2_obj.GetComponent<Image>().color = new Color(99, 99, 99);
         //물건 업그래이드 단계확인 부족하면 테이프로 가리기
         //장식장 4레벨 일때 가능
@@ -476,7 +468,7 @@ public class CityShop : MonoBehaviour {
             paintTape_obj[0].SetActive(true);
         }
         //선반 2레벨일때 가능
-        if (PlayerPrefs.GetInt("shoppalette" + 2, 0) != 1)
+        if (PlayerPrefs.GetInt("shoppalette2", 0) == 0)
         {
             paintTape_obj[1].SetActive(true);
         }
@@ -748,8 +740,8 @@ public class CityShop : MonoBehaviour {
         gasPriceH_i[1] = 250;
         gasPriceC_i[2] = 3300;
         gasPriceH_i[2] = 310;
-        gasPriceC_i[2] = 4400;
-        gasPriceH_i[2] = 360;
+        gasPriceC_i[3] = 4400;
+        gasPriceH_i[3] = 360;
 
     }
 
