@@ -52,6 +52,10 @@ public class ParkShop : MonoBehaviour {
     //도움말
     public GameObject help_obj;
     public Sprite[] help_spr;
+
+    //밤식물
+    public GameObject flowerColor_obj,flowerBuy_obj;
+
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -827,6 +831,17 @@ public class ParkShop : MonoBehaviour {
     public void CloseHelp()
     {
         help_obj.SetActive(false);
+    }
+
+    //밤에식물구매
+    public void OpenFlowerColor()
+    {
+        flowerColor_obj.SetActive(true);
+    }
+    
+    public void BuyFlowerColor()
+    {
+        flowerColor_obj.SetActive(true);
     }
 
     void needMoney()
