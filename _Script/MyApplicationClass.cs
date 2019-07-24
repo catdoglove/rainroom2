@@ -55,7 +55,7 @@ void Start () {
 
     private void OnDestroy()
     {
-        Debug.Log("살려줘");
+        //Debug.Log("살려줘");
         delCache();
     }
 
