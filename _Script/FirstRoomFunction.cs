@@ -277,8 +277,7 @@ public class FirstRoomFunction : CavasData {
         {
             deskImg_obj.GetComponent<Image>().sprite = reformDesk_spr[PlayerPrefs.GetInt("setdeskpalette", 0)];
         }
-
-
+        
         if (ladderBox_obj.activeSelf == false)
         {
             ladderImg_obj.GetComponent<Image>().sprite = ladder_spr;

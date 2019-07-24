@@ -83,6 +83,7 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
+
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -304,6 +305,10 @@ public class MainShop : ShopHandler {
         {
             switch (itemIndex_i)
             {
+                case 5:
+                    GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().wall_spr[itemLevel_i];
+                    GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().wall2_spr[itemLevel_i];
+                    break;
                 case 6:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[13].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];

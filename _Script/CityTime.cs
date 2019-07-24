@@ -63,7 +63,7 @@ public class CityTime : MonoBehaviour {
                 {
                     randPaper_i = Random.Range(0, 17);
                     px = Random.Range(-2, 6);
-                    py = Random.Range(-4, -2);
+                    py = Random.Range(-4, -3);
                 }
             }
 
@@ -85,7 +85,7 @@ public class CityTime : MonoBehaviour {
                 {
                     randCoin_i = Random.Range(0, 999);
                     cx = Random.Range(-2, 6);
-                    cy = Random.Range(-4, -2);
+                    cy = Random.Range(-3, -2);
                 }
             }
 

@@ -123,6 +123,10 @@ public class MainSticker : MonoBehaviour
                 {
                     GM= GameObject.FindGameObjectWithTag("parkGM");
                 }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+                {
+                    GM = GameObject.FindGameObjectWithTag("cityGM");
+                }
                 gameObject.SetActive(false);
                 name_str = this.gameObject.name;
                 if (name_str.Length == 3)
