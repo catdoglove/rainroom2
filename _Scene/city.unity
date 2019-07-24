@@ -2687,7 +2687,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 101
-  m_Sprite: {fileID: 21300000, guid: 812b7c28ca9e11f4da2ca74311006c22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70054207af090a045a8d7c3a17cf3741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2928,8 +2928,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: adYN
+      - m_Target: {fileID: 2128228830}
+        m_MethodName: OpenAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7684,7 +7684,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228833}
+      - m_Target: {fileID: 0}
         m_MethodName: leafPlant
         m_Mode: 1
         m_Arguments:
@@ -8196,7 +8196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228833}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseHelpP
         m_Mode: 1
         m_Arguments:
@@ -20728,7 +20728,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 365005795}
-        m_MethodName: lightSound
+        m_MethodName: starSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21359,8 +21359,6 @@ GameObject:
   - component: {fileID: 2128228829}
   - component: {fileID: 2128228832}
   - component: {fileID: 2128228835}
-  - component: {fileID: 2128228833}
-  - component: {fileID: 2128228836}
   - component: {fileID: 2128228824}
   - component: {fileID: 2128228823}
   - component: {fileID: 2128228826}
@@ -21733,52 +21731,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 463b4c45ba85af740b5635f69afdcfaf, type: 3}
   title_txt: {fileID: 957047373}
   info_txt: {fileID: 1904536174}
---- !u!114 &2128228833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86b1dbee070c534b9a2acde8b683edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coldRain_i: 0
-  hotRain_i: 0
-  talkNumber_i: 0
-  favor_i: 0
-  favorLevel_i: 0
-  canvasPack_cvs:
-  - {fileID: 1495067293}
-  - {fileID: 1462431040}
-  - {fileID: 800312760}
-  - {fileID: 882829929}
-  - {fileID: 1822435664}
-  - {fileID: 1395556327}
-  menuBlock_obj: {fileID: 0}
-  menuBlock_vet: {x: 0, y: 0}
-  dayRoom: {fileID: 2113737751}
-  dayRoom2: {fileID: 750697893}
-  nightShop_obj: {fileID: 2077144844}
-  dayShop_obj: {fileID: 964834312}
-  audio_obj: {fileID: 365005793}
-  eventRand_i: 0
-  eventPet_obj: {fileID: 0}
-  eventPaint_obj: {fileID: 0}
-  event_obj: {fileID: 0}
-  event_spr:
-  - {fileID: 21300002, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  - {fileID: 21300004, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  - {fileID: 21300000, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  helpPark_obj: {fileID: 815027769}
-  helpP_spr:
-  - {fileID: 21300000, guid: 5db216b463450e643861d2baf5d4df9f, type: 3}
-  - {fileID: 21300000, guid: f15e8abfc81764a4ea39348a192e49a4, type: 3}
-  GMtag: {fileID: 0}
-  GMP: {fileID: 2128228821}
-  leafPr_obj: {fileID: 772564719}
-  leafWin_obj: {fileID: 0}
 --- !u!114 &2128228835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21855,23 +21807,6 @@ MonoBehaviour:
   frame_i: 0
   showNum_i: 380000003a0000003c0000000a0000000c0000000e0000002a0000002c0000002e000000020000000400000010000000120000001400000031000000330000003500000017000000190000001c0000003f000000070000001f000000280000004200000021000000230000002500000045000000
   frameShow_obj: {fileID: 1727241279}
---- !u!114 &2128228836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c8bf0f634961b34faccee101045da6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leaf_obj: {fileID: 745321261}
-  GMP: {fileID: 2128228821}
-  bas_obj: {fileID: 0}
-  bas_spr:
-  - {fileID: 21300000, guid: 1f703e146a75fd64b904de9f1270feed, type: 3}
-  - {fileID: 21300002, guid: 1f703e146a75fd64b904de9f1270feed, type: 3}
 --- !u!1 &2128879277
 GameObject:
   m_ObjectHideFlags: 0

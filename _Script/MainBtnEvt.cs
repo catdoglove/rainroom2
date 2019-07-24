@@ -679,6 +679,7 @@ public class MainBtnEvt : CavasData
         goHome_obj.SetActive(true);
         StopCoroutine("menuFlow");
         StartCoroutine("menuFlowBack");
+        MainBtn_obj[0].SetActive(true);
     }
     public void CloseGoHome()
     {

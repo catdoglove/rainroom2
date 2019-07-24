@@ -69,7 +69,7 @@ public class CityTime : MonoBehaviour {
 
 
 
-            //전단지
+            //코인
             if (randCoin_i == 1)
             {
                 coin_obj.SetActive(false);
@@ -83,7 +83,7 @@ public class CityTime : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
-                    randCoin_i = Random.Range(0, 15);
+                    randCoin_i = Random.Range(0, 999);
                     cx = Random.Range(-2, 6);
                     cy = Random.Range(-4, -2);
                 }

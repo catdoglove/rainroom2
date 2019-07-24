@@ -478,6 +478,10 @@ public class MainShop : ShopHandler {
         {
             functionTape_obj[1].SetActive(true);
         }
+        if (PlayerPrefs.GetInt("storg", 0)==1)
+        {
+            functionTape_obj[4].SetActive(false);
+        }
 
         if (waterpurifier_i == 1)
         {
@@ -652,7 +656,7 @@ public class MainShop : ShopHandler {
     //보관함
     public void OpenFuncCabinet()
     {
-        if (PlayerPrefs.GetInt("wateringcanshop", 0) == 2)
+        if (PlayerPrefs.GetInt("wateringcanshop", 0) >= 2)
         {
             funcBox_obj[0].SetActive(true);
         }
@@ -660,17 +664,118 @@ public class MainShop : ShopHandler {
         {
             funcBox_obj[0].SetActive(false);
         }
-            shop_obj.SetActive(false);
+        if (PlayerPrefs.GetInt("leafget", 0) >= 1)
+        {
+            funcBox_obj[1].SetActive(true);
+        }
+        else
+        {
+            funcBox_obj[1].SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("paintinroom", 0) >= 1)
+        {
+            funcBox_obj[2].SetActive(true);
+        }
+        else
+        {
+            funcBox_obj[2].SetActive(false);
+        }
+        shop_obj.SetActive(false);
         close_obj.SetActive(false);
         back_obj.SetActive(false);
         funcCabinet_obj.SetActive(true);
-        if(PlayerPrefs.GetInt("putwatercan", 1) == 1)
+        if(PlayerPrefs.GetInt("putwatercan", 1) >= 1)
         {
             funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[0];
         }
         else
         {
             funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[1];
+        }
+
+        if (PlayerPrefs.GetInt("putleaf", 1) >= 1)
+        {
+            funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[2];
+        }
+        else
+        {
+            funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[3];
+        }
+        if (PlayerPrefs.GetInt("putframe", 1) >= 1)
+        {
+            funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[4];
+        }
+        else
+        {
+            funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[5];
+        }
+    }
+    //식물 보관
+    public void PutPlant()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2.GetComponent<SecondRoomTime>().plant_obj.activeSelf == true)
+            {
+                GM2.GetComponent<SecondRoomTime>().plant_obj.SetActive(false);
+                PlayerPrefs.SetInt("putleaf",0);
+                funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[3];
+            }
+            else
+            {
+                GM2.GetComponent<SecondRoomTime>().plant_obj.SetActive(true);
+                PlayerPrefs.SetInt("putleaf", 1);
+                funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[2];
+            }
+
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putleaf", 1) == 1)
+            {
+                PlayerPrefs.SetInt("putleaf", 0);
+                funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[3];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putleaf", 1);
+                funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[2];
+            }
+
+        }
+    }
+    //그림 보관
+    public void PutFrame()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            if (GM.GetComponent<MainPaint>().paintFrame_obj.activeSelf == true)
+            {
+                GM.GetComponent<MainPaint>().paintFrame_obj.SetActive(false);
+                PlayerPrefs.SetInt("putframe", 0);
+                funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[5];
+            }
+            else
+            {
+                GM.GetComponent<MainPaint>().paintFrame_obj.SetActive(true);
+                PlayerPrefs.SetInt("putframe", 1);
+                funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[4];
+            }
+
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putframe", 1) == 1)
+            {
+                PlayerPrefs.SetInt("putframe", 0);
+                funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[5];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putframe", 1);
+                funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[4];
+            }
+
         }
     }
     //물뿌리개 보관
@@ -681,7 +786,7 @@ public class MainShop : ShopHandler {
             if (GM2.GetComponent<secondRoomFunction>().WaterCan_obj.activeSelf == true)
             {
                 GM2.GetComponent<secondRoomFunction>().WaterCan_obj.SetActive(false);
-                PlayerPrefs.SetInt("putwatercan",0);
+                PlayerPrefs.SetInt("putwatercan", 0);
                 funcBox_obj[0].GetComponent<Image>().sprite = funcBox_spr[1];
             }
             else
@@ -1376,7 +1481,6 @@ public class MainShop : ShopHandler {
                 paletteImg_obj[i].SetActive(false);
             }
             //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
-
             selectAll_obj[0].SetActive(false);
             selectAll_obj[1].SetActive(false);
             selectAll_obj[2].SetActive(false);
@@ -1604,7 +1708,6 @@ public class MainShop : ShopHandler {
 
                     GM2.GetComponent<AchievementShow>().achievementCheck(21, 0);
                 }
-
             }
         }
         //Debug.Log(itemName_str + PlayerPrefs.GetInt("windowlv") + "window" + PlayerPrefs.GetInt("allwindow", 0));

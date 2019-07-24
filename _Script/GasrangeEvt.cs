@@ -302,7 +302,7 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void OpenIceBox()
     {
-        if(PlayerPrefs.GetInt("iceboxlv", 0) == 2)
+        if(PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
         {
             iceLv_obj.SetActive(true);
         }

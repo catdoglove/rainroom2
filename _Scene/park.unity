@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228831}
+      - m_Target: {fileID: 2128228823}
         m_MethodName: closeAdYN
         m_Mode: 1
         m_Arguments:
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228831}
+      - m_Target: {fileID: 2128228823}
         m_MethodName: adYN
         m_Mode: 1
         m_Arguments:
@@ -23248,13 +23248,13 @@ GameObject:
   - component: {fileID: 2128228825}
   - component: {fileID: 2128228827}
   - component: {fileID: 2128228829}
-  - component: {fileID: 2128228831}
   - component: {fileID: 2128228832}
   - component: {fileID: 2128228835}
   - component: {fileID: 2128228833}
   - component: {fileID: 2128228834}
   - component: {fileID: 2128228836}
   - component: {fileID: 2128228824}
+  - component: {fileID: 2128228823}
   m_Layer: 0
   m_Name: parkGM
   m_TagString: parkGM
@@ -23275,6 +23275,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2128228823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128228821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89787c842fcdf95449f0ff6449ec66e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundck: 0
+  ad_obj: {fileID: 56489020}
+  radio_ani: {fileID: 2130406945}
+  adBtn_obj: {fileID: 324477155}
+  Toast_obj: {fileID: 753627549}
 --- !u!114 &2128228824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23361,22 +23377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Main_camera: {fileID: 1609354257}
   canvas_obj: {fileID: 0}
---- !u!114 &2128228831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1463b23e76978044a986a2331da1f64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundck: 0
-  ad_obj: {fileID: 56489020}
-  radio_ani: {fileID: 2130406945}
-  adBtn_obj: {fileID: 324477155}
-  Toast_obj: {fileID: 753627549}
 --- !u!114 &2128228832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23809,7 +23809,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228831}
+      - m_Target: {fileID: 2128228823}
         m_MethodName: adYes
         m_Mode: 1
         m_Arguments:

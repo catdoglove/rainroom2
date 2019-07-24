@@ -26,10 +26,17 @@ public class SecondRoomTime : MonoBehaviour {
         //식물
         if (PlayerPrefs.GetInt("leafget", 0) >= 1)
         {
+            PlayerPrefs.SetInt("storg", 1);
             plant_obj.SetActive(true);
             if (PlayerPrefs.GetInt("leafget", 0) == 1)
             {
                 platMemo_obj.SetActive(true);
+            }
+
+
+            if (PlayerPrefs.GetInt("putleaf", 1) == 0)
+            {
+                plant_obj.SetActive(false);
             }
         }
 

@@ -149,7 +149,8 @@ public class FirstRoomFunction : CavasData {
 		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
         cabinet_i = PlayerPrefs.GetInt("cabinetlv", 0);
-        if(PlayerPrefs.GetInt("frameopen", 0) == 1)
+        //액자
+        if (PlayerPrefs.GetInt("frameopen", 0) == 1)
         {
             frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
             frame_obj.GetComponent<Button>().interactable = true;
@@ -186,7 +187,7 @@ public class FirstRoomFunction : CavasData {
     public void setItems()
     {
         //windowImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData> ().window_spr [window_i];
-        if (PlayerPrefs.GetInt("booklv", 0) == 15)
+        if (PlayerPrefs.GetInt("booklv", 0) >= 15)
         {
             bookcase_obj.GetComponent<Image>().sprite = bookcase_spr;
             bookcase_obj.SetActive(true);

@@ -106,7 +106,12 @@ public class AdmobADSCity : MonoBehaviour {
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
         PlayerPrefs.SetInt("talk", 5);
-        PlayerPrefs.SetInt("secf2", 240);
+        PlayerPrefs.Save();
+        if (PlayerPrefs.GetInt("talk", 5) >= 5)
+        {
+            PlayerPrefs.SetInt("secf3", 240);
+        }
+        ad_obj.SetActive(false);
     }
 
     //동영상닫음
@@ -120,7 +125,7 @@ public class AdmobADSCity : MonoBehaviour {
         if (rewardBasedVideo.IsLoaded())
         {
             rewardBasedVideo.Show();
-            PlayerPrefs.SetInt("secf3", 240);
+            //PlayerPrefs.SetInt("secf3", 240);
         }
         else
         {
@@ -167,7 +172,6 @@ public class AdmobADSCity : MonoBehaviour {
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
-        
     }
     
 
@@ -193,18 +197,20 @@ public class AdmobADSCity : MonoBehaviour {
     */
 
 
+    public void OpenAd()
+    {
+
+        ad_obj.SetActive(true);
+    }
+
+
     IEnumerator adTimeFlow2()
     {
         while (mG2 > -1)
         {
             sG2 = PlayerPrefs.GetInt("secf3", 0);
-            //Debug.Log(sG);
-            mG2 = (int)(sG2 / 60);
-            sG2 = sG2 - (sG2 / 60) * 60;
             if (sG2 < 0)
             {
-                sG2 = 0;
-                mG2 = 0;
             }
             else
             {
@@ -231,9 +237,6 @@ public class AdmobADSCity : MonoBehaviour {
             {
                     radio_ani.SetActive(true);
                     adBtn_obj.SetActive(true);
-                
-                    radio_ani.SetActive(false);
-                    adBtn_obj.SetActive(false);
             }
 
             yield return null;

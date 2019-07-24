@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class UnityADS : MonoBehaviour {
+public class UnityADSPark : MonoBehaviour {
 
     private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
     public int soundck;
@@ -25,26 +25,8 @@ public class UnityADS : MonoBehaviour {
         StopCoroutine("adTimeFlow");
         StopCoroutine("adAniTime");
         
-        if (PlayerPrefs.GetInt("place", 0) == 0)
-        {
             StartCoroutine("adTimeFlow");
             StartCoroutine("adAniTime");
-        }
-        else if(PlayerPrefs.GetInt("outtrip", 0) == 0)
-        {
-            StartCoroutine("adTimeFlow2");
-            StartCoroutine("adAniTime2");
-        }
-        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
-        {
-            StartCoroutine("adTimeFlow2");
-            StartCoroutine("adAniTime2");
-        }
-        else
-        {
-            StartCoroutine("adTimeFlow");
-            StartCoroutine("adAniTime");
-        }
 
 
 
@@ -99,7 +81,7 @@ public class UnityADS : MonoBehaviour {
             PlayerPrefs.Save();
             if (PlayerPrefs.GetInt("talk", 5)>=5)
             {
-                PlayerPrefs.SetInt("secf", 240);
+                PlayerPrefs.SetInt("secf0", 240);
             }
         }
     }
@@ -108,7 +90,7 @@ public class UnityADS : MonoBehaviour {
 
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
-			sG = PlayerPrefs.GetInt("secf", 240);
+			sG = PlayerPrefs.GetInt("secf0", 0);
             //Debug.Log(sG);
             mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
@@ -119,12 +101,12 @@ public class UnityADS : MonoBehaviour {
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-			sG = PlayerPrefs.GetInt("secf", 240);
+			sG = PlayerPrefs.GetInt("secf0", 0);
 			sG = sG - 1;
 			if (sG < 0) {
 				sG = -1;
 			}
-			PlayerPrefs.SetInt("secf",sG);
+			PlayerPrefs.SetInt("secf0",sG);
 			yield return new WaitForSeconds(1f);
             //Debug.Log("sg" + sG);
         }
@@ -136,24 +118,8 @@ public class UnityADS : MonoBehaviour {
         {
             if (sG < 0)
             {
-                if (PlayerPrefs.GetInt("outtrip", 0) == 1)
-                {
                     radio_ani.SetActive(true);
                     adBtn_obj.SetActive(true);
-                }
-                else
-                {
-                    if (PlayerPrefs.GetInt("front", 1) == 1)
-                    {
-                        radio_ani.SetActive(true);
-                        adBtn_obj.SetActive(true);
-                    }
-                    else
-                    {
-                        radio_ani.SetActive(false);
-                        adBtn_obj.SetActive(false);
-                    }
-                }
             }
             yield return null;
         }

@@ -13,8 +13,9 @@ public class MainPaint : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (PlayerPrefs.GetInt("paintinroom", 0)==1)
+        if (PlayerPrefs.GetInt("paintinroom", 0) == 1)
         {
+            PlayerPrefs.SetInt("storg",1);
             paintFrame_obj.SetActive(true);
             if (PlayerPrefs.GetInt("setPaint", -1) == -1)
             {
@@ -24,6 +25,12 @@ public class MainPaint : MonoBehaviour {
             {
                 roomPaint_obj.GetComponent<Image>().sprite = paint_spr[PlayerPrefs.GetInt("setPaint", 0)];
                 roomPaint_obj.SetActive(true);
+            }
+
+
+            if (PlayerPrefs.GetInt("putframe", 1) == 0)
+            {
+                paintFrame_obj.SetActive(false);
             }
         }
     }

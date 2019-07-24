@@ -36,7 +36,8 @@ public class SleepTime : MonoBehaviour {
     public GameObject switchBtn_obj;
     public Sprite[] switch_spr;
     public GameObject rabbit_obj, rabbitSleep_obj;
-    public GameObject[] MaxSleep_obj;
+    public GameObject sleepMax_obj;
+    public GameObject[] sleepColor_obj;
     // Use this for initialization
     void Start () {
         n = PlayerPrefs.GetInt("bedlv", 0);
@@ -44,16 +45,21 @@ public class SleepTime : MonoBehaviour {
         {
             StartCoroutine("sleepTimecheck");
             sleepBlind_obj.SetActive(true);
-            /*
-            if (bedmaxlv >= 1)
-            {
 
+            if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
+            {
+                sleepMax_obj.SetActive(true);
+                if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
+                {
+                    sleepMax_obj.SetActive(false);
+                    sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
+                }
             }
             else
             {
-            }*/
+                sleep_obj[n - 1].SetActive(true);
+            }
 
-            sleep_obj[n - 1].SetActive(true);
             sleepGone_obj.SetActive(false);
             if(PlayerPrefs.GetInt("switchshop", 0) == 2)
             {
@@ -148,7 +154,20 @@ public class SleepTime : MonoBehaviour {
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
-        sleep_obj[n-1].SetActive(true);
+
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
+        {
+            sleepMax_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
+            {
+                sleepMax_obj.SetActive(false);
+                sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
+            }
+        }
+        else
+        {
+            sleep_obj[n - 1].SetActive(true);
+        }
         sleepGone_obj.SetActive(false);
         dreamBtn_obj.SetActive(false);
 
@@ -196,7 +215,20 @@ public class SleepTime : MonoBehaviour {
             {
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);
-                sleep_obj[n-1].SetActive(false);
+
+                if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
+                {
+                    sleepMax_obj.SetActive(true);
+                    if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
+                    {
+                        sleepMax_obj.SetActive(false);
+                        sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(false);
+                    }
+                }
+                else
+                {
+                    sleep_obj[n - 1].SetActive(false);
+                }
                 sleepGone_obj.SetActive(true);
                 //StopCoroutine("sleepTimecheck");
                 if(PlayerPrefs.GetInt("nowsleep", 0) == 1)
