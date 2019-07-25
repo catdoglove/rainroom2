@@ -7,7 +7,7 @@ public class CityFood : MonoBehaviour {
 
     public GameObject truckWindow_obj, truckWindowYN_obj;
     public GameObject foodWindow_obj;
-    public GameObject foodBuy_obj, selectFood_obj, foodIlust_obj;
+    public GameObject foodBuy_obj, foodBuyYN_obj, selectFood_obj, foodIlust_obj;
     public Sprite[] selectFood_spr;
     public int point_i;
     public Color color;
@@ -37,14 +37,107 @@ public class CityFood : MonoBehaviour {
     }
     public void BuyTruckShopY()
     {
-        truckWindowYN_obj.SetActive(true);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "dm", 0);
+        point_i = PlayerPrefs.GetInt("lovepoint", 0);
+        //당근 오이 파프리카
+        switch (shopNum)
+        {
+            case 0:
+                if (p_i >= 6)
+                {
+                    p_i = p_i - 6;
+                    PlayerPrefs.SetInt(str1 + "dm", p_i);
+                    point_i = point_i + 3;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 1:
+                if (p_i >= 8)
+                {
+                    p_i = p_i - 8;
+                    PlayerPrefs.SetInt(str1 + "dm", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 2:
+                if (p_i >= 12)
+                {
+                    p_i = p_i - 12;
+                    PlayerPrefs.SetInt(str1 + "dm", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 3:
+                if (p_i >= 10)
+                {
+                    p_i = p_i - 10;
+                    PlayerPrefs.SetInt(str1 + "dm", p_i);
+                    point_i = point_i + 4;
+                    BuyFoodOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+        }
+        truckWindowYN_obj.SetActive(false);
     }
+
+
+    void BuyTruckYN()
+    {
+        clover_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
+        PlayerPrefs.SetInt("lovepoint", point_i);
+        allClose();
+        audio_obj.GetComponent<SoundEvt>().foodSound();
+        PlayerPrefs.Save();
+    }
+
     public void BuyTruckShopN()
     {
         truckWindowYN_obj.SetActive(true);
     }
 
 
+    public void OpenActFoodShop()
+    {
+        if (foodWindow_obj.activeSelf == true)
+        {
+            foodWindow_obj.SetActive(false);
+        }
+        else
+        {
+            foodWindow_obj.SetActive(true);
+        }
+    }
+    public void OpenActTruckShop()
+    {
+        if (truckWindow_obj.activeSelf == true)
+        {
+            truckWindow_obj.SetActive(false);
+        }
+        else
+        {
+            truckWindow_obj.SetActive(true);
+        }
+    }
     public void BuyFoodShop()
     {
         foodBuy_obj.SetActive(true);
