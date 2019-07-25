@@ -115,7 +115,6 @@ public class GasrangeEvt : MonoBehaviour {
                 case 2:
                     break;
             }
-            //PlayerPrefs.
             //계란
             if (egg_i == 1)
             {

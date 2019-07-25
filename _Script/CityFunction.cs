@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CityFunction : MonoBehaviour {
+public class CityFunction : CavasData
+{
     public GameObject GMtag;
     public GameObject buildToast_obj;
 

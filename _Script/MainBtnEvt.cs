@@ -413,7 +413,7 @@ public class MainBtnEvt : CavasData
             {
                 GM2 = GameObject.FindGameObjectWithTag("cityGM");
             }
-            GM2.GetComponent<CityFunction>().building();
+            GM2.GetComponent<CityFunction>().changeSight();
         }
         else
         {
