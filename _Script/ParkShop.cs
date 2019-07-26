@@ -35,8 +35,8 @@ public class ParkShop : MonoBehaviour {
     public GameObject inYN_obj, inYNImg_obj;
     public Sprite[] shop_spr,in_spr;
     public GameObject shopImg_obj, shopText_obj, ingblock_obj;
-    int c_i;
-    int p_i;
+    int c_i,h_i;
+    int p_i,cv_i;
     public GameObject[] shopSoldout_obj,shopBtn_obj, inSoldout_obj, inBtn_obj, shopGet_obj;
     public GameObject inIceboxTxt_obj;
     //애완동물
@@ -55,7 +55,9 @@ public class ParkShop : MonoBehaviour {
 
     //밤식물
     public GameObject flowerColor_obj,flowerBuy_obj;
-    public int[] flowerPrice_i;
+    public int[] flowerPriceH_i, flowerPriceCv_i;
+    public Text flowerCv_txt,flowerH_txt;
+    int mc = 0;
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -834,7 +836,8 @@ public class ParkShop : MonoBehaviour {
         help_obj.SetActive(false);
     }
 
-    //밤에식물구매
+
+    //밤에식물구매 꽃 팔레트 바꾸기
     public void OpenActFlowerColor()
     {
         if (flowerColor_obj.activeSelf == true)
@@ -843,6 +846,7 @@ public class ParkShop : MonoBehaviour {
         }
         else
         {
+            price();
             flowerColor_obj.SetActive(true);
         }
     }
@@ -861,54 +865,95 @@ public class ParkShop : MonoBehaviour {
 
     public void BuyFlowerY()
     {
-        switch (shopNum)
+
+        mc = 0;
+        flowerOk();
+
+        if (mc == 1)
         {
-            case 0:
-                PlayerPrefs.SetInt("flowerpalette"+shopNum, 1);
-                break;
-            case 1:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
-            case 2:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
-            case 3:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
-            case 4:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
-            case 5:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
-            case 6:
-                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                break;
+            switch (shopNum)
+            {
+                //파랑 진노랑 핑크 보라
+                case 0://파랑
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    break;
+                case 1://진노랑
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    break;
+                case 2://핑크
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    break;
+                case 3://보라
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    break;
+                case 4://파랑
+                    PlayerPrefs.SetInt("flowerpotpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    break;
+                case 5://진노랑
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    break;
+                case 6://핑크
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    break;
+                case 7://보라
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    break;
+                case 8://블랙엔화이트
+                    PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    break;
+            }
+            PlayerPrefs.Save();
         }
     }
 
     void flowerOk()
     {
-        //dia_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
-        audio_obj.GetComponent<SoundEvt>().buttonSound();
-        PlayerPrefs.Save();
+        cv_i = PlayerPrefs.GetInt(str + "cv", 0);
+        h_i = PlayerPrefs.GetInt(str + "h", 0);
+        if (h_i >= flowerPriceH_i[shopNum]&& cv_i >= flowerPriceCv_i[shopNum])
+        {
+            h_i = h_i - flowerPriceH_i[shopNum];
+            cv_i = cv_i - flowerPriceCv_i[shopNum];
+            flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+            flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+
+            PlayerPrefs.SetInt(str + "cv", cv_i);
+            PlayerPrefs.SetInt(str + "h", h_i);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
+            mc = 1;
+        }
+        else
+        {
+            needMoney();
+            mc = 0;
+        }
+
     }
 
     //꽃팔레트가격
     void price()
     {
-        flowerPrice_i[0] = 0;
-        flowerPrice_i[0] = 0;
-        flowerPrice_i[1] = 0;
-        flowerPrice_i[1] = 0;
-        flowerPrice_i[2] = 0;
-        flowerPrice_i[2] = 0;
-        flowerPrice_i[3] = 0;
-        flowerPrice_i[3] = 0;
-        flowerPrice_i[4] = 0;
-        flowerPrice_i[4] = 0;
-        flowerPrice_i[5] = 0;
-        flowerPrice_i[5] = 0;
+        flowerPriceH_i[0] = 0;
+        flowerPriceCv_i[0] = 0;
+        flowerPriceH_i[1] = 1;
+        flowerPriceCv_i[1] = 1;
+        flowerPriceH_i[2] = 2;
+        flowerPriceCv_i[2] = 2;
+        flowerPriceH_i[3] = 3;
+        flowerPriceCv_i[3] = 3;
+        flowerPriceH_i[4] = 4;
+        flowerPriceCv_i[4] = 4;
+        flowerPriceH_i[5] = 5;
+        flowerPriceCv_i[5] = 5;
     }
 
 

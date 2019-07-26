@@ -30,6 +30,12 @@ public class SeedTime : MonoBehaviour {
     //소리
     public GameObject audio_obj;
 
+
+    //씨앗팔레트
+    public GameObject flowerColor_obj,flowerPotColor_obj, ColorWindow_obj;
+    public Sprite[] flowerColor_spr, flowerPotColor_spr;
+    public int num_i;
+
     // Use this for initialization
     void Start () {
         colorN = new Color(1f, 1f, 1f);
@@ -37,13 +43,72 @@ public class SeedTime : MonoBehaviour {
         loadGM = GameObject.FindGameObjectWithTag("loadGM");
         if(PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
+
         }
         else
         {
             StartCoroutine("TimeCheck");
         }
+
+        if (PlayerPrefs.GetInt("getflowerpalette", 0) >= 1)
+        {
+            flowerColor_obj.SetActive(true);
+            seedImg_obj.SetActive(false);
+        }
     }
-    
+
+    public void OpenActflowerColor()
+    {
+        if (ColorWindow_obj.activeSelf == true)
+        {
+            ColorWindow_obj.SetActive(false);
+        }
+        else
+        {
+            ColorWindow_obj.SetActive(true);
+        }
+    }
+
+    void Color()
+    {
+        int f = PlayerPrefs.GetInt("setflower", 0);
+        flowerColor_obj.GetComponent<Image>().sprite = flowerColor_spr[f];
+
+        f = PlayerPrefs.GetInt("setflowerpot", 0);
+        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[f];
+    }
+    public void SetColor()
+    {
+        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[num_i];
+        PlayerPrefs.GetInt("setflower", num_i);
+    }
+    public void SetPotColor()
+    {
+        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[num_i];
+        PlayerPrefs.GetInt("setflowerpot", num_i);
+    }
+
+    public void num0()
+    {
+        num_i = 0;
+    }
+    public void num1()
+    {
+        num_i = 0;
+    }
+    public void num2()
+    {
+        num_i = 0;
+    }
+    public void num3()
+    {
+        num_i = 0;
+    }
+    public void num4()
+    {
+        num_i = 0;
+    }
+
     void SeedTimeFlow()
     {
         seed_i = PlayerPrefs.GetInt("seedlv", 0);
