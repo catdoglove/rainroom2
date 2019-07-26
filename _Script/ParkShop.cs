@@ -55,7 +55,7 @@ public class ParkShop : MonoBehaviour {
 
     //밤식물
     public GameObject flowerColor_obj,flowerBuy_obj;
-
+    public int[] flowerPrice_i;
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -821,6 +821,7 @@ public class ParkShop : MonoBehaviour {
         petClover_txt.text = ""+PlayerPrefs.GetInt(str + "cv", p_i);
         PlayerPrefs.SetInt("shopfpethotel",1);
     }
+    
 
     public void OpenHelp()
     {
@@ -834,15 +835,82 @@ public class ParkShop : MonoBehaviour {
     }
 
     //밤에식물구매
-    public void OpenFlowerColor()
+    public void OpenActFlowerColor()
     {
-        flowerColor_obj.SetActive(true);
+        if (flowerColor_obj.activeSelf == true)
+        {
+            flowerColor_obj.SetActive(false);
+        }
+        else
+        {
+            flowerColor_obj.SetActive(true);
+        }
     }
     
-    public void BuyFlowerColor()
+    public void BuyActFlowerColor()
     {
-        flowerColor_obj.SetActive(true);
+        if (flowerBuy_obj.activeSelf == true)
+        {
+            flowerBuy_obj.SetActive(false);
+        }
+        else
+        {
+            flowerBuy_obj.SetActive(true);
+        }
     }
+
+    public void BuyFlowerY()
+    {
+        switch (shopNum)
+        {
+            case 0:
+                PlayerPrefs.SetInt("flowerpalette"+shopNum, 1);
+                break;
+            case 1:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+            case 2:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+            case 3:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+            case 4:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+            case 5:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+            case 6:
+                PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
+                break;
+        }
+    }
+
+    void flowerOk()
+    {
+        //dia_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
+        PlayerPrefs.Save();
+    }
+
+    //꽃팔레트가격
+    void price()
+    {
+        flowerPrice_i[0] = 0;
+        flowerPrice_i[0] = 0;
+        flowerPrice_i[1] = 0;
+        flowerPrice_i[1] = 0;
+        flowerPrice_i[2] = 0;
+        flowerPrice_i[2] = 0;
+        flowerPrice_i[3] = 0;
+        flowerPrice_i[3] = 0;
+        flowerPrice_i[4] = 0;
+        flowerPrice_i[4] = 0;
+        flowerPrice_i[5] = 0;
+        flowerPrice_i[5] = 0;
+    }
+
 
     void needMoney()
     {

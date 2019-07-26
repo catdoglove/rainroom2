@@ -25,7 +25,7 @@ public class Parkfunction : CavasData
     //
     public GameObject GMtag,GMP;
     public GameObject leafPr_obj,leafWin_obj;
-
+    public GameObject eventNight_obj;
     private void Awake()
     {
         
@@ -65,7 +65,7 @@ public class Parkfunction : CavasData
 
         //밤낮
         setDay();
-        //이밴트 랜덤 -첫외출에는 무조건 안나오면 어떨까?
+        //이밴트 랜덤 
         eventRand_i = Random.Range(0, 5);
         if (eventRand_i < 2)
         {
@@ -115,6 +115,9 @@ public class Parkfunction : CavasData
     //밤낮
     public void setDay()
     {
+
+        //이밴트 랜덤 
+        eventRand_i = Random.Range(0, 3);
         System.DateTime time = System.DateTime.Now;
         if (time.ToString("tt") == "PM")
         {
@@ -125,7 +128,11 @@ public class Parkfunction : CavasData
             }
             if (k >= 6)
             {
-                dayRoom.SetActive(true);
+                if (eventRand_i < 2)
+                {
+                    eventNight_obj.SetActive(true);
+                }
+                    dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
                 dayShop_obj.SetActive(false);
@@ -150,6 +157,10 @@ public class Parkfunction : CavasData
             }
             if (k < 6)
             {
+                if (eventRand_i < 2)
+                {
+                    eventNight_obj.SetActive(true);
+                }
                 dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
