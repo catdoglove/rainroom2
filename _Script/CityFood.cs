@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class CityFood : MonoBehaviour {
 
     public GameObject truckWindow_obj, truckWindowYN_obj;
+
+    public Sprite[] truck_spr;
+
     public GameObject foodWindow_obj;
     public GameObject foodBuy_obj, selectFood_obj, foodIlust_obj;
     public Sprite[] selectFood_spr;
@@ -20,6 +23,8 @@ public class CityFood : MonoBehaviour {
     public int coldRain_i, hotRain_i;
     public int[] TruckH_i, TruckC_i,FoodD_i;
     int ct = 0;
+
+
     //소리
     public GameObject audio_obj;
 
@@ -158,7 +163,7 @@ public class CityFood : MonoBehaviour {
     public void BuyFoodShop()
     {
         foodBuy_obj.SetActive(true);
-        //selectFood_obj.GetComponent<Image>().sprite = selectFood_spr[shopNum];
+        selectFood_obj.GetComponent<Image>().sprite = selectFood_spr[shopNum];
     }
     public void BuyFoodShopY()
     {

@@ -11,8 +11,7 @@ public class secondRoomFunction : CavasData {
 
 
     public GameObject GMNotdistroy;
-
-
+    
 	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i,wall_i;
 	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
     public GameObject wallImg_obj, wallImg2_obj;
@@ -127,8 +126,7 @@ public class secondRoomFunction : CavasData {
 		umbrella_i = PlayerPrefs.GetInt ("umbrellalv", 0);
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
 
-
-
+        
         wallImg_obj.GetComponent<Image>().sprite = wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = wall2_spr[wall_i];
         drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
@@ -230,11 +228,7 @@ public class secondRoomFunction : CavasData {
         //낮밤
         setDay();
 
-
-
-
         
-
         //리폼
 
         //도어매트

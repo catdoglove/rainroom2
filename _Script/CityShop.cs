@@ -321,7 +321,6 @@ public class CityShop : MonoBehaviour {
             interiorTape_obj[4].GetComponent<Image>().sprite = soldOut_spr;
         }
     }
-
     void CheckMaxPaint()
     {
         for (int j = 0; j < 3; j++)
@@ -408,10 +407,7 @@ public class CityShop : MonoBehaviour {
                 paint11_btn[j].GetComponent<Button>().interactable = false;
             }
         }
-
-
     }
-
 
     //살까? 창 열어주기
     public void BuyInterior()

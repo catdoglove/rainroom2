@@ -571,7 +571,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 6;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
-                    point_i = point_i + 3;
+                    point_i = point_i + 7;
                     BuyFoodOk();
                 }
                 else
@@ -584,7 +584,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 8;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 10;
                     BuyFoodOk();
                 }
                 else
@@ -597,7 +597,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 12;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 14;
                     BuyFoodOk();
                 }
                 else
@@ -610,7 +610,7 @@ public class ParkShop : MonoBehaviour {
                 {
                     p_i = p_i - 10;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 12;
                     BuyFoodOk();
                 }
                 else

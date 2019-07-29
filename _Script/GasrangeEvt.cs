@@ -50,6 +50,7 @@ public class GasrangeEvt : MonoBehaviour {
         colorC = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
+        
     }
 
 #region
@@ -111,13 +112,10 @@ public class GasrangeEvt : MonoBehaviour {
         {
             gasrange_obj.SetActive(true);
             CheckIng();
-            if (PlayerPrefs.GetInt("gasrangelv", 0) >= 2)
-            {
-                //gasrangeLv_obj[0].SetActive(true);
-            }
             if (PlayerPrefs.GetInt("gasrangelv", 0) >= 3)
             {
-                //gasrangeLv_obj[1].SetActive(true);
+                gasrangeLv_obj[0].SetActive(true);
+                gasrangeLv_obj[1].SetActive(true);
             }
             //계란
             if (egg_i == 1)
@@ -165,7 +163,7 @@ public class GasrangeEvt : MonoBehaviour {
                 cookFood_obj[8].SetActive(true);
             }
             //버섯볶음밥
-            if (mushroom_i + carot_i == 1)
+            if (mushroom_i + carot_i == 2)
             {
                 cookFood_obj[9].SetActive(true);
             }
@@ -316,7 +314,7 @@ public class GasrangeEvt : MonoBehaviour {
         }
         if (PlayerPrefs.GetInt("iceboxlv", 0) >= 4)
         {
-            iceBoxLv_obj[2].SetActive(true);
+            //iceBoxLv_obj[2].SetActive(true);
         }
         CheckIng();
         iceBox_obj.SetActive(true);
@@ -383,22 +381,26 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void RightIce()
     {
-        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
         {
             icePage2.SetActive(true);
             icePage1.SetActive(false);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
+        
     }
 
         public void LeftIce()
     {
-        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
         {
             icePage2.SetActive(false);
             icePage1.SetActive(true);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
+        
     }
 
 
@@ -407,7 +409,7 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
         {
 
-        }else if (page_i < 2)
+        }else if (page_i < 1)
         {
             page_i++;
             cookPage_obj[0].SetActive(false);
