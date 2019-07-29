@@ -16,8 +16,7 @@ public class GasrangeEvt : MonoBehaviour {
     public Text ingredient_txt;
     public GameObject text_obj;
     List<Dictionary<string, object>> data;
-
-    public GameObject iceLv_obj;
+    
 
     //요리
     public GameObject cookYN_obj,cookImg_obj,GM2;
@@ -28,6 +27,8 @@ public class GasrangeEvt : MonoBehaviour {
     public int[] cookPrice_i;
     public int gasLv_i;
     public Text price_txt, allHeart_txt;
+    
+    public GameObject[] gasrangeLv_obj;
 
     public Color colorB;
     public GameObject beadalYetToast_obj, beadalTime_obj;
@@ -36,6 +37,10 @@ public class GasrangeEvt : MonoBehaviour {
 
     Color colorC;
     public GameObject cookHToast_obj;
+
+    //냉장고
+    public GameObject icePage1, icePage2;
+    public GameObject[] iceBoxLv_obj;
 
     public GameObject audio_obj;
 
@@ -106,14 +111,13 @@ public class GasrangeEvt : MonoBehaviour {
         {
             gasrange_obj.SetActive(true);
             CheckIng();
-            switch (gasLv_i)
+            if (PlayerPrefs.GetInt("gasrangelv", 0) >= 2)
             {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
+                //gasrangeLv_obj[0].SetActive(true);
+            }
+            if (PlayerPrefs.GetInt("gasrangelv", 0) >= 3)
+            {
+                //gasrangeLv_obj[1].SetActive(true);
             }
             //계란
             if (egg_i == 1)
@@ -303,7 +307,16 @@ public class GasrangeEvt : MonoBehaviour {
     {
         if(PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
         {
-            iceLv_obj.SetActive(true);
+            iceBoxLv_obj[0].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
+        {
+            iceBoxLv_obj[1].SetActive(true);
+            iceBoxLv_obj[3].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 4)
+        {
+            iceBoxLv_obj[2].SetActive(true);
         }
         CheckIng();
         iceBox_obj.SetActive(true);
@@ -351,6 +364,10 @@ public class GasrangeEvt : MonoBehaviour {
 
     void CheckIng()
     {
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
+        {
+            PlayerPrefs.SetInt("milk", 1);
+        }
         egg_i = PlayerPrefs.GetInt("egg", 0);
         milk_i = PlayerPrefs.GetInt("milk", 0);
         tofu_i = PlayerPrefs.GetInt("tofu", 0);
@@ -362,6 +379,26 @@ public class GasrangeEvt : MonoBehaviour {
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
 
+    }
+
+    public void RightIce()
+    {
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        {
+            icePage2.SetActive(true);
+            icePage1.SetActive(false);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
+        }
+    }
+
+        public void LeftIce()
+    {
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        {
+            icePage2.SetActive(false);
+            icePage1.SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
+        }
     }
 
 
