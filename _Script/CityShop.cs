@@ -37,6 +37,7 @@ public class CityShop : MonoBehaviour {
         str = PlayerPrefs.GetString("code", "");
         colorP= new Color(1f, 1f, 1f);
         Price();
+        CheckMaxPaint();
     }
     //리폼상점창 열기
     public void OpenActReform()

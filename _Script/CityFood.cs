@@ -8,12 +8,14 @@ public class CityFood : MonoBehaviour {
     public GameObject truckWindow_obj, truckWindowYN_obj;
 
     public Sprite[] truck_spr;
+    public GameObject truckImg_obj,truckToast_obj;
+    public GameObject[] truckSoldout_obj;
 
     public GameObject foodWindow_obj;
     public GameObject foodBuy_obj, selectFood_obj, foodIlust_obj;
     public Sprite[] selectFood_spr;
     public int point_i;
-    public Color color;
+    public Color color, colorT;
     public GameObject needToast_obj;
     public Text dia_txt;
     public int shopNum,p_i,truckH_i,truckC_i;
@@ -31,52 +33,74 @@ public class CityFood : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
+        price();
         color = new Color(1f, 1f, 1f);
+        colorT = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
 
     }
 
-    public void OpenTruckShop()
+    void truckCheck()
     {
-        truckWindow_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("carot", 0)==1)
+        {
+            truckSoldout_obj[0].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("cucumber", 0) == 1)
+        {
+            truckSoldout_obj[1].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("paprika", 0) == 1)
+        {
+            truckSoldout_obj[2].SetActive(true);
+        }
+        
     }
+
+
+    
     public void BuyTruckShopYN()
     {
+        truckImg_obj.GetComponent<Image>().sprite = truck_spr[shopNum];
         truckWindowYN_obj.SetActive(true);
     }
     public void BuyTruckShopY()
     {
         str = PlayerPrefs.GetString("code", "");
 
-        coldRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
-        hotRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+        coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
 
         point_i = PlayerPrefs.GetInt("lovepoint", 0);
         ct = 0;
         //당근 오이 파프리카
         BuyTruckOk();
-        switch (shopNum)
+        if (ct == 1)
         {
-            case 0:
-                if (ct == 1)
-                {
-                    PlayerPrefs.SetInt("carot", 1);
-                }
-                break;
-            case 1:
-                if (ct == 1)
-                {
-                    PlayerPrefs.SetInt("cucumber", 1);
+            switch (shopNum)
+            {
+                case 0:
+                    if (ct == 1)
+                    {
+                        PlayerPrefs.SetInt("carot", 1);
+                    }
+                    break;
+                case 1:
+                    if (ct == 1)
+                    {
+                        PlayerPrefs.SetInt("cucumber", 1);
 
-                }
-                break;
-            case 2:
-                if (ct == 1)
-                {
-                    PlayerPrefs.SetInt("paprika", 1);
-                }
-                break;
+                    }
+                    break;
+                case 2:
+                    if (ct == 1)
+                    {
+                        PlayerPrefs.SetInt("paprika", 1);
+                    }
+                    break;
+            }
+            truckCheck();
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
         truckWindowYN_obj.SetActive(false);
     }
@@ -108,23 +132,23 @@ public class CityFood : MonoBehaviour {
     void price()
     {
         //당근
-        TruckC_i[0] = 1;
-        TruckH_i[0] = 1;
+        TruckC_i[0] = 1200;
+        TruckH_i[0] = 100;
         //오이
-        TruckC_i[1] = 2;
-        TruckH_i[1] = 2;
+        TruckC_i[1] = 1100;
+        TruckH_i[1] = 110;
         //파프리카
-        TruckC_i[2] = 3;
-        TruckH_i[2] = 3;
+        TruckC_i[2] = 1500;
+        TruckH_i[2] = 170;
 
         //커피
-        FoodD_i[0]=1;
+        FoodD_i[0]=7;
         //에이드
-        FoodD_i[1] = 2;
+        FoodD_i[1] = 8;
         //토스트
-        FoodD_i[2] = 3;
+        FoodD_i[2] = 11;
         //닭꼬치
-        FoodD_i[3] = 4;
+        FoodD_i[3] = 13;
     }
 
    
@@ -155,7 +179,17 @@ public class CityFood : MonoBehaviour {
         }
         else
         {
-            truckWindow_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
+            {
+                truckCheck();
+                truckWindow_obj.SetActive(true);
+            }
+            else
+            {
+                StopCoroutine("toastTruckFadeOut");
+                StartCoroutine("toastTruckFadeOut");
+                audio_obj.GetComponent<SoundEvt>().cancleSound();
+            }
             coldRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
             hotRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
         }
@@ -178,7 +212,7 @@ public class CityFood : MonoBehaviour {
                 {
                     p_i = p_i - FoodD_i[shopNum];
                     PlayerPrefs.SetInt(str + "dm", p_i);
-                    point_i = point_i + 3;
+                    point_i = point_i + 7;
                     BuyFoodOk();
                 }
                 else
@@ -191,7 +225,7 @@ public class CityFood : MonoBehaviour {
                 {
                     p_i = p_i - FoodD_i[shopNum];
                     PlayerPrefs.SetInt(str + "dm", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 10;
                     BuyFoodOk();
                 }
                 else
@@ -204,7 +238,7 @@ public class CityFood : MonoBehaviour {
                 {
                     p_i = p_i - FoodD_i[shopNum];
                     PlayerPrefs.SetInt(str + "dm", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 11;
                     BuyFoodOk();
                 }
                 else
@@ -217,7 +251,7 @@ public class CityFood : MonoBehaviour {
                 {
                     p_i = p_i - FoodD_i[shopNum];
                     PlayerPrefs.SetInt(str + "dm", p_i);
-                    point_i = point_i + 4;
+                    point_i = point_i + 15;
                     BuyFoodOk();
                 }
                 else
@@ -230,6 +264,7 @@ public class CityFood : MonoBehaviour {
     }
     void BuyFoodOk()
     {
+
         dia_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
@@ -284,6 +319,22 @@ public class CityFood : MonoBehaviour {
             yield return null;
         }
         needToast_obj.SetActive(false);
+    }
+
+    //트럭페이드아웃
+    IEnumerator toastTruckFadeOut()
+    {
+        colorT.a = Mathf.Lerp(0f, 1f, 1f);
+        truckToast_obj.GetComponent<Image>().color = colorT;
+        truckToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorT.a = Mathf.Lerp(0f, 1f, i);
+            truckToast_obj.GetComponent<Image>().color = colorT;
+            yield return null;
+        }
+        truckToast_obj.SetActive(false);
     }
 
 
