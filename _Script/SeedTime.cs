@@ -35,6 +35,7 @@ public class SeedTime : MonoBehaviour {
     public GameObject flowerColor_obj,flowerPotColor_obj, ColorWindow_obj;
     public Sprite[] flowerColor_spr, flowerPotColor_spr;
     public int num_i;
+    public GameObject oldFlower_obj,newFlower_obj,oldWatercan_obj,newWatercan_obj;
 
     // Use this for initialization
     void Start () {
@@ -76,10 +77,19 @@ public class SeedTime : MonoBehaviour {
 
         f = PlayerPrefs.GetInt("setflowerpot", 0);
         flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[f];
+        oldFlower_obj.SetActive(false);
+        newFlower_obj.SetActive(true);
+        oldWatercan_obj.SetActive(false);
+        newWatercan_obj.SetActive(true);
     }
     public void SetColor()
     {
         flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[num_i];
+        PlayerPrefs.GetInt("setflower", num_i);
+    }
+    public void returnColor()
+    {
+        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[0];
         PlayerPrefs.GetInt("setflower", num_i);
     }
     public void SetPotColor()
@@ -87,6 +97,13 @@ public class SeedTime : MonoBehaviour {
         flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[num_i];
         PlayerPrefs.GetInt("setflowerpot", num_i);
     }
+    public void returnPotColor()
+    {
+        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[0];
+        PlayerPrefs.GetInt("setflower", num_i);
+    }
+    
+    
 
     public void num0()
     {
