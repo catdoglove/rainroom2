@@ -30,6 +30,9 @@ public class CityShop : MonoBehaviour {
     //솔드아웃
     public GameObject[] soldInterior_obj, soldPaint_obj, soldFabric_obj;
     public Sprite soldOut_spr;
+    public Text gas_txt;
+    public GameObject gasTxt_obj;
+    int gas_i;
     //비활성화
     public Button[] paint0_btn, paint1_btn, paint2_btn, paint3_btn, paint4_btn, paint5_btn, paint6_btn, paint7_btn, paint8_btn, paint9_btn, paint10_btn, paint11_btn, paint12_btn;
     // Use this for initialization
@@ -86,6 +89,8 @@ public class CityShop : MonoBehaviour {
     //인테리어 열기
     public void OpenActInterior()
     {
+
+        gas_i = 0;
         interiorBuy_obj.SetActive(false);
         if (interiorWin_obj.activeSelf == true)
         {
@@ -126,14 +131,6 @@ public class CityShop : MonoBehaviour {
         }
         //가스렌지 1레벨
         interiorTape_obj[4].SetActive(false);
-        if (PlayerPrefs.GetInt("gasrangelv", 0) < 1 || PlayerPrefs.GetInt("iceboxlv", 0) < 3)
-        {
-            interiorTape_obj[4].SetActive(true);
-        }
-        if (PlayerPrefs.GetInt("gasrangelv", 0) > 2 && PlayerPrefs.GetInt("iceboxlv", 0) < 4)
-        {
-            interiorTape_obj[4].SetActive(true);
-        }
 
         //다 팔렸을때 솔드아웃
         CheckMaxInterior();
@@ -141,6 +138,7 @@ public class CityShop : MonoBehaviour {
 
     public void icebox()
     {
+        gasTxt_obj.SetActive(false);
         itemIndex_i = 0;
         interior_str = "iceboxlv";
         int inm = PlayerPrefs.GetInt(interior_str, 0);
@@ -163,6 +161,7 @@ public class CityShop : MonoBehaviour {
     }
     public void bed()
     {
+        gasTxt_obj.SetActive(false);
         itemIndex_i = 1;
         interior_str = "bedmaxlv";
         int inm = PlayerPrefs.GetInt(interior_str, 0);
@@ -183,6 +182,7 @@ public class CityShop : MonoBehaviour {
     }
     public void desk()
     {
+        gasTxt_obj.SetActive(false);
 
         itemIndex_i = 2;
         interior_str = "desklv";
@@ -208,6 +208,7 @@ public class CityShop : MonoBehaviour {
     }
     public void lights()
     {
+        gasTxt_obj.SetActive(false);
 
         itemIndex_i = 3;
         interior_str = "lightmaxlv";
@@ -228,6 +229,7 @@ public class CityShop : MonoBehaviour {
     }
     public void gas()
     {
+        gasTxt_obj.SetActive(false);
         itemIndex_i = 4;
         interior_str = "gasrangelv";
         int inm = PlayerPrefs.GetInt(interior_str, 0);
@@ -252,7 +254,25 @@ public class CityShop : MonoBehaviour {
         {
             InteriorItem_txt.text = "좋은 가스렌지";
         }
-        Debug.Log(InteriorItem_txt + "," + hm);
+        if (hm >= 3)
+        {
+            gasTxt_obj.SetActive(true);
+            gas_txt.text = "2단쟁장고 필요";
+        }else if (hm >= 1)
+        {
+            gasTxt_obj.SetActive(true);
+            gas_txt.text = "미니냉장고 필요";
+        }
+        gas_i = 0;
+        if (PlayerPrefs.GetInt("gasrangelv", 0) < 1 || PlayerPrefs.GetInt("iceboxlv", 0) < 3)
+        {
+            gas_i = 1;
+        }
+        if (PlayerPrefs.GetInt("gasrangelv", 0) > 2 && PlayerPrefs.GetInt("iceboxlv", 0) < 4)
+        {
+            gas_i = 1;
+        }
+        
     }
 
     public void InteriorY()
@@ -260,28 +280,39 @@ public class CityShop : MonoBehaviour {
 
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
-
-        if (coldRain_i >= interiorC_i && hotRain_i >= interiorH_i)
+        if (gas_i == 1)
         {
-            coldRain_i = coldRain_i - interiorC_i;
-            hotRain_i = hotRain_i - interiorH_i;
-
-            PlayerPrefs.SetInt(str + "h", hotRain_i);
-            PlayerPrefs.SetInt(str + "c", coldRain_i);
-
-            cIRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
-            hIRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
-            int inum = PlayerPrefs.GetInt(interior_str, 0);
-            inum++;
-            PlayerPrefs.SetInt(interior_str, inum);
-            BuyInterior();
-            CheckMaxInterior();
-            SetInterior();
+            needMoney();
+            gas_i = 0;
+            interiorBuy_obj.SetActive(false);
         }
         else
         {
-            needMoney();
+            if (coldRain_i >= interiorC_i && hotRain_i >= interiorH_i)
+            {
+                audio_obj.GetComponent<SoundEvt>().buttonSound();
+                coldRain_i = coldRain_i - interiorC_i;
+                hotRain_i = hotRain_i - interiorH_i;
+
+                PlayerPrefs.SetInt(str + "h", hotRain_i);
+                PlayerPrefs.SetInt(str + "c", coldRain_i);
+
+                cIRain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0);
+                hIRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+                int inum = PlayerPrefs.GetInt(interior_str, 0);
+                inum++;
+                PlayerPrefs.SetInt(interior_str, inum);
+                BuyInterior();
+                CheckMaxInterior();
+                SetInterior();
+            }
+            else
+            {
+                needMoney();
+            }
         }
+
+        gas_i = 0;
     }
     void CheckMaxInterior()
     {
@@ -545,6 +576,7 @@ public class CityShop : MonoBehaviour {
             PlayerPrefs.SetInt(str + "dm", diamond_i);
 
 
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
             PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
             PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_i, 1);
             PlayerPrefs.SetInt("reformshop", 1);
@@ -576,6 +608,7 @@ public class CityShop : MonoBehaviour {
         if (coldRain_i >= fabricH_i[itemIndex_i] && diamond_i >= fabricD_i[itemIndex_i])
         {
 
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
             coldRain_i = coldRain_i - fabricH_i[itemIndex_i];
             diamond_i = diamond_i - fabricD_i[itemIndex_i];
 

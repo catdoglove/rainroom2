@@ -74,6 +74,9 @@ public class MainShop : ShopHandler {
     //소리
     public GameObject audio_obj;
 
+    //도시가구이름
+    public Text bedMax_txt,lightMax_txt,deskMax_txt;
+
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -83,7 +86,6 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -390,7 +392,25 @@ public class MainShop : ShopHandler {
 
             }else{ }
         }
-        
+        //도시가구 이름변경
+        //deskMax_txt.text = "플라스틱 탁자 작은 책상 완전한 책상";
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
+        {
+            bedMax_txt.text = "낡은 침대";
+        }
+        if(PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
+        {
+            bedMax_txt.text = "완전한 침대";
+        }
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 1)
+        {
+            lightMax_txt.text = "좋은 전등";
+        }
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2)
+        {
+            lightMax_txt.text = "완전한 전등";
+        }
+
     }
 
     public void CloseShopBuy()

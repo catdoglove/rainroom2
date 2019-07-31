@@ -28,7 +28,6 @@ public class Parkfunction : CavasData
     public GameObject eventNight_obj;
     private void Awake()
     {
-        
         //나뭇잎
         int lf = PlayerPrefs.GetInt("leafcount", 0);
         if (lf >= 100)
@@ -86,6 +85,10 @@ public class Parkfunction : CavasData
             eventPaint_obj.SetActive(false);
             eventPet_obj.SetActive(false);
             event_obj.GetComponent<Image>().sprite = event_spr[0];
+            if (eventRand_i < 3)
+            {
+                eventNight_obj.SetActive(true);
+            }
         }
         //씬이동
         if (menuBlock_obj == null)
@@ -128,10 +131,6 @@ public class Parkfunction : CavasData
             }
             if (k >= 6)
             {
-                if (eventRand_i < 2)
-                {
-                    eventNight_obj.SetActive(true);
-                }
                     dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
@@ -157,10 +156,6 @@ public class Parkfunction : CavasData
             }
             if (k < 6)
             {
-                if (eventRand_i < 2)
-                {
-                    eventNight_obj.SetActive(true);
-                }
                 dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
                 nightShop_obj.SetActive(true);
