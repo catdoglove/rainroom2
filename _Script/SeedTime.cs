@@ -34,11 +34,16 @@ public class SeedTime : MonoBehaviour {
     //씨앗팔레트
     public GameObject flowerColor_obj,flowerPotColor_obj, ColorWindow_obj;
     public Sprite[] flowerColor_spr, flowerPotColor_spr;
-    public int num_i;
+    public int num_i,flower_i,pot_i;
     public GameObject oldFlower_obj,newFlower_obj,oldWatercan_obj,newWatercan_obj;
+
+    public GameObject flowerImg_obj, potImg_obj;
+    public Sprite[] flowerImg_spr, potImg_spr;
 
     // Use this for initialization
     void Start () {
+        flower_i = 0;
+        pot_i = 0;
         colorN = new Color(1f, 1f, 1f);
         colorY = new Color(1f, 1f, 1f);
         loadGM = GameObject.FindGameObjectWithTag("loadGM");
@@ -53,8 +58,8 @@ public class SeedTime : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("getflowerpalette", 0) >= 1)
         {
-            flowerColor_obj.SetActive(true);
-            seedImg_obj.SetActive(false);
+            newFlower_obj.SetActive(true);
+            oldFlower_obj.SetActive(false);
         }
     }
 
@@ -248,6 +253,40 @@ public class SeedTime : MonoBehaviour {
             }
         }
         
+    }
+
+    public void flowerLeft()
+    {
+        if (flower_i > 0)
+        {
+            flower_i--;
+            flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+        }
+    }
+    public void flowerRight()
+    {
+        if (flower_i < 4)
+        {
+            flower_i++;
+            flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+        }
+    }
+
+    public void potLeft()
+    {
+        if (pot_i > 0)
+        {
+            pot_i--;
+            potImg_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+        }
+    }
+    public void potRight()
+    {
+        if (pot_i < 4)
+        {
+            pot_i++;
+            potImg_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+        }
     }
 
     //물부족
