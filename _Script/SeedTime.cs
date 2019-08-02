@@ -22,7 +22,7 @@ public class SeedTime : MonoBehaviour {
     
     public GameObject loadGM;
 
-    Color colorN, colorY;
+    Color colorN, colorY, colorC;
 
     //씨앗
     public Text seedTime_txt;
@@ -40,6 +40,7 @@ public class SeedTime : MonoBehaviour {
     public GameObject flowerImg_obj, potImg_obj;
     public Sprite[] flowerImg_spr, potImg_spr;
     int fn=1,pn=1;
+    public GameObject toastColor_obj;
 
     // Use this for initialization
     void Start () {
@@ -47,6 +48,7 @@ public class SeedTime : MonoBehaviour {
         pot_i = 0;
         colorN = new Color(1f, 1f, 1f);
         colorY = new Color(1f, 1f, 1f);
+        colorC = new Color(1f, 1f, 1f);
         loadGM = GameObject.FindGameObjectWithTag("loadGM");
         if(PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
@@ -263,7 +265,7 @@ public class SeedTime : MonoBehaviour {
             flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
             if (PlayerPrefs.GetInt("flowerpalette" + flower_i, 0) == 1)
             {
-                pn = 1;
+                fn = 1;
             }
             else
             {
@@ -271,7 +273,7 @@ public class SeedTime : MonoBehaviour {
                 if (flower_i == 0)
                 {
 
-                    pn = 1;
+                    fn = 1;
                 }
                 else
                 {
@@ -351,11 +353,32 @@ public class SeedTime : MonoBehaviour {
             flowerColor_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
             PlayerPrefs.SetInt("setflowerpot", pot_i);
             flowerPotColor_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
         else
         {
-
+            StopCoroutine("toastneedColorFadeOut");
+            StartCoroutine("toastneedColorFadeOut");
+            audio_obj.GetComponent<SoundEvt>().cancleSound();
         }
+    }
+
+
+
+    //꽃색깔을 구매안했다
+    IEnumerator toastneedColorFadeOut()
+    {
+        colorC.a = Mathf.Lerp(0f, 1f, 1f);
+        toastColor_obj.GetComponent<Image>().color = colorC;
+        toastColor_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorC.a = Mathf.Lerp(0f, 1f, i);
+            toastColor_obj.GetComponent<Image>().color = colorC;
+            yield return null;
+        }
+        toastColor_obj.SetActive(false);
     }
 
     //물부족

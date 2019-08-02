@@ -79,6 +79,7 @@ public class SleepTime : MonoBehaviour {
         else
         {
             PlayerPrefs.SetInt("sleepTxt", 0);
+            sleepMax_obj.SetActive(false);
         }
 
 
@@ -218,7 +219,7 @@ public class SleepTime : MonoBehaviour {
 
                 if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
                 {
-                    sleepMax_obj.SetActive(true);
+                    sleepMax_obj.SetActive(false);
                     if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                     {
                         sleepMax_obj.SetActive(false);

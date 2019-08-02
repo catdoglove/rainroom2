@@ -847,6 +847,8 @@ public class ParkShop : MonoBehaviour {
     //밤에식물구매 꽃 팔레트 바꾸기
     public void OpenActFlowerColor()
     {
+        flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+        flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
         if (PlayerPrefs.GetInt("seedlv", 0)<10)
         {
             needIceBox();
@@ -901,22 +903,31 @@ public class ParkShop : MonoBehaviour {
             {
                 //파랑 진노랑 핑크 보라
                 case 0://파랑
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflower", shopNum+1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    shopNum--;
                     break;
                 case 1://분홍
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
                     PlayerPrefs.SetInt("setflower", shopNum + 1);
+                    shopNum--;
                     break;
                 case 2://보라
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflower", shopNum + 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    shopNum--;
                     break;
                 case 3://노랑
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflower", shopNum + 1);
+                    PlayerPrefs.SetInt("setflower", shopNum);
+                    shopNum--;
                     break;
             }
+            flowerBuy_obj.SetActive(false);
             checkSoldOut();
             PlayerPrefs.SetInt("getflowerpalette", 1);
             PlayerPrefs.Save();
@@ -926,29 +937,38 @@ public class ParkShop : MonoBehaviour {
     public void BuyFlowerPotY()
     {
         mc = 0;
-        flowerOk();
+        flowerPotOk();
         if (mc == 1)
         {
             switch (shopNum)
             {
                 case 0://파랑
-                    PlayerPrefs.SetInt("flowerpotpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflowerpot", shopNum + 1);
+                    shopNum++;
+                    PlayerPrefs.SetInt("flowerpotpalette" + shopNum , 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    shopNum--;
                     break;
                 case 1://분홍
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpotpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflowerpot", shopNum + 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    shopNum--;
                     break;
                 case 2://보라
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpotpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflowerpot", shopNum + 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    shopNum--;
                     break;
                 case 3://힌색
+                    shopNum++;
                     PlayerPrefs.SetInt("flowerpotpalette" + shopNum, 1);
-                    PlayerPrefs.SetInt("setflowerpot", shopNum + 1);
+                    PlayerPrefs.SetInt("setflowerpot", shopNum);
+                    shopNum--;
                     break;
             }
             checkSoldOut();
+            potBuy_obj.SetActive(false);
             PlayerPrefs.SetInt("getflowerpalette", 1);
             PlayerPrefs.Save();
         }
@@ -962,10 +982,10 @@ public class ParkShop : MonoBehaviour {
         {
             h_i = h_i - 200;
             cv_i = cv_i - 8;
-            flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
-            flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             PlayerPrefs.SetInt(str + "cv", cv_i);
             PlayerPrefs.SetInt(str + "h", h_i);
+            flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+            flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
             mc = 1;
             checkSoldOut();
@@ -985,11 +1005,11 @@ public class ParkShop : MonoBehaviour {
         {
             h_i = h_i - 150;
             cv_i = cv_i - 5;
-            flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
-            flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
 
             PlayerPrefs.SetInt(str + "cv", cv_i);
             PlayerPrefs.SetInt(str + "h", h_i);
+            flowerCv_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
+            flowerH_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
             mc = 1;
             checkSoldOut();
@@ -1004,15 +1024,15 @@ public class ParkShop : MonoBehaviour {
     //꽃판매완료확인
     void checkSoldOut()
     {
-        for(int i=0; i < 4; i++)
+        for(int i=1; i < 5; i++)
         {
             if(PlayerPrefs.GetInt("flowerpalette" + i, 0) == 1)
             {
-                soldOutflower_obj[i].SetActive(true);
+                soldOutflower_obj[i-1].SetActive(true);
             }
             if (PlayerPrefs.GetInt("flowerpotpalette" + i, 0) == 1)
             {
-                soldOutPot_obj[i].SetActive(true);
+                soldOutPot_obj[i-1].SetActive(true);
             }
         }
     }
