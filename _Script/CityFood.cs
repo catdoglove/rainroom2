@@ -25,7 +25,7 @@ public class CityFood : MonoBehaviour {
     public int coldRain_i, hotRain_i;
     public int[] TruckH_i, TruckC_i,FoodD_i;
     int ct = 0;
-
+    
 
     //소리
     public GameObject audio_obj;
@@ -264,7 +264,6 @@ public class CityFood : MonoBehaviour {
     }
     void BuyFoodOk()
     {
-
         dia_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
