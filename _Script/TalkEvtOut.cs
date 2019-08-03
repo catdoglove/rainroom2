@@ -80,9 +80,11 @@ public class TalkEvtOut : MonoBehaviour
     void Update()
     {
         //클립초기화
-        if(PlayerPrefs.GetInt("frontpark", 0) == 1)
+        if (PlayerPrefs.GetInt("frontpark", 0) == 1 || PlayerPrefs.GetInt("frontcity", 0) == 1)
         {
             PlayerPrefs.SetInt("frontpark", 99);
+            PlayerPrefs.SetInt("frontcity", 99);
+            Debug.Log("aaaaaaaaa");
             charAni.Play("char_park");
         }
 
@@ -100,12 +102,12 @@ public class TalkEvtOut : MonoBehaviour
                 closeTB_exit.SetActive(true);
                 exitBbg.GetComponent<Image>().sprite = ballnSpr[0];
 
-                if (PlayerPrefs.GetInt("frontpark", 0) == 99)
+                if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 99))
                 {
                     talkCursor.SetActive(true);
                     exitText.text = "집으로 돌아갈까..\n(종료는 집에서 가능)";
                 }
-                else if (PlayerPrefs.GetInt("frontpark", 0) == 2)
+                else if (PlayerPrefs.GetInt("frontpark", 0) == 2 || PlayerPrefs.GetInt("frontcity", 0) == 2)
                 {
                     talkCursor.SetActive(false);
                     exitBbg.GetComponent<Image>().sprite = ballnSpr[1];
@@ -127,11 +129,11 @@ public class TalkEvtOut : MonoBehaviour
         }
         if (cnt_exit == 150)
         {
-            if (PlayerPrefs.GetInt("frontpark", 0) == 99)
+            if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 99))
             {
                 exitText.text = "..음";
             }
-            else if (PlayerPrefs.GetInt("frontpark", 0) == 2)
+            else if (PlayerPrefs.GetInt("frontpark", 0) == 2 || (PlayerPrefs.GetInt("frontcity", 0) == 2))
             {
                 exitText.text = "(..흠)";
             }

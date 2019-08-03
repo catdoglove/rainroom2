@@ -60,6 +60,7 @@ public class ParkShop : MonoBehaviour {
     int mc = 0;
     public string[] flower_str,pot_str;
     public GameObject[] soldOutflower_obj,soldOutPot_obj;
+    public GameObject helpFlower_obj;
     
     // Use this for initialization
     void Start () {
@@ -84,6 +85,7 @@ public class ParkShop : MonoBehaviour {
         buyPetYN_obj.SetActive(false);
         buyPaintYN_obj.SetActive(false);
         inYN_obj.SetActive(false);
+        helpFlower_obj.SetActive(false);
         buyPaintN();
     }
 
@@ -836,6 +838,7 @@ public class ParkShop : MonoBehaviour {
     {
         help_obj.SetActive(true);
         help_obj.GetComponent<Image>().sprite = help_spr[helpNum];
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
     }
 
     public void CloseHelp()
@@ -1053,6 +1056,18 @@ public class ParkShop : MonoBehaviour {
         flowerPriceCv_i[4] = 4;
         flowerPriceH_i[5] = 5;
         flowerPriceCv_i[5] = 5;
+    }
+
+    public void helpFlower()
+    {
+        if (helpFlower_obj.activeSelf == true)
+        {
+            helpFlower_obj.SetActive(false);
+        }
+        else
+        {
+            helpFlower_obj.SetActive(true);
+        }
     }
 
 

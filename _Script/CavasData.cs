@@ -20,6 +20,7 @@ public class CavasData : CommonDate {
 			}
             PlayerPrefs.SetInt("front", 2);
             PlayerPrefs.SetInt("frontpark", 2);
+            PlayerPrefs.SetInt("frontcity", 2);
         } else {
 			for (int i = 3; i < 6; i++) {
 				canvasPack_cvs [i].SetActive (false);
@@ -29,6 +30,7 @@ public class CavasData : CommonDate {
             }
             PlayerPrefs.SetInt("front", 1);
             PlayerPrefs.SetInt("frontpark", 1);
+            PlayerPrefs.SetInt("frontcity", 1);
         }
 	}
 }
