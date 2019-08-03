@@ -81,7 +81,6 @@ public class MainShop : ShopHandler {
     void Start () {
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
-
         /*
          * 마법의 코드 자리
         */
