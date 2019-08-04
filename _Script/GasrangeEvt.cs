@@ -62,12 +62,12 @@ public class GasrangeEvt : MonoBehaviour {
     public void indexNumber1()
     {
         indexNumber_i = 1;
-        point_i = 9;
+        point_i = 11;
     }
     public void indexNumber2()
     {
         indexNumber_i = 2;
-        point_i = 7;
+        point_i = 13;
     }
     public void indexNumber3()
     {

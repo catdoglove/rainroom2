@@ -289,6 +289,9 @@ public class CityFood : MonoBehaviour {
     {
         foodBuy_obj.SetActive(false);
         foodIlust_obj.SetActive(false);
+        foodWindow_obj.SetActive(false);
+        truckWindow_obj.SetActive(false);
+        truckWindowYN_obj.SetActive(false);
     }
 
 
@@ -336,13 +339,15 @@ public class CityFood : MonoBehaviour {
         truckToast_obj.SetActive(false);
     }
 
+    
 
 
-    /// <summary>
-    /// 상점넘버
-    /// </summary>
-    #region
-    public void num0()
+
+        /// <summary>
+        /// 상점넘버
+        /// </summary>
+        #region
+        public void num0()
     {
         shopNum = 0;
     }

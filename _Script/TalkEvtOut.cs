@@ -80,11 +80,9 @@ public class TalkEvtOut : MonoBehaviour
     void Update()
     {
         //클립초기화
-        if (PlayerPrefs.GetInt("frontpark", 0) == 1 || PlayerPrefs.GetInt("frontcity", 0) == 1)
+        if (PlayerPrefs.GetInt("frontpark", 0) == 1)
         {
             PlayerPrefs.SetInt("frontpark", 99);
-            PlayerPrefs.SetInt("frontcity", 99);
-            Debug.Log("aaaaaaaaa");
             charAni.Play("char_park");
         }
 
@@ -93,7 +91,15 @@ public class TalkEvtOut : MonoBehaviour
         {
             GM.GetComponent<MainBtnEvt>().goHome_obj.SetActive(false);
             GM.GetComponent<MainBtnEvt>().helpfrist_obj.SetActive(false);
-            firstGM.GetComponent<ParkShop>().allClose();
+            if((PlayerPrefs.GetInt("outtrip", 0) == 1)){
+                firstGM.GetComponent<ParkShop>().allClose();
+            }
+            if ((PlayerPrefs.GetInt("outtrip", 0) == 2))
+            {
+                firstGM.GetComponent<CityShop>().allClose();
+                firstGM.GetComponent<CityFood>().allClose();
+            }
+            // 여기에러
             closeTalkBoon();
             if (!exitTalkBalln.activeSelf)
             {
@@ -102,7 +108,7 @@ public class TalkEvtOut : MonoBehaviour
                 closeTB_exit.SetActive(true);
                 exitBbg.GetComponent<Image>().sprite = ballnSpr[0];
 
-                if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 99))
+                if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 1))
                 {
                     talkCursor.SetActive(true);
                     exitText.text = "집으로 돌아갈까..\n(종료는 집에서 가능)";
@@ -113,12 +119,6 @@ public class TalkEvtOut : MonoBehaviour
                     exitBbg.GetComponent<Image>().sprite = ballnSpr[1];
                     exitText.text = "(가려면 집으로 돌아가야 할 거 같다.)";
                 }
-
-
-            }
-            else
-            {
-                StartCoroutine("quitGame");
             }
         }
 
@@ -129,7 +129,7 @@ public class TalkEvtOut : MonoBehaviour
         }
         if (cnt_exit == 150)
         {
-            if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 99))
+            if (PlayerPrefs.GetInt("frontpark", 0) == 99 || (PlayerPrefs.GetInt("frontcity", 0) == 1))
             {
                 exitText.text = "..음";
             }

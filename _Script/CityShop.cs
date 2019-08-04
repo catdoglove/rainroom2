@@ -869,4 +869,13 @@ public class CityShop : MonoBehaviour {
     {
         itemIndex_i = 15;
     }
+
+    public void allClose()
+    {
+        reformShopWin_obj.SetActive(false);
+        paintBuy_obj.SetActive(false);
+        fabricBuy_obj.SetActive(false);
+        interiorWin_obj.SetActive(false);
+        interiorBuy_obj.SetActive(false);
+    }
 }

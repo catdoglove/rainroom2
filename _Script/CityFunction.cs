@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CityFunction : CavasData
 {
-    public GameObject GMtag;
+    public GameObject GMtag, GMC;
     public GameObject buildToast_obj;
 
     //씬이동
@@ -44,6 +44,12 @@ public class CityFunction : CavasData
         //밤낮
         setDay();
 
+        //외출업적
+        if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
+        {
+            checkachOut();
+            PlayerPrefs.SetInt("acgocheck", 0);
+        }
 
 
         //도시에 처음 왔을때
@@ -53,6 +59,32 @@ public class CityFunction : CavasData
             PlayerPrefs.SetInt("cityfirst", 1);
             PlayerPrefs.Save();
         }
+    }
+
+
+    //외출업적
+    void checkachOut()
+    {
+        int cts = PlayerPrefs.GetInt("countgooutst", 0);
+        cts++;
+        PlayerPrefs.SetInt("countgooutst", cts);
+        //Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
+        if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("gooutst", 3);
+            GMC.GetComponent<AchievementShow>().achievementCheck(7, 2);
+        }
+        else if (cts >= 30 && PlayerPrefs.GetInt("gooutst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("gooutst", 2);
+            GMC.GetComponent<AchievementShow>().achievementCheck(7, 1);
+        }
+        else if (cts >= 1 && PlayerPrefs.GetInt("gooutst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("gooutst", 1);
+            GMC.GetComponent<AchievementShow>().achievementCheck(7, 0);
+        }
+        PlayerPrefs.Save();
     }
 
     public void OpenActHelpI()
@@ -108,21 +140,15 @@ public class CityFunction : CavasData
     {
         if (help == 0)
         {
-            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[1];
             helpCity_obj.SetActive(true);
             help = 1;
         }
-        else
-        if (help == 1)
+        else if (help == 1)
         {
-            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[1];
-            help = 2;
-        }
-        else
-        {
-            help = 0;
             helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
             helpCity_obj.SetActive(false);
+            help = 2;
         }
 
     }
