@@ -29,7 +29,11 @@ public class LoadRoom : MonoBehaviour {
         if (PlayerPrefs.GetInt("outtrip", 0)==1)
         {
             async = SceneManager.LoadSceneAsync("park");
-        }else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        }else if (PlayerPrefs.GetInt("outtrip", 0) == 3)
+        {
+            async = SceneManager.LoadSceneAsync("parkMountain");
+        }
+        else if(PlayerPrefs.GetInt("outtrip", 0) == 2)
         {
             async = SceneManager.LoadSceneAsync("city");
         }
@@ -39,7 +43,7 @@ public class LoadRoom : MonoBehaviour {
             {
                 async = SceneManager.LoadSceneAsync("Main2");
             }
-            else if (PlayerPrefs.GetInt("place", 0) == 0)
+            else  if (PlayerPrefs.GetInt("place", 0) == 0)
             {
                 async = SceneManager.LoadSceneAsync("Main");
             }

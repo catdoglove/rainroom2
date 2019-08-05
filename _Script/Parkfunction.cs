@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Parkfunction : CavasData
@@ -9,6 +10,8 @@ public class Parkfunction : CavasData
     //씬이동
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
+    //미리 씬을 불러오기
+    AsyncOperation async;
     //밤
     public GameObject dayRoom, dayRoom2;
     public GameObject nightShop_obj,dayShop_obj;
@@ -26,6 +29,10 @@ public class Parkfunction : CavasData
     public GameObject GMtag,GMP;
     public GameObject leafPr_obj,leafWin_obj;
     public GameObject eventNight_obj;
+
+    //산으로가기
+    public GameObject mountainWindow_obj;
+
     private void Awake()
     {
         //나뭇잎
@@ -198,6 +205,46 @@ public class Parkfunction : CavasData
         }
         PlayerPrefs.Save();
     }
+
+
+    //산으로가기
+    public void GoMountainWindow()
+    {
+        if (mountainWindow_obj.activeSelf == true)
+        {
+            mountainWindow_obj.SetActive(false);
+        }
+        else
+        {
+            mountainWindow_obj.SetActive(true);
+        }
+    }
+
+    //밤에는 산을 오르면 위험해
+    public void GoMountian()
+    {
+        if (PlayerPrefs.GetInt("dayday", 0) == 1)
+        {
+            //밤이라 못감
+        }
+        else
+        {
+            PlayerPrefs.SetInt("outtrip", 3);
+            StartCoroutine("LoadOut");
+        }
+    }
+
+
+    IEnumerator LoadOut()
+    {
+        async = SceneManager.LoadSceneAsync("SubLoadOut");
+        while (!async.isDone)
+        {
+            yield return true;
+        }
+    }
+
+
 
     //양동이
     public void getBas()
