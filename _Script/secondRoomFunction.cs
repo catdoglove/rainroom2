@@ -987,6 +987,13 @@ public class secondRoomFunction : CavasData {
         GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
     }
 
+    //테스트//////////////////////////////////////////
+    public void GoParkmini()
+    {
+        PlayerPrefs.SetInt("outtrip", 3);
+        StartCoroutine("LoadOut");
+    }
+
     public void OutChange()//공원1 도시2
     {
         if (changeOut_i >= 0)
