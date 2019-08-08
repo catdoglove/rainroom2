@@ -1017,9 +1017,8 @@ public class MainShop : ShopHandler {
         if(PlayerPrefs.GetInt("shoppalette0", 0) == 1)
         {
             palette_obj.SetActive(true);
+            selectAllFalse();
             paletteImg_obj[0].SetActive(true);
-            paletteImg_obj[1].SetActive(false);
-            paletteImg_obj[2].SetActive(false);
             selectMatPaint_obj[PlayerPrefs.GetInt("setmatpalette", 0)].SetActive(true);
         }
         for(int i = 0; i < 7; i++)
@@ -1052,10 +1051,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setmatpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnMat()
@@ -1067,10 +1063,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = matPaint_spr[0];
         }
         PlayerPrefs.SetInt("setmatpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     public void returnMat2()
     {
@@ -1081,10 +1075,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[0];
         }
         PlayerPrefs.SetInt("setmat2palette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     public void returnShelf()
     {
@@ -1095,10 +1087,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[0];
         }
         PlayerPrefs.SetInt("setshelfpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
 
     public void SetMa2tPalette()
@@ -1121,10 +1111,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setmat2palette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
 
@@ -1148,10 +1135,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setshelfpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     //전등
@@ -1163,10 +1147,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().lightImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setlightpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnLight()
@@ -1177,10 +1158,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().lightImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().lightMax_spr[0];
         }
         PlayerPrefs.SetInt("setlightpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     //창문
     public void SetWindowPalette()
@@ -1191,10 +1170,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow2_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setwindowpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnWindow()
@@ -1205,10 +1181,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().windowImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWindow2_spr[0];
         }
         PlayerPrefs.SetInt("setwindowpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     //장식장
     public void SetDrawerPalette()
@@ -1226,14 +1200,14 @@ public class MainShop : ShopHandler {
                 case 3:
                     mColor = new Color(0.70f, 0.70f, 0.70f);
                     break;
+                case 4:
+                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    break;
             }
             GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setdrawerpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }   
     public void returnDrawer()
@@ -1244,10 +1218,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setdrawerpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
 
     //책장
@@ -1258,10 +1230,7 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().bookcase_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setbookpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnBook()
@@ -1271,10 +1240,8 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().bookcase_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBookcase_spr[0];
         }
         PlayerPrefs.SetInt("setbookpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     //침대
     public void SetBedPalette()
@@ -1284,10 +1251,7 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().bedMax_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBed_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setbedpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnBed()
@@ -1297,10 +1261,8 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().bedMax_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformBed_spr[0];
         }
         PlayerPrefs.SetInt("setbedpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     //책상
     public void SetDeskPalette()
@@ -1310,10 +1272,7 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().deskImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformDesk_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setdeskpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnDesk()
@@ -1323,10 +1282,8 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().deskImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformDesk_spr[0];
         }
         PlayerPrefs.SetInt("setdeskpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
 
     //벽지
@@ -1344,10 +1301,7 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[itemIndex_i];
         }
         PlayerPrefs.SetInt("setwallpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnWall()
@@ -1363,10 +1317,8 @@ public class MainShop : ShopHandler {
             GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[0];
         }
         PlayerPrefs.SetInt("setwallpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
     //러그
     public void SetRugPalette()
@@ -1384,15 +1336,15 @@ public class MainShop : ShopHandler {
                 case 3:
                     mColor = new Color(0.65f, 0.65f, 0.65f);
                     break;
+                case 4:
+                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    break;
             }
             GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
             GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setrugpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnRug()
@@ -1426,14 +1378,14 @@ public class MainShop : ShopHandler {
                 case 3:
                     mColor = new Color(0.60f, 0.60f, 0.60f);
                     break;
+                case 4:
+                    mColor = new Color(0.70f, 0.70f, 0.70f);
+                    break;
             }
             GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setcabinetpalette", itemIndex_i);
-        selectAll_obj[0].SetActive(false);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
+        selectAllFalse();
         selectAll_obj[itemIndex_i].SetActive(true);
     }
     public void returnCabinet()
@@ -1444,12 +1396,18 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setcabinetpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
+    }
+
+    void selectAllFalse()
+    {
+        selectAll_obj[0].SetActive(false);
         selectAll_obj[1].SetActive(false);
         selectAll_obj[2].SetActive(false);
         selectAll_obj[3].SetActive(false);
+        selectAll_obj[4].SetActive(false);
     }
-
 
 
     //부엌
