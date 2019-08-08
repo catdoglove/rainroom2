@@ -217,7 +217,6 @@ public class GasrangeEvt : MonoBehaviour {
             PlayerPrefs.SetInt("lovepoint", point_i);
             PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
-
             audio_obj.GetComponent<SoundEvt>().cookSound();
         }
         else
@@ -226,7 +225,6 @@ public class GasrangeEvt : MonoBehaviour {
             StopCoroutine("cookToastFadeOut");
             StartCoroutine("cookToastFadeOut");
         }
-        
     }
 
     IEnumerator penMove()

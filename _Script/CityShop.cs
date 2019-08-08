@@ -563,12 +563,9 @@ public class CityShop : MonoBehaviour {
     {
         hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
         diamond_i = PlayerPrefs.GetInt(str + "dm", 0);
-
         
-
         if (hotRain_i >= fabricH_i[itemIndex_i]&& diamond_i>= fabricD_i[itemIndex_i])
         {
-
             hotRain_i = hotRain_i - fabricH_i[itemIndex_i];
             diamond_i = diamond_i - fabricD_i[itemIndex_i];
 

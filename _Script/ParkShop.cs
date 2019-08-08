@@ -88,6 +88,8 @@ public class ParkShop : MonoBehaviour {
         helpFlower_obj.SetActive(false);
         buyPaintN();
     }
+    //상자 안에              /12그림/ 관련 리폼색이                들어있어
+    //슬슬 돌아가야겠다.
 
     void OpenClose()
     {

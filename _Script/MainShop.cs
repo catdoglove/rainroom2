@@ -1028,7 +1028,6 @@ public class MainShop : ShopHandler {
             {
                 matPalette_obj[i].SetActive(true);
             }
-            
         }
     }
     public void SetMatPalette()
@@ -1356,10 +1355,8 @@ public class MainShop : ShopHandler {
             GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
         }
         PlayerPrefs.SetInt("setrugpalette", 0);
+        selectAllFalse();
         selectAll_obj[0].SetActive(true);
-        selectAll_obj[1].SetActive(false);
-        selectAll_obj[2].SetActive(false);
-        selectAll_obj[3].SetActive(false);
     }
 
     // 서랍장
@@ -1407,6 +1404,7 @@ public class MainShop : ShopHandler {
         selectAll_obj[2].SetActive(false);
         selectAll_obj[3].SetActive(false);
         selectAll_obj[4].SetActive(false);
+        selectAll_obj[5].SetActive(false);
     }
 
 
@@ -1628,6 +1626,32 @@ public class MainShop : ShopHandler {
                     break;
 
             }
+        }
+    }
+
+    /// <summary>
+    /// 완전한 물건일때 숲 또는 바다에서 
+    /// 얻은 페인트가 있는지 확인하고 
+    /// 있다면 팔레트를 킬수 있게 한다.
+    /// </summary>
+    void checkMaxtresure()
+    {
+        //침대
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2&& PlayerPrefs.GetInt("shoppalette74", 0)==1)
+        {
+            PlayerPrefs.SetInt("shoppalette7", 1);
+        }
+
+        //전구
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette34", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette3", 1);
+        }
+
+        //책상
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette8", 1);
         }
     }
 

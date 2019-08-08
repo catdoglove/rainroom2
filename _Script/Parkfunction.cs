@@ -31,8 +31,8 @@ public class Parkfunction : CavasData
     public GameObject eventNight_obj;
 
     //산으로가기
-    public GameObject mountainWindow_obj;
-
+    public GameObject mountainWindow_obj,mountainAD_obj,mountainToast_obj;
+    Color color;
     private void Awake()
     {
         //나뭇잎
@@ -213,6 +213,7 @@ public class Parkfunction : CavasData
         if (mountainWindow_obj.activeSelf == true)
         {
             mountainWindow_obj.SetActive(false);
+            mountainAD_obj.SetActive(false);
         }
         else
         {
@@ -226,12 +227,20 @@ public class Parkfunction : CavasData
         if (PlayerPrefs.GetInt("dayday", 0) == 1)
         {
             //밤이라 못감
+            mountainToast_obj.SetActive(true);
+            StartCoroutine("toastMountainFadeOut");
         }
         else
         {
             PlayerPrefs.SetInt("outtrip", 3);
             StartCoroutine("LoadOut");
         }
+    }
+
+    //어떻게 갈까 창열기
+    public void OpenMountainAD()
+    {
+        mountainAD_obj.SetActive(true);
     }
 
 
@@ -275,5 +284,23 @@ public class Parkfunction : CavasData
     public void CloseLeaf()
     {
         leafWin_obj.SetActive(false);
+    }
+
+
+
+    //밤에는 못가
+    IEnumerator toastMountainFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        mountainToast_obj.GetComponent<Image>().color = color;
+        mountainToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            mountainToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        mountainToast_obj.SetActive(false);
     }
 }

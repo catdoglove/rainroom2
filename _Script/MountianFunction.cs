@@ -24,6 +24,8 @@ public class MountianFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        //상자 안에              /12그림/ 관련 리폼색이                들어있어
+        //슬슬 돌아가야겠다.
         //값초기화
         moveCount_i = 0;
         tresureCount_i = 0;
@@ -38,8 +40,7 @@ public class MountianFunction : MonoBehaviour {
 
         str = PlayerPrefs.GetString("code", "");
         haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
-
-
+        
         //상자가 등장할 장소 지정 최대두번
         randomGet_i = Random.Range(0, 2);
         if (randomGet_i == 1)
@@ -103,11 +104,9 @@ public class MountianFunction : MonoBehaviour {
                 }
             }
         }
-
-    }
+    }//End OF Start
     
     //밤에는 산책을 할수없다
-	
     public void GoLeft()
     {
         MoveTo();
@@ -194,8 +193,8 @@ public class MountianFunction : MonoBehaviour {
         if (randomGet_i == 0)
         {
             //컬러칩또는 버섯
-            randomGet_i = Random.Range(0, 16);
-            if (randomGet_i == 0)
+            randomGet_i = Random.Range(0, 13);
+            if (randomGet_i == 12)
             {
                 //버섯
                 tresure_obj[2].SetActive(true);
@@ -283,6 +282,29 @@ public class MountianFunction : MonoBehaviour {
     //산책 결과 불러오기
     void OpenResult()
     {
+        int buf = PlayerPrefs.GetInt("bufcolor", 88);
+        int buf2 = PlayerPrefs.GetInt("bufcolor2", 88);
+        int mus = PlayerPrefs.GetInt("bufmus", 0);
+
+        //컬러칩2개 버섯
+        if (buf!=88)
+        {
+            PlayerPrefs.SetInt("shoppalette" + buf+"4", 1);
+        }
+        if (buf2 != 88)
+        {
+            PlayerPrefs.SetInt("shoppalette" + buf2 + "4", 1);
+        }
+        if (mus == 1)
+        {
+            PlayerPrefs.SetInt("mushroom", 1);
+        }
+
+        //클로버
+        haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
+        haveClover_i = haveClover_i + PlayerPrefs.GetInt("parkminiclover", 0);
+        PlayerPrefs.GetInt(str + "cv", haveClover_i);
+
         resultWindow_obj.SetActive(true);
         resultClover_txt.text = "" + PlayerPrefs.GetInt("parkminiclover", 0);
         PlayerPrefs.SetInt("bufcolor", 88);
