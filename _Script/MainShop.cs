@@ -1461,10 +1461,7 @@ public class MainShop : ShopHandler {
                 paletteImg_obj[i].SetActive(false);
             }
             //도어,부엌,선반,전구0~3  창문,장식장,책장,침대,테이블 4,5,6,7,8 벽지,러그,서랍장,가스렌지 9,10,11,12
-            selectAll_obj[0].SetActive(false);
-            selectAll_obj[1].SetActive(false);
-            selectAll_obj[2].SetActive(false);
-            selectAll_obj[3].SetActive(false);
+            selectAllFalse();
             switch (itemIndex_i)
             {
                 case 0:

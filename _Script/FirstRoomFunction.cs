@@ -233,6 +233,10 @@ public class FirstRoomFunction : CavasData {
                     rugImg_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
                     rugImg2_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
                     break;
+                case 4:
+                    rugImg_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
+                    break;
             }
         }
 
@@ -248,6 +252,9 @@ public class FirstRoomFunction : CavasData {
                     cabinetImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.80f, 0.80f);
                     break;
                 case 3:
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
+                    break;
+                case 4:
                     cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
                     break;
             }

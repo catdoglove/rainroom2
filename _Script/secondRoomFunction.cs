@@ -245,6 +245,9 @@ public class secondRoomFunction : CavasData {
                 case 3:
                     matImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
                     break;
+                case 4:
+                    matImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
+                    break;
             }
             matImg_obj.GetComponent<Image>().sprite = matPaint_spr[1];
         }
@@ -262,6 +265,9 @@ public class secondRoomFunction : CavasData {
                 case 3:
                     matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
                     break;
+                case 4:
+                    matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
+                    break;
             }
             matImg2_obj.GetComponent<Image>().sprite = mat2Paint_spr[1];
         }
@@ -277,6 +283,9 @@ public class secondRoomFunction : CavasData {
                     shelfImg_obj.GetComponent<Image>().color = new Color(0.80f, 0.94f, 0.99f);
                     break;
                 case 3:
+                    shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.75f);
+                    break;
+                case 4:
                     shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.75f);
                     break;
             }
@@ -314,6 +323,9 @@ public class secondRoomFunction : CavasData {
                     drawerImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.85f, 0.60f);
                     break;
                 case 3:
+                    drawerImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);
+                    break;
+                case 4:
                     drawerImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);
                     break;
             }
