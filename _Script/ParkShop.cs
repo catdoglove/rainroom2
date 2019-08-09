@@ -26,7 +26,7 @@ public class ParkShop : MonoBehaviour {
     public GameObject foodBuy_obj,selectFood_obj,foodIlust_obj;
     public Sprite[] selectFood_spr;
     public int point_i;
-    public Color colorP;
+    public Color colorP,colorF;
     public GameObject needToast_obj;
     public Text clover_txt;
     //공원상점
@@ -54,7 +54,7 @@ public class ParkShop : MonoBehaviour {
     public Sprite[] help_spr;
 
     //밤식물
-    public GameObject flowerColor_obj,flowerBuy_obj,potBuy_obj;
+    public GameObject flowerColor_obj,flowerBuy_obj,potBuy_obj,flowerToast_obj;
     public int[] flowerPriceH_i, flowerPriceCv_i;
     public Text flowerCv_txt,flowerH_txt,flowerName_txt,potName_txt;
     int mc = 0;
@@ -64,6 +64,7 @@ public class ParkShop : MonoBehaviour {
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
+        colorF = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
         paintImg();
     }
@@ -846,14 +847,21 @@ public class ParkShop : MonoBehaviour {
     //밤에식물구매 꽃 팔레트 바꾸기
     public void OpenActFlowerColor()
     {
-        if (flowerColor_obj.activeSelf == true)
+        if (PlayerPrefs.GetInt("seedlv", 0)<10)
         {
-            flowerColor_obj.SetActive(false);
+            needIceBox();
         }
         else
         {
-            checkSoldOut();
-            flowerColor_obj.SetActive(true);
+            if (flowerColor_obj.activeSelf == true)
+            {
+                flowerColor_obj.SetActive(false);
+            }
+            else
+            {
+                checkSoldOut();
+                flowerColor_obj.SetActive(true);
+            }
         }
     }
     
@@ -909,6 +917,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("setflower", shopNum + 1);
                     break;
             }
+            checkSoldOut();
             PlayerPrefs.SetInt("getflowerpalette", 1);
             PlayerPrefs.Save();
         }
@@ -939,6 +948,7 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("setflowerpot", shopNum + 1);
                     break;
             }
+            checkSoldOut();
             PlayerPrefs.SetInt("getflowerpalette", 1);
             PlayerPrefs.Save();
         }
@@ -1033,6 +1043,13 @@ public class ParkShop : MonoBehaviour {
         audio_obj.GetComponent<SoundEvt>().cancleSound();
     }
 
+    void needIceBox()
+    {
+        StopCoroutine("toastFlowerFadeOut");
+        StartCoroutine("toastFlowerFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
@@ -1051,18 +1068,19 @@ public class ParkShop : MonoBehaviour {
     //꽃
     IEnumerator toastFlowerFadeOut()
     {
-        colorP.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = colorP;
-        needToast_obj.SetActive(true);
+        colorF.a = Mathf.Lerp(0f, 1f, 1f);
+        flowerToast_obj.GetComponent<Image>().color = colorF;
+        flowerToast_obj.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            colorP.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = colorP;
+            colorF.a = Mathf.Lerp(0f, 1f, i);
+            flowerToast_obj.GetComponent<Image>().color = colorF;
             yield return null;
         }
-        needToast_obj.SetActive(false);
+        flowerToast_obj.SetActive(false);
     }
+    
 
 
     /// <summary>

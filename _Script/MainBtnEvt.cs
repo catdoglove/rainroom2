@@ -36,7 +36,7 @@ public class MainBtnEvt : CavasData
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
     public GameObject helpPark_obj,helpCity_obj;
-    public Sprite[] helpP_spr;
+    public Sprite[] helpP_spr, helpC_spr;
     int help = 0;
 
     //외출
@@ -594,7 +594,17 @@ public class MainBtnEvt : CavasData
     }
     public void CloseHelpC()
     {
+        if (help == 0)
+        {
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[1];
+            help = 1;
+        }
+        else
+        {
+            help = 0;
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
             helpCity_obj.SetActive(false);
+        }
     }
 
     //쿠폰입력

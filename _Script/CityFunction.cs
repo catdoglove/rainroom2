@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CityFunction : CavasData
 {
@@ -11,12 +12,15 @@ public class CityFunction : CavasData
     public GameObject menuBlock_obj;
     public Vector2 menuBlock_vet;
 
-    public GameObject inHelp_obj, reHelp_obj;
+    public GameObject inHelp_obj, reHelp_obj,foHelp_obj,TuHelp_obj;
 
     //밤
     public GameObject dayRoom, dayRoom2;
     public GameObject nightShop_obj, dayShop_obj, helpCity_obj;
 
+    //도움말
+    int help=0;
+    public Sprite[] helpC_spr;
     // Use this for initialization
     void Start () {
 
@@ -73,16 +77,54 @@ public class CityFunction : CavasData
             reHelp_obj.SetActive(true);
         }
     }
-    public void OpenActHelpF()
+
+
+    public void OpenActHelpT()
     {
-        if (helpCity_obj.activeSelf == true)
+        if (TuHelp_obj.activeSelf == true)
         {
-            helpCity_obj.SetActive(false);
+            TuHelp_obj.SetActive(false);
         }
         else
         {
-            helpCity_obj.SetActive(true);
+            TuHelp_obj.SetActive(true);
         }
+    }
+
+
+    public void OpenActHelpFood()
+    {
+        if (foHelp_obj.activeSelf == true)
+        {
+            foHelp_obj.SetActive(false);
+        }
+        else
+        {
+            foHelp_obj.SetActive(true);
+        }
+    }
+
+    public void OpenActHelpF()
+    {
+        if (help == 0)
+        {
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
+            helpCity_obj.SetActive(true);
+            help = 1;
+        }
+        else
+        if (help == 1)
+        {
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[1];
+            help = 2;
+        }
+        else
+        {
+            help = 0;
+            helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
+            helpCity_obj.SetActive(false);
+        }
+
     }
 
 

@@ -39,6 +39,7 @@ public class SeedTime : MonoBehaviour {
 
     public GameObject flowerImg_obj, potImg_obj;
     public Sprite[] flowerImg_spr, potImg_spr;
+    int fn=1,pn=1;
 
     // Use this for initialization
     void Start () {
@@ -60,6 +61,12 @@ public class SeedTime : MonoBehaviour {
         {
             newFlower_obj.SetActive(true);
             oldFlower_obj.SetActive(false);
+            newWatercan_obj.SetActive(true);
+            int f = PlayerPrefs.GetInt("setflower", 0);
+            flowerColor_obj.GetComponent<Image>().sprite = flowerImg_spr[f];
+
+            f = PlayerPrefs.GetInt("setflowerpot", 0);
+            flowerPotColor_obj.GetComponent<Image>().sprite = potImg_spr[f];
         }
     }
 
@@ -77,15 +84,8 @@ public class SeedTime : MonoBehaviour {
 
     void Color()
     {
-        int f = PlayerPrefs.GetInt("setflower", 0);
-        flowerColor_obj.GetComponent<Image>().sprite = flowerColor_spr[f];
-
-        f = PlayerPrefs.GetInt("setflowerpot", 0);
-        flowerPotColor_obj.GetComponent<Image>().sprite = flowerPotColor_spr[f];
         oldFlower_obj.SetActive(false);
         newFlower_obj.SetActive(true);
-        oldWatercan_obj.SetActive(false);
-        newWatercan_obj.SetActive(true);
     }
     public void SetColor()
     {
@@ -261,6 +261,23 @@ public class SeedTime : MonoBehaviour {
         {
             flower_i--;
             flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+            if (PlayerPrefs.GetInt("flowerpalette" + flower_i, 0) == 1)
+            {
+                pn = 1;
+            }
+            else
+            {
+                fn = 0;
+                if (flower_i == 0)
+                {
+
+                    pn = 1;
+                }
+                else
+                {
+                    flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[5];
+                }
+            }
         }
     }
     public void flowerRight()
@@ -269,6 +286,15 @@ public class SeedTime : MonoBehaviour {
         {
             flower_i++;
             flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+            if (PlayerPrefs.GetInt("flowerpalette" + flower_i, 0) == 1)
+            {
+                fn = 1;
+            }
+            else
+            {
+                fn = 0;
+                flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[5];
+            }
         }
     }
 
@@ -278,6 +304,23 @@ public class SeedTime : MonoBehaviour {
         {
             pot_i--;
             potImg_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+            if (PlayerPrefs.GetInt("flowerpotpalette" + pot_i, 0) == 1)
+            {
+                pn = 1;
+            }
+            else
+            {
+                pn = 0;
+                if (pot_i == 0)
+                {
+
+                    pn = 1;
+                }
+                else
+                {
+                    potImg_obj.GetComponent<Image>().sprite = potImg_spr[5];
+                }
+            }
         }
     }
     public void potRight()
@@ -286,6 +329,32 @@ public class SeedTime : MonoBehaviour {
         {
             pot_i++;
             potImg_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+            if (PlayerPrefs.GetInt("flowerpotpalette" + pot_i, 0) == 1)
+            {
+                pn = 1;
+            }
+            else
+            {
+                pn = 0;
+                potImg_obj.GetComponent<Image>().sprite = potImg_spr[5];
+            }
+        }
+    }
+
+    public void closeColor()
+    {
+        int k = fn + pn;
+        if (k == 2)
+        {
+            ColorWindow_obj.SetActive(false);
+            PlayerPrefs.SetInt("setflower", flower_i);
+            flowerColor_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+            PlayerPrefs.SetInt("setflowerpot", pot_i);
+            flowerPotColor_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
+        }
+        else
+        {
+
         }
     }
 
