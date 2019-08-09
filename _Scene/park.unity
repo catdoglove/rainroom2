@@ -10493,8 +10493,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenOutAd
+      - m_Target: {fileID: 365005795}
+        m_MethodName: buttonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10504,8 +10504,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: buttonSound
+      - m_Target: {fileID: 2128228833}
+        m_MethodName: ADWindowYN
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12150,18 +12150,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ShowAdInterstitial
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 365005795}
         m_MethodName: TVSound
         m_Mode: 1
         m_Arguments:
@@ -12172,8 +12161,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: CloseOutAd
+      - m_Target: {fileID: 2128228826}
+        m_MethodName: ShowAdInterstitial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2128228833}
+        m_MethodName: ADWindowYN
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19617,19 +19617,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: walkOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: buttonSound
+      - m_Target: {fileID: 2128228833}
+        m_MethodName: GoMountian
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27179,8 +27168,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: CloseOutAd
+      - m_Target: {fileID: 365005795}
+        m_MethodName: TVSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27190,8 +27179,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: TVSound
+      - m_Target: {fileID: 2128228833}
+        m_MethodName: ADWindowYN
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30069,6 +30058,7 @@ GameObject:
   - component: {fileID: 2128228836}
   - component: {fileID: 2128228824}
   - component: {fileID: 2128228823}
+  - component: {fileID: 2128228826}
   m_Layer: 0
   m_Name: parkGM
   m_TagString: parkGM
@@ -30160,6 +30150,18 @@ MonoBehaviour:
   moveX: 0
   moveY: 0
   title_obj: {fileID: 0}
+--- !u!114 &2128228826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128228821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2871fecbd87fb04281bd010cb442b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Toast_obj: {fileID: 0}
 --- !u!114 &2128228827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30290,6 +30292,13 @@ MonoBehaviour:
   mountainWindow_obj: {fileID: 1255466705}
   mountainAD_obj: {fileID: 510512140}
   mountainToast_obj: {fileID: 2038182702}
+  needToast_obj: {fileID: 595220326}
+  outPrice_txt: {fileID: 1977049088}
+  outTime_txt: {fileID: 1182643737}
+  outP_obj: {fileID: 0}
+  outGo_obj: {fileID: 1420152434}
+  outAd_obj: {fileID: 1987794755}
+  outAdBtn_obj: {fileID: 760840896}
 --- !u!114 &2128228834
 MonoBehaviour:
   m_ObjectHideFlags: 0

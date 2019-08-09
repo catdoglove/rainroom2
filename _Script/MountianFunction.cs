@@ -12,7 +12,7 @@ public class MountianFunction : MonoBehaviour {
     public GameObject squral_obj, sign_obj, right_obj, left_obj, box_obj,tesureWindow_obj, squralWindow_obj, resultWindow_obj;
     public GameObject backGround_obj, backGround2_obj;
     public GameObject[] tresure_obj, boxRL_obj;
-    public Sprite[] tresure_spr,background_spr,sign_spr;
+    public Sprite[] tresure_spr,background_spr;
     public int moveCount_i,randomGet_i,tresureCount_i,sign_i,sq_i;
     public int[] tresureSet_i;
     public Text clover_txt,resultClover_txt;
@@ -21,6 +21,8 @@ public class MountianFunction : MonoBehaviour {
     int clover_i = 0;
     //
     public Text moveCount_txt;
+
+    List<Dictionary<string, object>> data;
     // Use this for initialization
     void Start()
     {
@@ -183,6 +185,23 @@ public class MountianFunction : MonoBehaviour {
         }
     }
 
+    public void FeedY()
+    {
+        int v = PlayerPrefs.GetInt(str + "c", 0);
+        if (v >= 200)
+        {
+            //먹이를 주었다.
+            squralWindow_obj.SetActive(false);
+            v = v - 200;
+            PlayerPrefs.SetInt(str + "c", v);
+        }
+        else
+        {
+            //부족하다 토스트
+        }
+    }
+
+
     public void touchBox()
     {
         randomGet_i = Random.Range(0, 10);
@@ -222,7 +241,6 @@ public class MountianFunction : MonoBehaviour {
                         PlayerPrefs.SetInt("bufcolor2", randomGet_i);
                     }
                 }
-
             }
         }
         else
@@ -303,13 +321,14 @@ public class MountianFunction : MonoBehaviour {
         //클로버
         haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
         haveClover_i = haveClover_i + PlayerPrefs.GetInt("parkminiclover", 0);
-        PlayerPrefs.GetInt(str + "cv", haveClover_i);
+        PlayerPrefs.SetInt(str + "cv", haveClover_i);
 
         resultWindow_obj.SetActive(true);
         resultClover_txt.text = "" + PlayerPrefs.GetInt("parkminiclover", 0);
         PlayerPrefs.SetInt("bufcolor", 88);
         PlayerPrefs.SetInt("bufcolor2", 88);
         PlayerPrefs.SetInt("bufmus", 0);
+        PlayerPrefs.SetInt("parkminiclover", 0);
     }
 
     //미니게임끝

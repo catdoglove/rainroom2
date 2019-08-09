@@ -30,11 +30,20 @@ public class Parkfunction : CavasData
     public GameObject leafPr_obj,leafWin_obj;
     public GameObject eventNight_obj;
 
-    //산으로가기
-    public GameObject mountainWindow_obj,mountainAD_obj,mountainToast_obj;
-    Color color;
+    //숲으로가기
+    public GameObject mountainWindow_obj,mountainAD_obj,mountainToast_obj, needToast_obj;
+    Color color, colorP;
+    string str;
+    public Text outPrice_txt, outTime_txt;
+    public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
+
     private void Awake()
     {
+        //초기화
+        str = PlayerPrefs.GetString("code", "");
+        colorP = new Color(1f, 1f, 1f);
+        color = new Color(1f, 1f, 1f);
+
         //나뭇잎
         int lf = PlayerPrefs.GetInt("leafcount", 0);
         if (lf >= 100)
@@ -217,23 +226,114 @@ public class Parkfunction : CavasData
         }
         else
         {
-            mountainWindow_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("dayday", 0) == 1)
+            {
+                //밤이라 못감
+                mountainToast_obj.SetActive(true);
+                StartCoroutine("toastMountainFadeOut");
+            }
+            else
+            {
+                //시간흐르게
+                StopCoroutine("outTime");
+                StartCoroutine("outTime");
+                mountainWindow_obj.SetActive(true);
+            }
         }
     }
 
-    //밤에는 산을 오르면 위험해
+    //
     public void GoMountian()
     {
-        if (PlayerPrefs.GetInt("dayday", 0) == 1)
+        
+        int hotR_i;
+        hotR_i = PlayerPrefs.GetInt(str + "h", 0);
+        int hp_i = 240;
+        if (PlayerPrefs.GetInt("foresttime", 9) == 4)
         {
-            //밤이라 못감
-            mountainToast_obj.SetActive(true);
-            StartCoroutine("toastMountainFadeOut");
+            hp_i = hp_i - 120;
+        }
+        if (hotR_i >= hp_i)//240온수가 있는가?
+        {
+            PlayerPrefs.SetString("outLastTimepark", System.DateTime.Now.ToString());
+            PlayerPrefs.SetInt("outtrip", 3);
+            
+            hotR_i = hotR_i - hp_i;
+            PlayerPrefs.SetInt(str + "h", hotR_i);
+            PlayerPrefs.SetInt("foresttime", 9);
+            //업적
+            //PlayerPrefs.SetInt("acgocheck", 1);
+            //checkachOut();
+            StartCoroutine("LoadOut");
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
         else
         {
-            PlayerPrefs.SetInt("outtrip", 3);
-            StartCoroutine("LoadOut");
+            audio_obj.GetComponent<SoundEvt>().cancleSound();
+            needMoney();
+            mountainAD_obj.SetActive(false);
+            mountainWindow_obj.SetActive(false);
+            //돈부족
+        }
+        
+    }
+
+
+    IEnumerator outTime()
+    {
+        int a = 0;
+        while (a == 0)
+        {
+            if (PlayerPrefs.GetInt("foresttime", 9) == 4)
+            {
+                outAdBtn_obj.GetComponent<Button>().interactable = false;
+                outPrice_txt.text = "120";
+            }
+            if (PlayerPrefs.GetInt("outtimeon", 0) == 0)
+            {
+                outTime_txt.text = "00:00";
+                outGo_obj.GetComponent<Button>().interactable = true;
+                PlayerPrefs.SetInt("outtimeonpark", 1);
+            }
+            else
+            {
+                System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTimepark", dateTime.ToString()));
+                System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+                int m = (int)compareTime.TotalMinutes;
+                int sec = (int)compareTime.TotalSeconds;
+                sec = sec - (sec / 60) * 60;
+                sec = 59 - sec;
+                m = PlayerPrefs.GetInt("foresttime", 9) - m;
+                string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
+                outTime_txt.text = strb;
+                if (m < 0)
+                {
+                    outTime_txt.text = "00:00";
+                    PlayerPrefs.SetInt("outtimeonpark", 0);
+                    PlayerPrefs.Save();
+                    outGo_obj.GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    outGo_obj.GetComponent<Button>().interactable = false;
+                }
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+
+    //산으로가기
+    public void ADWindowYN()
+    {
+        if (outAd_obj.activeSelf == true)
+        {
+            outAd_obj.SetActive(false);
+        }
+        else
+        {
+            outAd_obj.SetActive(true);
         }
     }
 
@@ -303,4 +403,29 @@ public class Parkfunction : CavasData
         }
         mountainToast_obj.SetActive(false);
     }
+
+
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        colorP.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = colorP;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorP.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = colorP;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
+    }
+
 }
