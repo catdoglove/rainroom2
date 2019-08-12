@@ -22,10 +22,30 @@ public class MountianFunction : MonoBehaviour {
     //
     public Text moveCount_txt;
 
+
+    public Text sign_text;
+    List<Dictionary<string, object>> data_sign;
+    string text_str; //실질적 대사출력
+    string Text_cut; //대사 끊기
+    int nowArr = 1; //현재 줄
+
+
+
+
+    public void testbtn()
+    {//이 함수는 임시라서  어딘가에 nowArr을 +1 해줘서 100줄되면 다시 초기화 시켜야함
+        text_str = " " + data_sign[nowArr - 1]["sign"];
+        Text_cut = "" + text_str;
+        sign_text.text = Text_cut;
+    }
+
+
     List<Dictionary<string, object>> data;
     // Use this for initialization
     void Start()
     {
+        data_sign = CSVReader.Read("Talk/sign_park");
+
         //상자 안에              /12그림/ 관련 리폼색이                들어있어
         //슬슬 돌아가야겠다.
         //값초기화
