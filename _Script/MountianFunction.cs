@@ -10,7 +10,7 @@ public class MountianFunction : MonoBehaviour {
     AsyncOperation async;
 
     public GameObject squral_obj, sign_obj, right_obj, left_obj, box_obj,tesureWindow_obj, squralWindow_obj, resultWindow_obj;
-    public GameObject backGround_obj, backGround2_obj;
+    public GameObject backGround_obj, backGround2_obj,sqH_obj, audio_obj;
     public GameObject[] tresure_obj, boxRL_obj;
     public Sprite[] tresure_spr,background_spr;
     public int moveCount_i,randomGet_i,tresureCount_i,sign_i,sq_i;
@@ -22,21 +22,34 @@ public class MountianFunction : MonoBehaviour {
     //
     public Text moveCount_txt;
 
+    public Animator walk_Ani;
 
     public Text sign_text;
     List<Dictionary<string, object>> data_sign;
     string text_str; //실질적 대사출력
     string Text_cut; //대사 끊기
     int nowArr = 1; //현재 줄
+    
 
+    //
+    Color colorN;
+    public GameObject needToast_obj;
 
-
-
-    public void testbtn()
-    {//이 함수는 임시라서  어딘가에 nowArr을 +1 해줘서 100줄되면 다시 초기화 시켜야함
+    /// <summary>
+    ///  표지판글씨
+    /// </summary>
+    public void signText()
+    {
+        nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
         text_str = " " + data_sign[nowArr - 1]["sign"];
         Text_cut = "" + text_str;
         sign_text.text = Text_cut;
+        nowArr++;
+        if (nowArr >= 100)
+        {
+            nowArr = 1;
+        }
+        PlayerPrefs.SetInt("nowarrsign", nowArr);
     }
 
 
@@ -45,6 +58,7 @@ public class MountianFunction : MonoBehaviour {
     void Start()
     {
         data_sign = CSVReader.Read("Talk/sign_park");
+        signText();
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어
         //슬슬 돌아가야겠다.
@@ -128,7 +142,6 @@ public class MountianFunction : MonoBehaviour {
         }
     }//End OF Start
     
-    //밤에는 산책을 할수없다
     public void GoLeft()
     {
         MoveTo();
@@ -141,6 +154,7 @@ public class MountianFunction : MonoBehaviour {
     void MoveTo()
     {
 
+        sqH_obj.SetActive(false);
         box_obj.SetActive(false);
         squral_obj.SetActive(false);
         sign_obj.SetActive(false);
@@ -152,6 +166,7 @@ public class MountianFunction : MonoBehaviour {
         }
         else
         {
+            walk_Ani.Play("mountain", -1, 0f);
             //배경변경
             //backGround_obj.GetComponent<Image>().sprite = background_spr[moveCount_i];
             if (backGround_obj.activeSelf == true)
@@ -202,9 +217,11 @@ public class MountianFunction : MonoBehaviour {
         else
         {
             squralWindow_obj.SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
     }
 
+    //다람쥐
     public void FeedY()
     {
         int v = PlayerPrefs.GetInt(str + "c", 0);
@@ -214,16 +231,23 @@ public class MountianFunction : MonoBehaviour {
             squralWindow_obj.SetActive(false);
             v = v - 200;
             PlayerPrefs.SetInt(str + "c", v);
+            PlayerPrefs.Save();
+            sqH_obj.SetActive(true);
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
         else
         {
             //부족하다 토스트
+            StopCoroutine("toastNImgFadeOut");
+            StartCoroutine("toastNImgFadeOut");
+            audio_obj.GetComponent<SoundEvt>().cancleSound();
         }
     }
 
 
     public void touchBox()
     {
+        audio_obj.GetComponent<SoundEvt>().boxSound();
         randomGet_i = Random.Range(0, 10);
         tresure_obj[0].SetActive(false);
         tresure_obj[1].SetActive(false);
@@ -241,7 +265,7 @@ public class MountianFunction : MonoBehaviour {
             }
             else
             {
-                if(PlayerPrefs.GetInt("bufcolor", 99)== randomGet_i|| PlayerPrefs.GetInt("shoppalette"+ randomGet_i + "4" , 0) == 1)
+                if(PlayerPrefs.GetInt("bufcolor", 99)== randomGet_i|| PlayerPrefs.GetInt("shoppalette"+ randomGet_i + "3" , 0) == 1)
                 {
                     //클로버로 대체
                     GetClover();
@@ -253,11 +277,13 @@ public class MountianFunction : MonoBehaviour {
                     if (PlayerPrefs.GetInt("bufcolor", randomGet_i) == 88)
                     {
                         tresure_obj[1].SetActive(true);
+                        tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
                         PlayerPrefs.SetInt("bufcolor", randomGet_i);
                     }
                     else
                     {
                         tresure_obj[1].SetActive(true);
+                        tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
                         PlayerPrefs.SetInt("bufcolor2", randomGet_i);
                     }
                 }
@@ -327,11 +353,11 @@ public class MountianFunction : MonoBehaviour {
         //컬러칩2개 버섯
         if (buf!=88)
         {
-            PlayerPrefs.SetInt("shoppalette" + buf+"4", 1);
+            PlayerPrefs.SetInt("shoppalette" + buf+"3", 1);
         }
         if (buf2 != 88)
         {
-            PlayerPrefs.SetInt("shoppalette" + buf2 + "4", 1);
+            PlayerPrefs.SetInt("shoppalette" + buf2 + "3", 1);
         }
         if (mus == 1)
         {
@@ -344,11 +370,11 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetInt(str + "cv", haveClover_i);
 
         resultWindow_obj.SetActive(true);
-        resultClover_txt.text = "" + PlayerPrefs.GetInt("parkminiclover", 0);
         PlayerPrefs.SetInt("bufcolor", 88);
         PlayerPrefs.SetInt("bufcolor2", 88);
         PlayerPrefs.SetInt("bufmus", 0);
         PlayerPrefs.SetInt("parkminiclover", 0);
+        PlayerPrefs.Save();
     }
 
     //미니게임끝
@@ -358,6 +384,23 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetInt("outtrip", 1);
         StartCoroutine("LoadOut");
     }
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = colorN;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = colorN;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
+    }
+
 
     //씬불러오기
     IEnumerator LoadOut()

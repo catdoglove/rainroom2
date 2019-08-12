@@ -92,7 +92,7 @@ public class FirstRoomFunction : CavasData {
     public GameObject audio_obj;
 
     //리폼
-    public Sprite[] reformWall_spr, reformWall2_spr, reformBookcase_spr, reformDesk_spr, reformBed_spr;
+    public Sprite[] reformWall_spr, reformWall2_spr, reformBookcase_spr, reformDesk_spr, reformBed_spr,reformRug_spr, reformCabinet_spr;
 
 
     //타이틀닫기
@@ -219,6 +219,8 @@ public class FirstRoomFunction : CavasData {
         //러그
         if (PlayerPrefs.GetInt("shoppalette10", 0) > 0)
         {
+            rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[0];
+            rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[0];
             switch (PlayerPrefs.GetInt("setrugpalette", 0))
             {
                 case 1:
@@ -234,8 +236,10 @@ public class FirstRoomFunction : CavasData {
                     rugImg2_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
                     break;
                 case 4:
-                    rugImg_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
-                    rugImg2_obj.GetComponent<Image>().color = new Color(0.65f, 0.65f, 0.65f);
+                    rugImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[4];
+                    rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[4];
                     break;
             }
         }
@@ -243,6 +247,7 @@ public class FirstRoomFunction : CavasData {
         //서랍장
         if (PlayerPrefs.GetInt("shoppalette11", 0) > 0)
         {
+            cabinetImg_obj.GetComponent<Image>().sprite = reformCabinet_spr[0];
             switch (PlayerPrefs.GetInt("setcabinetpalette", 0))
             {
                 case 1:
@@ -255,7 +260,8 @@ public class FirstRoomFunction : CavasData {
                     cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
                     break;
                 case 4:
-                    cabinetImg_obj.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f);
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    cabinetImg_obj.GetComponent<Image>().sprite = reformCabinet_spr[4];
                     break;
             }
         }
