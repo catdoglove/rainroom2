@@ -259,9 +259,17 @@ public class MountianFunction : MonoBehaviour {
             randomGet_i = Random.Range(0, 13);
             if (randomGet_i == 12)
             {
-                //버섯
-                tresure_obj[2].SetActive(true);
-                PlayerPrefs.SetInt("bufmus", 1);
+                if (PlayerPrefs.GetInt("mushroom", 0) == 1)
+                {
+                    //클로버로 대체
+                    GetClover();
+                }
+                else
+                {
+                    //버섯
+                    tresure_obj[2].SetActive(true);
+                    PlayerPrefs.SetInt("bufmus", 1);
+                }
             }
             else
             {
