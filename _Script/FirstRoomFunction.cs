@@ -94,6 +94,8 @@ public class FirstRoomFunction : CavasData {
     //리폼
     public Sprite[] reformWall_spr, reformWall2_spr, reformBookcase_spr, reformDesk_spr, reformBed_spr,reformRug_spr, reformCabinet_spr;
 
+    //책출판기념
+    public GameObject bookEvent_obj, bookEventUp_obj, bookEventWindow_obj;
 
     //타이틀닫기
     public GameObject titleImg;
@@ -199,6 +201,18 @@ public class FirstRoomFunction : CavasData {
         }
         bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
         deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
+
+        if (PlayerPrefs.GetInt("10016", 0) == 50)
+        {
+            if (desk_i <= 3)
+            {
+                bookEvent_obj.SetActive(true);
+            }
+            else
+            {
+                bookEventUp_obj.SetActive(true);
+            }
+        }
         //standImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().stand_spr [stand_i];
         rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
@@ -804,6 +818,20 @@ public class FirstRoomFunction : CavasData {
     {
         needMore_obj.SetActive(false);
         beadalYet_obj.SetActive(false);
+    }
+
+    //책상위 책
+    public void ActBookEvent()
+    {
+
+        if (bookEventWindow_obj.activeSelf == true)
+        {
+            bookEventWindow_obj.SetActive(false);
+        }
+        else
+        {
+            bookEventWindow_obj.SetActive(true);
+        }
     }
     
     IEnumerator toastBImgFadeOut()

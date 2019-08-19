@@ -1048,6 +1048,10 @@ public class MainShop : ShopHandler {
                 case 3:
                     mColor = new Color(0.99f, 0.9f, 0.80f);
                     break;
+                case 4:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat1_spr[4];
+                    break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
         }
@@ -1108,6 +1112,10 @@ public class MainShop : ShopHandler {
                 case 3:
                     mColor = new Color(0.99f, 0.9f, 0.80f);
                     break;
+                case 4:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat2_spr[4];
+                    break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
         }
@@ -1120,7 +1128,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
-            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = shelfPaint_spr[1];
+            GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().shelfPaint_spr[1];
             switch (itemIndex_i)
             {
                 case 1:
@@ -1131,6 +1139,10 @@ public class MainShop : ShopHandler {
                     break;
                 case 3:
                     mColor = new Color(0.99f, 0.9f, 0.75f);
+                    break;
+                case 4:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformShelf_spr[4];
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
@@ -1190,6 +1202,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)//단칸방
         {
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[itemIndex_i];
             switch (itemIndex_i)
             {
                 case 1:
@@ -1203,7 +1216,6 @@ public class MainShop : ShopHandler {
                     break;
                 case 4:
                     mColor = new Color(1f, 1f, 1f);
-
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
