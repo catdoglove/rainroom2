@@ -234,6 +234,10 @@ public class MountianFunction : MonoBehaviour {
             PlayerPrefs.Save();
             sqH_obj.SetActive(true);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
+            int e;
+            e = PlayerPrefs.GetInt("lovepoint", 0);
+            e = e + 1;
+            PlayerPrefs.SetInt("lovepoint", e);
         }
         else
         {
