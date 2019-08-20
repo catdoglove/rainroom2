@@ -81,6 +81,10 @@ public class SeedTime : MonoBehaviour {
         else
         {
             ColorWindow_obj.SetActive(true);
+            flower_i = PlayerPrefs.GetInt("setflower", 0);
+            flowerImg_obj.GetComponent<Image>().sprite = flowerImg_spr[flower_i];
+            pot_i = PlayerPrefs.GetInt("setflowerpot", 0);
+            potImg_obj.GetComponent<Image>().sprite = potImg_spr[pot_i];
         }
     }
 
@@ -164,7 +168,6 @@ public class SeedTime : MonoBehaviour {
                 seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
                 PlayerPrefs.Save();
             }
-
             waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[1];
         }
         seedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().flowerpot_spr[seed_i];
@@ -194,7 +197,6 @@ public class SeedTime : MonoBehaviour {
                     seedYetWindow_obj.SetActive(true);
                     audio_obj.GetComponent<SoundEvt>().buttonSound();
                 }
-
             }
             else
             {
@@ -254,7 +256,6 @@ public class SeedTime : MonoBehaviour {
                 audio_obj.GetComponent<SoundEvt>().cancleSound();
             }
         }
-        
     }
 
     public void flowerLeft()
@@ -362,9 +363,7 @@ public class SeedTime : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cancleSound();
         }
     }
-
-
-
+    
     //꽃색깔을 구매안했다
     IEnumerator toastneedColorFadeOut()
     {

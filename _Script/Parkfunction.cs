@@ -34,7 +34,7 @@ public class Parkfunction : CavasData
     public GameObject mountainWindow_obj,mountainAD_obj,mountainToast_obj, needToast_obj;
     Color color, colorP;
     string str;
-    public Text outPrice_txt, outTime_txt;
+    public Text outPrice_txt, outTime_txt, hPrice_txt;
     public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
 
     private void Awake()
@@ -226,6 +226,7 @@ public class Parkfunction : CavasData
         }
         else
         {
+            hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             if (PlayerPrefs.GetInt("dayday", 0) == 1)
             {
                 //밤이라 못감
@@ -241,11 +242,9 @@ public class Parkfunction : CavasData
             }
         }
     }
-
-    //
+    
     public void GoMountian()
     {
-        
         int hotR_i;
         hotR_i = PlayerPrefs.GetInt(str + "h", 0);
         int hp_i = 240;
@@ -261,6 +260,9 @@ public class Parkfunction : CavasData
             hotR_i = hotR_i - hp_i;
             PlayerPrefs.SetInt(str + "h", hotR_i);
             PlayerPrefs.SetInt("foresttime", 9);
+            PlayerPrefs.Save();
+
+            hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
             //업적
             //PlayerPrefs.SetInt("acgocheck", 1);
             //checkachOut();
@@ -275,7 +277,6 @@ public class Parkfunction : CavasData
             mountainWindow_obj.SetActive(false);
             //돈부족
         }
-        
     }
 
 
@@ -352,7 +353,6 @@ public class Parkfunction : CavasData
             yield return true;
         }
     }
-
 
 
     //양동이

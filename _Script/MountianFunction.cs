@@ -233,7 +233,7 @@ public class MountianFunction : MonoBehaviour {
             PlayerPrefs.SetInt(str + "c", v);
             PlayerPrefs.Save();
             sqH_obj.SetActive(true);
-            audio_obj.GetComponent<SoundEvt>().buttonSound();
+            audio_obj.GetComponent<SoundEvt>().foodSound();
             int e;
             e = PlayerPrefs.GetInt("lovepoint", 0);
             e = e + 1;
@@ -259,7 +259,7 @@ public class MountianFunction : MonoBehaviour {
         tesureWindow_obj.SetActive(true);
         if (randomGet_i == 0)
         {
-            //컬러칩또는 버섯
+            //컬러칩또는 최대 1/50 확률로
             randomGet_i = Random.Range(0, 13);
             if (randomGet_i == 12)
             {
