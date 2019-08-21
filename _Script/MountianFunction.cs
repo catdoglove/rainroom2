@@ -437,14 +437,25 @@ public class MountianFunction : MonoBehaviour {
                 ik++;
             }
         }
-        if (ik > 5)
+        if (ik > 3)
         {
             redo();
             redo();
         }
-        if (ik > 10)
+        if (ik > 4)
         {
             redo();
+        }
+        if (ik > 5)
+        {
+            redo();
+        }
+        if (ik > 7)
+        {
+            redo();
+        }
+        if (ik > 9)
+        {
             redo();
         }
     }

@@ -642,7 +642,7 @@ public class MainBtnEvt : CavasData
                 PlayerPrefs.SetInt(str + "cv", c);
 
                 PlayerPrefs.SetInt("10016", 50);
-
+                PlayerPrefs.SetInt("storg", 1);
                 couponTxt2_obj.SetActive(true);
                 coupon_obj.SetActive(false);
 

@@ -85,6 +85,8 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
+
+
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -94,6 +96,7 @@ public class MainShop : ShopHandler {
     }
 
     public void ShopCoinLoad(){
+        checkMaxtresure();
         if (GM == null)
         {
             GM = GameObject.FindGameObjectWithTag("firstroomGM");
@@ -449,6 +452,8 @@ public class MainShop : ShopHandler {
         ItemListImg_obj[0].SetActive(false);
         ItemListImg_obj[2].SetActive(true);
         OpenfunctionItem();
+        //숲에서 얻은 리폼
+        checkMaxtresure();
     }
 
     /// <summary>
@@ -1048,7 +1053,6 @@ public class MainShop : ShopHandler {
     //리폼 산것만 팔레트띄우기
     public void OpenReform()
     {
-        checkMaxtresure();
         shop_obj.SetActive(false);
         close_obj.SetActive(false);
         back_obj.SetActive(false);
@@ -1727,18 +1731,21 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2&& PlayerPrefs.GetInt("shoppalette73", 0)==1)
         {
             PlayerPrefs.SetInt("shoppalette7", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
         }
 
         //전구
         if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette33", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette3", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
         }
 
         //책상
         if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
         }
     }
 
