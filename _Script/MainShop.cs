@@ -705,6 +705,15 @@ public class MainShop : ShopHandler {
         {
             funcBox_obj[2].SetActive(false);
         }
+        if (PlayerPrefs.GetInt("10016", 0) >= 50)
+        {
+            funcBox_obj[3].SetActive(true);
+        }
+        else
+        {
+            funcBox_obj[3].SetActive(false);
+        }
+        
         shop_obj.SetActive(false);
         close_obj.SetActive(false);
         back_obj.SetActive(false);
@@ -733,6 +742,15 @@ public class MainShop : ShopHandler {
         else
         {
             funcBox_obj[2].GetComponent<Image>().sprite = funcBox_spr[5];
+        }
+
+        if (PlayerPrefs.GetInt("puteventbook", 1) >= 1)
+        {
+            funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[6];
+        }
+        else
+        {
+            funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[7];
         }
     }
     //식물 보관
@@ -838,6 +856,61 @@ public class MainShop : ShopHandler {
         }
     }
 
+    //그림 보관
+    public void PutEventBook()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            //낮은책상
+            if (PlayerPrefs.GetInt("desklv", 0) <= 3)
+            {
+                if (GM.GetComponent<FirstRoomFunction>().bookEvent_obj.activeSelf == true)
+                {
+                    GM.GetComponent<FirstRoomFunction>().bookEvent_obj.SetActive(false);
+                    PlayerPrefs.SetInt("puteventbook", 0);
+                    funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[7];
+                }
+                else
+                {
+                    GM.GetComponent<FirstRoomFunction>().bookEvent_obj.SetActive(true);
+                    PlayerPrefs.SetInt("puteventbook", 1);
+                    funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[6];
+                }
+            }
+            else
+            {
+                //높은책상
+                if (GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.activeSelf == true)
+                {
+                    GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.SetActive(false);
+                    PlayerPrefs.SetInt("puteventbook", 0);
+                    funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[7];
+                }
+                else
+                {
+                    GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.SetActive(true);
+                    PlayerPrefs.SetInt("puteventbook", 1);
+                    funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[6];
+                }
+            }
+
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("puteventbook", 1) == 1)
+            {
+                PlayerPrefs.SetInt("puteventbook", 0);
+                funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[7];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("puteventbook", 1);
+                funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[6];
+            }
+
+        }
+    }
+    
     public void CloseFuncCabinet()
     {
         funcCabinet_obj.SetActive(false);

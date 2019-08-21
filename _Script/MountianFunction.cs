@@ -29,8 +29,8 @@ public class MountianFunction : MonoBehaviour {
     string text_str; //실질적 대사출력
     string Text_cut; //대사 끊기
     int nowArr = 1; //현재 줄
-    
 
+    int ik;
     //
     Color colorN;
     public GameObject needToast_obj;
@@ -277,7 +277,9 @@ public class MountianFunction : MonoBehaviour {
             }
             else
             {
-                if(PlayerPrefs.GetInt("bufcolor", 99)== randomGet_i|| PlayerPrefs.GetInt("shoppalette"+ randomGet_i + "3" , 0) == 1)
+                //확률보정
+                sum();
+                if (PlayerPrefs.GetInt("bufcolor", 99) == randomGet_i || PlayerPrefs.GetInt("shoppalette" + randomGet_i + "3", 0) == 1)
                 {
                     //클로버로 대체
                     GetClover();
@@ -421,6 +423,42 @@ public class MountianFunction : MonoBehaviour {
         while (!async.isDone)
         {
             yield return true;
+        }
+    }
+
+    void sum()
+    {
+
+        ik = 0;
+        for (int i = 0; i < 12; i++)
+        {
+            if (PlayerPrefs.GetInt("shoppalette" + i + "3", 0) == 1)
+            {
+                ik++;
+            }
+        }
+        if (ik > 5)
+        {
+            redo();
+            redo();
+        }
+        if (ik > 10)
+        {
+            redo();
+            redo();
+        }
+    }
+
+    void redo()
+    {
+
+        if (PlayerPrefs.GetInt("shoppalette" + randomGet_i + "3", 0) == 1)
+        {
+            randomGet_i++;
+        }
+        if (randomGet_i >= 12)
+        {
+            randomGet_i = 0;
         }
     }
 }

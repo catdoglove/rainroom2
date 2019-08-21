@@ -646,18 +646,20 @@ public class MainBtnEvt : CavasData
                 couponTxt2_obj.SetActive(true);
                 coupon_obj.SetActive(false);
 
-
-                if (GM == null)
+                if (PlayerPrefs.GetInt("place", 0) == 0)
                 {
-                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
-                }
-                if (PlayerPrefs.GetInt("desklv", 0) <= 3)
-                {
-                    GM.GetComponent<FirstRoomFunction>().bookEvent_obj.SetActive(true);
-                }
-                else
-                {
-                    GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.SetActive(true);
+                    if (GM == null)
+                    {
+                        GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                    }
+                    if (PlayerPrefs.GetInt("desklv", 0) <= 3)
+                    {
+                        GM.GetComponent<FirstRoomFunction>().bookEvent_obj.SetActive(true);
+                    }
+                    else
+                    {
+                        GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.SetActive(true);
+                    }
                 }
             }
         }
