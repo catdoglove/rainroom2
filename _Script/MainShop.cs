@@ -85,7 +85,6 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -1725,19 +1724,19 @@ public class MainShop : ShopHandler {
     void checkMaxtresure()
     {
         //침대
-        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2&& PlayerPrefs.GetInt("shoppalette74", 0)==1)
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2&& PlayerPrefs.GetInt("shoppalette73", 0)==1)
         {
             PlayerPrefs.SetInt("shoppalette7", 1);
         }
 
         //전구
-        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette34", 0) == 1)
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette33", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette3", 1);
         }
 
         //책상
-        if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
+        if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
         }

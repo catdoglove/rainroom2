@@ -219,6 +219,12 @@ public class SleepTime : MonoBehaviour {
 
                 if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 1)
                 {
+
+                    if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+                    {
+                        rabbit_obj.SetActive(true);
+                        rabbitSleep_obj.SetActive(false);
+                    }
                     sleepMax_obj.SetActive(false);
                     if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                     {
@@ -229,6 +235,11 @@ public class SleepTime : MonoBehaviour {
                 else
                 {
                     sleep_obj[n - 1].SetActive(false);
+                    if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
+                    {
+                        rabbit_obj.SetActive(true);
+                        rabbitSleep_obj.SetActive(false);
+                    }
                 }
                 sleepGone_obj.SetActive(true);
                 //StopCoroutine("sleepTimecheck");
