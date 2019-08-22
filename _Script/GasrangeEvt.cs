@@ -117,6 +117,13 @@ public class GasrangeEvt : MonoBehaviour {
                 gasrangeLv_obj[0].SetActive(true);
                 gasrangeLv_obj[1].SetActive(true);
             }
+
+            if (PlayerPrefs.GetInt("gasrangelv", 0) >= 5)
+            {
+                gasrangeLv_obj[0].SetActive(true);
+                gasrangeLv_obj[1].SetActive(true);
+                gasrangeLv_obj[2].SetActive(true);
+            }
             //계란
             if (egg_i == 1)
             {
@@ -312,7 +319,7 @@ public class GasrangeEvt : MonoBehaviour {
         }
         if (PlayerPrefs.GetInt("iceboxlv", 0) >= 4)
         {
-            //iceBoxLv_obj[2].SetActive(true);
+            iceBoxLv_obj[2].SetActive(true);
         }
         CheckIng();
         iceBox_obj.SetActive(true);
