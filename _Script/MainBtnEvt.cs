@@ -617,20 +617,7 @@ public class MainBtnEvt : CavasData
     }
     public void SetCoupon()
     {
-        if(InputField_txt.text== "welcomerain2")
-        {
-            if (PlayerPrefs.GetInt("609102", 0) == 0)
-            {
-                string str = PlayerPrefs.GetString("code", "");
-                //쿠폰보상
-                int h = PlayerPrefs.GetInt(str + "ht", 0) + 5;
-                PlayerPrefs.SetInt(str + "ht", h);
-                PlayerPrefs.SetInt("609102", 60);
-                couponTxt_obj.SetActive(true);
-                coupon_obj.SetActive(false);
-            }
-        }
-        else if(InputField_txt.text == "launchrainbook")
+        if (InputField_txt.text == "launchrainbook")
         {
             if (PlayerPrefs.GetInt("10016", 0) == 0)
             {
@@ -669,6 +656,22 @@ public class MainBtnEvt : CavasData
         }
         PlayerPrefs.Save();
     }
+
+    /*if(InputField_txt.text== "welcomerain2")
+        {
+            if (PlayerPrefs.GetInt("609102", 0) == 0)
+            {
+                string str = PlayerPrefs.GetString("code", "");
+                //쿠폰보상
+                int h = PlayerPrefs.GetInt(str + "ht", 0) + 5;
+                PlayerPrefs.SetInt(str + "ht", h);
+                PlayerPrefs.SetInt("609102", 60);
+                couponTxt_obj.SetActive(true);
+                coupon_obj.SetActive(false);
+            }
+        }
+        */
+
     public void closeCoupon()
     {
         coupon_obj.SetActive(false);
