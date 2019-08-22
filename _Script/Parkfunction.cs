@@ -254,7 +254,7 @@ public class Parkfunction : CavasData
         }
         if (hotR_i >= hp_i)//240온수가 있는가?
         {
-            PlayerPrefs.SetString("outLastTimepark", System.DateTime.Now.ToString());
+            PlayerPrefs.SetString("outlasttimepark", System.DateTime.Now.ToString());
             PlayerPrefs.SetInt("outtrip", 3);
             
             hotR_i = hotR_i - hp_i;
@@ -290,7 +290,7 @@ public class Parkfunction : CavasData
                 outAdBtn_obj.GetComponent<Button>().interactable = false;
                 outPrice_txt.text = "120";
             }
-            if (PlayerPrefs.GetInt("outtimeon", 0) == 0)
+            if (PlayerPrefs.GetInt("outtimeonpark", 0) == 0)
             {
                 outTime_txt.text = "00:00";
                 outGo_obj.GetComponent<Button>().interactable = true;
@@ -299,7 +299,7 @@ public class Parkfunction : CavasData
             else
             {
                 System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
-                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTimepark", dateTime.ToString()));
+                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
                 System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;

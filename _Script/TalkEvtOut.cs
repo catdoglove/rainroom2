@@ -93,6 +93,8 @@ public class TalkEvtOut : MonoBehaviour
             GM.GetComponent<MainBtnEvt>().helpfrist_obj.SetActive(false);
             if((PlayerPrefs.GetInt("outtrip", 0) == 1)){
                 firstGM.GetComponent<ParkShop>().allClose();
+                firstGM.GetComponent <Parkfunction>().mountainWindow_obj.SetActive(false);
+                firstGM.GetComponent<Parkfunction>().mountainAD_obj.SetActive(false);
             }
             if ((PlayerPrefs.GetInt("outtrip", 0) == 2))
             {

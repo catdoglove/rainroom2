@@ -58,8 +58,9 @@ public class MountianFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        PlayerPrefs.SetString("outLastTimepark", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("outlasttimepark", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("foresttime", 9);
+        PlayerPrefs.Save();
         data_sign = CSVReader.Read("Talk/sign_park");
         signText();
 
