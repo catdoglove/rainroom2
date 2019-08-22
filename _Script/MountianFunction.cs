@@ -40,6 +40,7 @@ public class MountianFunction : MonoBehaviour {
     /// </summary>
     public void signText()
     {
+
         nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
         text_str = " " + data_sign[nowArr - 1]["sign"];
         Text_cut = "" + text_str;
@@ -57,6 +58,8 @@ public class MountianFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        PlayerPrefs.SetString("outLastTimepark", System.DateTime.Now.ToString());
+        PlayerPrefs.SetInt("foresttime", 9);
         data_sign = CSVReader.Read("Talk/sign_park");
         signText();
 
