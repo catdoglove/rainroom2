@@ -465,7 +465,6 @@ public class MountianFunction : MonoBehaviour {
 
     void redo()
     {
-
         if (PlayerPrefs.GetInt("shoppalette" + randomGet_i + "3", 0) == 1)
         {
             randomGet_i++;
