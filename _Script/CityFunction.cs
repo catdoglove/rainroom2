@@ -21,6 +21,15 @@ public class CityFunction : CavasData
     //도움말
     int help=0;
     public Sprite[] helpC_spr;
+
+    //바다로가기
+    public GameObject seaWindow_obj, seaAD_obj, seaToast_obj, needToast_obj;
+    Color color, colorP;
+    string str;
+    public Text outPrice_txt, outTime_txt, hPrice_txt;
+    public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
+    public GameObject audio_obj;
+
     // Use this for initialization
     void Start () {
 
@@ -29,6 +38,7 @@ public class CityFunction : CavasData
         {
             menuBlock_obj = GameObject.FindGameObjectWithTag("scene");
         }
+
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
@@ -40,18 +50,14 @@ public class CityFunction : CavasData
         GMtag.GetComponent<MainBtnEvt>().shop_obj.SetActive(false);
         GMtag.GetComponent<MainBtnEvt>().SetDiamond();
 
-
         //밤낮
         setDay();
-
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
         {
             checkachOut();
             PlayerPrefs.SetInt("acgocheck", 0);
         }
-
-
         //도시에 처음 왔을때
         if (PlayerPrefs.GetInt("cityfirst", 0) == 0)
         {
@@ -60,7 +66,6 @@ public class CityFunction : CavasData
             PlayerPrefs.Save();
         }
     }
-
 
     //외출업적
     void checkachOut()
@@ -150,7 +155,6 @@ public class CityFunction : CavasData
             helpCity_obj.SetActive(false);
             help = 2;
         }
-
     }
 
 
@@ -164,7 +168,67 @@ public class CityFunction : CavasData
         {
             buildToast_obj.SetActive(true);
         }
+    }
 
+    //버스정류장 바다
+    public void ActbusGo()
+    {
+        int hotR_i;
+        hotR_i = PlayerPrefs.GetInt(str + "h", 0);
+        int hp_i = 240;
+        if (PlayerPrefs.GetInt("foresttime", 9) == 4)
+        {
+            hp_i = hp_i - 120;
+        }
+        if (hotR_i >= hp_i)//240온수가 있는가?
+        {
+            PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
+            PlayerPrefs.SetInt("outtrip", 4);
+            hotR_i = hotR_i - hp_i;
+            PlayerPrefs.SetInt(str + "h", hotR_i);
+            PlayerPrefs.SetInt("seatime", 9);
+            PlayerPrefs.Save();
+            hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+            //업적
+            //PlayerPrefs.SetInt("acgocheck", 1);
+            StartCoroutine("LoadOut");
+            audio_obj.GetComponent<SoundEvt>().buttonSound();
+        }
+        else
+        {
+            audio_obj.GetComponent<SoundEvt>().cancleSound();
+            needMoney();
+            seaAD_obj.SetActive(false);
+            seaWindow_obj.SetActive(false);
+            //돈부족
+        }
+    }
+
+
+
+    //밤에는 못가
+    IEnumerator toastMountainFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        mountainToast_obj.GetComponent<Image>().color = color;
+        mountainToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            mountainToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        mountainToast_obj.SetActive(false);
+    }
+
+
+    //돈이 부족하다
+    void needMoney()
+    {
+        StopCoroutine("toastNImgFadeOut");
+        StartCoroutine("toastNImgFadeOut");
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
     }
 
 
