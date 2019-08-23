@@ -210,16 +210,16 @@ public class CityFunction : CavasData
     IEnumerator toastMountainFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
-        mountainToast_obj.GetComponent<Image>().color = color;
-        mountainToast_obj.SetActive(true);
+        seaToast_obj.GetComponent<Image>().color = color;
+        seaToast_obj.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
             color.a = Mathf.Lerp(0f, 1f, i);
-            mountainToast_obj.GetComponent<Image>().color = color;
+            seaToast_obj.GetComponent<Image>().color = color;
             yield return null;
         }
-        mountainToast_obj.SetActive(false);
+        seaToast_obj.SetActive(false);
     }
 
 
