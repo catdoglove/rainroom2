@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CityFunction : CavasData
 {
@@ -29,6 +30,10 @@ public class CityFunction : CavasData
     public Text outPrice_txt, outTime_txt, hPrice_txt;
     public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
     public GameObject audio_obj;
+
+
+    //미리 씬을 불러오기
+    AsyncOperation async;
 
     // Use this for initialization
     void Start () {
@@ -170,13 +175,60 @@ public class CityFunction : CavasData
         }
     }
 
+
+    //바다가기
+    public void GoSeaWindow()
+    {
+        if (seaWindow_obj.activeSelf == true)
+        {
+            seaWindow_obj.SetActive(false);
+            seaAD_obj.SetActive(false);
+        }
+        else
+        {
+            hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+            if (PlayerPrefs.GetInt("dayday", 0) == 1)
+            {
+                //밤이라 못감
+                seaToast_obj.SetActive(true);
+                StartCoroutine("toastSeaFadeOut");
+            }
+            else
+            {
+                //시간흐르게
+                StopCoroutine("outTime");
+                StartCoroutine("outTime");
+                seaWindow_obj.SetActive(true);
+            }
+        }
+    }
+
+    //산으로가기
+    public void ADWindowYN()
+    {
+        if (outAd_obj.activeSelf == true)
+        {
+            outAd_obj.SetActive(false);
+        }
+        else
+        {
+            outAd_obj.SetActive(true);
+        }
+    }
+
+    //어떻게 갈까 창열기
+    public void OpenSeaAD()
+    {
+        seaAD_obj.SetActive(true);
+    }
+
     //버스정류장 바다
     public void ActbusGo()
     {
         int hotR_i;
         hotR_i = PlayerPrefs.GetInt(str + "h", 0);
         int hp_i = 240;
-        if (PlayerPrefs.GetInt("foresttime", 9) == 4)
+        if (PlayerPrefs.GetInt("seatime", 9) == 4)
         {
             hp_i = hp_i - 120;
         }
@@ -205,9 +257,65 @@ public class CityFunction : CavasData
     }
 
 
+    IEnumerator LoadOut()
+    {
+        async = SceneManager.LoadSceneAsync("SubLoadOut");
+        while (!async.isDone)
+        {
+            yield return true;
+        }
+    }
+
+
+    //버스바다시간
+    IEnumerator outTime()
+    {
+        int a = 0;
+        while (a == 0)
+        {
+            if (PlayerPrefs.GetInt("seatime", 9) == 4)
+            {
+                outAdBtn_obj.GetComponent<Button>().interactable = false;
+                outPrice_txt.text = "120";
+            }
+            if (PlayerPrefs.GetInt("outlasttimecity", 0) == 0)
+            {
+                outTime_txt.text = "00:00";
+                outGo_obj.GetComponent<Button>().interactable = true;
+                PlayerPrefs.SetInt("outlasttimecity", 1);
+            }
+            else
+            {
+                System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimecity", dateTime.ToString()));
+                System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+                int m = (int)compareTime.TotalMinutes;
+                int sec = (int)compareTime.TotalSeconds;
+                sec = sec - (sec / 60) * 60;
+                sec = 59 - sec;
+                m = PlayerPrefs.GetInt("seatime", 9) - m;
+                string strb = string.Format(@"{0:00}" + ":", m) + string.Format(@"{0:00}", sec);
+                outTime_txt.text = strb;
+                if (m < 0)
+                {
+                    outTime_txt.text = "00:00";
+                    PlayerPrefs.SetInt("outlasttimecity", 0);
+                    PlayerPrefs.Save();
+                    outGo_obj.GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    outGo_obj.GetComponent<Button>().interactable = false;
+                }
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+
 
     //밤에는 못가
-    IEnumerator toastMountainFadeOut()
+    IEnumerator toastSeaFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
         seaToast_obj.GetComponent<Image>().color = color;
