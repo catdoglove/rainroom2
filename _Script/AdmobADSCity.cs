@@ -180,7 +180,7 @@ public class AdmobADSCity : MonoBehaviour {
         if (this.interstitial.IsLoaded())
         {
             this.interstitial.Show();
-            PlayerPrefs.SetInt("bouttime", 9);
+            PlayerPrefs.SetInt("seatime", 4);
         }
     }
 

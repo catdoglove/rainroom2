@@ -378,7 +378,7 @@ public class GasrangeEvt : MonoBehaviour {
         mushroom_i = PlayerPrefs.GetInt("mushroom", 0);
         carot_i = PlayerPrefs.GetInt("carot", 0);
         ham_i = PlayerPrefs.GetInt("ham", 0);
-        seeweed_i = PlayerPrefs.GetInt("seeweed", 0);
+        seeweed_i = PlayerPrefs.GetInt("seaweed", 0);
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
 

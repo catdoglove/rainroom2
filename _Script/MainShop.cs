@@ -1127,6 +1127,10 @@ public class MainShop : ShopHandler {
                     mColor = new Color(1f, 1f, 1f);
                     GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat1_spr[4];
                     break;
+                case 5:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat1_spr[5];
+                    break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg_obj.GetComponent<Image>().color = mColor;
         }
@@ -1191,6 +1195,10 @@ public class MainShop : ShopHandler {
                     mColor = new Color(1f, 1f, 1f);
                     GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat2_spr[4];
                     break;
+                case 5:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformMat2_spr[5];
+                    break;
             }
             GM2.GetComponent<secondRoomFunction>().matImg2_obj.GetComponent<Image>().color = mColor;
         }
@@ -1218,6 +1226,10 @@ public class MainShop : ShopHandler {
                 case 4:
                     mColor = new Color(1f, 1f, 1f);
                     GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformShelf_spr[4];
+                    break;
+                case 5:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformShelf_spr[5];
                     break;
             }
             GM2.GetComponent<secondRoomFunction>().shelfImg_obj.GetComponent<Image>().color = mColor;
@@ -1290,6 +1302,9 @@ public class MainShop : ShopHandler {
                     mColor = new Color(0.70f, 0.70f, 0.70f);
                     break;
                 case 4:
+                    mColor = new Color(1f, 1f, 1f);
+                    break;
+                case 5:
                     mColor = new Color(1f, 1f, 1f);
                     break;
             }
@@ -1430,6 +1445,11 @@ public class MainShop : ShopHandler {
                     GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[4];
                     GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[4];
                     break;
+                case 5:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[5];
+                    GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[5];
+                    break;
             }
             GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
             GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
@@ -1470,6 +1490,10 @@ public class MainShop : ShopHandler {
                 case 4:
                     mColor = new Color(1f, 1f, 1f);
                     GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformCabinet_spr[4];
+                    break;
+                case 5:
+                    mColor = new Color(1f, 1f, 1f);
+                    GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformCabinet_spr[5];
                     break;
             }
             GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;

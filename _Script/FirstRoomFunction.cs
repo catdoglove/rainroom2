@@ -262,6 +262,12 @@ public class FirstRoomFunction : CavasData {
                     rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[4];
                     rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[4];
                     break;
+                case 5:
+                    rugImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    rugImg2_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[5];
+                    rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[5];
+                    break;
             }
         }
 
@@ -283,6 +289,10 @@ public class FirstRoomFunction : CavasData {
                 case 4:
                     cabinetImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
                     cabinetImg_obj.GetComponent<Image>().sprite = reformCabinet_spr[4];
+                    break;
+                case 5:
+                    cabinetImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    cabinetImg_obj.GetComponent<Image>().sprite = reformCabinet_spr[5];
                     break;
             }
         }

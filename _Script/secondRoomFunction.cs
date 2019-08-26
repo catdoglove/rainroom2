@@ -250,6 +250,10 @@ public class secondRoomFunction : CavasData {
                     matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
                     matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
                     break;
+                case 5:
+                    matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
+                    break;
             }
         }
         //부엌
@@ -268,8 +272,12 @@ public class secondRoomFunction : CavasData {
                     matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
                     break;
                 case 4:
-                    matImg2_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
-                    matImg2_obj.GetComponent<Image>().sprite = reformMat2_spr[PlayerPrefs.GetInt("setmat2palette", 0)];
+                    matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
+                    break;
+                case 5:
+                    matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
                     break;
             }
         }
@@ -289,6 +297,10 @@ public class secondRoomFunction : CavasData {
                     shelfImg_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.75f);
                     break;
                 case 4:
+                    shelfImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    shelfImg_obj.GetComponent<Image>().sprite = reformShelf_spr[PlayerPrefs.GetInt("setshelfpalette", 0)];
+                    break;
+                case 5:
                     shelfImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
                     shelfImg_obj.GetComponent<Image>().sprite = reformShelf_spr[PlayerPrefs.GetInt("setshelfpalette", 0)];
                     break;
@@ -329,6 +341,10 @@ public class secondRoomFunction : CavasData {
                     drawerImg_obj.GetComponent<Image>().color = new Color(0.70f, 0.70f, 0.70f);
                     break;
                 case 4:
+                    drawerImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    drawerImg_obj.GetComponent<Image>().sprite = reformDrawer_spr[PlayerPrefs.GetInt("setdrawerpalette", 0)];
+                    break;
+                case 5:
                     drawerImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
                     drawerImg_obj.GetComponent<Image>().sprite = reformDrawer_spr[PlayerPrefs.GetInt("setdrawerpalette", 0)];
                     break;

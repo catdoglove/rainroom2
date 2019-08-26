@@ -38,6 +38,8 @@ public class CityFunction : CavasData
     // Use this for initialization
     void Start () {
 
+        str = PlayerPrefs.GetString("code", "");
+
         //씬이동
         if (menuBlock_obj == null)
         {

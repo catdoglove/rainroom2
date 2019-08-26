@@ -25,6 +25,7 @@ public class SeaFunction : MonoBehaviour {
     public Animator walk_Ani;
 
     public Text sign_text;
+    public GameObject signWindow_obj;
     List<Dictionary<string, object>> data_sign;
     string text_str; //실질적 대사출력
     string Text_cut; //대사 끊기
@@ -38,7 +39,7 @@ public class SeaFunction : MonoBehaviour {
     /// <summary>
     ///  표지판글씨
     /// </summary>
-    public void signText()
+    void signText()
     {
 
         nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
@@ -51,6 +52,19 @@ public class SeaFunction : MonoBehaviour {
             nowArr = 1;
         }
         PlayerPrefs.SetInt("nowarrsign", nowArr);
+    }
+
+    //글씨창 여닫기
+    public void ActSingText()
+    {
+        if (backGround_obj.activeSelf == true)
+        {
+            signWindow_obj.SetActive(false);
+        }
+        else
+        {
+            signWindow_obj.SetActive(true);
+        }
     }
 
 
@@ -79,7 +93,7 @@ public class SeaFunction : MonoBehaviour {
         PlayerPrefs.SetInt("bufmus", 0);
 
         str = PlayerPrefs.GetString("code", "");
-        haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
+        haveClover_i = PlayerPrefs.GetInt(str + "dm", 0);
         
         //상자가 등장할 장소 지정 최대두번
         randomGet_i = Random.Range(0, 2);
@@ -267,7 +281,7 @@ public class SeaFunction : MonoBehaviour {
             randomGet_i = Random.Range(0, 13);
             if (randomGet_i == 12)
             {
-                if (PlayerPrefs.GetInt("mushroom", 0) == 1)
+                if (PlayerPrefs.GetInt("seaweed", 0) == 1)
                 {
                     //클로버로 대체
                     GetClover();
@@ -283,7 +297,7 @@ public class SeaFunction : MonoBehaviour {
             {
                 //확률보정
                 sum();
-                if (PlayerPrefs.GetInt("bufcolor", 99) == randomGet_i || PlayerPrefs.GetInt("shoppalette" + randomGet_i + "3", 0) == 1)
+                if (PlayerPrefs.GetInt("bufcolor", 99) == randomGet_i || PlayerPrefs.GetInt("shoppalette" + randomGet_i + "4", 0) == 1)
                 {
                     //클로버로 대체
                     GetClover();
@@ -371,21 +385,21 @@ public class SeaFunction : MonoBehaviour {
         //컬러칩2개 버섯
         if (buf!=88)
         {
-            PlayerPrefs.SetInt("shoppalette" + buf+"3", 1);
+            PlayerPrefs.SetInt("shoppalette" + buf+"4", 1);
         }
         if (buf2 != 88)
         {
-            PlayerPrefs.SetInt("shoppalette" + buf2 + "3", 1);
+            PlayerPrefs.SetInt("shoppalette" + buf2 + "4", 1);
         }
         if (mus == 1)
         {
-            PlayerPrefs.SetInt("mushroom", 1);
+            PlayerPrefs.SetInt("seaweed", 1);
         }
 
         //클로버
-        haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
+        haveClover_i = PlayerPrefs.GetInt(str + "dm", 0);
         haveClover_i = haveClover_i + PlayerPrefs.GetInt("parkminiclover", 0);
-        PlayerPrefs.SetInt(str + "cv", haveClover_i);
+        PlayerPrefs.SetInt(str + "dm", haveClover_i);
 
         resultWindow_obj.SetActive(true);
         PlayerPrefs.SetInt("bufcolor", 88);
@@ -399,7 +413,7 @@ public class SeaFunction : MonoBehaviour {
     public void FinishMini()
     {
 
-        PlayerPrefs.SetInt("outtrip", 1);
+        PlayerPrefs.SetInt("outtrip", 2);
         StartCoroutine("LoadOut");
     }
 
@@ -436,7 +450,7 @@ public class SeaFunction : MonoBehaviour {
         ik = 0;
         for (int i = 0; i < 12; i++)
         {
-            if (PlayerPrefs.GetInt("shoppalette" + i + "3", 0) == 1)
+            if (PlayerPrefs.GetInt("shoppalette" + i + "4", 0) == 1)
             {
                 ik++;
             }
@@ -466,7 +480,7 @@ public class SeaFunction : MonoBehaviour {
 
     void redo()
     {
-        if (PlayerPrefs.GetInt("shoppalette" + randomGet_i + "3", 0) == 1)
+        if (PlayerPrefs.GetInt("shoppalette" + randomGet_i + "4", 0) == 1)
         {
             randomGet_i++;
         }

@@ -37,6 +37,10 @@ public class LoadRoom : MonoBehaviour {
         {
             async = SceneManager.LoadSceneAsync("city");
         }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 4)
+        {
+            async = SceneManager.LoadSceneAsync("citySea");
+        }
         else
         {
             if (PlayerPrefs.GetInt("place", 0) == 1)
