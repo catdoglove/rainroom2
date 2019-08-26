@@ -243,8 +243,6 @@ public class CityFunction : CavasData
             PlayerPrefs.SetInt("seatime", 9);
             PlayerPrefs.Save();
             hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
-            //업적
-            //PlayerPrefs.SetInt("acgocheck", 1);
             StartCoroutine("LoadOut");
             audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
@@ -280,11 +278,11 @@ public class CityFunction : CavasData
                 outAdBtn_obj.GetComponent<Button>().interactable = false;
                 outPrice_txt.text = "120";
             }
-            if (PlayerPrefs.GetInt("outlasttimecity", 0) == 0)
+            if (PlayerPrefs.GetInt("outtimeoncity", 0) == 0)
             {
                 outTime_txt.text = "00:00";
                 outGo_obj.GetComponent<Button>().interactable = true;
-                PlayerPrefs.SetInt("outlasttimecity", 1);
+                PlayerPrefs.SetInt("outtimeoncity", 1);
             }
             else
             {
@@ -301,7 +299,7 @@ public class CityFunction : CavasData
                 if (m < 0)
                 {
                     outTime_txt.text = "00:00";
-                    PlayerPrefs.SetInt("outlasttimecity", 0);
+                    PlayerPrefs.SetInt("outtimeoncity", 0);
                     PlayerPrefs.Save();
                     outGo_obj.GetComponent<Button>().interactable = true;
                 }

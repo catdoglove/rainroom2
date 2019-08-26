@@ -43,7 +43,7 @@ public class SeaFunction : MonoBehaviour {
     {
 
         nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
-        text_str = " " + data_sign[nowArr - 1]["sign"];
+        text_str = " " + data_sign[nowArr - 1]["bottle"];
         Text_cut = "" + text_str;
         sign_text.text = Text_cut;
         nowArr++;
@@ -57,7 +57,7 @@ public class SeaFunction : MonoBehaviour {
     //글씨창 여닫기
     public void ActSingText()
     {
-        if (backGround_obj.activeSelf == true)
+        if (signWindow_obj.activeSelf == true)
         {
             signWindow_obj.SetActive(false);
         }
@@ -72,10 +72,10 @@ public class SeaFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        PlayerPrefs.SetString("outlasttimepark", System.DateTime.Now.ToString());
-        PlayerPrefs.SetInt("foresttime", 9);
+        PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
+        PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
-        data_sign = CSVReader.Read("Talk/sign_park");
+        data_sign = CSVReader.Read("Talk/bottle_sea");
         signText();
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어
@@ -251,7 +251,7 @@ public class SeaFunction : MonoBehaviour {
             PlayerPrefs.SetInt(str + "c", v);
             PlayerPrefs.Save();
             sqH_obj.SetActive(true);
-            audio_obj.GetComponent<SoundEvt>().foodSound();
+            audio_obj.GetComponent<SoundEvt>().boxSound();
             int e;
             e = PlayerPrefs.GetInt("lovepoint", 0);
             e = e + 1;

@@ -122,7 +122,9 @@ public class GasrangeEvt : MonoBehaviour {
             {
                 gasrangeLv_obj[0].SetActive(true);
                 gasrangeLv_obj[1].SetActive(true);
-                gasrangeLv_obj[2].SetActive(true);
+                gasrangeLv_obj[2].SetActive(true);//버섯
+                gasrangeLv_obj[3].SetActive(true);//미역국
+                gasrangeLv_obj[4].SetActive(true);//오이냉채
             }
             //계란
             if (egg_i == 1)
@@ -414,7 +416,7 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
         {
 
-        }else if (page_i < 1)
+        }else if (page_i < 2)
         {
             page_i++;
             cookPage_obj[0].SetActive(false);
