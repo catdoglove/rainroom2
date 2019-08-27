@@ -1811,6 +1811,72 @@ public class MainShop : ShopHandler {
             PlayerPrefs.SetInt("shoppalette6", 1);
             PlayerPrefs.SetInt("reformshop", 1);
         }
+
+
+        //바다칩을 얻었을때
+
+
+        //침대
+        if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette74", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette7", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //전구
+        if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette34", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette3", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //책상
+        if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette8", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+
+        //벽지
+        if (PlayerPrefs.GetInt("walllv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette94", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette9", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //러그
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette104", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette10", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette114", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette11", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+        //창문
+        if (PlayerPrefs.GetInt("windowlv", 0) >= 8 && PlayerPrefs.GetInt("shoppalette44", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette4", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //장식장
+        if (PlayerPrefs.GetInt("drawerlv", 0) >= 4 && PlayerPrefs.GetInt("shoppalette54", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette5", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+        //책장
+        if (PlayerPrefs.GetInt("booklv", 0) >= 15 && PlayerPrefs.GetInt("shoppalette64", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette6", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
     }
 
     void SetPaletteSwitch()

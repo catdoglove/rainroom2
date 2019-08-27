@@ -272,12 +272,12 @@ public class secondRoomFunction : CavasData {
                     matImg2_obj.GetComponent<Image>().color = new Color(0.99f, 0.9f, 0.80f);
                     break;
                 case 4:
-                    matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
-                    matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
+                    matImg2_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    matImg2_obj.GetComponent<Image>().sprite = reformMat2_spr[PlayerPrefs.GetInt("setmat2palette", 0)];
                     break;
                 case 5:
-                    matImg_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
-                    matImg_obj.GetComponent<Image>().sprite = reformMat1_spr[PlayerPrefs.GetInt("setmatpalette", 0)];
+                    matImg2_obj.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+                    matImg2_obj.GetComponent<Image>().sprite = reformMat2_spr[PlayerPrefs.GetInt("setmat2palette", 0)];
                     break;
             }
         }

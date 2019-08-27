@@ -1169,7 +1169,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207260998}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.2, y: -3.21, z: 0}
+  m_LocalPosition: {x: 0.01, y: -3.21, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3817,7 +3817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &761681492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6492,7 +6492,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC0C1\uC790 \uC548\uC5D0 "
+  m_Text: "\uBD80\uD45C \uC548\uC5D0 "
 --- !u!222 &1265655869
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7517,7 +7517,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC548 \uC900\uB2E4"
+  m_Text: "\uC548 \uCC3E\uB294\uB2E4"
 --- !u!222 &1473485603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8369,7 +8369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -489, y: 142}
+  m_AnchoredPosition: {x: -489, y: 199.65}
   m_SizeDelta: {x: 65, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1651069883
@@ -8686,6 +8686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671057880}
   - component: {fileID: 1671057879}
+  - component: {fileID: 1671057878}
   m_Layer: 0
   m_Name: BackSoundD
   m_TagString: sound
@@ -8693,6 +8694,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1671057878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1671057877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a364184df8d9464baf27e3520a4f705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGS: {fileID: 1671057879}
+  audio_obj: {fileID: 0}
 --- !u!82 &1671057879
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10386,7 +10400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC900\uB2E4"
+  m_Text: "\uCC3E\uB294\uB2E4"
 --- !u!222 &1954587159
 CanvasRenderer:
   m_ObjectHideFlags: 0

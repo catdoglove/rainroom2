@@ -21,6 +21,8 @@ public class GasrangeEvt : MonoBehaviour {
     //요리
     public GameObject cookYN_obj,cookImg_obj,GM2;
     public Sprite[] cook_spr;
+    public string[] cook_str;
+    public Text cooks_txt;
 
     public GameObject pen_obj, illust_obj,block_obj;
     public Sprite pen1_spr, pen2_spr;
@@ -46,6 +48,8 @@ public class GasrangeEvt : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //요리이름
+        CookStrSet();
         colorB = new Color(1f, 1f, 1f);
         colorC = new Color(1f, 1f, 1f);
         CheckIng();
@@ -106,6 +110,19 @@ public class GasrangeEvt : MonoBehaviour {
     }
 #endregion
     
+    void CookStrSet()
+    {
+        cook_str[0] = "계란프라이";
+        cook_str[1] = "계란볶음밥";
+        cook_str[2] = "야채볶음";
+        cook_str[3] = "샌드위치";
+        cook_str[4] = "두부";
+        cook_str[5] = "소세지빵";
+        cook_str[6] = "계란찜";
+        cook_str[7] = "미역국";
+        cook_str[8] = "오이냉채";
+        cook_str[9] = "버섯볶음밥";
+    }
     public void OpenGasrange()
     {
         if(PlayerPrefs.GetInt("cooked", 0) == 0)
@@ -204,7 +221,8 @@ public class GasrangeEvt : MonoBehaviour {
         string str1 = PlayerPrefs.GetString("code", "");
         int ht = PlayerPrefs.GetInt(str1 + "ht", 0);
         cookYN_obj.SetActive(true);
-        cookImg_obj.GetComponent<Image>().sprite = cook_spr[indexNumber_i];
+        //cookImg_obj.GetComponent<Image>().sprite = cook_spr[indexNumber_i];
+        cooks_txt.text = cook_str[indexNumber_i];
         price_txt.text = "" + cookPrice_i[indexNumber_i];
         allHeart_txt.text = "" + ht;
     }
