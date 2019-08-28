@@ -25,7 +25,9 @@ public class CityFood : MonoBehaviour {
     public int coldRain_i, hotRain_i;
     public int[] TruckH_i, TruckC_i,FoodD_i;
     int ct = 0;
-    
+
+    //외물물건
+    public GameObject putToast_obj;
 
     //소리
     public GameObject audio_obj;
@@ -264,6 +266,7 @@ public class CityFood : MonoBehaviour {
     }
     void BuyFoodOk()
     {
+        feed();
         dia_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
@@ -281,6 +284,31 @@ public class CityFood : MonoBehaviour {
     public void BuyFoodShopN()
     {
         foodBuy_obj.SetActive(false);
+    }
+
+
+    //20번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("cffin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("cfcount", 0);
+            if (c >= 19)
+            {
+                PlayerPrefs.SetInt("cffin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 4);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("cfcount", c);
+            }
+        }
+    }
+    public void ClosePutToast()
+    {
+        putToast_obj.SetActive(false);
     }
 
 

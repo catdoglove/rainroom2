@@ -36,12 +36,14 @@ public class SeaFunction : MonoBehaviour {
     Color colorN;
     public GameObject needToast_obj;
 
+    //외물물건
+    public GameObject putToast_obj;
+
     /// <summary>
-    ///  표지판글씨
+    ///  병글씨
     /// </summary>
     void signText()
     {
-
         nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
         text_str = " " + data_sign[nowArr - 1]["bottle"];
         Text_cut = "" + text_str;
@@ -205,6 +207,7 @@ public class SeaFunction : MonoBehaviour {
             else if (tresureSet_i[moveCount_i] == 2)
             {
                 sign_obj.SetActive(true);
+                feedb();
             }
             else if (tresureSet_i[moveCount_i] == 3)
             {
@@ -276,6 +279,8 @@ public class SeaFunction : MonoBehaviour {
             if (c >= 29)
             {
                 PlayerPrefs.SetInt("crfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 6);
+                putToast_obj.SetActive(true);
             }
             else
             {
@@ -283,6 +288,31 @@ public class SeaFunction : MonoBehaviour {
                 PlayerPrefs.SetInt("crcount", c);
             }
         }
+    }
+
+    //50번 했을때
+    void feedb()
+    {
+        if (PlayerPrefs.GetInt("bottlefin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("bottlecount", 0);
+            if (c >= 49)
+            {
+                PlayerPrefs.SetInt("bottlefin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 7);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("bottlecount", c);
+            }
+        }
+    }
+
+    public void ClosePutToast()
+    {
+        putToast_obj.SetActive(false);
     }
 
 

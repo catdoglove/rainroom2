@@ -35,12 +35,14 @@ public class MountianFunction : MonoBehaviour {
     Color colorN;
     public GameObject needToast_obj;
 
+    //외물물건
+    public GameObject putToast_obj;
+
     /// <summary>
     ///  표지판글씨
     /// </summary>
     public void signText()
     {
-
         nowArr = PlayerPrefs.GetInt("nowarrsign", 1);
         text_str = " " + data_sign[nowArr - 1]["sign"];
         Text_cut = "" + text_str;
@@ -191,6 +193,7 @@ public class MountianFunction : MonoBehaviour {
             else if (tresureSet_i[moveCount_i] == 2)
             {
                 sign_obj.SetActive(true);
+                feeds();
             }
             else if (tresureSet_i[moveCount_i] == 3)
             {
@@ -263,6 +266,8 @@ public class MountianFunction : MonoBehaviour {
             if (c >= 29)
             {
                 PlayerPrefs.SetInt("sqfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 8);
+                putToast_obj.SetActive(true);
             }
             else
             {
@@ -270,6 +275,30 @@ public class MountianFunction : MonoBehaviour {
                 PlayerPrefs.SetInt("sqcount", c);
             }
         }
+    }
+    //50번 했을때
+    void feeds()
+    {
+        if (PlayerPrefs.GetInt("signfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("signcount", 0);
+            if (c >= 49)
+            {
+                PlayerPrefs.SetInt("signfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 9);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("signcount", c);
+            }
+        }
+    }
+
+    public void ClosePutToast()
+    {
+        putToast_obj.SetActive(false);
     }
 
 

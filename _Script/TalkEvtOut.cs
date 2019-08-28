@@ -60,6 +60,9 @@ public class TalkEvtOut : MonoBehaviour
 
     //소리
     public GameObject Audio_obj;
+    //외물물건
+    public GameObject putToast_obj;
+
 
     // Use this for initialization
     void Start()
@@ -229,10 +232,12 @@ public class TalkEvtOut : MonoBehaviour
             if (PlayerPrefs.GetInt("outtrip", 0) == 1)
             {
                 text_str = "" + data_out[randArr[nowArr - 1]]["공원"];
+                feed();
             }
             else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
             {
                 text_str = "" + data_out[randArr[nowArr - 1]]["도시"];
+                feedCity();
             }
 
 
@@ -252,7 +257,46 @@ public class TalkEvtOut : MonoBehaviour
             //경험치
             ExpCk_talk();
         }
+    }
 
+    //500번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("ptfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("ptcount", 0);
+            if (c >= 499)
+            {
+                PlayerPrefs.SetInt("ptfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 1);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("ptcount", c);
+            }
+        }
+    }
+
+    //500번 했을때
+    void feedCity()
+    {
+        if (PlayerPrefs.GetInt("ctfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("ctcount", 0);
+            if (c >= 499)
+            {
+                PlayerPrefs.SetInt("ctfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 2);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("ctcount", c);
+            }
+        }
     }
 
 

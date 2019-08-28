@@ -12,6 +12,10 @@ public class CityTime : MonoBehaviour {
     public GameObject coin_obj;
     public int randCoin_i;
     public float cx, cy;
+    
+    //외물물건
+    public GameObject putToast_obj;
+
     // Use this for initialization
     void Start () {
 
@@ -101,6 +105,7 @@ public class CityTime : MonoBehaviour {
     //전단지 눌렀을때
     public void touchPaper()
     {
+        feed();
         PlayerPrefs.SetFloat("watposy", py);
         PlayerPrefs.SetFloat("watposx", px);
         GMC.GetComponent<GetFadeout>().getRainFade();
@@ -114,6 +119,25 @@ public class CityTime : MonoBehaviour {
         PlayerPrefs.SetInt(str + "h", h);
     }
 
+    //100번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("cpfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("cpcount", 0);
+            if (c >= 99)
+            {
+                PlayerPrefs.SetInt("cpfin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 3);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("cpcount", c);
+            }
+        }
+    }
 
 
     //코인

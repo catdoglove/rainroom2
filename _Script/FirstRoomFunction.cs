@@ -857,6 +857,8 @@ public class FirstRoomFunction : CavasData {
     }
 
     
+
+    
     IEnumerator toastBImgFadeOut()
     {
         colorB.a = Mathf.Lerp(0f, 1f, 1f);

@@ -61,7 +61,10 @@ public class ParkShop : MonoBehaviour {
     public string[] flower_str,pot_str;
     public GameObject[] soldOutflower_obj,soldOutPot_obj;
     public GameObject helpFlower_obj;
-    
+
+    //외물물건
+    public GameObject putToast_obj;
+
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -632,6 +635,7 @@ public class ParkShop : MonoBehaviour {
     }
     void BuyFoodOk()
     {
+        feed();
         clover_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0);
         PlayerPrefs.SetInt("lovepoint", point_i);
         allClose();
@@ -639,6 +643,32 @@ public class ParkShop : MonoBehaviour {
         audio_obj.GetComponent<SoundEvt>().foodSound();
         PlayerPrefs.Save();
     }
+
+    //20번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("pffin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("pfcount", 0);
+            if (c >= 19)
+            {
+                PlayerPrefs.SetInt("pffin", 1);
+                PlayerPrefs.GetInt("setoutgoods", 5);
+                putToast_obj.SetActive(true);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("pfcount", c);
+            }
+        }
+    }
+
+    public void ClosePutToast()
+    {
+        putToast_obj.SetActive(false);
+    }
+
     public void CloseFoodIlust()
     {
         foodIlust_obj.SetActive(false);
@@ -690,6 +720,7 @@ public class ParkShop : MonoBehaviour {
         petFish_obj.SetActive(true);
         shopNum = 3;
     }
+
     public void buyPetShop()
     {
         buyPetYN_obj.SetActive(true);
@@ -713,10 +744,12 @@ public class ParkShop : MonoBehaviour {
                 break;
         }
     }
+
     public void buyPetN()
     {
         buyPetYN_obj.SetActive(false);
     }
+
     public void buyPetY()
     {
         p_i = PlayerPrefs.GetInt(str + "cv", 0);

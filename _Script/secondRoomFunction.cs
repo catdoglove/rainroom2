@@ -89,11 +89,21 @@ public class secondRoomFunction : CavasData {
     //리폼
     public Sprite[] reformWindow_spr, reformWindow2_spr,reformWall_spr, reformWall2_spr, reformDrawer_spr,reformMat1_spr, reformMat2_spr, reformShelf_spr;
 
+    //외출로 얻은물건들
+    public GameObject goodsWindow_obj,goodsImg_obj,goodsDesk_obj;
+
     //public GameObject _obj;
 
     // Use this for initialization
     void Start ()
     {
+        //외출굿즈
+        if (PlayerPrefs.GetInt("setoutgoods", 0)>0)
+        {
+            goodsDesk_obj.SetActive(true);
+        }
+        
+
         colorL = new Color(1f, 1f, 1f);
         color = new Color(1f, 1f, 1f);
         colorS = new Color(1f, 1f, 1f);
@@ -647,6 +657,59 @@ public class secondRoomFunction : CavasData {
     {
         StopCoroutine("toastNImgFadeOut");
         StartCoroutine("toastNImgFadeOut");
+    }
+
+    void CheckOutGoods()
+    {
+        //얻자마자 세팅해주기
+        PlayerPrefs.GetInt("setoutgoods", 0);
+        PlayerPrefs.GetInt("outgoods", 0);
+
+        //공원대화500회 1
+        if (PlayerPrefs.GetInt("ptfin", 0) == 1)
+        {
+
+        }
+        //도시대화500회 2
+        if (PlayerPrefs.GetInt("ctfin", 0) == 1)
+        {
+
+        }
+        //전단지100회 3
+        if (PlayerPrefs.GetInt("cpfin", 0) == 1)
+        {
+
+        }
+        //도시음식20회 4
+        if (PlayerPrefs.GetInt("cffin", 0) == 1)
+        {
+
+        }
+        //공원음식20회 5
+        if (PlayerPrefs.GetInt("pffin", 0) == 1)
+        {
+
+        }
+        //바다조개30회 6
+        if (PlayerPrefs.GetInt("crfin", 0) == 1)
+        {
+
+        }
+        //바다병50회 7
+        if (PlayerPrefs.GetInt("bottlefin", 0) == 1)
+        {
+
+        }
+        //숲속다람쥐30회 8
+        if (PlayerPrefs.GetInt("sqfin", 0) == 1)
+        {
+
+        }
+        //숲속표지판50회 9
+        if (PlayerPrefs.GetInt("signfin", 0) == 1)
+        {
+
+        }
     }
 
     //외출페이드아웃
