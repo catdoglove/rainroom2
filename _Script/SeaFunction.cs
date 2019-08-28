@@ -256,6 +256,7 @@ public class SeaFunction : MonoBehaviour {
             e = PlayerPrefs.GetInt("lovepoint", 0);
             e = e + 1;
             PlayerPrefs.SetInt("lovepoint", e);
+            feed();
         }
         else
         {
@@ -263,6 +264,24 @@ public class SeaFunction : MonoBehaviour {
             StopCoroutine("toastNImgFadeOut");
             StartCoroutine("toastNImgFadeOut");
             audio_obj.GetComponent<SoundEvt>().cancleSound();
+        }
+    }
+
+    //30번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("crfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("crcount", 0);
+            if (c >= 29)
+            {
+                PlayerPrefs.SetInt("crfin", 1);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("crcount", c);
+            }
         }
     }
 

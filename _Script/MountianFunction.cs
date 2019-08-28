@@ -242,6 +242,7 @@ public class MountianFunction : MonoBehaviour {
             e = PlayerPrefs.GetInt("lovepoint", 0);
             e = e + 1;
             PlayerPrefs.SetInt("lovepoint", e);
+            feed();
         }
         else
         {
@@ -249,6 +250,25 @@ public class MountianFunction : MonoBehaviour {
             StopCoroutine("toastNImgFadeOut");
             StartCoroutine("toastNImgFadeOut");
             audio_obj.GetComponent<SoundEvt>().cancleSound();
+        }
+    }
+
+
+    //30번 했을때
+    void feed()
+    {
+        if (PlayerPrefs.GetInt("sqfin", 0) == 0)
+        {
+            int c = PlayerPrefs.GetInt("sqcount", 0);
+            if (c >= 29)
+            {
+                PlayerPrefs.SetInt("sqfin", 1);
+            }
+            else
+            {
+                c++;
+                PlayerPrefs.SetInt("sqcount", c);
+            }
         }
     }
 
