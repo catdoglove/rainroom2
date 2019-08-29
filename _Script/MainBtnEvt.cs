@@ -52,7 +52,8 @@ public class MainBtnEvt : CavasData
     public GameObject coupon_obj,couponTxt_obj, couponTxt2_obj, couponTxtF_obj;
     public InputField InputField;
     public Text InputField_txt;
-    
+
+    public GameObject reformHelp_obj;
 
     public void CloseHelpf()
     {
@@ -766,5 +767,18 @@ public class MainBtnEvt : CavasData
         h_obj.SetActive(true);
         c_obj.SetActive(false);
         d_obj.SetActive(false);
+    }
+
+    //리폼창도움말
+    public void ActReformHelp()
+    {
+        if (reformHelp_obj.activeSelf == true)
+        {
+            reformHelp_obj.SetActive(false);
+        }
+        else
+        {
+            reformHelp_obj.SetActive(true);
+        }
     }
 }

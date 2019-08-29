@@ -91,8 +91,59 @@ public class secondRoomFunction : CavasData {
 
     //외출로 얻은물건들
     public GameObject goodsWindow_obj,goodsImg_obj,goodsDesk_obj;
-
+    public Sprite[] goods_spr;
+    public int itemIndex_i;
+    public Text goods_txt;
+    public string[] goods_str, goodsHint_str;
+    public GameObject[] goodsGet_obj;
     //public GameObject _obj;
+
+
+    #region
+
+    public void setIndex0()
+    {
+        itemIndex_i = 0;
+    }
+    public void setIndex1()
+    {
+        itemIndex_i = 1;
+    }
+    public void setIndex2()
+    {
+        itemIndex_i = 2;
+    }
+    public void setIndex3()
+    {
+        itemIndex_i = 3;
+    }
+    public void setIndex4()
+    {
+        itemIndex_i = 4;
+    }
+    public void setIndex5()
+    {
+        itemIndex_i = 5;
+    }
+    public void setIndex6()
+    {
+        itemIndex_i = 6;
+    }
+    public void setIndex7()
+    {
+        itemIndex_i = 7;
+    }
+    public void setIndex8()
+    {
+        itemIndex_i = 8;
+    }
+
+    public void setIndex9()
+    {
+        itemIndex_i = 9;
+    }
+
+    #endregion
 
     // Use this for initialization
     void Start ()
@@ -100,7 +151,9 @@ public class secondRoomFunction : CavasData {
         //외출굿즈
         if (PlayerPrefs.GetInt("setoutgoods", 0)>0)
         {
+            setTextGoods();
             goodsDesk_obj.SetActive(true);
+            goodsImg_obj.GetComponent<Image>().sprite = goods_spr[PlayerPrefs.GetInt("setoutgoods", 0)];
         }
         
 
@@ -370,6 +423,55 @@ public class secondRoomFunction : CavasData {
 
     }
 
+    
+        //공원대화500회 1
+        //도시대화500회 2
+        //전단지100회 3
+        //도시음식20회 4
+        //공원음식20회 5
+        //바다조개30회 6
+        //바다병50회 7
+        //숲속다람쥐30회 8
+        //숲속표지판50회 9
+
+        public void Opengoods()
+    {
+        goodsWindow_obj.SetActive(true);
+    }
+
+    public void GoodsHint()
+    {
+        goods_txt.text = goodsHint_str[itemIndex_i];
+    }
+    public void SetGoods()
+    {
+        goods_txt.text = goods_str[itemIndex_i];
+        itemIndex_i++;
+        goodsImg_obj.GetComponent<Image>().sprite = goods_spr[itemIndex_i];
+        PlayerPrefs.SetInt("setoutgoods", itemIndex_i);
+    }
+
+    void setTextGoods()
+    {
+        goodsHint_str[0] = "공원에서 대화를 많이 나누자";
+        goods_str[0] = "바깥 풍경을 보며 대화하는 것도 나쁘지 않지";
+        goodsHint_str[1] = "도시에서 대화를 많이 나누자";
+        goods_str[1] = "건물 밑에서 대화를 나누는 것도 나쁘지 않아";
+        goodsHint_str[2] = "전단지를 많이 주워보자";
+        goods_str[2] = "전단지를 많이 주웠어. 바닥에 전단지를 버리지 말자";
+        goodsHint_str[3] = "푸드트럭에 자주 가보자";
+        goods_str[3] = "작은 트럭 미니어처야. 푸드트럭에 자주가서 받았어";
+        goodsHint_str[4] = "야시장에 자주 가보자";
+        goods_str[4] = "작은 파라솔 미니어처야. 야시장에 자주가서 받았어";
+        goodsHint_str[5] = "바다에서 모래를 많이 찾아보자";
+        goods_str[5] = "모래 속에는 다양한 조개들이 숨어 있어";
+        goodsHint_str[6] = "바다에서 유리병을 많이 보자";
+        goods_str[6] = "병 안에 있는 쪽지는 신기해";
+        goodsHint_str[7] = "숲에서 다람쥐와 친해지자";
+        goods_str[7] = "작은 다람쥐가 나에게 선물해줬어";
+        goodsHint_str[8] = "숲에서 표지판을 많이 보자";
+        goods_str[8] = "표지판에 누가 적어두는 걸까";
+    }
 
 
 
@@ -668,47 +770,47 @@ public class secondRoomFunction : CavasData {
         //공원대화500회 1
         if (PlayerPrefs.GetInt("ptfin", 0) == 1)
         {
-
+            goodsGet_obj[0].SetActive(true);
         }
         //도시대화500회 2
         if (PlayerPrefs.GetInt("ctfin", 0) == 1)
         {
-
+            goodsGet_obj[1].SetActive(true);
         }
         //전단지100회 3
         if (PlayerPrefs.GetInt("cpfin", 0) == 1)
         {
-
+            goodsGet_obj[2].SetActive(true);
         }
         //도시음식20회 4
         if (PlayerPrefs.GetInt("cffin", 0) == 1)
         {
-
+            goodsGet_obj[3].SetActive(true);
         }
         //공원음식20회 5
         if (PlayerPrefs.GetInt("pffin", 0) == 1)
         {
-
+            goodsGet_obj[4].SetActive(true);
         }
         //바다조개30회 6
         if (PlayerPrefs.GetInt("crfin", 0) == 1)
         {
-
+            goodsGet_obj[5].SetActive(true);
         }
         //바다병50회 7
         if (PlayerPrefs.GetInt("bottlefin", 0) == 1)
         {
-
+            goodsGet_obj[6].SetActive(true);
         }
         //숲속다람쥐30회 8
         if (PlayerPrefs.GetInt("sqfin", 0) == 1)
         {
-
+            goodsGet_obj[7].SetActive(true);
         }
         //숲속표지판50회 9
         if (PlayerPrefs.GetInt("signfin", 0) == 1)
         {
-
+            goodsGet_obj[8].SetActive(true);
         }
     }
 
@@ -777,6 +879,7 @@ public class secondRoomFunction : CavasData {
         WaterPurifilerWindow_obj.SetActive(false);
         CloseWaterYN();
         goOutWindow_obj.SetActive(false);
+        goodsWindow_obj.SetActive(false);
     }
 
 
