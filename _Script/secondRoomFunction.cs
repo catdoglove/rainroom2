@@ -151,6 +151,7 @@ public class secondRoomFunction : CavasData {
         //외출굿즈
         if (PlayerPrefs.GetInt("setoutgoods", 0)>0)
         {
+            CheckOutGoods();
             setTextGoods();
             goodsDesk_obj.SetActive(true);
             goodsImg_obj.GetComponent<Image>().sprite = goods_spr[PlayerPrefs.GetInt("setoutgoods", 0)];
