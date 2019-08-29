@@ -268,7 +268,7 @@ public class TalkEvtOut : MonoBehaviour
             if (c >= 499)
             {
                 PlayerPrefs.SetInt("ptfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 1);
+                PlayerPrefs.SetInt("setoutgoods", 1);
                 putToast_obj.SetActive(true);
             }
             else
@@ -288,7 +288,7 @@ public class TalkEvtOut : MonoBehaviour
             if (c >= 499)
             {
                 PlayerPrefs.SetInt("ctfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 2);
+                PlayerPrefs.SetInt("setoutgoods", 2);
                 putToast_obj.SetActive(true);
             }
             else

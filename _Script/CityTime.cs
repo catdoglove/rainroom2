@@ -128,7 +128,7 @@ public class CityTime : MonoBehaviour {
             if (c >= 99)
             {
                 PlayerPrefs.SetInt("cpfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 3);
+                PlayerPrefs.SetInt("setoutgoods", 3);
                 putToast_obj.SetActive(true);
             }
             else

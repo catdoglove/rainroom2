@@ -279,7 +279,7 @@ public class SeaFunction : MonoBehaviour {
             if (c >= 29)
             {
                 PlayerPrefs.SetInt("crfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 6);
+                PlayerPrefs.SetInt("setoutgoods", 6);
                 putToast_obj.SetActive(true);
             }
             else
@@ -299,7 +299,7 @@ public class SeaFunction : MonoBehaviour {
             if (c >= 49)
             {
                 PlayerPrefs.SetInt("bottlefin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 7);
+                PlayerPrefs.SetInt("setoutgoods", 7);
                 putToast_obj.SetActive(true);
             }
             else

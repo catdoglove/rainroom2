@@ -296,7 +296,7 @@ public class CityFood : MonoBehaviour {
             if (c >= 19)
             {
                 PlayerPrefs.SetInt("cffin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 4);
+                PlayerPrefs.SetInt("setoutgoods", 4);
                 putToast_obj.SetActive(true);
             }
             else

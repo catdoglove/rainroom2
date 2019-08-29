@@ -653,7 +653,7 @@ public class ParkShop : MonoBehaviour {
             if (c >= 19)
             {
                 PlayerPrefs.SetInt("pffin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 5);
+                PlayerPrefs.SetInt("setoutgoods", 5);
                 putToast_obj.SetActive(true);
             }
             else

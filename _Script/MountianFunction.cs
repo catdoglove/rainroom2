@@ -266,7 +266,7 @@ public class MountianFunction : MonoBehaviour {
             if (c >= 29)
             {
                 PlayerPrefs.SetInt("sqfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 8);
+                PlayerPrefs.SetInt("setoutgoods", 8);
                 putToast_obj.SetActive(true);
             }
             else
@@ -285,7 +285,7 @@ public class MountianFunction : MonoBehaviour {
             if (c >= 49)
             {
                 PlayerPrefs.SetInt("signfin", 1);
-                PlayerPrefs.GetInt("setoutgoods", 9);
+                PlayerPrefs.SetInt("setoutgoods", 9);
                 putToast_obj.SetActive(true);
             }
             else
