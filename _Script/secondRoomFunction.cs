@@ -459,11 +459,11 @@ public class secondRoomFunction : CavasData {
         goodsHint_str[1] = "도시에서 대화를 많이 나누자";
         goods_str[1] = "건물 밑에서 대화를 나누는 것도 나쁘지 않아";
         goodsHint_str[2] = "전단지를 많이 주워보자";
-        goods_str[2] = "전단지를 많이 주웠어. 바닥에 전단지를 버리지 말자";
+        goods_str[2] = "인형 탈을 쓴 사람이\n전단지를 나눠주고 있었어";
         goodsHint_str[3] = "푸드트럭에 자주 가보자";
-        goods_str[3] = "작은 트럭 미니어처야. 푸드트럭에 자주가서 받았어";
+        goods_str[3] = "작은 트럭 미니어처야.\n푸드트럭에 자주가서 받았어";
         goodsHint_str[4] = "야시장에 자주 가보자";
-        goods_str[4] = "작은 파라솔 미니어처야. 야시장에 자주가서 받았어";
+        goods_str[4] = "작은 파라솔 미니어처야.\n야시장에 자주가서 받았어";
         goodsHint_str[5] = "바다에서 모래를 많이 찾아보자";
         goods_str[5] = "모래 속에는 다양한 조개들이 숨어 있어";
         goodsHint_str[6] = "바다에서 유리병을 많이 보자";
