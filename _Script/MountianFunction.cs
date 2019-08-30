@@ -84,7 +84,7 @@ public class MountianFunction : MonoBehaviour {
         haveClover_i = PlayerPrefs.GetInt(str + "cv", 0);
         
         //상자가 등장할 장소 지정 최대두번
-        randomGet_i = Random.Range(0, 2);
+        randomGet_i = Random.Range(0, 3);
         if (randomGet_i == 1)
         {
             tresureCount_i = 2;
@@ -368,11 +368,11 @@ public class MountianFunction : MonoBehaviour {
     {
         tresure_obj[0].SetActive(true);
         randomGet_i = Random.Range(0, 100);
-        if (randomGet_i > 9)
+        if (randomGet_i > 4)
         {
             //1~2개획득
-            randomGet_i = Random.Range(0, 3);
-            if (randomGet_i == 1)
+            randomGet_i = Random.Range(0, 10);
+            if (randomGet_i >= 7)
             {
                 //2개
                 clover_i = 2;
@@ -386,7 +386,7 @@ public class MountianFunction : MonoBehaviour {
         else
         {
             //3~5개획득
-            randomGet_i = Random.Range(0, 10);
+            randomGet_i = Random.Range(0, 11);
             if (randomGet_i == 1)
             {
                 //5개

@@ -79,6 +79,7 @@ public class MainShop : ShopHandler {
 
     // Use this for initialization
     void Start () {
+        //PlayerPrefs.SetInt("iceboxlv",1);
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
         /*
