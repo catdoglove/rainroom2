@@ -116,7 +116,7 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[1] = "계란볶음밥";
         cook_str[2] = "야채볶음";
         cook_str[3] = "샌드위치";
-        cook_str[4] = "두부";
+        cook_str[4] = "두부부침";
         cook_str[5] = "소세지빵";
         cook_str[6] = "계란찜";
         cook_str[7] = "미역국";
@@ -142,6 +142,7 @@ public class GasrangeEvt : MonoBehaviour {
                 gasrangeLv_obj[2].SetActive(true);//버섯
                 gasrangeLv_obj[3].SetActive(true);//미역국
                 gasrangeLv_obj[4].SetActive(true);//오이냉채
+                gasrangeLv_obj[5].SetActive(true);//두부부침
             }
             //계란
             if (egg_i == 1)
@@ -533,4 +534,27 @@ public class GasrangeEvt : MonoBehaviour {
         }
         cookHToast_obj.SetActive(false);
     }
+
+    //요리레시피업적
+    void achv()
+    {
+
+        if (PlayerPrefs.GetInt("allfood", 0) == 0)
+        {
+            PlayerPrefs.SetInt("allfood", 1);
+            //GM2.GetComponent<AchievementShow>().achievementCheck(22, 0);
+        }
+    }
+
+    //업적
+    //요리재료업적
+    void achv2()
+    {
+        if (PlayerPrefs.GetInt("allingredient", 0) == 0)
+        {
+            PlayerPrefs.SetInt("allingredient", 1);
+            //GM2.GetComponent<AchievementShow>().achievementCheck(23, 0);
+        }
+    }
+
 }

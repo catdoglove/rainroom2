@@ -65,10 +65,14 @@ public class ParkShop : MonoBehaviour {
     //외물물건
     public GameObject putToast_obj;
 
+    public GameObject needIceToast_obj;
+    Color colorT;
+
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
         colorF = new Color(1f, 1f, 1f);
+        colorT = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
         paintImg();
     }
@@ -506,6 +510,11 @@ public class ParkShop : MonoBehaviour {
             inSoldout_obj[1].SetActive(true);
             inBtn_obj[1].GetComponent<Button>().interactable = false;
         }
+        if (PlayerPrefs.GetInt("tofu", 0) == 1)
+        {
+            inSoldout_obj[2].SetActive(true);
+            inBtn_obj[2].GetComponent<Button>().interactable = false;
+        }
     }
     public void buyShopN()
     {
@@ -515,14 +524,42 @@ public class ParkShop : MonoBehaviour {
     //재료
     public void buyIn()
     {
-        inSelect_obj.GetComponent<Image>().sprite = in_spr[shopNum];
-        inYN_obj.SetActive(true);
+        if (shopNum == 2&& PlayerPrefs.GetInt("iceboxlv", 0) < 3)
+        {
+            //냉장고가 없는데?
+            needIceToast_obj.SetActive(true);
+            StopCoroutine("toastIceFadeOut");
+            StartCoroutine("toastIceFadeOut");
+        }
+        else
+        {
+            inSelect_obj.GetComponent<Image>().sprite = in_spr[shopNum];
+            inYN_obj.SetActive(true);
+        }
     }
+
+    //냉장고필요페이드아웃
+    IEnumerator toastIceFadeOut()
+    {
+        colorT.a = Mathf.Lerp(0f, 1f, 1f);
+        needIceToast_obj.GetComponent<Image>().color = colorT;
+        needIceToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorT.a = Mathf.Lerp(0f, 1f, i);
+            needIceToast_obj.GetComponent<Image>().color = colorT;
+            yield return null;
+        }
+        needIceToast_obj.SetActive(false);
+    }
+
+
     public void buyInY()
     {
         p_i = PlayerPrefs.GetInt(str + "h", 0);
         c_i = PlayerPrefs.GetInt(str + "c", 0);
-        //빵,햄0~1
+        //빵,햄,두부0,1,2
         switch (shopNum)
         {
             case 0:
@@ -548,6 +585,21 @@ public class ParkShop : MonoBehaviour {
                     PlayerPrefs.SetInt("ham", 1);
                     inSoldout_obj[1].SetActive(true);
                     inBtn_obj[1].GetComponent<Button>().interactable = false;
+                    shopOk();
+                }
+                else
+                {
+                    needMoney();
+                }
+                break;
+            case 2:
+                if (p_i >= 130 && c_i >= 1200)
+                {
+                    p_i = p_i - 130;
+                    c_i = c_i - 1200;
+                    PlayerPrefs.SetInt("tofu", 1);
+                    inSoldout_obj[2].SetActive(true);
+                    inBtn_obj[2].GetComponent<Button>().interactable = false;
                     shopOk();
                 }
                 else
