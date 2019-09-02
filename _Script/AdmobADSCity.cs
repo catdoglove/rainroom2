@@ -125,7 +125,7 @@ public class AdmobADSCity : MonoBehaviour {
         if (rewardBasedVideo.IsLoaded())
         {
             rewardBasedVideo.Show();
-            //PlayerPrefs.SetInt("secf3", 240);
+            ad_obj.SetActive(false);
         }
         else
         {
