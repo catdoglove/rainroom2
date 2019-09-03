@@ -46,6 +46,8 @@ public class GasrangeEvt : MonoBehaviour {
 
     public GameObject audio_obj;
 
+    public int a,v = 0;
+
     // Use this for initialization
     void Start () {
         //요리이름
@@ -144,55 +146,70 @@ public class GasrangeEvt : MonoBehaviour {
                 gasrangeLv_obj[4].SetActive(true);//오이냉채
                 gasrangeLv_obj[5].SetActive(true);//두부부침
             }
+            a = 0;
             //계란
             if (egg_i == 1)
             {
                 cookFood_obj[0].SetActive(true);
+                a++;
             }
             //볶음밥
             if (egg_i + ham_i + carot_i == 3)
             {
                 cookFood_obj[1].SetActive(true);
+                a++;
             }
             //야채복음
             if (carot_i + paprika_i + cucumber_i == 3)
             {
                 cookFood_obj[2].SetActive(true);
+                a++;
             }
             //샌드위치
             if (ham_i + egg_i + bread_i == 3)
             {
                 cookFood_obj[3].SetActive(true);
+                a++;
             }
             //두부
             if (tofu_i == 1)
             {
                 cookFood_obj[4].SetActive(true);
+                a++;
             }
             //소시지빵
             if (bread_i + ham_i == 2)
             {
                 cookFood_obj[5].SetActive(true);
+                a++;
             }
             //계란찜
             if (milk_i + egg_i == 2)
             {
                 cookFood_obj[6].SetActive(true);
+                a++;
             }
             //미역국
             if (seeweed_i == 1)
             {
                 cookFood_obj[7].SetActive(true);
+                a++;
             }
             //오이냉채
             if (cucumber_i + seeweed_i == 2)
             {
                 cookFood_obj[8].SetActive(true);
+                a++;
             }
             //버섯볶음밥
             if (mushroom_i + carot_i == 2)
             {
                 cookFood_obj[9].SetActive(true);
+                a++;
+            }
+            if (a == 10)
+            {
+                achv();
             }
         }
         else
@@ -344,45 +361,60 @@ public class GasrangeEvt : MonoBehaviour {
         }
         CheckIng();
         iceBox_obj.SetActive(true);
+        v = 0;
         if (egg_i == 1)
         {
             ingredient_obj[0].SetActive(true);
+            v++;
         }
         if (carot_i == 1)
         {
             ingredient_obj[1].SetActive(true);
+            v++;
         }
         if (milk_i == 1)
         {
             ingredient_obj[2].SetActive(true);
+            v++;
         }
         if (cucumber_i == 1)
         {
             ingredient_obj[3].SetActive(true);
+            v++;
         }
         if (bread_i == 1)
         {
             ingredient_obj[4].SetActive(true);
+            v++;
         }
         if (paprika_i == 1)
         {
             ingredient_obj[5].SetActive(true);
+            v++;
         }
         if (seeweed_i == 1)
         {
             ingredient_obj[6].SetActive(true);
+            v++;
         }
         if (ham_i == 1)
         {
             ingredient_obj[7].SetActive(true);
+            v++;
         }
         if (mushroom_i == 1)
         {
             ingredient_obj[9].SetActive(true);
+            v++;
         }
         if (tofu_i == 1)
         {
             ingredient_obj[8].SetActive(true);
+            v++;
+        }
+        if (v == 10)
+        {
+            achv2();
         }
     }
 
@@ -542,7 +574,7 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("allfood", 0) == 0)
         {
             PlayerPrefs.SetInt("allfood", 1);
-            //GM2.GetComponent<AchievementShow>().achievementCheck(22, 0);
+            GM2.GetComponent<AchievementShow>().achievementCheck(22, 0);
         }
     }
 
@@ -553,7 +585,7 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("allingredient", 0) == 0)
         {
             PlayerPrefs.SetInt("allingredient", 1);
-            //GM2.GetComponent<AchievementShow>().achievementCheck(23, 0);
+            GM2.GetComponent<AchievementShow>().achievementCheck(23, 0);
         }
     }
 
