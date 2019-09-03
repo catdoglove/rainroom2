@@ -77,6 +77,8 @@ public class MainShop : ShopHandler {
     //도시가구이름
     public Text bedMax_txt,lightMax_txt,deskMax_txt;
 
+    
+
     // Use this for initialization
     void Start () {
         //PlayerPrefs.SetInt("iceboxlv",1);
