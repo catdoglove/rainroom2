@@ -50,6 +50,7 @@ public class GasrangeEvt : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
         //요리이름
         CookStrSet();
         colorB = new Color(1f, 1f, 1f);
