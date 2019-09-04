@@ -38,6 +38,8 @@ public class MountianFunction : MonoBehaviour {
     //외물물건
     public GameObject putToast_obj;
 
+    public GameObject bamWindow_obj,bam_obj;
+
     /// <summary>
     ///  표지판글씨
     /// </summary>
@@ -53,6 +55,29 @@ public class MountianFunction : MonoBehaviour {
             nowArr = 1;
         }
         PlayerPrefs.SetInt("nowarrsign", nowArr);
+    }
+
+    //밤
+    void bam()
+    {
+        int sh = Random.Range(0, 15);
+        if (sh == 1)
+        {
+            bam_obj.SetActive(true);
+        }
+    }
+    public void ActSBam()
+    {
+        if (bamWindow_obj.activeSelf == true)
+        {
+            bamWindow_obj.SetActive(false);
+            bam_obj.SetActive(false);
+            PlayerPrefs.SetInt("bam", 1);
+        }
+        else
+        {
+            bamWindow_obj.SetActive(true);
+        }
     }
 
 
@@ -159,6 +184,10 @@ public class MountianFunction : MonoBehaviour {
 
     void MoveTo()
     {
+        if (PlayerPrefs.GetInt("bam", 0) == 0)
+        {
+            bam();
+        }
 
         sqH_obj.SetActive(false);
         box_obj.SetActive(false);
@@ -199,9 +228,7 @@ public class MountianFunction : MonoBehaviour {
             {
                 squral_obj.SetActive(true);
             }
-
-
-
+            
             //박스가 등장할때 왼쪽오른쪽을 결정
             if (box_obj.activeSelf == true)
             {

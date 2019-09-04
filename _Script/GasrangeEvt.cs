@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GasrangeEvt : MonoBehaviour {
 
     public GameObject gasrange_obj, iceBox_obj;
-    public int egg_i, milk_i, tofu_i, bread_i, mushroom_i, carot_i, ham_i, seeweed_i, cucumber_i, paprika_i;
+    public int egg_i, milk_i, tofu_i, bread_i, mushroom_i, carot_i, ham_i, seeweed_i, cucumber_i, paprika_i, shrimp_i, bam_i;
     public int iceLv_i;
 
     public GameObject[] cookPage_obj, ingredientPage_obj;
@@ -39,6 +39,7 @@ public class GasrangeEvt : MonoBehaviour {
 
     Color colorC;
     public GameObject cookHToast_obj;
+    public Text cookPage_txt;
 
     //냉장고
     public GameObject icePage1, icePage2;
@@ -110,8 +111,18 @@ public class GasrangeEvt : MonoBehaviour {
         indexNumber_i = 9;
         point_i = 13;
     }
-#endregion
-    
+    public void indexNumber10()
+    {
+        indexNumber_i = 10;
+        point_i = 5;
+    }
+    public void indexNumber11()
+    {
+        indexNumber_i = 11;
+        point_i = 5;
+    }
+    #endregion
+
     void CookStrSet()
     {
         cook_str[0] = "계란프라이";
@@ -211,6 +222,16 @@ public class GasrangeEvt : MonoBehaviour {
             {
                 cookFood_obj[9].SetActive(true);
                 a++;
+            }
+            //밤
+            if (bam_i == 1)
+            {
+                cookFood_obj[10].SetActive(true);
+            }
+            //대하
+            if (shrimp_i == 1)
+            {
+                cookFood_obj[11].SetActive(true);
             }
             if (a == 10)
             {
@@ -417,6 +438,14 @@ public class GasrangeEvt : MonoBehaviour {
             ingredient_obj[8].SetActive(true);
             v++;
         }
+        if (bam_i == 1)
+        {
+            ingredient_obj[10].SetActive(true);
+        }
+        if (shrimp_i == 1)
+        {
+            ingredient_obj[11].SetActive(true);
+        }
         if (v == 10)
         {
             achv2();
@@ -439,40 +468,28 @@ public class GasrangeEvt : MonoBehaviour {
         seeweed_i = PlayerPrefs.GetInt("seaweed", 0);
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
-
+        bam_i = PlayerPrefs.GetInt("bam", 0);
+        shrimp_i = PlayerPrefs.GetInt("shrimp", 0);
     }
 
     public void RightIce()
     {
-        
-        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
-        {
-            icePage2.SetActive(true);
-            icePage1.SetActive(false);
-            audio_obj.GetComponent<SoundEvt>().buttonSound();
-        }
-        
+        icePage2.SetActive(true);
+        icePage1.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
     }
 
-        public void LeftIce()
+    public void LeftIce()
     {
-        
-        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 3)
-        {
-            icePage2.SetActive(false);
-            icePage1.SetActive(true);
-            audio_obj.GetComponent<SoundEvt>().buttonSound();
-        }
-        
+        icePage2.SetActive(false);
+        icePage1.SetActive(true);
+        audio_obj.GetComponent<SoundEvt>().buttonSound();
     }
 
 
     public void RightButtonG()
     {
-        if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
-        {
-
-        }else if (page_i < gaspage)
+        if (page_i < 2)
         {
             page_i++;
             cookPage_obj[0].SetActive(false);
@@ -480,16 +497,13 @@ public class GasrangeEvt : MonoBehaviour {
             cookPage_obj[2].SetActive(false);
             cookPage_obj[page_i].SetActive(true);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
+            cookPage_txt.text = "" + (1 + page_i) + "/3";
         }
     }
 
     public void LeftButtonG()
     {
-        if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
-        {
-
-        }
-        else if (page_i > 0)
+        if (page_i > 0)
         {
             page_i--;
             cookPage_obj[0].SetActive(false);
@@ -497,6 +511,7 @@ public class GasrangeEvt : MonoBehaviour {
             cookPage_obj[2].SetActive(false);
             cookPage_obj[page_i].SetActive(true);
             audio_obj.GetComponent<SoundEvt>().buttonSound();
+            cookPage_txt.text = "" + (1 + page_i) + "/3";
         }
     }
 

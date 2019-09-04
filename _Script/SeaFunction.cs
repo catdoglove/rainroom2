@@ -38,6 +38,7 @@ public class SeaFunction : MonoBehaviour {
 
     //외물물건
     public GameObject putToast_obj;
+    public GameObject shrimp_obj, shrimpWindow_obj;
 
     /// <summary>
     ///  병글씨
@@ -54,6 +55,29 @@ public class SeaFunction : MonoBehaviour {
             nowArr = 1;
         }
         PlayerPrefs.SetInt("nowarrsign", nowArr);
+    }
+
+    //새우
+    void shrimp()
+    {
+        int sh = Random.Range(0, 15);
+        if (sh == 1)
+        {
+            shrimp_obj.SetActive(true);
+        }
+    }
+    public void ActShrimp()
+    {
+        if (shrimpWindow_obj.activeSelf == true)
+        {
+            shrimpWindow_obj.SetActive(false);
+            shrimp_obj.SetActive(false);
+            PlayerPrefs.SetInt("shrimp", 1);
+        }
+        else
+        {
+            shrimpWindow_obj.SetActive(true);
+        }
     }
 
     //글씨창 여닫기
@@ -173,6 +197,11 @@ public class SeaFunction : MonoBehaviour {
 
     void MoveTo()
     {
+
+        if (PlayerPrefs.GetInt("shrimp", 0) == 0)
+        {
+            shrimp();
+        }
 
         sqH_obj.SetActive(false);
         box_obj.SetActive(false);
