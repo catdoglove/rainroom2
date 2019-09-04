@@ -47,17 +47,16 @@ public class GasrangeEvt : MonoBehaviour {
     public GameObject audio_obj;
 
     public int a,v = 0;
+    int gaspage = 1;
 
     // Use this for initialization
     void Start () {
-        
         //요리이름
         CookStrSet();
         colorB = new Color(1f, 1f, 1f);
         colorC = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
-        
     }
 
 #region
@@ -128,7 +127,12 @@ public class GasrangeEvt : MonoBehaviour {
     }
     public void OpenGasrange()
     {
-        if(PlayerPrefs.GetInt("cooked", 0) == 0)
+
+        if (PlayerPrefs.GetInt("gasrangelv", 0) >= 5)
+        {
+            gaspage = 2;
+        }
+        if (PlayerPrefs.GetInt("cooked", 0) == 0)
         {
             gasrange_obj.SetActive(true);
             CheckIng();
@@ -468,7 +472,7 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("gasrangelv", 0) <= 2)
         {
 
-        }else if (page_i < 2)
+        }else if (page_i < gaspage)
         {
             page_i++;
             cookPage_obj[0].SetActive(false);
