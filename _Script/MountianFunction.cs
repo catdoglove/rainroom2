@@ -60,7 +60,7 @@ public class MountianFunction : MonoBehaviour {
     //밤
     void bam()
     {
-        int sh = Random.Range(0, 15);
+        int sh = Random.Range(0, 10);
         if (sh == 1)
         {
             bam_obj.SetActive(true);

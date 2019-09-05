@@ -60,7 +60,7 @@ public class SeaFunction : MonoBehaviour {
     //새우
     void shrimp()
     {
-        int sh = Random.Range(0, 15);
+        int sh = Random.Range(0, 10);
         if (sh == 1)
         {
             shrimp_obj.SetActive(true);

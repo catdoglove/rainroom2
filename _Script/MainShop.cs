@@ -1323,6 +1323,7 @@ public class MainShop : ShopHandler {
         {
             mColor = new Color(1f, 1f, 1f);
             GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().drawerImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformDrawer_spr[0];
         }
         PlayerPrefs.SetInt("setdrawerpalette", 0);
         selectAllFalse();
@@ -1432,6 +1433,8 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
+            GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[0];
+            GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[0];
             switch (itemIndex_i)
             {
                 case 1:
@@ -1468,6 +1471,8 @@ public class MainShop : ShopHandler {
             mColor = new Color(1f, 1f, 1f);
             GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().color = mColor;
             GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().color = mColor;
+            GM.GetComponent<FirstRoomFunction>().rugImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[0];
+            GM.GetComponent<FirstRoomFunction>().rugImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformRug_spr[0];
         }
         PlayerPrefs.SetInt("setrugpalette", 0);
         selectAllFalse();
@@ -1479,6 +1484,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
+            GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformCabinet_spr[0];
             switch (itemIndex_i)
             {
                 case 1:
@@ -1511,6 +1517,8 @@ public class MainShop : ShopHandler {
         {
             mColor = new Color(1f, 1f, 1f);
             GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().color = mColor;
+            GM.GetComponent<FirstRoomFunction>().cabinetImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformCabinet_spr[0];
+
         }
         PlayerPrefs.SetInt("setcabinetpalette", 0);
         selectAllFalse();
