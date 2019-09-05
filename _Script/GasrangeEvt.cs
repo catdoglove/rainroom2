@@ -37,7 +37,7 @@ public class GasrangeEvt : MonoBehaviour {
     int point_i;
     public GameObject dishBtn_obj;
 
-    Color colorC;
+    Color colorC, color;
     public GameObject cookHToast_obj;
     public Text cookPage_txt;
 
@@ -50,14 +50,21 @@ public class GasrangeEvt : MonoBehaviour {
     public int a,v = 0;
     int gaspage = 1;
 
+    public GameObject fsticker_obj,sToast_obj;
+
     // Use this for initialization
     void Start () {
         //요리이름
         CookStrSet();
         colorB = new Color(1f, 1f, 1f);
         colorC = new Color(1f, 1f, 1f);
+        color = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
+        if (PlayerPrefs.GetInt("sefsticker", 0) == 1)
+        {
+            fsticker_obj.SetActive(true);
+        }
     }
 
 #region
@@ -135,6 +142,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
+        cook_str[10] = "군밤";
+        cook_str[11] = "대하구이";
     }
     public void OpenGasrange()
     {
@@ -289,6 +298,25 @@ public class GasrangeEvt : MonoBehaviour {
             PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
             audio_obj.GetComponent<SoundEvt>().cookSound();
+            if (indexNumber_i>=10)
+            {
+                int help = PlayerPrefs.GetInt("sefcount", 0);
+                if (help == 9)
+                {
+                    PlayerPrefs.SetInt("sefsticker", 1);
+                    fsticker_obj.SetActive(true);
+                    sToast_obj.SetActive(true);
+                    StopCoroutine("toastHotImgFadeOut");
+                    StartCoroutine("toastHotImgFadeOut");
+                    help++;
+                    PlayerPrefs.SetInt("sefcount", help);
+                }
+                else
+                {
+                    help++;
+                    PlayerPrefs.SetInt("sefcount", help);
+                }
+            }
         }
         else
         {
@@ -297,6 +325,7 @@ public class GasrangeEvt : MonoBehaviour {
             StartCoroutine("cookToastFadeOut");
         }
     }
+    
 
     IEnumerator penMove()
     {
@@ -607,6 +636,22 @@ public class GasrangeEvt : MonoBehaviour {
             PlayerPrefs.SetInt("allingredient", 1);
             GM2.GetComponent<AchievementShow>().achievementCheck(23, 0);
         }
+    }
+    
+    //온수가 부족하다
+    IEnumerator toastHotImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        sToast_obj.GetComponent<Image>().color = color;
+        sToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            sToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        sToast_obj.SetActive(false);
     }
 
 }

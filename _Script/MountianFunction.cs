@@ -184,10 +184,6 @@ public class MountianFunction : MonoBehaviour {
 
     void MoveTo()
     {
-        if (PlayerPrefs.GetInt("bam", 0) == 0)
-        {
-            bam();
-        }
 
         sqH_obj.SetActive(false);
         box_obj.SetActive(false);
@@ -201,6 +197,11 @@ public class MountianFunction : MonoBehaviour {
         }
         else
         {
+            bam_obj.SetActive(false);
+            if (PlayerPrefs.GetInt("bam", 0) == 0)
+            {
+                bam();
+            }
             walk_Ani.Play("mountain", -1, 0f);
             //배경변경
             //backGround_obj.GetComponent<Image>().sprite = background_spr[moveCount_i];

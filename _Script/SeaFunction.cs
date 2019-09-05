@@ -198,10 +198,6 @@ public class SeaFunction : MonoBehaviour {
     void MoveTo()
     {
 
-        if (PlayerPrefs.GetInt("shrimp", 0) == 0)
-        {
-            shrimp();
-        }
 
         sqH_obj.SetActive(false);
         box_obj.SetActive(false);
@@ -215,6 +211,11 @@ public class SeaFunction : MonoBehaviour {
         }
         else
         {
+            shrimp_obj.SetActive(false);
+            if (PlayerPrefs.GetInt("shrimp", 0) == 0)
+            {
+                shrimp();
+            }
             walk_Ani.Play("mountain", -1, 0f);
             //배경변경
             //backGround_obj.GetComponent<Image>().sprite = background_spr[moveCount_i];
