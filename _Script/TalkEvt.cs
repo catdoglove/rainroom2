@@ -61,6 +61,10 @@ public class TalkEvt : MonoBehaviour {
     //소리
     public GameObject Audio_obj;
 
+    //엔딩
+    public GameObject endWindow_obj;
+
+
 
     // Use this for initialization
     void Start ()
@@ -253,6 +257,9 @@ public class TalkEvt : MonoBehaviour {
             //하트를 5번째마다 더해주는 함수
             getTalkHeart();
 
+            //엔딩 대화
+            endg();
+
             //온수를 레벨에 알맞게 더해주기
             string str1;
             str1 = PlayerPrefs.GetString("code", "");
@@ -305,13 +312,40 @@ public class TalkEvt : MonoBehaviour {
             {
                 StartCoroutine("talkRun");
             }
-
             countTalk();
             //경험치
             ExpCk_talk();
         }
-
     }
+
+    /// <summary>
+    /// 엔딩대화
+    /// </summary>
+    void endg()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("talkending", 0) == 0)
+        {
+            if (PlayerPrefs.GetInt("talkendcnt", 0) >= 10)
+            {
+                //수집완료
+                PlayerPrefs.SetInt("talkending", 1);
+                endWindow_obj.SetActive(true);
+            }
+            else
+            {
+                k = PlayerPrefs.GetInt("talkendcnt", 0);
+                k++;
+                PlayerPrefs.SetInt("talkendcnt", k);
+            }
+        }
+    }
+    
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+    }
+
 
 
     //대사 출력
@@ -324,9 +358,7 @@ public class TalkEvt : MonoBehaviour {
                 Text_obj.text = text_str;
                 yield return new WaitForSeconds(speedF);
         }
-
         trueObject();
-
     }
 
     //질문 출력

@@ -36,7 +36,12 @@ public class Parkfunction : CavasData
     string str;
     public Text outPrice_txt, outTime_txt, hPrice_txt;
     public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
-
+    
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj,endL_obj,endClose_obj;
     private void Awake()
     {
         //초기화
@@ -72,6 +77,11 @@ public class Parkfunction : CavasData
             helpPark_obj.SetActive(true);
             PlayerPrefs.SetInt("parkfirst", 1);
             PlayerPrefs.Save();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("parkending", 0);
+            endg();
         }
     }
 
@@ -128,6 +138,7 @@ public class Parkfunction : CavasData
             help = 0;
             helpPark_obj.GetComponent<Image>().sprite = helpP_spr[0];
             helpPark_obj.SetActive(false);
+            endg();
         }
     }
 
@@ -187,6 +198,63 @@ public class Parkfunction : CavasData
                 dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
             }
+        }
+    }
+
+
+    /// <summary>
+    /// 엔딩공원
+    /// </summary>
+    void endg()
+    {
+        Debug.Log("dd");
+        if (PlayerPrefs.GetInt("parkending", 0) == 0)
+        {
+            PlayerPrefs.SetInt("parkending", 1);
+            Debug.Log("dd");
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            endWindow_obj.SetActive(true);
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
         }
     }
 

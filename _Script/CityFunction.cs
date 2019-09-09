@@ -31,6 +31,9 @@ public class CityFunction : CavasData
     public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
     public GameObject audio_obj;
 
+    //엔딩
+    public GameObject endWindow_obj;
+
 
     //미리 씬을 불러오기
     AsyncOperation async;
@@ -161,8 +164,26 @@ public class CityFunction : CavasData
             helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
             helpCity_obj.SetActive(false);
             help = 2;
+
         }
     }
+    /// <summary>
+    /// 엔딩도시
+    /// </summary>
+    void endg()
+    {
+        if (PlayerPrefs.GetInt("cityending", 0) == 0)
+        {
+            PlayerPrefs.SetInt("cityending", 1);
+            endWindow_obj.SetActive(true);
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+    }
+    
 
 
     public void building()
