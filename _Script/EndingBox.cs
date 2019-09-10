@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EndingBox : MonoBehaviour {
 
     public GameObject endWindow_obj;
     public GameObject[] endItem_obj, endHint_obj;
+    public GameObject _obj;
+    public string[] end_str,endHint_str;
+    public Sprite[] end_spr;
+    public GameObject audio_obj;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -80,5 +84,15 @@ public class EndingBox : MonoBehaviour {
         {
 
         }
+    }
+
+    void endString()
+    {
+        end_str[0]="";
+    }
+
+    void endSpr()
+    {
+        
     }
 }

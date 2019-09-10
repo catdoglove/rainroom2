@@ -61,10 +61,12 @@ public class TalkEvt : MonoBehaviour {
     //소리
     public GameObject Audio_obj;
 
+
     //엔딩
     public GameObject endWindow_obj;
-
-
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
 
     // Use this for initialization
     void Start ()
@@ -73,16 +75,15 @@ public class TalkEvt : MonoBehaviour {
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
         callTalkItem();
-        
+        //test
+        PlayerPrefs.SetInt("talkending", 0);
         data = CSVReader.Read("Talk/talk_room"); //대사 불러오기   
         data_book = CSVReader.Read("Talk/talk_book"); 
         data_light = CSVReader.Read("Talk/talk_light"); 
         data_seed = CSVReader.Read("Talk/talk_seed"); 
         data_wall = CSVReader.Read("Talk/talk_wall"); 
         data_window = CSVReader.Read("Talk/talk_window");
-
         setCharAni();
-        
     }
 
     //게임종료-------
@@ -326,10 +327,11 @@ public class TalkEvt : MonoBehaviour {
         int k = 0;
         if (PlayerPrefs.GetInt("talkending", 0) == 0)
         {
-            if (PlayerPrefs.GetInt("talkendcnt", 0) >= 10)
+            if (PlayerPrefs.GetInt("talkendcnt", 0) >= 9)
             {
                 //수집완료
                 PlayerPrefs.SetInt("talkending", 1);
+                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
                 endWindow_obj.SetActive(true);
             }
             else
@@ -340,10 +342,46 @@ public class TalkEvt : MonoBehaviour {
             }
         }
     }
-    
+
     public void CloseEnd()
     {
         endWindow_obj.SetActive(false);
+        Audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
     }
 
 

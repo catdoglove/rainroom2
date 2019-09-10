@@ -28,7 +28,12 @@ public class WindowMiniGame : MonoBehaviour {
     public GameObject toast_obj;
     Color color;
 
-
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+    public GameObject Audio_obj;
 
     List<Dictionary<string, object>> data_milk;
     string text_str; //실질적 대사출력
@@ -42,8 +47,7 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
-
-
+        
         data_milk = CSVReader.Read("Talk/todaymilk");
     }
 	
@@ -153,7 +157,6 @@ public class WindowMiniGame : MonoBehaviour {
         GM.GetComponent<MainTime>().moveX2 = 15.4f;
         GM.GetComponent<MainTime>().balloonR_obj.transform.position = new Vector3(GM.GetComponent<MainTime>().moveX2, GM.GetComponent<MainTime>().balloonR_obj.transform.position.y, GM.GetComponent<MainTime>().balloonR_obj.transform.position.z);
     }
-
 
     public void TouchBallon()
     {
@@ -287,8 +290,7 @@ public class WindowMiniGame : MonoBehaviour {
             nowArr = 0;
             nowArr++;
         }
-
-
+        
         text_str = " " + data_milk[nowArr - 1]["1"];
         Text_cut = "오늘의" + text_str;
         milk_txt1.text = Text_cut;
@@ -299,10 +301,10 @@ public class WindowMiniGame : MonoBehaviour {
         Text_cut = text_str;
         milk_txt3.text = Text_cut;
 
-
         PlayerPrefs.SetInt("milkText", nowArr);
 
-
+        //엔딩우유
+        endg();
 
     }
     public void toastMilk()
@@ -315,6 +317,72 @@ public class WindowMiniGame : MonoBehaviour {
     {
         milkWindow_obj.SetActive(false);
     }
+
+    /// <summary>
+    /// 엔딩대화
+    /// </summary>
+    void endg()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("milkending", 0) == 0)
+        {
+            if (PlayerPrefs.GetInt("milkendcnt", 0) >= 9)
+            {
+                //수집완료
+                PlayerPrefs.SetInt("milkending", 1);
+                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+                endWindow_obj.SetActive(true);
+            }
+            else
+            {
+                k = PlayerPrefs.GetInt("milkendcnt", 0);
+                k++;
+                PlayerPrefs.SetInt("milkendcnt", k);
+            }
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        Audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+
 
     //업적
     void achievementfunc()
