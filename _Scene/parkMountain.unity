@@ -4812,7 +4812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228833}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseHelpP
         m_Mode: 1
         m_Arguments:
@@ -11782,7 +11782,6 @@ GameObject:
   - component: {fileID: 2128228829}
   - component: {fileID: 2128228832}
   - component: {fileID: 2128228835}
-  - component: {fileID: 2128228833}
   - component: {fileID: 2128228834}
   - component: {fileID: 2128228824}
   - component: {fileID: 2128228826}
@@ -12006,64 +12005,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 463b4c45ba85af740b5635f69afdcfaf, type: 3}
   title_txt: {fileID: 957047373}
   info_txt: {fileID: 1904536174}
---- !u!114 &2128228833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128228821}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86b1dbee070c534b9a2acde8b683edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coldRain_i: 0
-  hotRain_i: 0
-  talkNumber_i: 0
-  favor_i: 0
-  favorLevel_i: 0
-  canvasPack_cvs:
-  - {fileID: 1495067293}
-  - {fileID: 1462431040}
-  - {fileID: 800312760}
-  - {fileID: 882829929}
-  - {fileID: 1822435664}
-  - {fileID: 1395556327}
-  menuBlock_obj: {fileID: 0}
-  menuBlock_vet: {x: 0, y: 0}
-  dayRoom: {fileID: 2113737751}
-  dayRoom2: {fileID: 750697893}
-  nightShop_obj: {fileID: 2077144844}
-  dayShop_obj: {fileID: 964834312}
-  audio_obj: {fileID: 365005793}
-  eventRand_i: 0
-  eventPet_obj: {fileID: 1429244913}
-  eventPaint_obj: {fileID: 183665559}
-  event_obj: {fileID: 1373597403}
-  event_spr:
-  - {fileID: 21300002, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  - {fileID: 21300004, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  - {fileID: 21300000, guid: 2453f5fc965bfd24b97ca8e2f144985b, type: 3}
-  helpPark_obj: {fileID: 815027769}
-  helpP_spr:
-  - {fileID: 21300000, guid: 5db216b463450e643861d2baf5d4df9f, type: 3}
-  - {fileID: 21300000, guid: f15e8abfc81764a4ea39348a192e49a4, type: 3}
-  GMtag: {fileID: 0}
-  GMP: {fileID: 2128228821}
-  leafPr_obj: {fileID: 0}
-  leafWin_obj: {fileID: 0}
-  eventNight_obj: {fileID: 1400961003}
-  mountainWindow_obj: {fileID: 0}
-  mountainAD_obj: {fileID: 0}
-  mountainToast_obj: {fileID: 0}
-  needToast_obj: {fileID: 0}
-  outPrice_txt: {fileID: 0}
-  outTime_txt: {fileID: 0}
-  hPrice_txt: {fileID: 0}
-  outP_obj: {fileID: 0}
-  outGo_obj: {fileID: 0}
-  outAd_obj: {fileID: 0}
-  outAdBtn_obj: {fileID: 0}
 --- !u!114 &2128228834
 MonoBehaviour:
   m_ObjectHideFlags: 0
