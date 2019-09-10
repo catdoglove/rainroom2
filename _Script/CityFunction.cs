@@ -33,7 +33,9 @@ public class CityFunction : CavasData
 
     //엔딩
     public GameObject endWindow_obj;
-
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
 
     //미리 씬을 불러오기
     AsyncOperation async;
@@ -74,6 +76,12 @@ public class CityFunction : CavasData
             helpCity_obj.SetActive(true);
             PlayerPrefs.SetInt("cityfirst", 1);
             PlayerPrefs.Save();
+        }
+        else
+        {
+            //test
+            PlayerPrefs.SetInt("cityending", 0);
+            endg();
         }
     }
 
@@ -164,7 +172,7 @@ public class CityFunction : CavasData
             helpCity_obj.GetComponent<Image>().sprite = helpC_spr[0];
             helpCity_obj.SetActive(false);
             help = 2;
-
+            endg();
         }
     }
     /// <summary>
@@ -175,6 +183,7 @@ public class CityFunction : CavasData
         if (PlayerPrefs.GetInt("cityending", 0) == 0)
         {
             PlayerPrefs.SetInt("cityending", 1);
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
             endWindow_obj.SetActive(true);
         }
     }
@@ -182,7 +191,44 @@ public class CityFunction : CavasData
     public void CloseEnd()
     {
         endWindow_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
     }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    
     
 
 
