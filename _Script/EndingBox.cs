@@ -8,13 +8,18 @@ public class EndingBox : MonoBehaviour {
     public GameObject[] endItem_obj, endHint_obj;
     public GameObject _obj;
     public string[] end_str,endHint_str;
-    public Sprite[] end_spr;
+    public Sprite[] end_spr, endBox_spr;
     public GameObject audio_obj;
-
+    public GameObject endBoxBtn_obj,endBox_obj;
+    public int shopNum;
+    public Text end_txt;
     // Use this for initialization
     void Start () {
-		
-	}
+        // test
+        PlayerPrefs.SetInt("cookending", 1);
+        endString();
+        checkEnd();
+    }
 	
     public void ActEnding()
     {
@@ -24,75 +29,144 @@ public class EndingBox : MonoBehaviour {
         }
         else
         {
+            checkEnd();
             endWindow_obj.SetActive(true);
         }
     }
 
     void checkEnd()
     {
+        int a = 0;
         //대화
         PlayerPrefs.GetInt("talkending", 0);
         if(PlayerPrefs.GetInt("talkending", 0) == 1)
         {
-
+            endItem_obj[1].SetActive(true);
+            a++;
         }
         //첫공원
         PlayerPrefs.GetInt("parkending", 0);
         if (PlayerPrefs.GetInt("parkending", 0) == 1)
         {
-
+            endItem_obj[5].SetActive(true);
+            a++;
         }
         //첫도시
         PlayerPrefs.GetInt("cityending", 0);
         if (PlayerPrefs.GetInt("cityending", 0) == 1)
         {
-
+            endItem_obj[6].SetActive(true);
+            a++;
         }
         //우유10번
         PlayerPrefs.GetInt("milkending", 0);
         if (PlayerPrefs.GetInt("milkending", 0) == 1)
         {
-
+            endItem_obj[7].SetActive(true);
+            a++;
         }
         //바다10번
         PlayerPrefs.GetInt("seaending", 0);
         if (PlayerPrefs.GetInt("seaending", 0) == 1)
         {
-
+            endItem_obj[3].SetActive(true);
+            a++;
         }
         //나뭇잎40번
         PlayerPrefs.GetInt("leafending", 0);
         if (PlayerPrefs.GetInt("leafending", 0) == 1)
         {
-
+            endItem_obj[0].SetActive(true);
+            a++;
         }
         //그림모두
         PlayerPrefs.GetInt("pictureending", 0);
         if (PlayerPrefs.GetInt("pictureending", 0) == 1)
         {
-
+            endItem_obj[4].SetActive(true);
+            a++;
         }
         //모든요리
         PlayerPrefs.GetInt("cookending", 0);
         if (PlayerPrefs.GetInt("cookending", 0) == 1)
         {
-
+            endItem_obj[2].SetActive(true);
+            a++;
         }
         //호감도
         PlayerPrefs.GetInt("likeending", 0);
         if (PlayerPrefs.GetInt("likeending", 0) == 1)
         {
-
+            endItem_obj[8].SetActive(true);
+            a++;
+        }
+        if (a >= 1)
+        {
+            endBoxBtn_obj.SetActive(true);
+            endBox_obj.GetComponent<Image>().sprite = endBox_spr[1];
+        }else if (a >= 9)
+        {
+            endBox_obj.GetComponent<Image>().sprite = endBox_spr[2];
         }
     }
 
+
+
     void endString()
     {
-        end_str[0]="";
+        end_str[0]= "공원에 있는 여러가지 나뭇잎을 줍다가 발견했지. 방금 떨어진 건지 다른 나뭇잎들보다 색이 선명했어";
+        end_str[1] = "어색한 대화들 ..언젠가 편안하게 대화하는 날이 올까?";
+        end_str[2] = "다양한 요리를 만들어 보고 싶었어. 직접 만들어서 맛있게 먹었더니 기분이 더 좋았지.";
+        end_str[3] = "모래사장을 걸어다니며 조개를 찾다가 푸른빛 소라를 발견했어. 귀에 대면 작게 들려오는 파도소리에 마음이 편안해져.";
+        end_str[4] = "그림을 하나 둘 모으다 보니 나도 그려보고 싶어졌어. 그래서 작게 우산을 그렸는데 ..잘 그리진 못 했지만 나에게는 소중한 그림이야.";
+        end_str[5] = "낯설면서도 익숙한 공원. 어린시절 추억이 고스란히 담겨 있었지.";
+        end_str[6] = "높은 건물의 옥상에서 내려다 보던 도시의 풍경이 떠올랐어. 아래에 지나가는 자동차들은 마치 장난감 같았지.";
+        end_str[7] = "열심히 우유를 마셔서 이벤트에 응모했는데 당첨됐어. 상품으로 부드러운 쿠션을 받았지.";
+        end_str[8] = "어색함은 눈녹듯이 사라지고 어느새 익숙함이 자리를 잡았어 ..너와 내가 가까워 진 걸까?";
+        endHint_str[0] = "공원 그림을...";
+        endHint_str[1] = "모든 요리를...";
+    }
+    
+
+    public void num0()
+    {
+        shopNum = 0;
+    }
+    public void num1()
+    {
+        shopNum = 1;
+    }
+    public void num2()
+    {
+        shopNum = 2;
+    }
+    public void num3()
+    {
+        shopNum = 3;
+    }
+    public void num4()
+    {
+        shopNum = 4;
+    }
+    public void num5()
+    {
+        shopNum = 5;
+    }
+    public void num6()
+    {
+        shopNum = 6;
+    }
+    public void num7()
+    {
+        shopNum = 7;
+    }
+    public void num8()
+    {
+        shopNum = 8;
     }
 
-    void endSpr()
+    public void SetText()
     {
-        
+        end_txt.text = end_str[shopNum];
     }
 }
