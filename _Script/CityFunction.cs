@@ -80,7 +80,7 @@ public class CityFunction : CavasData
         else
         {
             //test
-            PlayerPrefs.SetInt("cityending", 0);
+            //PlayerPrefs.SetInt("cityending", 0);
             endg();
         }
     }

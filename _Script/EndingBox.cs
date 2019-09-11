@@ -15,8 +15,6 @@ public class EndingBox : MonoBehaviour {
     public Text end_txt;
     // Use this for initialization
     void Start () {
-        // test
-        PlayerPrefs.SetInt("cookending", 1);
         endString();
         checkEnd();
     }
@@ -118,7 +116,7 @@ public class EndingBox : MonoBehaviour {
         end_str[1] = "어색한 대화들 ..언젠가 편안하게 대화하는 날이 올까?";
         end_str[2] = "다양한 요리를 만들어 보고 싶었어. 직접 만들어서 맛있게 먹었더니 기분이 더 좋았지.";
         end_str[3] = "모래사장을 걸어다니며 조개를 찾다가 푸른빛 소라를 발견했어. 귀에 대면 작게 들려오는 파도소리에 마음이 편안해져.";
-        end_str[4] = "그림을 하나 둘 모으다 보니 나도 그려보고 싶어졌어. 그래서 작게 우산을 그렸는데 ..잘 그리진 못 했지만 나에게는 소중한 그림이야.";
+        end_str[4] = "그림을 모으다 보니 나도 그려보고 싶어져서 작게 우산을 그렸어 ..잘 그리진 못 했지만 나에겐 소중한 그림이야.";
         end_str[5] = "낯설면서도 익숙한 공원. 어린시절 추억이 고스란히 담겨 있었지.";
         end_str[6] = "높은 건물의 옥상에서 내려다 보던 도시의 풍경이 떠올랐어. 아래에 지나가는 자동차들은 마치 장난감 같았지.";
         end_str[7] = "열심히 우유를 마셔서 이벤트에 응모했는데 당첨됐어. 상품으로 부드러운 쿠션을 받았지.";

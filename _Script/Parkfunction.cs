@@ -81,14 +81,13 @@ public class Parkfunction : CavasData
         else
         {
             //test
-            PlayerPrefs.SetInt("parkending", 0);
+            //PlayerPrefs.SetInt("parkending", 0);
             endg();
         }
     }
 
     // Use this for initialization
     void Start () {
-
         //밤낮
         setDay();
         //이밴트 랜덤 

@@ -52,6 +52,12 @@ public class GasrangeEvt : MonoBehaviour {
 
     public GameObject fsticker_obj,sToast_obj;
 
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+
     // Use this for initialization
     void Start () {
         //요리이름
@@ -358,6 +364,8 @@ public class GasrangeEvt : MonoBehaviour {
     {
         illust_obj.SetActive(false);
         dishBtn_obj.SetActive(true);
+        PlayerPrefs.SetInt("cookendfoods"+indexNumber_i, 1);
+        endg();
     }
 
     public void cleanDish()
@@ -652,6 +660,73 @@ public class GasrangeEvt : MonoBehaviour {
             yield return null;
         }
         sToast_obj.SetActive(false);
+    }
+
+
+
+    /// <summary>
+    /// 엔딩요리
+    /// </summary>
+    void endg()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("cookending", 0) == 0)
+        {
+            int fo = 0;
+            for(int i=0;i<10; i++)
+            {
+                fo = fo + PlayerPrefs.GetInt("cookendfoods" + i, 0);
+            }
+
+            if (fo >= 10)
+            {
+                //수집완료
+                PlayerPrefs.SetInt("cookending", 1);
+                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+                endWindow_obj.SetActive(true);
+            }
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
     }
 
 }

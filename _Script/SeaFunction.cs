@@ -40,6 +40,13 @@ public class SeaFunction : MonoBehaviour {
     public GameObject putToast_obj;
     public GameObject shrimp_obj, shrimpWindow_obj;
 
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+
+
     /// <summary>
     ///  병글씨
     /// </summary>
@@ -98,6 +105,7 @@ public class SeaFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        endg();
         PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
@@ -566,6 +574,72 @@ public class SeaFunction : MonoBehaviour {
         if (randomGet_i >= 12)
         {
             randomGet_i = 0;
+        }
+    }
+
+
+    /// <summary>
+    /// 엔딩바다
+    /// </summary>
+    void endg()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("seaending", 0) == 0)
+        {
+            if (PlayerPrefs.GetInt("seaendcnt", 0) >= 9)
+            {
+                //수집완료
+                PlayerPrefs.SetInt("seaending", 1);
+                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+                endWindow_obj.SetActive(true);
+            }
+            else
+            {
+                k = PlayerPrefs.GetInt("seaendcnt", 0);
+                k++;
+                PlayerPrefs.SetInt("seaendcnt", k);
+            }
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
         }
     }
 }

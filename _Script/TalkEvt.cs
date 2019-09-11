@@ -68,6 +68,13 @@ public class TalkEvt : MonoBehaviour {
     public int end_i = 0;
     public GameObject endR_obj, endL_obj, endClose_obj;
 
+
+    //엔딩
+    public GameObject endWindow_obj2;
+    public Sprite[] end_spr2;
+    public int end_i2 = 0;
+    public GameObject endR_obj2, endL_obj2, endClose_obj2;
+
     // Use this for initialization
     void Start ()
     {
@@ -76,7 +83,7 @@ public class TalkEvt : MonoBehaviour {
         callTalkBook();
         callTalkItem();
         //test
-        PlayerPrefs.SetInt("talkending", 0);
+        //PlayerPrefs.SetInt("talkending", 0);
         data = CSVReader.Read("Talk/talk_room"); //대사 불러오기   
         data_book = CSVReader.Read("Talk/talk_book"); 
         data_light = CSVReader.Read("Talk/talk_light"); 
@@ -1039,7 +1046,7 @@ public class TalkEvt : MonoBehaviour {
                 StopCoroutine("leveUpToastImgFadeOut");
                 StartCoroutine("leveUpToastImgFadeOut");
                 leveUpToast_obj.SetActive(true);
-
+                endg2();
 
                 countTalkNum = 5;
                 PlayerPrefs.SetInt("talk", countTalkNum);
@@ -1072,6 +1079,62 @@ public class TalkEvt : MonoBehaviour {
             leveUpToast_obj.SetActive(true);
         }
         
+    }
+
+
+    /// <summary>
+    /// 엔딩대화
+    /// </summary>
+    void endg2()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("likeending", 0) == 0)
+        {
+                PlayerPrefs.SetInt("likeending", 1);
+                endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+                endWindow_obj2.SetActive(true);
+        }
+    }
+
+    public void CloseEnd2()
+    {
+        endWindow_obj2.SetActive(false);
+        Audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR2()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i2 == 1)
+        {
+            endR_obj2.SetActive(false);
+            endClose_obj2.SetActive(true);
+            end_i2++;
+            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+        }
+        else
+        {
+            endL_obj2.SetActive(true);
+            end_i2++;
+            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+        }
+    }
+    public void endL2()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj2.SetActive(false);
+        if (end_i2 == 1)
+        {
+            endL_obj2.SetActive(false);
+            end_i2--;
+            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+        }
+        else
+        {
+            endR_obj2.SetActive(true);
+            end_i2--;
+            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+        }
     }
 
     //하트를 5번째대화마다 준다.

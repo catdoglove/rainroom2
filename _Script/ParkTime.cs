@@ -14,6 +14,13 @@ public class ParkTime : MonoBehaviour
     //양동이
     public GameObject bas_obj;
     public Sprite[] bas_spr;
+
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+    public GameObject Audio_obj;
     // Use this for initialization
     void Start()
     {
@@ -115,7 +122,74 @@ public class ParkTime : MonoBehaviour
             lf = lf + 1;
             PlayerPrefs.SetInt("leafcount", lf);
         }
-        
+        endg();
+    }
+
+
+
+    /// <summary>
+    /// 엔딩나뭇잎
+    /// </summary>
+    void endg()
+    {
+        int k = 0;
+        if (PlayerPrefs.GetInt("leafending", 0) == 0)
+        {
+            if (PlayerPrefs.GetInt("leafendcnt", 0) >= 39)
+            {
+                //수집완료
+                PlayerPrefs.SetInt("leafending", 1);
+                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+                endWindow_obj.SetActive(true);
+            }
+            else
+            {
+                k = PlayerPrefs.GetInt("leafendcnt", 0);
+                k++;
+                PlayerPrefs.SetInt("leafendcnt", k);
+            }
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        Audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+    }
+    public void endL()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+        }
     }
 
 }

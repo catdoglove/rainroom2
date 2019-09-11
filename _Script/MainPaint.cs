@@ -10,6 +10,15 @@ public class MainPaint : MonoBehaviour {
     public Text paint_txt;
     public GameObject paintFrame_obj, paintFrameWindow_obj,roomPaint_obj;
 
+
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+    public GameObject audio_obj;
+    public GameObject[] ani_obk;
+
     // Use this for initialization
     void Start () {
 
@@ -51,11 +60,13 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[PlayerPrefs.GetInt("setPaint", 0)].GetComponent<Image>().sprite = light_spr[1];
         }
 
+        int pp = 0;
         for (int i = 0; i < 4; i++)
         {
             if (PlayerPrefs.GetInt("paintp" + i, 0) == 1)
             {
                 paintP_obj[i].SetActive(true);
+                pp++;
             }
         }
         for (int i = 0; i < 4; i++)
@@ -63,6 +74,7 @@ public class MainPaint : MonoBehaviour {
             if (PlayerPrefs.GetInt("paintm" + i, 0) == 1)
             {
                 paintM_obj[i].SetActive(true);
+                pp++;
             }
         }
         for (int i = 0; i < 10; i++)
@@ -70,7 +82,82 @@ public class MainPaint : MonoBehaviour {
             if (PlayerPrefs.GetInt("paints", 0) > i)
             {
                 paintS_obj[i].SetActive(true);
+                pp++;
             }
+        }
+        if (pp >= 9)
+        {
+            endg();
+        }
+    }
+
+    /// <summary>
+    /// 엔딩바다
+    /// </summary>
+    void endg()
+    {
+        if (PlayerPrefs.GetInt("pictureending", 0) == 0)
+        {
+            //수집완료
+            PlayerPrefs.SetInt("pictureending", 1);
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+            endWindow_obj.SetActive(true);
+        }
+    }
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+    }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
     }
 
