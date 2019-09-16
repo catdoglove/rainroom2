@@ -1031,6 +1031,7 @@ public class TalkEvt : MonoBehaviour {
             case 12:
                     a = 1;
                     PlayerPrefs.SetInt("lovemax", 400);
+                endg2();
                 break;
             case 13:
                 loveExp = 0;
@@ -1046,8 +1047,6 @@ public class TalkEvt : MonoBehaviour {
                 StopCoroutine("leveUpToastImgFadeOut");
                 StartCoroutine("leveUpToastImgFadeOut");
                 leveUpToast_obj.SetActive(true);
-                endg2();
-
                 countTalkNum = 5;
                 PlayerPrefs.SetInt("talk", countTalkNum);
                 break;
@@ -1083,11 +1082,10 @@ public class TalkEvt : MonoBehaviour {
 
 
     /// <summary>
-    /// 엔딩대화
+    /// 엔딩레벨
     /// </summary>
     void endg2()
     {
-        int k = 0;
         if (PlayerPrefs.GetInt("likeending", 0) == 0)
         {
                 PlayerPrefs.SetInt("likeending", 1);
