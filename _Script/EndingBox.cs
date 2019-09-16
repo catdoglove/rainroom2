@@ -6,7 +6,6 @@ public class EndingBox : MonoBehaviour {
 
     public GameObject endWindow_obj;
     public GameObject[] endItem_obj, endHint_obj;
-    public GameObject _obj;
     public string[] end_str,endHint_str;
     public Sprite[] end_spr, endBox_spr;
     public GameObject audio_obj;

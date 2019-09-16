@@ -67,13 +67,16 @@ public class TalkEvt : MonoBehaviour {
     public Sprite[] end_spr;
     public int end_i = 0;
     public GameObject endR_obj, endL_obj, endClose_obj;
-
+    public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
 
     //엔딩
     public GameObject endWindow_obj2;
     public Sprite[] end_spr2;
     public int end_i2 = 0;
     public GameObject endR_obj2, endL_obj2, endClose_obj2;
+    public GameObject[] ani_obk2;
 
     // Use this for initialization
     void Start ()
@@ -174,7 +177,6 @@ public class TalkEvt : MonoBehaviour {
                 else
                 {
                     loveLv = PlayerPrefs.GetInt("lovelv", 0);
-
                     if (loveLv >= 6) { charAni.Play("bye"); }
 
                     if (loveLv < 2)
@@ -267,7 +269,10 @@ public class TalkEvt : MonoBehaviour {
 
             //엔딩 대화
             endg();
-
+            if (PlayerPrefs.GetInt("lovelv", 0) >= 13)
+            {
+                endg2();
+            }
             //온수를 레벨에 알맞게 더해주기
             string str1;
             str1 = PlayerPrefs.GetString("code", "");
@@ -338,8 +343,15 @@ public class TalkEvt : MonoBehaviour {
             {
                 //수집완료
                 PlayerPrefs.SetInt("talkending", 1);
-                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+                ani_obk[0].SetActive(false);
+                ani_obk[1].SetActive(false);
+                ani_obk[2].SetActive(false);
+                ani_obk[end_i].SetActive(true);
                 endWindow_obj.SetActive(true);
+
+                //소리
+                m_end.clip = sp_end;
+                m_end.Play();
             }
             else
             {
@@ -354,6 +366,8 @@ public class TalkEvt : MonoBehaviour {
     {
         endWindow_obj.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()
@@ -364,13 +378,19 @@ public class TalkEvt : MonoBehaviour {
             endR_obj.SetActive(false);
             endClose_obj.SetActive(true);
             end_i++;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
         else
         {
             endL_obj.SetActive(true);
             end_i++;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
     }
     public void endL()
@@ -381,13 +401,19 @@ public class TalkEvt : MonoBehaviour {
         {
             endL_obj.SetActive(false);
             end_i--;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
         else
         {
             endR_obj.SetActive(true);
             end_i--;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
     }
 
@@ -709,7 +735,8 @@ public class TalkEvt : MonoBehaviour {
         text_str = "" + data_book[itemNowArr]["book" + itemLv[0]];
         testText_cut = text_str.Split('/');
         cleantalk();
-
+        
+        StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
 
@@ -721,6 +748,7 @@ public class TalkEvt : MonoBehaviour {
         testText_cut = text_str.Split('/');
         cleantalk();
 
+        StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
     
@@ -731,7 +759,7 @@ public class TalkEvt : MonoBehaviour {
         text_str = "" + data_light[itemNowArr]["light" + itemLv[2]];
         testText_cut = text_str.Split('/');
         cleantalk();
-
+        
         StartCoroutine("itemTalkRun");
     }
 
@@ -742,7 +770,7 @@ public class TalkEvt : MonoBehaviour {
         text_str = "" + data_window[itemNowArr]["window" + itemLv[3]];
         testText_cut = text_str.Split('/');
         cleantalk();
-
+        
         StartCoroutine("itemTalkRun");
     }
 
