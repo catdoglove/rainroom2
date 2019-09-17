@@ -101,7 +101,26 @@ public class EndingBox : MonoBehaviour {
         {
             endBoxBtn_obj.SetActive(true);
             endBox_obj.GetComponent<Image>().sprite = endBox_spr[1];
-        }else if (a >= 9)
+        }
+        if (a >= 7)
+        {
+            endHint_obj[0].SetActive(true);
+            endHint_obj[1].SetActive(true);
+        }
+
+
+        //그림모두
+        if (PlayerPrefs.GetInt("pictureending", 0) == 1)
+        {
+            endHint_obj[1].SetActive(false);
+        }
+        //모든요리
+        if (PlayerPrefs.GetInt("cookending", 0) == 1)
+        {
+            endHint_obj[0].SetActive(false);
+        }
+
+        if (a >= 9)
         {
             endBox_obj.GetComponent<Image>().sprite = endBox_spr[2];
         }

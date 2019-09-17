@@ -107,6 +107,10 @@ public class MainPaint : MonoBehaviour {
             ani_obk[2].SetActive(false);
             ani_obk[end_i].SetActive(true);
             endWindow_obj.SetActive(true);
+
+            //소리
+            m_end.clip = sp_end;
+            m_end.Play();
         }
     }
 
@@ -114,6 +118,10 @@ public class MainPaint : MonoBehaviour {
     {
         endWindow_obj.SetActive(false);
         audio_obj.GetComponent<SoundEvt>().cancleSound();
+
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()

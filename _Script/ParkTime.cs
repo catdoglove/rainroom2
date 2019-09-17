@@ -147,6 +147,9 @@ public class ParkTime : MonoBehaviour
                 PlayerPrefs.SetInt("leafending", 1);
                 endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
                 endWindow_obj.SetActive(true);
+                //소리
+                m_end.clip = sp_end;
+                m_end.Play();
             }
             else
             {
@@ -161,6 +164,9 @@ public class ParkTime : MonoBehaviour
     {
         endWindow_obj.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()

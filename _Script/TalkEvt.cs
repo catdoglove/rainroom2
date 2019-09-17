@@ -1118,8 +1118,14 @@ public class TalkEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("likeending", 0) == 0)
         {
                 PlayerPrefs.SetInt("likeending", 1);
-                endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
-                endWindow_obj2.SetActive(true);
+            ani_obk2[0].SetActive(false);
+            ani_obk2[1].SetActive(false);
+            ani_obk2[2].SetActive(false);
+            ani_obk2[end_i].SetActive(true);
+            endWindow_obj2.SetActive(true);
+            //소리
+            m_end.clip = sp_end;
+            m_end.Play();
         }
     }
 
@@ -1127,6 +1133,10 @@ public class TalkEvt : MonoBehaviour {
     {
         endWindow_obj2.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
+
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR2()
@@ -1137,13 +1147,19 @@ public class TalkEvt : MonoBehaviour {
             endR_obj2.SetActive(false);
             endClose_obj2.SetActive(true);
             end_i2++;
-            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+            ani_obk2[0].SetActive(false);
+            ani_obk2[1].SetActive(false);
+            ani_obk2[2].SetActive(false);
+            ani_obk2[end_i].SetActive(true);
         }
         else
         {
             endL_obj2.SetActive(true);
             end_i2++;
-            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+            ani_obk2[0].SetActive(false);
+            ani_obk2[1].SetActive(false);
+            ani_obk2[2].SetActive(false);
+            ani_obk2[end_i].SetActive(true);
         }
     }
     public void endL2()
@@ -1154,13 +1170,19 @@ public class TalkEvt : MonoBehaviour {
         {
             endL_obj2.SetActive(false);
             end_i2--;
-            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+            ani_obk2[0].SetActive(false);
+            ani_obk2[1].SetActive(false);
+            ani_obk2[2].SetActive(false);
+            ani_obk2[end_i].SetActive(true);
         }
         else
         {
             endR_obj2.SetActive(true);
             end_i2--;
-            endWindow_obj2.GetComponent<Image>().sprite = end_spr2[end_i2];
+            ani_obk2[0].SetActive(false);
+            ani_obk2[1].SetActive(false);
+            ani_obk2[2].SetActive(false);
+            ani_obk2[end_i].SetActive(true);
         }
     }
 

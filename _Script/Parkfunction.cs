@@ -220,6 +220,10 @@ public class Parkfunction : CavasData
             Debug.Log("dd");
             endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
             endWindow_obj.SetActive(true);
+
+            //소리
+            m_end.clip = sp_end;
+            m_end.Play();
         }
     }
 
@@ -227,6 +231,10 @@ public class Parkfunction : CavasData
     {
         endWindow_obj.SetActive(false);
         audio_obj.GetComponent<SoundEvt>().cancleSound();
+
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()

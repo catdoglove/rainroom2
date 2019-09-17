@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class secondRoomFunction : CavasData {
+public class secondRoomFunction : CavasData
+{
 
     //앞뒤 캐릭터
     public GameObject character_obj;
 
 
     public GameObject GMNotdistroy;
-    
-	public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i,light_i,umbrella_i, drawer_i,wall_i;
-	public GameObject bookImg_obj,windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj,iceboxImg_obj,shelfImg_obj,drawingImg_obj,matImg_obj, matImg2_obj, flowerImg_obj,lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
+
+    public int window_i, book_i, gasrange_i, icebox_i, shelf_i, drawing_i, mat_i, mat2_i, flower_i, light_i, umbrella_i, drawer_i, wall_i;
+    public GameObject bookImg_obj, windowImg_obj, drawerImg_obj, windowImg2_obj, gasrangeImg_obj, iceboxImg_obj, shelfImg_obj, drawingImg_obj, matImg_obj, matImg2_obj, flowerImg_obj, lightImg_obj, lightImg2_obj, umbrellaImg_obj, WaterCan_obj, WaterPurifiler_obj;
     public GameObject wallImg_obj, wallImg2_obj;
     public GameObject switch_obj;
     public Sprite[] switch_spr;
@@ -26,13 +27,13 @@ public class secondRoomFunction : CavasData {
     public GameObject WaterPurifilerWindow_obj;
     public GameObject coldToHot_obj, hotToCold_obj;
     public Text WaterPurifilerH_txt, WaterPurifilerC_txt;
-    public GameObject hot_obj,cold_obj;
+    public GameObject hot_obj, cold_obj;
 
     public GameObject needhRain_obj, needcRain_obj, needMore_obj;
 
     public GameObject[] secondRoomItem_obj;
 
-    public GameObject seedBox_obj,iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj,doorBox_obj;
+    public GameObject seedBox_obj, iceBoxBox_obj, gasrangeBox_obj, drawerBox_obj, doorBox_obj;
     public GameObject boxClean_obj;
     public string boxName_str;
     public GameObject Audio_obj;
@@ -70,7 +71,7 @@ public class secondRoomFunction : CavasData {
 
     public GameObject goOutWindow_obj;
 
-    public GameObject GM2,GMTag;
+    public GameObject GM2, GMTag;
 
     //밤
     public GameObject dayRoom;
@@ -80,23 +81,32 @@ public class secondRoomFunction : CavasData {
     Color colorL;
 
     //외출
-    public Text outPrice_txt,outTime_txt,place_txt;
-    public GameObject outP_obj,outGo_obj,outAd_obj,outAdBtn_obj;
+    public Text outPrice_txt, outTime_txt, place_txt;
+    public GameObject outP_obj, outGo_obj, outAd_obj, outAdBtn_obj;
 
     public Sprite[] matPaint_spr, mat2Paint_spr, shelfPaint_spr;
     int changeOut_i;
 
     //리폼
-    public Sprite[] reformWindow_spr, reformWindow2_spr,reformWall_spr, reformWall2_spr, reformDrawer_spr,reformMat1_spr, reformMat2_spr, reformShelf_spr;
+    public Sprite[] reformWindow_spr, reformWindow2_spr, reformWall_spr, reformWall2_spr, reformDrawer_spr, reformMat1_spr, reformMat2_spr, reformShelf_spr;
 
     //외출로 얻은물건들
-    public GameObject goodsWindow_obj,goodsImg_obj,goodsDesk_obj;
+    public GameObject goodsWindow_obj, goodsImg_obj, goodsDesk_obj;
     public Sprite[] goods_spr;
     public int itemIndex_i;
     public Text goods_txt;
     public string[] goods_str, goodsHint_str;
     public GameObject[] goodsGet_obj;
     //public GameObject _obj;
+
+    //엔딩
+    public GameObject endWindow_obj;
+    public Sprite[] end_spr;
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+    public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
 
 
     #region
@@ -146,17 +156,23 @@ public class secondRoomFunction : CavasData {
     #endregion
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         //외출굿즈
-        if (PlayerPrefs.GetInt("setoutgoods", 0)>0)
+        if (PlayerPrefs.GetInt("setoutgoods", 0) > 0)
         {
             CheckOutGoods();
             setTextGoods();
             goodsDesk_obj.SetActive(true);
             goodsImg_obj.GetComponent<Image>().sprite = goods_spr[PlayerPrefs.GetInt("setoutgoods", 0)];
         }
-        
+
+        //엔딩
+        if (PlayerPrefs.GetInt("endoverever", 0)==0)
+        {
+            checkEnd();
+        }
+
 
         colorL = new Color(1f, 1f, 1f);
         color = new Color(1f, 1f, 1f);
@@ -176,31 +192,31 @@ public class secondRoomFunction : CavasData {
         GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuShop_spr;
 
         //GM을 찾아불러온 데이터들 가져오기
-        GMNotdistroy = GameObject.FindGameObjectWithTag ("loadGM");
-		window_i = PlayerPrefs.GetInt ("windowlv",0);
-		gasrange_i = PlayerPrefs.GetInt ("gasrangelv", 0);
-		icebox_i = PlayerPrefs.GetInt ("iceboxlv", 0);
-		shelf_i = PlayerPrefs.GetInt ("shelflv", 0);
+        GMNotdistroy = GameObject.FindGameObjectWithTag("loadGM");
+        window_i = PlayerPrefs.GetInt("windowlv", 0);
+        gasrange_i = PlayerPrefs.GetInt("gasrangelv", 0);
+        icebox_i = PlayerPrefs.GetInt("iceboxlv", 0);
+        shelf_i = PlayerPrefs.GetInt("shelflv", 0);
         //drawing_i = PlayerPrefs.GetInt ("drawing",0);
         wall_i = PlayerPrefs.GetInt("walllv", 0);
-        mat_i = PlayerPrefs.GetInt ("mat1lv", 0);
+        mat_i = PlayerPrefs.GetInt("mat1lv", 0);
         mat2_i = PlayerPrefs.GetInt("mat2lv", 0);
-        flower_i = PlayerPrefs.GetInt ("seedlv", 0);
-		light_i = PlayerPrefs.GetInt ("lightlv", 0);
-		umbrella_i = PlayerPrefs.GetInt ("umbrellalv", 0);
+        flower_i = PlayerPrefs.GetInt("seedlv", 0);
+        light_i = PlayerPrefs.GetInt("lightlv", 0);
+        umbrella_i = PlayerPrefs.GetInt("umbrellalv", 0);
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
 
-        
+
         wallImg_obj.GetComponent<Image>().sprite = wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = wall2_spr[wall_i];
         drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
-        windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData> ().window_spr [window_i];
+        windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window_spr[window_i];
         windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
-        gasrangeImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().gasrange_spr [gasrange_i];
-		iceboxImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().icebox_spr [icebox_i];
-		shelfImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().shelf_spr [shelf_i];
-		//drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
-		matImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().mat_spr [mat_i];
+        gasrangeImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().gasrange_spr[gasrange_i];
+        iceboxImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().icebox_spr[icebox_i];
+        shelfImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().shelf_spr[shelf_i];
+        //drawing_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().drawing_spr [drawing_i];
+        matImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat_spr[mat_i];
         if (PlayerPrefs.GetInt("setmatpalette", 0) >= 1)
         {
             matImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat_spr[mat_i];
@@ -218,7 +234,7 @@ public class secondRoomFunction : CavasData {
         {
             flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[flower_i];
         }
-		lightImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().light_spr [light_i];
+        lightImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         //umbrellaImg_obj.GetComponent<Image> ().sprite = GMNotdistroy.GetComponent<LoadingData> ().umbrella_spr [umbrella_i];
 
@@ -292,11 +308,11 @@ public class secondRoomFunction : CavasData {
         //낮밤
         setDay();
 
-        
+
         //리폼
 
         //도어매트
-        if (PlayerPrefs.GetInt("setmatpalette", 0)>=1)
+        if (PlayerPrefs.GetInt("setmatpalette", 0) >= 1)
         {
             matImg_obj.GetComponent<Image>().sprite = matPaint_spr[1];
             switch (PlayerPrefs.GetInt("setmatpalette", 0))
@@ -424,18 +440,18 @@ public class secondRoomFunction : CavasData {
 
     }
 
-    
-        //공원대화500회 1
-        //도시대화500회 2
-        //전단지100회 3
-        //도시음식20회 4
-        //공원음식20회 5
-        //바다조개30회 6
-        //바다병50회 7
-        //숲속다람쥐30회 8
-        //숲속표지판50회 9
 
-        public void Opengoods()
+    //공원대화500회 1
+    //도시대화500회 2
+    //전단지100회 3
+    //도시음식20회 4
+    //공원음식20회 5
+    //바다조개30회 6
+    //바다병50회 7
+    //숲속다람쥐30회 8
+    //숲속표지판50회 9
+
+    public void Opengoods()
     {
         goodsWindow_obj.SetActive(true);
     }
@@ -506,9 +522,9 @@ public class secondRoomFunction : CavasData {
             StopCoroutine("SwitchToastFadeOut");
             StartCoroutine("SwitchToastFadeOut");
         }
-        
-        
-        
+
+
+
     }
 
 
@@ -949,7 +965,7 @@ public class secondRoomFunction : CavasData {
             GMTag.GetComponent<MainBtnEvt>().showButtons();
         }
 
-        
+
     }
     public void CloseGoOut()
     {
@@ -1041,7 +1057,7 @@ public class secondRoomFunction : CavasData {
         str1 = PlayerPrefs.GetString("code", "");
         int heart_i;
         heart_i = PlayerPrefs.GetInt(str1 + "ht", 0);
-        int hp_i=20;
+        int hp_i = 20;
         if (PlayerPrefs.GetInt("bouttime", 14) == 9)
         {
             hp_i = hp_i - 10;
@@ -1062,7 +1078,7 @@ public class secondRoomFunction : CavasData {
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
             PlayerPrefs.SetInt("bouttime", 14);
             //외출업적
-            PlayerPrefs.SetInt("acgocheck",1);
+            PlayerPrefs.SetInt("acgocheck", 1);
             //checkachOut();
             StartCoroutine("LoadOut");
             GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
@@ -1091,7 +1107,7 @@ public class secondRoomFunction : CavasData {
     public void CloseOutAd()
     {
         outAd_obj.SetActive(false);
-        
+
     }
 
     IEnumerator outTime()
@@ -1133,11 +1149,12 @@ public class secondRoomFunction : CavasData {
                 {
                     outGo_obj.GetComponent<Button>().interactable = false;
                 }
-            }            yield return new WaitForSeconds(0.5f);
+            }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
-       
+
 
 
 
@@ -1207,6 +1224,129 @@ public class secondRoomFunction : CavasData {
         {
             changeOut_i = 1;
             place_txt.text = "공원";
+        }
+    }
+
+
+    void checkEnd()
+    {
+        int a = 0;
+        if (PlayerPrefs.GetInt("endbefore", 0) == 0)
+        {
+
+            //대화
+            if (PlayerPrefs.GetInt("talkending", 0) == 1)
+            {
+                a++;
+            }
+            //첫공원
+            if (PlayerPrefs.GetInt("parkending", 0) == 1)
+            {
+                a++;
+            }
+            //첫도시
+            if (PlayerPrefs.GetInt("cityending", 0) == 1)
+            {
+                a++;
+            }
+            //우유10번
+            if (PlayerPrefs.GetInt("milkending", 0) == 1)
+            {
+                a++;
+            }
+            //바다10번
+            if (PlayerPrefs.GetInt("seaending", 0) == 1)
+            {
+                a++;
+            }
+            //나뭇잎40번
+            if (PlayerPrefs.GetInt("leafending", 0) == 1)
+            {
+                a++;
+            }
+            //그림모두
+            if (PlayerPrefs.GetInt("pictureending", 0) == 1)
+            {
+                a++;
+            }
+            //모든요리
+            if (PlayerPrefs.GetInt("cookending", 0) == 1)
+            {
+                a++;
+            }
+            //호감도
+            if (PlayerPrefs.GetInt("likeending", 0) == 1)
+            {
+                a++;
+            }
+            if (a >= 9)
+            {
+                PlayerPrefs.SetInt("endbefore", 1);
+            }
+        }
+        else if(PlayerPrefs.GetInt("endafter", 0) == 1)
+        {
+            //소리
+            m_end.clip = sp_end;
+            m_end.Play();
+            endWindow_obj.SetActive(true);
+        }
+    }
+
+
+    public void CloseEnd()
+    {
+        endWindow_obj.SetActive(false);
+        Audio_obj.GetComponent<SoundEvt>().cancleSound();
+        m_end.clip = sp_original;
+        m_end.Play();
+    }
+
+    public void endR()
+    {
+        PlayerPrefs.SetInt("endoverever", 1);
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)
+        {
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+        else
+        {
+            endL_obj.SetActive(true);
+            end_i++;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+    }
+    public void endL()
+    {
+        Audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            endL_obj.SetActive(false);
+            end_i--;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
+        }
+        else
+        {
+            endR_obj.SetActive(true);
+            end_i--;
+            ani_obk[0].SetActive(false);
+            ani_obk[1].SetActive(false);
+            ani_obk[2].SetActive(false);
+            ani_obk[end_i].SetActive(true);
         }
     }
 }

@@ -190,6 +190,10 @@ public class CityFunction : CavasData
             PlayerPrefs.SetInt("cityending", 1);
             endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
             endWindow_obj.SetActive(true);
+
+            //소리
+            m_end.clip = sp_end;
+            m_end.Play();
         }
     }
 
@@ -197,6 +201,10 @@ public class CityFunction : CavasData
     {
         endWindow_obj.SetActive(false);
         audio_obj.GetComponent<SoundEvt>().cancleSound();
+
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()
@@ -208,6 +216,7 @@ public class CityFunction : CavasData
             endClose_obj.SetActive(true);
             end_i++;
             endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
+            
         }
         else
         {

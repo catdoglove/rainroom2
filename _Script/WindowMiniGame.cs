@@ -354,6 +354,10 @@ public class WindowMiniGame : MonoBehaviour {
     {
         endWindow_obj.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
+
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()
