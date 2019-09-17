@@ -77,6 +77,7 @@ public class TalkEvt : MonoBehaviour {
     public int end_i2 = 0;
     public GameObject endR_obj2, endL_obj2, endClose_obj2;
     public GameObject[] ani_obk2;
+    
 
     // Use this for initialization
     void Start ()

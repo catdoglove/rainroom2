@@ -18,6 +18,8 @@ public class MainPaint : MonoBehaviour {
     public GameObject endR_obj, endL_obj, endClose_obj;
     public GameObject audio_obj;
     public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
 
     // Use this for initialization
     void Start () {

@@ -42,6 +42,12 @@ public class Parkfunction : CavasData
     public Sprite[] end_spr;
     public int end_i = 0;
     public GameObject endR_obj,endL_obj,endClose_obj;
+
+
+    public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
+
     private void Awake()
     {
         //초기화

@@ -46,6 +46,8 @@ public class SeaFunction : MonoBehaviour {
     public int end_i = 0;
     public GameObject endR_obj, endL_obj, endClose_obj;
 
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
 
     /// <summary>
     ///  병글씨

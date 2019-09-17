@@ -58,6 +58,10 @@ public class GasrangeEvt : MonoBehaviour {
     public int end_i = 0;
     public GameObject endR_obj, endL_obj, endClose_obj;
 
+    public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
+
     // Use this for initialization
     void Start () {
         //요리이름
@@ -684,6 +688,10 @@ public class GasrangeEvt : MonoBehaviour {
                 PlayerPrefs.SetInt("cookending", 1);
                 endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
                 endWindow_obj.SetActive(true);
+
+                //소리
+                m_end.clip = sp_end;
+                m_end.Play();
             }
         }
     }
@@ -692,6 +700,9 @@ public class GasrangeEvt : MonoBehaviour {
     {
         endWindow_obj.SetActive(false);
         audio_obj.GetComponent<SoundEvt>().cancleSound();
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
     }
 
     public void endR()
