@@ -22,7 +22,7 @@ public class MainSticker : MonoBehaviour
 
     public GameObject FGM, GM2,GM;
     public GameObject frame_obj;
-    public Sprite frameOpen_spr;
+    public Sprite frameOpen_spr, frameEnd_spr;
 
     //소리
     public GameObject audio_obj;
@@ -151,9 +151,19 @@ public class MainSticker : MonoBehaviour
                     PlayerPrefs.SetInt(sticker_str[name_i] + "plus", plus + 1);
                     PlayerPrefs.SetInt(sticker_str[name_i] + name_str.Substring(0, 1), 2);
                     PlayerPrefs.SetInt("frameopen",1);
+
+                    int v= PlayerPrefs.GetInt("allacvdone", 0);
+                    v++;
+                    PlayerPrefs.SetInt("allacvdone", v);
+
                     if (PlayerPrefs.GetInt("place", 0) == 0)
                     {
                         GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Image>().sprite = frameOpen_spr;
+                        if (v >= 30)
+                        {
+                            GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Image>().sprite = frameEnd_spr;
+                        }
+
                         GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Button>().interactable = true;
                     }
                     PlayerPrefs.Save();
@@ -262,6 +272,17 @@ public class MainSticker : MonoBehaviour
                     sticker_obj[ii].SetActive(true);
                 PlayerPrefs.SetInt(sticker_str[ii] + "plus", 1);
                 PlayerPrefs.SetInt(sticker_str[ii] + name_str.Substring(0, 1), 2);
+
+                int v = PlayerPrefs.GetInt("allacvdone", 0);
+                v++;
+                PlayerPrefs.SetInt("allacvdone", v);
+                if (PlayerPrefs.GetInt("place", 0) == 0)
+                {
+                    if (v >= 30)
+                    {
+                        GM.GetComponent<FirstRoomSticker>().frameImg_obj.GetComponent<Image>().sprite = frameEnd_spr;
+                    }
+                }
                 PlayerPrefs.Save();
             }
         }

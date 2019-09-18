@@ -166,12 +166,8 @@ public class secondRoomFunction : CavasData
             goodsDesk_obj.SetActive(true);
             goodsImg_obj.GetComponent<Image>().sprite = goods_spr[PlayerPrefs.GetInt("setoutgoods", 0)];
         }
-
-        //엔딩
-        if (PlayerPrefs.GetInt("endoverever", 0)==0)
-        {
-            checkEnd();
-        }
+        
+            //checkEnd();
 
 
         colorL = new Color(1f, 1f, 1f);

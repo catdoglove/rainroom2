@@ -22,6 +22,7 @@ public class FirstRoomSticker : MonoBehaviour {
 	void Start () {
         StartFrame();
         frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
+        LoadFrame();
     }
 
     public void OpenFrame()
@@ -37,100 +38,108 @@ public class FirstRoomSticker : MonoBehaviour {
 
     public void ShowFrame()
     {
-        frameShow_obj.SetActive(true);
-        switch (frame_i)
+        if (frame_i == 25)
         {
-            case 0:
-                show_i = 56;
-                break;
-            case 1:
-                show_i = 58;
-                break;
-            case 2:
-                show_i = 60;
-                break;
-            case 3:
-                show_i = 10;
-                break;
-            case 4:
-                show_i = 12;
-                break;
-            case 5:
-                show_i = 14;
-                break;
-            case 6:
-                show_i = 33;
-                break;
-            case 7:
-                show_i = 35;
-                break;
-            case 8:
-                show_i = 37;
-                break;
-            case 9:
-                show_i = 0;
-                break;
-            case 10:
-                show_i = 2;
-                break;
-            case 11:
-                show_i = 4;
-                break;
-            case 12:
-                show_i = 16;
-                break;
-            case 13:
-                show_i = 18;
-                break;
-            case 14:
-                show_i = 20;
-                break;
-            case 15:
-                show_i = 49;
-                break;
-            case 16:
-                show_i = 51;
-                break;
-            case 17:
-                show_i = 53;
-                break;
-            case 18:
-                show_i = 23;
-                break;
-            case 19:
-                show_i = 25;
-                break;
-            case 20:
-                show_i = 28;
-                break;
-            case 21:
-                show_i = 63;
-                break;
-            case 22:
-                show_i = 7;
-                break;
-            case 23:
-                show_i = 31;
-                break;
-            case 24:
-                show_i = 40;
-                break;
-            case 25:
-                break;
-            case 26:
-                show_i = 66;
-                break;
-            case 27:
-                show_i = 42;
-                break;
-            case 28:
-                show_i = 44;
-                break;
-            case 29:
-                show_i = 46;
-                break;
+
         }
-        frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
+        else
+        {
+
+            frameShow_obj.SetActive(true);
+            switch (frame_i)
+            {
+                case 0:
+                    show_i = 56;
+                    break;
+                case 1:
+                    show_i = 58;
+                    break;
+                case 2:
+                    show_i = 60;
+                    break;
+                case 3:
+                    show_i = 10;
+                    break;
+                case 4:
+                    show_i = 12;
+                    break;
+                case 5:
+                    show_i = 14;
+                    break;
+                case 6:
+                    show_i = 33;
+                    break;
+                case 7:
+                    show_i = 35;
+                    break;
+                case 8:
+                    show_i = 37;
+                    break;
+                case 9:
+                    show_i = 0;
+                    break;
+                case 10:
+                    show_i = 2;
+                    break;
+                case 11:
+                    show_i = 4;
+                    break;
+                case 12:
+                    show_i = 16;
+                    break;
+                case 13:
+                    show_i = 18;
+                    break;
+                case 14:
+                    show_i = 20;
+                    break;
+                case 15:
+                    show_i = 49;
+                    break;
+                case 16:
+                    show_i = 51;
+                    break;
+                case 17:
+                    show_i = 53;
+                    break;
+                case 18:
+                    show_i = 23;
+                    break;
+                case 19:
+                    show_i = 25;
+                    break;
+                case 20:
+                    show_i = 28;
+                    break;
+                case 21:
+                    show_i = 63;
+                    break;
+                case 22:
+                    show_i = 7;
+                    break;
+                case 23:
+                    show_i = 31;
+                    break;
+                case 24:
+                    show_i = 40;
+                    break;
+                case 25:
+                    break;
+                case 26:
+                    show_i = 66;
+                    break;
+                case 27:
+                    show_i = 42;
+                    break;
+                case 28:
+                    show_i = 44;
+                    break;
+                case 29:
+                    show_i = 46;
+                    break;
+            }
+            frameShow_obj.GetComponent<Image>().sprite = frame_spr[show_i];
+        }
     }
 
     public void frameNumCheck()
@@ -156,6 +165,7 @@ public class FirstRoomSticker : MonoBehaviour {
 
     void LoadFrame()
     {
+        int v = 0;
         for (int i = 0; i < 8; i++)
         {
             int c = PlayerPrefs.GetInt(sticker_str[i], 0);
@@ -163,15 +173,18 @@ public class FirstRoomSticker : MonoBehaviour {
             {
                 int sum = i * 3;
                 frameBtn_obj[sum].SetActive(true);
+                v++;
                 if (c >= 2)
                 {
                     sum = (i * 3) + 1;
                     frameBtn_obj[sum].SetActive(true);
+                    v++;
                 }
                 if (c >= 3)
                 {
                     sum = (i * 3) +2;
                     frameBtn_obj[sum].SetActive(true);
+                    v++;
                 }
             }
         }
@@ -182,8 +195,10 @@ public class FirstRoomSticker : MonoBehaviour {
             {
                 int sum = i + c - 20 - 1;
                 frameABtn_obj[sum].SetActive(true);
+                v++;
             }
         }
+            PlayerPrefs.SetInt("allacvdone",v);
     }
 
     /// <summary>

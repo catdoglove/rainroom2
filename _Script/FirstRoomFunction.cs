@@ -76,7 +76,7 @@ public class FirstRoomFunction : CavasData {
 
     //업적액자
     public GameObject frame_obj;
-    public Sprite frameOpen_spr;
+    public Sprite frameOpen_spr, frameEnd_spr;
 
 
     //도움말열기
@@ -157,6 +157,12 @@ public class FirstRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("frameopen", 0) == 1)
         {
             frame_obj.GetComponent<Image>().sprite = frameOpen_spr;
+
+            int v = PlayerPrefs.GetInt("allacvdone", 0);
+            if (v >= 30)
+            {
+                frame_obj.GetComponent<Image>().sprite = frameEnd_spr;
+            }
             frame_obj.GetComponent<Button>().interactable = true;
         }
 

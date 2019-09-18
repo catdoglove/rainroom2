@@ -12,6 +12,8 @@ public class EndingBox : MonoBehaviour {
     public GameObject endBoxBtn_obj,endBox_obj;
     public int shopNum;
     public Text end_txt;
+    public GameObject GM;
+    int a;
     // Use this for initialization
     void Start () {
         endString();
@@ -28,12 +30,25 @@ public class EndingBox : MonoBehaviour {
         {
             checkEnd();
             endWindow_obj.SetActive(true);
+
+            //test
+           // PlayerPrefs.SetInt("_thank_you_for_playb", 0);
+           // PlayerPrefs.SetInt("_thank_you_for_playplus", 0);
+            //PlayerPrefs.SetInt("_thank_you_for_play", 0);
+            if (a >= 9)
+            {
+                if (PlayerPrefs.GetInt("_thank_you_for_play", 0) == 0)
+                {
+                    PlayerPrefs.SetInt("_thank_you_for_play", 1);
+                    GM.GetComponent<AchievementShow>().achievementCheck(24, 0);
+                }
+            }
         }
     }
 
     void checkEnd()
     {
-        int a = 0;
+        a = 0;
         //대화
         PlayerPrefs.GetInt("talkending", 0);
         if(PlayerPrefs.GetInt("talkending", 0) == 1)
@@ -123,6 +138,7 @@ public class EndingBox : MonoBehaviour {
         if (a >= 9)
         {
             endBox_obj.GetComponent<Image>().sprite = endBox_spr[2];
+            
         }
     }
 
