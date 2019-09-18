@@ -107,7 +107,7 @@ public class SeaFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        endg();
+        
         PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
@@ -300,6 +300,7 @@ public class SeaFunction : MonoBehaviour {
             e = e + 1;
             PlayerPrefs.SetInt("lovepoint", e);
             feed();
+            endg();
         }
         else
         {
