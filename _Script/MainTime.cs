@@ -130,9 +130,7 @@ public class MainTime : MonoBehaviour {
                     starY = Random.Range(-1, 3);
                 }
             }
-
             
-
             PlayerPrefs.Save();
             yield return new WaitForSeconds(1f);
 		}

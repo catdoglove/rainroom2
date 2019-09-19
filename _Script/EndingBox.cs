@@ -15,7 +15,16 @@ public class EndingBox : MonoBehaviour {
     public GameObject GM;
     int a;
     public GameObject[] EndAni_obj;
-    public GameObject playBtn_obj;
+    public GameObject playBtn_obj, endBack_obj;
+
+
+    //엔딩
+    public int end_i = 0;
+    public GameObject endR_obj, endL_obj, endClose_obj;
+    public GameObject[] ani_obk;
+    public AudioSource m_end;
+    public AudioClip sp_end, sp_original;
+    public int page = 0;
     // Use this for initialization
     void Start () {
         endString();
@@ -24,6 +33,7 @@ public class EndingBox : MonoBehaviour {
 	
     public void ActEnding()
     {
+        playBtn_obj.SetActive(false);
         if (endWindow_obj.activeSelf == true)
         {
             endWindow_obj.SetActive(false);
@@ -124,8 +134,6 @@ public class EndingBox : MonoBehaviour {
             endHint_obj[0].SetActive(true);
             endHint_obj[1].SetActive(true);
         }
-
-
         //그림모두
         if (PlayerPrefs.GetInt("pictureending", 0) == 1)
         {
@@ -136,16 +144,12 @@ public class EndingBox : MonoBehaviour {
         {
             endHint_obj[0].SetActive(false);
         }
-
         if (a >= 9)
         {
             endBox_obj.GetComponent<Image>().sprite = endBox_spr[2];
-            
         }
     }
-
-
-
+    
     void endString()
     {
         end_str[0]= "공원에 있는 여러가지 나뭇잎을 줍다가 발견했지. 방금 떨어진 건지 다른 나뭇잎들보다 색이 선명했어";
@@ -160,7 +164,6 @@ public class EndingBox : MonoBehaviour {
         endHint_str[0] = "공원 그림을...";
         endHint_str[1] = "모든 요리를...";
     }
-    
 
     public void num0()
     {
@@ -202,17 +205,121 @@ public class EndingBox : MonoBehaviour {
     public void SetText()
     {
         end_txt.text = end_str[shopNum];
+        showPlayBtn();
     }
-
 
     public void PlayEnd()
     {
+        page = 0;
         EndAni_obj[shopNum].SetActive(true);
+        endBack_obj.SetActive(true);
+        //소리
+        m_end.clip = sp_end;
+        m_end.Play();
     }
 
-    public void showPlayBtn()
+    void showPlayBtn()
     {
         playBtn_obj.SetActive(true);
     }
-    
+
+    public void CloseEnd()
+    {
+        audio_obj.GetComponent<SoundEvt>().cancleSound();
+        endBack_obj.SetActive(false);
+        //소리
+        m_end.clip = sp_original;
+        m_end.Play();
+    }
+
+    public void endR()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        if (end_i == 1)//마지막페이지 -1일때
+        {
+            //현재페이지
+            int endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(false);
+
+            endR_obj.SetActive(false);
+            endClose_obj.SetActive(true);
+            end_i++;
+
+            //다음페이지
+            endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(true);
+        }
+        else
+        {
+
+            //현재페이지
+            int endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(false);
+
+            endL_obj.SetActive(true);
+            end_i++;
+
+
+            //다음페이지
+            endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(true);
+        }
+    }
+    public void endL()
+    {
+        audio_obj.GetComponent<SoundEvt>().turnSound();
+        endClose_obj.SetActive(false);
+        if (end_i == 1)
+        {
+            //현재페이지
+            int endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(false);
+
+            endL_obj.SetActive(false);
+            end_i--;
+
+            //다음페이지
+            endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(true);
+        }
+        else
+        {
+            //현재페이지
+            int endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(false);
+
+            endR_obj.SetActive(true);
+            end_i--;
+
+            //다음페이지
+            endsum = shopNum + (end_i * 9);
+            EndAni_obj[endsum].SetActive(true);
+        }
+    }
+
+    //페이지수의 값이 다를때
+    void SumPage()
+    {
+        switch (shopNum)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
+    }
 }
