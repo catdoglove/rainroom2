@@ -14,6 +14,8 @@ public class EndingBox : MonoBehaviour {
     public Text end_txt;
     public GameObject GM;
     int a;
+    public GameObject[] EndAni_obj;
+    public GameObject playBtn_obj;
     // Use this for initialization
     void Start () {
         endString();
@@ -201,4 +203,16 @@ public class EndingBox : MonoBehaviour {
     {
         end_txt.text = end_str[shopNum];
     }
+
+
+    public void PlayEnd()
+    {
+        EndAni_obj[shopNum].SetActive(true);
+    }
+
+    public void showPlayBtn()
+    {
+        playBtn_obj.SetActive(true);
+    }
+    
 }
