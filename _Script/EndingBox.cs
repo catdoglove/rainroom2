@@ -34,6 +34,7 @@ public class EndingBox : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        //PlayerPrefs.SetInt("seaending", 0);
         //PlayerPrefs.SetInt("leafending", 0);
         endString();
         if (room == 5)

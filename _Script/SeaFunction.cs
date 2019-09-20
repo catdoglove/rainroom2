@@ -283,7 +283,7 @@ public class SeaFunction : MonoBehaviour {
         }
     }
 
-    //다람쥐
+    //조개찾기
     public void FeedY()
     {
         int v = PlayerPrefs.GetInt(str + "c", 0);

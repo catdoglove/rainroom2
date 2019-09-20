@@ -39,10 +39,11 @@ public class SleepTime : MonoBehaviour {
     public GameObject sleepMax_obj;
     public GameObject[] sleepColor_obj;
 
-    public Animator sleep_ani;
+    public Animator sleep_ani, sleepOne_ani;
 
     // Use this for initialization
     void Start () {
+
 
         n = PlayerPrefs.GetInt("bedlv", 0);
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
@@ -56,15 +57,18 @@ public class SleepTime : MonoBehaviour {
                 if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                 {
                     sleepMax_obj.SetActive(false);
-                    int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                    int m = PlayerPrefs.GetInt("setbedpalette", 0) + 2;
                     string s = "sleepbed"+m;
+                    sleepMax_obj.SetActive(true);
                     sleep_ani.Play(s, -1, 0f);
                     //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                 }
             }
             else
             {
-                sleep_obj[n - 1].SetActive(true);
+                sleep_obj[0].SetActive(true);
+                //int k = n + 1;
+                sleepOne_ani.Play("sleep"+n, -1, 0f);
             }
 
             sleepGone_obj.SetActive(false);
@@ -169,15 +173,18 @@ public class SleepTime : MonoBehaviour {
             if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
             {
                 sleepMax_obj.SetActive(false);
-                int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                int m = PlayerPrefs.GetInt("setbedpalette", 0) + 2;
                 string s = "sleepbed" + m;
+                sleepMax_obj.SetActive(true);
                 sleep_ani.Play(s, -1, 0f);
                 //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
             }
         }
         else
         {
-            sleep_obj[n - 1].SetActive(true);
+            sleep_obj[0].SetActive(true);
+            //int k = n + 1;
+            sleepOne_ani.Play("sleep" + n, -1, 0f);
         }
         sleepGone_obj.SetActive(false);
         dreamBtn_obj.SetActive(false);
@@ -239,15 +246,16 @@ public class SleepTime : MonoBehaviour {
                     if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                     {
                         sleepMax_obj.SetActive(false);
-                        int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                        int m = PlayerPrefs.GetInt("setbedpalette", 0) + 2;
                         string s = "sleepbed" + m;
+                        //sleepMax_obj.SetActive(true);
                         sleep_ani.Play(s, -1, 0f);
                         //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                     }
                 }
                 else
                 {
-                    sleep_obj[n - 1].SetActive(false);
+                    sleep_obj[0].SetActive(false);
                     if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
                     {
                         rabbit_obj.SetActive(true);
