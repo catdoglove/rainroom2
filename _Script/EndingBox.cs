@@ -6,16 +6,16 @@ public class EndingBox : MonoBehaviour {
 
     public GameObject endWindow_obj;
     public GameObject[] endItem_obj, endHint_obj;
-    public string[] end_str,endHint_str;
+    public string[] end_str,endHint_str, endNum_str, endCha_str;
     public Sprite[] end_spr, endBox_spr;
     public GameObject audio_obj;
     public GameObject endBoxBtn_obj,endBox_obj;
     public int shopNum;
-    public Text end_txt;
+    public Text end_txt, endNum_txt, endCha_txt;
     public GameObject GM;
     int a;
     public GameObject[] EndAni_obj;
-    public GameObject playBtn_obj, endBack_obj;
+    public GameObject playBtn_obj, endBack_obj, endtxt_obj;
 
 
     //엔딩
@@ -49,6 +49,7 @@ public class EndingBox : MonoBehaviour {
         if (endWindow_obj.activeSelf == true)
         {
             endWindow_obj.SetActive(false);
+            endtxt_obj.SetActive(false);
         }
         else
         {
@@ -73,63 +74,63 @@ public class EndingBox : MonoBehaviour {
     void checkEnd()
     {
         a = 0;
-        //대화
+        //대화1
         PlayerPrefs.GetInt("talkending", 0);
         if(PlayerPrefs.GetInt("talkending", 0) == 1)
         {
             endItem_obj[1].SetActive(true);
             a++;
         }
-        //첫공원
+        //첫공원7
         PlayerPrefs.GetInt("parkending", 0);
         if (PlayerPrefs.GetInt("parkending", 0) == 1)
         {
             endItem_obj[5].SetActive(true);
             a++;
         }
-        //첫도시
+        //첫도시3
         PlayerPrefs.GetInt("cityending", 0);
         if (PlayerPrefs.GetInt("cityending", 0) == 1)
         {
             endItem_obj[6].SetActive(true);
             a++;
         }
-        //우유10번
+        //우유10번9
         PlayerPrefs.GetInt("milkending", 0);
         if (PlayerPrefs.GetInt("milkending", 0) == 1)
         {
             endItem_obj[7].SetActive(true);
             a++;
         }
-        //바다10번
+        //바다10번5
         PlayerPrefs.GetInt("seaending", 0);
         if (PlayerPrefs.GetInt("seaending", 0) == 1)
         {
             endItem_obj[3].SetActive(true);
             a++;
         }
-        //나뭇잎40번
+        //나뭇잎40번2
         PlayerPrefs.GetInt("leafending", 0);
         if (PlayerPrefs.GetInt("leafending", 0) == 1)
         {
             endItem_obj[0].SetActive(true);
             a++;
         }
-        //그림모두
+        //그림모두8
         PlayerPrefs.GetInt("pictureending", 0);
         if (PlayerPrefs.GetInt("pictureending", 0) == 1)
         {
             endItem_obj[4].SetActive(true);
             a++;
         }
-        //모든요리
+        //모든요리6
         PlayerPrefs.GetInt("cookending", 0);
         if (PlayerPrefs.GetInt("cookending", 0) == 1)
         {
             endItem_obj[2].SetActive(true);
             a++;
         }
-        //호감도
+        //호감도4
         PlayerPrefs.GetInt("likeending", 0);
         if (PlayerPrefs.GetInt("likeending", 0) == 1)
         {
@@ -159,7 +160,30 @@ public class EndingBox : MonoBehaviour {
         if (a >= 9)
         {
             endBox_obj.GetComponent<Image>().sprite = endBox_spr[2];
+            endtxt_obj.SetActive(true);
         }
+
+
+        endNum_str[0] = "2";
+        endNum_str[1] = "1";
+        endNum_str[2] = "6";
+        endNum_str[3] = "5";
+        endNum_str[4] = "8";
+        endNum_str[5] = "7";
+        endNum_str[6] = "3";
+        endNum_str[7] = "9";
+        endNum_str[8] = "4";
+
+        endCha_str[0] = "D";
+        endCha_str[1] = "E";
+        endCha_str[2] = "VO";
+        endCha_str[3] = "3";
+        endCha_str[4] = "m";
+        endCha_str[5] = "2";
+        endCha_str[6] = "cC";
+        endCha_str[7] = "o";
+        endCha_str[8] = "5";
+
     }
     
     void endString()
@@ -186,6 +210,9 @@ public class EndingBox : MonoBehaviour {
         ani_str[7] = "endMlik";
         ani_str[8] = "endheart";
         ani_str[9] = "endLast";
+
+
+
     }
 
     public void num0()
@@ -228,6 +255,8 @@ public class EndingBox : MonoBehaviour {
     public void SetText()
     {
         end_txt.text = end_str[shopNum];
+        endNum_txt.text = endNum_str[shopNum];
+        endCha_txt.text = endCha_str[shopNum];
         showPlayBtn();
     }
 
