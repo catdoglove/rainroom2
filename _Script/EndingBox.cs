@@ -27,12 +27,19 @@ public class EndingBox : MonoBehaviour {
     public int page = 0;
 
     public Animator end_ani;
-    public string[] ani_str; 
+    public string[] ani_str;
+
+    public int room;
 
     // Use this for initialization
     void Start () {
+
+        //PlayerPrefs.SetInt("leafending", 0);
         endString();
-        checkEnd();
+        if (room == 5)
+        {
+            checkEnd();
+        }
     }
 	
     public void ActEnding()
@@ -225,11 +232,15 @@ public class EndingBox : MonoBehaviour {
     public void PlayEnd()
     {
         page = 0;
-        end_ani.Play(ani_str[shopNum]+"1", -1, 0f);
         endBack_obj.SetActive(true);
         //소리
         m_end.clip = sp_end;
         m_end.Play();
+        SumPage();
+        endL_obj.SetActive(false);
+        endClose_obj.SetActive(false);
+        endR_obj.SetActive(true);
+        end_ani.Play(ani_str[shopNum] + "1", -1, 0f);
     }
 
     void showPlayBtn()
@@ -244,15 +255,17 @@ public class EndingBox : MonoBehaviour {
         //소리
         m_end.clip = sp_original;
         m_end.Play();
+        end_i = 0;
     }
 
     public void endR()
     {
         audio_obj.GetComponent<SoundEvt>().turnSound();
-        if (end_i == 1)//마지막페이지 -1일때
+        if (end_i == page)//마지막페이지 -1일때
         {
             endR_obj.SetActive(false);
             endClose_obj.SetActive(true);
+            endL_obj.SetActive(true);
             end_i++;
             int l = end_i + 1;
             //다음페이지
@@ -260,10 +273,8 @@ public class EndingBox : MonoBehaviour {
         }
         else
         {
-            
             endL_obj.SetActive(true);
             end_i++;
-            
             int l = end_i + 1;
             //다음페이지
             end_ani.Play(ani_str[shopNum] + l, -1, 0f);
@@ -276,6 +287,7 @@ public class EndingBox : MonoBehaviour {
         if (end_i == 1)
         {
             endL_obj.SetActive(false);
+            endR_obj.SetActive(true);
             end_i--;
 
             int l = end_i + 1;
@@ -299,23 +311,31 @@ public class EndingBox : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
-                page = 0;
+                page = 1;
                 break;
             case 1:
+                page = 1;
                 break;
             case 2:
+                page = 1;
                 break;
             case 3:
+                page = 2;
                 break;
             case 4:
+                page = 2;
                 break;
             case 5:
+                page = 0;
                 break;
             case 6:
+                page = 2;
                 break;
             case 7:
+                page = 1;
                 break;
             case 8:
+                page = 2;
                 break;
         }
     }

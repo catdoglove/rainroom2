@@ -20,6 +20,7 @@ public class MainPaint : MonoBehaviour {
     public GameObject[] ani_obk;
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
+    public GameObject firstGM;
 
     // Use this for initialization
     void Start () {
@@ -94,7 +95,7 @@ public class MainPaint : MonoBehaviour {
     }
 
     /// <summary>
-    /// 엔딩바다
+    /// 엔딩그림
     /// </summary>
     void endg()
     {
@@ -102,15 +103,9 @@ public class MainPaint : MonoBehaviour {
         {
             //수집완료
             PlayerPrefs.SetInt("pictureending", 1);
-            ani_obk[0].SetActive(false);
-            ani_obk[1].SetActive(false);
-            ani_obk[2].SetActive(false);
-            ani_obk[end_i].SetActive(true);
-            endWindow_obj.SetActive(true);
-
-            //소리
-            m_end.clip = sp_end;
-            m_end.Play();
+            firstGM.GetComponent<EndingBox>().shopNum = 4;
+            firstGM.GetComponent<EndingBox>().PlayEnd();
+            firstGM.GetComponent<EndingBox>().end_ani.Play("endDraw1", -1, 0f);
         }
     }
 

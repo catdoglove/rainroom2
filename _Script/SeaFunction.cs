@@ -48,6 +48,7 @@ public class SeaFunction : MonoBehaviour {
 
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
+    public GameObject GM;
 
     /// <summary>
     ///  병글씨
@@ -593,11 +594,9 @@ public class SeaFunction : MonoBehaviour {
             {
                 //수집완료
                 PlayerPrefs.SetInt("seaending", 1);
-                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-                endWindow_obj.SetActive(true);
-                //소리
-                m_end.clip = sp_end;
-                m_end.Play();
+                GM.GetComponent<EndingBox>().shopNum = 3;
+                GM.GetComponent<EndingBox>().PlayEnd();
+                GM.GetComponent<EndingBox>().end_ani.Play("endSea1", -1, 0f);
             }
             else
             {

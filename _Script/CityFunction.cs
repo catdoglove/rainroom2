@@ -188,12 +188,9 @@ public class CityFunction : CavasData
         if (PlayerPrefs.GetInt("cityending", 0) == 0)
         {
             PlayerPrefs.SetInt("cityending", 1);
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-            endWindow_obj.SetActive(true);
-
-            //소리
-            m_end.clip = sp_end;
-            m_end.Play();
+            GMC.GetComponent<EndingBox>().shopNum = 6;
+            GMC.GetComponent<EndingBox>().PlayEnd();
+            GMC.GetComponent<EndingBox>().end_ani.Play("endCity1", -1, 0f);
         }
     }
 

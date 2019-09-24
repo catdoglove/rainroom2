@@ -334,12 +334,9 @@ public class WindowMiniGame : MonoBehaviour {
             {
                 //수집완료
                 PlayerPrefs.SetInt("milkending", 1);
-                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-                endWindow_obj.SetActive(true);
-
-                //소리
-                m_end.clip = sp_end;
-                m_end.Play();
+                GM.GetComponent<EndingBox>().shopNum = 7;
+                GM.GetComponent<EndingBox>().PlayEnd();
+                GM.GetComponent<EndingBox>().end_ani.Play("endMlik1", -1, 0f);
             }
             else
             {

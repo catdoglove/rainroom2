@@ -24,7 +24,7 @@ public class GasrangeEvt : MonoBehaviour {
     public string[] cook_str;
     public Text cooks_txt;
 
-    public GameObject pen_obj, illust_obj,block_obj;
+    public GameObject pen_obj, illust_obj, block_obj;
     public Sprite pen1_spr, pen2_spr;
     public int[] cookPrice_i;
     public int gasLv_i;
@@ -686,12 +686,9 @@ public class GasrangeEvt : MonoBehaviour {
             {
                 //수집완료
                 PlayerPrefs.SetInt("cookending", 1);
-                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-                endWindow_obj.SetActive(true);
-
-                //소리
-                m_end.clip = sp_end;
-                m_end.Play();
+                GM2.GetComponent<EndingBox>().shopNum = 2;
+                GM2.GetComponent<EndingBox>().PlayEnd();
+                GM2.GetComponent<EndingBox>().end_ani.Play("endcook1", -1, 0f);
             }
         }
     }

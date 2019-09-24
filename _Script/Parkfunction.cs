@@ -217,10 +217,9 @@ public class Parkfunction : CavasData
         if (PlayerPrefs.GetInt("parkending", 0) == 0)
         {
             PlayerPrefs.SetInt("parkending", 1);
-            Debug.Log("dd");
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-            endWindow_obj.SetActive(true);
-
+            GMP.GetComponent<EndingBox>().shopNum = 5;
+            GMP.GetComponent<EndingBox>().PlayEnd();
+            GMP.GetComponent<EndingBox>().end_ani.Play("endPark1", -1, 0f);
             //소리
             m_end.clip = sp_end;
             m_end.Play();

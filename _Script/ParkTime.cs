@@ -145,11 +145,9 @@ public class ParkTime : MonoBehaviour
             {
                 //수집완료
                 PlayerPrefs.SetInt("leafending", 1);
-                endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-                endWindow_obj.SetActive(true);
-                //소리
-                m_end.clip = sp_end;
-                m_end.Play();
+                GMP.GetComponent<EndingBox>().shopNum = 0;
+                GMP.GetComponent<EndingBox>().PlayEnd();
+                GMP.GetComponent<EndingBox>().end_ani.Play("endleaf1", -1, 0f);
             }
             else
             {

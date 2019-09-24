@@ -344,15 +344,9 @@ public class TalkEvt : MonoBehaviour {
             {
                 //수집완료
                 PlayerPrefs.SetInt("talkending", 1);
-                ani_obk[0].SetActive(false);
-                ani_obk[1].SetActive(false);
-                ani_obk[2].SetActive(false);
-                ani_obk[end_i].SetActive(true);
-                endWindow_obj.SetActive(true);
-
-                //소리
-                m_end.clip = sp_end;
-                m_end.Play();
+                firstGM.GetComponent<EndingBox>().shopNum = 1;
+                firstGM.GetComponent<EndingBox>().PlayEnd();
+                firstGM.GetComponent<EndingBox>().end_ani.Play("endTalk1", -1, 0f);
             }
             else
             {
@@ -1117,15 +1111,10 @@ public class TalkEvt : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("likeending", 0) == 0)
         {
-                PlayerPrefs.SetInt("likeending", 1);
-            ani_obk2[0].SetActive(false);
-            ani_obk2[1].SetActive(false);
-            ani_obk2[2].SetActive(false);
-            ani_obk2[end_i].SetActive(true);
-            endWindow_obj2.SetActive(true);
-            //소리
-            m_end.clip = sp_end;
-            m_end.Play();
+            PlayerPrefs.SetInt("likeending", 1);
+            firstGM.GetComponent<EndingBox>().shopNum = 8;
+            firstGM.GetComponent<EndingBox>().PlayEnd();
+            firstGM.GetComponent<EndingBox>().end_ani.Play("endheart1", -1, 0f);
         }
     }
 
