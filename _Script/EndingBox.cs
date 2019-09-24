@@ -25,6 +25,10 @@ public class EndingBox : MonoBehaviour {
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
     public int page = 0;
+
+    public Animator end_ani;
+    public string[] ani_str; 
+
     // Use this for initialization
     void Start () {
         endString();
@@ -163,6 +167,16 @@ public class EndingBox : MonoBehaviour {
         end_str[8] = "어색함은 눈녹듯이 사라지고 어느새 익숙함이 자리를 잡았어 ..너와 내가 가까워 진 걸까?";
         endHint_str[0] = "공원 그림을...";
         endHint_str[1] = "모든 요리를...";
+
+        ani_str[0] ="endleaf";
+        ani_str[1] = "endTalk";
+        ani_str[2] = "endcook";
+        ani_str[3] = "endSea";
+        ani_str[4] = "endDraw";
+        ani_str[5] = "endPark";
+        ani_str[6] = "endCity";
+        ani_str[7] = "endMlik";
+        ani_str[8] = "endheart";
     }
 
     public void num0()
@@ -211,7 +225,7 @@ public class EndingBox : MonoBehaviour {
     public void PlayEnd()
     {
         page = 0;
-        EndAni_obj[shopNum].SetActive(true);
+        end_ani.Play(ani_str[shopNum]+"1", -1, 0f);
         endBack_obj.SetActive(true);
         //소리
         m_end.clip = sp_end;
@@ -237,32 +251,22 @@ public class EndingBox : MonoBehaviour {
         audio_obj.GetComponent<SoundEvt>().turnSound();
         if (end_i == 1)//마지막페이지 -1일때
         {
-            //현재페이지
-            int endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(false);
-
             endR_obj.SetActive(false);
             endClose_obj.SetActive(true);
             end_i++;
-
+            int l = end_i + 1;
             //다음페이지
-            endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(true);
+            end_ani.Play(ani_str[shopNum] + l, -1, 0f);
         }
         else
         {
-
-            //현재페이지
-            int endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(false);
-
+            
             endL_obj.SetActive(true);
             end_i++;
-
-
+            
+            int l = end_i + 1;
             //다음페이지
-            endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(true);
+            end_ani.Play(ani_str[shopNum] + l, -1, 0f);
         }
     }
     public void endL()
@@ -271,29 +275,21 @@ public class EndingBox : MonoBehaviour {
         endClose_obj.SetActive(false);
         if (end_i == 1)
         {
-            //현재페이지
-            int endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(false);
-
             endL_obj.SetActive(false);
             end_i--;
 
+            int l = end_i + 1;
             //다음페이지
-            endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(true);
+            end_ani.Play(ani_str[shopNum] + l, -1, 0f);
         }
         else
         {
-            //현재페이지
-            int endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(false);
-
             endR_obj.SetActive(true);
             end_i--;
 
+            int l = end_i + 1;
             //다음페이지
-            endsum = shopNum + (end_i * 9);
-            EndAni_obj[endsum].SetActive(true);
+            end_ani.Play(ani_str[shopNum] + l, -1, 0f);
         }
     }
 
@@ -303,6 +299,7 @@ public class EndingBox : MonoBehaviour {
         switch (shopNum)
         {
             case 0:
+                page = 0;
                 break;
             case 1:
                 break;

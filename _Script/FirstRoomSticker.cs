@@ -22,7 +22,7 @@ public class FirstRoomSticker : MonoBehaviour {
 	void Start () {
         StartFrame();
         frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
-        LoadFrame();
+        //LoadFrame();
     }
 
     public void OpenFrame()
