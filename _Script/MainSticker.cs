@@ -267,7 +267,6 @@ public class MainSticker : MonoBehaviour
             {
                 GM.GetComponent<FirstRoomSticker>().frame_i = ii + 1;
                 GM.GetComponent<FirstRoomSticker>().ShowFrame();
-                //Debug.Log("dddddddd" + GM.GetComponent<FirstRoomSticker>().frame_i);
 
                     sticker_obj[ii].SetActive(true);
                 PlayerPrefs.SetInt(sticker_str[ii] + "plus", 1);

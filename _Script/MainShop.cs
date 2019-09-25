@@ -88,9 +88,8 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-        PlayerPrefs.SetInt("lovelv", 4);
-        
-        
+
+
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");

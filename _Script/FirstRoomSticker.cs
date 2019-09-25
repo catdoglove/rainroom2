@@ -17,6 +17,7 @@ public class FirstRoomSticker : MonoBehaviour {
     public int[] showNum_i;
 
     public GameObject frameShow_obj;
+    public GameObject GM;
 
 	// Use this for initialization
 	void Start () {
@@ -40,11 +41,10 @@ public class FirstRoomSticker : MonoBehaviour {
     {
         if (frame_i == 25)
         {
-
+            GM.GetComponent<EndingBox>().PlayEndLast();
         }
         else
         {
-
             frameShow_obj.SetActive(true);
             switch (frame_i)
             {

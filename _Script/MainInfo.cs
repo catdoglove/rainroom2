@@ -44,7 +44,7 @@ public class MainInfo : MonoBehaviour {
     public GameObject wf_obj;
 
     //미소
-    public GameObject smile_obj;
+    public GameObject smile_obj, end_obj;
 
     // Use this for initialization
     void Start () {
@@ -95,6 +95,11 @@ public class MainInfo : MonoBehaviour {
             d_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0);
         }
 
+        //엔딩
+        if (PlayerPrefs.GetInt("_thank_you_for_playplus",0)==1)
+        {
+            end_obj.SetActive(true);
+        }
     }
 
 

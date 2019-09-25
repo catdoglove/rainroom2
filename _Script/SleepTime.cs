@@ -38,8 +38,12 @@ public class SleepTime : MonoBehaviour {
     public GameObject rabbit_obj, rabbitSleep_obj;
     public GameObject sleepMax_obj;
     public GameObject[] sleepColor_obj;
+
+    public Animator sleep_ani;
+
     // Use this for initialization
     void Start () {
+
         n = PlayerPrefs.GetInt("bedlv", 0);
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
         {
@@ -52,7 +56,9 @@ public class SleepTime : MonoBehaviour {
                 if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                 {
                     sleepMax_obj.SetActive(false);
-                    sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
+                    string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                    sleep_ani.Play(s, -1, 0f);
+                    //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                 }
             }
             else
@@ -162,7 +168,9 @@ public class SleepTime : MonoBehaviour {
             if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
             {
                 sleepMax_obj.SetActive(false);
-                sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
+                string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                sleep_ani.Play(s, -1, 0f);
+                //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
             }
         }
         else
@@ -229,7 +237,9 @@ public class SleepTime : MonoBehaviour {
                     if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                     {
                         sleepMax_obj.SetActive(false);
-                        sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(false);
+                        string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                        sleep_ani.Play(s, -1, 0f);
+                        //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                     }
                 }
                 else

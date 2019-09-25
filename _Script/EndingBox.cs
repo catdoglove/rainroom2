@@ -184,6 +184,7 @@ public class EndingBox : MonoBehaviour {
         ani_str[6] = "endCity";
         ani_str[7] = "endMlik";
         ani_str[8] = "endheart";
+        ani_str[9] = "endLast";
     }
 
     public void num0()
@@ -241,6 +242,20 @@ public class EndingBox : MonoBehaviour {
         endClose_obj.SetActive(false);
         endR_obj.SetActive(true);
         end_ani.Play(ani_str[shopNum] + "1", -1, 0f);
+    }
+    public void PlayEndLast()
+    {
+        endBack_obj.SetActive(true);
+        //소리
+        m_end.clip = sp_end;
+        m_end.Play();
+        endL_obj.SetActive(false);
+        endClose_obj.SetActive(false);
+        endR_obj.SetActive(true);
+        end_ani.Play("endLast1", -1, 0f);
+        shopNum = 9;
+
+        page = 13;
     }
 
     void showPlayBtn()

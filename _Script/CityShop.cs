@@ -257,7 +257,7 @@ public class CityShop : MonoBehaviour {
         if (hm >= 3)
         {
             gasTxt_obj.SetActive(true);
-            gas_txt.text = "2단쟁장고 필요";
+            gas_txt.text = "2단냉장고 필요";
         }else if (hm >= 1)
         {
             gasTxt_obj.SetActive(true);
