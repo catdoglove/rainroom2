@@ -56,7 +56,8 @@ public class SleepTime : MonoBehaviour {
                 if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                 {
                     sleepMax_obj.SetActive(false);
-                    string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                    int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                    string s = "sleepbed"+m;
                     sleep_ani.Play(s, -1, 0f);
                     //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                 }
@@ -168,7 +169,8 @@ public class SleepTime : MonoBehaviour {
             if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
             {
                 sleepMax_obj.SetActive(false);
-                string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                string s = "sleepbed" + m;
                 sleep_ani.Play(s, -1, 0f);
                 //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
             }
@@ -237,7 +239,8 @@ public class SleepTime : MonoBehaviour {
                     if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
                     {
                         sleepMax_obj.SetActive(false);
-                        string s = "sleepbed" + PlayerPrefs.GetInt("setbedpalette", 0);
+                        int m = PlayerPrefs.GetInt("setbedpalette", 0) + 1;
+                        string s = "sleepbed" + m;
                         sleep_ani.Play(s, -1, 0f);
                         //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
                     }
