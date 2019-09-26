@@ -22,6 +22,8 @@ public class AdmobADS : MonoBehaviour {
     Color color;
     public GameObject Toast_obj;
 
+    public GameObject GM;
+
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -96,12 +98,20 @@ public class AdmobADS : MonoBehaviour {
     //시청보상
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
-        PlayerPrefs.SetInt("talk", 5);
-        PlayerPrefs.Save();
-        if (PlayerPrefs.GetInt("talk", 5) >= 5)
+        if (PlayerPrefs.GetInt("place", 0) == 0)
         {
-            PlayerPrefs.SetInt("secf2", 240);
+            GM.GetComponent<UnityADS>().Admob();
         }
+        else
+        {
+            PlayerPrefs.SetInt("talk", 5);
+            PlayerPrefs.Save();
+            if (PlayerPrefs.GetInt("talk", 5) >= 5)
+            {
+                PlayerPrefs.SetInt("secf2", 240);
+            }
+        }
+            
     }
 
     //동영상닫음

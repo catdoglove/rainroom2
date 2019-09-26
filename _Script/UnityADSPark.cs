@@ -19,14 +19,20 @@ public class UnityADSPark : MonoBehaviour {
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
-        
-        StopCoroutine("adTimeFlow2");
-        StopCoroutine("adAniTime2");
-        StopCoroutine("adTimeFlow");
-        StopCoroutine("adAniTime");
-        
+        if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+        }
+        else
+        {
+            StopCoroutine("adTimeFlow2");
+            StopCoroutine("adAniTime2");
+            StopCoroutine("adTimeFlow");
+            StopCoroutine("adAniTime");
+
             StartCoroutine("adTimeFlow");
             StartCoroutine("adAniTime");
+        }
+
 
 
 
@@ -71,17 +77,30 @@ public class UnityADSPark : MonoBehaviour {
     {
         if (result == ShowResult.Finished)
         {
-            radio_ani.SetActive(false);
-            adBtn_obj.SetActive(false);
-            StopCoroutine("adTimeFlow");
-            StopCoroutine("adAniTime");
-            StartCoroutine("adTimeFlow");
-            StartCoroutine("adAniTime");
-            PlayerPrefs.SetInt("talk", 5);
-            PlayerPrefs.Save();
-            if (PlayerPrefs.GetInt("talk", 5)>=5)
+            if (PlayerPrefs.GetInt("outtrip", 0) == 2)
             {
-                PlayerPrefs.SetInt("secf0", 240);
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                {
+                    PlayerPrefs.SetInt("secf3", 240);
+                }
+            }
+            else
+            {
+                radio_ani.SetActive(false);
+                adBtn_obj.SetActive(false);
+                StopCoroutine("adTimeFlow");
+                StopCoroutine("adAniTime");
+                StartCoroutine("adTimeFlow");
+                StartCoroutine("adAniTime");
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                {
+                    PlayerPrefs.SetInt("secf0", 240);
+                }
+
             }
         }
     }
