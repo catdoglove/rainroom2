@@ -35,25 +35,7 @@ public class EndingBox : MonoBehaviour {
     void Start () {
 
         
-        //첫공원7
-        PlayerPrefs.SetInt("parkending", 1);
-        //첫도시3
-        PlayerPrefs.SetInt("cityending", 1);
-        //우유10번9
-        PlayerPrefs.SetInt("milkending", 1);
-        //바다10번5
-        PlayerPrefs.SetInt("seaending", 1);
-        //나뭇잎40번2
-        PlayerPrefs.SetInt("leafending", 1);
-        //그림모두8
-        PlayerPrefs.SetInt("pictureending", 1);
-        //모든요리6
-        PlayerPrefs.SetInt("cookending", 1);
-        //호감도4
-        PlayerPrefs.SetInt("likeending", 1);
-
-        //PlayerPrefs.SetInt("seaending", 0);
-        //PlayerPrefs.SetInt("leafending", 0);
+        
         endString();
         if (room == 5)
         {
@@ -73,11 +55,7 @@ public class EndingBox : MonoBehaviour {
         {
             checkEnd();
             endWindow_obj.SetActive(true);
-
-            //test
-           // PlayerPrefs.SetInt("_thank_you_for_playb", 0);
-           // PlayerPrefs.SetInt("_thank_you_for_playplus", 0);
-            //PlayerPrefs.SetInt("_thank_you_for_play", 0);
+            
             if (a >= 9)
             {
                 if (PlayerPrefs.GetInt("_thank_you_for_play", 0) == 0)

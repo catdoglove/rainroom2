@@ -86,8 +86,6 @@ public class Parkfunction : CavasData
         }
         else
         {
-            //test
-            //PlayerPrefs.SetInt("parkending", 0);
             endg();
         }
     }

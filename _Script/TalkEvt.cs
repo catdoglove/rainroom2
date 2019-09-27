@@ -86,8 +86,6 @@ public class TalkEvt : MonoBehaviour {
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
         callTalkItem();
-        //test
-        //PlayerPrefs.SetInt("talkending", 0);
         data = CSVReader.Read("Talk/talk_room"); //대사 불러오기   
         data_book = CSVReader.Read("Talk/talk_book"); 
         data_light = CSVReader.Read("Talk/talk_light"); 
