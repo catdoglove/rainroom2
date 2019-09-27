@@ -266,12 +266,14 @@ public class TalkEvt : MonoBehaviour {
             //하트를 5번째마다 더해주는 함수
             getTalkHeart();
 
-            //엔딩 대화
-            endg();
             if (PlayerPrefs.GetInt("lovelv", 0) >= 13)
             {
                 endg2();
             }
+
+            //엔딩 대화
+            endg();
+
             //온수를 레벨에 알맞게 더해주기
             string str1;
             str1 = PlayerPrefs.GetString("code", "");
@@ -1107,12 +1109,15 @@ public class TalkEvt : MonoBehaviour {
     /// </summary>
     void endg2()
     {
-        if (PlayerPrefs.GetInt("likeending", 0) == 0)
+        if (PlayerPrefs.GetInt("talkending", 0) == 1)
         {
-            PlayerPrefs.SetInt("likeending", 1);
-            firstGM.GetComponent<EndingBox>().shopNum = 8;
-            firstGM.GetComponent<EndingBox>().PlayEnd();
-            firstGM.GetComponent<EndingBox>().end_ani.Play("endheart1", -1, 0f);
+            if (PlayerPrefs.GetInt("likeending", 0) == 0)
+            {
+                PlayerPrefs.SetInt("likeending", 1);
+                firstGM.GetComponent<EndingBox>().shopNum = 8;
+                firstGM.GetComponent<EndingBox>().PlayEnd();
+                firstGM.GetComponent<EndingBox>().end_ani.Play("endheart1", -1, 0f);
+            }
         }
     }
 
