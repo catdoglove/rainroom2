@@ -811,7 +811,7 @@ public class ParkShop : MonoBehaviour {
             case 0:
                 if (p_i >= 10)
                 {
-                    if (PlayerPrefs.GetInt("desklv") >= 5)
+                    if (PlayerPrefs.GetInt("desklv") >= 5&& PlayerPrefs.GetInt("marimo", 0)==0)
                     {
                         p_i = p_i - 10;
                         PlayerPrefs.SetInt(str + "cv", p_i);
@@ -832,7 +832,7 @@ public class ParkShop : MonoBehaviour {
             case 1:
                 if (p_i >= 20)
                 {
-                    if (PlayerPrefs.GetInt("bedlv") >= 5)
+                    if (PlayerPrefs.GetInt("bedlv") >= 5 && PlayerPrefs.GetInt("rabbit", 0) == 0)
                     {
                         p_i = p_i - 20;
                         PlayerPrefs.SetInt(str + "cv", p_i);
@@ -851,7 +851,7 @@ public class ParkShop : MonoBehaviour {
                 }
                 break;
             case 2:
-                if (p_i >= 10)
+                if (p_i >= 10 && PlayerPrefs.GetInt("tutle", 0) == 0)
                 {
                     p_i = p_i - 10;
                     PlayerPrefs.SetInt(str + "cv", p_i);
@@ -867,7 +867,7 @@ public class ParkShop : MonoBehaviour {
             case 3:
                 if (p_i >= 15)
                 {
-                    if (PlayerPrefs.GetInt("waterpurifiershop") >= 2)
+                    if (PlayerPrefs.GetInt("waterpurifiershop") >= 2 && PlayerPrefs.GetInt("goldfish", 0) == 0)
                     {
                         p_i = p_i - 15;
                         PlayerPrefs.SetInt(str + "cv", p_i);
