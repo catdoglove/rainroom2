@@ -30,7 +30,7 @@ public class AdmobADS : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-9179569099191885~5921342761"; //  테스트 ca-app-pub-3940256099942544~3347511713
+        string appId = "ca-app-pub-3940256099942544~3347511713"; //  //ca-app-pub-9179569099191885~5921342761
 #elif UNITY_IPHONE
             string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
@@ -83,7 +83,7 @@ public class AdmobADS : MonoBehaviour {
     {
 
 #if UNITY_ANDROID
-            adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트ca-app-pub-3940256099942544/5224354917
+            adUnitIdvideo = "ca-app-pub-3940256099942544/5224354917"; // 테스트 ca-app-pub-9179569099191885/8650861151
 #elif UNITY_IPHONE
             adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
 #else
@@ -100,7 +100,19 @@ public class AdmobADS : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
-            GM.GetComponent<UnityADS>().Admob();
+            GM.GetComponent<UnityADS>().radio_ani.SetActive(false);
+            GM.GetComponent<UnityADS>().radio_ani.SetActive(false);
+            GM.GetComponent<UnityADS>().adBtn_obj.SetActive(false);
+            GM.GetComponent<UnityADS>().StopCoroutine("adTimeFlow");
+            GM.GetComponent<UnityADS>().StopCoroutine("adAniTime");
+            GM.GetComponent<UnityADS>().StartCoroutine("adTimeFlow");
+            GM.GetComponent<UnityADS>().StartCoroutine("adAniTime");
+            PlayerPrefs.SetInt("talk", 5);
+            PlayerPrefs.Save();
+            if (PlayerPrefs.GetInt("talk", 5) >= 5)
+            {
+                PlayerPrefs.SetInt("secf", 240);
+            }
         }
         else
         {
@@ -111,7 +123,15 @@ public class AdmobADS : MonoBehaviour {
                 PlayerPrefs.SetInt("secf2", 240);
             }
         }
-            
+
+
+        PlayerPrefs.SetInt("talk", 5);
+        PlayerPrefs.Save();
+        if (PlayerPrefs.GetInt("talk", 5) >= 5)
+        {
+            PlayerPrefs.SetInt("secf2", 240);
+        }
+
     }
 
     //동영상닫음
