@@ -123,6 +123,12 @@ public class MainInfo : MonoBehaviour {
 		StartCoroutine ("backTurning2");
         reverseBtn_obj.SetActive(true);
         helpBtn_obj.SetActive(true);
+
+        //엔딩
+        if (PlayerPrefs.GetInt("_thank_you_for_playplus", 0) == 1)
+        {
+            end_obj.SetActive(true);
+        }
     }
 
     
