@@ -34,6 +34,24 @@ public class EndingBox : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        
+        //첫공원7
+        PlayerPrefs.SetInt("parkending", 1);
+        //첫도시3
+        PlayerPrefs.SetInt("cityending", 1);
+        //우유10번9
+        PlayerPrefs.SetInt("milkending", 1);
+        //바다10번5
+        PlayerPrefs.SetInt("seaending", 1);
+        //나뭇잎40번2
+        PlayerPrefs.SetInt("leafending", 1);
+        //그림모두8
+        PlayerPrefs.SetInt("pictureending", 1);
+        //모든요리6
+        PlayerPrefs.SetInt("cookending", 1);
+        //호감도4
+        PlayerPrefs.SetInt("likeending", 1);
+
         //PlayerPrefs.SetInt("seaending", 0);
         //PlayerPrefs.SetInt("leafending", 0);
         endString();
@@ -301,6 +319,10 @@ public class EndingBox : MonoBehaviour {
         m_end.clip = sp_original;
         m_end.Play();
         end_i = 0;
+        if (room == 5)
+        {
+            checkEnd();
+        }
     }
 
     public void endR()
