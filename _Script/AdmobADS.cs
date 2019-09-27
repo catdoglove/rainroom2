@@ -21,8 +21,7 @@ public class AdmobADS : MonoBehaviour {
     int rewardCoin;
     Color color;
     public GameObject Toast_obj;
-
-    public GameObject GM;
+    
 
 
     // Use this for initialization 앱 ID
@@ -100,13 +99,6 @@ public class AdmobADS : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
-            GM.GetComponent<UnityADS>().radio_ani.SetActive(false);
-            GM.GetComponent<UnityADS>().radio_ani.SetActive(false);
-            GM.GetComponent<UnityADS>().adBtn_obj.SetActive(false);
-            GM.GetComponent<UnityADS>().StopCoroutine("adTimeFlow");
-            GM.GetComponent<UnityADS>().StopCoroutine("adAniTime");
-            GM.GetComponent<UnityADS>().StartCoroutine("adTimeFlow");
-            GM.GetComponent<UnityADS>().StartCoroutine("adAniTime");
             PlayerPrefs.SetInt("talk", 5);
             PlayerPrefs.Save();
             if (PlayerPrefs.GetInt("talk", 5) >= 5)
