@@ -29,7 +29,7 @@ public class AdmobADS : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713"; //  //ca-app-pub-9179569099191885~5921342761
+        string appId = "ca-app-pub-9179569099191885~5921342761"; //테스트용ca-app-pub-3940256099942544~3347511713
 #elif UNITY_IPHONE
             string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
@@ -82,7 +82,7 @@ public class AdmobADS : MonoBehaviour {
     {
 
 #if UNITY_ANDROID
-            adUnitIdvideo = "ca-app-pub-3940256099942544/5224354917"; // 테스트 ca-app-pub-9179569099191885/8650861151
+            adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트 ca-app-pub-3940256099942544/5224354917
 #elif UNITY_IPHONE
             adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
 #else
