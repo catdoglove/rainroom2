@@ -110,12 +110,7 @@ public class UnityADSPark : MonoBehaviour {
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
 			sG = PlayerPrefs.GetInt("secf0", 0);
-            //Debug.Log(sG);
-            mG = (int)(sG / 60);
-			sG = sG-(sG / 60)*60;
 			if (sG < 0) {
-				sG = 0;
-				mG = 0;
             } else {
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
@@ -139,6 +134,12 @@ public class UnityADSPark : MonoBehaviour {
             {
                     radio_ani.SetActive(true);
                     adBtn_obj.SetActive(true);
+            }
+            else
+            {
+
+                radio_ani.SetActive(false);
+                adBtn_obj.SetActive(false);
             }
             yield return null;
         }

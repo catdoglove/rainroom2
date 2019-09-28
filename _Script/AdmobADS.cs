@@ -117,13 +117,6 @@ public class AdmobADS : MonoBehaviour {
         }
 
 
-        PlayerPrefs.SetInt("talk", 5);
-        PlayerPrefs.Save();
-        if (PlayerPrefs.GetInt("talk", 5) >= 5)
-        {
-            PlayerPrefs.SetInt("secf2", 240);
-        }
-
     }
 
     //동영상닫음
