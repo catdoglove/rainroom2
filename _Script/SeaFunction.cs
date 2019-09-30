@@ -370,6 +370,14 @@ public class SeaFunction : MonoBehaviour {
         {
             //컬러칩또는 최대 1/50 확률로
             randomGet_i = Random.Range(0, 13);
+
+            if (PlayerPrefs.GetInt("seaweed", 0) == 0)
+            {
+                if (randomGet_i != 12)
+                {
+                    randomGet_i = Random.Range(0, 13);
+                }
+            }
             if (randomGet_i == 12)
             {
                 if (PlayerPrefs.GetInt("seaweed", 0) == 1)
@@ -473,7 +481,7 @@ public class SeaFunction : MonoBehaviour {
         int buf2 = PlayerPrefs.GetInt("bufcolor2", 88);
         int mus = PlayerPrefs.GetInt("bufmus", 0);
 
-        //컬러칩2개 버섯
+        //컬러칩2개 미역
         if (buf!=88)
         {
             PlayerPrefs.SetInt("shoppalette" + buf+"4", 1);

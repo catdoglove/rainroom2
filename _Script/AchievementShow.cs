@@ -67,7 +67,7 @@ public class AchievementShow : MonoBehaviour {
     {
         moveY = saveY;
         //moveY = achievement_obj.transform.position.y;
-        for (float i = 0f; i < 1f; i += 0.04f)
+        for (float i = 0f; i < 1.084f; i += 0.04f)
         {
             moveY = moveY - 0.08f;
             achievement_obj.transform.position = new Vector2(achievement_obj.transform.position.x, moveY);

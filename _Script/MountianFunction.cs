@@ -342,6 +342,15 @@ public class MountianFunction : MonoBehaviour {
         {
             //컬러칩또는 최대 1/50 확률로
             randomGet_i = Random.Range(0, 13);
+
+            if (PlayerPrefs.GetInt("mushroom", 0) == 0)
+            {
+                if (randomGet_i != 12)
+                {
+                    randomGet_i = Random.Range(0, 13);
+                }
+            }
+
             if (randomGet_i == 12)
             {
                 if (PlayerPrefs.GetInt("mushroom", 0) == 1)
