@@ -10,7 +10,6 @@ public class MainBtnEvt : CavasData
 	public GameObject[] MainBtn_obj;
 	public GameObject[] MainWindow_obj;
 	public Text test_txt;
-	public string test_str;
 
     public GameObject close_obj;
     public GameObject backBlackImg_obj;
@@ -54,6 +53,14 @@ public class MainBtnEvt : CavasData
     public Text InputField_txt;
 
     public GameObject reformHelp_obj;
+
+
+    //상세표시
+    public GameObject have_obj, showCheck_obj, talkChange_obj;
+    public Text rain_txt, horRain_txt, heart_txt;
+    public Sprite showHave1_spr, showHave2_spr,talkChange1_spr, talkChange2_spr;
+
+    public Vector2 showHave_vet;
 
     public void CloseHelpf()
     {
@@ -139,6 +146,15 @@ public class MainBtnEvt : CavasData
 
     // Use this for initialization
     void Start () {
+
+        //돈표시끄고키기
+        if(PlayerPrefs.GetInt("showmehave", 0) == 1)
+        {
+            have_obj.SetActive(true);
+            showCheck_obj.GetComponent<Image>().sprite = showHave2_spr;
+            talkChange_obj.GetComponent<Image>().sprite = talkChange2_spr;
+        }
+
         speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         speedBtnCKFunction(PlayerPrefs.GetInt("speedTalkCheck", 0));
 
@@ -151,7 +167,6 @@ public class MainBtnEvt : CavasData
             GM2 = GameObject.FindGameObjectWithTag("GM2");
         }
 		setScreen ();
-		//StartCoroutine ("testText");
 
 		//처음코드설정
 
@@ -354,15 +369,6 @@ public class MainBtnEvt : CavasData
         close_obj.SetActive(true);
     }
     
-	//테스트텍스트
-	IEnumerator testText(){
-		test_str = "";
-
-
-		test_txt.text = test_str;
-
-		yield return null;
-	}
     
 	void setScreen(){
 		//스크린화면해상도에맞춰조절,화면꺼지지않게
@@ -453,7 +459,7 @@ public class MainBtnEvt : CavasData
         menuBack_vet = menuBack_obj.transform.position;
             while (menuBack_vet.y >= 0.4f)
             {
-                menuBack_vet.y = menuBack_vet.y - 0.6f;
+            menuBack_vet.y = menuBack_vet.y - 0.6f;
             if (menuBack_vet.y <= 0.4f)
             {
                 menuBack_vet.y = 0.39f;
@@ -470,13 +476,70 @@ public class MainBtnEvt : CavasData
         menuBack_vet = menuBack_obj.transform.position;
             while (menuBack_vet.y <= 6f)
             {
-                menuBack_vet.y = menuBack_vet.y + 0.6f;
+            menuBack_vet.y = menuBack_vet.y + 0.6f;
                 menuBack_obj.transform.position = menuBack_vet;
                 yield return null;
             }
         menuBack_vet.y = 6.15f;
         menuBack_obj.transform.position = menuBack_vet;
     }
+
+
+    //돈표시
+
+
+    IEnumerator menuFlowInfo()
+    {
+        showHave_vet = have_obj.transform.position;
+        while (showHave_vet.y >= 0.4f)
+        {
+            showHave_vet.y = showHave_vet.y - 0.6f;
+            if (showHave_vet.y <= 0.4f)
+            {
+                showHave_vet.y = 0.39f;
+            }
+            have_obj.transform.position = showHave_vet;
+            yield return null;
+        }
+        showHave_vet.y = 0.2f;
+        have_obj.transform.position = showHave_vet;
+    }
+
+    IEnumerator menuFlowBackInfo()
+    {
+        showHave_vet = have_obj.transform.position;
+        while (showHave_vet.y <= 6f)
+        {
+            showHave_vet.y = showHave_vet.y + 0.6f;
+            have_obj.transform.position = showHave_vet;
+            yield return null;
+        }
+        showHave_vet.y = 6.15f;
+        have_obj.transform.position = showHave_vet;
+    }
+
+
+    /// <summary>
+    /// 상세를펼쳐준다
+    /// </summary>
+    public void showHave()
+    {
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
+        {
+            if (PlayerPrefs.GetInt("showmehave", 0) == 1)
+            {
+                StopCoroutine("menuFlowBackInfo");
+                StartCoroutine("menuFlowInfo");
+                
+            }
+            else
+            {
+                StopCoroutine("menuFlowInfo");
+                StartCoroutine("menuFlowBackInfo");
+            }
+        }
+    }
+
 
 
 
@@ -779,6 +842,24 @@ public class MainBtnEvt : CavasData
         else
         {
             reformHelp_obj.SetActive(true);
+        }
+    }
+
+    public void ActShowHave()
+    {
+        if (PlayerPrefs.GetInt("showmehave", 0) == 1)
+        {
+            showCheck_obj.GetComponent<Image>().sprite = showHave1_spr;
+            talkChange_obj.GetComponent<Image>().sprite = talkChange1_spr;
+            have_obj.SetActive(false);
+            PlayerPrefs.SetInt("showmehave", 0);
+        }
+        else
+        {
+            showCheck_obj.GetComponent<Image>().sprite = showHave2_spr;
+            talkChange_obj.GetComponent<Image>().sprite = talkChange2_spr;
+            have_obj.SetActive(true);
+            PlayerPrefs.SetInt("showmehave", 1);
         }
     }
 }

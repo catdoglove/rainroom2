@@ -171,7 +171,7 @@ public class UnityADS : MonoBehaviour {
                 }
                 else
                 {
-                    if (PlayerPrefs.GetInt("front", 1) == 1)
+                    if (PlayerPrefs.GetInt("front", 0) == 1)
                     {
                         radio_ani.SetActive(true);
                         adBtn_obj.SetActive(true);
@@ -227,7 +227,7 @@ public class UnityADS : MonoBehaviour {
             {
                 if (PlayerPrefs.GetInt("outtrip", 0) == 1)
                 {
-                } else if (PlayerPrefs.GetInt("front", 1) == 1)
+                } else if (PlayerPrefs.GetInt("front", 0) == 1)
                     {
                         radio_ani.SetActive(true);
                         adBtn_obj.SetActive(true);

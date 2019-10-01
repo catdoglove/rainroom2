@@ -48,6 +48,8 @@ public class CityFunction : CavasData
     // Use this for initialization
     void Start () {
 
+        color.a = Mathf.Lerp(1f, 1f, 1f);
+
         str = PlayerPrefs.GetString("code", "");
 
         //씬이동
