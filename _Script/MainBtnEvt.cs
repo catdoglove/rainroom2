@@ -793,6 +793,10 @@ public class MainBtnEvt : CavasData
         goHome_obj.SetActive(true);
         StopCoroutine("menuFlow");
         StartCoroutine("menuFlowBack");
+        StopCoroutine("menuFlowInfo");
+        StartCoroutine("menuFlowBackInfo");
+        PlayerPrefs.SetInt("showhavec", 1);
+
         MainBtn_obj[0].SetActive(true);
     }
     public void CloseGoHome()
@@ -863,6 +867,11 @@ public class MainBtnEvt : CavasData
             have_obj.SetActive(true);
             PlayerPrefs.SetInt("showmehave", 1);
         }
+    }
+    public void closeShow()
+    {
+        StopCoroutine("menuFlowInfo");
+        StartCoroutine("menuFlowBackInfo");
     }
 
     IEnumerator updateSec()
