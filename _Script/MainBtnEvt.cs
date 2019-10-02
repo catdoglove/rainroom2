@@ -56,10 +56,10 @@ public class MainBtnEvt : CavasData
 
 
     //상세표시
-    public GameObject have_obj, showCheck_obj, talkChange_obj;
+    public GameObject have_obj, showCheck_obj, talkChange_obj,showImage_obj;
     public Text rain_txt, horRain_txt, heart_txt;
     public Sprite showHave1_spr, showHave2_spr,talkChange1_spr, talkChange2_spr;
-
+    public Sprite[] heart_spr;
     public Vector2 showHave_vet;
 
     public void CloseHelpf()
@@ -147,8 +147,9 @@ public class MainBtnEvt : CavasData
     // Use this for initialization
     void Start () {
 
+        PlayerPrefs.SetInt("showhavec", 1);
         //돈표시끄고키기
-        if(PlayerPrefs.GetInt("showmehave", 0) == 1)
+        if (PlayerPrefs.GetInt("showmehave", 0) == 1)
         {
             have_obj.SetActive(true);
             showCheck_obj.GetComponent<Image>().sprite = showHave2_spr;
@@ -167,7 +168,7 @@ public class MainBtnEvt : CavasData
             GM2 = GameObject.FindGameObjectWithTag("GM2");
         }
 		setScreen ();
-
+        StartCoroutine("updateSec");
 		//처음코드설정
 
 
@@ -508,13 +509,13 @@ public class MainBtnEvt : CavasData
     IEnumerator menuFlowBackInfo()
     {
         showHave_vet = have_obj.transform.position;
-        while (showHave_vet.y <= 6f)
+        while (showHave_vet.y <= 4.8f)
         {
             showHave_vet.y = showHave_vet.y + 0.6f;
             have_obj.transform.position = showHave_vet;
             yield return null;
         }
-        showHave_vet.y = 6.15f;
+        showHave_vet.y = 4.97f;
         have_obj.transform.position = showHave_vet;
     }
 
@@ -526,16 +527,17 @@ public class MainBtnEvt : CavasData
     {
         if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
-            if (PlayerPrefs.GetInt("showmehave", 0) == 1)
+            if (PlayerPrefs.GetInt("showhavec", 0) == 1)
             {
                 StopCoroutine("menuFlowBackInfo");
                 StartCoroutine("menuFlowInfo");
-                
+                PlayerPrefs.SetInt("showhavec", 0);
             }
             else
             {
                 StopCoroutine("menuFlowInfo");
                 StartCoroutine("menuFlowBackInfo");
+                PlayerPrefs.SetInt("showhavec", 1);
             }
         }
     }
@@ -862,4 +864,35 @@ public class MainBtnEvt : CavasData
             PlayerPrefs.SetInt("showmehave", 1);
         }
     }
-}
+
+    IEnumerator updateSec()
+    {
+        int w = 0;
+        while (w==0)
+        {
+
+            string str = PlayerPrefs.GetString("code", "");
+            
+            rain_txt.text = ""+ PlayerPrefs.GetInt(str + "c", 0); ;
+            horRain_txt.text = ""+ PlayerPrefs.GetInt(str + "h", 0); ;
+
+            if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+            {
+                showImage_obj.GetComponent<Image>().sprite = heart_spr[1];
+                heart_txt.text = "" + PlayerPrefs.GetInt(str + "cv", 0); ;
+            }
+            else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+            {
+                showImage_obj.GetComponent<Image>().sprite = heart_spr[2];
+                heart_txt.text = "" + PlayerPrefs.GetInt(str + "dm", 0); ;
+            }
+            else
+            {
+                showImage_obj.GetComponent<Image>().sprite = heart_spr[0];
+                heart_txt.text = "" + PlayerPrefs.GetInt(str + "ht", 0); ;
+            }
+                yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    }
