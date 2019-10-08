@@ -314,10 +314,14 @@ public class SleepTime : MonoBehaviour {
     public void ShowDream()
     {
         dream_obj.SetActive(true);
-        
 
-        lineReload();
-        text_str = " " + data_diary[randArr[nowArr-1]]["일기"];
+        if (PlayerPrefs.GetInt("randdiary", -99) == -99)
+        {
+            lineReload();
+            PlayerPrefs.SetInt("randdiary", randArr[nowArr - 1]);
+        }
+
+        text_str = " " + data_diary[PlayerPrefs.GetInt("randdiary", 0)]["일기"];
         Text_cut = text_str.Split('/');
 
         if (Text_cut[0] == " a")
@@ -329,7 +333,6 @@ public class SleepTime : MonoBehaviour {
         {
             diary_obj[1].SetActive(true);
             diary_dream.text = Text_cut[1];
-
         }
 
     }
@@ -375,6 +378,7 @@ public class SleepTime : MonoBehaviour {
         PlayerPrefs.SetInt(str + "h", h);
         PlayerPrefs.Save();
         PlayerPrefs.SetInt("showdir", 0);
+        PlayerPrefs.SetInt("randdiary", -99);
     }
 
 }
