@@ -68,6 +68,8 @@ public class ParkShop : MonoBehaviour {
     public GameObject needIceToast_obj;
     Color colorT;
 
+    public int petNum_i;
+
     // Use this for initialization
     void Start () {
         colorP = new Color(1f, 1f, 1f);
@@ -740,7 +742,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(false);
-        shopNum = 0;
+        petNum_i = 0;
     }
     public void pet1()
     {
@@ -750,7 +752,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(true);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(false);
-        shopNum = 1;
+        petNum_i = 1;
     }
     public void pet2()
     {
@@ -760,7 +762,7 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(true);
         petFish_obj.SetActive(false);
-        shopNum = 2;
+        petNum_i = 2;
     }
     public void pet3()
     {
@@ -770,13 +772,13 @@ public class ParkShop : MonoBehaviour {
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
         petFish_obj.SetActive(true);
-        shopNum = 3;
+        petNum_i = 3;
     }
 
     public void buyPetShop()
     {
         buyPetYN_obj.SetActive(true);
-        switch (shopNum)
+        switch (petNum_i)
         {
             case 0:
                 pet_txt.text = "큰 책상이 필요해";
@@ -806,7 +808,7 @@ public class ParkShop : MonoBehaviour {
     {
         p_i = PlayerPrefs.GetInt(str + "cv", 0);
         //마리모,토끼,거북이,금붕어0~3
-        switch (shopNum)
+        switch (petNum_i)
         {
             case 0:
                 if (p_i >= 10)

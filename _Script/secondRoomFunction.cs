@@ -960,6 +960,11 @@ public class secondRoomFunction : CavasData
         {
             GMTag.GetComponent<MainBtnEvt>().showButtons();
         }
+        if (PlayerPrefs.GetInt("showhavec", 0)==0)
+        {
+            GMTag.GetComponent<MainBtnEvt>().closeShow();
+            PlayerPrefs.SetInt("showhavec", 1);
+        }
 
 
     }
