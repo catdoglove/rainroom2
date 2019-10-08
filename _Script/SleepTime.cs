@@ -91,6 +91,10 @@ public class SleepTime : MonoBehaviour {
         {
             PlayerPrefs.SetInt("sleepTxt", 0);
             sleepMax_obj.SetActive(false);
+            if (PlayerPrefs.GetInt("showdir", 0) == 1)
+            {
+                dreamBtn_obj.SetActive(true);
+            }
         }
 
 
@@ -162,7 +166,8 @@ public class SleepTime : MonoBehaviour {
         StartCoroutine("sleepTimecheck");
         PlayerPrefs.SetInt("nowsleep", 1);
         PlayerPrefs.SetInt("sleepTxt", 1);
-        
+        PlayerPrefs.SetInt("showdir", 1);
+
         PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
@@ -199,6 +204,7 @@ public class SleepTime : MonoBehaviour {
         {
             switchBtn_obj.SetActive(true);
         }
+
     }
 
     void SleepTimeFlow()
@@ -294,6 +300,7 @@ public class SleepTime : MonoBehaviour {
                 PlayerPrefs.SetInt("nowsleep", 0);
                 PlayerPrefs.SetInt("sleepTxt", 0);
                 PlayerPrefs.Save();
+
             }
             else
             {
@@ -306,21 +313,8 @@ public class SleepTime : MonoBehaviour {
     //꿈일기 창띄우기
     public void ShowDream()
     {
-        string str;
-        str = PlayerPrefs.GetString("code", "");
-        int c = PlayerPrefs.GetInt(str + "c", 0);
-        int h = PlayerPrefs.GetInt(str + "h", 0);
-        c = c + 100;
-        h = h + 25;
-        int loveExp = PlayerPrefs.GetInt("lovepoint", 0);
-        loveExp = loveExp + 10;
-        PlayerPrefs.SetInt("lovepoint", loveExp);
-        PlayerPrefs.SetInt(str + "c", c);
-        PlayerPrefs.SetInt(str + "h", h);
-        PlayerPrefs.Save();
-
         dream_obj.SetActive(true);
-        dreamBtn_obj.SetActive(false);
+        
 
         lineReload();
         text_str = " " + data_diary[randArr[nowArr-1]]["일기"];
@@ -366,7 +360,21 @@ public class SleepTime : MonoBehaviour {
 
     public void closeDiary()
     {
+        dreamBtn_obj.SetActive(false);
         dream_obj.SetActive(false);
+        string str;
+        str = PlayerPrefs.GetString("code", "");
+        int c = PlayerPrefs.GetInt(str + "c", 0);
+        int h = PlayerPrefs.GetInt(str + "h", 0);
+        c = c + 100;
+        h = h + 25;
+        int loveExp = PlayerPrefs.GetInt("lovepoint", 0);
+        loveExp = loveExp + 10;
+        PlayerPrefs.SetInt("lovepoint", loveExp);
+        PlayerPrefs.SetInt(str + "c", c);
+        PlayerPrefs.SetInt(str + "h", h);
+        PlayerPrefs.Save();
+        PlayerPrefs.SetInt("showdir", 0);
     }
 
 }
