@@ -46,9 +46,9 @@ public class CityTime : MonoBehaviour {
             {
                 PlayerPrefs.SetInt(str + "ht", 999);
             }
-            if (PlayerPrefs.GetInt(str + "cv", 0) > 999)
+            if (PlayerPrefs.GetInt(str + "dm", 0) > 999)
             {
-                PlayerPrefs.SetInt(str + "cv", 999);
+                PlayerPrefs.SetInt(str + "dm", 999);
             }
 
             //전단지

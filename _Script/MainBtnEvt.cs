@@ -146,6 +146,10 @@ public class MainBtnEvt : CavasData
 
     // Use this for initialization
     void Start () {
+        menuBack_vet= menuBack_obj.transform.position; ;
+        PlayerPrefs.SetFloat("mbx", menuBack_vet.x);
+        showHave_vet = have_obj.transform.position; ;
+        PlayerPrefs.SetFloat("shx", showHave_vet.x);
 
         PlayerPrefs.SetInt("showhavec", 1);
         //돈표시끄고키기
@@ -458,7 +462,9 @@ public class MainBtnEvt : CavasData
     IEnumerator menuFlow()
     {
         menuBack_vet = menuBack_obj.transform.position;
-            while (menuBack_vet.y >= 0.4f)
+
+        menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
+        while (menuBack_vet.y >= 0.4f)
             {
             menuBack_vet.y = menuBack_vet.y - 0.6f;
             if (menuBack_vet.y <= 0.4f)
@@ -475,7 +481,8 @@ public class MainBtnEvt : CavasData
     IEnumerator menuFlowBack()
     {
         menuBack_vet = menuBack_obj.transform.position;
-            while (menuBack_vet.y <= 6f)
+        menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
+        while (menuBack_vet.y <= 6f)
             {
             menuBack_vet.y = menuBack_vet.y + 0.6f;
                 menuBack_obj.transform.position = menuBack_vet;
@@ -492,6 +499,7 @@ public class MainBtnEvt : CavasData
     IEnumerator menuFlowInfo()
     {
         showHave_vet = have_obj.transform.position;
+        showHave_vet.x = PlayerPrefs.GetFloat("shx", 0);
         while (showHave_vet.y >= 0.4f)
         {
             showHave_vet.y = showHave_vet.y - 0.6f;
@@ -509,6 +517,7 @@ public class MainBtnEvt : CavasData
     IEnumerator menuFlowBackInfo()
     {
         showHave_vet = have_obj.transform.position;
+        showHave_vet.x = PlayerPrefs.GetFloat("shx", 0);
         while (showHave_vet.y <= 4.8f)
         {
             showHave_vet.y = showHave_vet.y + 0.6f;
