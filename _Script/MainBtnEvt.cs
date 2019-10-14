@@ -111,7 +111,6 @@ public class MainBtnEvt : CavasData
                 GM.GetComponent<FirstRoomBookList>().closeItemList();
                 GM.GetComponent<FirstRoomSticker>().CloseFrame();
                 GM.GetComponent<FirstRoomFunction>().boxNo();
-                GM.GetComponent<SleepTime>().closeDiary();
                 GM.GetComponent<SleepTime>().CloseSleep();
                 GM.GetComponent<MainShop>().palette_obj.SetActive(false);
             }
