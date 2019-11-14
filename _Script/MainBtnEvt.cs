@@ -888,7 +888,30 @@ public class MainBtnEvt : CavasData
         while (w==0)
         {
 
+            //최대량 제한
             string str = PlayerPrefs.GetString("code", "");
+
+            if (PlayerPrefs.GetInt(str + "c", 0) > 999999)
+            {
+                PlayerPrefs.SetInt(str + "c", 999999);
+            }
+            if (PlayerPrefs.GetInt(str + "h", 0) > 99999)
+            {
+                PlayerPrefs.SetInt(str + "h", 99999);
+            }
+            if (PlayerPrefs.GetInt(str + "ht", 0) > 999)
+            {
+                PlayerPrefs.SetInt(str + "ht", 999);
+            }
+            if (PlayerPrefs.GetInt(str + "dm", 0) > 999)
+            {
+                PlayerPrefs.SetInt(str + "dm", 999);
+            }
+            if (PlayerPrefs.GetInt(str + "cv", 0) > 999)
+            {
+                PlayerPrefs.SetInt(str + "cv", 999);
+            }
+            
             
             rain_txt.text = ""+ PlayerPrefs.GetInt(str + "c", 0); ;
             horRain_txt.text = ""+ PlayerPrefs.GetInt(str + "h", 0); ;

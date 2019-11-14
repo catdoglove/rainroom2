@@ -41,23 +41,6 @@ public class ParkTime : MonoBehaviour
         int a = 0;
         while (a == 0)
         {
-            //최대량 제한
-            if (PlayerPrefs.GetInt(str + "c", 0) > 999999)
-            {
-                PlayerPrefs.SetInt(str + "c", 999999);
-            }
-            if (PlayerPrefs.GetInt(str + "h", 0) > 99999)
-            {
-                PlayerPrefs.SetInt(str + "h", 99999);
-            }
-            if (PlayerPrefs.GetInt(str + "ht", 0) > 999)
-            {
-                PlayerPrefs.SetInt(str + "ht", 999);
-            }
-            if (PlayerPrefs.GetInt(str + "cv", 0) > 999)
-            {
-                PlayerPrefs.SetInt(str + "cv", 999);
-            }
 
             //나뭇잎
             if (randLeaf_i == 1)
