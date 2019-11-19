@@ -47,6 +47,7 @@ public class MainShop : ShopHandler {
     public GameObject funcCabinet_obj;
     public GameObject[] funcBox_obj;
     public Sprite[] funcBox_spr;
+    public GameObject[] funcBoxPage_obj;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
@@ -54,8 +55,14 @@ public class MainShop : ShopHandler {
 
     public GameObject shop_obj,close_obj,back_obj;
     //애완동물
-    public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj;
-    public Sprite[] marimo_spr, rabbit_spr, tutle_spr, goldfish_spr;
+    public GameObject petHotel_obj, petMarimo_obj, petRabbit_obj, petTutle_obj, petFish_obj, petMarimo2_obj;
+    public Sprite[] marimo_spr, rabbit_spr, tutle_spr, goldfish_spr, putMarimo2_spr, putMarimo_spr;
+    public GameObject putRabbit_obj, putTutle_obj, putFish_obj;
+
+    //애완미용
+    public GameObject petColorShop_obj;
+
+
     //리폼
     public GameObject reform_obj,palette_obj;
     public GameObject[] paintcan_obj,paletteImg_obj;
@@ -862,7 +869,7 @@ public class MainShop : ShopHandler {
         }
     }
 
-    //그림 보관
+    //책 보관
     public void PutEventBook()
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)
@@ -916,7 +923,52 @@ public class MainShop : ShopHandler {
 
         }
     }
-    
+
+
+    //낙옆 보관
+    public void PutFallLeaf()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2.GetComponent<GasrangeEvt>().fsticker_obj.activeSelf == true)
+            {
+                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(false);
+                PlayerPrefs.SetInt("putfallleaf", 0);
+                funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[9];
+            }
+            else
+            {
+                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(true);
+                PlayerPrefs.SetInt("putfallleaf", 1);
+                funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[8];
+            }
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putfallleaf", 1) == 1)
+            {
+                PlayerPrefs.SetInt("putfallleaf", 0);
+                funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[9];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putfallleaf", 1);
+                funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[8];
+            }
+        }
+    }
+
+    public void putPageSet1()
+    {
+        funcBoxPage_obj[0].SetActive(true);
+        funcBoxPage_obj[1].SetActive(false);
+    }
+    public void putPageSet2()
+    {
+        funcBoxPage_obj[0].SetActive(false);
+        funcBoxPage_obj[1].SetActive(true);
+    }
+
     public void CloseFuncCabinet()
     {
         funcCabinet_obj.SetActive(false);
@@ -942,7 +994,7 @@ public class MainShop : ShopHandler {
             petRabbit_obj.SetActive(true);
             if (PlayerPrefs.GetInt("setrabbit", 0) == 0)
             {
-                petRabbit_obj.GetComponent<Image>().sprite = rabbit_spr[0];
+                putRabbit_obj.SetActive(true);
             }
         }
         if (PlayerPrefs.GetInt("tutle", 0) == 1)
@@ -950,7 +1002,7 @@ public class MainShop : ShopHandler {
             petTutle_obj.SetActive(true);
             if (PlayerPrefs.GetInt("settutle", 0) == 0)
             {
-                petTutle_obj.GetComponent<Image>().sprite = tutle_spr[0];
+                putTutle_obj.SetActive(true);
             }
         }
         if (PlayerPrefs.GetInt("goldfish", 0) == 1)
@@ -958,7 +1010,7 @@ public class MainShop : ShopHandler {
             petFish_obj.SetActive(true);
             if (PlayerPrefs.GetInt("setgoldfish", 0) == 0)
             {
-                petFish_obj.GetComponent<Image>().sprite = goldfish_spr[0];
+                putFish_obj.SetActive(true);
             }
         }
     }
@@ -970,7 +1022,8 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
         {
-            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[0];
+            petMarimo_obj.SetActive(true);
+            petMarimo2_obj.SetActive(false);
             PlayerPrefs.SetInt("setmarimo", 0);
             if (PlayerPrefs.GetInt("place", 0) == 0)
             {
@@ -979,7 +1032,8 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            petMarimo_obj.GetComponent<Image>().sprite = marimo_spr[1];
+            petMarimo2_obj.SetActive(true);
+            petMarimo_obj.SetActive(false);
             PlayerPrefs.SetInt("setmarimo", 1);
             if (PlayerPrefs.GetInt("place", 0) == 0)
             {
@@ -991,7 +1045,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
         {
-            petRabbit_obj.GetComponent<Image>().sprite = rabbit_spr[0];
+            putRabbit_obj.SetActive(true);
             PlayerPrefs.SetInt("setrabbit", 0);
 
             if (PlayerPrefs.GetInt("place", 0) == 0)
@@ -1001,7 +1055,7 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            petRabbit_obj.GetComponent<Image>().sprite = rabbit_spr[1];
+            putRabbit_obj.SetActive(false);
             PlayerPrefs.SetInt("setrabbit", 1);
             if (PlayerPrefs.GetInt("place", 0) == 0)
             {
@@ -1013,7 +1067,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("settutle", 0) == 1)
         {
-            petTutle_obj.GetComponent<Image>().sprite = tutle_spr[0];
+            putTutle_obj.SetActive(true);
             PlayerPrefs.SetInt("settutle", 0);
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
@@ -1022,7 +1076,7 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            petTutle_obj.GetComponent<Image>().sprite = tutle_spr[1];
+            putTutle_obj.SetActive(false);
             PlayerPrefs.SetInt("settutle", 1);
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
@@ -1034,7 +1088,7 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("setgoldfish", 0) == 1)
         {
-            petFish_obj.GetComponent<Image>().sprite = goldfish_spr[0];
+            putFish_obj.SetActive(true);
             PlayerPrefs.SetInt("setgoldfish", 0);
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
@@ -1043,7 +1097,7 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            petFish_obj.GetComponent<Image>().sprite = goldfish_spr[1];
+            putFish_obj.SetActive(false);
             PlayerPrefs.SetInt("setgoldfish", 1);
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
@@ -1969,6 +2023,73 @@ public class MainShop : ShopHandler {
                 }
 
             }
+        }
+    }
+    
+
+    public void RabbitColor()
+    {
+        int r = 0;
+        r = PlayerPrefs.GetInt("setrabbitcolor",0);
+        switch (r)
+        {
+            case 0:
+                mColor = new Color(225 / 255f, 10 / 98f, 117 / 255f);
+                PlayerPrefs.SetInt("setrabbitcolor", 1);
+                break;
+            case 1:
+                mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+                PlayerPrefs.SetInt("setrabbitcolor", 2);
+                break;
+            case 2:
+                mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                PlayerPrefs.SetInt("setrabbitcolor", 3);
+                break;
+            case 3:
+                mColor = new Color(1f, 1f, 1f);
+                PlayerPrefs.SetInt("setrabbitcolor", 0);
+                break;
+        }
+        putRabbit_obj.GetComponent<Image>().color = mColor;
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            //GM.GetComponent<FirstRoomFunction>().roomRabbit_obj.GetComponent<Image>().color = mColor;
+        }
+    }
+
+
+    public void MarimoColor()
+    {
+        int r = 0;
+        r = PlayerPrefs.GetInt("setmarimocolor", 0);
+
+        switch (r)
+        {
+            case 0:
+                PlayerPrefs.SetInt("setmarimocolor", 1);
+                petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[1];
+                petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[1];
+                break;
+            case 1:
+                PlayerPrefs.SetInt("setmarimocolor", 2);
+                petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[2];
+                petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[2];
+                break;
+            case 2:
+                PlayerPrefs.SetInt("setmarimocolor", 3);
+                petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[3];
+                petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[3];
+                break;
+            case 3:
+                PlayerPrefs.SetInt("setmarimocolor", 0);
+                petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[0];
+                petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[0];
+                break;
+        }
+
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            //GM.GetComponent<FirstRoomFunction>().roomMarimo_obj.SetActive(false);
         }
     }
 }

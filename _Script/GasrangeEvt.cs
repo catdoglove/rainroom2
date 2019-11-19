@@ -71,10 +71,13 @@ public class GasrangeEvt : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
-        if (PlayerPrefs.GetInt("sefsticker", 0) == 1)
-        {
-            fsticker_obj.SetActive(true);
-        }
+        //if (PlayerPrefs.GetInt("sefsticker", 0) == 1)
+        //{
+            if(PlayerPrefs.GetInt("putfallleaf", 1)==1)
+            {
+                fsticker_obj.SetActive(true);
+            }
+        //}
     }
 
 #region
