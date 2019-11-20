@@ -47,7 +47,9 @@ public class ParkShop : MonoBehaviour {
     public Sprite adopt_spr;
     public Text pet_txt,petP_txt;
     public Text petClover_txt;
-    public GameObject petColorShop_obj;
+    //애완동물 색깔
+    public GameObject petColorShops_obj,petColorShop_obj, buyPetColor_obj;
+    public Text petColorPrice_txt, petColorClover_txt;
     //소리
     public GameObject audio_obj;
     //도움말
@@ -1204,8 +1206,12 @@ public class ParkShop : MonoBehaviour {
         flowerToast_obj.SetActive(false);
     }
 
+    //애완동물색깔
     public void ActPetColor()
     {
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
         if (petColorShop_obj.activeSelf == true)
         {
             petColorShop_obj.SetActive(false);
@@ -1213,25 +1219,103 @@ public class ParkShop : MonoBehaviour {
         else
         {
             petColorShop_obj.SetActive(true);
+            petColorClover_txt.text = ""+ p_i;
         }
+    }
+
+    void setPetColorShop()
+    {
+        petColorShops_obj.SetActive(true);
+    }
+
+    public void openPetColorBuy()
+    {
+        buyPetColor_obj.SetActive(true);
+    }
+
+    public void closePetColorBuy()
+    {
+        buyPetColor_obj.SetActive(false);
     }
 
     public void buyMarimoColor()
     {
-        PlayerPrefs.SetInt("setmarimocolor"+ shopNum, 1);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        if (p_i >= 6)
+        {
+            p_i = p_i - 6;
+            PlayerPrefs.SetInt(str1 + "cv", p_i);
+            PlayerPrefs.SetInt("setmarimocolor" + shopNum, 1);
+            petColorClover_txt.text = "" + p_i;
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            // 클로버가 부족하다
+            needMoney();
+        }
     }
     public void buyRabbitColor()
     {
-        PlayerPrefs.SetInt("setrabbitcolor" + shopNum, 1);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        if (p_i >= 6)
+        {
+            p_i = p_i - 6;
+            PlayerPrefs.SetInt(str1 + "cv", p_i);
+            PlayerPrefs.SetInt("setrabbitcolor" + shopNum, 1);
+            petColorClover_txt.text = "" + p_i;
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            // 클로버가 부족하다
+            needMoney();
+        }
     }
     public void buyTutleColor()
     {
-        PlayerPrefs.SetInt("settutlecolor" + shopNum, 1);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        if (p_i >= 6)
+        {
+            p_i = p_i - 6;
+            PlayerPrefs.SetInt(str1 + "cv", p_i);
+            PlayerPrefs.SetInt("settutlecolor" + shopNum, 1);
+            petColorClover_txt.text = "" + p_i;
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            // 클로버가 부족하다
+            needMoney();
+        }
     }
     public void buyFishColor()
     {
-        PlayerPrefs.SetInt("setfishcolor" + shopNum, 1);
+        string str1;
+        str1 = PlayerPrefs.GetString("code", "");
+        p_i = PlayerPrefs.GetInt(str1 + "cv", 0);
+        if (p_i >= 6)
+        {
+            p_i = p_i - 6;
+            PlayerPrefs.SetInt(str1 + "cv", p_i);
+            PlayerPrefs.SetInt("setfishcolor" + shopNum, 1);
+            petColorClover_txt.text = "" + p_i;
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            // 클로버가 부족하다
+            needMoney();
+        }
     }
+
+
 
     /// <summary>
     /// 상점넘버

@@ -61,7 +61,7 @@ public class MainShop : ShopHandler {
 
     //애완미용
     public GameObject petColorShop_obj;
-
+    public GameObject[] petColorChange_obj;
 
     //리폼
     public GameObject reform_obj,palette_obj;
@@ -1018,6 +1018,8 @@ public class MainShop : ShopHandler {
                 putFish_obj.SetActive(true);
             }
         }
+        //애완동물 색깔
+        petColorChange();
     }
     public void ClosePetHotel()
     {
@@ -2040,7 +2042,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setrabbitcolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 1);
-                mColor = new Color(225 / 255f, 10 / 98f, 117 / 255f);
+                mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
             }
             else
             {
@@ -2080,8 +2082,7 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("setrabbitcolor", 0);
                 mColor = new Color(1f, 1f, 1f);
         }
-
-
+        
         putRabbit_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
@@ -2162,7 +2163,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("settutlecolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 1);
-                mColor = new Color(225 / 255f, 10 / 98f, 117 / 255f);
+                mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
             }
             else
             {
@@ -2219,7 +2220,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setfishcolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("setfishcolor", 1);
-                mColor = new Color(225 / 255f, 10 / 98f, 117 / 255f);
+                mColor = new Color(255 / 255f, 235 / 255f, 126 / 255f);
             }
             else
             {
@@ -2265,6 +2266,49 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
             GM.GetComponent<secondRoomFunction>().roomGoldfish_obj.GetComponent<SpriteRenderer>().color = mColor;
+        }
+    }
+
+    void petColorChange()
+    {
+        //마리모
+        int cc=0;
+        cc = cc + PlayerPrefs.GetInt("setmarimocolor1", 0);
+        cc = cc + PlayerPrefs.GetInt("setmarimocolor2", 0);
+        cc = cc + PlayerPrefs.GetInt("setmarimocolor3", 0);
+        if (cc >= 1)
+        {
+            petColorChange_obj[0].SetActive(true);
+        }
+
+        //토끼
+        cc = 0;
+        cc = cc + PlayerPrefs.GetInt("setrabbitcolor1", 0);
+        cc = cc + PlayerPrefs.GetInt("setrabbitcolor2", 0);
+        cc = cc + PlayerPrefs.GetInt("setrabbitcolor3", 0);
+        if (cc >= 1)
+        {
+            petColorChange_obj[1].SetActive(true);
+        }
+
+        //거북이
+        cc = 0;
+        cc = cc + PlayerPrefs.GetInt("settutlecolor1", 0);
+        cc = cc + PlayerPrefs.GetInt("settutlecolor2", 0);
+        cc = cc + PlayerPrefs.GetInt("settutlecolor3", 0);
+        if (cc >= 1)
+        {
+            petColorChange_obj[2].SetActive(true);
+        }
+
+        //금붕어
+        cc = 0;
+        cc = cc + PlayerPrefs.GetInt("setfishcolor1", 0);
+        cc = cc + PlayerPrefs.GetInt("setfishcolor2", 0);
+        cc = cc + PlayerPrefs.GetInt("setfishcolor3", 0);
+        if (cc >= 1)
+        {
+            petColorChange_obj[3].SetActive(true);
         }
     }
 }
