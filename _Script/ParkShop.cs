@@ -47,6 +47,7 @@ public class ParkShop : MonoBehaviour {
     public Sprite adopt_spr;
     public Text pet_txt,petP_txt;
     public Text petClover_txt;
+    public GameObject petColorShop_obj;
     //소리
     public GameObject audio_obj;
     //도움말
@@ -1202,8 +1203,35 @@ public class ParkShop : MonoBehaviour {
         }
         flowerToast_obj.SetActive(false);
     }
-    
 
+    public void ActPetColor()
+    {
+        if (petColorShop_obj.activeSelf == true)
+        {
+            petColorShop_obj.SetActive(false);
+        }
+        else
+        {
+            petColorShop_obj.SetActive(true);
+        }
+    }
+
+    public void buyMarimoColor()
+    {
+        PlayerPrefs.SetInt("setmarimocolor"+ shopNum, 1);
+    }
+    public void buyRabbitColor()
+    {
+        PlayerPrefs.SetInt("setrabbitcolor" + shopNum, 1);
+    }
+    public void buyTutleColor()
+    {
+        PlayerPrefs.SetInt("settutlecolor" + shopNum, 1);
+    }
+    public void buyFishColor()
+    {
+        PlayerPrefs.SetInt("setfishcolor" + shopNum, 1);
+    }
 
     /// <summary>
     /// 상점넘버
