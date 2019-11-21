@@ -28,7 +28,7 @@ public class Parkfunction : CavasData
     //
     public GameObject GMtag,GMP;
     public GameObject leafPr_obj,leafWin_obj;
-    public GameObject eventNight_obj;
+    public GameObject eventNight_obj,eventNightPet_obj;
 
     //숲으로가기
     public GameObject mountainWindow_obj,mountainAD_obj,mountainToast_obj, needToast_obj;
@@ -115,9 +115,13 @@ public class Parkfunction : CavasData
             eventPaint_obj.SetActive(false);
             eventPet_obj.SetActive(false);
             event_obj.GetComponent<Image>().sprite = event_spr[0];
-            if (eventRand_i < 3)
+            if (eventRand_i < 2)
             {
                 eventNight_obj.SetActive(true);
+            }
+            else if (eventRand_i < 4)
+            {
+                eventNightPet_obj.SetActive(true);
             }
         }
         //씬이동

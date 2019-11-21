@@ -48,8 +48,9 @@ public class ParkShop : MonoBehaviour {
     public Text pet_txt,petP_txt;
     public Text petClover_txt;
     //애완동물 색깔
-    public GameObject petColorShops_obj,petColorShop_obj, buyPetColor_obj;
+    public GameObject petColorShop_obj, buyPetColor_obj;
     public Text petColorPrice_txt, petColorClover_txt;
+    public GameObject[] petColorTape_obj;
     //소리
     public GameObject audio_obj;
     //도움말
@@ -1218,15 +1219,27 @@ public class ParkShop : MonoBehaviour {
         }
         else
         {
+            if (PlayerPrefs.GetInt("marimo", 0) == 1)
+            {
+                petColorTape_obj[0].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("tutle", 0) == 1)
+            {
+                petColorTape_obj[1].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("goldfish", 0) == 1)
+            {
+                petColorTape_obj[2].SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("rabbit", 0) == 1)
+            {
+                petColorTape_obj[3].SetActive(false);
+            }
             petColorShop_obj.SetActive(true);
             petColorClover_txt.text = ""+ p_i;
         }
     }
-
-    void setPetColorShop()
-    {
-        petColorShops_obj.SetActive(true);
-    }
+    
 
     public void openPetColorBuy()
     {

@@ -2157,7 +2157,6 @@ public class MainShop : ShopHandler {
 
     public void TutleColor()
     {
-
         if (PlayerPrefs.GetInt("settutlecolor", 0) == 0)
         {
             if (PlayerPrefs.GetInt("settutlecolor1", 0) == 1)
@@ -2167,11 +2166,27 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("settutlecolor", 2);
+                if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
+                {
+                    PlayerPrefs.SetInt("settutlecolor", 2);
+                    mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+                }
+                else
+                {
+                    if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
+                    {
+                        PlayerPrefs.SetInt("settutlecolor", 3);
+                        mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetInt("settutlecolor", 0);
+                        mColor = new Color(1f, 1f, 1f);
+                    }
+                }
             }
         }
-
-        if (PlayerPrefs.GetInt("settutlecolor", 0) == 1)
+        else if (PlayerPrefs.GetInt("settutlecolor", 0) == 1)
         {
             if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
             {
@@ -2180,11 +2195,18 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("settutlecolor", 3);
+                if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
+                {
+                    PlayerPrefs.SetInt("settutlecolor", 3);
+                    mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("settutlecolor", 0);
+                    mColor = new Color(1f, 1f, 1f);
+                }
             }
-        }
-
-        if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
+        }else if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
         {
             if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
             {
@@ -2196,19 +2218,17 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("settutlecolor", 0);
                 mColor = new Color(1f, 1f, 1f);
             }
-        }
-
-        if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
+        }else if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
         {
             PlayerPrefs.SetInt("settutlecolor", 0);
             mColor = new Color(1f, 1f, 1f);
         }
 
 
-        putTutle_obj.GetComponent<Image>().color = mColor;
+            putTutle_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            GM.GetComponent<secondRoomFunction>().roomTutle_obj.GetComponent<SpriteRenderer>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().roomTutle_obj.GetComponent<SpriteRenderer>().color = mColor;
         }
     }
 
@@ -2265,7 +2285,7 @@ public class MainShop : ShopHandler {
         putFish_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            GM.GetComponent<secondRoomFunction>().roomGoldfish_obj.GetComponent<SpriteRenderer>().color = mColor;
+            GM2.GetComponent<secondRoomFunction>().roomGoldfish_obj.GetComponent<SpriteRenderer>().color = mColor;
         }
     }
 
