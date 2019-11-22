@@ -512,8 +512,10 @@ public class GasrangeEvt : MonoBehaviour {
         seeweed_i = PlayerPrefs.GetInt("seaweed", 0);
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
-        bam_i = PlayerPrefs.GetInt("bam", 0);
-        shrimp_i = PlayerPrefs.GetInt("shrimp", 0);
+        //bam_i = PlayerPrefs.GetInt("bam", 0);
+        //shrimp_i = PlayerPrefs.GetInt("shrimp", 0);
+        bam_i = PlayerPrefs.GetInt("pat", 0);
+        shrimp_i = PlayerPrefs.GetInt("ggomak", 0);
     }
 
     public void RightIce()

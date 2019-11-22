@@ -6284,6 +6284,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2128228834}
+        m_MethodName: closePetColorBuy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &358302789
@@ -11398,7 +11409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -113.01, y: -86.899994}
+  m_AnchoredPosition: {x: -22.79, y: -91}
   m_SizeDelta: {x: 45.58, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627493671
@@ -11726,7 +11737,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660282809}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 365005795}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2128228834}
+        m_MethodName: petColorBuyY
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &660282809
@@ -37820,11 +37853,31 @@ MonoBehaviour:
   buyPetColor_obj: {fileID: 1719432816}
   petColorPrice_txt: {fileID: 364977206}
   petColorClover_txt: {fileID: 1325343097}
+  petName_txt: {fileID: 979801559}
   petColorTape_obj:
   - {fileID: 1442070551}
   - {fileID: 1573395316}
   - {fileID: 143775477}
   - {fileID: 505536631}
+  rabbitColor_obj:
+  - {fileID: 1960629772}
+  - {fileID: 1429141229}
+  - {fileID: 977511759}
+  tutleColor_obj:
+  - {fileID: 1434060841}
+  - {fileID: 1191496307}
+  - {fileID: 1698677159}
+  marimoColor_obj:
+  - {fileID: 1078453272}
+  - {fileID: 1733800032}
+  - {fileID: 909275796}
+  fishColor_obj:
+  - {fileID: 1661503485}
+  - {fileID: 1714876498}
+  - {fileID: 125887875}
+  petPrice_i: 0
+  petCheck_i: 0
+  petImage_spr: []
   audio_obj: {fileID: 365005793}
   help_obj: {fileID: 802757745}
   help_spr:
