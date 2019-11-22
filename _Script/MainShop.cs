@@ -2043,6 +2043,8 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 1);
                 mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
+                rabbitColorOk();
+                return;
             }
             else
             {
@@ -2056,6 +2058,8 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 2);
                 mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+                rabbitColorOk();
+                return;
             }
             else
             {
@@ -2069,6 +2073,8 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 3);
                 mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                rabbitColorOk();
+                return;
             }
             else
             {
@@ -2081,13 +2087,9 @@ public class MainShop : ShopHandler {
         {
                 PlayerPrefs.SetInt("setrabbitcolor", 0);
                 mColor = new Color(1f, 1f, 1f);
+            rabbitColorOk();
         }
         
-        putRabbit_obj.GetComponent<Image>().color = mColor;
-        if (PlayerPrefs.GetInt("place", 0) == 0)
-        {
-            GM.GetComponent<FirstRoomFunction>().roomRabbit_obj.GetComponent<SpriteRenderer>().color = mColor;
-        }
     }
 
 
@@ -2104,6 +2106,8 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("setmarimocolor", 1);
                 petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[1];
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[1];
+                marimoColorOk();
+                return;
             }
             else
             {
@@ -2118,6 +2122,8 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("setmarimocolor", 2);
                 petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[2];
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[2];
+                marimoColorOk();
+                return;
             }
             else
             {
@@ -2133,6 +2139,8 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("setmarimocolor", 3);
                 petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[3];
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[3];
+                marimoColorOk();
+                return;
             }
             else
             {
@@ -2147,89 +2155,67 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("setmarimocolor", 0);
                 petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[0];
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[0];
+            marimoColorOk();
         }
-
-        if (PlayerPrefs.GetInt("place", 0) == 0)
-        {
-            GM.GetComponent<FirstRoomFunction>().roomMarimo_obj.GetComponent<Image>().sprite = marimoOn_spr[PlayerPrefs.GetInt("setmarimocolor", 0)];
-        }
+        
     }
 
     public void TutleColor()
     {
+        
         if (PlayerPrefs.GetInt("settutlecolor", 0) == 0)
         {
             if (PlayerPrefs.GetInt("settutlecolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 1);
                 mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
+                tutleColorOK();
+                return;
             }
             else
             {
-                if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
-                {
-                    PlayerPrefs.SetInt("settutlecolor", 2);
-                    mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
-                }
-                else
-                {
-                    if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
-                    {
-                        PlayerPrefs.SetInt("settutlecolor", 3);
-                        mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetInt("settutlecolor", 0);
-                        mColor = new Color(1f, 1f, 1f);
-                    }
-                }
+                PlayerPrefs.SetInt("settutlecolor", 2);
             }
         }
-        else if (PlayerPrefs.GetInt("settutlecolor", 0) == 1)
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 1)
         {
             if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 2);
                 mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+                tutleColorOK();
+                return;
             }
             else
             {
-                if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
-                {
-                    PlayerPrefs.SetInt("settutlecolor", 3);
-                    mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("settutlecolor", 0);
-                    mColor = new Color(1f, 1f, 1f);
-                }
+                PlayerPrefs.SetInt("settutlecolor", 3);
             }
-        }else if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
+        }
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
         {
             if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 3);
                 mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                tutleColorOK();
+                return;
             }
             else
             {
                 PlayerPrefs.SetInt("settutlecolor", 0);
                 mColor = new Color(1f, 1f, 1f);
             }
-        }else if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
+        }
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
         {
             PlayerPrefs.SetInt("settutlecolor", 0);
             mColor = new Color(1f, 1f, 1f);
+            tutleColorOK();
         }
-
-
-            putTutle_obj.GetComponent<Image>().color = mColor;
-        if (PlayerPrefs.GetInt("place", 0) == 1)
-        {
-            GM2.GetComponent<secondRoomFunction>().roomTutle_obj.GetComponent<SpriteRenderer>().color = mColor;
-        }
+        
     }
 
     public void FishColor()
@@ -2241,6 +2227,8 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("setfishcolor", 1);
                 mColor = new Color(255 / 255f, 235 / 255f, 126 / 255f);
+                fishColorOk();
+                return;
             }
             else
             {
@@ -2252,8 +2240,11 @@ public class MainShop : ShopHandler {
         {
             if (PlayerPrefs.GetInt("setfishcolor2", 0) == 1)
             {
-                PlayerPrefs.SetInt("settutlecolor", 2);
-                mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+                PlayerPrefs.SetInt("setfishcolor", 2);
+                mColor = new Color(100 / 255f, 200 / 255f, 100 / 255f);
+                putFish_obj.GetComponent<Image>().color = mColor;
+                fishColorOk();
+                return;
             }
             else
             {
@@ -2266,7 +2257,10 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setfishcolor3", 0) == 1)
             {
                 PlayerPrefs.SetInt("setfishcolor", 3);
-                mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+                mColor = new Color(100 / 255f, 100 / 255f, 200 / 255f);
+                putFish_obj.GetComponent<Image>().color = mColor;
+                fishColorOk();
+                return;
             }
             else
             {
@@ -2279,13 +2273,44 @@ public class MainShop : ShopHandler {
         {
             PlayerPrefs.SetInt("setfishcolor", 0);
             mColor = new Color(1f, 1f, 1f);
+            fishColorOk();
         }
 
+    }
 
+    void fishColorOk()
+    {
         putFish_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
             GM2.GetComponent<secondRoomFunction>().roomGoldfish_obj.GetComponent<SpriteRenderer>().color = mColor;
+        }
+    }
+
+    void marimoColorOk()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            GM.GetComponent<FirstRoomFunction>().roomMarimo_obj.GetComponent<Image>().sprite = marimoOn_spr[PlayerPrefs.GetInt("setmarimocolor", 0)];
+        }
+    }
+
+    void rabbitColorOk()
+    {
+
+        putRabbit_obj.GetComponent<Image>().color = mColor;
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            GM.GetComponent<FirstRoomFunction>().roomRabbit_obj.GetComponent<SpriteRenderer>().color = mColor;
+        }
+    }
+
+    void tutleColorOK()
+    {
+        putTutle_obj.GetComponent<Image>().color = mColor;
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            GM2.GetComponent<secondRoomFunction>().roomTutle_obj.GetComponent<SpriteRenderer>().color = mColor;
         }
     }
 
