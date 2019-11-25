@@ -95,13 +95,17 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-        
+
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
         data_itemName = CSVReader.Read("Price/f_itemname");
+        RabbitColo();
+        TutleColo();
+        MarimoColo();
+        FishColo();
     }
 
     public void ShopCoinLoad(){
@@ -983,7 +987,7 @@ public class MainShop : ShopHandler {
         petHotel_obj.SetActive(true);
         if (PlayerPrefs.GetInt("marimo", 0) == 1)
         {
-            if (PlayerPrefs.GetInt("setmarimo", 0) == 0)
+            if (PlayerPrefs.GetInt("setmarimo", 0) == 1)
             {
                 petMarimo_obj.SetActive(false);
                 petMarimo2_obj.SetActive(true);
@@ -2048,7 +2052,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setrabbitcolor", 2);
+                PlayerPrefs.SetInt("setrabbitcolor", 1);
             }
         }
 
@@ -2063,7 +2067,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setrabbitcolor", 3);
+                PlayerPrefs.SetInt("setrabbitcolor", 2);
             }
         }
 
@@ -2078,7 +2082,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setrabbitcolor", 0);
+                PlayerPrefs.SetInt("setrabbitcolor", 3);
                 mColor = new Color(1f, 1f, 1f);
             }
         }
@@ -2089,7 +2093,36 @@ public class MainShop : ShopHandler {
                 mColor = new Color(1f, 1f, 1f);
             rabbitColorOk();
         }
-        
+    }
+
+
+    public void RabbitColo()
+    {
+
+        if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 0)
+        {
+            
+            mColor = new Color(1f, 1f, 1f);
+            rabbitColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 1)
+        {
+            mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
+            rabbitColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 2)
+        {
+            mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+            rabbitColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 3)
+        {
+            mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+            rabbitColorOk();
+        }
     }
 
 
@@ -2111,7 +2144,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setmarimocolor", 2);
+                PlayerPrefs.SetInt("setmarimocolor", 1);
             }
         }
 
@@ -2127,7 +2160,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setmarimocolor", 3);
+                PlayerPrefs.SetInt("setmarimocolor", 2);
             }
         }
 
@@ -2144,7 +2177,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setmarimocolor", 0);
+                PlayerPrefs.SetInt("setmarimocolor", 3);
                 petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[0];
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[0];
             }
@@ -2157,7 +2190,39 @@ public class MainShop : ShopHandler {
                 petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[0];
             marimoColorOk();
         }
-        
+    }
+
+    public void MarimoColo()
+    {
+        if (PlayerPrefs.GetInt("setmarimocolor", 0) == 0)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[0];
+            petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[0];
+            marimoColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setmarimocolor", 0) == 1)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[1];
+            petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[1];
+            marimoColorOk();
+        }
+
+
+        if (PlayerPrefs.GetInt("setmarimocolor", 0) == 2)
+        {
+
+            petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[2];
+            petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[2];
+            marimoColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setmarimocolor", 0) == 3)
+        {
+            petMarimo_obj.GetComponent<Image>().sprite = putMarimo_spr[3];
+            petMarimo2_obj.GetComponent<Image>().sprite = putMarimo2_spr[3];
+            marimoColorOk();
+        }
     }
 
     public void TutleColor()
@@ -2174,7 +2239,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("settutlecolor", 2);
+                PlayerPrefs.SetInt("settutlecolor", 1);
             }
         }
 
@@ -2189,7 +2254,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("settutlecolor", 3);
+                PlayerPrefs.SetInt("settutlecolor", 2);
             }
         }
 
@@ -2204,18 +2269,44 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("settutlecolor", 0);
-                mColor = new Color(1f, 1f, 1f);
+                PlayerPrefs.SetInt("settutlecolor", 3);
             }
         }
 
         if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
         {
-            PlayerPrefs.SetInt("settutlecolor", 0);
+                PlayerPrefs.SetInt("settutlecolor", 0);
+                mColor = new Color(1f, 1f, 1f);
+                tutleColorOK();
+        }
+    }
+
+    public void TutleColo()
+    {
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 0)
+        {
             mColor = new Color(1f, 1f, 1f);
             tutleColorOK();
         }
-        
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 1)
+        {
+            mColor = new Color(225 / 255f, 10 / 255f, 117 / 255f);
+            tutleColorOK();
+        }
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
+        {
+            mColor = new Color(10 / 255f, 100 / 255f, 10 / 255f);
+            tutleColorOK();
+        }
+
+        if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
+        {
+            mColor = new Color(10 / 255f, 10 / 255f, 100 / 255f);
+            tutleColorOK();
+        }
     }
 
     public void FishColor()
@@ -2232,7 +2323,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setfishcolor", 2);
+                PlayerPrefs.SetInt("setfishcolor", 1);
             }
         }
 
@@ -2248,7 +2339,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setfishcolor", 3);
+                PlayerPrefs.SetInt("setfishcolor", 2);
             }
         }
 
@@ -2264,8 +2355,7 @@ public class MainShop : ShopHandler {
             }
             else
             {
-                PlayerPrefs.SetInt("setfishcolor", 0);
-                mColor = new Color(1f, 1f, 1f);
+                PlayerPrefs.SetInt("setfishcolor", 3);
             }
         }
 
@@ -2275,11 +2365,43 @@ public class MainShop : ShopHandler {
             mColor = new Color(1f, 1f, 1f);
             fishColorOk();
         }
+    }
+    public void FishColo()
+    {
+        if (PlayerPrefs.GetInt("setfishcolor", 0) == 0)
+        {
+            mColor = new Color(1f, 1f, 1f);
+            fishColorOk();
+        }
 
+        if (PlayerPrefs.GetInt("setfishcolor", 0) == 1)
+        {
+            mColor = new Color(255 / 255f, 235 / 255f, 126 / 255f);
+            fishColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setfishcolor", 0) == 2)
+        {
+            mColor = new Color(100 / 255f, 200 / 255f, 100 / 255f);
+            putFish_obj.GetComponent<Image>().color = mColor;
+            fishColorOk();
+        }
+
+        if (PlayerPrefs.GetInt("setfishcolor", 0) == 3)
+        {
+            mColor = new Color(100 / 255f, 100 / 255f, 200 / 255f);
+            putFish_obj.GetComponent<Image>().color = mColor;
+            fishColorOk();
+        }
     }
 
     void fishColorOk()
     {
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
+        }
         putFish_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
@@ -2289,6 +2411,11 @@ public class MainShop : ShopHandler {
 
     void marimoColorOk()
     {
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
+        }
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
             GM.GetComponent<FirstRoomFunction>().roomMarimo_obj.GetComponent<Image>().sprite = marimoOn_spr[PlayerPrefs.GetInt("setmarimocolor", 0)];
@@ -2297,7 +2424,11 @@ public class MainShop : ShopHandler {
 
     void rabbitColorOk()
     {
-
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
+        }
         putRabbit_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
@@ -2307,6 +2438,12 @@ public class MainShop : ShopHandler {
 
     void tutleColorOK()
     {
+
+        if (GM == null)
+        {
+            GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            GM2 = GameObject.FindGameObjectWithTag("GM2");
+        }
         putTutle_obj.GetComponent<Image>().color = mColor;
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {

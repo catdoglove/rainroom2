@@ -187,6 +187,11 @@ public class secondRoomFunction : CavasData
         }
         GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuShop_spr;
 
+        GMTag.GetComponent <MainShop>().RabbitColo();
+        GMTag.GetComponent<MainShop>().TutleColo();
+        GMTag.GetComponent<MainShop>().MarimoColo();
+        GMTag.GetComponent<MainShop>().FishColo();
+
         //GM을 찾아불러온 데이터들 가져오기
         GMNotdistroy = GameObject.FindGameObjectWithTag("loadGM");
         window_i = PlayerPrefs.GetInt("windowlv", 0);

@@ -50,7 +50,7 @@ public class GasrangeEvt : MonoBehaviour {
     public int a,v = 0;
     int gaspage = 1;
 
-    public GameObject fsticker_obj,sToast_obj;
+    public GameObject fsticker_obj,sToast_obj, wScarf_obj;
 
     //엔딩
     public GameObject endWindow_obj;
@@ -71,16 +71,18 @@ public class GasrangeEvt : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
-        //if (PlayerPrefs.GetInt("sefsticker", 0) == 1)
-        //{
             if(PlayerPrefs.GetInt("putfallleaf", 1)==1)
             {
                 fsticker_obj.SetActive(true);
             }
-        //}
+
+        if (PlayerPrefs.GetInt("sewsticker", 0) == 1)
+        {
+            wScarf_obj.SetActive(true);
+        }
     }
 
-#region
+    #region
     public void indexNumber0()
     {
         indexNumber_i = 0;
@@ -155,8 +157,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "군밤";
-        cook_str[11] = "대하구이";
+        cook_str[10] = "찐빵";
+        cook_str[11] = "꼬막무침";
     }
     public void OpenGasrange()
     {
@@ -316,8 +318,8 @@ public class GasrangeEvt : MonoBehaviour {
                 int help = PlayerPrefs.GetInt("sefcount", 0);
                 if (help == 9)
                 {
-                    PlayerPrefs.SetInt("sefsticker", 1);
-                    fsticker_obj.SetActive(true);
+                    PlayerPrefs.SetInt("sewsticker", 1);
+                    wScarf_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");

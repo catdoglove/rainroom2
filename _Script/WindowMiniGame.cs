@@ -446,6 +446,8 @@ public class WindowMiniGame : MonoBehaviour {
         StartCoroutine("achievementIn");
     }
 
+
+
     IEnumerator achievementOut()
     {
         moveY = achievement_obj.transform.position.y;

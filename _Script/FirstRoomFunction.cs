@@ -99,6 +99,8 @@ public class FirstRoomFunction : CavasData {
     public Sprite[] bookTxt_spr;
     int booke_i=0;
 
+    public GameObject wScarf_obj;
+
     //타이틀닫기
     public GameObject titleImg;
     public void closeTitle()
@@ -110,6 +112,14 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
+
+        //겨울목도리
+
+        if (PlayerPrefs.GetInt("sewsticker", 0) == 1)
+        {
+            wScarf_obj.SetActive(true);
+        }
+
         PlayerPrefs.SetInt("outtrip", 0);
         // PlayerPrefs.SetInt("downst", 0);
         //PlayerPrefs.SetInt("countladderst", 0);

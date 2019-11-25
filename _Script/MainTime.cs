@@ -16,11 +16,11 @@ public class MainTime : MonoBehaviour {
     public float pMoveX = 5.4f, pMoveY;
     public int endPMove_i;
 
-    public GameObject balloon_obj, balloonR_obj, airplane_obj;
-    public int randball1_i, randball2_i;
-
+    public GameObject balloon_obj, balloonR_obj, airplane_obj,snow_obj,snowYs_obj, snowYe_obj;
+    public int randball1_i, randball2_i, snow_i, snowImg_i;
+    public float snowY_f, snowX_f;
     public int airplane_i, cat_i,plane_i;
-
+    public Sprite[] snow_spr;
     public Text beadalTime_txt;
 
     //별
@@ -93,6 +93,8 @@ public class MainTime : MonoBehaviour {
             ball();
             //배달
             beadal();
+            //눈
+            snow();
             //거미
             if (randSpider_i == 1) {
                 spider_obj.SetActive(false);
@@ -168,11 +170,44 @@ public class MainTime : MonoBehaviour {
         }
     }
 
-	
 
-	
+    void snow()
+    {
+        if (snow_i == 1)
+        {
+            StopCoroutine("fallSnow");
+            StartCoroutine("fallSnow");
+        }
+        else
+        {
+            snow_i = Random.Range(0, 70);
+            snowX_f = Random.Range(-2, 4);
+            if (snow_i == 1)
+            {
+                snowY_f = snowYs_obj.transform.position.y;
+            }
+        }
+    }
+
+    public void touchSnow()
+    {
+        string str = PlayerPrefs.GetString("code", "");
+        int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
+        coldRain_i = coldRain_i + 1;
+        PlayerPrefs.SetInt(str + "c", coldRain_i);
+        PlayerPrefs.Save();
+        
+        snowY_f = -15.4f;
+        snow_i = 0;
+        snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
+    }
+
+
+
+
+
     //배달시간
-	void beadal(){
+    void beadal(){
 		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
 		System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
 		int m = (int)compareTime.TotalMinutes;
@@ -321,6 +356,31 @@ public class MainTime : MonoBehaviour {
     }
 
 
-    
+    IEnumerator fallSnow()
+    {
+        while (snow_i == 1)
+        {
+            if (snowY_f <= -15f)
+            {
+                snow_i = 0;
+            }
+            snowY_f = snowY_f - 0.05f;
+            if (snowY_f <= snowYe_obj.transform.position.y)
+            {
+                snowY_f = -15.4f;
+                snow_i = 0;
+            }
+            snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
+
+            snow_obj.GetComponent<Image>().sprite = snow_spr[snowImg_i];
+            snowImg_i++;
+            if (snowImg_i >= 8)
+            {
+                snowImg_i = 0;
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
 
 }
