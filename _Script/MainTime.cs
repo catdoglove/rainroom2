@@ -180,7 +180,7 @@ public class MainTime : MonoBehaviour {
         }
         else
         {
-            snow_i = Random.Range(0, 70);
+            snow_i = Random.Range(0, 35);
             snowX_f = Random.Range(-2, 4);
             if (snow_i == 1)
             {
@@ -378,7 +378,7 @@ public class MainTime : MonoBehaviour {
             {
                 snowImg_i = 0;
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
