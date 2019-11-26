@@ -1358,6 +1358,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - petPrice_i;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     PlayerPrefs.SetInt("setmarimocolor" + shopNum, 1);
+                    PlayerPrefs.SetInt("setmarimocolor", shopNum);
                     petColorClover_txt.text = "" + p_i;
                     checkPetColor();
                     PlayerPrefs.Save();
@@ -1375,6 +1376,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - petPrice_i;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     PlayerPrefs.SetInt("setrabbitcolor" + shopNum, 1);
+                    PlayerPrefs.SetInt("setrabbitcolor", shopNum);
                     petColorClover_txt.text = "" + p_i;
                     checkPetColor();
                     PlayerPrefs.Save();
@@ -1392,6 +1394,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - petPrice_i;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     PlayerPrefs.SetInt("settutlecolor" + shopNum, 1);
+                    PlayerPrefs.SetInt("settutlecolor", shopNum);
                     petColorClover_txt.text = "" + p_i;
                     checkPetColor();
                     PlayerPrefs.Save();
@@ -1409,6 +1412,7 @@ public class ParkShop : MonoBehaviour {
                     p_i = p_i - petPrice_i;
                     PlayerPrefs.SetInt(str1 + "cv", p_i);
                     PlayerPrefs.SetInt("setfishcolor" + shopNum, 1);
+                    PlayerPrefs.SetInt("setfishcolor", shopNum);
                     petColorClover_txt.text = "" + p_i;
                     checkPetColor();
                     PlayerPrefs.Save();
