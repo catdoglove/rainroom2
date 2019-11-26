@@ -376,7 +376,7 @@ public class SeaFunction : MonoBehaviour {
             {
                 if (randomGet_i != 12)
                 {
-                    randomGet_i = Random.Range(0, 13);
+                    randomGet_i = Random.Range(2, 13);
                 }
             }
             if (randomGet_i == 12)
