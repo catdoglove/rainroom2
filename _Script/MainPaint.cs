@@ -246,7 +246,7 @@ public class MainPaint : MonoBehaviour {
             lightPaint_obj[i].GetComponent<Image>().sprite = light_spr[0];
         }
         lightPaint_obj[6].GetComponent<Image>().sprite = light_spr[1];
-        paint_txt.text = "<미옹>\n아무리 생각해도 화분이 매력적이야";
+        paint_txt.text = "<안밖>\n내 안에 다양한 모습이 있어";
         roomPaint_obj.GetComponent<Image>().sprite = paint_spr[6];
         roomPaint_obj.SetActive(true);
         PlayerPrefs.SetInt("setPaint", 6);

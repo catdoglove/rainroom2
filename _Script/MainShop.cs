@@ -770,6 +770,16 @@ public class MainShop : ShopHandler {
         {
             funcBox_obj[3].GetComponent<Image>().sprite = funcBox_spr[7];
         }
+
+        if (PlayerPrefs.GetInt("putfallleaf", 0) >= 1)
+        {
+            funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[8];
+        }
+        else
+        {
+            funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[9];
+        }
+        
     }
     //식물 보관
     public void PutPlant()
