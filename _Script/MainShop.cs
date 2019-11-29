@@ -2057,7 +2057,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setrabbitcolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 1);
-                mColor = new Color(150 / 255f, 113 / 255f, 91 / 255f);
+                mColor = new Color(191 / 255f, 155 / 255f, 134 / 255f);
                 rabbitColorOk();
                 return;
             }
@@ -2087,7 +2087,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setrabbitcolor3", 0) == 1)
             {
                 PlayerPrefs.SetInt("setrabbitcolor", 3);
-                mColor = new Color(255 / 255f, 170 / 255f, 201 / 255f);
+                mColor = new Color(255 / 255f, 196 / 255f, 197 / 255f);
                 rabbitColorOk();
                 return;
             }
@@ -2119,7 +2119,7 @@ public class MainShop : ShopHandler {
 
         if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 1)
         {
-            mColor = new Color(150 / 255f, 113 / 255f, 91 / 255f);
+            mColor = new Color(191 / 255f, 155 / 255f, 134 / 255f);
             rabbitColorOk();
         }
 
@@ -2131,7 +2131,7 @@ public class MainShop : ShopHandler {
 
         if (PlayerPrefs.GetInt("setrabbitcolor", 0) == 3)
         {
-            mColor = new Color(255 / 255f, 170 / 255f, 201 / 255f);
+            mColor = new Color(255 / 255f, 196 / 255f, 197 / 255f);
             rabbitColorOk();
         }
     }
@@ -2259,7 +2259,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 2);
-                mColor = new Color(255 / 255f, 144 / 255f, 90 / 255f);
+                mColor = new Color(255 / 255f, 152 / 255f, 129 / 255f);
                 tutleColorOK();
                 return;
             }
@@ -2274,7 +2274,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
             {
                 PlayerPrefs.SetInt("settutlecolor", 3);
-                mColor = new Color(105 / 255f, 218 / 255f, 255 / 255f);
+                mColor = new Color(183 / 255f, 238 / 255f, 248 / 255f);
                 tutleColorOK();
                 return;
             }
@@ -2309,13 +2309,13 @@ public class MainShop : ShopHandler {
 
         if (PlayerPrefs.GetInt("settutlecolor", 0) == 2)
         {
-            mColor = new Color(255 / 255f, 144 / 255f, 90 / 255f);
+            mColor = new Color(255 / 255f, 152 / 255f, 129 / 255f);
             tutleColorOK();
         }
 
         if (PlayerPrefs.GetInt("settutlecolor", 0) == 3)
         {
-            mColor = new Color(105 / 255f, 218 / 255f, 255 / 255f);
+            mColor = new Color(183 / 255f, 238 / 255f, 248 / 255f);
             tutleColorOK();
         }
     }
@@ -2328,7 +2328,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setfishcolor1", 0) == 1)
             {
                 PlayerPrefs.SetInt("setfishcolor", 1);
-                mColor = new Color(255 / 255f, 223 / 255f, 59 / 255f);
+                mColor = new Color(251 / 255f, 225 / 255f, 96 / 255f);
                 fishColorOk();
                 return;
             }
@@ -2343,7 +2343,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setfishcolor2", 0) == 1)
             {
                 PlayerPrefs.SetInt("setfishcolor", 2);
-                mColor = new Color(251 / 255f, 124 / 255f, 255 / 255f);
+                mColor = new Color(240 / 255f, 134 / 255f, 255 / 255f);
                 putFish_obj.GetComponent<Image>().color = mColor;
                 fishColorOk();
                 return;
@@ -2359,7 +2359,7 @@ public class MainShop : ShopHandler {
             if (PlayerPrefs.GetInt("setfishcolor3", 0) == 1)
             {
                 PlayerPrefs.SetInt("setfishcolor", 3);
-                mColor = new Color(93 / 255f, 255 / 255f, 158 / 255f);
+                mColor = new Color(173 / 255f, 255 / 255f, 136 / 255f);
                 putFish_obj.GetComponent<Image>().color = mColor;
                 fishColorOk();
                 return;
@@ -2387,20 +2387,20 @@ public class MainShop : ShopHandler {
 
         if (PlayerPrefs.GetInt("setfishcolor", 0) == 1)
         {
-            mColor = new Color(255 / 255f, 223 / 255f, 59 / 255f);
+            mColor = new Color(251 / 255f, 225 / 255f, 96 / 255f);
             fishColorOk();
         }
 
         if (PlayerPrefs.GetInt("setfishcolor", 0) == 2)
         {
-            mColor = new Color(251 / 255f, 124 / 255f, 255 / 255f);
+            mColor = new Color(240 / 255f, 134 / 255f, 255 / 255f);
             putFish_obj.GetComponent<Image>().color = mColor;
             fishColorOk();
         }
 
         if (PlayerPrefs.GetInt("setfishcolor", 0) == 3)
         {
-            mColor = new Color(93 / 255f, 255 / 255f, 158 / 255f);
+            mColor = new Color(173 / 255f, 255 / 255f, 136 / 255f);
             putFish_obj.GetComponent<Image>().color = mColor;
             fishColorOk();
         }
