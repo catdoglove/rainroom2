@@ -52,7 +52,8 @@ public class ParkShop : MonoBehaviour {
     public Text petColorPrice_txt, petColorClover_txt,petName_txt;
     public GameObject[] petColorTape_obj,rabbitColor_obj, tutleColor_obj, marimoColor_obj, fishColor_obj;
     public int petPrice_i,petCheck_i;
-    public Sprite[] petImage_spr;
+    public Sprite[] petRabbitImage_spr, petTutleImage_spr, petMarimoImage_spr, petFishImage_spr;
+    public GameObject petColorImage_obj;
     //소리
     public GameObject audio_obj;
     //도움말
@@ -1249,54 +1250,54 @@ public class ParkShop : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("setmarimocolor1", 0) == 1)
         {
-            marimoColor_obj[0].GetComponent<Button>().interactable = false;
+            marimoColor_obj[0].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setmarimocolor2", 0) == 1)
         {
-            marimoColor_obj[1].GetComponent<Button>().interactable = false;
+            marimoColor_obj[1].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setmarimocolor3", 0) == 1)
         {
-            marimoColor_obj[2].GetComponent<Button>().interactable = false;
+            marimoColor_obj[2].SetActive(false);
         }
 
         if (PlayerPrefs.GetInt("setrabbitcolor1", 0) == 1)
         {
-            rabbitColor_obj[0].GetComponent<Button>().interactable = false;
+            rabbitColor_obj[0].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setrabbitcolor2", 0) == 1)
         {
-            rabbitColor_obj[1].GetComponent<Button>().interactable = false;
+            rabbitColor_obj[1].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setrabbitcolor3", 0) == 1)
         {
-            rabbitColor_obj[2].GetComponent<Button>().interactable = false;
+            rabbitColor_obj[2].SetActive(false);
         }
 
         if (PlayerPrefs.GetInt("settutlecolor1", 0) == 1)
         {
-            tutleColor_obj[0].GetComponent<Button>().interactable = false;
+            tutleColor_obj[0].SetActive(false);
         }
         if (PlayerPrefs.GetInt("settutlecolor2", 0) == 1)
         {
-            tutleColor_obj[1].GetComponent<Button>().interactable = false;
+            tutleColor_obj[1].SetActive(false);
         }
         if (PlayerPrefs.GetInt("settutlecolor3", 0) == 1)
         {
-            tutleColor_obj[2].GetComponent<Button>().interactable = false;
+            tutleColor_obj[2].SetActive(false);
         }
 
         if (PlayerPrefs.GetInt("setfishcolor1", 0) == 1)
         {
-            fishColor_obj[0].GetComponent<Button>().interactable = false;
+            fishColor_obj[0].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setfishcolor2", 0) == 1)
         {
-            fishColor_obj[1].GetComponent<Button>().interactable = false;
+            fishColor_obj[1].SetActive(false);
         }
         if (PlayerPrefs.GetInt("setfishcolor3", 0) == 1)
         {
-            fishColor_obj[2].GetComponent<Button>().interactable = false;
+            fishColor_obj[2].SetActive(false);
         }
     }
 
@@ -1313,7 +1314,7 @@ public class ParkShop : MonoBehaviour {
         petCheck_i = 1;
         petPrice_i = 5;
         petColorPrice_txt.text = ""+petPrice_i;
-        petName_txt.text = "마리모";
+        petColorImage_obj.GetComponent<Image>().sprite = petMarimoImage_spr[shopNum-1];
     }
 
     public void buyRabbitColor()
@@ -1322,7 +1323,7 @@ public class ParkShop : MonoBehaviour {
         petCheck_i = 2;
         petPrice_i = 10;
         petColorPrice_txt.text = "" + petPrice_i;
-        petName_txt.text = "토끼";
+        petColorImage_obj.GetComponent<Image>().sprite = petRabbitImage_spr[shopNum - 1];
     }
 
     public void buyTutleColor()
@@ -1331,7 +1332,7 @@ public class ParkShop : MonoBehaviour {
         petCheck_i = 3;
         petPrice_i = 5;
         petColorPrice_txt.text = "" + petPrice_i;
-        petName_txt.text = "거북이";
+        petColorImage_obj.GetComponent<Image>().sprite = petTutleImage_spr[shopNum - 1];
     }
 
     public void buyFishColor()
@@ -1340,7 +1341,7 @@ public class ParkShop : MonoBehaviour {
         petCheck_i = 4;
         petPrice_i = 7;
         petColorPrice_txt.text = "" + petPrice_i;
-        petName_txt.text = "금붕어";
+        petColorImage_obj.GetComponent<Image>().sprite = petFishImage_spr[shopNum - 1];
     }
 
     public void  petColorBuyY()

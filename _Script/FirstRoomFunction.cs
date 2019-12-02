@@ -101,6 +101,9 @@ public class FirstRoomFunction : CavasData {
 
     public GameObject wScarf_obj;
 
+    //공지
+    public GameObject notice_obj;
+
     //타이틀닫기
     public GameObject titleImg;
     public void closeTitle()
@@ -112,6 +115,13 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
+        
+        //공지
+        if (PlayerPrefs.GetInt("20191202", 0) == 0)
+        {
+            notice_obj.SetActive(true);
+            PlayerPrefs.SetInt("20191202", 99);
+        }
 
         //겨울목도리
 
@@ -206,6 +216,11 @@ public class FirstRoomFunction : CavasData {
 
         //낮밤
         setDay();
+    }
+
+    public void closeNotice()
+    {
+        notice_obj.SetActive(false);
     }
 
     public void setItems()

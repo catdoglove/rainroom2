@@ -96,7 +96,6 @@ public class MainShop : ShopHandler {
         */
         //초기화 코드 자리
 
-
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
