@@ -1312,7 +1312,7 @@ public class ParkShop : MonoBehaviour {
     {
         buyPetColor_obj.SetActive(true);
         petCheck_i = 1;
-        petPrice_i = 5;
+        petPrice_i = 8;
         petColorPrice_txt.text = ""+petPrice_i;
         petColorImage_obj.GetComponent<Image>().sprite = petMarimoImage_spr[shopNum-1];
     }
@@ -1321,7 +1321,7 @@ public class ParkShop : MonoBehaviour {
     {
         buyPetColor_obj.SetActive(true);
         petCheck_i = 2;
-        petPrice_i = 10;
+        petPrice_i = 15;
         petColorPrice_txt.text = "" + petPrice_i;
         petColorImage_obj.GetComponent<Image>().sprite = petRabbitImage_spr[shopNum - 1];
     }
@@ -1330,7 +1330,7 @@ public class ParkShop : MonoBehaviour {
     {
         buyPetColor_obj.SetActive(true);
         petCheck_i = 3;
-        petPrice_i = 5;
+        petPrice_i = 8;
         petColorPrice_txt.text = "" + petPrice_i;
         petColorImage_obj.GetComponent<Image>().sprite = petTutleImage_spr[shopNum - 1];
     }
@@ -1339,7 +1339,7 @@ public class ParkShop : MonoBehaviour {
     {
         buyPetColor_obj.SetActive(true);
         petCheck_i = 4;
-        petPrice_i = 7;
+        petPrice_i = 12;
         petColorPrice_txt.text = "" + petPrice_i;
         petColorImage_obj.GetComponent<Image>().sprite = petFishImage_spr[shopNum - 1];
     }
