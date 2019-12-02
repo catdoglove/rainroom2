@@ -959,7 +959,7 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            if (PlayerPrefs.GetInt("putfallleaf", 1) == 1)
+            if (PlayerPrefs.GetInt("putfallleaf", 0) == 1)
             {
                 PlayerPrefs.SetInt("putfallleaf", 0);
                 funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[9];
