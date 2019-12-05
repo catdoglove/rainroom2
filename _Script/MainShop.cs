@@ -102,10 +102,6 @@ public class MainShop : ShopHandler {
         data_cPrice = CSVReader.Read("Price/f_coldrain");
         data_hPrice = CSVReader.Read("Price/f_hotrain");
         data_itemName = CSVReader.Read("Price/f_itemname");
-        RabbitColo();
-        TutleColo();
-        MarimoColo();
-        FishColo();
     }
 
     public void ShopCoinLoad(){
@@ -458,6 +454,11 @@ public class MainShop : ShopHandler {
 
     public void functionShop()
     {
+
+        RabbitColo();
+        TutleColo();
+        MarimoColo();
+        FishColo();
         upBtn_obj.GetComponent<Image>().sprite = upDown_spr[1];
         downBtn_obj.GetComponent<Image>().sprite = upDown_spr[3];
         functionBtn_obj.GetComponent<Image>().sprite = upDown_spr[4];
