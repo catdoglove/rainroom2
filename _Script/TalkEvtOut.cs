@@ -7,7 +7,8 @@ using System.Linq; //랜덤필
 public class TalkEvtOut : MonoBehaviour
 {
 
-    List<Dictionary<string, object>> data_out; //csv파일
+    List<Dictionary<string, object>> data_out,data_park; //csv파일
+    int etcNum = 0;
     public Text Text_obj; //선언 및 보여질
     string[] testText_cut; //대사 끊기
     string text_str; //실질적 대사출력
@@ -74,6 +75,7 @@ public class TalkEvtOut : MonoBehaviour
 
 
         data_out = CSVReader.Read("Talk/talk_out"); //대사 불러오기   
+        data_park = CSVReader.Read("Talk/etc_park");
 
 
 
@@ -631,5 +633,119 @@ public class TalkEvtOut : MonoBehaviour
         StartCoroutine("achievementOut");
     }
 
-    
+
+    public void talk1()
+    {
+        text_str = "" + data_park[etcNum]["벤치"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+
+        if (etcNum >= 2)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talk2()
+    {
+        text_str = "" + data_park[etcNum]["모래"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+
+
+        if (etcNum >= 2)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talk3()
+    {
+        text_str = "" + data_park[etcNum]["시소"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+
+
+        if (etcNum >= 2)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talk4()
+    {
+        text_str = "" + data_park[etcNum]["그네"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+
+
+        if (etcNum >= 2)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talk5()
+    {
+        text_str = "" + data_park[etcNum]["미끄럼틀"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+
+
+        if (etcNum >= 2)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    IEnumerator itemTalkRun()
+    {
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
+        falseObject();
+        for (int i = 0; i < testText_cut.Length; i++)
+        {
+            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
+            Text_obj.text = text_str;
+            yield return new WaitForSeconds(speedF);
+        }
+
+        trueObject();
+    }
+
+
 }
