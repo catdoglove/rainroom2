@@ -71,10 +71,10 @@ public class GasrangeEvt : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
         CheckIng();
         data = CSVReader.Read("material");
-            if(PlayerPrefs.GetInt("putfallleaf", 0)==1)
-            {
-                fsticker_obj.SetActive(true);
-            }
+        if (PlayerPrefs.GetInt("putfallleaf", 0) == 1)
+        {
+            fsticker_obj.SetActive(true);
+        }
 
         if (PlayerPrefs.GetInt("sewsticker", 0) == 1)
         {
@@ -315,8 +315,8 @@ public class GasrangeEvt : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cookSound();
             if (indexNumber_i>=10)
             {
-                int help = PlayerPrefs.GetInt("sefcount", 0);
-                if (help == 9)
+                int help = PlayerPrefs.GetInt("sewcount", 0);
+                if (help >= 9 && PlayerPrefs.GetInt("sewsticker", 0) == 0)
                 {
                     PlayerPrefs.SetInt("sewsticker", 1);
                     wScarf_obj.SetActive(true);
@@ -324,12 +324,12 @@ public class GasrangeEvt : MonoBehaviour {
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");
                     help++;
-                    PlayerPrefs.SetInt("sefcount", help);
+                    PlayerPrefs.SetInt("sewcount", help);
                 }
                 else
                 {
                     help++;
-                    PlayerPrefs.SetInt("sefcount", help);
+                    PlayerPrefs.SetInt("sewcount", help);
                 }
             }
         }
