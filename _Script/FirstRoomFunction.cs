@@ -116,12 +116,6 @@ public class FirstRoomFunction : CavasData {
     // Use this for initialization
     void Start () {
         
-        //공지
-        if (PlayerPrefs.GetInt("20191202", 0) == 0)
-        {
-            notice_obj.SetActive(true);
-            PlayerPrefs.SetInt("20191202", 99);
-        }
 
         //겨울목도리
 
