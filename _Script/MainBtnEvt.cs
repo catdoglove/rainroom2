@@ -48,9 +48,9 @@ public class MainBtnEvt : CavasData
     AsyncOperation async;
 
     //쿠폰
-    public GameObject coupon_obj,couponTxt_obj, couponTxt2_obj, couponTxtF_obj;
+    public GameObject coupon_obj,couponTxt_obj, couponTxtF_obj;
     public InputField InputField;
-    public Text InputField_txt;
+    public Text InputField_txt, couponeMsg;
 
     public GameObject reformHelp_obj;
 
@@ -691,37 +691,26 @@ public class MainBtnEvt : CavasData
     }
     public void SetCoupon()
     {
-        if (InputField_txt.text == "launchrainbook")
+        if (InputField_txt.text == "happynewyear")
         {
-            if (PlayerPrefs.GetInt("10016", 0) == 0)
+            if (PlayerPrefs.GetInt("200103", 0) == 0)
             {
                 string str = PlayerPrefs.GetString("code", "");
                 //쿠폰보상
-                int d = PlayerPrefs.GetInt(str + "dm", 0) + 5;
-                int c = PlayerPrefs.GetInt(str + "cv", 0) + 5;
+                int d = PlayerPrefs.GetInt(str + "dm", 0) + 3;
+                int c = PlayerPrefs.GetInt(str + "cv", 0) + 3;
+                int h = PlayerPrefs.GetInt(str + "ht", 0) + 3;
                 PlayerPrefs.SetInt(str + "dm", d);
                 PlayerPrefs.SetInt(str + "cv", c);
-
-                PlayerPrefs.SetInt("10016", 50);
-                PlayerPrefs.SetInt("storg", 1);
-                couponTxt2_obj.SetActive(true);
+                PlayerPrefs.SetInt(str + "ht", h);
+                PlayerPrefs.SetInt("200103", 999);
+                couponTxt_obj.SetActive(true);
                 coupon_obj.SetActive(false);
-
-                if (PlayerPrefs.GetInt("place", 0) == 0)
-                {
-                    if (GM == null)
-                    {
-                        GM = GameObject.FindGameObjectWithTag("firstroomGM");
-                    }
-                    if (PlayerPrefs.GetInt("desklv", 0) <= 3)
-                    {
-                        GM.GetComponent<FirstRoomFunction>().bookEvent_obj.SetActive(true);
-                    }
-                    else
-                    {
-                        GM.GetComponent<FirstRoomFunction>().bookEventUp_obj.SetActive(true);
-                    }
-                }
+            }
+            else
+            {
+                couponTxt_obj.SetActive(true);
+                couponeMsg.text = "이미 지급되었습니다.";
             }
         }
         else
@@ -750,7 +739,6 @@ public class MainBtnEvt : CavasData
     {
         coupon_obj.SetActive(false);
         couponTxt_obj.SetActive(false);
-        couponTxt2_obj.SetActive(false);
         couponTxtF_obj.SetActive(false);
     }
 
