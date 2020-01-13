@@ -267,7 +267,7 @@ public class FirstRoomFunction : CavasData {
             wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
         }
         //러그
-        if (PlayerPrefs.GetInt("shoppalette10", 0) > 0)
+        if (PlayerPrefs.GetInt("shoppalette_rug", 0) > 0)
         {
             rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[0];
             rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[0];
@@ -301,7 +301,7 @@ public class FirstRoomFunction : CavasData {
         }
 
         //서랍장
-        if (PlayerPrefs.GetInt("shoppalette11", 0) > 0)
+        if (PlayerPrefs.GetInt("shoppalette_cab", 0) > 0)
         {
             cabinetImg_obj.GetComponent<Image>().sprite = reformCabinet_spr[0];
             switch (PlayerPrefs.GetInt("setcabinetpalette", 0))

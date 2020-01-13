@@ -95,7 +95,6 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -1136,13 +1135,25 @@ public class MainShop : ShopHandler {
         back_obj.SetActive(false);
         reform_obj.SetActive(true);
         palette_obj.SetActive(false);
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 10; i++)
         {
             if (PlayerPrefs.GetInt("shoppalette"+i, 0) == 1)
             {
                 paintcan_obj[i].GetComponent<Image>().sprite = paintcan_spr[i];
                 paintcan_obj[i].GetComponent<Button>().interactable = true;
             }
+        }
+        //러그와 서랍장 리폼 따로 설정해주기
+        if (PlayerPrefs.GetInt("shoppalette_rug", 0) == 1)
+        {
+            paintcan_obj[10].GetComponent<Image>().sprite = paintcan_spr[10];
+            paintcan_obj[10].GetComponent<Button>().interactable = true;
+        }
+
+        if (PlayerPrefs.GetInt("shoppalette_cab", 0) == 1)
+        {
+            paintcan_obj[11].GetComponent<Image>().sprite = paintcan_spr[11];
+            paintcan_obj[11].GetComponent<Button>().interactable = true;
         }
     }
 
@@ -1657,7 +1668,22 @@ public class MainShop : ShopHandler {
 
     public void OpenSetPalette()
     {
-        if (PlayerPrefs.GetInt("shoppalette"+itemIndex_i, 0) == 1)
+        int ini_i = PlayerPrefs.GetInt("shoppalette" + itemIndex_i, 0);
+        if (itemIndex_i == 10)
+        {
+            if (PlayerPrefs.GetInt("shoppalette_rug", 0) == 1)
+            {
+                ini_i = 1;
+            }
+        }
+        if (itemIndex_i == 11)
+        {
+            if (PlayerPrefs.GetInt("shoppalette_cab", 0) == 1)
+            {
+                ini_i = 1;
+            }
+        }
+        if (ini_i == 1)
         {
             palette_obj.SetActive(true);
             for(int i=0; i < 12; i++)
@@ -1866,17 +1892,58 @@ public class MainShop : ShopHandler {
             PlayerPrefs.SetInt("reformshop", 1);
         }
 
-        //러그
+        //러그숲
         if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette103", 0) == 1)
         {
-            PlayerPrefs.SetInt("shoppalette10", 1);
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
             PlayerPrefs.SetInt("reformshop", 1);
         }
 
-        //서랍장
+        //러그파랑
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette100", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //러그빨강
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette101", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+        //러그검정
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette102", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장숲
         if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette113", 0) == 1)
         {
-            PlayerPrefs.SetInt("shoppalette11", 1);
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장파랑
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette110", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장빨강
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette111", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장검정
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette112", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
             PlayerPrefs.SetInt("reformshop", 1);
         }
         //창문
@@ -1932,17 +1999,17 @@ public class MainShop : ShopHandler {
             PlayerPrefs.SetInt("reformshop", 1);
         }
 
-        //러그
+        //러그바다
         if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette104", 0) == 1)
         {
-            PlayerPrefs.SetInt("shoppalette10", 1);
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
             PlayerPrefs.SetInt("reformshop", 1);
         }
 
-        //서랍장
+        //서랍장바다
         if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette114", 0) == 1)
         {
-            PlayerPrefs.SetInt("shoppalette11", 1);
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
             PlayerPrefs.SetInt("reformshop", 1);
         }
         //창문

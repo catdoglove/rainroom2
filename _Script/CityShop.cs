@@ -574,7 +574,16 @@ public class CityShop : MonoBehaviour {
 
 
             audio_obj.GetComponent<SoundEvt>().buttonSound();
-            PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
+
+            //러그 캐비넷
+            if (itemIndex_i == 10 || itemIndex_i == 11)
+            {
+
+            }
+            else
+            {
+                PlayerPrefs.SetInt("shoppalette" + itemIndex_i, 1);
+            }
             PlayerPrefs.SetInt("shoppalette" + itemIndex_i + chip_i, 1);
             PlayerPrefs.SetInt("reformshop", 1);
             Setpale();
