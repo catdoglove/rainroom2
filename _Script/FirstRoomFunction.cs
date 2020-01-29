@@ -259,6 +259,48 @@ public class FirstRoomFunction : CavasData {
 
 
 
+        //러그바로 되어있도록
+        //러그파랑
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette100", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //러그빨강
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette101", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+        //러그검정
+        if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette102", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_rug", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장파랑
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette110", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장빨강
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette111", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
+        //서랍장검정
+        if (PlayerPrefs.GetInt("cabinetlv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette112", 0) == 1)
+        {
+            PlayerPrefs.SetInt("shoppalette_cab", 1);
+            PlayerPrefs.SetInt("reformshop", 1);
+        }
+
 
         //벽지
         if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
@@ -269,6 +311,8 @@ public class FirstRoomFunction : CavasData {
         //러그
         if (PlayerPrefs.GetInt("shoppalette_rug", 0) > 0)
         {
+
+
             rugImg_obj.GetComponent<Image>().sprite = reformRug_spr[0];
             rugImg2_obj.GetComponent<Image>().sprite = reformRug_spr[0];
             switch (PlayerPrefs.GetInt("setrugpalette", 0))
