@@ -1,0 +1,179 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class NoteStoreFunction : MonoBehaviour {
+
+    public int noteBookNum_i, notePageNum_i;
+    public GameObject noteWindow_obj, noteWriteYN_obj, noteDeletYN_obj, noteWood_obj, noteWindowImg_obj;
+    public Sprite noteImgPage_spr, noteImgCover_spr;
+    public Sprite[] noteBtn_spr;
+    public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
+    public GameObject showPage_obj, showCover_obj;
+    Color color;
+    string str;
+
+    public Text page_txt;
+    // Use this for initialization
+    void Start () {
+
+        color = new Color(1f, 1f, 1f);
+        str = PlayerPrefs.GetString("code", "");
+    }
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+    //책을 구매해서 선반이 나와있나?
+    public void NoteWoodCheck()
+    {
+        noteWood_obj.SetActive(true);
+    }
+
+    //열기닫기 노트창
+    public void ActNote()
+    {
+        CheckPencle();
+        if (noteWindow_obj.activeSelf == true)
+        {
+            noteWindow_obj.SetActive(false);
+        }
+        else
+        {
+            noteWindow_obj.SetActive(true);
+        }
+
+    }
+
+    //연필을 가지고 있나?
+    void CheckPencle()
+    {
+
+        if (PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        {
+            noteWriteToastBtn_obj.SetActive(false);
+        }
+        else
+        {
+            noteWriteToastBtn_obj.SetActive(true);
+        }
+    }
+
+    //토스트버튼
+    public void WritePage()
+    {
+        if(PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        {
+
+        }
+        else
+        {
+            StartCoroutine("toastPencleImgFadeOut");
+        }
+    }
+    
+    //쓰여진 페이지
+    void WritedPage()
+    {
+
+    }
+
+    //커버열기
+    public void OpenCover()
+    {
+        noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+        showPage_obj.SetActive(true);
+        showCover_obj.SetActive(false);
+        notePageNum_i = 1;
+        noteLBtn_obj.SetActive(true);
+    }
+
+    //다음장넘기기
+    public void NextPage()
+    {
+        if (notePageNum_i == 0)
+        {
+            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+            showPage_obj.SetActive(true);
+            showCover_obj.SetActive(false);
+            notePageNum_i++;
+            noteLBtn_obj.SetActive(true);
+
+            noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        }
+        else if (notePageNum_i >= 29)
+        {
+            noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
+            notePageNum_i = 30;
+        }
+        else
+        {
+            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+            showPage_obj.SetActive(true);
+            showCover_obj.SetActive(false);
+            notePageNum_i++;
+            noteLBtn_obj.SetActive(true);
+            noteRBtn_obj.SetActive(true);
+            noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        }
+        page_txt.text = "" + notePageNum_i + "/30";
+    }
+
+    //뒷장넘기기
+    public void BackPage()
+    {
+        noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        if (notePageNum_i == 1)
+        {
+            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgCover_spr;
+            showPage_obj.SetActive(false);
+            showCover_obj.SetActive(true);
+            notePageNum_i--;
+            noteLBtn_obj.SetActive(false);
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        }
+        else if (notePageNum_i <= 1)
+        {
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
+            notePageNum_i = 0;
+        }
+        else
+        {
+            notePageNum_i--;
+            noteRBtn_obj.SetActive(true);
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        }
+        page_txt.text = "" + notePageNum_i + "/30";
+    }
+
+
+    //연필없다
+    IEnumerator toastPencleImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        noteToast_obj.GetComponent<Image>().color = color;
+        noteToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            noteToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        noteToast_obj.SetActive(false);
+    }
+
+    //스페이드 얻기
+    public void GetSpade()
+    {
+        int spade = PlayerPrefs.GetInt(str + "spd", 0);
+        if(PlayerPrefs.GetInt("outspade", 0) == 1)
+        {
+            
+        }
+    }
+
+}
