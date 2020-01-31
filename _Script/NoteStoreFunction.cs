@@ -14,7 +14,8 @@ public class NoteStoreFunction : MonoBehaviour {
     Color color;
     string str;
 
-    public Text page_txt;
+    public Text page_txt,writePage_txt,input_txt;
+    public GameObject input_obj;
     // Use this for initialization
     void Start () {
 
@@ -78,7 +79,38 @@ public class NoteStoreFunction : MonoBehaviour {
     //쓰여진 페이지
     void WritedPage()
     {
+        string notestr= PlayerPrefs.GetString("notewrite1p"+ notePageNum_i, "");
+        int note_i = PlayerPrefs.GetInt("checkwrite1p" + notePageNum_i, 0);
+        if (note_i == 1)
+        {
+            writePage_txt.text = notestr;
+            input_obj.SetActive(false);
+        }
+        else
+        {
+            writePage_txt.text = "";
+            input_obj.SetActive(true);
+        }
+    }
 
+    //저장할까요?
+    public void WriteYN()
+    {
+        noteWriteYN_obj.SetActive(true);
+    }
+
+    //쓰기저장Y
+    public void saveWriteY()
+    {
+        PlayerPrefs.SetString("notewrite1p" + notePageNum_i, input_txt.text);
+        PlayerPrefs.SetInt("checkwrite1p" + notePageNum_i, 1);
+        noteWriteYN_obj.SetActive(false);
+    }
+
+    //쓰기저장N
+    public void saveWriteN()
+    {
+        noteWriteYN_obj.SetActive(false);
     }
 
     //커버열기
@@ -89,6 +121,7 @@ public class NoteStoreFunction : MonoBehaviour {
         showCover_obj.SetActive(false);
         notePageNum_i = 1;
         noteLBtn_obj.SetActive(true);
+        WritedPage();
     }
 
     //다음장넘기기
@@ -120,6 +153,7 @@ public class NoteStoreFunction : MonoBehaviour {
             noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
+        WritedPage();
     }
 
     //뒷장넘기기
@@ -147,6 +181,7 @@ public class NoteStoreFunction : MonoBehaviour {
             noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
+        WritedPage();
     }
 
 
