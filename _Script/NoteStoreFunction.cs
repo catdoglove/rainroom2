@@ -14,6 +14,8 @@ public class NoteStoreFunction : MonoBehaviour {
     Color color;
     string str;
 
+    public InputField inputfieldNote;
+
     public Text page_txt,writePage_txt,input_txt;
     public GameObject input_obj;
     // Use this for initialization
@@ -47,6 +49,20 @@ public class NoteStoreFunction : MonoBehaviour {
             noteWindow_obj.SetActive(true);
         }
 
+    }
+
+    public void checkNoteLine()
+    {
+        string ipstr = input_txt.text;
+
+        int k = input_txt.cachedTextGenerator.lineCount;
+        int kn = ipstr.Length;
+        kn--;
+        if (k >= 9)
+        {
+            inputfieldNote.Select();
+            inputfieldNote.text = "" + ipstr.Substring(0, kn);
+        }
     }
 
     //연필을 가지고 있나?
@@ -204,7 +220,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //스페이드 얻기
     public void GetSpade()
     {
-        int spade = PlayerPrefs.GetInt(str + "spd", 0);
+        int spade = PlayerPrefs.GetInt(str + "sd", 0);
         if(PlayerPrefs.GetInt("outspade", 0) == 1)
         {
             
