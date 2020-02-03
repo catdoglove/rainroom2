@@ -58,10 +58,9 @@ public class NoteStoreFunction : MonoBehaviour {
         int k = input_txt.cachedTextGenerator.lineCount;
         int kn = ipstr.Length;
         kn--;
-        if (k >= 9)
+        if (k > 10)
         {
-            inputfieldNote.Select();
-            inputfieldNote.text = "" + ipstr.Substring(0, kn);
+            StartCoroutine("noteLine");
         }
     }
 
@@ -217,8 +216,27 @@ public class NoteStoreFunction : MonoBehaviour {
         noteToast_obj.SetActive(false);
     }
 
-    //스페이드 얻기
-    public void GetSpade()
+    IEnumerator noteLine()
+    {
+        int k = input_txt.cachedTextGenerator.lineCount;
+        while (k > 10)
+        {
+            string ipstr = input_txt.text;
+            k = input_txt.cachedTextGenerator.lineCount;
+            int kn = ipstr.Length;
+            ipstr = input_txt.text;
+            inputfieldNote.Select();
+            kn = ipstr.Length;
+            kn--;
+            inputfieldNote.text = "" + ipstr.Substring(0, kn);
+            k = input_txt.cachedTextGenerator.lineCount;
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+        //스페이드 얻기
+        public void GetSpade()
     {
         int spade = PlayerPrefs.GetInt(str + "sd", 0);
         if(PlayerPrefs.GetInt("outspade", 0) == 1)
