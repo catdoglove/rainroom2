@@ -10,7 +10,7 @@ public class NoteStoreFunction : MonoBehaviour {
     public Sprite noteImgPage_spr, noteImgCover_spr;
     public Sprite[] noteBtn_spr;
     public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
-    public GameObject showPage_obj, showCover_obj;
+    public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj;
     Color color;
     string str;
 
@@ -67,7 +67,6 @@ public class NoteStoreFunction : MonoBehaviour {
     //연필을 가지고 있나?
     void CheckPencle()
     {
-
         if (PlayerPrefs.GetInt("penclenum", 0) >= 1)
         {
             noteWriteToastBtn_obj.SetActive(false);
@@ -106,6 +105,17 @@ public class NoteStoreFunction : MonoBehaviour {
             writePage_txt.text = "";
             input_obj.SetActive(true);
         }
+    }
+    //저장하기 버튼 띄우기
+    public void showOKBtn()
+    {
+        noteWriteOKBtn_obj.SetActive(true);
+    }
+
+    //저장하기 버튼 지우기
+    public void CloseOKBtn()
+    {
+        noteWriteOKBtn_obj.SetActive(true);
     }
 
     //저장할까요?
@@ -216,6 +226,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteToast_obj.SetActive(false);
     }
 
+    //줄정리
     IEnumerator noteLine()
     {
         int k = input_txt.cachedTextGenerator.lineCount;
@@ -235,14 +246,46 @@ public class NoteStoreFunction : MonoBehaviour {
         }
     }
 
-        //스페이드 얻기
-        public void GetSpade()
+    //나갔다 오면 스페이드 얻기
+    public void GetSpade()
     {
         int spade = PlayerPrefs.GetInt(str + "sd", 0);
-        if(PlayerPrefs.GetInt("outspade", 0) == 1)
+        int sh = 0;
+        if (PlayerPrefs.GetInt("outspade", 0) == 1)
         {
-            
-        }
+            sh = Random.Range(0, 100);
+            if (sh > 4)
+            {
+                //1~2개획득
+                sh = Random.Range(0, 10);
+                if (sh >= 7)
+                {
+                    //2개
+                    spade = spade + 2;
+                }
+                else
+                {
+                    //1개
+                    spade = spade + 2;
+                }
+            }
+            else
+            {
+                //3~5개획득
+                sh = Random.Range(0, 11);
+                if (sh == 1)
+                {
+                    //5개
+                    spade = spade + 5;
+                }
+                else
+                {
+                    //3,4개
+                    spade = spade + Random.Range(3, 5);
+                }
+            }
+            PlayerPrefs.SetInt(str + "sd", spade);
+        }//endofif
     }
 
 }
