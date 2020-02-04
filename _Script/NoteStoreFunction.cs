@@ -10,14 +10,16 @@ public class NoteStoreFunction : MonoBehaviour {
     public Sprite noteImgPage_spr, noteImgCover_spr;
     public Sprite[] noteBtn_spr;
     public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
-    public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj;
+    public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj, startWriteBtn_obj;
     Color color;
+    
     string str;
 
     public InputField inputfieldNote;
 
-    public Text page_txt,writePage_txt,input_txt;
-    public GameObject input_obj;
+    public Text page_txt, writePage_txt, input_txt, lineTest_txt;
+    public GameObject input_obj, writePage_obj,page_obj;
+    public GameObject noteHelp_obj;
     // Use this for initialization
     void Start () {
 
@@ -58,9 +60,16 @@ public class NoteStoreFunction : MonoBehaviour {
         int k = input_txt.cachedTextGenerator.lineCount;
         int kn = ipstr.Length;
         kn--;
+
         if (k > 10)
         {
+
+            StopCoroutine("noteLine");
             StartCoroutine("noteLine");
+        }
+        else
+        {
+            StopCoroutine("noteLine");
         }
     }
 
@@ -94,14 +103,17 @@ public class NoteStoreFunction : MonoBehaviour {
     void WritedPage()
     {
         string notestr= PlayerPrefs.GetString("notewrite1p"+ notePageNum_i, "");
+        
         int note_i = PlayerPrefs.GetInt("checkwrite1p" + notePageNum_i, 0);
         if (note_i == 1)
         {
+            writePage_obj.SetActive(true);
             writePage_txt.text = notestr;
             input_obj.SetActive(false);
         }
         else
         {
+            writePage_obj.SetActive(false);
             writePage_txt.text = "";
             input_obj.SetActive(true);
         }
@@ -109,13 +121,19 @@ public class NoteStoreFunction : MonoBehaviour {
     //저장하기 버튼 띄우기
     public void showOKBtn()
     {
+        inputfieldNote.Select();
+        startWriteBtn_obj.SetActive(false);
         noteWriteOKBtn_obj.SetActive(true);
+        page_obj.SetActive(false);
     }
 
     //저장하기 버튼 지우기
     public void CloseOKBtn()
     {
-        noteWriteOKBtn_obj.SetActive(true);
+        page_obj.SetActive(true);
+        startWriteBtn_obj.SetActive(true);
+        noteWriteOKBtn_obj.SetActive(false);
+        inputfieldNote.text = "";
     }
 
     //저장할까요?
@@ -127,15 +145,100 @@ public class NoteStoreFunction : MonoBehaviour {
     //쓰기저장Y
     public void saveWriteY()
     {
+
+        if (PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        {
+
+        }
+        //PlayerPrefs.SetString("notewrite1p" + notePageNum_i, input_txt.text);
+
         PlayerPrefs.SetString("notewrite1p" + notePageNum_i, input_txt.text);
         PlayerPrefs.SetInt("checkwrite1p" + notePageNum_i, 1);
         noteWriteYN_obj.SetActive(false);
+        noteWriteOKBtn_obj.SetActive(false);
+        writePage_txt.text = input_txt.text;
+        writePage_obj.SetActive(true);
+        input_obj.SetActive(false);
+        StopCoroutine("noteLine");
+        inputfieldNote.text = "";
+        page_obj.SetActive(true);
     }
-
     //쓰기저장N
     public void saveWriteN()
     {
         noteWriteYN_obj.SetActive(false);
+    }
+
+    //1권선택
+    public void note1()
+    {
+        noteBookNum_i = 1;
+        ClearNote();
+    }
+    //2권선택
+    public void note2()
+    {
+        noteBookNum_i = 2;
+        ClearNote();
+    }
+    //3권선택
+    public void note3()
+    {
+        noteBookNum_i = 3;
+        ClearNote();
+    }
+
+    //다른 노트를 선택했을때 초기화 클리어
+    void ClearNote()
+    {
+        notePageNum_i = 0;
+        inputfieldNote.text = "";
+        lineTest_txt.text = "";
+        noteWindowImg_obj.GetComponent<Image>().sprite = noteImgCover_spr;
+        showPage_obj.SetActive(false);
+        showCover_obj.SetActive(true);
+        notePageNum_i = 0;
+        noteLBtn_obj.SetActive(false);
+        noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+    }
+
+    //도움말 열기
+    public void ShowHelp()
+    {
+        noteHelp_obj.SetActive(true);
+    }
+
+    //도움말 닫기
+    public void CloseHelp()
+    {
+        noteHelp_obj.SetActive(true);
+    }
+
+    //지울까요?
+    public void DeletWriteYN()
+    {
+        noteDeletYN_obj.SetActive(true);
+
+    }
+
+
+    //지울까Y
+    public void DeletWriteY()
+    {
+        PlayerPrefs.SetString("notewrite1p" + notePageNum_i, "");
+        PlayerPrefs.SetInt("checkwrite1p" + notePageNum_i, 0);
+        noteDeletYN_obj.SetActive(false);
+        writePage_txt.text = "";
+        writePage_obj.SetActive(false);
+        input_obj.SetActive(true);
+        startWriteBtn_obj.SetActive(true);
+        inputfieldNote.text = "";
+    }
+
+    //지울까N
+    public void DeletWriteN()
+    {
+        noteDeletYN_obj.SetActive(false);
     }
 
     //커버열기
@@ -147,6 +250,7 @@ public class NoteStoreFunction : MonoBehaviour {
         notePageNum_i = 1;
         noteLBtn_obj.SetActive(true);
         WritedPage();
+        page_txt.text = "" + notePageNum_i + "/30";
     }
 
     //다음장넘기기
@@ -178,6 +282,8 @@ public class NoteStoreFunction : MonoBehaviour {
             noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
+        inputfieldNote.text = "";
+        lineTest_txt.text = "";
         WritedPage();
     }
 
@@ -206,6 +312,8 @@ public class NoteStoreFunction : MonoBehaviour {
             noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
+        inputfieldNote.text = "";
+        lineTest_txt.text = "";
         WritedPage();
     }
 
@@ -233,14 +341,25 @@ public class NoteStoreFunction : MonoBehaviour {
         while (k > 10)
         {
             string ipstr = input_txt.text;
-            k = input_txt.cachedTextGenerator.lineCount;
-            int kn = ipstr.Length;
             ipstr = input_txt.text;
             inputfieldNote.Select();
-            kn = ipstr.Length;
+            int kn = ipstr.Length;
             kn--;
+            kn--;
+            if (kn < 0)
+            {
+                kn = 0;
+            }
             inputfieldNote.text = "" + ipstr.Substring(0, kn);
-            k = input_txt.cachedTextGenerator.lineCount;
+            lineTest_txt.text = "" + ipstr.Substring(0, kn);
+            k = lineTest_txt.cachedTextGenerator.lineCount;
+
+            //Debug.Log("" + lineTest_txt.text);
+            //Debug.Log("" + kn);
+            //Debug.Log("" + k);
+            if (k<=10)
+            {
+            }
 
             yield return new WaitForSeconds(0.2f);
         }
