@@ -10,6 +10,8 @@ public class NoteShop : MonoBehaviour {
     Color color;
     string str;
 
+    public int priceShop_i;
+
     public int noteShopNum_i;
 
     // Use this for initialization
@@ -68,6 +70,11 @@ public class NoteShop : MonoBehaviour {
     public void NoteShopBuyY()
     {
         int spade = PlayerPrefs.GetInt(str + "sd", 0);
+        priceShop_i = 0;
+        if (spade >= priceShop_i)
+        {
+
+        }
         noteShopBuyYN_obj.SetActive(false);
     }
     //안산다
