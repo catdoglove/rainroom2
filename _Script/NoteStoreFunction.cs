@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class NoteStoreFunction : MonoBehaviour {
 
     public int noteBookNum_i, notePageNum_i;
-    public GameObject noteWindow_obj, noteWriteYN_obj, noteDeletYN_obj, noteWood_obj, noteWindowImg_obj;
+    public GameObject noteWindow_obj, noteWriteYN_obj, noteDeletYN_obj, noteWood_obj, noteWindowImg_obj,noteC_obj;
     public Sprite noteImgPage_spr, noteImgCover_spr;
-    public Sprite[] noteBtn_spr;
+    public Sprite[] noteBtn_spr, noteCImg_spr;
     public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
     public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj, startWriteBtn_obj;
     Color color;
@@ -20,6 +20,11 @@ public class NoteStoreFunction : MonoBehaviour {
     public Text page_txt, writePage_txt, input_txt, lineTest_txt;
     public GameObject input_obj, writePage_obj,page_obj;
     public GameObject noteHelp_obj;
+
+    //노트권선택
+    public GameObject[] noteBooks_obj;
+    public Sprite[] noteColor_spr, notePageColor_spr;
+
     // Use this for initialization
     void Start () {
 
@@ -27,10 +32,6 @@ public class NoteStoreFunction : MonoBehaviour {
         str = PlayerPrefs.GetString("code", "");
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     //책을 구매해서 선반이 나와있나?
     public void NoteWoodCheck()
@@ -41,7 +42,31 @@ public class NoteStoreFunction : MonoBehaviour {
     //열기닫기 노트창
     public void ActNote()
     {
+        StopCoroutine("moveC");
+        StartCoroutine("moveC");
+        //연필체크
         CheckPencle();
+        //열때 초기화
+        noteBookNum_i = 1;
+        noteBooks_obj[1].SetActive(false);
+        noteBooks_obj[2].SetActive(true);
+        noteBooks_obj[3].SetActive(true);
+        //페이지수
+        notePageNum_i = 0;
+        //입력필드텍스트
+        inputfieldNote.text = "";
+        lineTest_txt.text = "";
+        //커버이미지
+        noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+        //페이지 닫기
+        showPage_obj.SetActive(false);
+        //커버 열기
+        showCover_obj.SetActive(true);
+        //페이지 넘기기 버튼
+        noteLBtn_obj.SetActive(false);
+        noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+
+        //노트키기
         if (noteWindow_obj.activeSelf == true)
         {
             noteWindow_obj.SetActive(false);
@@ -53,10 +78,10 @@ public class NoteStoreFunction : MonoBehaviour {
 
     }
 
+    //줄수체크
     public void checkNoteLine()
     {
         string ipstr = input_txt.text;
-
         int k = input_txt.cachedTextGenerator.lineCount;
         int kn = ipstr.Length;
         kn--;
@@ -76,7 +101,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //연필을 가지고 있나?
     void CheckPencle()
     {
-        if (PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        if (PlayerPrefs.GetInt("pencilnum", 0) >= 1)
         {
             noteWriteToastBtn_obj.SetActive(false);
         }
@@ -89,7 +114,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //토스트버튼
     public void WritePage()
     {
-        if(PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        if(PlayerPrefs.GetInt("pencilnum", 0) >= 1)
         {
 
         }
@@ -102,9 +127,9 @@ public class NoteStoreFunction : MonoBehaviour {
     //쓰여진 페이지
     void WritedPage()
     {
-        string notestr= PlayerPrefs.GetString("notewrite1p"+ notePageNum_i, "");
+        string notestr= PlayerPrefs.GetString("notewrite" + noteBookNum_i + "p" + notePageNum_i, "");
         
-        int note_i = PlayerPrefs.GetInt("checkwrite1p" + notePageNum_i, 0);
+        int note_i = PlayerPrefs.GetInt("checkwrite" + noteBookNum_i + "p" + notePageNum_i, 0);
         if (note_i == 1)
         {
             writePage_obj.SetActive(true);
@@ -146,14 +171,14 @@ public class NoteStoreFunction : MonoBehaviour {
     public void saveWriteY()
     {
 
-        if (PlayerPrefs.GetInt("penclenum", 0) >= 1)
+        if (PlayerPrefs.GetInt("pencilnum", 0) >= 1)
         {
 
         }
         //PlayerPrefs.SetString("notewrite1p" + notePageNum_i, input_txt.text);
 
-        PlayerPrefs.SetString("notewrite1p" + notePageNum_i, input_txt.text);
-        PlayerPrefs.SetInt("checkwrite1p" + notePageNum_i, 1);
+        PlayerPrefs.SetString("notewrite" + noteBookNum_i + "p" + notePageNum_i, input_txt.text);
+        PlayerPrefs.SetInt("checkwrite" + noteBookNum_i + "p" + notePageNum_i, 1);
         noteWriteYN_obj.SetActive(false);
         noteWriteOKBtn_obj.SetActive(false);
         writePage_txt.text = input_txt.text;
@@ -162,6 +187,8 @@ public class NoteStoreFunction : MonoBehaviour {
         StopCoroutine("noteLine");
         inputfieldNote.text = "";
         page_obj.SetActive(true);
+        //쓴후 연필체크
+        CheckPencle();
     }
     //쓰기저장N
     public void saveWriteN()
@@ -191,13 +218,22 @@ public class NoteStoreFunction : MonoBehaviour {
     //다른 노트를 선택했을때 초기화 클리어
     void ClearNote()
     {
+        noteBooks_obj[1].SetActive(true);
+        noteBooks_obj[2].SetActive(true);
+        noteBooks_obj[3].SetActive(true);
+        noteBooks_obj[noteBookNum_i].SetActive(false);
+        //페이지수
         notePageNum_i = 0;
+        //입력필드텍스트
         inputfieldNote.text = "";
         lineTest_txt.text = "";
-        noteWindowImg_obj.GetComponent<Image>().sprite = noteImgCover_spr;
+        //커버이미지
+        noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+        //페이지 닫기
         showPage_obj.SetActive(false);
+        //커버 열기
         showCover_obj.SetActive(true);
-        notePageNum_i = 0;
+        //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
         noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
     }
@@ -211,7 +247,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //도움말 닫기
     public void CloseHelp()
     {
-        noteHelp_obj.SetActive(true);
+        noteHelp_obj.SetActive(false);
     }
 
     //지울까요?
@@ -225,8 +261,8 @@ public class NoteStoreFunction : MonoBehaviour {
     //지울까Y
     public void DeletWriteY()
     {
-        PlayerPrefs.SetString("notewrite1p" + notePageNum_i, "");
-        PlayerPrefs.SetInt("checkwrite1p" + notePageNum_i, 0);
+        PlayerPrefs.SetString("notewrite" + noteBookNum_i + "p" + + notePageNum_i, "");
+        PlayerPrefs.SetInt("checkwrite" + noteBookNum_i + "p" + + notePageNum_i, 0);
         noteDeletYN_obj.SetActive(false);
         writePage_txt.text = "";
         writePage_obj.SetActive(false);
@@ -244,7 +280,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //커버열기
     public void OpenCover()
     {
-        noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+        noteWindowImg_obj.GetComponent<Image>().sprite = notePageColor_spr[noteBookNum_i];
         showPage_obj.SetActive(true);
         showCover_obj.SetActive(false);
         notePageNum_i = 1;
@@ -258,7 +294,7 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         if (notePageNum_i == 0)
         {
-            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+            noteWindowImg_obj.GetComponent<Image>().sprite = notePageColor_spr[noteBookNum_i];
             showPage_obj.SetActive(true);
             showCover_obj.SetActive(false);
             notePageNum_i++;
@@ -273,7 +309,7 @@ public class NoteStoreFunction : MonoBehaviour {
         }
         else
         {
-            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgPage_spr;
+            noteWindowImg_obj.GetComponent<Image>().sprite = notePageColor_spr[noteBookNum_i];
             showPage_obj.SetActive(true);
             showCover_obj.SetActive(false);
             notePageNum_i++;
@@ -293,7 +329,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         if (notePageNum_i == 1)
         {
-            noteWindowImg_obj.GetComponent<Image>().sprite = noteImgCover_spr;
+            noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
             showPage_obj.SetActive(false);
             showCover_obj.SetActive(true);
             notePageNum_i--;
@@ -315,6 +351,21 @@ public class NoteStoreFunction : MonoBehaviour {
         inputfieldNote.text = "";
         lineTest_txt.text = "";
         WritedPage();
+    }
+
+
+    //캐릭터움직임
+    IEnumerator moveC()
+    {
+        int s=0;
+        
+        while (s==0)
+        {
+            noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[0];
+            yield return new WaitForSeconds(0.8f);
+            noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[1];
+            yield return new WaitForSeconds(0.8f);
+        }
     }
 
 
