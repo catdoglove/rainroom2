@@ -32189,7 +32189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &597126862
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40544,7 +40544,7 @@ RectTransform:
   m_Children:
   - {fileID: 1599239249}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41918,7 +41918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &777289209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55936,7 +55936,7 @@ RectTransform:
   - {fileID: 593879007}
   - {fileID: 303178932}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -71232,7 +71232,7 @@ RectTransform:
   - {fileID: 957047372}
   - {fileID: 1904536173}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -74379,7 +74379,7 @@ RectTransform:
   m_Children:
   - {fileID: 2032445541}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -100665,13 +100665,13 @@ RectTransform:
   - {fileID: 1876557692}
   - {fileID: 1777087650}
   - {fileID: 100173638}
+  - {fileID: 2065566546}
   - {fileID: 1961590870}
   - {fileID: 753627550}
   - {fileID: 1000894770}
   - {fileID: 1348517181}
   - {fileID: 2062230209}
   - {fileID: 1299472676}
-  - {fileID: 2065566546}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109874,7 +109874,7 @@ Transform:
   - {fileID: 474348007}
   - {fileID: 563306567}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961979779
 GameObject:
@@ -114420,7 +114420,7 @@ RectTransform:
   m_LocalScale: {x: 1.0001419, y: 1.0001419, z: 1.0001419}
   m_Children: []
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -114788,7 +114788,7 @@ RectTransform:
   - {fileID: 1120030068}
   - {fileID: 1873384193}
   m_Father: {fileID: 1781705875}
-  m_RootOrder: 34
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -117739,7 +117739,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD544\uAE30\uAD6C\uAC00 \uC5C6\uB2E4."
+  m_Text: "\uADF8\uAC78 \uD558\uAE30\uC5D0\uB294 \uBAA8\uC790\uB77C\uB2E4."
 --- !u!222 &2122312984
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -119011,6 +119011,9 @@ MonoBehaviour:
   noteWood_obj: {fileID: 777289208}
   noteWindowImg_obj: {fileID: 530446133}
   noteC_obj: {fileID: 1014683009}
+  eraser_obj: {fileID: 730018675}
+  pencil_obj: {fileID: 78131039}
+  noteOn_obj: {fileID: 0}
   noteImgPage_spr: {fileID: 21300000, guid: e4ab13ed7f814ea42813706444ec894d, type: 3}
   noteImgCover_spr: {fileID: 21300000, guid: a71a68a17fa16c34cb629f0161f144f3, type: 3}
   noteBtn_spr:
@@ -119019,6 +119022,11 @@ MonoBehaviour:
   noteCImg_spr:
   - {fileID: 21300000, guid: a89f58807a9bef64aa67534761803403, type: 3}
   - {fileID: 21300002, guid: a89f58807a9bef64aa67534761803403, type: 3}
+  noteImg_spr:
+  - {fileID: 21300000, guid: 9bac4050626368e4db96d96ae4c0f1ba, type: 3}
+  - {fileID: 21300002, guid: 9bac4050626368e4db96d96ae4c0f1ba, type: 3}
+  - {fileID: 21300004, guid: 9bac4050626368e4db96d96ae4c0f1ba, type: 3}
+  - {fileID: 21300006, guid: 9bac4050626368e4db96d96ae4c0f1ba, type: 3}
   noteToast_obj: {fileID: 1873384192}
   noteRBtn_obj: {fileID: 19755820}
   noteLBtn_obj: {fileID: 700263829}
@@ -119033,6 +119041,9 @@ MonoBehaviour:
   writePage_txt: {fileID: 458448962}
   input_txt: {fileID: 1760734934}
   lineTest_txt: {fileID: 66454225}
+  eraseNum_txt: {fileID: 536517058}
+  pencilNum_txt: {fileID: 1926546885}
+  need_txt: {fileID: 2122312983}
   input_obj: {fileID: 1227132144}
   writePage_obj: {fileID: 458448961}
   page_obj: {fileID: 2113914821}
@@ -120223,7 +120234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2144280394
 RectTransform:
   m_ObjectHideFlags: 0

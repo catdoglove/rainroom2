@@ -8,13 +8,16 @@ public class NoteShop : MonoBehaviour {
     public GameObject noteShopWindow_obj, noteShopBuyYN_obj, noteShopHelp_obj;
     public GameObject noteShopSign_obj, noteToast_obj, noteNum_obj;
     Color color;
-    string str;
+    string str,note_str;
+
+    public GameObject noteBtn_obj;
+    public Sprite[] note_spr;
 
     public int priceShop_i;
 
     public int noteShopNum_i;
 
-    public Text name_txt;
+    public Text name_txt,spade_txt;
     // Use this for initialization
     void Start () {
 
@@ -25,11 +28,10 @@ public class NoteShop : MonoBehaviour {
     //문방구 열기
     public void ActNoteShop()
     {
+        //임시테스트
+        GetSpade();
         //노트 몇권가지고 있나?
-        if (PlayerPrefs.GetInt("havenote", 0)>=2)
-        {
-
-        }
+        CheckNoteNum();
         if (noteShopWindow_obj.activeSelf == true)
         {
             noteShopWindow_obj.SetActive(false);
@@ -45,6 +47,7 @@ public class NoteShop : MonoBehaviour {
         noteShopNum_i = 0;
         priceShop_i = 10;
         name_txt.text = "공책";
+        note_str = "havenotenum";
         noteShopBuyYN_obj.SetActive(true);
     }
     //지우개
@@ -53,6 +56,7 @@ public class NoteShop : MonoBehaviour {
         noteShopNum_i = 1;
         priceShop_i = 2;
         name_txt.text = "지우개";
+        note_str = "erasernum";
         noteShopBuyYN_obj.SetActive(true);
     }
 
@@ -62,6 +66,7 @@ public class NoteShop : MonoBehaviour {
         noteShopNum_i = 2;
         priceShop_i = 2;
         name_txt.text = "필기구";
+        note_str = "pencilnum";
         noteShopBuyYN_obj.SetActive(true);
     }
 
@@ -82,18 +87,40 @@ public class NoteShop : MonoBehaviour {
     public void NoteShopBuyY()
     {
         int spade = PlayerPrefs.GetInt(str + "sd", 0);
-        priceShop_i = 0;
+        //priceShop_i = 0;
         if (spade >= priceShop_i)
         {
             spade = spade - priceShop_i;
             PlayerPrefs.SetInt(str + "sd", spade);
+            int k = PlayerPrefs.GetInt(note_str, 0);
+            k++;
+            PlayerPrefs.SetInt(note_str, k);
+            PlayerPrefs.Save();
+
         }
         else
         {
             StopCoroutine("needSpadeFadeOut");
             StartCoroutine("needSpadeFadeOut");
         }
+        // 공책변경
+        CheckNoteNum();
         noteShopBuyYN_obj.SetActive(false);
+    }
+
+    void CheckNoteNum()
+    {
+        //공책 이미지 변경 및 버튼 비활성화
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 3)
+        {
+            noteBtn_obj.SetActive(false);
+            noteBtn_obj.GetComponent<Image>().sprite = note_spr[3];
+        }
+        else
+        {
+            noteBtn_obj.GetComponent<Image>().sprite = note_spr[PlayerPrefs.GetInt("havenotenum", 0)];
+        }
+        spade_txt.text = "" + PlayerPrefs.GetInt(str + "sd", 0);
     }
     //안산다
     public void NoteShopBuyN()
@@ -116,5 +143,48 @@ public class NoteShop : MonoBehaviour {
             yield return null;
         }
         noteToast_obj.SetActive(false);
+    }
+
+
+    //문방구로 오면 스페이드 얻기
+    public void GetSpade()
+    {
+        int spade = PlayerPrefs.GetInt(str + "sd", 0);
+        int sh = 0;
+        //if (PlayerPrefs.GetInt("outspade", 0) == 1)
+        //{
+            sh = Random.Range(0, 100);
+            if (sh > 4)
+            {
+                //1~2개획득
+                sh = Random.Range(0, 10);
+                if (sh >= 7)
+                {
+                    //2개
+                    spade = spade + 2;
+                }
+                else
+                {
+                    //1개
+                    spade = spade + 2;
+                }
+            }
+            else
+            {
+                //3~5개획득
+                sh = Random.Range(0, 11);
+                if (sh == 1)
+                {
+                    //5개
+                    spade = spade + 5;
+                }
+                else
+                {
+                    //3,4개
+                    spade = spade + Random.Range(3, 5);
+                }
+            }
+            PlayerPrefs.SetInt(str + "sd", spade);
+        //}//endofif
     }
 }

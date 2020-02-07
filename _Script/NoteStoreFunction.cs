@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class NoteStoreFunction : MonoBehaviour {
 
     public int noteBookNum_i, notePageNum_i;
-    public GameObject noteWindow_obj, noteWriteYN_obj, noteDeletYN_obj, noteWood_obj, noteWindowImg_obj,noteC_obj;
+    public GameObject noteWindow_obj, noteWriteYN_obj, noteDeletYN_obj, noteWood_obj, noteWindowImg_obj,noteC_obj, eraser_obj, pencil_obj, noteOn_obj;
     public Sprite noteImgPage_spr, noteImgCover_spr;
-    public Sprite[] noteBtn_spr, noteCImg_spr;
+    public Sprite[] noteBtn_spr, noteCImg_spr,noteImg_spr;
     public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
     public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj, startWriteBtn_obj;
     Color color;
@@ -17,7 +17,7 @@ public class NoteStoreFunction : MonoBehaviour {
 
     public InputField inputfieldNote;
 
-    public Text page_txt, writePage_txt, input_txt, lineTest_txt;
+    public Text page_txt, writePage_txt, input_txt, lineTest_txt,eraseNum_txt,pencilNum_txt,need_txt;
     public GameObject input_obj, writePage_obj,page_obj;
     public GameObject noteHelp_obj;
 
@@ -30,13 +30,18 @@ public class NoteStoreFunction : MonoBehaviour {
 
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
+        NoteWoodCheck();
     }
 	
 
     //책을 구매해서 선반이 나와있나?
     public void NoteWoodCheck()
     {
-        noteWood_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 1)
+        {
+            noteWood_obj.SetActive(true);
+            noteOn_obj.GetComponent<Image>().sprite = noteImg_spr[PlayerPrefs.GetInt("havenotenum", 0)];
+        }
     }
 
     //열기닫기 노트창
@@ -48,16 +53,15 @@ public class NoteStoreFunction : MonoBehaviour {
         CheckPencle();
         //열때 초기화
         noteBookNum_i = 1;
+        CheckHaveNote();
         noteBooks_obj[1].SetActive(false);
-        noteBooks_obj[2].SetActive(true);
-        noteBooks_obj[3].SetActive(true);
         //페이지수
         notePageNum_i = 0;
         //입력필드텍스트
         inputfieldNote.text = "";
         lineTest_txt.text = "";
         //커버이미지
-        noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+        showCover();
         //페이지 닫기
         showPage_obj.SetActive(false);
         //커버 열기
@@ -70,12 +74,55 @@ public class NoteStoreFunction : MonoBehaviour {
         if (noteWindow_obj.activeSelf == true)
         {
             noteWindow_obj.SetActive(false);
+            StopCoroutine("moveC");
         }
         else
         {
             noteWindow_obj.SetActive(true);
+
+            //연필 지우개 이미지 켜기
+            showpen();
         }
 
+    }
+
+    void showpen()
+    {
+        //연필 지우개 이미지 켜기
+        if (PlayerPrefs.GetInt("pencilnum", 0) >= 1)
+        {
+            eraser_obj.SetActive(true);
+        }
+        else
+        {
+            eraser_obj.SetActive(false);
+        }
+
+        if (PlayerPrefs.GetInt("erasernum", 0) >= 1)
+        {
+            pencil_obj.SetActive(true);
+        }
+        else
+        {
+            pencil_obj.SetActive(false);
+        }
+    }
+
+    //공책을 몇개 샀나?
+    void CheckHaveNote()
+    {
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 1)
+        {
+            noteBooks_obj[1].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 2)
+        {
+            noteBooks_obj[2].SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 3)
+        {
+            noteBooks_obj[3].SetActive(true);
+        }
     }
 
     //줄수체크
@@ -218,9 +265,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //다른 노트를 선택했을때 초기화 클리어
     void ClearNote()
     {
-        noteBooks_obj[1].SetActive(true);
-        noteBooks_obj[2].SetActive(true);
-        noteBooks_obj[3].SetActive(true);
+        CheckHaveNote();
         noteBooks_obj[noteBookNum_i].SetActive(false);
         //페이지수
         notePageNum_i = 0;
@@ -228,7 +273,7 @@ public class NoteStoreFunction : MonoBehaviour {
         inputfieldNote.text = "";
         lineTest_txt.text = "";
         //커버이미지
-        noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+        showCover();
         //페이지 닫기
         showPage_obj.SetActive(false);
         //커버 열기
@@ -253,6 +298,11 @@ public class NoteStoreFunction : MonoBehaviour {
     //지울까요?
     public void DeletWriteYN()
     {
+
+        if (PlayerPrefs.GetInt("erasernum", 0) >= 1)
+        {
+
+        }
         noteDeletYN_obj.SetActive(true);
 
     }
@@ -322,6 +372,15 @@ public class NoteStoreFunction : MonoBehaviour {
         lineTest_txt.text = "";
         WritedPage();
     }
+    //커버정보초기화 이미지 변경
+    void showCover()
+    {
+        noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+        eraseNum_txt.text = ""+ PlayerPrefs.GetInt("erasernum", 0);
+        pencilNum_txt.text = "" + PlayerPrefs.GetInt("pencilnum", 0);
+        //제목
+
+    }
 
     //뒷장넘기기
     public void BackPage()
@@ -329,7 +388,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         if (notePageNum_i == 1)
         {
-            noteWindowImg_obj.GetComponent<Image>().sprite = noteColor_spr[noteBookNum_i];
+            showCover();
             showPage_obj.SetActive(false);
             showCover_obj.SetActive(true);
             notePageNum_i--;
@@ -372,6 +431,24 @@ public class NoteStoreFunction : MonoBehaviour {
     //연필없다
     IEnumerator toastPencleImgFadeOut()
     {
+        need_txt.text = "필기구가 없다.";
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        noteToast_obj.GetComponent<Image>().color = color;
+        noteToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            noteToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        noteToast_obj.SetActive(false);
+    }
+
+    //지우개없다
+    IEnumerator toastEraserImgFadeOut()
+    {
+        need_txt.text = "지우개가 없다.";
         color.a = Mathf.Lerp(0f, 1f, 1f);
         noteToast_obj.GetComponent<Image>().color = color;
         noteToast_obj.SetActive(true);
@@ -416,46 +493,5 @@ public class NoteStoreFunction : MonoBehaviour {
         }
     }
 
-    //나갔다 오면 스페이드 얻기
-    public void GetSpade()
-    {
-        int spade = PlayerPrefs.GetInt(str + "sd", 0);
-        int sh = 0;
-        if (PlayerPrefs.GetInt("outspade", 0) == 1)
-        {
-            sh = Random.Range(0, 100);
-            if (sh > 4)
-            {
-                //1~2개획득
-                sh = Random.Range(0, 10);
-                if (sh >= 7)
-                {
-                    //2개
-                    spade = spade + 2;
-                }
-                else
-                {
-                    //1개
-                    spade = spade + 2;
-                }
-            }
-            else
-            {
-                //3~5개획득
-                sh = Random.Range(0, 11);
-                if (sh == 1)
-                {
-                    //5개
-                    spade = spade + 5;
-                }
-                else
-                {
-                    //3,4개
-                    spade = spade + Random.Range(3, 5);
-                }
-            }
-            PlayerPrefs.SetInt(str + "sd", spade);
-        }//endofif
-    }
 
 }
