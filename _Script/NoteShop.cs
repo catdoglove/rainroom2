@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class NoteShop : MonoBehaviour {
 
     public GameObject noteShopWindow_obj, noteShopBuyYN_obj, noteShopHelp_obj;
-    public GameObject noteShopSign_obj, noteToast_obj, noteNum_obj;
+    public GameObject noteShopSign_obj, noteToast_obj;
     Color color;
     string str,note_str;
 
-    public GameObject noteBtn_obj;
+    public GameObject noteBtn_obj, noteImg_obj;
     public Sprite[] note_spr;
 
     public int priceShop_i;
@@ -114,6 +114,7 @@ public class NoteShop : MonoBehaviour {
         if (PlayerPrefs.GetInt("havenotenum", 0) >= 3)
         {
             noteBtn_obj.SetActive(false);
+            noteImg_obj.SetActive(true);
             noteBtn_obj.GetComponent<Image>().sprite = note_spr[3];
         }
         else
@@ -149,42 +150,50 @@ public class NoteShop : MonoBehaviour {
     //문방구로 오면 스페이드 얻기
     public void GetSpade()
     {
+        if (PlayerPrefs.GetInt("outspade", 0) == 1)
+        {
+
+            PlayerPrefs.SetInt("outspade", -1);
+            GetSpadeNum();
+        }
+        else if (PlayerPrefs.GetInt("outspade", 0) == 0)
+        {
+            PlayerPrefs.SetInt("outspade", -3);
+            GetSpadeNum();
+            GetSpadeNum();
+        }
+        else if (PlayerPrefs.GetInt("outspade", 0) == -2)
+        {
+            PlayerPrefs.SetInt("outspade", -3);
+            GetSpadeNum();
+        }
+    }
+
+    void GetSpadeNum()
+    {
         int spade = PlayerPrefs.GetInt(str + "sd", 0);
         int sh = 0;
-        //if (PlayerPrefs.GetInt("outspade", 0) == 1)
-        //{
-            sh = Random.Range(0, 100);
-            if (sh > 4)
+        sh = Random.Range(0, 100);
+        if (sh > 4)
+        {
+            //1~2개획득
+            sh = Random.Range(0, 10);
+            if (sh >= 7)
             {
-                //1~2개획득
-                sh = Random.Range(0, 10);
-                if (sh >= 7)
-                {
-                    //2개
-                    spade = spade + 2;
-                }
-                else
-                {
-                    //1개
-                    spade = spade + 2;
-                }
+                //2개
+                spade = spade + 2;
             }
             else
             {
-                //3~5개획득
-                sh = Random.Range(0, 11);
-                if (sh == 1)
-                {
-                    //5개
-                    spade = spade + 5;
-                }
-                else
-                {
-                    //3,4개
-                    spade = spade + Random.Range(3, 5);
-                }
+                //1개
+                spade = spade + 1;
             }
-            PlayerPrefs.SetInt(str + "sd", spade);
-        //}//endofif
+        }
+        else
+        {
+            spade = spade + 3;
+        }
+        PlayerPrefs.SetInt(str + "sd", spade);
+        PlayerPrefs.Save();
     }
 }

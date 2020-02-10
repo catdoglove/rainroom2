@@ -1878,7 +1878,7 @@ public class MainShop : ShopHandler {
         }
 
         //책상
-        if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
+        if (PlayerPrefs.GetInt("desklv", 0) >= 4 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
             PlayerPrefs.SetInt("reformshop", 1);
@@ -1985,7 +1985,7 @@ public class MainShop : ShopHandler {
         }
 
         //책상
-        if (PlayerPrefs.GetInt("desklv", 0) >= 2 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
+        if (PlayerPrefs.GetInt("desklv", 0) >= 4 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
             PlayerPrefs.SetInt("reformshop", 1);

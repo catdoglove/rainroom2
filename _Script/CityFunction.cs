@@ -18,7 +18,8 @@ public class CityFunction : CavasData
     //밤
     public GameObject dayRoom, dayRoom2;
     public GameObject nightShop_obj, dayShop_obj, helpCity_obj;
-
+    public GameObject noteSign_obj;
+    public Sprite noteSignNight_spr;
     //도움말
     int help=0;
     public Sprite[] helpC_spr;
@@ -51,6 +52,13 @@ public class CityFunction : CavasData
         color = new Color(1f, 1f, 1f);
 
         str = PlayerPrefs.GetString("code", "");
+
+
+        //외출시 스페이드 얻기
+        if (PlayerPrefs.GetInt("outspade", 0) >= 1)
+        {
+            PlayerPrefs.SetInt("outspade", 1);
+        }
 
         //씬이동
         if (menuBlock_obj == null)
@@ -437,6 +445,7 @@ public class CityFunction : CavasData
                 //nightShop_obj.SetActive(true);
                 //dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
+                noteSign_obj.GetComponent<Image>().sprite = noteSignNight_spr;
             }
             else
             {
@@ -462,6 +471,7 @@ public class CityFunction : CavasData
                 //nightShop_obj.SetActive(true);
                 //dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
+                noteSign_obj.GetComponent<Image>().sprite = noteSignNight_spr;
             }
             else
             {

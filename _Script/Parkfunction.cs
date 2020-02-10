@@ -55,6 +55,7 @@ public class Parkfunction : CavasData
         colorP = new Color(1f, 1f, 1f);
         color = new Color(1f, 1f, 1f);
 
+        
         //나뭇잎
         int lf = PlayerPrefs.GetInt("leafcount", 0);
         if (lf >= 100)
@@ -62,6 +63,11 @@ public class Parkfunction : CavasData
             leafPr_obj.SetActive(true);
         }
         
+        //외출시 스페이드 얻기
+        if (PlayerPrefs.GetInt("outspade", 0) >= 1)
+        {
+            PlayerPrefs.SetInt("outspade", 1);
+        }
 
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)

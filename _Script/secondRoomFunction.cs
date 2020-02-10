@@ -158,6 +158,9 @@ public class secondRoomFunction : CavasData
     // Use this for initialization
     void Start()
     {
+        //외출시 스페이드 얻기 초기화
+        PlayerPrefs.SetInt("outspade", 2);
+
         //외출굿즈
         if (PlayerPrefs.GetInt("setoutgoods", 0) > 0)
         {

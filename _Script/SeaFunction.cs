@@ -109,7 +109,17 @@ public class SeaFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+
+        //외출시 스페이드 얻기
+        if (PlayerPrefs.GetInt("outspade", 0) >= 1)
+        {
+            PlayerPrefs.SetInt("outspade", 0);
+        }
+        else if(PlayerPrefs.GetInt("outspade", 0) >= -1)
+        {
+            PlayerPrefs.SetInt("outspade", -2);
+        }
+
         PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();

@@ -10,15 +10,15 @@ public class NoteStoreFunction : MonoBehaviour {
     public Sprite noteImgPage_spr, noteImgCover_spr;
     public Sprite[] noteBtn_spr, noteCImg_spr,noteImg_spr;
     public GameObject noteToast_obj,noteRBtn_obj, noteLBtn_obj, noteWriteToastBtn_obj, noteRBtnImg_obj;
-    public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj, startWriteBtn_obj;
+    public GameObject showPage_obj, showCover_obj, noteWriteOKBtn_obj, startWriteBtn_obj, titleWriteOKBtn_obj, startBtn_obj;
     Color color;
     
     string str;
 
-    public InputField inputfieldNote;
+    public InputField inputfieldNote, inputfieldTitle;
 
-    public Text page_txt, writePage_txt, input_txt, lineTest_txt,eraseNum_txt,pencilNum_txt,need_txt;
-    public GameObject input_obj, writePage_obj,page_obj;
+    public Text page_txt, writePage_txt, input_txt, lineTest_txt, eraseNum_txt, pencilNum_txt, need_txt, title_txt, titleInput_txt;
+    public GameObject input_obj, writePage_obj,page_obj,title_obj, titleTxt_obj;
     public GameObject noteHelp_obj;
 
     //노트권선택
@@ -69,7 +69,8 @@ public class NoteStoreFunction : MonoBehaviour {
         //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
         noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
-
+        //제목 저장불러오기
+        WritedTitle();
         //노트키기
         if (noteWindow_obj.activeSelf == true)
         {
@@ -190,6 +191,26 @@ public class NoteStoreFunction : MonoBehaviour {
             input_obj.SetActive(true);
         }
     }
+
+    //작성된 제목
+    void WritedTitle()
+    {
+        string titlestr = PlayerPrefs.GetString("notewrite" + noteBookNum_i + "t", titleInput_txt.text);
+        int title_i = PlayerPrefs.GetInt("checkwrite" + noteBookNum_i + "t", 0);
+        if (title_i == 1)
+        {
+            titleTxt_obj.SetActive(true);
+            title_txt.text = titlestr;
+            title_obj.SetActive(false);
+        }
+        else
+        {
+            titleTxt_obj.SetActive(false);
+            title_txt.text = "";
+            title_obj.SetActive(true);
+        }
+    }
+
     //저장하기 버튼 띄우기
     public void showOKBtn()
     {
@@ -208,6 +229,36 @@ public class NoteStoreFunction : MonoBehaviour {
         inputfieldNote.text = "";
     }
 
+
+    //제목저장하기 버튼 띄우기
+    public void showTitleOKBtn()
+    {
+        inputfieldTitle.Select();
+        startBtn_obj.SetActive(false);
+        titleWriteOKBtn_obj.SetActive(true);
+    }
+
+    //제목저장하기 버튼 지우기
+    public void CloseTitleOKBtn()
+    {
+        startBtn_obj.SetActive(true);
+        titleWriteOKBtn_obj.SetActive(false);
+        inputfieldTitle.text = "";
+    }
+
+    //제목저장
+    public void SaveTitle()
+    {
+        title_obj.SetActive(false);
+        PlayerPrefs.SetString("notewrite" + noteBookNum_i + "t", titleInput_txt.text);
+        PlayerPrefs.SetInt("checkwrite" + noteBookNum_i + "t", 1);
+        titleTxt_obj.SetActive(true);
+        titleWriteOKBtn_obj.SetActive(false);
+        title_txt.text = titleInput_txt.text;
+    }
+
+
+
     //저장할까요?
     public void WriteYN()
     {
@@ -217,7 +268,6 @@ public class NoteStoreFunction : MonoBehaviour {
     //쓰기저장Y
     public void saveWriteY()
     {
-
         if (PlayerPrefs.GetInt("pencilnum", 0) >= 1)
         {
 
@@ -234,6 +284,12 @@ public class NoteStoreFunction : MonoBehaviour {
         StopCoroutine("noteLine");
         inputfieldNote.text = "";
         page_obj.SetActive(true);
+
+
+        int e = PlayerPrefs.GetInt("pencilnum", 0);
+        e--;
+        PlayerPrefs.SetInt("pencilnum", e);
+        PlayerPrefs.Save();
         //쓴후 연필체크
         CheckPencle();
     }
@@ -281,6 +337,8 @@ public class NoteStoreFunction : MonoBehaviour {
         //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
         noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        //제목 저장불러오기
+        WritedTitle();
     }
 
     //도움말 열기
@@ -301,9 +359,13 @@ public class NoteStoreFunction : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("erasernum", 0) >= 1)
         {
-
+            noteDeletYN_obj.SetActive(true);
         }
-        noteDeletYN_obj.SetActive(true);
+        else
+        {
+            StopCoroutine("toastEraserImgFadeOut");
+            StartCoroutine("toastEraserImgFadeOut");
+        }
 
     }
 
@@ -319,6 +381,11 @@ public class NoteStoreFunction : MonoBehaviour {
         input_obj.SetActive(true);
         startWriteBtn_obj.SetActive(true);
         inputfieldNote.text = "";
+
+        int e = PlayerPrefs.GetInt("erasernum", 0);
+        e--;
+        PlayerPrefs.SetInt("erasernum", e);
+        PlayerPrefs.Save();
     }
 
     //지울까N
@@ -379,7 +446,7 @@ public class NoteStoreFunction : MonoBehaviour {
         eraseNum_txt.text = ""+ PlayerPrefs.GetInt("erasernum", 0);
         pencilNum_txt.text = "" + PlayerPrefs.GetInt("pencilnum", 0);
         //제목
-
+        title_txt.text ="";
     }
 
     //뒷장넘기기
@@ -410,6 +477,11 @@ public class NoteStoreFunction : MonoBehaviour {
         inputfieldNote.text = "";
         lineTest_txt.text = "";
         WritedPage();
+        CloseTitleOKBtn();
+        //제목 저장불러오기
+        WritedTitle();
+        //연필 지우개 이미지 켜기
+        showpen();
     }
 
 

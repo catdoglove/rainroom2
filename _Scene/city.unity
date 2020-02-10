@@ -3467,6 +3467,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 261249532}
   m_CullTransparentMesh: 0
+--- !u!1 &268625325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268625328}
+  - component: {fileID: 268625327}
+  - component: {fileID: 268625326}
+  m_Layer: 0
+  m_Name: "\uB178\uD2B8\uC194\uB4DC\uC544\uC6C3"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &268625326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 268625325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300006, guid: afd595ccc1dfc3140b447e3e16ae928f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &268625327
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 268625325}
+  m_CullTransparentMesh: 0
+--- !u!224 &268625328
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 268625325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99979675, y: 0.99979675, z: 0.99979675}
+  m_Children: []
+  m_Father: {fileID: 1533853080}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -256.99777, y: -20.001553}
+  m_SizeDelta: {x: 240, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &278410652
 GameObject:
   m_ObjectHideFlags: 0
@@ -13752,7 +13821,7 @@ RectTransform:
   m_Children:
   - {fileID: 1546183611}
   m_Father: {fileID: 1533853080}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18777,7 +18846,7 @@ RectTransform:
   m_LocalScale: {x: 0.9997428, y: 0.9997428, z: 0.9997428}
   m_Children: []
   m_Father: {fileID: 1533853080}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20926,7 +20995,7 @@ RectTransform:
   m_LocalScale: {x: 0.9997428, y: 0.9997428, z: 0.9997428}
   m_Children: []
   m_Father: {fileID: 1533853080}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22020,6 +22089,7 @@ RectTransform:
   m_LocalScale: {x: 0.99993426, y: 0.99993426, z: 0.99993426}
   m_Children:
   - {fileID: 1132186607}
+  - {fileID: 268625328}
   - {fileID: 1490409086}
   - {fileID: 1339851546}
   - {fileID: 977553768}
@@ -22028,7 +22098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 94, y: -63}
+  m_AnchoredPosition: {x: 94.9, y: -46}
   m_SizeDelta: {x: 400, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533853081
@@ -31148,6 +31218,8 @@ MonoBehaviour:
   nightShop_obj: {fileID: 0}
   dayShop_obj: {fileID: 0}
   helpCity_obj: {fileID: 854420819}
+  noteSign_obj: {fileID: 311672303}
+  noteSignNight_spr: {fileID: 21300002, guid: bc98ed1976fa9db459d1cf0086ac2291, type: 3}
   helpC_spr:
   - {fileID: 21300000, guid: 1427e4f4c2eb66e48a9df586b24751b2, type: 3}
   - {fileID: 21300000, guid: 8a0b723206644cb4b887e96373c30236, type: 3}
@@ -31778,8 +31850,8 @@ MonoBehaviour:
   noteShopHelp_obj: {fileID: 125718287}
   noteShopSign_obj: {fileID: 311672303}
   noteToast_obj: {fileID: 595220326}
-  noteNum_obj: {fileID: 0}
   noteBtn_obj: {fileID: 1132186606}
+  noteImg_obj: {fileID: 268625325}
   note_spr:
   - {fileID: 21300000, guid: afd595ccc1dfc3140b447e3e16ae928f, type: 3}
   - {fileID: 21300002, guid: afd595ccc1dfc3140b447e3e16ae928f, type: 3}
