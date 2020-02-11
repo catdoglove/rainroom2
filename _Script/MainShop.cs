@@ -730,7 +730,16 @@ public class MainShop : ShopHandler {
         {
             funcBox_obj[3].SetActive(false);
         }
-        
+
+        if (PlayerPrefs.GetInt("havenotenum", 0) >= 1)
+        {
+            funcBox_obj[5].SetActive(true);
+        }
+        else
+        {
+            funcBox_obj[5].SetActive(false);
+        }
+
         shop_obj.SetActive(false);
         close_obj.SetActive(false);
         back_obj.SetActive(false);
@@ -778,7 +787,16 @@ public class MainShop : ShopHandler {
         {
             funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[9];
         }
-        
+
+        if (PlayerPrefs.GetInt("putnote", 1) >= 1)
+        {
+            funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[10];
+        }
+        else
+        {
+            funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[11];
+        }
+
     }
     //식물 보관
     public void PutPlant()
@@ -797,7 +815,6 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("putleaf", 1);
                 funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[2];
             }
-
         }
         else
         {
@@ -811,7 +828,6 @@ public class MainShop : ShopHandler {
                 PlayerPrefs.SetInt("putleaf", 1);
                 funcBox_obj[1].GetComponent<Image>().sprite = funcBox_spr[2];
             }
-
         }
     }
     //그림 보관
@@ -968,6 +984,40 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("putfallleaf", 1);
                 funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[8];
+            }
+        }
+    }
+
+
+    //공책 보관
+    public void PutNote()
+    {
+        if (PlayerPrefs.GetInt("place", 1) == 0)
+        {
+            if (GM.GetComponent<NoteStoreFunction>().noteWood_obj.activeSelf == true)
+            {
+                GM.GetComponent<NoteStoreFunction>().noteWood_obj.SetActive(false);
+                PlayerPrefs.SetInt("putnote", 0);
+                funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[11];
+            }
+            else
+            {
+                GM.GetComponent<NoteStoreFunction>().noteWood_obj.SetActive(true);
+                PlayerPrefs.SetInt("putnote", 1);
+                funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[10];
+            }
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putnote", 1) == 1)
+            {
+                PlayerPrefs.SetInt("putnote", 0);
+                funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[11];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putnote", 1);
+                funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[10];
             }
         }
     }
