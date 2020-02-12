@@ -25,6 +25,8 @@ public class NoteStoreFunction : MonoBehaviour {
     public GameObject[] noteBooks_obj;
     public Sprite[] noteColor_spr, notePageColor_spr;
 
+    public Text charNum_txt;
+
     // Use this for initialization
     void Start () {
         
@@ -56,8 +58,8 @@ public class NoteStoreFunction : MonoBehaviour {
         CheckPencle();
         //열때 초기화
         noteBookNum_i = 1;
+        noteWindowImg_obj.SetActive(false);
         CheckHaveNote();
-        noteBooks_obj[1].SetActive(false);
         //페이지수
         notePageNum_i = 0;
         //입력필드텍스트
@@ -71,7 +73,7 @@ public class NoteStoreFunction : MonoBehaviour {
         showCover_obj.SetActive(true);
         //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
-        noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         //제목 저장불러오기
         WritedTitle();
         //노트키기
@@ -136,7 +138,6 @@ public class NoteStoreFunction : MonoBehaviour {
         int k = input_txt.cachedTextGenerator.lineCount;
         int kn = ipstr.Length;
         kn--;
-
         if (k > 10)
         {
 
@@ -329,18 +330,21 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         noteBookNum_i = 1;
         ClearNote();
+        noteWindowImg_obj.SetActive(true);
     }
     //2권선택
     public void note2()
     {
         noteBookNum_i = 2;
         ClearNote();
+        noteWindowImg_obj.SetActive(true);
     }
     //3권선택
     public void note3()
     {
         noteBookNum_i = 3;
         ClearNote();
+        noteWindowImg_obj.SetActive(true);
     }
 
     //다른 노트를 선택했을때 초기화 클리어
@@ -488,18 +492,18 @@ public class NoteStoreFunction : MonoBehaviour {
             showCover_obj.SetActive(true);
             notePageNum_i--;
             noteLBtn_obj.SetActive(false);
-            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         else if (notePageNum_i <= 1)
         {
-            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
+            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
             notePageNum_i = 0;
         }
         else
         {
             notePageNum_i--;
             noteRBtn_obj.SetActive(true);
-            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
         inputfieldNote.text = "";
@@ -517,13 +521,34 @@ public class NoteStoreFunction : MonoBehaviour {
     IEnumerator moveC()
     {
         int s=0;
-        
+
+        int inp = input_txt.cachedTextGenerator.characterCount;
         while (s==0)
         {
+            //
+            inp = input_txt.cachedTextGenerator.characterCount-1;
+            charNum_txt.text = inp + "/130";
+
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[0];
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.4f);
+
+            inp = input_txt.cachedTextGenerator.characterCount - 1;
+            charNum_txt.text = inp + "/130";
+            yield return new WaitForSeconds(0.4f);
+
+            inp = input_txt.cachedTextGenerator.characterCount - 1;
+            charNum_txt.text = inp + "/130";
+
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[1];
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.4f);
+
+            inp = input_txt.cachedTextGenerator.characterCount - 1;
+            charNum_txt.text = inp + "/130";
+
+            yield return new WaitForSeconds(0.4f);
+
+            inp = input_txt.cachedTextGenerator.characterCount - 1;
+            charNum_txt.text = inp + "/130";
         }
     }
 

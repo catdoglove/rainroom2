@@ -426,6 +426,22 @@ public class CityFunction : CavasData
     }
 
 
+    //온수가 부족하다
+    IEnumerator toastNImgFadeOut()
+    {
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        needToast_obj.GetComponent<Image>().color = color;
+        needToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            needToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        needToast_obj.SetActive(false);
+    }
+
 
     //밤낮
     public void setDay()
