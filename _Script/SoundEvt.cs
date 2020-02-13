@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class SoundEvt : MonoBehaviour {
 
-    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle, se_box, se_foods, se_talk;
-    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle, sp_box, sp_foods, sp_talk;
+    public AudioSource se_book, se_window, se_cat, se_cook, se_food, se_light, se_button, se_TV, se_sticker, se_bed, se_star, se_switch, se_spider, se_turn, se_ball, se_airplane, se_water, se_cancle, se_box, se_foods, se_talk, se_pencil;
+    public AudioClip sp_book, sp_window, sp_cat, sp_cook, sp_food, sp_light, sp_button, sp_TV, sp_sticker, sp_bed, sp_star, sp_switch, sp_spider, sp_turn, sp_ball, sp_airplane, sp_water, sp_cancle, sp_box, sp_foods, sp_talk, sp_pencil;
     
     public AudioSource BGM, BGS;
     float BGMVol_f, BGSVol_f;
@@ -188,5 +188,13 @@ public class SoundEvt : MonoBehaviour {
         se_talk.clip = sp_talk;
         se_talk.loop = false;
         se_talk.Play();
+    }
+    //공책연필소리
+    public void pencilSound()
+    {
+        se_pencil = gameObject.GetComponent<AudioSource>();
+        se_pencil.clip = sp_pencil;
+        se_pencil.loop = false;
+        se_pencil.Play();
     }
 }

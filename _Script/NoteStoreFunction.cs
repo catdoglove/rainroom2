@@ -273,6 +273,7 @@ public class NoteStoreFunction : MonoBehaviour {
         titleTxt_obj.SetActive(true);
         titleWriteOKBtn_obj.SetActive(false);
         title_txt.text = titleInput_txt.text;
+        inputfieldTitle.text = "";
     }
 
     //제목 다시쓰기
@@ -308,7 +309,7 @@ public class NoteStoreFunction : MonoBehaviour {
         writePage_txt.text = input_txt.text;
         writePage_obj.SetActive(true);
         input_obj.SetActive(false);
-        StopCoroutine("noteLine");
+        //StopCoroutine("noteLine");
         inputfieldNote.text = "";
         page_obj.SetActive(true);
 
@@ -336,6 +337,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteBookNum_i = 1;
         ClearNote();
         noteWindowImg_obj.SetActive(true);
+        startBtn_obj.SetActive(true);
     }
     //2권선택
     public void note2()
@@ -343,6 +345,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteBookNum_i = 2;
         ClearNote();
         noteWindowImg_obj.SetActive(true);
+        startBtn_obj.SetActive(true);
     }
     //3권선택
     public void note3()
@@ -350,6 +353,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteBookNum_i = 3;
         ClearNote();
         noteWindowImg_obj.SetActive(true);
+        startBtn_obj.SetActive(true);
     }
 
     //다른 노트를 선택했을때 초기화 클리어
@@ -495,7 +499,9 @@ public class NoteStoreFunction : MonoBehaviour {
     //뒷장넘기기
     public void BackPage()
     {
+
         noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+
         if (notePageNum_i == 1)
         {
             showCover();
@@ -515,6 +521,11 @@ public class NoteStoreFunction : MonoBehaviour {
             notePageNum_i--;
             noteRBtn_obj.SetActive(true);
             noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        }
+
+        if (notePageNum_i == 1)
+        {
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
         }
         page_txt.text = "" + notePageNum_i + "/30";
         inputfieldNote.text = "";
@@ -568,6 +579,10 @@ public class NoteStoreFunction : MonoBehaviour {
                 if (kn < 0)
                 {
                     kn = 10;
+                }
+                if (kn > 130)
+                {
+                    kn = 130;
                 }
                 inputfieldNote.text = "" + ipstr.Substring(0, kn);
                 lineTest_txt.text = "" + ipstr.Substring(0, kn);
