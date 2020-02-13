@@ -54,6 +54,8 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         StopCoroutine("moveC");
         StartCoroutine("moveC");
+        StopCoroutine("Lines");
+        StartCoroutine("Lines");
         //연필체크
         CheckPencle();
         //열때 초기화
@@ -81,6 +83,7 @@ public class NoteStoreFunction : MonoBehaviour {
         {
             noteWindow_obj.SetActive(false);
             StopCoroutine("moveC");
+            StopCoroutine("Lines");
         }
         else
         {
@@ -141,12 +144,12 @@ public class NoteStoreFunction : MonoBehaviour {
         if (k > 10)
         {
 
-            StopCoroutine("noteLine");
-            StartCoroutine("noteLine");
+            //StopCoroutine("noteLine");
+            //StartCoroutine("noteLine");
         }
         else
         {
-            StopCoroutine("noteLine");
+           // StopCoroutine("noteLine");
         }
     }
 
@@ -209,6 +212,8 @@ public class NoteStoreFunction : MonoBehaviour {
         }
         else
         {
+
+            inputfieldTitle.text = "";
             titleTxt_obj.SetActive(false);
             title_txt.text = "";
             title_obj.SetActive(true);
@@ -365,9 +370,12 @@ public class NoteStoreFunction : MonoBehaviour {
         showCover_obj.SetActive(true);
         //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
-        noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         //제목 저장불러오기
         WritedTitle();
+
+        noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+        noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
     }
 
     //도움말 열기
@@ -450,10 +458,12 @@ public class NoteStoreFunction : MonoBehaviour {
             noteLBtn_obj.SetActive(true);
 
             noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         else if (notePageNum_i >= 29)
         {
             noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
             notePageNum_i = 30;
         }
         else
@@ -465,6 +475,7 @@ public class NoteStoreFunction : MonoBehaviour {
             noteLBtn_obj.SetActive(true);
             noteRBtn_obj.SetActive(true);
             noteRBtnImg_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
         inputfieldNote.text = "";
@@ -492,18 +503,18 @@ public class NoteStoreFunction : MonoBehaviour {
             showCover_obj.SetActive(true);
             notePageNum_i--;
             noteLBtn_obj.SetActive(false);
-            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
         }
         else if (notePageNum_i <= 1)
         {
-            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[0];
             notePageNum_i = 0;
         }
         else
         {
             notePageNum_i--;
             noteRBtn_obj.SetActive(true);
-            //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
+            noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         }
         page_txt.text = "" + notePageNum_i + "/30";
         inputfieldNote.text = "";
@@ -521,40 +532,55 @@ public class NoteStoreFunction : MonoBehaviour {
     IEnumerator moveC()
     {
         int s=0;
-
-        int inp = input_txt.cachedTextGenerator.characterCount;
         while (s==0)
         {
-            //
-            inp = input_txt.cachedTextGenerator.characterCount-1;
-            charNum_txt.text = inp + "/130";
-
+            
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[0];
-            yield return new WaitForSeconds(0.4f);
-
-            inp = input_txt.cachedTextGenerator.characterCount - 1;
-            charNum_txt.text = inp + "/130";
-            yield return new WaitForSeconds(0.4f);
-
-            inp = input_txt.cachedTextGenerator.characterCount - 1;
-            charNum_txt.text = inp + "/130";
+            yield return new WaitForSeconds(0.8f);
+            
 
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[1];
-            yield return new WaitForSeconds(0.4f);
-
-            inp = input_txt.cachedTextGenerator.characterCount - 1;
-            charNum_txt.text = inp + "/130";
-
-            yield return new WaitForSeconds(0.4f);
-
-            inp = input_txt.cachedTextGenerator.characterCount - 1;
-            charNum_txt.text = inp + "/130";
+            yield return new WaitForSeconds(0.8f);
+            
         }
     }
 
 
-    //연필없다
-    IEnumerator toastPencleImgFadeOut()
+    //캐릭터움직임
+    IEnumerator Lines()
+    {
+        int k = 1;
+        string ipstr = "";
+        int s =0;
+        int inp = input_txt.cachedTextGenerator.characterCount;
+
+        while (s == 0)
+        {
+            k = input_txt.cachedTextGenerator.lineCount;
+            ipstr = input_txt.text;
+            if (k > 10)
+            {
+                ipstr = input_txt.text;
+                inputfieldNote.Select();
+                int kn = ipstr.Length;
+                kn--;
+                kn--;
+                if (kn < 0)
+                {
+                    kn = 10;
+                }
+                inputfieldNote.text = "" + ipstr.Substring(0, kn);
+                lineTest_txt.text = "" + ipstr.Substring(0, kn);
+            }
+            inp = input_txt.cachedTextGenerator.characterCount - 1;
+            charNum_txt.text = inp + "/130";
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+        //연필없다
+        IEnumerator toastPencleImgFadeOut()
     {
         need_txt.text = "필기구가 없다.";
         color.a = Mathf.Lerp(0f, 1f, 1f);
@@ -599,9 +625,10 @@ public class NoteStoreFunction : MonoBehaviour {
             int kn = ipstr.Length;
             kn--;
             kn--;
+            kn--;
             if (kn < 0)
             {
-                kn = 0;
+                kn = 2;
             }
             inputfieldNote.text = "" + ipstr.Substring(0, kn);
             lineTest_txt.text = "" + ipstr.Substring(0, kn);
@@ -614,7 +641,7 @@ public class NoteStoreFunction : MonoBehaviour {
             {
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
     }
 
