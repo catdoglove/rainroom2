@@ -113,6 +113,9 @@ public class MainBtnEvt : CavasData
                 GM.GetComponent<FirstRoomFunction>().boxNo();
                 GM.GetComponent<SleepTime>().CloseSleep();
                 GM.GetComponent<MainShop>().palette_obj.SetActive(false);
+                GM.GetComponent<NoteStoreFunction>().noteWindow_obj.SetActive(false);
+                GM.GetComponent<NoteStoreFunction>().StopCoroutine("moveC");
+                GM.GetComponent<NoteStoreFunction>().StopCoroutine("Lines");
             }
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {

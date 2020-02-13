@@ -223,6 +223,8 @@ public class NoteStoreFunction : MonoBehaviour {
     //저장하기 버튼 띄우기
     public void showOKBtn()
     {
+        StopCoroutine("Lines");
+        StartCoroutine("Lines");
         inputfieldNote.Select();
         startWriteBtn_obj.SetActive(false);
         noteWriteOKBtn_obj.SetActive(true);
@@ -296,6 +298,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //쓰기저장Y
     public void saveWriteY()
     {
+        StopCoroutine("Lines");
         if (PlayerPrefs.GetInt("pencilnum", 0) >= 1)
         {
 
