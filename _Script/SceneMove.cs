@@ -56,8 +56,9 @@ public class SceneMove : MonoBehaviour {
 
 	public void moveDown(){
 
-        
-            PlayerPrefs.SetInt("unlockshop", 10);
+
+        PlayerPrefs.SetInt("storg", 1);
+        PlayerPrefs.SetInt("unlockshop", 10);
             if (PlayerPrefs.GetInt("waterpurifiershop", 0)==0)
             {
                 PlayerPrefs.SetInt("waterpurifiershop", 1);

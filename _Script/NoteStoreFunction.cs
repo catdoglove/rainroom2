@@ -206,6 +206,7 @@ public class NoteStoreFunction : MonoBehaviour {
         int title_i = PlayerPrefs.GetInt("checkwrite" + noteBookNum_i + "t", 0);
         if (title_i == 1)
         {
+            inputfieldTitle.text = "";
             titleTxt_obj.SetActive(true);
             title_txt.text = titlestr;
             title_obj.SetActive(false);

@@ -104,6 +104,11 @@ public class MainBtnEvt : CavasData
                 {
                     GM = GameObject.FindGameObjectWithTag("firstroomGM");
                 }
+                GM.GetComponent<NoteStoreFunction>().noteWindow_obj.SetActive(false);
+                GM.GetComponent<NoteStoreFunction>().noteWriteOKBtn_obj.SetActive(false);
+                GM.GetComponent<NoteStoreFunction>().titleWriteOKBtn_obj.SetActive(false);
+                GM.GetComponent<NoteStoreFunction>().StopCoroutine("moveC");
+                GM.GetComponent<NoteStoreFunction>().StopCoroutine("Lines");
                 GM.GetComponent<FirstRoomFunction>().closeTitle();
                 GM.GetComponent<WindowMiniGame>().CloseMiniGame();
                 GM.GetComponent<FirstRoomFunction>().closeBeadal();
@@ -112,10 +117,7 @@ public class MainBtnEvt : CavasData
                 GM.GetComponent<FirstRoomSticker>().CloseFrame();
                 GM.GetComponent<FirstRoomFunction>().boxNo();
                 GM.GetComponent<SleepTime>().CloseSleep();
-                GM.GetComponent<MainShop>().palette_obj.SetActive(false);
-                GM.GetComponent<NoteStoreFunction>().noteWindow_obj.SetActive(false);
-                GM.GetComponent<NoteStoreFunction>().StopCoroutine("moveC");
-                GM.GetComponent<NoteStoreFunction>().StopCoroutine("Lines");
+                //GM.GetComponent<MainShop>().palette_obj.SetActive(false);
             }
             if (PlayerPrefs.GetInt("place", 0) == 1)
             {
