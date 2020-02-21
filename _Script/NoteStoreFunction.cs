@@ -584,15 +584,15 @@ public class NoteStoreFunction : MonoBehaviour {
                 {
                     kn = 10;
                 }
-                if (kn > 130)
+                if (kn > 149)
                 {
-                    kn = 130;
+                    kn = 149;
                 }
                 inputfieldNote.text = "" + ipstr.Substring(0, kn);
                 lineTest_txt.text = "" + ipstr.Substring(0, kn);
             }
             inp = input_txt.cachedTextGenerator.characterCount - 1;
-            charNum_txt.text = inp + "/130";
+            charNum_txt.text = inp + "/150";
             yield return new WaitForSeconds(0.1f);
         }
     }
