@@ -797,6 +797,15 @@ public class MainShop : ShopHandler {
             funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[11];
         }
 
+        if (PlayerPrefs.GetInt("putwinterc", 1) >= 1)
+        {
+            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[11];
+        }
+        else
+        {
+            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
+        }
+
     }
     //식물 보관
     public void PutPlant()
@@ -984,6 +993,39 @@ public class MainShop : ShopHandler {
             {
                 PlayerPrefs.SetInt("putfallleaf", 1);
                 funcBox_obj[4].GetComponent<Image>().sprite = funcBox_spr[8];
+            }
+        }
+    }
+
+    // 보관
+    public void PutWinter()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2.GetComponent<GasrangeEvt>().fsticker_obj.activeSelf == true)
+            {
+                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(false);
+                PlayerPrefs.SetInt("putwinterc", 0);
+                funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
+            }
+            else
+            {
+                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(true);
+                PlayerPrefs.SetInt("putwinterc", 1);
+                funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
+            }
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
+            {
+                PlayerPrefs.SetInt("putwinterc", 0);
+                funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putwinterc", 1);
+                funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
             }
         }
     }

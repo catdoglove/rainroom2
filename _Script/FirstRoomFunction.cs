@@ -119,9 +119,12 @@ public class FirstRoomFunction : CavasData {
 
         //겨울목도리
 
-        if (PlayerPrefs.GetInt("sewsticker", 0) == 1)
+        if (PlayerPrefs.GetInt("sewsticker", 1) == 1)
         {
-            wScarf_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
+            {
+                wScarf_obj.SetActive(true);
+            }
         }
 
         PlayerPrefs.SetInt("outtrip", 0);
