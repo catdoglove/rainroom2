@@ -115,16 +115,13 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
-        
+
 
         //겨울목도리
 
-        if (PlayerPrefs.GetInt("sewsticker", 1) == 1)
+        if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
         {
-            if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
-            {
-                wScarf_obj.SetActive(true);
-            }
+            wScarf_obj.SetActive(true);
         }
 
         PlayerPrefs.SetInt("outtrip", 0);

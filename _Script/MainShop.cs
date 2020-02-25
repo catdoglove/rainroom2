@@ -88,7 +88,6 @@ public class MainShop : ShopHandler {
 
     // Use this for initialization
     void Start () {
-        //PlayerPrefs.SetInt("iceboxlv",1);
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
         /*
@@ -797,13 +796,13 @@ public class MainShop : ShopHandler {
             funcBox_obj[5].GetComponent<Image>().sprite = funcBox_spr[11];
         }
 
-        if (PlayerPrefs.GetInt("putwinterc", 1) >= 1)
+        if (PlayerPrefs.GetInt("putwinterc", 0) >= 1)
         {
-            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[11];
+            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
         }
         else
         {
-            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
+            funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
         }
 
     }
@@ -1002,15 +1001,15 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            if (GM2.GetComponent<GasrangeEvt>().fsticker_obj.activeSelf == true)
+            if (GM2.GetComponent<GasrangeEvt>().wScarf_obj.activeSelf == true)
             {
-                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(false);
+                GM2.GetComponent<GasrangeEvt>().wScarf_obj.SetActive(false);
                 PlayerPrefs.SetInt("putwinterc", 0);
                 funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
             }
             else
             {
-                GM2.GetComponent<GasrangeEvt>().fsticker_obj.SetActive(true);
+                GM2.GetComponent<GasrangeEvt>().wScarf_obj.SetActive(true);
                 PlayerPrefs.SetInt("putwinterc", 1);
                 funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
             }
@@ -1019,11 +1018,13 @@ public class MainShop : ShopHandler {
         {
             if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
             {
+                GM.GetComponent<FirstRoomFunction>().wScarf_obj.SetActive(false);
                 PlayerPrefs.SetInt("putwinterc", 0);
                 funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
             }
             else
             {
+                GM.GetComponent<FirstRoomFunction>().wScarf_obj.SetActive(true);
                 PlayerPrefs.SetInt("putwinterc", 1);
                 funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
             }

@@ -50,20 +50,16 @@ public class GasrangeEvt : MonoBehaviour {
     public int a,v = 0;
     int gaspage = 1;
 
-    public GameObject fsticker_obj,sToast_obj, wScarf_obj;
+    //시즌 이벤트
+    public GameObject fsticker_obj,sToast_obj, wScarf_obj,sWood_obj;
 
     //엔딩
-    public GameObject endWindow_obj;
-    public Sprite[] end_spr;
-    public int end_i = 0;
-    public GameObject endR_obj, endL_obj, endClose_obj;
-
-    public GameObject[] ani_obk;
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
 
     // Use this for initialization
     void Start () {
+
         //요리이름
         CookStrSet();
         colorB = new Color(1f, 1f, 1f);
@@ -76,12 +72,14 @@ public class GasrangeEvt : MonoBehaviour {
             fsticker_obj.SetActive(true);
         }
 
-        if (PlayerPrefs.GetInt("sewsticker", 1) == 1)
+        if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
         {
-            if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
-            {
-                wScarf_obj.SetActive(true);
-            }
+            wScarf_obj.SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("woodflower", 0) == 1)
+        {
+            sWood_obj.SetActive(true);
         }
     }
 
@@ -160,8 +158,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "찐빵";
-        cook_str[11] = "꼬막무침";
+        cook_str[10] = "쑥떡";
+        cook_str[11] = "주꾸미볶음";
     }
     public void OpenGasrange()
     {
@@ -318,21 +316,21 @@ public class GasrangeEvt : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cookSound();
             if (indexNumber_i>=10)
             {
-                int help = PlayerPrefs.GetInt("sewcount", 0);
-                if (help >= 9 && PlayerPrefs.GetInt("sewsticker", 0) == 0)
+                int help = PlayerPrefs.GetInt("spcount", 0);
+                if (help >= 9 && PlayerPrefs.GetInt("woodflower", 0) == 0)
                 {
-                    PlayerPrefs.SetInt("sewsticker", 1);
-                    wScarf_obj.SetActive(true);
+                    PlayerPrefs.SetInt("woodflower", 1);
+                    sWood_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");
                     help++;
-                    PlayerPrefs.SetInt("sewcount", help);
+                    PlayerPrefs.SetInt("spcount", help);
                 }
                 else
                 {
                     help++;
-                    PlayerPrefs.SetInt("sewcount", help);
+                    PlayerPrefs.SetInt("spcount", help);
                 }
             }
         }
@@ -519,8 +517,10 @@ public class GasrangeEvt : MonoBehaviour {
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
         //bam_i = PlayerPrefs.GetInt("bam", 0);
         //shrimp_i = PlayerPrefs.GetInt("shrimp", 0);
-        bam_i = PlayerPrefs.GetInt("pat", 0);
-        shrimp_i = PlayerPrefs.GetInt("ggomak", 0);
+        //bam_i = PlayerPrefs.GetInt("pat", 0);
+        //shrimp_i = PlayerPrefs.GetInt("ggomak", 0);
+        bam_i = PlayerPrefs.GetInt("ssuck", 0);
+        shrimp_i = PlayerPrefs.GetInt("juggume", 0);
     }
 
     public void RightIce()
@@ -702,49 +702,6 @@ public class GasrangeEvt : MonoBehaviour {
             }
         }
     }
-
-    public void CloseEnd()
-    {
-        endWindow_obj.SetActive(false);
-        audio_obj.GetComponent<SoundEvt>().cancleSound();
-        //소리
-        m_end.clip = sp_original;
-        m_end.Play();
-    }
-
-    public void endR()
-    {
-        audio_obj.GetComponent<SoundEvt>().turnSound();
-        if (end_i == 1)
-        {
-            endR_obj.SetActive(false);
-            endClose_obj.SetActive(true);
-            end_i++;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-        }
-        else
-        {
-            endL_obj.SetActive(true);
-            end_i++;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-        }
-    }
-    public void endL()
-    {
-        audio_obj.GetComponent<SoundEvt>().turnSound();
-        endClose_obj.SetActive(false);
-        if (end_i == 1)
-        {
-            endL_obj.SetActive(false);
-            end_i--;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-        }
-        else
-        {
-            endR_obj.SetActive(true);
-            end_i--;
-            endWindow_obj.GetComponent<Image>().sprite = end_spr[end_i];
-        }
-    }
+    
 
 }

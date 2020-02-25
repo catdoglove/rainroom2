@@ -28750,6 +28750,7 @@ MonoBehaviour:
   - {fileID: 1004459522}
   - {fileID: 32116114}
   - {fileID: 1665179595}
+  - {fileID: 1794341433}
   funcBox_spr:
   - {fileID: 21300002, guid: 94444072f4727f44788f164a51a9c186, type: 3}
   - {fileID: 21300000, guid: 94444072f4727f44788f164a51a9c186, type: 3}
@@ -28763,6 +28764,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be5a4b524c7995544b03c9f01833ec76, type: 3}
   - {fileID: 21300018, guid: 94444072f4727f44788f164a51a9c186, type: 3}
   - {fileID: 21300016, guid: 94444072f4727f44788f164a51a9c186, type: 3}
+  - {fileID: 21300006, guid: be5a4b524c7995544b03c9f01833ec76, type: 3}
+  - {fileID: 21300004, guid: be5a4b524c7995544b03c9f01833ec76, type: 3}
   funcBoxPage_obj:
   - {fileID: 2053825461}
   - {fileID: 91782864}
@@ -102343,7 +102346,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 534253877}
-        m_MethodName: PutNote
+        m_MethodName: PutWinter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -102385,7 +102388,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300018, guid: 94444072f4727f44788f164a51a9c186, type: 3}
+  m_Sprite: {fileID: 21300004, guid: be5a4b524c7995544b03c9f01833ec76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -110930,7 +110933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1961590869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118191,7 +118194,7 @@ GameObject:
   - component: {fileID: 2108729847}
   - component: {fileID: 2108729846}
   m_Layer: 0
-  m_Name: "\uB208"
+  m_Name: "\uBC9A\uAF43"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118255,7 +118258,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 365005795}
-        m_MethodName: starSound
+        m_MethodName: boxSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -118297,7 +118300,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -119373,14 +119376,14 @@ MonoBehaviour:
   cat_i: 0
   plane_i: 0
   snow_spr:
-  - {fileID: 21300000, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300002, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300004, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300002, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300000, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300002, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300004, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
-  - {fileID: 21300002, guid: 4c73273d110f59242b5f898433e85d1e, type: 3}
+  - {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300004, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300004, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
   beadalTime_txt: {fileID: 1535967356}
   randStar_i: 0
   star_obj: {fileID: 958673800}
