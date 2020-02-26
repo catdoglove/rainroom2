@@ -67,7 +67,7 @@ public class SeaFunction : MonoBehaviour {
         PlayerPrefs.SetInt("nowarrsign", nowArr);
     }
 
-    //새우
+    //주꾸미
     void shrimp()
     {
         int sh = Random.Range(0, 10);

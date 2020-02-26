@@ -28,6 +28,8 @@ public class MainTime : MonoBehaviour {
     public GameObject star_obj;
     public float starX, starY;
     string str;
+
+    int bg=0;
     
 
     // Use this for initialization
@@ -175,8 +177,12 @@ public class MainTime : MonoBehaviour {
     {
         if (snow_i == 1)
         {
-            StopCoroutine("fallSnow");
-            StartCoroutine("fallSnow");
+            if (bg == 0)
+            {
+                StopCoroutine("fallSnow");
+                StartCoroutine("fallSnow");
+            }
+            bg = 1;
         }
         else
         {
@@ -200,6 +206,7 @@ public class MainTime : MonoBehaviour {
         snowY_f = -15.4f;
         snow_i = 0;
         snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
+        bg = 0;
     }
 
 
@@ -363,12 +370,14 @@ public class MainTime : MonoBehaviour {
             if (snowY_f <= -15f)
             {
                 snow_i = 0;
+                bg = 0;
             }
-            snowY_f = snowY_f - 0.2f;
+            snowY_f = snowY_f - 0.22f;
             if (snowY_f <= snowYe_obj.transform.position.y)
             {
                 snowY_f = -15.4f;
                 snow_i = 0;
+                bg = 0;
             }
             snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
 
@@ -378,7 +387,7 @@ public class MainTime : MonoBehaviour {
             {
                 snowImg_i = 0;
             }
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.29f);
         }
     }
 

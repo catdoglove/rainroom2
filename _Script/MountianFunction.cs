@@ -57,7 +57,7 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetInt("nowarrsign", nowArr);
     }
 
-    //밤
+    //쑥
     void bam()
     {
         int sh = Random.Range(0, 10);
