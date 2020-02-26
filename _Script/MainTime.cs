@@ -372,7 +372,7 @@ public class MainTime : MonoBehaviour {
                 snow_i = 0;
                 bg = 0;
             }
-            snowY_f = snowY_f - 0.22f;
+            snowY_f = snowY_f - 0.3f;
             if (snowY_f <= snowYe_obj.transform.position.y)
             {
                 snowY_f = -15.4f;
@@ -387,7 +387,7 @@ public class MainTime : MonoBehaviour {
             {
                 snowImg_i = 0;
             }
-            yield return new WaitForSeconds(0.29f);
+            yield return new WaitForSeconds(0.7f);
         }
     }
 
