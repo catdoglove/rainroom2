@@ -193,6 +193,10 @@ public class NoteShop : MonoBehaviour {
         {
             spade = spade + 3;
         }
+        if (spade >= 999)
+        {
+            spade = 999;
+        }
         PlayerPrefs.SetInt(str + "sd", spade);
         PlayerPrefs.Save();
     }
