@@ -6,7 +6,8 @@ using System.Linq; //랜덤필
 
 public class TalkEvt : MonoBehaviour {
 
-    List<Dictionary<string, object>> data, data_book, data_light, data_seed, data_wall, data_window; //csv파일
+    List<Dictionary<string, object>> data, data_book, data_light, data_seed, data_wall, data_window, data_evt_spring; //csv파일
+    int etcNum = 0;
     public Text Text_obj; //선언 및 보여질
     string[] testText_cut; //대사 끊기
     string text_str; //실질적 대사출력
@@ -92,6 +93,7 @@ public class TalkEvt : MonoBehaviour {
         data_seed = CSVReader.Read("Talk/talk_seed"); 
         data_wall = CSVReader.Read("Talk/talk_wall"); 
         data_window = CSVReader.Read("Talk/talk_window");
+        data_evt_spring = CSVReader.Read("Talk/etc_room");
         setCharAni();
     }
 
@@ -721,6 +723,24 @@ public class TalkEvt : MonoBehaviour {
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
         itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) - 1;
+    }
+
+    public void talkEvtSpring()
+    {        
+        text_str = "" + data_evt_spring[etcNum]["벚꽃가지"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+        if (etcNum >= 4)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
     }
 
     public void talkBook()
