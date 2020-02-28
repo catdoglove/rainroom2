@@ -696,6 +696,7 @@ public class MainBtnEvt : CavasData
     }
     public void SetCoupon()
     {
+        /*
         if (InputField_txt.text == "happynewyear")
         {
             if (PlayerPrefs.GetInt("200103", 0) == 0)
@@ -722,6 +723,9 @@ public class MainBtnEvt : CavasData
         {
             couponTxtF_obj.SetActive(true);
         }
+        */
+        couponTxtF_obj.SetActive(true);
+
         PlayerPrefs.Save();
     }
 
