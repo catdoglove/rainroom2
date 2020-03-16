@@ -10,8 +10,8 @@ public class NoteShop : MonoBehaviour {
     Color color;
     string str,note_str;
 
-    public GameObject noteBtn_obj, noteImg_obj;
-    public Sprite[] note_spr;
+    public GameObject noteBtn_obj, noteImg_obj, lockBtn_obj, lockImg_obj;
+    public Sprite[] note_spr, lock_spr;
 
     public int priceShop_i;
 
@@ -70,6 +70,16 @@ public class NoteShop : MonoBehaviour {
         noteShopBuyYN_obj.SetActive(true);
     }
 
+    //자물쇠
+    public void BuyLock()
+    {
+        noteShopNum_i = 3;
+        priceShop_i = 5;
+        name_txt.text = "자물쇠";
+        note_str = "locknum";
+        noteShopBuyYN_obj.SetActive(true);
+    }
+
 
     //도움말 열기
     public void ShowHelp()
@@ -120,6 +130,17 @@ public class NoteShop : MonoBehaviour {
         else
         {
             noteBtn_obj.GetComponent<Image>().sprite = note_spr[PlayerPrefs.GetInt("havenotenum", 0)];
+        }
+        
+        //자물쇠 이미지 변경 및 버튼 비활성화
+        if (PlayerPrefs.GetInt("locknum", 0) >= 3)
+        {
+            lockBtn_obj.SetActive(false);
+            lockImg_obj.GetComponent<Image>().sprite = lock_spr[3];
+        }
+        else
+        {
+            lockImg_obj.GetComponent<Image>().sprite = lock_spr[PlayerPrefs.GetInt("locknum", 0)];
         }
         spade_txt.text = "" + PlayerPrefs.GetInt(str + "sd", 0);
     }

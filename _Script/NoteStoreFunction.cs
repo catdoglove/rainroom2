@@ -25,6 +25,13 @@ public class NoteStoreFunction : MonoBehaviour {
     public GameObject[] noteBooks_obj;
     public Sprite[] noteColor_spr, notePageColor_spr;
 
+    //자물쇠
+    public GameObject lockImg_obj, noteLock_obj,lockYN_obj,lockNumWin_obj;
+    public Sprite lockOpen_spr, lock_spr;
+    public Sprite[] lockNum_spr;
+    public GameObject[] lockNum_obj;
+    public int lock_i;
+    public int[] imgNum_i;
     public Text charNum_txt;
 
     // Use this for initialization
@@ -131,6 +138,15 @@ public class NoteStoreFunction : MonoBehaviour {
         if (PlayerPrefs.GetInt("havenotenum", 0) >= 3)
         {
             noteBooks_obj[3].SetActive(true);
+        }
+        //자물쇠를 몇개 샀나?
+        if (PlayerPrefs.GetInt("locknum", 0) >= 1)
+        {
+            //사용한 자물쇠의 수가 가지고 있는 자물쇠의 수보다 적은가
+            if(PlayerPrefs.GetInt("locknum", 0) > PlayerPrefs.GetInt("uselocknum", 0))
+            {
+                lockImg_obj.SetActive(true);
+            }
         }
     }
 
@@ -543,20 +559,155 @@ public class NoteStoreFunction : MonoBehaviour {
     }
 
 
+    //자물쇠열기
+    public void OpenLock()
+    {
+        lockNumWin_obj.SetActive(true);
+    }
+
+    //자물쇠버리기
+    public void DelLock()
+    {
+        int l=PlayerPrefs.GetInt("locknum", 0);
+        l--;
+        PlayerPrefs.SetInt("locknum", l);
+    }
+
+    //자물쇠를사용할까
+    public void UesLockYN()
+    {
+        lockYN_obj.SetActive(true);
+    }
+    public void UesLockY()
+    {
+        lockYN_obj.SetActive(false);
+    }
+    public void UesLockN()
+    {
+        lockYN_obj.SetActive(false);
+    }
+
+    //자물쇠초기화
+    public void clearLock()
+    {
+
+    }
+
+    //자물쇠번호숫자올리기
+    public void UpLockNum1()
+    {
+        lock_i = 0;
+        imgNum_i[lock_i]++;
+        if (imgNum_i[lock_i] >= 10)
+        {
+            imgNum_i[lock_i] = 0;
+        }
+        SetImgNum();
+    }
+
+    //자물쇠번호숫자내리기
+    public void DownLockNum1()
+    {
+        lock_i = 0;
+        imgNum_i[lock_i]--;
+        if (imgNum_i[lock_i] <= -1)
+        {
+            imgNum_i[lock_i] = 9;
+        }
+        SetImgNum();
+    }
+
+    //자물쇠번호숫자올리기
+    public void UpLockNum2()
+    {
+        lock_i = 1;
+        imgNum_i[lock_i]++;
+        if (imgNum_i[lock_i] >= 10)
+        {
+            imgNum_i[lock_i] = 0;
+        }
+        SetImgNum();
+    }
+
+    //자물쇠번호숫자내리기
+    public void DownLockNum2()
+    {
+        lock_i = 1;
+        imgNum_i[lock_i]--;
+        if (imgNum_i[lock_i] <= -1)
+        {
+            imgNum_i[lock_i] = 9;
+        }
+        SetImgNum();
+    }
+    //자물쇠번호숫자올리기
+    public void UpLockNum3()
+    {
+        lock_i = 2;
+        imgNum_i[lock_i]++;
+        if (imgNum_i[lock_i] >= 10)
+        {
+            imgNum_i[lock_i] = 0;
+        }
+        SetImgNum();
+    }
+
+    //자물쇠번호숫자내리기
+    public void DownLockNum3()
+    {
+        lock_i = 2;
+        imgNum_i[lock_i]--;
+        if (imgNum_i[lock_i] <= -1)
+        {
+            imgNum_i[lock_i] = 9;
+        }
+        SetImgNum();
+    }
+    //자물쇠번호숫자올리기
+    public void UpLockNum4()
+    {
+        lock_i = 3;
+        imgNum_i[lock_i]++;
+        if (imgNum_i[lock_i] >= 10)
+        {
+            imgNum_i[lock_i] = 0;
+        }
+        SetImgNum();
+    }
+
+    //자물쇠번호숫자내리기
+    public void DownLockNum4()
+    {
+        lock_i = 3;
+        imgNum_i[lock_i]--;
+        if (imgNum_i[lock_i] <= -1)
+        {
+            imgNum_i[lock_i] = 9;
+        }
+        SetImgNum();
+    }
+
+    //숫자이미지폰트
+    void SetImgNum()
+    {
+        lockNum_obj[lock_i].GetComponent<Image>().sprite = lockNum_spr[imgNum_i[lock_i]];
+
+    }
+
     //캐릭터움직임
     IEnumerator moveC()
     {
-        int s=0;
-        while (s==0)
+        int s = 0;
+        while (s == 0)
         {
-            
+
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[0];
             yield return new WaitForSeconds(0.8f);
-            
+
 
             noteC_obj.GetComponent<Image>().sprite = noteCImg_spr[1];
             yield return new WaitForSeconds(0.8f);
-            
+
         }
     }
 
@@ -665,4 +816,5 @@ public class NoteStoreFunction : MonoBehaviour {
     }
 
 
+    
 }
