@@ -26,12 +26,16 @@ public class NoteStoreFunction : MonoBehaviour {
     public Sprite[] noteColor_spr, notePageColor_spr;
 
     //자물쇠
-    public GameObject lockImg_obj, noteLock_obj,lockYN_obj,lockNumWin_obj;
+    public GameObject lockImg_obj, noteLock_obj,lockYN_obj,lockNumWin_obj, lockNumSetWin_obj,set_obj;
     public Sprite lockOpen_spr, lock_spr;
     public Sprite[] lockNum_spr;
     public GameObject[] lockNum_obj;
     public int lock_i;
     public int[] imgNum_i;
+    int Sum = 0;
+    int SumUse;
+
+
     public Text charNum_txt;
 
     // Use this for initialization
@@ -563,6 +567,7 @@ public class NoteStoreFunction : MonoBehaviour {
     public void OpenLock()
     {
         lockNumWin_obj.SetActive(true);
+        set_obj.SetActive(false);
     }
 
     //자물쇠버리기
@@ -577,16 +582,84 @@ public class NoteStoreFunction : MonoBehaviour {
     public void UesLockYN()
     {
         lockYN_obj.SetActive(true);
+        set_obj.SetActive(true);
     }
     public void UesLockY()
     {
-        lockYN_obj.SetActive(false);
+
+        //PlayerPrefs.SetInt("locknote"+ noteBookNum_i, 1);
+        lockNumSetWin_obj.SetActive(true);
+    }
+
+    void SumUseLock()
+    {
+        for(int i = 1; i <= 4; i++)
+        {
+            
+            if(PlayerPrefs.GetInt("locknote" + noteBookNum_i, 0) == 1)
+            {
+                SumUse++;
+            }
+        }
+        PlayerPrefs.SetInt("uselocknum", SumUse);
+        //사용한 자물쇠의 수가 가지고 있는 자물쇠의 수보다 적은가
+        if (PlayerPrefs.GetInt("locknum", 0) > PlayerPrefs.GetInt("uselocknum", 0))
+        {
+            lockImg_obj.SetActive(true);
+        }
+        else
+        {
+            lockImg_obj.SetActive(false);
+        }
     }
     public void UesLockN()
     {
         lockYN_obj.SetActive(false);
     }
 
+    //비번 입력
+    public void LockNumOK()
+    {
+        lockYN_obj.SetActive(false);
+        //lockNumWin_obj.SetActive(false);
+        SumLock();
+        Debug.Log(Sum);
+        if (Sum == PlayerPrefs.GetInt("locknotenum" + noteBookNum_i, Sum))
+        {
+            //열림
+            Debug.Log("열림");
+        }
+    }
+    public void LockNumClose()
+    {
+        lockNumSetWin_obj.SetActive(false);
+        lockNumWin_obj.SetActive(false);
+        lockYN_obj.SetActive(false);
+    }
+
+    public void SetNumLockOK()
+    {
+        SumLock();
+        PlayerPrefs.SetInt("locknotenum" + noteBookNum_i, Sum);
+        Debug.Log(Sum);
+        //lockNumSetWin_obj.SetActive(false);
+        imgNum_i[0] = 0;
+        imgNum_i[1] = 0;
+        imgNum_i[2] = 0;
+        imgNum_i[3] = 0;
+        PlayerPrefs.SetInt("locknote" + noteBookNum_i, 1);
+        SumUseLock();
+        noteLock_obj.SetActive(true);
+    }
+
+    void SumLock()
+    {
+        Sum = 0;
+        Sum = Sum + imgNum_i[0] * 1000;
+        Sum = Sum + imgNum_i[1] * 100;
+        Sum = Sum + imgNum_i[2] * 10;
+        Sum = Sum + imgNum_i[3];
+    }
     //자물쇠초기화
     public void clearLock()
     {
