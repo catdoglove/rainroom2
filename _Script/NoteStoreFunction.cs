@@ -26,7 +26,7 @@ public class NoteStoreFunction : MonoBehaviour {
     public Sprite[] noteColor_spr, notePageColor_spr;
 
     //자물쇠
-    public GameObject lockImg_obj, noteLock_obj,lockYN_obj,lockNumWin_obj, lockNumSetWin_obj,set_obj;
+    public GameObject lockImg_obj, noteLock_obj,lockYN_obj,lockNumWin_obj, lockNumSetWin_obj,set_obj, lockOpenImg_obj;
     public Sprite lockOpen_spr, lock_spr;
     public Sprite[] lockNum_spr;
     public GameObject[] lockNum_obj;
@@ -34,7 +34,9 @@ public class NoteStoreFunction : MonoBehaviour {
     public int[] imgNum_i;
     int Sum = 0;
     int SumUse;
-
+    // 힌트
+    public Text hintInput_txt, hint_txt;
+    public InputField hintInput;
 
     public Text charNum_txt;
 
@@ -568,6 +570,16 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         lockNumWin_obj.SetActive(true);
         set_obj.SetActive(false);
+
+        imgNum_i[0] = 0;
+        imgNum_i[1] = 0;
+        imgNum_i[2] = 0;
+        imgNum_i[3] = 0;
+        ClearImgNum();
+
+
+        hintInput.text = PlayerPrefs.GetString("notehint" + noteBookNum_i, "");
+        Debug.Log(PlayerPrefs.GetString("notehint" + noteBookNum_i, ""));
     }
 
     //자물쇠버리기
@@ -576,6 +588,8 @@ public class NoteStoreFunction : MonoBehaviour {
         int l=PlayerPrefs.GetInt("locknum", 0);
         l--;
         PlayerPrefs.SetInt("locknum", l);
+        lockOpenImg_obj.SetActive(false);
+
     }
 
     //자물쇠를사용할까
@@ -602,15 +616,8 @@ public class NoteStoreFunction : MonoBehaviour {
             }
         }
         PlayerPrefs.SetInt("uselocknum", SumUse);
-        //사용한 자물쇠의 수가 가지고 있는 자물쇠의 수보다 적은가
-        if (PlayerPrefs.GetInt("locknum", 0) > PlayerPrefs.GetInt("uselocknum", 0))
-        {
-            lockImg_obj.SetActive(true);
-        }
-        else
-        {
-            lockImg_obj.SetActive(false);
-        }
+
+        lockImg_obj.SetActive(false);
     }
     public void UesLockN()
     {
@@ -628,6 +635,14 @@ public class NoteStoreFunction : MonoBehaviour {
         {
             //열림
             Debug.Log("열림");
+            lockNumWin_obj.SetActive(false);
+            noteLock_obj.SetActive(false);
+            
+        }
+        else
+        {
+            //틀림
+            StartCoroutine("toastNumImgFadeOut");
         }
     }
     public void LockNumClose()
@@ -642,7 +657,8 @@ public class NoteStoreFunction : MonoBehaviour {
         SumLock();
         PlayerPrefs.SetInt("locknotenum" + noteBookNum_i, Sum);
         Debug.Log(Sum);
-        //lockNumSetWin_obj.SetActive(false);
+        lockNumSetWin_obj.SetActive(false);
+        lockYN_obj.SetActive(false);
         imgNum_i[0] = 0;
         imgNum_i[1] = 0;
         imgNum_i[2] = 0;
@@ -650,6 +666,7 @@ public class NoteStoreFunction : MonoBehaviour {
         PlayerPrefs.SetInt("locknote" + noteBookNum_i, 1);
         SumUseLock();
         noteLock_obj.SetActive(true);
+        ClearImgNum();
     }
 
     void SumLock()
@@ -660,10 +677,26 @@ public class NoteStoreFunction : MonoBehaviour {
         Sum = Sum + imgNum_i[2] * 10;
         Sum = Sum + imgNum_i[3];
     }
-    //자물쇠초기화
+    //비밀번호재설정
     public void clearLock()
     {
 
+    }
+
+    //힌트저장
+    public void SaveHint()
+    {
+        PlayerPrefs.SetString("notehint" + noteBookNum_i, hintInput_txt.text);
+        Debug.Log(hintInput_txt.text);
+        PlayerPrefs.SetInt("checkhint" + noteBookNum_i, 1);
+        //hintInput_txt.text = "";
+        //title_obj.SetActive(false);
+        //PlayerPrefs.SetString("notewrite" + noteBookNum_i + "t", titleInput_txt.text);
+        //PlayerPrefs.SetInt("checkwrite" + noteBookNum_i + "t", 1);
+        //titleTxt_obj.SetActive(true);
+        //titleWriteOKBtn_obj.SetActive(false);
+        //title_txt.text = titleInput_txt.text;
+        //inputfieldTitle.text = "";
     }
 
     //자물쇠번호숫자올리기
@@ -767,6 +800,19 @@ public class NoteStoreFunction : MonoBehaviour {
 
     }
 
+    //초기화
+    void ClearImgNum()
+    {
+        lock_i = 0;
+        SetImgNum();
+        lock_i = 1;
+        SetImgNum();
+        lock_i = 2;
+        SetImgNum();
+        lock_i = 3;
+        SetImgNum();
+    }
+
     //캐릭터움직임
     IEnumerator moveC()
     {
@@ -843,6 +889,22 @@ public class NoteStoreFunction : MonoBehaviour {
     IEnumerator toastEraserImgFadeOut()
     {
         need_txt.text = "지우개가 없다.";
+        color.a = Mathf.Lerp(0f, 1f, 1f);
+        noteToast_obj.GetComponent<Image>().color = color;
+        noteToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            color.a = Mathf.Lerp(0f, 1f, i);
+            noteToast_obj.GetComponent<Image>().color = color;
+            yield return null;
+        }
+        noteToast_obj.SetActive(false);
+    }
+    //비번틀렸다
+    IEnumerator toastNumImgFadeOut()
+    {
+        need_txt.text = "번호가 틀렸다.";
         color.a = Mathf.Lerp(0f, 1f, 1f);
         noteToast_obj.GetComponent<Image>().color = color;
         noteToast_obj.SetActive(true);
