@@ -74,7 +74,7 @@ public class NoteShop : MonoBehaviour {
     public void BuyLock()
     {
         noteShopNum_i = 3;
-        priceShop_i = 5;
+        priceShop_i = 1;
         name_txt.text = "자물쇠";
         note_str = "locknum";
         noteShopBuyYN_obj.SetActive(true);

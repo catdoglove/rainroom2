@@ -54,27 +54,26 @@ public class SceneMove : MonoBehaviour {
         
     }
 
-	public void moveDown(){
-
-
+    public void moveDown()
+    {
         PlayerPrefs.SetInt("storg", 1);
         PlayerPrefs.SetInt("unlockshop", 10);
-            if (PlayerPrefs.GetInt("waterpurifiershop", 0)==0)
-            {
-                PlayerPrefs.SetInt("waterpurifiershop", 1);
-            }
-            if (GMN == null)
-            {
-                GMN = GameObject.FindGameObjectWithTag("GMtag");
-            }
-            GMN.GetComponent<MainBtnEvt>().allClose();
-            PlayerPrefs.SetInt("achievemove", 1);
-            PlayerPrefs.SetInt("place", 1);
-            StartCoroutine(Load());
-            PlayerPrefs.Save();
-            //아래층으로
-        
-	}
+        if (PlayerPrefs.GetInt("waterpurifiershop", 0) == 0)
+        {
+            PlayerPrefs.SetInt("waterpurifiershop", 1);
+        }
+        if (GMN == null)
+        {
+            GMN = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMN.GetComponent<MainBtnEvt>().allClose();
+        PlayerPrefs.SetInt("achievemove", 1);
+        PlayerPrefs.Save();
+        PlayerPrefs.SetInt("place", 1);
+        StartCoroutine(Load());
+        PlayerPrefs.Save();
+        //아래층으로
+    }
 
 	public void moveUp(){
         if(GMN == null) {
@@ -82,6 +81,7 @@ public class SceneMove : MonoBehaviour {
         }
         GMN.GetComponent<MainBtnEvt> ().allClose ();
         PlayerPrefs.SetInt("achievemove", 1);
+        PlayerPrefs.Save();
         PlayerPrefs.SetInt("place", 0);
         StartCoroutine(Load2());
         PlayerPrefs.Save();

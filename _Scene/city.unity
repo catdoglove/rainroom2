@@ -1191,7 +1191,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 65864604}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128228837}
+        m_MethodName: BuyLock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 365005795}
+        m_MethodName: buttonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &65864604
@@ -2000,7 +2022,7 @@ RectTransform:
   m_LocalScale: {x: 1.0003967, y: 1.0003967, z: 1.0003967}
   m_Children: []
   m_Father: {fileID: 466741674}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6501,7 +6523,7 @@ RectTransform:
   m_LocalScale: {x: 0.9996771, y: 0.9996771, z: 0.9996771}
   m_Children: []
   m_Father: {fileID: 466741674}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6774,10 +6796,10 @@ RectTransform:
   - {fileID: 110325756}
   - {fileID: 1334600531}
   - {fileID: 1533853080}
+  - {fileID: 1888244013}
   - {fileID: 2016575252}
   - {fileID: 442630424}
   - {fileID: 125718288}
-  - {fileID: 1888244013}
   m_Father: {fileID: 1781705875}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13950,7 +13972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91, y: -247.8}
+  m_AnchoredPosition: {x: -141.4, y: -247.8}
   m_SizeDelta: {x: 182, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &977553769
@@ -28157,7 +28179,7 @@ RectTransform:
   m_Children:
   - {fileID: 65864602}
   m_Father: {fileID: 466741674}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29408,7 +29430,7 @@ RectTransform:
   - {fileID: 1871782756}
   - {fileID: 583928982}
   m_Father: {fileID: 466741674}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
