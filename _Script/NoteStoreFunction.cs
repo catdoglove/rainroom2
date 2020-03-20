@@ -35,6 +35,7 @@ public class NoteStoreFunction : MonoBehaviour {
     int Sum = 0;
     int SumUse;
     public int[] lockOpen_i;
+    public GameObject clearBtn_obj;
 
     // 힌트
     public Text hintInput_txt, hint_txt;
@@ -151,15 +152,6 @@ public class NoteStoreFunction : MonoBehaviour {
         if (PlayerPrefs.GetInt("havenotenum", 0) >= 3)
         {
             noteBooks_obj[3].SetActive(true);
-        }
-        //자물쇠를 몇개 샀나?
-        if (PlayerPrefs.GetInt("locknum", 0) >= 1)
-        {
-            //사용한 자물쇠의 수가 가지고 있는 자물쇠의 수보다 적은가
-            if(PlayerPrefs.GetInt("locknum", 0) > PlayerPrefs.GetInt("uselocknum", 0))
-            {
-                lockImg_obj.SetActive(true);
-            }
         }
     }
 
@@ -401,19 +393,17 @@ public class NoteStoreFunction : MonoBehaviour {
             if (PlayerPrefs.GetInt("locknote" + noteBookNum_i, 0) == 1)
             {
                 noteLock_obj.SetActive(true);
+                lockImg_obj.SetActive(false);
+                Debug.Log(PlayerPrefs.GetInt("locknum", 0) + "p" + PlayerPrefs.GetInt("uselocknum", 0));
             }
             else
             {
                 noteLock_obj.SetActive(false);
-                //자물쇠를 몇개 샀나?
-                if (PlayerPrefs.GetInt("locknum", 0) >= 1)
-                {
                     //사용한 자물쇠의 수가 가지고 있는 자물쇠의 수보다 적은가
                     if (PlayerPrefs.GetInt("locknum", 0) > PlayerPrefs.GetInt("uselocknum", 0))
                     {
                         lockImg_obj.SetActive(true);
                     }
-                }
             }
         }
         else
@@ -610,6 +600,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //자물쇠창 열기
     public void OpenLock()
     {
+        clearBtn_obj.SetActive(true);
         lockClearYN_obj.SetActive(false);
         lockNumWin_obj.SetActive(true);
         set_obj.SetActive(false);
@@ -630,9 +621,20 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         int l=PlayerPrefs.GetInt("locknum", 0);
         l--;
+        if (l < 0)
+        {
+            l = 0;
+        }
         PlayerPrefs.SetInt("locknum", l);
         PlayerPrefs.SetString("notehint" + noteBookNum_i, "");
         PlayerPrefs.SetInt("locknote" + noteBookNum_i, 0);
+        int k= PlayerPrefs.GetInt("uselocknum", 0);
+        k--;
+        if (k < 0)
+        {
+            k = 0;
+        }
+        PlayerPrefs.SetInt("uselocknum", k);
         lockOpenImg_obj.SetActive(false);
         lockOpen_i[noteBookNum_i] = 0;
         lockDelYN_obj.SetActive(false);
@@ -650,6 +652,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //자물쇠를사용할까
     public void UesLockYN()
     {
+        clearBtn_obj.SetActive(false);
         lockYN_obj.SetActive(true);
         set_obj.SetActive(true);
     }
@@ -660,10 +663,11 @@ public class NoteStoreFunction : MonoBehaviour {
 
     void SumUseLock()
     {
-        for(int i = 1; i <= 4; i++)
+        SumUse = 0;
+        for (int i = 1; i <= 4; i++)
         {
             
-            if(PlayerPrefs.GetInt("locknote" + noteBookNum_i, 0) == 1)
+            if(PlayerPrefs.GetInt("locknote" + i, 0) == 1)
             {
                 SumUse++;
             }
@@ -693,6 +697,7 @@ public class NoteStoreFunction : MonoBehaviour {
             noteLock_obj.SetActive(false);
             lockOpenImg_obj.SetActive(true);
             lockOpen_i[noteBookNum_i] = 1;
+            hintInput.text = "";
         }
         else
         {
@@ -706,6 +711,7 @@ public class NoteStoreFunction : MonoBehaviour {
         lockNumWin_obj.SetActive(false);
         lockYN_obj.SetActive(false);
         lockClearYN_obj.SetActive(false);
+        hintInput.text = "";
     }
 
     public void SetNumLockOK()
@@ -723,6 +729,8 @@ public class NoteStoreFunction : MonoBehaviour {
         SumUseLock();
         noteLock_obj.SetActive(true);
         ClearImgNum();
+        hintInput.text = "";
+
     }
 
     void SumLock()
@@ -743,7 +751,7 @@ public class NoteStoreFunction : MonoBehaviour {
     {
 
         str = PlayerPrefs.GetString("code", "");
-        if(PlayerPrefs.GetInt(str + "c", 0) < 2000)
+        if(PlayerPrefs.GetInt(str + "c", 0) >= 2000)
         {
             lockClearYN_obj.SetActive(false);
             int cr = PlayerPrefs.GetInt(str + "c", 0);

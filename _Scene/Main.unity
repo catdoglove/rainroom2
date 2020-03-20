@@ -7778,7 +7778,7 @@ RectTransform:
   - {fileID: 1461593840}
   - {fileID: 795431767}
   m_Father: {fileID: 2065566546}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -43958,7 +43958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &777289209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55110,7 +55110,7 @@ RectTransform:
   - {fileID: 952906040}
   - {fileID: 525381012}
   m_Father: {fileID: 2065566546}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -85420,18 +85420,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2128228840}
-        m_MethodName: SaveHint
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
@@ -92169,7 +92158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1578021572
 RectTransform:
   m_ObjectHideFlags: 0
@@ -114962,7 +114951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1961590869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120150,8 +120139,8 @@ RectTransform:
   - {fileID: 1284058385}
   - {fileID: 2037697567}
   - {fileID: 1983959437}
-  - {fileID: 928033825}
   - {fileID: 148595754}
+  - {fileID: 928033825}
   - {fileID: 2031591451}
   - {fileID: 1762817845}
   - {fileID: 178500741}
@@ -124888,6 +124877,7 @@ MonoBehaviour:
   lock_i: 0
   imgNum_i: 00000000000000000000000000000000
   lockOpen_i: 00000000000000000000000000000000
+  clearBtn_obj: {fileID: 1578021571}
   hintInput_txt: {fileID: 753303524}
   hint_txt: {fileID: 795431768}
   hintInput: {fileID: 1461593841}
