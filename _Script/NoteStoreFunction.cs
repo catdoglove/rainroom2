@@ -43,9 +43,10 @@ public class NoteStoreFunction : MonoBehaviour {
 
     public Text charNum_txt;
 
+    public GameObject GMS;
+
     // Use this for initialization
     void Start () {
-        
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
         NoteWoodCheck();
@@ -91,7 +92,6 @@ public class NoteStoreFunction : MonoBehaviour {
         showCover_obj.SetActive(true);
         //페이지 넘기기 버튼
         noteLBtn_obj.SetActive(false);
-        //noteLBtn_obj.GetComponent<Image>().sprite = noteBtn_spr[1];
         //제목 저장불러오기
         WritedTitle();
         //노트키기
@@ -387,6 +387,11 @@ public class NoteStoreFunction : MonoBehaviour {
     //자물쇠 - 노트를 바꿀때
     void SetLock()
     {
+        imgNum_i[0] = 0;
+        imgNum_i[1] = 0;
+        imgNum_i[2] = 0;
+        imgNum_i[3] = 0;
+        ClearImgNum();
         if (lockOpen_i[noteBookNum_i] == 0)
         {
             lockOpenImg_obj.SetActive(false);
@@ -394,7 +399,6 @@ public class NoteStoreFunction : MonoBehaviour {
             {
                 noteLock_obj.SetActive(true);
                 lockImg_obj.SetActive(false);
-                Debug.Log(PlayerPrefs.GetInt("locknum", 0) + "p" + PlayerPrefs.GetInt("uselocknum", 0));
             }
             else
             {
@@ -613,7 +617,6 @@ public class NoteStoreFunction : MonoBehaviour {
 
 
         hintInput.text = PlayerPrefs.GetString("notehint" + noteBookNum_i, "");
-        Debug.Log(PlayerPrefs.GetString("notehint" + noteBookNum_i, ""));
     }
 
     //자물쇠버리기
@@ -652,9 +655,12 @@ public class NoteStoreFunction : MonoBehaviour {
     //자물쇠를사용할까
     public void UesLockYN()
     {
-        clearBtn_obj.SetActive(false);
-        lockYN_obj.SetActive(true);
-        set_obj.SetActive(true);
+        if (notePageNum_i == 0)
+        {
+            clearBtn_obj.SetActive(false);
+            lockYN_obj.SetActive(true);
+            set_obj.SetActive(true);
+        }
     }
     public void UesLockY()
     {
@@ -688,21 +694,21 @@ public class NoteStoreFunction : MonoBehaviour {
         lockYN_obj.SetActive(false);
         //lockNumWin_obj.SetActive(false);
         SumLock();
-        Debug.Log(Sum);
         if (Sum == PlayerPrefs.GetInt("locknotenum" + noteBookNum_i, Sum))
         {
             //열림
-            Debug.Log("열림");
             lockNumWin_obj.SetActive(false);
             noteLock_obj.SetActive(false);
             lockOpenImg_obj.SetActive(true);
             lockOpen_i[noteBookNum_i] = 1;
             hintInput.text = "";
+            GMS.GetComponent<SoundEvt>().TVSound();
         }
         else
         {
             //틀림
             StartCoroutine("toastNumImgFadeOut");
+            GMS.GetComponent<SoundEvt>().cancleSound();
         }
     }
     public void LockNumClose()
@@ -757,16 +763,29 @@ public class NoteStoreFunction : MonoBehaviour {
             int cr = PlayerPrefs.GetInt(str + "c", 0);
             cr=cr - 2000;
             PlayerPrefs.SetInt(str + "c", cr);
-            PlayerPrefs.SetInt("locknotenum" + noteBookNum_i, 0);
+            PlayerPrefs.SetString("notehint" + noteBookNum_i, "");
+            PlayerPrefs.SetInt("locknote" + noteBookNum_i, 0);
+            int k = PlayerPrefs.GetInt("uselocknum", 0);
+            k--;
+            if (k < 0)
+            {
+                k = 0;
+            }
+            PlayerPrefs.SetInt("uselocknum", k);
             PlayerPrefs.Save();
-            need_txt.text = "비밀번호를 0000으로 재설정 했다.";
+            lockImg_obj.SetActive(true);
+            noteLock_obj.SetActive(false);
+            lockNumWin_obj.SetActive(false);
+            need_txt.text = "비밀번호를 다시 설정하자.";
             StartCoroutine("toastClearImgFadeOut");
+            GMS.GetComponent<SoundEvt>().TVSound();
         }
         else
         {
             //부족
             need_txt.text = "그걸 하기에는 모자라다.";
             StartCoroutine("toastClearImgFadeOut");
+            GMS.GetComponent<SoundEvt>().cancleSound();
         }
     }
     public void clearLockN()
@@ -995,7 +1014,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //비번틀렸다
     IEnumerator toastNumImgFadeOut()
     {
-        need_txt.text = "번호가 틀렸다.";
+        need_txt.text = "비밀번호가 틀렸다.";
         color.a = Mathf.Lerp(0f, 1f, 1f);
         noteToast_obj.GetComponent<Image>().color = color;
         noteToast_obj.SetActive(true);
