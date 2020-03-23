@@ -778,6 +778,13 @@ public class NoteStoreFunction : MonoBehaviour {
             need_txt.text = "비밀번호를 다시 설정하자.";
             StartCoroutine("toastClearImgFadeOut");
             GMS.GetComponent<SoundEvt>().TVSound();
+
+            imgNum_i[0] = 0;
+            imgNum_i[1] = 0;
+            imgNum_i[2] = 0;
+            imgNum_i[3] = 0;
+            ClearImgNum();
+            hintInput.text = "";
         }
         else
         {
