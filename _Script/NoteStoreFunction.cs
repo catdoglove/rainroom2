@@ -724,7 +724,6 @@ public class NoteStoreFunction : MonoBehaviour {
     {
         SumLock();
         PlayerPrefs.SetInt("locknotenum" + noteBookNum_i, Sum);
-        Debug.Log(Sum);
         lockNumSetWin_obj.SetActive(false);
         lockYN_obj.SetActive(false);
         imgNum_i[0] = 0;
@@ -797,7 +796,6 @@ public class NoteStoreFunction : MonoBehaviour {
     public void SaveHint()
     {
         PlayerPrefs.SetString("notehint" + noteBookNum_i, hintInput_txt.text);
-        Debug.Log(hintInput_txt.text);
         PlayerPrefs.SetInt("checkhint" + noteBookNum_i, 1);
         //hintInput_txt.text = "";
         //title_obj.SetActive(false);

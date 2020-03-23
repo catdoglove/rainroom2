@@ -221,7 +221,6 @@ public class Parkfunction : CavasData
     /// </summary>
     void endg()
     {
-        Debug.Log("dd");
         if (PlayerPrefs.GetInt("parkending", 0) == 0)
         {
             PlayerPrefs.SetInt("parkending", 1);
