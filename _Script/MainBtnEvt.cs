@@ -383,6 +383,7 @@ public class MainBtnEvt : CavasData
 		//스크린화면해상도에맞춰조절,화면꺼지지않게
 		#region
 
+        /*
 		float screenNum =(float)Screen.height/(float)Screen.width;
 		if (screenNum < 0.57f) {
 
@@ -407,6 +408,7 @@ public class MainBtnEvt : CavasData
 		} else {
 			Screen.SetResolution (Screen.width, Screen.width / 3 * 2, true);
 		}
+        */
 
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		#endregion
