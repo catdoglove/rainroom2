@@ -23,6 +23,8 @@ public class SecondRoomTime : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        moveX1= -14f;
+        moveX2 = 14f;
         //식물
         if (PlayerPrefs.GetInt("leafget", 0) >= 1)
         {
@@ -120,9 +122,9 @@ public class SecondRoomTime : MonoBehaviour {
                 dust1_obj.SetActive(false);
             }
                 moveX1 = moveX1 + 0.05f;
-            if (moveX1 >= 9.4)
+            if (moveX1 >= 14.4)
             {
-                moveX1 = -9.4f;
+                moveX1 = -16f;
                 randDust1_i = 0;
             }
             dust1_obj.transform.position = new Vector3(moveX1, moveY, dust1_obj.transform.position.z);
@@ -144,9 +146,9 @@ public class SecondRoomTime : MonoBehaviour {
             }
 
             moveX2 = moveX2 - 0.05f;
-            if (moveX2 <= -9.4)
+            if (moveX2 <= -14.4)
             {
-                moveX2 = 9.4f;
+                moveX2 = 16f;
                 randDust2_i = 0;
             }
             dust2_obj.transform.position = new Vector3(moveX2, moveY, dust1_obj.transform.position.z);

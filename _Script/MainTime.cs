@@ -309,10 +309,10 @@ public class MainTime : MonoBehaviour {
                 pMoveX = 5.4f;
             }
                 pMoveX = pMoveX -0.1f;
-                if (pMoveX <= -5.4)
+                if (pMoveX <= -5.3)
                 {
                 PlayerPrefs.SetInt("windowairplane", 0);
-                pMoveX = 17.4f;
+                pMoveX = 18.4f;
                 plane_i = 0;
                 }
             airplane_obj.transform.position = new Vector3(pMoveX, airplane_obj.transform.position.y, airplane_obj.transform.position.z);

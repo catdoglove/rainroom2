@@ -22,7 +22,7 @@ public class TouchSpider : MonoBehaviour {
         PlayerPrefs.SetFloat("watposx", xx);
         PlayerPrefs.SetFloat("watposy", yy);
 
-        spider_obj.transform.position = new Vector3(-11f, spider_obj.transform.position.y, spider_obj.transform.position.z);
+        spider_obj.transform.position = new Vector3(-18f, spider_obj.transform.position.y, spider_obj.transform.position.z);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
@@ -48,7 +48,7 @@ public class TouchSpider : MonoBehaviour {
         PlayerPrefs.SetFloat("watposx", xx);
         PlayerPrefs.SetFloat("watposy", yy);
 
-        star_obj.transform.position = new Vector3(-11f, star_obj.transform.position.y, star_obj.transform.position.z);
+        star_obj.transform.position = new Vector3(-18f, star_obj.transform.position.y, star_obj.transform.position.z);
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         int hotRain_i = PlayerPrefs.GetInt(str + "h", 0);
