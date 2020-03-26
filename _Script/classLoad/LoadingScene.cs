@@ -29,7 +29,7 @@ public class LoadingScene : MonoBehaviour {
 
 		StartCoroutine(imgFadeIn());
 
-
+        /*
         float screenNum = (float)Screen.height / (float)Screen.width;
         if (screenNum < 0.57f)
         {
@@ -65,7 +65,7 @@ public class LoadingScene : MonoBehaviour {
         {
             Screen.SetResolution(Screen.width, Screen.width / 3 * 2, true);
         }
-
+        */
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     
