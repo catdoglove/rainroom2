@@ -36,6 +36,7 @@ public class NoteStoreFunction : MonoBehaviour {
     int SumUse;
     public int[] lockOpen_i;
     public GameObject clearBtn_obj;
+    public Text lock_txt;
 
     // 힌트
     public Text hintInput_txt, hint_txt;
@@ -387,6 +388,7 @@ public class NoteStoreFunction : MonoBehaviour {
     //자물쇠 - 노트를 바꿀때
     void SetLock()
     {
+        SetlockTxt();
         imgNum_i[0] = 0;
         imgNum_i[1] = 0;
         imgNum_i[2] = 0;
@@ -416,6 +418,12 @@ public class NoteStoreFunction : MonoBehaviour {
             lockOpenImg_obj.SetActive(true);
             noteLock_obj.SetActive(false);
         }
+
+    }
+    void SetlockTxt()
+    {
+        int l = PlayerPrefs.GetInt("locknum", 0) - PlayerPrefs.GetInt("uselocknum", 0);
+        lock_txt.text = "" + l;
     }
 
     //다른 노트를 선택했을때 초기화 클리어
@@ -641,6 +649,7 @@ public class NoteStoreFunction : MonoBehaviour {
         lockOpenImg_obj.SetActive(false);
         lockOpen_i[noteBookNum_i] = 0;
         lockDelYN_obj.SetActive(false);
+        SetlockTxt();
     }
 
     public void DelLockYN()
@@ -735,7 +744,7 @@ public class NoteStoreFunction : MonoBehaviour {
         noteLock_obj.SetActive(true);
         ClearImgNum();
         hintInput.text = "";
-
+        SetlockTxt();
     }
 
     void SumLock()
@@ -785,6 +794,7 @@ public class NoteStoreFunction : MonoBehaviour {
             imgNum_i[3] = 0;
             ClearImgNum();
             hintInput.text = "";
+            SetlockTxt();
         }
         else
         {

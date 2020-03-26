@@ -16,11 +16,17 @@ public class CityTime : MonoBehaviour {
     //외물물건
     public GameObject putToast_obj;
 
+    private void Awake()
+    {
+        StopCoroutine("updateSec");
+        StartCoroutine("updateSec");
+    }
     // Use this for initialization
     void Start () {
 
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
+        StopCoroutine("updateSec");
         StartCoroutine("updateSec");
 
 
