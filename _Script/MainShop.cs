@@ -195,10 +195,8 @@ public class MainShop : ShopHandler {
                 {
                     coldRain_i = coldRain_i - coldRainPrice_i;
                     PlayerPrefs.SetInt(str + "c", coldRain_i);
-                    //Debug.Log(coldRainPrice_i);//////////////////////////////////////////////////////////////////
                     hotRain_i = hotRain_i - hotRainPrice_i;
                     PlayerPrefs.SetInt(str + "h", hotRain_i);
-                    //Debug.Log(hotRainPrice_i);//////////////////////////////////////////////////////////////////
                     itemLevel_i++;
                     PlayerPrefs.SetInt(itemName_str + "lv", itemLevel_i);
                     achvcheck();
