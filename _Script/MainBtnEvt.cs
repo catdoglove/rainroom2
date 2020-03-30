@@ -15,7 +15,7 @@ public class MainBtnEvt : CavasData
     public GameObject backBlackImg_obj;
 
     //메뉴펼쳐주기
-    public GameObject menuBack_obj;
+    public GameObject menuBack_obj,menuBefore_obj,menuAfter_obj, showBefore_obj, showAfter_obj;
     public Vector2 menuBack_vet;
     public GameObject GM, GM2,GMtag;
 
@@ -150,10 +150,21 @@ public class MainBtnEvt : CavasData
 
     // Use this for initialization
     void Start () {
-        menuBack_vet= menuBack_obj.transform.position; ;
+        menuBack_vet= menuBack_obj.transform.position;
         PlayerPrefs.SetFloat("mbx", menuBack_vet.x);
-        showHave_vet = have_obj.transform.position; ;
+        menuBack_vet = menuBefore_obj.transform.position;
+        PlayerPrefs.SetFloat("mby1", menuBack_vet.y);
+        menuBack_vet = menuAfter_obj.transform.position;
+        PlayerPrefs.SetFloat("mby2", menuBack_vet.y);
+        menuBack_vet = menuBack_obj.transform.position;
+
+        showHave_vet = have_obj.transform.position;
         PlayerPrefs.SetFloat("shx", showHave_vet.x);
+        showHave_vet = showBefore_obj.transform.position;
+        PlayerPrefs.SetFloat("shy1", showHave_vet.y);
+        showHave_vet = showAfter_obj.transform.position;
+        PlayerPrefs.SetFloat("shy2", showHave_vet.y);
+        showHave_vet = have_obj.transform.position; ;
 
         PlayerPrefs.SetInt("showhavec", 1);
         //돈표시끄고키기
@@ -470,17 +481,17 @@ public class MainBtnEvt : CavasData
         menuBack_vet = menuBack_obj.transform.position;
 
         menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
-        while (menuBack_vet.y >= 0.4f)
+        while (menuBack_vet.y >= PlayerPrefs.GetFloat("mby2", 0))
             {
             menuBack_vet.y = menuBack_vet.y - 0.6f;
-            if (menuBack_vet.y <= 0.4f)
+            if (menuBack_vet.y <= PlayerPrefs.GetFloat("mby2", 0))
             {
-                menuBack_vet.y = 0.39f;
+                menuBack_vet.y = PlayerPrefs.GetFloat("mby2", 0);
             }
                 menuBack_obj.transform.position = menuBack_vet;
                 yield return null;
             }
-        menuBack_vet.y = 0.2f;
+        menuBack_vet.y = PlayerPrefs.GetFloat("mby2", 0);
         menuBack_obj.transform.position = menuBack_vet;
     }
 
@@ -488,13 +499,13 @@ public class MainBtnEvt : CavasData
     {
         menuBack_vet = menuBack_obj.transform.position;
         menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
-        while (menuBack_vet.y <= 6f)
+        while (menuBack_vet.y <= PlayerPrefs.GetFloat("mby1", 0))
             {
             menuBack_vet.y = menuBack_vet.y + 0.6f;
                 menuBack_obj.transform.position = menuBack_vet;
                 yield return null;
             }
-        menuBack_vet.y = 6.15f;
+        menuBack_vet.y = PlayerPrefs.GetFloat("mby1", 0);
         menuBack_obj.transform.position = menuBack_vet;
     }
 
@@ -506,17 +517,17 @@ public class MainBtnEvt : CavasData
     {
         showHave_vet = have_obj.transform.position;
         showHave_vet.x = PlayerPrefs.GetFloat("shx", 0);
-        while (showHave_vet.y >= 0.4f)
+        while (showHave_vet.y >= PlayerPrefs.GetFloat("shy2", 0))
         {
             showHave_vet.y = showHave_vet.y - 0.6f;
-            if (showHave_vet.y <= 0.4f)
+            if (showHave_vet.y <= PlayerPrefs.GetFloat("shy2", 0))
             {
-                showHave_vet.y = 0.39f;
+                showHave_vet.y = PlayerPrefs.GetFloat("shy2", 0);
             }
             have_obj.transform.position = showHave_vet;
             yield return null;
         }
-        showHave_vet.y = 0.2f;
+        showHave_vet.y = PlayerPrefs.GetFloat("shy2", 0);
         have_obj.transform.position = showHave_vet;
     }
 
@@ -524,13 +535,13 @@ public class MainBtnEvt : CavasData
     {
         showHave_vet = have_obj.transform.position;
         showHave_vet.x = PlayerPrefs.GetFloat("shx", 0);
-        while (showHave_vet.y <= 4.8f)
+        while (showHave_vet.y <= PlayerPrefs.GetFloat("shy1", 0))
         {
             showHave_vet.y = showHave_vet.y + 0.6f;
             have_obj.transform.position = showHave_vet;
             yield return null;
         }
-        showHave_vet.y = 4.97f;
+        showHave_vet.y = PlayerPrefs.GetFloat("shy1", 0);
         have_obj.transform.position = showHave_vet;
     }
 
