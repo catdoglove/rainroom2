@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ParkShop : MonoBehaviour {
 
     //이밴트와 상점창
-    public GameObject eventPaint_obj, eventPet_obj, foodShop_obj, inShop_obj, basicShop_obj;
+    public GameObject eventPaint_obj, eventPet_obj, foodShop_obj, inShop_obj, basicShop_obj, eventPetImg_obj;
     public GameObject blackClose_obj;
     public int shopNum, helpNum;
     public string str;
@@ -744,7 +744,7 @@ public class ParkShop : MonoBehaviour {
     public void pet0()
     {
         //마리모
-        eventPet_obj.GetComponent<Image>().sprite = pet_spr[0];
+        eventPetImg_obj.GetComponent<Image>().sprite = pet_spr[0];
         petMarimo_obj.SetActive(true);
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
@@ -754,7 +754,7 @@ public class ParkShop : MonoBehaviour {
     public void pet1()
     {
         //토끼
-        eventPet_obj.GetComponent<Image>().sprite = pet_spr[1];
+        eventPetImg_obj.GetComponent<Image>().sprite = pet_spr[1];
         petMarimo_obj.SetActive(false);
         petRabbit_obj.SetActive(true);
         petTutle_obj.SetActive(false);
@@ -764,7 +764,7 @@ public class ParkShop : MonoBehaviour {
     public void pet2()
     {
         //거북이
-        eventPet_obj.GetComponent<Image>().sprite = pet_spr[2];
+        eventPetImg_obj.GetComponent<Image>().sprite = pet_spr[2];
         petMarimo_obj.SetActive(false);
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(true);
@@ -774,7 +774,7 @@ public class ParkShop : MonoBehaviour {
     public void pet3()
     {
         //금붕어
-        eventPet_obj.GetComponent<Image>().sprite = pet_spr[3];
+        eventPetImg_obj.GetComponent<Image>().sprite = pet_spr[3];
         petMarimo_obj.SetActive(false);
         petRabbit_obj.SetActive(false);
         petTutle_obj.SetActive(false);
