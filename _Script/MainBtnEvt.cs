@@ -481,7 +481,7 @@ public class MainBtnEvt : CavasData
         menuBack_vet = menuBack_obj.transform.position;
 
         menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
-        while (menuBack_vet.y >= PlayerPrefs.GetFloat("mby2", 0))
+        while (menuBack_vet.y >= (PlayerPrefs.GetFloat("mby2", 0)+0.55f))
         {
             menuBack_vet.y = menuBack_vet.y - 0.6f;
             menuBack_obj.transform.position = menuBack_vet;
@@ -513,7 +513,7 @@ public class MainBtnEvt : CavasData
     {
         showHave_vet = have_obj.transform.position;
         showHave_vet.x = PlayerPrefs.GetFloat("shx", 0);
-        while (showHave_vet.y >= PlayerPrefs.GetFloat("shy2", 0))
+        while (showHave_vet.y >= (PlayerPrefs.GetFloat("shy2", 0) + 0.55f))
         {
             showHave_vet.y = showHave_vet.y - 0.6f;
             have_obj.transform.position = showHave_vet;
