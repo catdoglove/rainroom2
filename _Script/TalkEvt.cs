@@ -6,7 +6,7 @@ using System.Linq; //랜덤필
 
 public class TalkEvt : MonoBehaviour {
 
-    List<Dictionary<string, object>> data, data_book, data_light, data_seed, data_wall, data_window, data_evt_spring; //csv파일
+    List<Dictionary<string, object>> data, data_book, data_light, data_seed, data_wall, data_window, data_evt_spring, data_pet; //csv파일
     int etcNum = 0;
     public Text Text_obj; //선언 및 보여질
     string[] testText_cut; //대사 끊기
@@ -94,6 +94,7 @@ public class TalkEvt : MonoBehaviour {
         data_wall = CSVReader.Read("Talk/talk_wall"); 
         data_window = CSVReader.Read("Talk/talk_window");
         data_evt_spring = CSVReader.Read("Talk/etc_room");
+        data_pet = CSVReader.Read("Talk/talk_pet");
         setCharAni();
     }
 
@@ -742,6 +743,80 @@ public class TalkEvt : MonoBehaviour {
             etcNum++;
         }
     }
+
+    public void talkTurtle()
+    {
+        text_str = "" + data_pet[etcNum]["turtle"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+        if (etcNum >= 4)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talkRabbit()
+    {
+        text_str = "" + data_pet[etcNum]["rabbit"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+        if (etcNum >= 4)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talkFish()
+    {
+        text_str = "" + data_pet[etcNum]["fish"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+        if (etcNum >= 4)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+    public void talkMmarimo()
+    {
+        text_str = "" + data_pet[etcNum]["marimo"];
+        testText_cut = text_str.Split('/');
+
+        StopCoroutine("itemTalkRun");
+        StartCoroutine("itemTalkRun");
+        cleantalk();
+        if (etcNum >= 4)
+        {
+            etcNum = 0;
+        }
+        else
+        {
+            etcNum++;
+        }
+    }
+
+
 
     public void talkBook()
     {
