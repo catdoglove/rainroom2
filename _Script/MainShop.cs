@@ -2602,6 +2602,7 @@ public class MainShop : ShopHandler {
         if (PlayerPrefs.GetInt("place", 0) == 0)
         {
             GM.GetComponent<FirstRoomFunction>().roomRabbit_obj.GetComponent<SpriteRenderer>().color = mColor;
+            GM.GetComponent<SleepTime>().rabbitSleep_obj.GetComponent<SpriteRenderer>().color = mColor;
         }
     }
 
