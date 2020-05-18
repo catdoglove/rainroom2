@@ -701,20 +701,20 @@ public class MainBtnEvt : CavasData
     }
     public void SetCoupon()
     {
-        /*
-        if (InputField_txt.text == "happynewyear")
+        
+        if (InputField_txt.text == "mask4you")
         {
-            if (PlayerPrefs.GetInt("200103", 0) == 0)
+            if (PlayerPrefs.GetInt("s200518", 0) == 0)
             {
                 string str = PlayerPrefs.GetString("code", "");
                 //쿠폰보상
-                int d = PlayerPrefs.GetInt(str + "dm", 0) + 3;
-                int c = PlayerPrefs.GetInt(str + "cv", 0) + 3;
-                int h = PlayerPrefs.GetInt(str + "ht", 0) + 3;
-                PlayerPrefs.SetInt(str + "dm", d);
-                PlayerPrefs.SetInt(str + "cv", c);
+                int h = PlayerPrefs.GetInt(str + "ht", 0) + 5;
                 PlayerPrefs.SetInt(str + "ht", h);
-                PlayerPrefs.SetInt("200103", 999);
+
+                int hr = PlayerPrefs.GetInt(str + "h", 0) + 100;
+                PlayerPrefs.SetInt(str + "h", hr);
+
+                PlayerPrefs.SetInt("s200518", 999);
                 couponTxt_obj.SetActive(true);
                 coupon_obj.SetActive(false);
             }
@@ -728,8 +728,7 @@ public class MainBtnEvt : CavasData
         {
             couponTxtF_obj.SetActive(true);
         }
-        */
-        couponTxtF_obj.SetActive(true);
+        
 
         PlayerPrefs.Save();
     }
@@ -747,6 +746,24 @@ public class MainBtnEvt : CavasData
                 coupon_obj.SetActive(false);
             }
         }
+
+        
+        if (InputField_txt.text == "happynewyear")
+        {
+            if (PlayerPrefs.GetInt("200103", 0) == 0)
+            {
+                string str = PlayerPrefs.GetString("code", "");
+                //쿠폰보상
+                int d = PlayerPrefs.GetInt(str + "dm", 0) + 3;
+                int c = PlayerPrefs.GetInt(str + "cv", 0) + 3;
+                int h = PlayerPrefs.GetInt(str + "ht", 0) + 3;
+                PlayerPrefs.SetInt(str + "dm", d);
+                PlayerPrefs.SetInt(str + "cv", c);
+                PlayerPrefs.SetInt(str + "ht", h);
+                PlayerPrefs.SetInt("200103", 999);
+                couponTxt_obj.SetActive(true);
+                coupon_obj.SetActive(false);
+            }
         */
 
     public void closeCoupon()

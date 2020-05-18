@@ -803,6 +803,15 @@ public class MainShop : ShopHandler {
             funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[13];
         }
 
+        if (PlayerPrefs.GetInt("putwoodflower", 0) >= 1)
+        {
+            funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[14];
+        }
+        else
+        {
+            funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[15];
+        }
+
     }
     //식물 보관
     public void PutPlant()
@@ -994,7 +1003,7 @@ public class MainShop : ShopHandler {
         }
     }
 
-    // 보관
+    // 겨울 보관
     public void PutWinter()
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)
@@ -1025,6 +1034,39 @@ public class MainShop : ShopHandler {
                 GM.GetComponent<FirstRoomFunction>().wScarf_obj.SetActive(true);
                 PlayerPrefs.SetInt("putwinterc", 1);
                 funcBox_obj[6].GetComponent<Image>().sprite = funcBox_spr[12];
+            }
+        }
+    }
+
+    //봄보관
+    public void PutSpring()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (PlayerPrefs.GetInt("putwoodflower", 0) == 1)
+            {
+                GM2.GetComponent<GasrangeEvt>().sWood_obj.SetActive(false);
+                PlayerPrefs.SetInt("putwoodflower", 0);
+                funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[15];
+            }
+            else
+            {
+                GM2.GetComponent<GasrangeEvt>().sWood_obj.SetActive(true);
+                PlayerPrefs.SetInt("putwoodflower", 1);
+                funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[14];
+            }
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putwoodflower", 0) == 1)
+            {
+                PlayerPrefs.SetInt("putwoodflower", 0);
+                funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[15];
+            }
+            else
+            {
+                PlayerPrefs.SetInt("putwoodflower", 1);
+                funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[14];
             }
         }
     }

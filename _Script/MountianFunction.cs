@@ -74,7 +74,7 @@ public class MountianFunction : MonoBehaviour {
             bam_obj.SetActive(false);
             //PlayerPrefs.SetInt("bam", 1);
             //PlayerPrefs.SetInt("pat", 1);
-            PlayerPrefs.SetInt("ssuck", 1);
+            PlayerPrefs.SetInt("subaks", 1);
         }
         else
         {
@@ -211,7 +211,7 @@ public class MountianFunction : MonoBehaviour {
         else
         {
             bam_obj.SetActive(false);
-            if (PlayerPrefs.GetInt("ssuck", 0) == 0)
+            if (PlayerPrefs.GetInt("subaks", 0) == 0)
             {
                 bam();
             }
