@@ -96,7 +96,7 @@ public class MainTime : MonoBehaviour {
             //배달
             beadal();
             //눈
-            snow();
+            //snow();
             //거미
             if (randSpider_i == 1) {
                 spider_obj.SetActive(false);
