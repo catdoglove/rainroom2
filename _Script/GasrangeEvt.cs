@@ -51,14 +51,15 @@ public class GasrangeEvt : MonoBehaviour {
     int gaspage = 1;
 
     //시즌 이벤트
-    public GameObject fsticker_obj,sToast_obj, wScarf_obj,sWood_obj;
+    public GameObject fsticker_obj,sToast_obj, wScarf_obj,sWood_obj,sHat_obj;
 
     //엔딩
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         //요리이름
         CookStrSet();
@@ -80,6 +81,10 @@ public class GasrangeEvt : MonoBehaviour {
         if (PlayerPrefs.GetInt("putwoodflower", 0) == 1)
         {
             sWood_obj.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("strawhat", 0) == 1)
+        {
+            sHat_obj.SetActive(true);
         }
     }
 
@@ -320,7 +325,7 @@ public class GasrangeEvt : MonoBehaviour {
                 if (help >= 9 && PlayerPrefs.GetInt("strawhat", 0) == 0)
                 {
                     PlayerPrefs.SetInt("strawhat", 1);
-                    sWood_obj.SetActive(true);
+                    sHat_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");

@@ -99,7 +99,7 @@ public class FirstRoomFunction : CavasData {
     public Sprite[] bookTxt_spr;
     int booke_i=0;
 
-    public GameObject wScarf_obj;
+    public GameObject wScarf_obj, sHat_obj;
 
     //공지
     public GameObject notice_obj;
@@ -117,19 +117,25 @@ public class FirstRoomFunction : CavasData {
     void Start () {
 
 
-
+/*
         if (PlayerPrefs.GetInt("noticeforpet", 0) == 0)
         {
             PlayerPrefs.SetInt("noticeforpet", 99);
             PlayerPrefs.Save();
             notice_obj.SetActive(true);
         }
+        */
 
         //겨울목도리
-
         if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
         {
             wScarf_obj.SetActive(true);
+        }
+
+        //여름모자
+        if (PlayerPrefs.GetInt("strawhat", 0) == 1)
+        {
+            sHat_obj.SetActive(true);
         }
 
         PlayerPrefs.SetInt("outtrip", 0);
