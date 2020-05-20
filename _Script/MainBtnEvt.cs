@@ -52,7 +52,7 @@ public class MainBtnEvt : CavasData
     public InputField InputField;
     public Text InputField_txt, couponeMsg;
 
-    public GameObject reformHelp_obj;
+    public GameObject reformHelp_obj, StorageHelp_obj;
 
 
     //상세표시
@@ -875,6 +875,20 @@ public class MainBtnEvt : CavasData
         else
         {
             reformHelp_obj.SetActive(true);
+        }
+    }
+
+
+    //리폼창도움말
+    public void ActStorageHelp()
+    {
+        if (StorageHelp_obj.activeSelf == true)
+        {
+            StorageHelp_obj.SetActive(false);
+        }
+        else
+        {
+            StorageHelp_obj.SetActive(true);
         }
     }
 
