@@ -457,6 +457,7 @@ public class secondRoomFunction : CavasData
 
     public void Opengoods()
     {
+        goods_txt.text = "";
         goodsWindow_obj.SetActive(true);
     }
 

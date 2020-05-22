@@ -424,7 +424,8 @@ public class GasrangeEvt : MonoBehaviour {
 
     public void OpenIceBox()
     {
-        if(PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
+        ingredient_txt.text = "";
+        if (PlayerPrefs.GetInt("iceboxlv", 0) >= 2)
         {
             iceBoxLv_obj[0].SetActive(true);
         }
