@@ -123,10 +123,12 @@ public class Parkfunction : CavasData
             event_obj.GetComponent<Image>().sprite = event_spr[0];
             if (eventRand_i < 2)
             {
+                event_obj.SetActive(false);
                 eventNight_obj.SetActive(true);
             }
             else if (eventRand_i < 4)
             {
+                event_obj.SetActive(false);
                 eventNightPet_obj.SetActive(true);
             }
         }
