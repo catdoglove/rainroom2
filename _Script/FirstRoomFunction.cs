@@ -100,6 +100,7 @@ public class FirstRoomFunction : CavasData {
     int booke_i=0;
 
     public GameObject wScarf_obj, sHat_obj;
+    public GameObject window_season_obj;
 
     //공지
     public GameObject notice_obj;
@@ -133,7 +134,7 @@ public class FirstRoomFunction : CavasData {
         }
 
         //여름모자
-        if (PlayerPrefs.GetInt("strawhat", 0) == 1)
+        if (PlayerPrefs.GetInt("putsummerhat", 0) == 1)
         {
             sHat_obj.SetActive(true);
         }
@@ -1200,5 +1201,11 @@ public class FirstRoomFunction : CavasData {
             }
         }
     }
+
+    public void showSeason()
+    {
+        window_season_obj.SetActive(true);
+    }
+
 
 }

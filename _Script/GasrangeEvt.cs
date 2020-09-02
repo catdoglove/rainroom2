@@ -82,7 +82,7 @@ public class GasrangeEvt : MonoBehaviour {
         {
             sWood_obj.SetActive(true);
         }
-        if (PlayerPrefs.GetInt("strawhat", 0) == 1)
+        if (PlayerPrefs.GetInt("putsummerhat", 0) == 1)
         {
             sHat_obj.SetActive(true);
         }
@@ -321,21 +321,21 @@ public class GasrangeEvt : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cookSound();
             if (indexNumber_i>=10)
             {
-                int help = PlayerPrefs.GetInt("summercount", 0);
-                if (help >= 9 && PlayerPrefs.GetInt("strawhat", 0) == 0)
+                int help = PlayerPrefs.GetInt("fallsCount", 0);
+                if (help >= 9 && PlayerPrefs.GetInt("windowfall", 0) == 0)
                 {
-                    PlayerPrefs.SetInt("strawhat", 1);
-                    sHat_obj.SetActive(true);
+                    PlayerPrefs.SetInt("windowfall", 1);
+                    //GM.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");
                     help++;
-                    PlayerPrefs.SetInt("summercount", help);
+                    PlayerPrefs.SetInt("fallsCount", help);
                 }
                 else
                 {
                     help++;
-                    PlayerPrefs.SetInt("summercount", help);
+                    PlayerPrefs.SetInt("fallsCount", help);
                 }
             }
         }
@@ -521,14 +521,14 @@ public class GasrangeEvt : MonoBehaviour {
         seeweed_i = PlayerPrefs.GetInt("seaweed", 0);
         cucumber_i = PlayerPrefs.GetInt("cucumber", 0);
         paprika_i = PlayerPrefs.GetInt("paprika", 0);
-        //bam_i = PlayerPrefs.GetInt("bam", 0);
-        //shrimp_i = PlayerPrefs.GetInt("shrimp", 0);
         //bam_i = PlayerPrefs.GetInt("pat", 0);
         //shrimp_i = PlayerPrefs.GetInt("ggomak", 0);
         //bam_i = PlayerPrefs.GetInt("ssuck", 0);
         //shrimp_i = PlayerPrefs.GetInt("juggume", 0);
-        bam_i = PlayerPrefs.GetInt("subaks", 0);
-        shrimp_i = PlayerPrefs.GetInt("icebars", 0);
+        //bam_i = PlayerPrefs.GetInt("subaks", 0);
+        //shrimp_i = PlayerPrefs.GetInt("icebars", 0);
+        bam_i = PlayerPrefs.GetInt("bam2", 0);
+        shrimp_i = PlayerPrefs.GetInt("shrimp2", 0);
     }
 
     public void RightIce()

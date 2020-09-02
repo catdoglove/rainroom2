@@ -812,6 +812,17 @@ public class MainShop : ShopHandler {
             funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[15];
         }
 
+        if (PlayerPrefs.GetInt("putsummerhat", 0) >= 1)
+        {
+            funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[16];
+        }
+        else
+        {
+            funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[17];
+        }
+
+
+
     }
     //식물 보관
     public void PutPlant()
@@ -1069,7 +1080,45 @@ public class MainShop : ShopHandler {
                 funcBox_obj[7].GetComponent<Image>().sprite = funcBox_spr[14];
             }
         }
+    }  
+
+
+    //여름보관
+    public void PutSummer()
+    {
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            Debug.Log("ttt");
+            if (PlayerPrefs.GetInt("putsummerhat", 0) == 1)
+            {
+                GM2.GetComponent<GasrangeEvt>().sHat_obj.SetActive(false);
+                PlayerPrefs.SetInt("putsummerhat", 0);
+                funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[17];
+            }
+            else
+            {
+                GM2.GetComponent<GasrangeEvt>().sHat_obj.SetActive(true);
+                PlayerPrefs.SetInt("putsummerhat", 1);
+                funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[16];
+            }
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("putsummerhat", 0) == 1)
+            {
+                GM.GetComponent<FirstRoomFunction>().sHat_obj.SetActive(false);
+                PlayerPrefs.SetInt("putsummerhat", 0);
+                funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[17];
+            }
+            else
+            {
+                GM.GetComponent<FirstRoomFunction>().sHat_obj.SetActive(true);
+                PlayerPrefs.SetInt("putsummerhat", 1);
+                funcBox_obj[8].GetComponent<Image>().sprite = funcBox_spr[16];
+            }
+        }
     }
+
 
 
     //공책 보관
