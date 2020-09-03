@@ -139,6 +139,13 @@ public class FirstRoomFunction : CavasData {
             sHat_obj.SetActive(true);
         }
 
+
+        //가을창문
+        if (PlayerPrefs.GetInt("windowfall", 0) == 1)
+        {
+            window_season_obj.SetActive(true);
+        }
+
         PlayerPrefs.SetInt("outtrip", 0);
         // PlayerPrefs.SetInt("downst", 0);
         //PlayerPrefs.SetInt("countladderst", 0);
@@ -1202,9 +1209,14 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
-    public void showSeason()
+    public void seasonFallTrue()
     {
         window_season_obj.SetActive(true);
+    }
+
+    public void seasonFalse()
+    {
+        window_season_obj.SetActive(false);
     }
 
 

@@ -163,8 +163,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "수박화채";
-        cook_str[11] = "팥빙수";
+        cook_str[10] = "군밤";
+        cook_str[11] = "대하구이";
     }
     public void OpenGasrange()
     {
@@ -325,7 +325,7 @@ public class GasrangeEvt : MonoBehaviour {
                 if (help >= 9 && PlayerPrefs.GetInt("windowfall", 0) == 0)
                 {
                     PlayerPrefs.SetInt("windowfall", 1);
-                    //GM.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
+                    //GM2.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");

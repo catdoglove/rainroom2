@@ -44,12 +44,29 @@ public class WindowMiniGame : MonoBehaviour {
     string Text_cut; //대사 끊기
     int nowArr = 1; //현재 줄
 
+    //시즌
+    public GameObject seasonArea_btn;
+    public GameObject[] season_btns;
+
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
+
+        //시즌관련
+        PlayerPrefs.SetInt("showSeasonArea", 0);
+        if (PlayerPrefs.GetInt("windowfall", 0) == 1)
+        {
+            season_btns[2].SetActive(true);
+        }
+
+
+
+
+
+
         PlayerPrefs.Save();
         
         data_milk = CSVReader.Read("Talk/todaymilk");
@@ -132,6 +149,8 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
         minicat_obj.SetActive(false);
+        seasonArea_btn.SetActive(false);
+        PlayerPrefs.SetInt("showSeasonArea", 0);
     }
 
     public void ball1()
@@ -510,5 +529,19 @@ public class WindowMiniGame : MonoBehaviour {
             yield return null;
         }
         toast_obj.SetActive(false);
+    }
+
+    public void seasonArea()
+    {
+        if (PlayerPrefs.GetInt("showSeasonArea", 0) == 1)
+        {
+            seasonArea_btn.SetActive(false);
+            PlayerPrefs.SetInt("showSeasonArea", 0);
+        }
+        else
+        {
+            seasonArea_btn.SetActive(true);
+            PlayerPrefs.SetInt("showSeasonArea", 1);
+        }
     }
 }
