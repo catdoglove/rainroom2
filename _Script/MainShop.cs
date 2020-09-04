@@ -48,10 +48,13 @@ public class MainShop : ShopHandler {
     public GameObject[] funcBox_obj;
     public Sprite[] funcBox_spr;
     public GameObject[] funcBoxPage_obj;
+    public int pageBox_i = 1;
+    public Text pageBox_txt;
 
     public int switch_i, waterCan_i, waterpurifier_i, reform_i, func_i;
 
     public string[] func_str;
+
 
     public GameObject shop_obj,close_obj,back_obj;
     //애완동물
@@ -1156,13 +1159,36 @@ public class MainShop : ShopHandler {
 
     public void putPageSet1()
     {
-        funcBoxPage_obj[0].SetActive(true);
-        funcBoxPage_obj[1].SetActive(false);
+        if (pageBox_i == 2)
+        {
+            funcBoxPage_obj[0].SetActive(true);
+            funcBoxPage_obj[1].SetActive(false);
+            pageBox_i--;
+        }
+        else if(pageBox_i == 3)
+        {
+            funcBoxPage_obj[1].SetActive(true);
+            funcBoxPage_obj[2].SetActive(false);
+            pageBox_i--;
+        }
+        pageBox_txt.text = "" + pageBox_i + "/3";
     }
     public void putPageSet2()
     {
-        funcBoxPage_obj[0].SetActive(false);
-        funcBoxPage_obj[1].SetActive(true);
+
+        if (pageBox_i == 2)
+        {
+            funcBoxPage_obj[1].SetActive(false);
+            funcBoxPage_obj[2].SetActive(true);
+            pageBox_i++;
+        }
+        else if (pageBox_i == 1)
+        {
+            funcBoxPage_obj[0].SetActive(false);
+            funcBoxPage_obj[1].SetActive(true);
+            pageBox_i++;
+        }
+        pageBox_txt.text = "" + pageBox_i+"/3";
     }
 
     public void CloseFuncCabinet()
