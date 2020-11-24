@@ -5,10 +5,14 @@
 #import "GADUInterstitial.h"
 #import "GADUNativeCustomTemplateAd.h"
 #import "GADUPluginUtil.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "GADUAdNetworkExtras.h"
 #import "GADUObjectCache.h"
 #import "GADURequest.h"
+#import "GADURequestConfiguration.h"
 #import "GADURewardBasedVideoAd.h"
+#import "GADURewardedAd.h"
+#import "GADURewardedInterstitialAd.h"
 #import "GADUTypes.h"
 
 /// Returns an NSString copying the characters from |bytes|, a C array of UTF8-encoded bytes.
@@ -50,6 +54,57 @@ void GADUInitialize(const char *appId) {
   [GADMobileAds configureWithApplicationID:GADUStringFromUTF8String(appId)];
 }
 
+void GADUInitializeWithCallback(GADUTypeMobileAdsClientRef *mobileAdsClientRef,
+                                GADUInitializationCompleteCallback callback) {
+  [[GADMobileAds sharedInstance]
+      startWithCompletionHandler:^(GADInitializationStatus *_Nonnull status) {
+        GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+        cache[status.gadu_referenceKey] = status;
+        callback(mobileAdsClientRef, (__bridge GADUTypeInitializationStatusRef)status);
+      }];
+}
+
+void GADUDisableMediationInitialization() {
+  [[GADMobileAds sharedInstance] disableMediationInitialization];
+}
+
+const char *GADUGetInitDescription(GADUTypeInitializationStatusRef statusRef,
+                                   const char *className) {
+  GADInitializationStatus *status = (__bridge GADInitializationStatus *)statusRef;
+
+  GADAdapterStatus *adapterStatus =
+      status.adapterStatusesByClassName[GADUStringFromUTF8String(className)];
+  return cStringCopy(adapterStatus.description.UTF8String);
+}
+
+int GADUGetInitLatency(GADUTypeInitializationStatusRef statusRef, const char *className) {
+  GADInitializationStatus *status = (__bridge GADInitializationStatus *)statusRef;
+  GADAdapterStatus *adapterStatus =
+      status.adapterStatusesByClassName[GADUStringFromUTF8String(className)];
+  return adapterStatus.latency;
+}
+
+int GADUGetInitState(GADUTypeInitializationStatusRef statusRef, const char *className) {
+  GADInitializationStatus *status = (__bridge GADInitializationStatus *)statusRef;
+  GADAdapterStatus *adapterStatus =
+      status.adapterStatusesByClassName[GADUStringFromUTF8String(className)];
+  return (int)adapterStatus.state;
+}
+
+const char **GADUGetInitAdapterClasses(GADUTypeInitializationStatusRef statusRef) {
+  GADInitializationStatus *status = (__bridge GADInitializationStatus *)statusRef;
+  NSDictionary<NSString *, GADAdapterStatus *> *map = status.adapterStatusesByClassName;
+  NSArray<NSString *> *classes = map.allKeys;
+  return cStringArrayCopy(classes);
+}
+
+int GADUGetInitNumberOfAdapterClasses(GADUTypeInitializationStatusRef statusRef) {
+  GADInitializationStatus *status = (__bridge GADInitializationStatus *)statusRef;
+  NSDictionary<NSString *, GADAdapterStatus *> *map = status.adapterStatusesByClassName;
+  NSArray<NSString *> *classes = map.allKeys;
+  return (int)classes.count;
+}
+
 // The application’s audio volume. Affects audio volumes of all ads relative to
 // other audio output. Valid ad volume values range from 0.0 (silent) to 1.0
 // (current device volume). Use this method only if your application has its own
@@ -70,6 +125,22 @@ void GADUSetApplicationMuted(BOOL muted) {
 // or rewarded video ad) is displayed.
 void GADUSetiOSAppPauseOnBackground(BOOL pause) { [GADUPluginUtil setPauseOnBackground:pause]; }
 
+float GADUDeviceScale() {
+  return UIScreen.mainScreen.scale;
+}
+
+/// Returns the safe width of the device.
+int GADUDeviceSafeWidth() {
+  CGRect screenBounds = [UIScreen mainScreen].bounds;
+  if (GADUIsOperatingSystemAtLeastVersion(11)) {
+    CGRect safeFrame = [UIApplication sharedApplication].keyWindow.safeAreaLayoutGuide.layoutFrame;
+    if (!CGSizeEqualToSize(safeFrame.size, CGSizeZero)) {
+      screenBounds = safeFrame;
+    }
+  }
+  return (int)CGRectGetWidth(screenBounds);
+}
+
 /// Creates a GADBannerView with the specified width, height, and position. Returns a reference to
 /// the GADUBannerView.
 GADUTypeBannerRef GADUCreateBannerView(GADUTypeBannerClientRef *bannerClient, const char *adUnitID,
@@ -82,7 +153,7 @@ GADUTypeBannerRef GADUCreateBannerView(GADUTypeBannerClientRef *bannerClient, co
                                                  height:(int)height
                                              adPosition:adPosition];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:banner forKey:[banner gadu_referenceKey]];
+  cache[banner.gadu_referenceKey] = banner;
   return (__bridge GADUTypeBannerRef)banner;
 }
 
@@ -100,7 +171,7 @@ GADUTypeBannerRef GADUCreateBannerViewWithCustomPosition(GADUTypeBannerClientRef
                                                  height:(int)height
                                        customAdPosition:adPosition];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:banner forKey:[banner gadu_referenceKey]];
+  cache[banner.gadu_referenceKey] = banner;
   return (__bridge GADUTypeBannerRef)banner;
 }
 
@@ -113,7 +184,7 @@ GADUTypeBannerRef GADUCreateSmartBannerView(GADUTypeBannerClientRef *bannerClien
                                              adUnitID:GADUStringFromUTF8String(adUnitID)
                                            adPosition:adPosition];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:banner forKey:[banner gadu_referenceKey]];
+  cache[banner.gadu_referenceKey] = banner;
   return (__bridge GADUTypeBannerRef)banner;
 }
 
@@ -128,7 +199,41 @@ GADUTypeBannerRef GADUCreateSmartBannerViewWithCustomPosition(GADUTypeBannerClie
                                              adUnitID:GADUStringFromUTF8String(adUnitID)
                                      customAdPosition:adPosition];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:banner forKey:[banner gadu_referenceKey]];
+  cache[banner.gadu_referenceKey] = banner;
+  return (__bridge GADUTypeBannerRef)banner;
+}
+
+/// Creates a an adaptive sized GADBannerView with the specified width, orientation, and position.
+/// Returns a reference to the GADUBannerView.
+GADUTypeBannerRef GADUCreateAnchoredAdaptiveBannerView(GADUTypeBannerClientRef *bannerClient,
+                                               const char *adUnitID, NSInteger width,
+                                               GADUBannerOrientation orientation,
+                                               GADAdPosition adPosition) {
+  GADUBanner *banner = [[GADUBanner alloc]
+      initWithAdaptiveBannerSizeAndBannerClientReference:bannerClient
+                                                adUnitID:GADUStringFromUTF8String(adUnitID)
+                                                   width:(int)width
+                                             orientation:orientation
+                                              adPosition:adPosition];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[banner.gadu_referenceKey] = banner;
+  return (__bridge GADUTypeBannerRef)banner;
+}
+
+/// Creates a an adaptive sized GADBannerView with the specified width, orientation, and position.
+/// Returns a reference to the GADUBannerView.
+GADUTypeBannerRef GADUCreateAnchoredAdaptiveBannerViewWithCustomPosition(
+    GADUTypeBannerClientRef *bannerClient, const char *adUnitID, NSInteger width,
+    GADUBannerOrientation orientation, NSInteger x, NSInteger y) {
+  CGPoint adPosition = CGPointMake(x, y);
+  GADUBanner *banner = [[GADUBanner alloc]
+      initWithAdaptiveBannerSizeAndBannerClientReference:bannerClient
+                                                adUnitID:GADUStringFromUTF8String(adUnitID)
+                                                   width:(int)width
+                                             orientation:orientation
+                                        customAdPosition:adPosition];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[banner.gadu_referenceKey] = banner;
   return (__bridge GADUTypeBannerRef)banner;
 }
 
@@ -139,7 +244,7 @@ GADUTypeInterstitialRef GADUCreateInterstitial(GADUTypeInterstitialClientRef *in
       initWithInterstitialClientReference:interstitialClient
                                  adUnitID:GADUStringFromUTF8String(adUnitID)];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:interstitial forKey:[interstitial gadu_referenceKey]];
+  cache[interstitial.gadu_referenceKey] = interstitial;
   return (__bridge GADUTypeInterstitialRef)interstitial;
 }
 
@@ -149,15 +254,36 @@ GADUTypeRewardBasedVideoAdRef GADUCreateRewardBasedVideoAd(
   GADURewardBasedVideoAd *rewardBasedVideoAd = [[GADURewardBasedVideoAd alloc]
       initWithRewardBasedVideoClientReference:rewardBasedVideoAdClient];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:rewardBasedVideoAd forKey:[rewardBasedVideoAd gadu_referenceKey]];
+  cache[rewardBasedVideoAd.gadu_referenceKey] = rewardBasedVideoAd;
   return (__bridge GADUTypeRewardBasedVideoAdRef)rewardBasedVideoAd;
+}
+
+/// Creates a GADURewardedAd and returns its reference.
+GADUTypeRewardedAdRef GADUCreateRewardedAd(GADUTypeRewardedAdClientRef *rewardedAdClient,
+                                           const char *adUnitID) {
+  GADURewardedAd *rewardedAd =
+      [[GADURewardedAd alloc] initWithRewardedAdClientReference:rewardedAdClient
+                                                       adUnitID:GADUStringFromUTF8String(adUnitID)];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[rewardedAd.gadu_referenceKey] = rewardedAd;
+  return (__bridge GADUTypeRewardedAdRef)rewardedAd;
+}
+
+/// Creates a GADURewardedInterstitialAd and returns its reference.
+GADUTypeRewardedInterstitialAdRef GADUCreateRewardedInterstitialAd(
+    GADUTypeRewardedInterstitialAdClientRef *rewardedInterstitialAdClient) {
+  GADURewardedInterstitialAd *rewardedInterstitialAd = [[GADURewardedInterstitialAd alloc]
+      initWithRewardedInterstitialAdClientReference:rewardedInterstitialAdClient];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[rewardedInterstitialAd.gadu_referenceKey] = rewardedInterstitialAd;
+  return (__bridge GADUTypeRewardedInterstitialAdRef)rewardedInterstitialAd;
 }
 
 /// Creates a GADUAdLoader and returns its reference.
 GADUTypeAdLoaderRef GADUCreateAdLoader(GADUTypeAdLoaderClientRef *adLoaderClient,
                                        const char *adUnitID,
                                        const char **templateIDs, NSInteger templateIDLength,
-                                       struct AdTypes *types) {
+                                       struct AdTypes *types, BOOL returnUrlsForImageAssets) {
   NSMutableArray *templateIDsArray = [[NSMutableArray alloc] init];
   for (int i = 0; i < templateIDLength; i++) {
     [templateIDsArray addObject:GADUStringFromUTF8String(templateIDs[i])];
@@ -166,7 +292,7 @@ GADUTypeAdLoaderRef GADUCreateAdLoader(GADUTypeAdLoaderClientRef *adLoaderClient
   if (types->CustomTemplateAd) {
     [adTypesArray addObject:kGADAdLoaderAdTypeNativeCustomTemplate];
   }
-  NSArray *options = nil;
+  NSMutableArray *options = nil;
 
   GADUAdLoader *adLoader =
       [[GADUAdLoader alloc] initWithAdLoaderClientReference:adLoaderClient
@@ -175,7 +301,7 @@ GADUTypeAdLoaderRef GADUCreateAdLoader(GADUTypeAdLoaderClientRef *adLoaderClient
                                                     adTypes:adTypesArray
                                                     options:options];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:adLoader forKey:[adLoader gadu_referenceKey]];
+  cache[adLoader.gadu_referenceKey] = adLoader;
   return (__bridge GADUTypeAdLoaderRef)adLoader;
 }
 
@@ -185,13 +311,16 @@ void GADUSetBannerCallbacks(GADUTypeBannerRef banner,
                             GADUAdViewDidFailToReceiveAdWithErrorCallback adFailedCallback,
                             GADUAdViewWillPresentScreenCallback willPresentCallback,
                             GADUAdViewDidDismissScreenCallback didDismissCallback,
-                            GADUAdViewWillLeaveApplicationCallback willLeaveCallback) {
+                            GADUAdViewWillLeaveApplicationCallback willLeaveCallback,
+                            GADUAdViewPaidEventCallback paidEventCallback) {
   GADUBanner *internalBanner = (__bridge GADUBanner *)banner;
   internalBanner.adReceivedCallback = adReceivedCallback;
   internalBanner.adFailedCallback = adFailedCallback;
   internalBanner.willPresentCallback = willPresentCallback;
   internalBanner.didDismissCallback = didDismissCallback;
   internalBanner.willLeaveCallback = willLeaveCallback;
+
+  internalBanner.paidEventCallback = paidEventCallback;
 }
 
 /// Sets the interstitial callback methods to be invoked during interstitial ad events.
@@ -200,13 +329,16 @@ void GADUSetInterstitialCallbacks(
     GADUInterstitialDidFailToReceiveAdWithErrorCallback adFailedCallback,
     GADUInterstitialWillPresentScreenCallback willPresentCallback,
     GADUInterstitialDidDismissScreenCallback didDismissCallback,
-    GADUInterstitialWillLeaveApplicationCallback willLeaveCallback) {
+    GADUInterstitialWillLeaveApplicationCallback willLeaveCallback,
+    GADUInterstitialPaidEventCallback paidEventCallback) {
   GADUInterstitial *internalInterstitial = (__bridge GADUInterstitial *)interstitial;
   internalInterstitial.adReceivedCallback = adReceivedCallback;
   internalInterstitial.adFailedCallback = adFailedCallback;
   internalInterstitial.willPresentCallback = willPresentCallback;
   internalInterstitial.didDismissCallback = didDismissCallback;
   internalInterstitial.willLeaveCallback = willLeaveCallback;
+
+  internalInterstitial.paidEventCallback = paidEventCallback;
 }
 
 /// Sets the reward based video callback methods to be invoked during reward based video ad events.
@@ -230,6 +362,49 @@ void GADUSetRewardBasedVideoAdCallbacks(
   internalRewardBasedVideoAd.didRewardCallback = didRewardCallback;
   internalRewardBasedVideoAd.willLeaveCallback = willLeaveCallback;
   internalRewardBasedVideoAd.didCompleteCallback = didCompleteCallback;
+}
+
+/// Sets the rewarded ad callback methods to be invoked during reward based video ad events.
+void GADUSetRewardedAdCallbacks(
+    GADUTypeRewardedAdRef rewardedAd, GADURewardedAdDidReceiveAdCallback adReceivedCallback,
+    GADURewardedAdDidFailToReceiveAdWithErrorCallback adFailedToLoadCallback,
+    GADURewardedAdDidFailToShowAdWithErrorCallback adFailedToShowCallback,
+    GADURewardedAdDidOpenCallback didOpenCallback, GADURewardedAdDidCloseCallback didCloseCallback,
+    GADUUserEarnedRewardCallback didEarnRewardCallback,
+    GADURewardedAdPaidEventCallback paidEventCallback) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  internalRewardedAd.adReceivedCallback = adReceivedCallback;
+  internalRewardedAd.adFailedToLoadCallback = adFailedToLoadCallback;
+  internalRewardedAd.adFailedToShowCallback = adFailedToShowCallback;
+  internalRewardedAd.didOpenCallback = didOpenCallback;
+  internalRewardedAd.didCloseCallback = didCloseCallback;
+  internalRewardedAd.didEarnRewardCallback = didEarnRewardCallback;
+  internalRewardedAd.paidEventCallback = paidEventCallback;
+}
+
+/// Sets the rewarded interstitial ad callback methods to be invoked during rewarded interstitial ad
+/// events.
+void GADUSetRewardedInterstitialAdCallbacks(
+    GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd,
+    GADURewardedInterstitialAdLoadedCallback adLoadedCallback,
+    GADURewardedInterstitialAdFailedToLoadCallback adFailedToLoadCallback,
+    GADUUserEarnedRewardCallback didEarnRewardCallback,
+    GADURewardedInterstitialAdPaidEventCallback paidEventCallback,
+    GADUFailedToPresentFullScreenContentCallback adFailToPresentFullScreenContentCallback,
+    GADUDidPresentFullScreenContentCallback adDidPresentFullScreenContentCallback,
+    GADUDidDismissFullScreenContentCallback adDidDismissFullScreenContentCallback) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  internalRewardedInterstitialAd.adLoadedCallback = adLoadedCallback;
+  internalRewardedInterstitialAd.adFailedToLoadCallback = adFailedToLoadCallback;
+  internalRewardedInterstitialAd.didEarnRewardCallback = didEarnRewardCallback;
+  internalRewardedInterstitialAd.paidEventCallback = paidEventCallback;
+  internalRewardedInterstitialAd.adFailedToPresentFullScreenContentCallback =
+      adFailToPresentFullScreenContentCallback;
+  internalRewardedInterstitialAd.adDidPresentFullScreenContentCallback =
+      adDidPresentFullScreenContentCallback;
+  internalRewardedInterstitialAd.adDidDismissFullScreenContentCallback =
+      adDidDismissFullScreenContentCallback;
 }
 
 /// Sets the banner callback methods to be invoked during native ad events.
@@ -304,11 +479,183 @@ void GADUShowRewardBasedVideoAd(GADUTypeRewardBasedVideoAdRef rewardBasedVideoAd
   [internalRewardBasedVideoAd show];
 }
 
+/// Returns YES if the GADRewardedAd is ready to be shown.
+BOOL GADURewardedAdReady(GADUTypeRewardedAdRef rewardedAd) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  return [internalRewardedAd isReady];
+}
+
+/// Shows the GADRewardedAd.
+void GADUShowRewardedAd(GADUTypeRewardedAdRef rewardedAd) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  [internalRewardedAd show];
+}
+
+/// Returns the type of the reward.
+const char *GADURewardedAdGetRewardType(GADUTypeRewardedAdRef rewardedAd) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  GADAdReward *reward = internalRewardedAd.rewardedAd.reward;
+  return cStringCopy(reward.type.UTF8String);
+}
+
+/// Returns the amount of the reward.
+double GADURewardedAdGetRewardAmount(GADUTypeRewardedAdRef rewardedAd) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  GADAdReward *reward = internalRewardedAd.rewardedAd.reward;
+  return reward.amount.doubleValue;
+}
+
+/// Shows the GADRewardedInterstitialAd.
+void GADUShowRewardedInterstitialAd(GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  [internalRewardedInterstitialAd show];
+}
+
+/// Returns the type of the reward.
+const char *GADURewardedInterstitialAdGetRewardType(
+    GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  GADAdReward *reward = internalRewardedInterstitialAd.rewardedInterstitialAd.adReward;
+  return cStringCopy(reward.type.UTF8String);
+}
+
+/// Returns the amount of the reward.
+double GADURewardedInterstitialAdGetRewardAmount(
+    GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  GADAdReward *reward = internalRewardedInterstitialAd.rewardedInterstitialAd.adReward;
+  return reward.amount.doubleValue;
+}
+
+/// Create an empty CreateRequestConfiguration
+GADUTypeRequestConfigurationRef GADUCreateRequestConfiguration() {
+  GADURequestConfiguration *requestConfiguration = [[GADURequestConfiguration alloc] init];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[requestConfiguration.gadu_referenceKey] = requestConfiguration;
+  return (__bridge GADUTypeRequestConfigurationRef)(requestConfiguration);
+}
+
+/// Set MobileAds RequestConfiguration
+void GADUSetRequestConfiguration(GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  GADMobileAds.sharedInstance.requestConfiguration.maxAdContentRating =
+      internalRequestConfiguration.maxAdContentRating;
+  GADMobileAds.sharedInstance.requestConfiguration.testDeviceIdentifiers =
+      internalRequestConfiguration.testDeviceIdentifiers;
+
+  switch (internalRequestConfiguration.tagForUnderAgeOfConsent) {
+    case (kGADURequestConfigurationTagForUnderAgeOfConsentTrue): {
+      [GADMobileAds.sharedInstance.requestConfiguration tagForUnderAgeOfConsent:true];
+      break;
+    }
+    case (kGADURequestConfigurationTagForUnderAgeOfConsentFalse): {
+      [GADMobileAds.sharedInstance.requestConfiguration tagForUnderAgeOfConsent:false];
+      break;
+    }
+    case (kGADURequestConfigurationTagForUnderAgeOfConsentUnspecified): {
+      break;
+    }
+  }
+  switch (internalRequestConfiguration.tagForChildDirectedTreatment) {
+    case (kGADURequestConfigurationTagForChildDirectedTreatmentTrue): {
+      [GADMobileAds.sharedInstance.requestConfiguration tagForChildDirectedTreatment:true];
+      break;
+    }
+    case (kGADURequestConfigurationTagForChildDirectedTreatmentFalse): {
+      [GADMobileAds.sharedInstance.requestConfiguration tagForChildDirectedTreatment:false];
+      break;
+    }
+    case (kGADURequestConfigurationTagForChildDirectedTreatmentUnspecified): {
+      break;
+    }
+  }
+}
+
+/// Set RequestConfiguration Max Ad Content Rating
+void GADUSetRequestConfigurationMaxAdContentRating(
+    GADUTypeRequestConfigurationRef requestConfiguration, const char *maxAdContentRating) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  [internalRequestConfiguration setMaxAdContentRating:GADUStringFromUTF8String(maxAdContentRating)];
+}
+
+/// Set RequestConfiguration Test Device Ids
+void GADUSetRequestConfigurationTestDeviceIdentifiers(
+    GADUTypeRequestConfigurationRef requestConfiguration, const char **testDeviceIDs,
+    NSInteger testDeviceIDLength) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  NSMutableArray *testDeviceIDsArray = [[NSMutableArray alloc] init];
+  for (int i = 0; i < testDeviceIDLength; i++) {
+    [testDeviceIDsArray addObject:GADUStringFromUTF8String(testDeviceIDs[i])];
+  }
+  [internalRequestConfiguration setTestDeviceIdentifiers:testDeviceIDsArray];
+}
+
+/// Set RequestConfiguration tagForUnderAgeOfConsent
+void GADUSetRequestConfigurationTagForUnderAgeOfConsent(
+    GADUTypeRequestConfigurationRef requestConfiguration, int tagForUnderAgeOfConsent) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  internalRequestConfiguration.tagForUnderAgeOfConsent = tagForUnderAgeOfConsent;
+}
+
+/// Set RequestConfiguration tagForChildDirectedTreatment
+void GADUSetRequestConfigurationTagForChildDirectedTreatment(
+    GADUTypeRequestConfigurationRef requestConfiguration, int tagForChildDirectedTreatment) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  internalRequestConfiguration.tagForChildDirectedTreatment = tagForChildDirectedTreatment;
+}
+
+/// Returns RequestConfiguration Max Ad Content Rating
+const char *GADUGetMaxAdContentRating(GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  return cStringCopy(internalRequestConfiguration.maxAdContentRating.UTF8String);
+}
+
+/// Returns RequestConfiguration tag For Under Age Of Consent
+const int GADUGetRequestConfigurationTagForUnderAgeOfConsent(
+    GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  return internalRequestConfiguration.tagForUnderAgeOfConsent;
+}
+
+/// Returns RequestConfiguration tag For Child Directed Treatment
+const int GADUGetRequestConfigurationTagForChildDirectedTreatment(
+    GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  return internalRequestConfiguration.tagForChildDirectedTreatment;
+}
+
+/// Returns List RequestConfiguration Test Device Ids
+const char **GADUGetTestDeviceIdentifiers(GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  NSArray<NSString *> *testDeviceIDs = internalRequestConfiguration.testDeviceIdentifiers;
+  return cStringArrayCopy(testDeviceIDs);
+}
+
+/// Returns count of RequestConfiguration Test Device Ids
+int GADUGetTestDeviceIdentifiersCount(GADUTypeRequestConfigurationRef requestConfiguration) {
+  GADURequestConfiguration *internalRequestConfiguration =
+      (__bridge GADURequestConfiguration *)requestConfiguration;
+  NSArray<NSString *> *testDeviceIDs = internalRequestConfiguration.testDeviceIdentifiers;
+  return testDeviceIDs.count;
+}
+
 /// Creates an empty GADRequest and returns its reference.
 GADUTypeRequestRef GADUCreateRequest() {
   GADURequest *request = [[GADURequest alloc] init];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:request forKey:[request gadu_referenceKey]];
+  cache[request.gadu_referenceKey] = request;
   return (__bridge GADUTypeRequestRef)(request);
 }
 
@@ -350,11 +697,35 @@ void GADUTagForChildDirectedTreatment(GADUTypeRequestRef request, BOOL childDire
   internalRequest.tagForChildDirectedTreatment = childDirectedTreatment;
 }
 
+/// Creates an empty GADServerSideVerificationOptions and returns its reference.
+GADUTypeServerSideVerificationOptionsRef GADUCreateServerSideVerificationOptions() {
+  GADServerSideVerificationOptions *options = [[GADServerSideVerificationOptions alloc] init];
+  GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+  cache[options.gadu_referenceKey] = options;
+  return (__bridge GADUTypeServerSideVerificationOptionsRef)(options);
+}
+
+/// Sets the user id on the GADServerSideVerificationOptions
+void GADUServerSideVerificationOptionsSetUserId(GADUTypeServerSideVerificationOptionsRef options,
+                                                const char *userId) {
+  GADServerSideVerificationOptions *internalOptions =
+      (__bridge GADServerSideVerificationOptions *)options;
+  internalOptions.userIdentifier = GADUStringFromUTF8String(userId);
+}
+
+/// Sets the custom reward string on the GADServerSideVerificationOptions
+void GADUServerSideVerificationOptionsSetCustomRewardString(
+    GADUTypeServerSideVerificationOptionsRef options, const char *customRewardString) {
+  GADServerSideVerificationOptions *internalOptions =
+      (__bridge GADServerSideVerificationOptions *)options;
+  internalOptions.customRewardString = GADUStringFromUTF8String(customRewardString);
+}
+
 /// Creates an empty NSMutableableDictionary returns its reference.
 GADUTypeMutableDictionaryRef GADUCreateMutableDictionary() {
   NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
   GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-  [cache.references setObject:dictionary forKey:[dictionary gadu_referenceKey]];
+  cache[dictionary.gadu_referenceKey] = dictionary;
   return (__bridge GADUTypeMutableDictionaryRef)(dictionary);
 }
 
@@ -379,13 +750,13 @@ void GADUSetMediationExtras(GADUTypeRequestRef request, GADUTypeMutableDictionar
   if (![extra respondsToSelector:@selector(adNetworkExtrasWithDictionary:)]) {
     NSLog(@"Unable to create mediation ad network class: %@",
           GADUStringFromUTF8String(adNetworkExtraClassName));
-    [cache.references removeObjectForKey:[internalDictionary gadu_referenceKey]];
+    [cache removeObjectForKey:[internalDictionary gadu_referenceKey]];
     return;
   }
 
   [internalRequest.mediationExtras
       addObject:[extra adNetworkExtrasWithDictionary:internalDictionary]];
-  [cache.references removeObjectForKey:[internalDictionary gadu_referenceKey]];
+  [cache removeObjectForKey:[internalDictionary gadu_referenceKey]];
 }
 
 /// Sets an extra parameter to be included in the ad request.
@@ -429,11 +800,48 @@ void GADURequestRewardBasedVideoAd(GADUTypeRewardBasedVideoAdRef rewardBasedVide
                              withAdUnitID:GADUStringFromUTF8String(adUnitID)];
 }
 
+/// Makes a rewarded ad request.
+void GADURequestRewardedAd(GADUTypeRewardedAdRef rewardedAd, GADUTypeRequestRef request) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  GADURequest *internalRequest = (__bridge GADURequest *)request;
+  [internalRewardedAd loadRequest:[internalRequest request]];
+}
+
+/// Makes a rewarded interstitial ad request.
+void GADULoadRewardedInterstitialAd(GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd,
+                                    const char *adUnitID, GADUTypeRequestRef request) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  GADURequest *internalRequest = (__bridge GADURequest *)request;
+  [internalRewardedInterstitialAd loadWithAdUnitID:GADUStringFromUTF8String(adUnitID)
+                                           request:[internalRequest request]];
+}
+
 /// Makes a native ad request.
 void GADURequestNativeAd(GADUTypeAdLoaderRef adLoader, GADUTypeRequestRef request) {
   GADUAdLoader *internalAdLoader = (__bridge GADUAdLoader *)adLoader;
   GADURequest *internalRequest = (__bridge GADURequest *)request;
   [internalAdLoader loadRequest:[internalRequest request]];
+}
+
+/// Sets the GADServerSideVerificationOptions on GADURewardedAd
+void GADURewardedAdSetServerSideVerificationOptions(
+    GADUTypeRewardedAdRef rewardedAd, GADUTypeServerSideVerificationOptionsRef options) {
+  GADURewardedAd *internalRewardedAd = (__bridge GADURewardedAd *)rewardedAd;
+  GADServerSideVerificationOptions *internalOptions =
+      (__bridge GADServerSideVerificationOptions *)options;
+  [internalRewardedAd setServerSideVerificationOptions:internalOptions];
+}
+
+/// Sets the GADServerSideVerificationOptions on GADURewardedInterstitialAd
+void GADURewardedInterstitialAdSetServerSideVerificationOptions(
+    GADUTypeRewardedInterstitialAdRef rewardedInterstitialAd,
+    GADUTypeServerSideVerificationOptionsRef options) {
+  GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+      (__bridge GADURewardedInterstitialAd *)rewardedInterstitialAd;
+  GADServerSideVerificationOptions *internalOptions =
+      (__bridge GADServerSideVerificationOptions *)options;
+  [internalRewardedInterstitialAd setServerSideVerificationOptions:internalOptions];
 }
 
 #pragma mark - Native Custom Template Ad methods
@@ -452,7 +860,7 @@ const char *GADUNativeCustomTemplateAdImageAsBytesForKey(
       (__bridge GADUNativeCustomTemplateAd *)nativeCustomTemplateAd;
   NSData *imageData = UIImageJPEGRepresentation(
       [internalNativeCustomTemplateAd imageForKey:GADUStringFromUTF8String(key)], 0.0);
-  NSString *base64String = [imageData base64EncodedStringWithOptions:nil];
+  NSString *base64String = [imageData base64EncodedStringWithOptions:0];
   return cStringCopy(base64String.UTF8String);
 }
 
@@ -518,13 +926,54 @@ void GADUSetNativeCustomTemplateAdCallbacks(
   internalNativeCustomTemplateAd.didReceiveClickCallback = adClickedCallback;
 }
 
+const GADUTypeResponseInfoRef GADUGetResponseInfo(GADUTypeRef adFormat) {
+  id internalAd = (__bridge id)adFormat;
+  GADResponseInfo *responseInfo;
+  if ([internalAd isKindOfClass:[GADUBanner class]]){
+      GADUBanner *internalBanner = (GADUBanner *)internalAd;
+      responseInfo = internalBanner.responseInfo;
+  } else if ([internalAd isKindOfClass:[GADUInterstitial class]]) {
+      GADUInterstitial *internalInterstitial = (GADUInterstitial *)internalAd;
+      responseInfo =  internalInterstitial.responseInfo;
+  } else if ([internalAd isKindOfClass:[GADURewardedAd class]]){
+      GADURewardedAd *internalRewardedAd = (GADURewardedAd *)internalAd;
+      responseInfo =  internalRewardedAd.responseInfo;
+  } else if ([internalAd isKindOfClass:[GADURewardedInterstitialAd class]]) {
+    GADURewardedInterstitialAd *internalRewardedInterstitialAd =
+    (GADURewardedInterstitialAd *)internalAd;
+    responseInfo =  internalRewardedInterstitialAd.responseInfo;
+  }
+  if (responseInfo){
+    GADUObjectCache *cache = [GADUObjectCache sharedInstance];
+    cache[responseInfo.gadu_referenceKey] = responseInfo;
+    return (__bridge GADUTypeResponseInfoRef)(responseInfo);
+  }else {
+    return nil;
+  }
+
+}
+
+const char *GADUResponseInfoMediationAdapterClassName(GADUTypeResponseInfoRef responseInfo){
+  GADResponseInfo *internalResponseInfo = (__bridge GADResponseInfo *)responseInfo;
+  return cStringCopy(internalResponseInfo.adNetworkClassName.UTF8String);
+}
+
+const char *GADUResponseInfoResponseId(GADUTypeResponseInfoRef responseInfo){
+  GADResponseInfo *internalResponseInfo = (__bridge GADResponseInfo *)responseInfo;
+  return cStringCopy(internalResponseInfo.responseIdentifier.UTF8String);
+}
+
+const char *GADUGetResponseInfoDescription(GADUTypeResponseInfoRef responseInfo){
+  GADResponseInfo *internalResponseInfo = (__bridge GADResponseInfo *)responseInfo;
+  return cStringCopy(internalResponseInfo.description.UTF8String);
+}
 
 #pragma mark - Other methods
 /// Removes an object from the cache.
 void GADURelease(GADUTypeRef ref) {
   if (ref) {
     GADUObjectCache *cache = [GADUObjectCache sharedInstance];
-    [cache.references removeObjectForKey:[(__bridge NSObject *)ref gadu_referenceKey]];
+    [cache removeObjectForKey:[(__bridge NSObject *)ref gadu_referenceKey]];
   }
 }
 
@@ -539,7 +988,13 @@ const char *GADUMediationAdapterClassNameForRewardedVideo(
   return cStringCopy(rewarded.mediationAdapterClassName.UTF8String);
 }
 
+const char *GADUMediationAdapterClassNameForRewardedAd(GADUTypeRewardedAdRef rewardedAd) {
+  GADURewardedAd *rewarded = (__bridge GADURewardedAd *)rewardedAd;
+  return cStringCopy(rewarded.mediationAdapterClassName.UTF8String);
+}
+
 const char *GADUMediationAdapterClassNameForInterstitial(GADUTypeInterstitialRef interstitial) {
   GADUInterstitial *interstitialAd = (__bridge GADUInterstitial *)interstitial;
   return cStringCopy(interstitialAd.mediationAdapterClassName.UTF8String);
 }
+
