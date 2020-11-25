@@ -173,7 +173,13 @@ public class AdmobADSCity : MonoBehaviour {
         // Load the interstitial with the request.
         this.interstitial.LoadAd(request);
     }
-    
+
+
+    private void OnDisable()
+    {
+        rewardBasedVideo.OnAdRewarded -= HandleRewardBasedVideoRewarded;
+        rewardBasedVideo.OnAdClosed -= HandleRewardBasedVideoClosed;
+    }
 
     public void ShowAdInterstitial()
     {

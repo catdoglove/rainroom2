@@ -178,7 +178,12 @@ public class AdmobADS : MonoBehaviour {
         this.interstitial.LoadAd(request);
         
     }
-    
+
+    private void OnDisable()
+    {
+        rewardBasedVideo.OnAdRewarded -= HandleRewardBasedVideoRewarded;
+        rewardBasedVideo.OnAdClosed -= HandleRewardBasedVideoClosed;
+    }
 
     public void ShowAdInterstitial()
     {
