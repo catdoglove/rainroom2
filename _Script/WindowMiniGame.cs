@@ -45,8 +45,9 @@ public class WindowMiniGame : MonoBehaviour {
     int nowArr = 1; //현재 줄
 
     //시즌
-    public GameObject seasonArea_btn;
+    public GameObject window_season_obj;
     public GameObject[] season_btns;
+    public Sprite[] season_spr;
 
     // Use this for initialization
     void Start () {
@@ -55,23 +56,58 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
 
-        //시즌관련
-        PlayerPrefs.SetInt("showSeasonArea", 0);
-        if (PlayerPrefs.GetInt("windowfall", 0) == 1)
+
+        
+        if (PlayerPrefs.GetInt("windowwin20", 0) == 1)
         {
-            season_btns[2].SetActive(true);
+            season_btns[3].SetActive(true);
         }
+        
 
-
-
-
-
-
+        int switch_on = PlayerPrefs.GetInt("windowbackset", 4);
+        switch (switch_on)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                window_season_obj.GetComponent<Image>().sprite = season_spr[2];
+                window_season_obj.SetActive(true);
+                break;
+            case 3:
+                window_season_obj.GetComponent<Image>().sprite = season_spr[3];
+                window_season_obj.SetActive(true);
+                break;
+            case 4:
+                window_season_obj.SetActive(false);
+                break;
+            default:
+                break;
+        }
         PlayerPrefs.Save();
         
         data_milk = CSVReader.Read("Talk/todaymilk");
     }
-	
+
+    public void SetWindowFall()
+    {
+        window_season_obj.GetComponent<Image>().sprite = season_spr[2];
+        window_season_obj.SetActive(true);
+        PlayerPrefs.SetInt("windowbackset", 2);
+    }
+    public void SetWindowWinter()
+    {
+        window_season_obj.GetComponent<Image>().sprite = season_spr[3];
+        window_season_obj.SetActive(true);
+        PlayerPrefs.SetInt("windowbackset", 3);
+    }
+    public void SetWindowRe()
+    {
+        window_season_obj.SetActive(false);
+        PlayerPrefs.SetInt("windowbackset", 4);
+    }
+
 
     public void OpenMiniGame()
     {
@@ -149,8 +185,6 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt("windowcatrand", 19);
         PlayerPrefs.Save();
         minicat_obj.SetActive(false);
-        seasonArea_btn.SetActive(false);
-        PlayerPrefs.SetInt("showSeasonArea", 0);
     }
 
     public void ball1()
@@ -530,18 +564,6 @@ public class WindowMiniGame : MonoBehaviour {
         }
         toast_obj.SetActive(false);
     }
+    
 
-    public void seasonArea()
-    {
-        if (PlayerPrefs.GetInt("showSeasonArea", 0) == 1)
-        {
-            seasonArea_btn.SetActive(false);
-            PlayerPrefs.SetInt("showSeasonArea", 0);
-        }
-        else
-        {
-            seasonArea_btn.SetActive(true);
-            PlayerPrefs.SetInt("showSeasonArea", 1);
-        }
-    }
 }

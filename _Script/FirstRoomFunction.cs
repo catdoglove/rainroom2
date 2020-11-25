@@ -139,12 +139,14 @@ public class FirstRoomFunction : CavasData {
             sHat_obj.SetActive(true);
         }
 
-
+        
         //가을창문
+        /*
         if (PlayerPrefs.GetInt("windowfall", 0) == 1)
         {
             window_season_obj.SetActive(true);
         }
+        */
 
         PlayerPrefs.SetInt("outtrip", 0);
         // PlayerPrefs.SetInt("downst", 0);
