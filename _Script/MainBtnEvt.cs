@@ -701,7 +701,9 @@ public class MainBtnEvt : CavasData
     }
     public void SetCoupon()
     {
-        
+
+        couponTxtF_obj.SetActive(true);
+        /*
         if (InputField_txt.text == "mask4you")
         {
             if (PlayerPrefs.GetInt("s200518", 0) == 0)
@@ -728,7 +730,7 @@ public class MainBtnEvt : CavasData
         {
             couponTxtF_obj.SetActive(true);
         }
-        
+        */
 
         PlayerPrefs.Save();
     }
