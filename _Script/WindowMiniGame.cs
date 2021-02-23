@@ -58,9 +58,9 @@ public class WindowMiniGame : MonoBehaviour {
 
 
         
-        if (PlayerPrefs.GetInt("windowwin20", 0) == 1)
+        if (PlayerPrefs.GetInt("windowspr21", 0) == 1)
         {
-            season_btns[3].SetActive(true);
+            season_btns[0].SetActive(true);
         }
         
 
@@ -68,6 +68,8 @@ public class WindowMiniGame : MonoBehaviour {
         switch (switch_on)
         {
             case 0:
+                window_season_obj.GetComponent<Image>().sprite = season_spr[0];
+                window_season_obj.SetActive(true);
                 break;
             case 1:
                 break;
@@ -88,6 +90,12 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.Save();
         
         data_milk = CSVReader.Read("Talk/todaymilk");
+    }
+    public void SetWindowSpring()
+    {
+        window_season_obj.GetComponent<Image>().sprite = season_spr[0];
+        window_season_obj.SetActive(true);
+        PlayerPrefs.SetInt("windowbackset", 0);
     }
 
     public void SetWindowFall()

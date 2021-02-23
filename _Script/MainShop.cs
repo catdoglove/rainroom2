@@ -93,6 +93,13 @@ public class MainShop : ShopHandler {
     void Start () {
         color = new Color(1f, 1f, 1f);
         str = PlayerPrefs.GetString("code", "");
+        PlayerPrefs.SetInt(str + "ht", 999);
+        PlayerPrefs.SetInt(str + "cv", 999);
+        PlayerPrefs.SetInt(str + "c", 999999);
+        PlayerPrefs.SetInt(str + "h", 99999);
+        PlayerPrefs.SetInt(str + "dm", 999);
+        PlayerPrefs.SetInt(str + "sd", 999);
+        PlayerPrefs.SetInt("lovelv", 6);
         /*
          * 마법의 코드 자리
         */

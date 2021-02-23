@@ -163,8 +163,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "찐빵";
-        cook_str[11] = "꼬막무침";
+        cook_str[10] = "쑥떡";
+        cook_str[11] = "주꾸미볶음";
     }
     public void OpenGasrange()
     {
@@ -321,22 +321,22 @@ public class GasrangeEvt : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cookSound();
             if (indexNumber_i>=10)
             {
-                int help = PlayerPrefs.GetInt("winterCount20", 0);
-                if (help >= 9 && PlayerPrefs.GetInt("windowwin20", 0) == 0)
+                int help = PlayerPrefs.GetInt("springCount21", 0);
+                if (help >= 9 && PlayerPrefs.GetInt("windowspr21", 0) == 0)
                 {
-                    PlayerPrefs.SetInt("windowbackset", 3);
-                    PlayerPrefs.SetInt("windowwin20", 1);
+                    PlayerPrefs.SetInt("windowbackset", 0);
+                    PlayerPrefs.SetInt("windowspr21", 1);
                     //GM2.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");
                     help++;
-                    PlayerPrefs.SetInt("winterCount20", help);
+                    PlayerPrefs.SetInt("springCount21", help);
                 }
                 else
                 {
                     help++;
-                    PlayerPrefs.SetInt("winterCount20", help);
+                    PlayerPrefs.SetInt("springCount21", help);
                 }
             }
         }
@@ -528,8 +528,10 @@ public class GasrangeEvt : MonoBehaviour {
         //shrimp_i = PlayerPrefs.GetInt("juggume", 0);
         //bam_i = PlayerPrefs.GetInt("subaks", 0);
         //shrimp_i = PlayerPrefs.GetInt("icebars", 0);
-        bam_i = PlayerPrefs.GetInt("pat2", 0);
-        shrimp_i = PlayerPrefs.GetInt("ggomak2", 0);
+        //bam_i = PlayerPrefs.GetInt("pat2", 0);
+        //shrimp_i = PlayerPrefs.GetInt("ggomak2", 0);
+        bam_i = PlayerPrefs.GetInt("ssuck2", 0);
+        shrimp_i = PlayerPrefs.GetInt("juggume2", 0);
     }
 
     public void RightIce()
@@ -669,7 +671,7 @@ public class GasrangeEvt : MonoBehaviour {
         }
     }
     
-    //온수가 부족하다
+
     IEnumerator toastHotImgFadeOut()
     {
         color.a = Mathf.Lerp(0f, 1f, 1f);
