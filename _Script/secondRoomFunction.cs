@@ -1123,6 +1123,8 @@ public class secondRoomFunction : CavasData
     IEnumerator outTime()
     {
         int a = 0;
+        string ste = "00:00";
+
         while (a == 0)
         {
             if (PlayerPrefs.GetInt("bouttime", 14) == 9)
@@ -1158,6 +1160,10 @@ public class secondRoomFunction : CavasData
                 else
                 {
                     outGo_obj.GetComponent<Button>().interactable = false;
+                    if (ste.Equals(outTime_txt.text))
+                    {
+                        outGo_obj.GetComponent<Button>().interactable = true;
+                    }
                 }
             }
             yield return new WaitForSeconds(0.5f);
