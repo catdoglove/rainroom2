@@ -132,7 +132,7 @@ public class TalkEvt : MonoBehaviour {
                     exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
                     if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
                     {
-                        exitText.text = "(자고있다. 조용히 나갈까?)\n(뒤로두번 종료)"; //영어버전 뭔가있음
+                        exitText.text = "(Now sleeping. Go out quietly?)\n(Touch back button twice.)";
                     }
                     else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
                     {
@@ -141,7 +141,15 @@ public class TalkEvt : MonoBehaviour {
                 }
                 else
                 {
-                    exitText.text = "가는거니?\n(뒤로두번 종료)";
+
+                    if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                    {
+                        exitText.text = "Are you going?\n(Touch back button twice.)";
+                    }
+                    else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                    {
+                        exitText.text = "가는거니?\n(뒤로두번 종료)";
+                    }
                 }
             }
             else
@@ -161,11 +169,28 @@ public class TalkEvt : MonoBehaviour {
             {
                 talkCursor.SetActive(false);
                 exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
-                exitText.text = "(..흠)";
+
+
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    exitText.text = "(..hmm)";
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    exitText.text = "(..흠)";
+                }
+
             }
             else
             {
-                exitText.text = "..음";
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    exitText.text = "..um";
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    exitText.text = "..음";
+                }
             }
 
         }
@@ -196,41 +221,84 @@ public class TalkEvt : MonoBehaviour {
                 {
                     talkCursor.SetActive(false);
                     exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
-                    exitText.text = "(..잘자)";
+                    if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                    {
+                        exitText.text = "(Good night..)";
+                    }
+                    else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                    {
+                        exitText.text = "(..잘자)";
+                    }
                 }
                 else
                 {
                     loveLv = PlayerPrefs.GetInt("lovelv", 0);
                     if (loveLv >= 6) { charAni.Play("bye"); }
 
-                    if (loveLv < 2)
+
+                    if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
                     {
-                        exitText.text = "..잘가";
+                        if (loveLv < 2)
+                        {
+                            exitText.text = "..Bye";
+                        }
+                        else if (loveLv < 4)
+                        {
+                            exitText.text = "Goodbye..";
+                        }
+                        else if (loveLv < 6)
+                        {
+                            exitText.text = "Well, Good bye..";
+                        }
+                        else if (loveLv < 9)
+                        {
+                            exitText.text = "See you next time. Good bye.";
+                        }
+                        else if (loveLv < 11)
+                        {
+                            exitText.text = "Good bye. See you later.";
+                        }
+                        else if (loveLv < 13)
+                        {
+                            exitText.text = "It was nice to see you. See you later. Friend";
+                        }
+                        else if (loveLv > 12)
+                        {
+                            exitText.text = "It was nice to see you. See you later. Friend";
+                        }
                     }
-                    else if (loveLv < 4)
+                    else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
                     {
-                        exitText.text = "잘가렴..";
+                        if (loveLv < 2)
+                        {
+                            exitText.text = "..잘가";
+                        }
+                        else if (loveLv < 4)
+                        {
+                            exitText.text = "잘가렴..";
+                        }
+                        else if (loveLv < 6)
+                        {
+                            exitText.text = "안녕 잘가..";
+                        }
+                        else if (loveLv < 9)
+                        {
+                            exitText.text = "다음에 봐. 잘가렴";
+                        }
+                        else if (loveLv < 11)
+                        {
+                            exitText.text = "안녕 다음에 보자";
+                        }
+                        else if (loveLv < 13)
+                        {
+                            exitText.text = "반가웠어 다음에 보자. 친구";
+                        }
+                        else if (loveLv > 12)
+                        {
+                            exitText.text = "반가웠어 다음에 보자. 친구";
+                        }
                     }
-                    else if (loveLv < 6)
-                    {
-                        exitText.text = "안녕 잘가..";
-                    }
-                    else if (loveLv < 9)
-                    {
-                        exitText.text = "다음에 봐. 잘가렴";
-                    }
-                    else if (loveLv < 11)
-                    {
-                        exitText.text = "안녕 다음에 보자";
-                    }
-                    else if (loveLv < 13)
-                    {
-                        exitText.text = "반가웠어 다음에 보자. 친구";
-                    }
-                    else if (loveLv > 12)
-                    {
-                        exitText.text = "반가웠어 다음에 보자. 친구";
-                    }
+
                 }
 
             }
