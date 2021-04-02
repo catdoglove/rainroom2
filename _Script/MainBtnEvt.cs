@@ -975,4 +975,16 @@ public class MainBtnEvt : CavasData
         Application.OpenURL("https://docs.google.com/document/d/1JFdyCym-5Kxns2xcA-w8W5ir5YiL4J-6JrJeMF8zcuk/edit?usp=sharing");
     }
 
+
+    public void selectLanguage()
+    {
+        if(PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            PlayerPrefs.SetInt("setlanguage", 1);
+        }else if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            PlayerPrefs.SetInt("setlanguage", 82);
+        }
+    }
+
     }

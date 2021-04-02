@@ -125,7 +125,16 @@ public class SeaFunction : MonoBehaviour {
         PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
-        data_sign = CSVReader.Read("Talk/bottle_sea");
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_sign = CSVReader.Read("Talk/bottle_sea_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_sign = CSVReader.Read("Talk/bottle_sea");
+        }
+
         signText();
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어

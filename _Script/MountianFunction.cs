@@ -102,7 +102,15 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetString("outlasttimepark", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("foresttime", 9);
         PlayerPrefs.Save();
-        data_sign = CSVReader.Read("Talk/sign_park");
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_sign = CSVReader.Read("Talk/sign_park_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_sign = CSVReader.Read("Talk/sign_park");
+        }
         signText();
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어

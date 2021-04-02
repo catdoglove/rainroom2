@@ -29,7 +29,8 @@ public class SleepTime : MonoBehaviour {
     int[] randArr;//난수 필
 
     public GameObject[] diary_obj;
-    public Text diary_today, diary_dream; //선언 및 보여질
+    public Text diary_today, diary_dream, diary_today_eng, diary_dream_eng; //선언 및 보여질
+    public GameObject diaryT, diaryD, diaryT_e, diaryD_e;
 
     //스위치 별
     public GameObject stars_obj;
@@ -98,7 +99,15 @@ public class SleepTime : MonoBehaviour {
         }
 
 
-        data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_diary = CSVReader.Read("Talk/deardiary_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_diary = CSVReader.Read("Talk/deardiary");
+        }
+
 
     }
 
@@ -327,12 +336,39 @@ public class SleepTime : MonoBehaviour {
         if (Text_cut[0] == " a")
         {
             diary_obj[0].SetActive(true);
-            diary_today.text = Text_cut[1];
+            diary_obj[1].SetActive(false);
+
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                diaryT.SetActive(false);
+                diaryT_e.SetActive(true);
+                diary_today_eng.text = Text_cut[1];
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                diaryT.SetActive(true);
+                diaryT_e.SetActive(false);
+                diary_today.text = Text_cut[1];
+            }
+
         }
         else if (Text_cut[0] == " b")
         {
             diary_obj[1].SetActive(true);
-            diary_dream.text = Text_cut[1];
+            diary_obj[0].SetActive(false);
+
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                diaryD.SetActive(false);
+                diaryD_e.SetActive(true);
+                diary_dream_eng.text = Text_cut[1];
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                diaryD.SetActive(true);
+                diaryD_e.SetActive(false);
+                diary_dream.text = Text_cut[1];
+            }
         }
 
     }

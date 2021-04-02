@@ -88,8 +88,17 @@ public class WindowMiniGame : MonoBehaviour {
                 break;
         }
         PlayerPrefs.Save();
-        
-        data_milk = CSVReader.Read("Talk/todaymilk");
+
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_milk = CSVReader.Read("Talk/todaymilk_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_milk = CSVReader.Read("Talk/todaymilk");
+        }
+
     }
     public void SetWindowSpring()
     {
@@ -357,7 +366,16 @@ public class WindowMiniGame : MonoBehaviour {
         }
         
         text_str = " " + data_milk[nowArr - 1]["1"];
-        Text_cut = "오늘의" + text_str;
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            Text_cut = "Today's" + text_str;
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            Text_cut = "오늘의" + text_str;
+        }
+
         milk_txt1.text = Text_cut;
         text_str = " " + data_milk[nowArr - 1]["2"];
         Text_cut = text_str;

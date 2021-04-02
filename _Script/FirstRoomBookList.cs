@@ -26,11 +26,23 @@ public class FirstRoomBookList : MonoBehaviour {
 
     void Start()
     {
-        data_book = CSVReader.Read("Talk/talk_book");
-        data_light = CSVReader.Read("Talk/talk_light");
-        data_seed = CSVReader.Read("Talk/talk_seed");
-        data_wall = CSVReader.Read("Talk/talk_wall");
-        data_window = CSVReader.Read("Talk/talk_window");
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_book = CSVReader.Read("Talk/talk_book_eng");
+            data_light = CSVReader.Read("Talk/talk_light_eng");
+            data_seed = CSVReader.Read("Talk/talk_seed_eng");
+            data_wall = CSVReader.Read("Talk/talk_wall_eng");
+            data_window = CSVReader.Read("Talk/talk_window_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_book = CSVReader.Read("Talk/talk_book");
+            data_light = CSVReader.Read("Talk/talk_light");
+            data_seed = CSVReader.Read("Talk/talk_seed");
+            data_wall = CSVReader.Read("Talk/talk_wall");
+            data_window = CSVReader.Read("Talk/talk_window");
+        }
+        
                
     }
 
