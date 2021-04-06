@@ -9,11 +9,11 @@ public class TalkEvtOut : MonoBehaviour
 
     List<Dictionary<string, object>> data_out,data_park; //csv파일
     int etcNum = 0;
-    public Text Text_obj; //선언 및 보여질
+    public Text Text_obj, Text_obj_eng; //선언 및 보여질
     string[] testText_cut; //대사 끊기
     string text_str; //실질적 대사출력
 
-    public GameObject talkbtn, talkballoon, closeTB, talkCursor; //대화버튼 및 영역
+    public GameObject talkbtn, talkballoon, talkballoon_eng, closeTB, talkCursor; //대화버튼 및 영역
     bool ihaveitem;
 
     int allArr = 150; //총 줄수
@@ -28,8 +28,8 @@ public class TalkEvtOut : MonoBehaviour
 
     //질문만들기
     string quesStr; //질문용대화
-    public Text btnTxt1, btnTxt2; //질문버튼 텍스트
-    public GameObject quesBtmArea, quesBack; //질문버튼, 뒤
+    public Text btnTxt1, btnTxt2, btnTxt3, btnTxt4; //질문버튼 텍스트
+    public GameObject quesBtmArea, quesBtmArea_eng,  quesBack; //질문버튼, 뒤
     int choiceNum; //예스or노
 
     //아이템 관련- 0책, 1벽지, 2전등, 3창문, 4씨앗
@@ -74,8 +74,17 @@ public class TalkEvtOut : MonoBehaviour
         charAni.Play("char_park");
 
 
-        data_out = CSVReader.Read("Talk/talk_out"); //대사 불러오기   
-        data_park = CSVReader.Read("Talk/etc_park");
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            data_out = CSVReader.Read("Talk/talk_out_eng");  
+            data_park = CSVReader.Read("Talk/etc_park_eng");
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            data_out = CSVReader.Read("Talk/talk_out"); //대사 불러오기   
+            data_park = CSVReader.Read("Talk/etc_park");
+        }
 
 
 
@@ -157,7 +166,14 @@ public class TalkEvtOut : MonoBehaviour
 
     void cleantalk() //대화 초기화
     {
-        Text_obj.text = "";
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            Text_obj_eng.text = "";
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            Text_obj.text = "";
+        }
         text_str = "";
     }
 
@@ -247,7 +263,7 @@ public class TalkEvtOut : MonoBehaviour
             testText_cut = text_str.Split('/'); //끊기
             cleantalk();
 
-            if (testText_cut[0] == "q")
+            if (testText_cut[0] == "9")
             { //질문이 있는경우
                 StartCoroutine("questionTalkRun");
             }
@@ -309,7 +325,14 @@ public class TalkEvtOut : MonoBehaviour
         for (int i = 0; i < testText_cut.Length; i++)
         {
             text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-            Text_obj.text = text_str;
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                Text_obj_eng.text = text_str;
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                Text_obj.text = text_str;
+            }
             yield return new WaitForSeconds(speedF);
         }
 
@@ -333,21 +356,44 @@ public class TalkEvtOut : MonoBehaviour
         {
             text_str = text_str.Insert(text_str.Length, testText_cut[i]);
 
-            if (text_str.Contains("y"))
+            if (text_str.Contains("6"))
             {
                 string str, str2;
-                str = quesStr.Substring(quesStr.IndexOf("y") + 1, 4);
+                str = quesStr.Substring(quesStr.IndexOf("6") + 1, 4);
                 btnTxt1.text = str;
-                str2 = quesStr.Substring(quesStr.IndexOf("n") + 1, 4);
+                str2 = quesStr.Substring(quesStr.IndexOf("5") + 1, 4);
                 btnTxt2.text = str2;
+            }
+            else if (text_str.Contains("8"))
+            {
+                string str, str2;
+                str = quesStr.Substring(quesStr.IndexOf("8") + 1, 12);
+                btnTxt3.text = str;
+                str2 = quesStr.Substring(quesStr.IndexOf("7") + 1, 12);
+                btnTxt4.text = str2;
             }
             else
             {
-                Text_obj.text = text_str;
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    Text_obj_eng.text = text_str;
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    Text_obj.text = text_str;
+                }
                 yield return new WaitForSeconds(speedF);
             }
+
         }
-        quesBtmArea.SetActive(true);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            quesBtmArea_eng.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            quesBtmArea.SetActive(true);
+        }
     }
 
     //선택한 질문 출력
@@ -363,19 +409,33 @@ public class TalkEvtOut : MonoBehaviour
 
         if (choiceNum == 1)
         {
-            for (int i = quesStr.IndexOf("a"); i < quesStr.IndexOf("b") - 1; i++)
+            for (int i = quesStr.IndexOf("+"); i < quesStr.IndexOf("-") - 1; i++)
             {
                 text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    Text_obj_eng.text = text_str;
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    Text_obj.text = text_str;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
         else if (choiceNum == 2)
         {
-            for (int i = quesStr.IndexOf("c"); i < quesStr.IndexOf("d") - 1; i++)
+            for (int i = quesStr.IndexOf("*"); i < quesStr.IndexOf("=") - 1; i++)
             {
                 text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    Text_obj_eng.text = text_str;
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    Text_obj.text = text_str;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
@@ -469,12 +529,26 @@ public class TalkEvtOut : MonoBehaviour
     {
         charAni.Play("char_park_talk");
 
-        talkballoon.SetActive(true);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            talkballoon_eng.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            talkballoon.SetActive(true);
+        }
         closeTB.GetComponent<Button>().interactable = false;
         closeTB.SetActive(true);
 
         talkbtn.SetActive(false);
-        quesBtmArea.SetActive(false);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            quesBtmArea_eng.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            quesBtmArea.SetActive(false);
+        }
         quesBack.SetActive(false);
 
     }
@@ -570,7 +644,14 @@ public class TalkEvtOut : MonoBehaviour
 
     public void closeTalkBoon()
     {
-        talkballoon.SetActive(false);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            talkballoon_eng.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            talkballoon.SetActive(false);
+        }
         closeTB.SetActive(false);
         closeTB.GetComponent<Button>().interactable = false;
     }
@@ -740,7 +821,15 @@ public class TalkEvtOut : MonoBehaviour
         for (int i = 0; i < testText_cut.Length; i++)
         {
             text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-            Text_obj.text = text_str;
+
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                Text_obj_eng.text = text_str;
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                Text_obj.text = text_str;
+            }
             yield return new WaitForSeconds(speedF);
         }
 
