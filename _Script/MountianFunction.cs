@@ -9,13 +9,13 @@ public class MountianFunction : MonoBehaviour {
     //미리 씬을 불러오기
     AsyncOperation async;
 
-    public GameObject squral_obj, sign_obj, right_obj, left_obj, box_obj,tesureWindow_obj, squralWindow_obj, resultWindow_obj;
+    public GameObject squral_obj, sign_obj, right_obj, left_obj, box_obj,tesureWindow_obj, squralWindow_obj, squralWindow_objeng, resultWindow_obj;
     public GameObject backGround_obj, backGround2_obj,sqH_obj, audio_obj;
     public GameObject[] tresure_obj, boxRL_obj;
     public Sprite[] tresure_spr,background_spr;
     public int moveCount_i,randomGet_i,tresureCount_i,sign_i,sq_i;
     public int[] tresureSet_i;
-    public Text clover_txt,resultClover_txt;
+    public Text clover_txt,resultClover_txt, resultEnd_txt, bam_txt, bamtoast_txt, toast_txt;
     string str;
     int haveClover_i;
     int clover_i = 0;
@@ -80,6 +80,14 @@ public class MountianFunction : MonoBehaviour {
         else
         {
             bamWindow_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                bam_txt.text = "I just picked this up.";
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                bam_txt.text = "방금 이걸 주웠어.";
+            }
         }
     }
 
@@ -267,15 +275,33 @@ public class MountianFunction : MonoBehaviour {
 
     public void OpenActFeed()
     {
-        if (squralWindow_obj.activeSelf == true)
+
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
         {
-            squralWindow_obj.SetActive(false);
+            if (squralWindow_objeng.activeSelf == true)
+            {
+                squralWindow_objeng.SetActive(false);
+            }
+            else
+            {
+                squralWindow_objeng.SetActive(true);
+                audio_obj.GetComponent<SoundEvt>().buttonSound();
+            }
         }
-        else
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
         {
-            squralWindow_obj.SetActive(true);
-            audio_obj.GetComponent<SoundEvt>().buttonSound();
+            if (squralWindow_obj.activeSelf == true)
+            {
+                squralWindow_obj.SetActive(false);
+            }
+            else
+            {
+                squralWindow_obj.SetActive(true);
+                audio_obj.GetComponent<SoundEvt>().buttonSound();
+            }
         }
+
     }
 
     //다람쥐
@@ -285,7 +311,16 @@ public class MountianFunction : MonoBehaviour {
         if (v >= 200)
         {
             //먹이를 주었다.
-            squralWindow_obj.SetActive(false);
+            if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+            {
+                squralWindow_objeng.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+            {
+                squralWindow_obj.SetActive(false);
+            }
+
+
             v = v - 200;
             PlayerPrefs.SetInt(str + "c", v);
             PlayerPrefs.Save();
@@ -318,6 +353,17 @@ public class MountianFunction : MonoBehaviour {
                 PlayerPrefs.SetInt("sqfin", 1);
                 PlayerPrefs.SetInt("setoutgoods", 8);
                 putToast_obj.SetActive(true);
+
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    bamtoast_txt.text = "Something is put down in the room.";
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    bamtoast_txt.text = "방에 뭔가 남겨졌다.";
+                }
+                
+
             }
             else
             {
@@ -326,7 +372,7 @@ public class MountianFunction : MonoBehaviour {
             }
         }
     }
-    //50번 했을때
+    //표지판을 50번 봤을 때
     void feeds()
     {
         if (PlayerPrefs.GetInt("signfin", 0) == 0)
@@ -337,6 +383,14 @@ public class MountianFunction : MonoBehaviour {
                 PlayerPrefs.SetInt("signfin", 1);
                 PlayerPrefs.SetInt("setoutgoods", 9);
                 putToast_obj.SetActive(true);
+                if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                {
+                    bamtoast_txt.text = "Something is put down in the room.";
+                }
+                else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                {
+                    bamtoast_txt.text = "방에 뭔가 남겨졌다.";
+                }                
             }
             else
             {
@@ -359,6 +413,9 @@ public class MountianFunction : MonoBehaviour {
         tresure_obj[0].SetActive(false);
         tresure_obj[1].SetActive(false);
         tresure_obj[2].SetActive(false);
+        tresure_obj[3].SetActive(false);
+        tresure_obj[4].SetActive(false);
+        tresure_obj[5].SetActive(false);
         tesureWindow_obj.SetActive(true);
         if (randomGet_i == 0)
         {
@@ -383,7 +440,15 @@ public class MountianFunction : MonoBehaviour {
                 else
                 {
                     //버섯
-                    tresure_obj[2].SetActive(true);
+
+                    if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                    {
+                        tresure_obj[5].SetActive(true);
+                    }
+                    else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                    {
+                        tresure_obj[2].SetActive(true);
+                    }
                     PlayerPrefs.SetInt("bufmus", 1);
                 }
             }
@@ -402,14 +467,31 @@ public class MountianFunction : MonoBehaviour {
                     //컬러칩
                     if (PlayerPrefs.GetInt("bufcolor", randomGet_i) == 88)
                     {
-                        tresure_obj[1].SetActive(true);
-                        tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                        {
+                            tresure_obj[4].SetActive(true);
+                            tresure_obj[4].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        }
+                        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                        {
+                            tresure_obj[1].SetActive(true);
+                            tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        }
+
                         PlayerPrefs.SetInt("bufcolor", randomGet_i);
                     }
                     else
                     {
-                        tresure_obj[1].SetActive(true);
-                        tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+                        {
+                            tresure_obj[4].SetActive(true);
+                            tresure_obj[4].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        }
+                        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+                        {
+                            tresure_obj[1].SetActive(true);
+                            tresure_obj[1].GetComponent<Image>().sprite = tresure_spr[randomGet_i];
+                        }
                         PlayerPrefs.SetInt("bufcolor2", randomGet_i);
                     }
                 }
@@ -425,7 +507,17 @@ public class MountianFunction : MonoBehaviour {
     //클로버얻기
     void GetClover()
     {
-        tresure_obj[0].SetActive(true);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            tresure_obj[3].SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            tresure_obj[0].SetActive(true);
+        }
+
+
+
         randomGet_i = Random.Range(0, 100);
         if (randomGet_i > 4)
         {
@@ -496,6 +588,16 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetInt(str + "cv", haveClover_i);
 
         resultWindow_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            resultEnd_txt.text = "Shall we go back..";
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            resultEnd_txt.text = "슬슬 돌아갈까..";
+        }
+
+
         PlayerPrefs.SetInt("bufcolor", 88);
         PlayerPrefs.SetInt("bufcolor2", 88);
         PlayerPrefs.SetInt("bufmus", 0);
@@ -517,6 +619,20 @@ public class MountianFunction : MonoBehaviour {
         colorN.a = Mathf.Lerp(0f, 1f, 1f);
         needToast_obj.GetComponent<Image>().color = colorN;
         needToast_obj.SetActive(true);
+
+
+        if (PlayerPrefs.GetInt("setlanguage", 82) == 1)
+        {
+            toast_txt.text = "Not enough to do that.";
+        }
+        else if (PlayerPrefs.GetInt("setlanguage", 82) == 82)
+        {
+            toast_txt.text = "그걸 하기에는 모자라다.";
+        }
+
+
+        
+
         yield return new WaitForSeconds(2.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
