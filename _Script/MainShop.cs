@@ -97,6 +97,7 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
+
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -2086,7 +2087,7 @@ public class MainShop : ShopHandler {
         }
 
         //책상
-        if (PlayerPrefs.GetInt("desklv", 0) >= 4 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
+        if (PlayerPrefs.GetInt("desklv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette83", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
             PlayerPrefs.SetInt("reformshop", 1);
@@ -2193,7 +2194,7 @@ public class MainShop : ShopHandler {
         }
 
         //책상
-        if (PlayerPrefs.GetInt("desklv", 0) >= 4 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
+        if (PlayerPrefs.GetInt("desklv", 0) >= 6 && PlayerPrefs.GetInt("shoppalette84", 0) == 1)
         {
             PlayerPrefs.SetInt("shoppalette8", 1);
             PlayerPrefs.SetInt("reformshop", 1);
