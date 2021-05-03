@@ -27,7 +27,8 @@ public class WindowMiniGame : MonoBehaviour {
     public Text milk_txt1, milk_txt2, milk_txt3, milkDay_txt, milkTime_txt;
     public GameObject toast_obj;
     Color color;
-
+    public Button milkad_btn;
+    public GameObject milkAdWin_obj;
     //엔딩
     public GameObject endWindow_obj;
     public Sprite[] end_spr;
@@ -329,6 +330,15 @@ public class WindowMiniGame : MonoBehaviour {
         cm = cm + 100;
         hm = hm + 10;
         htm = htm + 2;
+
+        if (PlayerPrefs.GetInt("milkadc", 0) == 1)
+        {
+            cm = cm + 100;
+            hm = hm + 10;
+            htm = htm + 2;
+            PlayerPrefs.SetInt("milkadc", 0);
+            PlayerPrefs.SetInt("setmilkadc", 0);
+        }
         PlayerPrefs.SetInt(str + "c", cm);
         PlayerPrefs.SetInt(str + "h", hm);
         PlayerPrefs.SetInt(str + "ht", htm);
@@ -337,9 +347,7 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetString("milktime", System.DateTime.Now.ToString());
         milk_obj.GetComponent<Image>().sprite = milk_spr[0];
         milkBtn_obj.SetActive(false);
-
-
-
+        
         nowArr = PlayerPrefs.GetInt("milkText", 1);
 
         if (nowArr == 1)
@@ -372,6 +380,42 @@ public class WindowMiniGame : MonoBehaviour {
         endg();
 
     }
+    
+    //우유광고
+    public void MilkYesNo()
+    {
+        milkAdWin_obj.SetActive(true);
+        if (PlayerPrefs.GetInt("milkadc", 0) == 1)
+        {
+            milkad_btn.interactable = false;
+        }
+        else
+        {
+            milkad_btn.interactable = true;
+        }
+
+    }
+    public void MilkYes()
+    {
+        milkAdWin_obj.SetActive(false);
+        GetMilk();
+    }
+    public void MilkNo()
+    {
+        milkAdWin_obj.SetActive(false);
+    }
+    
+    public void MilkAd()
+    {
+        PlayerPrefs.SetInt("setmilkadc", 1);
+        milkad_btn.interactable = false;
+    }
+
+
+
+
+
+
     public void toastMilk()
     {
         StopCoroutine("toastMilkTime");

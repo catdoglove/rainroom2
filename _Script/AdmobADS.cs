@@ -115,7 +115,11 @@ public class AdmobADS : MonoBehaviour {
                 PlayerPrefs.SetInt("secf2", 240);
             }
         }
-
+        if (PlayerPrefs.GetInt("setmilkadc", 0)==1)
+        {
+            PlayerPrefs.SetInt("milkadc", 1);
+        }
+        PlayerPrefs.SetInt("setmilkadc", 0);
 
     }
 
