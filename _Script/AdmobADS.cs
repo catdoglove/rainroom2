@@ -21,8 +21,9 @@ public class AdmobADS : MonoBehaviour {
     int rewardCoin;
     Color color;
     public GameObject Toast_obj;
-    
 
+
+    public Button milkad_btn;
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -151,6 +152,12 @@ public class AdmobADS : MonoBehaviour {
     
     IEnumerator ToastImgFadeOut()
     {
+        if (PlayerPrefs.GetInt("setmilkadc", 0) == 1)
+        {
+            milkad_btn.interactable = true;
+            PlayerPrefs.SetInt("setmilkadc", 0);
+        }
+
         color.a = Mathf.Lerp(0f, 1f, 1f);
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
@@ -162,6 +169,7 @@ public class AdmobADS : MonoBehaviour {
             yield return null;
         }
         Toast_obj.SetActive(false);
+
     }
 
     //전면광고
