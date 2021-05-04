@@ -592,7 +592,7 @@ public class WindowMiniGame : MonoBehaviour {
         hour = (int)compareTimem.TotalHours;
         minute = (int)compareTimem.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        hour = 11 - hour;
+        hour = 9 - hour;
         minute = 59 - minute;
         if (minute < 0)
         {
