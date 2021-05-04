@@ -30,6 +30,11 @@ public class MainTime : MonoBehaviour {
     string str;
 
     int bg=0;
+
+    //비
+    public GameObject rianAni_obj;
+    public Sprite[] rainAni_spr;
+    int ran=0;
     
 
     // Use this for initialization
@@ -39,9 +44,32 @@ public class MainTime : MonoBehaviour {
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
         StartCoroutine ("updateSec");
+        StartCoroutine("rainani");
     }
-	
-	IEnumerator updateSec(){
+
+    void rainmove()
+    {
+        rianAni_obj.GetComponent<Image>().sprite = rainAni_spr[ran];
+        ran++;
+        if (ran >= 3)
+        {
+            ran = 0;
+        }
+
+    }
+    
+    //비
+    IEnumerator rainani()
+    {
+        int rs=4;
+        while (rs == 4)
+        {
+            rainmove();
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
             //최대량 제한
