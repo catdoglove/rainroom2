@@ -110,7 +110,7 @@ public class MainTime : MonoBehaviour {
             } else {
                 if (PlayerPrefs.GetInt("front", 1) == 2)
                 {
-                    randSpider_i = Random.Range(0, 25);
+                    randSpider_i = Random.Range(0, 24);
                     spiX = Random.Range(-5, 5);
                 }
                 
@@ -149,7 +149,7 @@ public class MainTime : MonoBehaviour {
         }
         else
         {
-            randball1_i = Random.Range(0, 81);
+            randball1_i = Random.Range(0, 80);
             if (randball1_i == 1)
             {
                 moveX1 = -5.2f;
@@ -164,7 +164,7 @@ public class MainTime : MonoBehaviour {
         else
         {
             
-            randball2_i = Random.Range(0, 81);
+            randball2_i = Random.Range(0, 80);
             if (randball2_i == 1)
             {
                 moveX2 = 5.2f;
