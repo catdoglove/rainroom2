@@ -809,6 +809,8 @@ public class MainBtnEvt : CavasData
 
     public void goHome()
     {
+        //외출중
+        PlayerPrefs.SetInt("outorhome", 0);
         PlayerPrefs.SetInt("outtrip", 0);
         PlayerPrefs.SetInt("front", 2);
         StartCoroutine("LoadOut");

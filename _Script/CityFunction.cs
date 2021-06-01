@@ -49,6 +49,7 @@ public class CityFunction : CavasData
     // Use this for initialization
     void Start () {
 
+
         color = new Color(1f, 1f, 1f);
 
         str = PlayerPrefs.GetString("code", "");
@@ -96,6 +97,10 @@ public class CityFunction : CavasData
         {
             endg();
         }
+
+        //외출중
+        PlayerPrefs.SetInt("outorhome", 2);
+        PlayerPrefs.Save();
     }
 
     //외출업적

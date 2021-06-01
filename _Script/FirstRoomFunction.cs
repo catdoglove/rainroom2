@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FirstRoomFunction : CavasData {
     //앞뒤바꾸기
@@ -83,7 +84,7 @@ public class FirstRoomFunction : CavasData {
     public GameObject Help_obj;
     public Sprite[] help_spr;
 
-    public GameObject GM;
+    public GameObject GM, GMTag;
 
     //밤
     public GameObject dayRoom;
@@ -103,10 +104,15 @@ public class FirstRoomFunction : CavasData {
     public GameObject window_season_obj;
 
     //공지
-    public GameObject notice_obj;
+    public GameObject notice_obj, backagain_obj, backWhere_obj;
+    
+    //미리 씬을 불러오기
+    AsyncOperation async;
+    public Sprite menuOut_spr, city_spr, park_spr;
 
     //타이틀닫기
     public GameObject titleImg;
+
     public void closeTitle()
     {
         titleImg.SetActive(false);
@@ -116,8 +122,21 @@ public class FirstRoomFunction : CavasData {
 
     // Use this for initialization
     void Start () {
-
-
+        //다시 나가시겠습니까?
+        if (PlayerPrefs.GetInt("outorhome", 0) >= 1)
+        {
+            if (PlayerPrefs.GetInt("outorhome", 0) == 2)
+            {
+                //도시
+                backWhere_obj.GetComponent<Image>().sprite = city_spr;
+            }
+            else
+            {
+                //공원
+                backWhere_obj.GetComponent<Image>().sprite = park_spr;
+            }
+            backagain_obj.SetActive(true);
+        }
 /*
         if (PlayerPrefs.GetInt("noticeforpet", 0) == 0)
         {
@@ -234,6 +253,45 @@ public class FirstRoomFunction : CavasData {
 
         //낮밤
         setDay();
+    }
+
+    public void OutAgainY()
+    {
+
+        if (PlayerPrefs.GetInt("outorhome", 0) == 2)
+        {
+            PlayerPrefs.SetInt("outtrip", 2);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("outtrip", 1);
+        }
+        PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetInt("bouttime", 14);
+        StartCoroutine("LoadOut");
+        
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuOut_spr;
+        
+        //backagain_obj.SetActive(false);
+    }
+    public void OutAgainN()
+    {
+        //외출중
+        PlayerPrefs.SetInt("outorhome", 0);
+        backagain_obj.SetActive(false);
+        PlayerPrefs.SetInt("outtrip", 0);
+    }
+    IEnumerator LoadOut()
+    {
+        async = SceneManager.LoadSceneAsync("SubLoadOut");
+        while (!async.isDone)
+        {
+            yield return true;
+        }
     }
 
     public void closeNotice()

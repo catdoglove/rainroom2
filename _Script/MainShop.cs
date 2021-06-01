@@ -828,6 +828,18 @@ public class MainShop : ShopHandler {
 
 
     }
+
+    public void BackMenuC()
+    {
+        shop_obj.SetActive(true);
+        close_obj.SetActive(true);
+        back_obj.SetActive(true);
+        funcCabinet_obj.SetActive(false);
+        petHotel_obj.SetActive(false);
+        reform_obj.SetActive(false);
+        palette_obj.SetActive(false);
+    }
+
     //식물 보관
     public void PutPlant()
     {
