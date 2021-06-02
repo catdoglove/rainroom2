@@ -128,12 +128,12 @@ public class FirstRoomFunction : CavasData {
             if (PlayerPrefs.GetInt("outorhome", 0) == 2)
             {
                 //도시
-                backWhere_obj.GetComponent<Image>().sprite = city_spr;
+                backWhere_obj.GetComponent<SpriteRenderer>().sprite = city_spr;
             }
             else
             {
                 //공원
-                backWhere_obj.GetComponent<Image>().sprite = park_spr;
+                backWhere_obj.GetComponent<SpriteRenderer>().sprite = park_spr;
             }
             backagain_obj.SetActive(true);
         }
@@ -266,6 +266,8 @@ public class FirstRoomFunction : CavasData {
         {
             PlayerPrefs.SetInt("outtrip", 1);
         }
+
+        PlayerPrefs.SetInt("place", 1);
         PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("bouttime", 14);
         StartCoroutine("LoadOut");

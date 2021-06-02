@@ -102,11 +102,6 @@ public class Parkfunction : CavasData
         setDay();
         //이밴트 랜덤 
         eventRand_i = Random.Range(0, 5);
-        if (PlayerPrefs.GetInt("outorhome", 0) == 1)
-        {
-            eventRand_i = PlayerPrefs.GetInt("pararand",0);
-        }
-        PlayerPrefs.SetInt("pararand", eventRand_i);
 
         if (eventRand_i < 2)
         {
@@ -146,6 +141,27 @@ public class Parkfunction : CavasData
         menuBlock_vet.y = menuBlock_obj.transform.position.y;
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
+
+
+        if (PlayerPrefs.GetInt("outorhome", 0) == 1)
+        {
+
+            if (PlayerPrefs.GetInt("dayday", 0) == 1)
+            {
+                eventPaint_obj.SetActive(false);
+                eventPet_obj.SetActive(false);
+                event_obj.GetComponent<Image>().sprite = event_spr[0];
+                eventNight_obj.SetActive(false);
+                eventNightPet_obj.SetActive(false);
+                event_obj.SetActive(true);
+            }
+            else
+            {
+                eventPet_obj.SetActive(false);
+                eventPaint_obj.SetActive(false);
+                event_obj.GetComponent<Image>().sprite = event_spr[0];
+            }
+        }
 
         //외출중
         PlayerPrefs.SetInt("outorhome", 1);
