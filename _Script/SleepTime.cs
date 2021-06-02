@@ -7,7 +7,7 @@ using System.Linq; //랜덤필
 public class SleepTime : MonoBehaviour {
 
     //잠
-    public GameObject sleepWindow_obj, sleepBlind_obj,sleepGone_obj;
+    public GameObject sleepWindow_obj, sleepBlind_obj,sleepGone_obj, sleepHelp_obj;
     public Text sleepTime_txt;
     public int minute, hours;
     string lastTime;
@@ -381,4 +381,15 @@ public class SleepTime : MonoBehaviour {
         PlayerPrefs.SetInt("randdiary", -99);
     }
 
+    //도움말 열기
+    public void ShowHelp()
+    {
+        sleepHelp_obj.SetActive(true);
+    }
+
+    //도움말 닫기
+    public void CloseHelp()
+    {
+        sleepHelp_obj.SetActive(false);
+    }
 }
