@@ -54,7 +54,11 @@ public class GetFadeout : MonoBehaviour {
         {
             fade_obj.GetComponent<Image>().sprite= rain_spr[1];
         }
-        
+        else
+        {
+            fade_obj.GetComponent<Image>().sprite = rain_spr[0];
+        }
+        PlayerPrefs.SetInt("dishw", 0);
         moveY = PlayerPrefs.GetFloat("watposy", 11);
         moveX = PlayerPrefs.GetFloat("watposx", 11);
         fade_obj.transform.position = wldObjectPos;

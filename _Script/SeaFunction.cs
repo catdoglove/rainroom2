@@ -85,7 +85,7 @@ public class SeaFunction : MonoBehaviour {
             //PlayerPrefs.SetInt("shrimp", 1);
             //PlayerPrefs.SetInt("ggomak", 1);
             //PlayerPrefs.SetInt("icebars", 1);
-            PlayerPrefs.SetInt("juggume2", 1);
+            PlayerPrefs.SetInt("icebars2", 1);
         }
         else
         {
@@ -236,7 +236,7 @@ public class SeaFunction : MonoBehaviour {
         else
         {
             shrimp_obj.SetActive(false);
-            if (PlayerPrefs.GetInt("juggume2", 0) == 0)
+            if (PlayerPrefs.GetInt("icebars2", 0) == 0)
             {
                 shrimp();
             }

@@ -6219,7 +6219,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 443, y: 500}
+  m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100173639
 MonoBehaviour:
@@ -55352,7 +55352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 56, y: 105}
+  m_AnchoredPosition: {x: 56, y: 105.000015}
   m_SizeDelta: {x: 165, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864120950
@@ -96817,7 +96817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -69, y: 111}
+  m_AnchoredPosition: {x: -69, y: 111.000015}
   m_SizeDelta: {x: 164, y: 632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521106223
@@ -106235,8 +106235,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2128228824}
-        m_MethodName: showSeason
+      - m_Target: {fileID: 2128228828}
+        m_MethodName: SetWindowSummer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -109051,7 +109051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49, y: 111}
+  m_AnchoredPosition: {x: -49, y: 111.000015}
   m_SizeDelta: {x: 134, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1698208885
@@ -110186,7 +110186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74, y: 105}
+  m_AnchoredPosition: {x: 74, y: 105.000015}
   m_SizeDelta: {x: 180, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706359611
@@ -120384,7 +120384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: -6.6}
+  m_AnchoredPosition: {x: -24.000015, y: -6.6}
   m_SizeDelta: {x: -330, y: 660}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852424618
@@ -122063,7 +122063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1889759227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -129994,14 +129994,14 @@ RectTransform:
   m_GameObject: {fileID: 2043945470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 100173638}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.5, y: -268}
+  m_AnchoredPosition: {x: -96.899994, y: -286.4}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043945472
@@ -134459,7 +134459,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  m_Sprite: {fileID: -8352004899378123739, guid: ba6b97b6e4d55554f9493526b2560137,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -135596,14 +135597,14 @@ MonoBehaviour:
   cat_i: 0
   plane_i: 0
   snow_spr:
-  - {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300004, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300000, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300004, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
-  - {fileID: 21300002, guid: fdfad73b77fe8ef44bedd67dc1523a60, type: 3}
+  - {fileID: -8352004899378123739, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -8238817737933242562, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -5687462478173040117, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -8238817737933242562, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -8352004899378123739, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -8238817737933242562, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -5687462478173040117, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
+  - {fileID: -8238817737933242562, guid: ba6b97b6e4d55554f9493526b2560137, type: 3}
   beadalTime_txt: {fileID: 1535967356}
   randStar_i: 0
   star_obj: {fileID: 958673800}
@@ -135614,6 +135615,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7f1a8d70a59d65b439a7dc986ae1543e, type: 3}
   - {fileID: 21300000, guid: 08241f5e78dbc81499a3cb70dad01e38, type: 3}
   - {fileID: 21300000, guid: 92813bd176191a941998ba89aa35c398, type: 3}
+  GM: {fileID: 2128228821}
 --- !u!114 &2128228824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135967,7 +135969,7 @@ MonoBehaviour:
   - {fileID: 617865248}
   season_spr:
   - {fileID: 21300000, guid: 8bd4767f12f14864e86cdc010fc8cb57, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: bb7525c01d43ba2468dce0834946c056, type: 3}
   - {fileID: 21300000, guid: 7323d9a90cea43f41b067dd5501cadbc, type: 3}
   - {fileID: 21300000, guid: 3eae3a52f959a6745b267aebe85dfecc, type: 3}
 --- !u!114 &2128228829

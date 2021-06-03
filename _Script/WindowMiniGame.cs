@@ -59,9 +59,9 @@ public class WindowMiniGame : MonoBehaviour {
 
 
         
-        if (PlayerPrefs.GetInt("windowspr21", 0) == 1)
+        if (PlayerPrefs.GetInt("windowsumm21", 0) == 1)
         {
-            season_btns[0].SetActive(true);
+            season_btns[1].SetActive(true);
         }
         
 
@@ -73,6 +73,8 @@ public class WindowMiniGame : MonoBehaviour {
                 window_season_obj.SetActive(true);
                 break;
             case 1:
+                window_season_obj.GetComponent<Image>().sprite = season_spr[1];
+                window_season_obj.SetActive(true);
                 break;
             case 2:
                 window_season_obj.GetComponent<Image>().sprite = season_spr[2];
@@ -97,6 +99,12 @@ public class WindowMiniGame : MonoBehaviour {
         window_season_obj.GetComponent<Image>().sprite = season_spr[0];
         window_season_obj.SetActive(true);
         PlayerPrefs.SetInt("windowbackset", 0);
+    }
+    public void SetWindowSummer()
+    {
+        window_season_obj.GetComponent<Image>().sprite = season_spr[1];
+        window_season_obj.SetActive(true);
+        PlayerPrefs.SetInt("windowbackset", 1);
     }
 
     public void SetWindowFall()

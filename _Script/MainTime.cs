@@ -36,6 +36,7 @@ public class MainTime : MonoBehaviour {
     public Sprite[] rainAni_spr;
     int ran=0;
     
+    public GameObject GM;
 
     // Use this for initialization
     void Start () {
@@ -124,7 +125,7 @@ public class MainTime : MonoBehaviour {
             //배달
             beadal();
             //눈
-            //snow();
+            snow();
             //거미
             if (randSpider_i == 1) {
                 spider_obj.SetActive(false);
@@ -225,6 +226,13 @@ public class MainTime : MonoBehaviour {
 
     public void touchSnow()
     {
+
+        float xx = snow_obj.transform.position.x;
+        float yy = snow_obj.transform.position.y;
+        PlayerPrefs.SetFloat("watposx", xx);
+        PlayerPrefs.SetFloat("watposy", yy);
+        PlayerPrefs.SetInt("dishw", 1);
+
         string str = PlayerPrefs.GetString("code", "");
         int coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
         coldRain_i = coldRain_i + 1;
@@ -235,6 +243,10 @@ public class MainTime : MonoBehaviour {
         snow_i = 0;
         snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
         bg = 0;
+
+
+        //돈+표시
+        GM.GetComponent<GetFadeout>().getRainFade();
     }
 
 

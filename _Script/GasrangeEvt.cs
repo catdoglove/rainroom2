@@ -163,8 +163,8 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "쑥떡";
-        cook_str[11] = "주꾸미볶음";
+        cook_str[10] = "수박화채";
+        cook_str[11] = "팥빙수";
     }
     public void OpenGasrange()
     {
@@ -321,22 +321,22 @@ public class GasrangeEvt : MonoBehaviour {
             audio_obj.GetComponent<SoundEvt>().cookSound();
             if (indexNumber_i>=10)
             {
-                int help = PlayerPrefs.GetInt("springCount21", 0);
-                if (help >= 9 && PlayerPrefs.GetInt("windowspr21", 0) == 0)
+                int help = PlayerPrefs.GetInt("summerCount21", 0);
+                if (help >= 9 && PlayerPrefs.GetInt("windowsumm21", 0) == 0)
                 {
-                    PlayerPrefs.SetInt("windowbackset", 0);
-                    PlayerPrefs.SetInt("windowspr21", 1);
+                    PlayerPrefs.SetInt("windowbackset", 1);
+                    PlayerPrefs.SetInt("windowsumm21", 1);
                     //GM2.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
                     sToast_obj.SetActive(true);
                     StopCoroutine("toastHotImgFadeOut");
                     StartCoroutine("toastHotImgFadeOut");
                     help++;
-                    PlayerPrefs.SetInt("springCount21", help);
+                    PlayerPrefs.SetInt("summerCount21", help);
                 }
                 else
                 {
                     help++;
-                    PlayerPrefs.SetInt("springCount21", help);
+                    PlayerPrefs.SetInt("summerCount21", help);
                 }
             }
         }
@@ -530,8 +530,8 @@ public class GasrangeEvt : MonoBehaviour {
         //shrimp_i = PlayerPrefs.GetInt("icebars", 0);
         //bam_i = PlayerPrefs.GetInt("pat2", 0);
         //shrimp_i = PlayerPrefs.GetInt("ggomak2", 0);
-        bam_i = PlayerPrefs.GetInt("ssuck2", 0);
-        shrimp_i = PlayerPrefs.GetInt("juggume2", 0);
+        bam_i = PlayerPrefs.GetInt("subaks2", 0);
+        shrimp_i = PlayerPrefs.GetInt("icebars2", 0);
     }
 
     public void RightIce()

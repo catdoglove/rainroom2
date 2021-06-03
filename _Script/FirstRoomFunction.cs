@@ -117,8 +117,7 @@ public class FirstRoomFunction : CavasData {
     {
         titleImg.SetActive(false);
     }
-
-
+    
 
     // Use this for initialization
     void Start () {
