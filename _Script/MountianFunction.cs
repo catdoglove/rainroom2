@@ -88,7 +88,7 @@ public class MountianFunction : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        PlayerPrefs.SetInt("parkgock", 1);
         //외출시 스페이드 얻기
         if (PlayerPrefs.GetInt("outspade", 0) >= 1)
         {

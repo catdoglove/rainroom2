@@ -142,29 +142,33 @@ public class Parkfunction : CavasData
         menuBlock_vet.x = -4000f;
         menuBlock_obj.transform.position = menuBlock_vet;
 
-
-        if (PlayerPrefs.GetInt("outorhome", 0) == 1)
+        if (PlayerPrefs.GetInt("parkgock", 0) == 0)
         {
 
-            if (PlayerPrefs.GetInt("dayday", 0) == 1)
+            if (PlayerPrefs.GetInt("outorhome", 0) == 1)
             {
-                eventPaint_obj.SetActive(false);
-                eventPet_obj.SetActive(false);
-                event_obj.GetComponent<Image>().sprite = event_spr[0];
-                eventNight_obj.SetActive(false);
-                eventNightPet_obj.SetActive(false);
-                event_obj.SetActive(true);
-            }
-            else
-            {
-                eventPet_obj.SetActive(false);
-                eventPaint_obj.SetActive(false);
-                event_obj.GetComponent<Image>().sprite = event_spr[0];
-            }
-        }
 
+                if (PlayerPrefs.GetInt("dayday", 0) == 1)
+                {
+                    eventPaint_obj.SetActive(false);
+                    eventPet_obj.SetActive(false);
+                    event_obj.GetComponent<Image>().sprite = event_spr[0];
+                    eventNight_obj.SetActive(false);
+                    eventNightPet_obj.SetActive(false);
+                    event_obj.SetActive(true);
+                }
+                else
+                {
+                    eventPet_obj.SetActive(false);
+                    eventPaint_obj.SetActive(false);
+                    event_obj.GetComponent<Image>().sprite = event_spr[0];
+                }
+            }
+
+        }
         //외출중
         PlayerPrefs.SetInt("outorhome", 1);
+        PlayerPrefs.SetInt("parkgock", 0);
         PlayerPrefs.Save();
 
     }
