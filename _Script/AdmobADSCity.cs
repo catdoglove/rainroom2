@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class AdmobADSCity : MonoBehaviour {
 
+    //보상형 전면 광고
+    private RewardedInterstitialAd rewardedInterstitialAd;
+
     //배너
     private BannerView bannerView;
     AdRequest request;
@@ -55,7 +58,13 @@ public class AdmobADSCity : MonoBehaviour {
 
         RequestRewardedVideo();
         RequestInterstitial();
-        
+
+        //보상형 전면 광고
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the rewarded ad with the request.
+        RewardedInterstitialAd.LoadAd("ca-app-pub-3940256099942544/5354046379", request, adLoadCallback);
+
         StopCoroutine("adTimeFlow2");
         StopCoroutine("adAniTime2");
         StartCoroutine("adTimeFlow2");
@@ -253,6 +262,35 @@ public class AdmobADSCity : MonoBehaviour {
     public void close()
     {
         ad_obj.SetActive(false);
+    }
+
+    //보상형 전면 광고
+    private void adLoadCallback(RewardedInterstitialAd ad, string error)
+    {
+        if (error == null)
+        {
+            rewardedInterstitialAd = ad;
+            rewardedInterstitialAd.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresent;
+
+        }
+    }
+    public void ShowRewardedInterstitialAd()
+    {
+        if (rewardedInterstitialAd != null)
+        {
+            rewardedInterstitialAd.Show(userEarnedRewardCallback);
+        }
+    }
+
+    private void userEarnedRewardCallback(Reward reward)
+    {
+        // TODO: Reward the user.
+        PlayerPrefs.SetInt("seatime", 4);
+    }
+
+    private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
+    {
+        //MonoBehavior.print("Rewarded interstitial ad has failed to present.");
     }
 
 
