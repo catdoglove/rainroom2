@@ -23,7 +23,7 @@ public class AdmobADSCity : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj;
+    public GameObject Toast_obj, blackimg;
 
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
@@ -63,7 +63,7 @@ public class AdmobADSCity : MonoBehaviour {
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
-        RewardedInterstitialAd.LoadAd("ca-app-pub-3940256099942544/5354046379", request, adLoadCallback);
+        RewardedInterstitialAd.LoadAd("ca-app-pub-9179569099191885/5047087900", request, adLoadCallback);
 
         StopCoroutine("adTimeFlow2");
         StopCoroutine("adAniTime2");
@@ -126,6 +126,7 @@ public class AdmobADSCity : MonoBehaviour {
     //동영상닫음
     private void HandleRewardBasedVideoClosed(object sender, System.EventArgs args)
     {
+        blackimg.SetActive(false);
         RequestRewardedVideo();
     }
 
@@ -133,6 +134,7 @@ public class AdmobADSCity : MonoBehaviour {
     {
         if (rewardBasedVideo.IsLoaded())
         {
+            blackimg.SetActive(true);
             rewardBasedVideo.Show();
             ad_obj.SetActive(false);
         }
@@ -278,6 +280,7 @@ public class AdmobADSCity : MonoBehaviour {
     {
         if (rewardedInterstitialAd != null)
         {
+            blackimg.SetActive(true);
             rewardedInterstitialAd.Show(userEarnedRewardCallback);
         }
     }
@@ -286,6 +289,7 @@ public class AdmobADSCity : MonoBehaviour {
     {
         // TODO: Reward the user.
         PlayerPrefs.SetInt("seatime", 4);
+        blackimg.SetActive(false);
     }
 
     private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
@@ -293,6 +297,11 @@ public class AdmobADSCity : MonoBehaviour {
         //MonoBehavior.print("Rewarded interstitial ad has failed to present.");
     }
 
+    //방지
+    public void closeBlackImg()
+    {
+        blackimg.SetActive(false);
+    }
 
 
 }

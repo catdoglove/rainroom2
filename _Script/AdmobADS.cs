@@ -23,7 +23,7 @@ public class AdmobADS : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj;
+    public GameObject Toast_obj, blackimg;
 
 
     public Button milkad_btn;
@@ -59,7 +59,7 @@ public class AdmobADS : MonoBehaviour {
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
-        RewardedInterstitialAd.LoadAd("ca-app-pub-3940256099942544/5354046379", request, adLoadCallback);
+        RewardedInterstitialAd.LoadAd("ca-app-pub-9179569099191885/5047087900", request, adLoadCallback);
 
     }
 
@@ -136,12 +136,14 @@ public class AdmobADS : MonoBehaviour {
     private void HandleRewardBasedVideoClosed(object sender, System.EventArgs args)
     {
         RequestRewardedVideo();
+        blackimg.SetActive(false);
     }
 
     public void showAdmobVideo()
     {
         if (rewardBasedVideo.IsLoaded())
         {
+            blackimg.SetActive(true);
             rewardBasedVideo.Show();
         }
         else
@@ -241,6 +243,7 @@ public class AdmobADS : MonoBehaviour {
     {
         if (rewardedInterstitialAd != null)
         {
+            blackimg.SetActive(true);
             rewardedInterstitialAd.Show(userEarnedRewardCallback);
         }
     }
@@ -249,10 +252,17 @@ public class AdmobADS : MonoBehaviour {
     {
         // TODO: Reward the user.
         PlayerPrefs.SetInt("bouttime", 9);
+        blackimg.SetActive(false);
     }
 
     private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
     {
         //MonoBehavior.print("Rewarded interstitial ad has failed to present.");
+    }
+
+    //방지
+    public void closeBlackImg()
+    {
+        blackimg.SetActive(false);
     }
 }

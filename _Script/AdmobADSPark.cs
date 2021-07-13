@@ -23,7 +23,7 @@ public class AdmobADSPark : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj;
+    public GameObject Toast_obj, blackimg;
 
 
     // Use this for initialization 앱 ID
@@ -57,7 +57,7 @@ public class AdmobADSPark : MonoBehaviour {
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
-        RewardedInterstitialAd.LoadAd("ca-app-pub-3940256099942544/5354046379", request, adLoadCallback);
+        RewardedInterstitialAd.LoadAd("ca-app-pub-9179569099191885/5047087900", request, adLoadCallback);
 
     }
 
@@ -115,6 +115,7 @@ public class AdmobADSPark : MonoBehaviour {
     //동영상닫음
     private void HandleRewardBasedVideoClosed(object sender, System.EventArgs args)
     {
+        blackimg.SetActive(false);
         RequestRewardedVideo();
     }
 
@@ -122,6 +123,7 @@ public class AdmobADSPark : MonoBehaviour {
     {
         if (rewardBasedVideo.IsLoaded())
         {
+            blackimg.SetActive(true);
             rewardBasedVideo.Show();
         }
         else
@@ -213,6 +215,7 @@ public class AdmobADSPark : MonoBehaviour {
     {
         if (rewardedInterstitialAd != null)
         {
+            blackimg.SetActive(true);
             rewardedInterstitialAd.Show(userEarnedRewardCallback);
         }
     }
@@ -221,10 +224,17 @@ public class AdmobADSPark : MonoBehaviour {
     {
         // TODO: Reward the user.
         PlayerPrefs.SetInt("foresttime", 4);
+        blackimg.SetActive(false);
     }
 
     private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
     {
         //MonoBehavior.print("Rewarded interstitial ad has failed to present.");
+    }
+
+    //방지
+    public void closeBlackImg()
+    {
+        blackimg.SetActive(false);
     }
 }
