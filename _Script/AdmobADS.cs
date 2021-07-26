@@ -129,6 +129,7 @@ public class AdmobADS : MonoBehaviour {
             PlayerPrefs.SetInt("milkadc", 1);
         }
         PlayerPrefs.SetInt("setmilkadc", 0);
+        PlayerPrefs.SetInt("blad", 1);
 
     }
 

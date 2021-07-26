@@ -20,6 +20,8 @@ public class SecondRoomTime : MonoBehaviour {
     public Sprite[] plant_spr;
     string str;
 
+    public GameObject blackAd_obj;
+
     // Use this for initialization
     void Start ()
     {
@@ -53,7 +55,7 @@ public class SecondRoomTime : MonoBehaviour {
     /// <returns></returns>
     IEnumerator UpdateSec()
     {
-        
+
         //식물
         if (PlayerPrefs.GetInt("leafget", 0) >= 1)
         {
@@ -64,6 +66,11 @@ public class SecondRoomTime : MonoBehaviour {
         int a = 0;
         while (a == 0)
         {
+            if (PlayerPrefs.GetInt("blad", 0) == 1)
+            {
+                blackAd_obj.SetActive(false);
+                PlayerPrefs.SetInt("blad", 0);
+            }
             beadal();
 
             if (randDust1_i == 1)

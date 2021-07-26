@@ -26,6 +26,7 @@ public class ParkTime : MonoBehaviour
     public GameObject[] ani_obk;
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
+    public GameObject blackAd_obj;
 
     // Use this for initialization
     void Start()
@@ -42,6 +43,11 @@ public class ParkTime : MonoBehaviour
         while (a == 0)
         {
 
+            if (PlayerPrefs.GetInt("blad", 0) == 1)
+            {
+                blackAd_obj.SetActive(false);
+                PlayerPrefs.SetInt("blad", 0);
+            }
             //나뭇잎
             if (randLeaf_i == 1)
             {

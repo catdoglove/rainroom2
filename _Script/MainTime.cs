@@ -38,6 +38,8 @@ public class MainTime : MonoBehaviour {
     
     public GameObject GM;
 
+    public GameObject blackAd_obj;
+
     // Use this for initialization
     void Start () {
         
@@ -73,6 +75,14 @@ public class MainTime : MonoBehaviour {
     IEnumerator updateSec(){
 		int a = 0;
 		while (a == 0) {
+
+            
+            if (PlayerPrefs.GetInt("blad", 0)==1)
+            {
+                blackAd_obj.SetActive(false);
+                PlayerPrefs.SetInt("blad", 0);
+            }
+
             //최대량 제한
             if (PlayerPrefs.GetInt(str + "c", 0) > 999999)
             {

@@ -114,6 +114,7 @@ public class AdmobADSCity : MonoBehaviour {
     //시청보상
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
+        PlayerPrefs.SetInt("blad", 1);
         PlayerPrefs.SetInt("talk", 5);
         PlayerPrefs.Save();
         if (PlayerPrefs.GetInt("talk", 5) >= 5)

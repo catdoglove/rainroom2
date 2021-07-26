@@ -12,7 +12,8 @@ public class CityTime : MonoBehaviour {
     public GameObject coin_obj;
     public int randCoin_i;
     public float cx, cy;
-    
+    public GameObject blackAd_obj;
+
     //외물물건
     public GameObject putToast_obj;
 
@@ -40,6 +41,11 @@ public class CityTime : MonoBehaviour {
         while (a == 0)
         {
 
+            if (PlayerPrefs.GetInt("blad", 0) == 1)
+            {
+                blackAd_obj.SetActive(false);
+                PlayerPrefs.SetInt("blad", 0);
+            }
             //전단지
             if (randPaper_i == 1)
             {
