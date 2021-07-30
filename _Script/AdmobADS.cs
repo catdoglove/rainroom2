@@ -28,6 +28,8 @@ public class AdmobADS : MonoBehaviour {
 
     public Button milkad_btn;
 
+    public GameObject GM;
+
     // Use this for initialization 앱 ID
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -149,7 +151,15 @@ public class AdmobADS : MonoBehaviour {
         }
         else
         {
-            StartCoroutine("ToastImgFadeOut");
+            if (PlayerPrefs.GetInt("adrunout", 0)==1)
+            {
+                GM.GetComponent<UnityADS>().adYes();
+                PlayerPrefs.SetInt("adrunout", 0);
+            }
+            else
+            {
+                StartCoroutine("ToastImgFadeOut");
+            }
         }
     }
     
