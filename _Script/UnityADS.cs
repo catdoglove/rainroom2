@@ -72,6 +72,7 @@ public class UnityADS : MonoBehaviour {
 
     public void adYN()
     {
+        PlayerPrefs.SetInt("adrunout", 0);
         ad_obj.SetActive(true);
     }
     public void closeAdYN()
