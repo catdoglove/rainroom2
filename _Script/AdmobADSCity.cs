@@ -217,7 +217,7 @@ public class AdmobADSCity : MonoBehaviour {
 
     public void OpenAd()
     {
-
+        PlayerPrefs.SetInt("adrunout", 0);
         ad_obj.SetActive(true);
     }
 
