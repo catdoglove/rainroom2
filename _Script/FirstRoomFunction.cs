@@ -267,6 +267,7 @@ public class FirstRoomFunction : CavasData {
             PlayerPrefs.SetInt("outtrip", 1);
         }
 
+        PlayerPrefs.SetInt("front", 1);
         PlayerPrefs.SetInt("place", 1);
         PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
         PlayerPrefs.SetInt("bouttime", 14);
