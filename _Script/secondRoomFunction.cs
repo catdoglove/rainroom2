@@ -1076,11 +1076,14 @@ public class secondRoomFunction : CavasData
         {
             PlayerPrefs.SetString("outLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.SetInt("outtrip", 1);
+            PlayerPrefs.SetInt("outorhome", 1);
 
             //외출 장소 정하기
             if (changeOut_i == 2)
             {
                 PlayerPrefs.SetInt("outtrip", 2);
+                PlayerPrefs.SetInt("outorhome", 2);
+
             }
 
 

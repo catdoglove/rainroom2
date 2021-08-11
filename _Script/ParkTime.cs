@@ -43,6 +43,12 @@ public class ParkTime : MonoBehaviour
         while (a == 0)
         {
 
+            if (PlayerPrefs.GetInt("positionleaffirst", 0) == 0)
+            {
+                randLeaf_i = 1;
+            }
+
+
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
                 blackAd_obj.SetActive(false);
@@ -52,7 +58,25 @@ public class ParkTime : MonoBehaviour
             if (randLeaf_i == 1)
             {
                 leaf_obj.SetActive(false);
-                leaf_obj.transform.position = new Vector3(lx, ly, leaf_obj.transform.position.z);
+
+                if (PlayerPrefs.GetInt("positionleaffirst", 0) == 0)
+                {
+                    leaf_obj.SetActive(true);
+                    Vector3 position = leaf_obj.transform.localPosition;
+                    position.x = 74f;
+                    position.y = -261f;
+
+                    lx = position.x;
+                    ly = position.y;
+
+                    leaf_obj.transform.localPosition = position;
+                }
+                else
+                {
+                    leaf_obj.transform.position = new Vector3(lx, ly, leaf_obj.transform.position.z);
+                }
+
+
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
                     leaf_obj.SetActive(true);
@@ -99,6 +123,7 @@ public class ParkTime : MonoBehaviour
     //나뭇잎 눌렀을때
     public void touchLeaf()
     {
+        PlayerPrefs.SetInt("positionleaffirst", 999);
         PlayerPrefs.SetFloat("watposy", ly);
         PlayerPrefs.SetFloat("watposx", lx);
         GMP.GetComponent<GetFadeout>().getRainFade();

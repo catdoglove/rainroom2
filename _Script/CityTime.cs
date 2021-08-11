@@ -40,6 +40,11 @@ public class CityTime : MonoBehaviour {
         int a = 0;
         while (a == 0)
         {
+            if (PlayerPrefs.GetInt("positionpaperfirst", 0) == 0)
+            {
+                randPaper_i =1;
+            }
+
 
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
@@ -50,7 +55,25 @@ public class CityTime : MonoBehaviour {
             if (randPaper_i == 1)
             {
                 paper_obj.SetActive(false);
-                paper_obj.transform.position = new Vector3(px, py, paper_obj.transform.position.z);
+
+                if(PlayerPrefs.GetInt("positionpaperfirst", 0) == 0)
+                {
+                    paper_obj.SetActive(true);
+                    Vector3 position = paper_obj.transform.localPosition;
+                    position.x = 74f;
+                    position.y = -261f;
+
+                    px = position.x;
+                    py = position.y;
+
+                    paper_obj.transform.localPosition = position;
+                }
+                else
+                {
+                    paper_obj.transform.position = new Vector3(px, py, paper_obj.transform.position.z);
+                }
+
+
                 if (PlayerPrefs.GetInt("front", 1) == 1)
                 {
                     paper_obj.SetActive(true);
@@ -62,7 +85,7 @@ public class CityTime : MonoBehaviour {
                 {
                     randPaper_i = Random.Range(0, 17);
                     px = Random.Range(-2, 6);
-                    py = Random.Range(-4, -3);
+                    py = Random.Range(-3, -2);
                 }
             }
 
@@ -112,6 +135,7 @@ public class CityTime : MonoBehaviour {
         int h = PlayerPrefs.GetInt(str + "h", 0);
         h = h + 3;
         PlayerPrefs.SetInt(str + "h", h);
+        PlayerPrefs.SetInt("positionpaperfirst", 999);
     }
 
     //100번 했을때
