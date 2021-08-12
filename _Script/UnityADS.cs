@@ -90,28 +90,37 @@ public class UnityADS : MonoBehaviour {
     {
         if (result == ShowResult.Finished)
         {
-            if (PlayerPrefs.GetInt("place", 0) == 0)
+
+            if (PlayerPrefs.GetInt("adrunout", 0) == 1)
             {
-                radio_ani.SetActive(false);
-                adBtn_obj.SetActive(false);
-                StopCoroutine("adTimeFlow");
-                StopCoroutine("adAniTime");
-                StartCoroutine("adTimeFlow");
-                StartCoroutine("adAniTime");
-                PlayerPrefs.SetInt("talk", 5);
-                PlayerPrefs.Save();
-                if (PlayerPrefs.GetInt("talk", 5) >= 5)
-                {
-                    PlayerPrefs.SetInt("secf", 240);
-                }
+                PlayerPrefs.SetInt("milkadc", 1);
+                PlayerPrefs.SetInt("setmilkadc", 0);
             }
-            else 
+            else
             {
-                PlayerPrefs.SetInt("talk", 5);
-                PlayerPrefs.Save();
-                if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                if (PlayerPrefs.GetInt("place", 0) == 0)
                 {
-                    PlayerPrefs.SetInt("secf2", 240);
+                    radio_ani.SetActive(false);
+                    adBtn_obj.SetActive(false);
+                    StopCoroutine("adTimeFlow");
+                    StopCoroutine("adAniTime");
+                    StartCoroutine("adTimeFlow");
+                    StartCoroutine("adAniTime");
+                    PlayerPrefs.SetInt("talk", 5);
+                    PlayerPrefs.Save();
+                    if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                    {
+                        PlayerPrefs.SetInt("secf", 240);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("talk", 5);
+                    PlayerPrefs.Save();
+                    if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                    {
+                        PlayerPrefs.SetInt("secf2", 240);
+                    }
                 }
             }
         }

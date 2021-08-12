@@ -108,29 +108,33 @@ public class AdmobADS : MonoBehaviour {
     //시청보상
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
-        if (PlayerPrefs.GetInt("place", 0) == 0)
+        if (PlayerPrefs.GetInt("adrunout", 0) == 1)
         {
-            PlayerPrefs.SetInt("talk", 5);
-            PlayerPrefs.Save();
-            if (PlayerPrefs.GetInt("talk", 5) >= 5)
-            {
-                PlayerPrefs.SetInt("secf", 240);
-            }
+            PlayerPrefs.SetInt("milkadc", 1);
+            PlayerPrefs.SetInt("setmilkadc", 0);
         }
         else
         {
-            PlayerPrefs.SetInt("talk", 5);
-            PlayerPrefs.Save();
-            if (PlayerPrefs.GetInt("talk", 5) >= 5)
+
+            if (PlayerPrefs.GetInt("place", 0) == 0)
             {
-                PlayerPrefs.SetInt("secf2", 240);
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                {
+                    PlayerPrefs.SetInt("secf", 240);
+                }
+            }
+            else
+            {
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
+                {
+                    PlayerPrefs.SetInt("secf2", 240);
+                }
             }
         }
-        if (PlayerPrefs.GetInt("setmilkadc", 0)==1)
-        {
-            PlayerPrefs.SetInt("milkadc", 1);
-        }
-        PlayerPrefs.SetInt("setmilkadc", 0);
         PlayerPrefs.SetInt("blad", 1);
 
     }
