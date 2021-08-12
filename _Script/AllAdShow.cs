@@ -18,6 +18,7 @@ public class AllAdShow : MonoBehaviour {
 
     public void ActAd()
     {
+        PlayerPrefs.SetInt("adrunout", 0);
         if (adWindow_obj.activeSelf == true)
         {
             adWindow_obj.SetActive(false);
