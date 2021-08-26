@@ -20,7 +20,7 @@ public class MainTime : MonoBehaviour {
     public int randball1_i, randball2_i, snow_i, snowImg_i;
     public float snowY_f, snowX_f;
     public int airplane_i, cat_i,plane_i;
-    public Sprite[] snow_spr;
+    public Sprite[] snow_spr, snow_spr2, snow_spr3, snow_spr4;
     public Text beadalTime_txt;
 
     //별
@@ -42,12 +42,13 @@ public class MainTime : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
 
+        seasoncheck();
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
         StartCoroutine ("updateSec");
         StartCoroutine("rainani");
+
     }
 
     void rainmove()
@@ -431,13 +432,58 @@ public class MainTime : MonoBehaviour {
             }
             snow_obj.transform.position = new Vector3(snowX_f, snowY_f, snow_obj.transform.position.z);
 
-            snow_obj.GetComponent<Image>().sprite = snow_spr[snowImg_i];
+            
+            if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)
+            {
+                snow_obj.GetComponent<Image>().sprite = snow_spr[snowImg_i];
+            } else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)
+            {
+                snow_obj.GetComponent<Image>().sprite = snow_spr2[snowImg_i];
+            }
+            else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)
+            {
+                snow_obj.GetComponent<Image>().sprite = snow_spr3[snowImg_i];
+            }
+            else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40)
+            {
+                snow_obj.GetComponent<Image>().sprite = snow_spr4[snowImg_i];
+            }
+
             snowImg_i++;
             if (snowImg_i >= 8)
             {
                 snowImg_i = 0;
             }
             yield return new WaitForSeconds(0.7f);
+        }
+    }
+
+    void seasoncheck()
+    {
+        //계절체크
+        string mon = System.DateTime.Now.ToString("MM");
+
+        int mon_i = int.Parse(mon);
+
+        if (mon_i == 3 || mon_i == 4 || mon_i == 5) //봄 10
+        {
+            PlayerPrefs.SetInt("seasonCODE", 10);
+            snow_obj.GetComponent<Image>().sprite = snow_spr[0];
+        }
+        else if (mon_i == 6 || mon_i == 7 || mon_i == 8) //여름 20
+        {
+            PlayerPrefs.SetInt("seasonCODE", 20);
+            snow_obj.GetComponent<Image>().sprite = snow_spr2[0];
+        }
+        else if (mon_i == 9 || mon_i == 10 || mon_i == 11) //가을 30
+        {
+            PlayerPrefs.SetInt("seasonCODE", 30);
+            snow_obj.GetComponent<Image>().sprite = snow_spr3[0];
+        }
+        else if (mon_i == 12 || mon_i == 1 || mon_i == 2) //겨울 40
+        {
+            PlayerPrefs.SetInt("seasonCODE", 40);
+            snow_obj.GetComponent<Image>().sprite = snow_spr4[0];
         }
     }
 

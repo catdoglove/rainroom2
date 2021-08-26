@@ -50,15 +50,32 @@ public class WindowMiniGame : MonoBehaviour {
     public GameObject[] season_btns;
     public Sprite[] season_spr;
 
+    public GameObject windowImg;
+    public Sprite[] window_spr;
+    public GameObject seasonArea;
+
+
     // Use this for initialization
-    void Start () {
+    void Start () 
+    {
         color = new Color(1f, 1f, 1f);
         PlayerPrefs.SetInt("balloon", 10);
         PlayerPrefs.SetInt("miniopen", 0);
         PlayerPrefs.SetInt("windowcatrand", 19);
 
+        if (PlayerPrefs.GetInt("windowLeafCK", 0) == 0)
+        {
+            windowImg.GetComponent<Image>().sprite = window_spr[1];
+            seasonArea.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("windowLeafCK", 0) == 1)
+        {
+            windowImg.GetComponent<Image>().sprite = window_spr[0];
+            seasonArea.SetActive(false);
+        }
 
-        
+
+
         if (PlayerPrefs.GetInt("windowsumm21", 0) == 1)
         {
             season_btns[1].SetActive(true);
@@ -94,6 +111,25 @@ public class WindowMiniGame : MonoBehaviour {
         
         data_milk = CSVReader.Read("Talk/todaymilk");
     }
+
+
+    public void showSeasonChange()
+    {
+        if (PlayerPrefs.GetInt("windowLeafCK", 0) == 0)
+        {
+            windowImg.GetComponent<Image>().sprite = window_spr[0];
+            seasonArea.SetActive(false);
+            PlayerPrefs.SetInt("windowLeafCK", 1);
+        }
+        else if (PlayerPrefs.GetInt("windowLeafCK", 0) == 1)
+        {
+            windowImg.GetComponent<Image>().sprite = window_spr[1];
+            seasonArea.SetActive(true);
+            PlayerPrefs.SetInt("windowLeafCK", 0);
+        }
+
+     }
+
     public void SetWindowSpring()
     {
         window_season_obj.GetComponent<Image>().sprite = season_spr[0];

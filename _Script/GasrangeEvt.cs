@@ -52,6 +52,8 @@ public class GasrangeEvt : MonoBehaviour {
 
     //시즌 이벤트
     public GameObject fsticker_obj,sToast_obj, wScarf_obj,sWood_obj,sHat_obj;
+    public Sprite[] seasonM, seasonF, seasonIcon;
+    public GameObject martialS1, martialS2, foodS1,foodS2, sIconM1, sIconM2, sIconF1, sIconF2;
 
     //엔딩
     public AudioSource m_end;
@@ -86,6 +88,58 @@ public class GasrangeEvt : MonoBehaviour {
         {
             sHat_obj.SetActive(true);
         }
+
+
+        if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)
+        {
+            martialS1.GetComponent<Image>().sprite = seasonM[0];
+            martialS2.GetComponent<Image>().sprite = seasonM[1];
+            foodS1.GetComponent<Image>().sprite = seasonF[0];
+            foodS2.GetComponent<Image>().sprite = seasonF[1];
+            sIconM1.GetComponent<Image>().sprite = seasonIcon[0];
+            sIconM2.GetComponent<Image>().sprite = seasonIcon[0];
+            sIconF1.GetComponent<Image>().sprite = seasonIcon[0];
+            sIconF2.GetComponent<Image>().sprite = seasonIcon[0];
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)
+        {
+            martialS1.GetComponent<Image>().sprite = seasonM[2];
+            martialS2.GetComponent<Image>().sprite = seasonM[3];
+            foodS1.GetComponent<Image>().sprite = seasonF[2];
+            foodS2.GetComponent<Image>().sprite = seasonF[3];
+            sIconM1.GetComponent<Image>().sprite = seasonIcon[1];
+            sIconM2.GetComponent<Image>().sprite = seasonIcon[1];
+            sIconF1.GetComponent<Image>().sprite = seasonIcon[1];
+            sIconF2.GetComponent<Image>().sprite = seasonIcon[1];
+
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)
+        {
+            martialS1.GetComponent<Image>().sprite = seasonM[4];
+            martialS2.GetComponent<Image>().sprite = seasonM[5];
+            foodS1.GetComponent<Image>().sprite = seasonF[4];
+            foodS2.GetComponent<Image>().sprite = seasonF[5];
+            sIconM1.GetComponent<Image>().sprite = seasonIcon[2];
+            sIconM2.GetComponent<Image>().sprite = seasonIcon[2];
+            sIconF1.GetComponent<Image>().sprite = seasonIcon[2];
+            sIconF2.GetComponent<Image>().sprite = seasonIcon[2];
+
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40)
+        {
+            martialS1.GetComponent<Image>().sprite = seasonM[6];
+            martialS2.GetComponent<Image>().sprite = seasonM[7];
+            foodS1.GetComponent<Image>().sprite = seasonF[6];
+            foodS2.GetComponent<Image>().sprite = seasonF[7];
+            sIconM1.GetComponent<Image>().sprite = seasonIcon[3];
+            sIconM2.GetComponent<Image>().sprite = seasonIcon[3];
+            sIconF1.GetComponent<Image>().sprite = seasonIcon[3];
+            sIconF2.GetComponent<Image>().sprite = seasonIcon[3];
+
+        }
+
+
+
     }
 
     #region
@@ -163,8 +217,32 @@ public class GasrangeEvt : MonoBehaviour {
         cook_str[7] = "미역국";
         cook_str[8] = "오이냉채";
         cook_str[9] = "버섯볶음밥";
-        cook_str[10] = "수박화채";
-        cook_str[11] = "팥빙수";
+
+
+        if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)
+        {
+            cook_str[10] = "주꾸미볶음";
+            cook_str[11] = "쑥떡";
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)
+        {
+            cook_str[10] = "수박화채";
+            cook_str[11] = "팥빙수";
+
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)
+        {
+            cook_str[10] = "군밤";
+            cook_str[11] = "대하구이";
+
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40)
+        {
+            cook_str[10] = "찐빵";
+            cook_str[11] = "꼬막무침";
+
+        }
+
     }
     public void OpenGasrange()
     {

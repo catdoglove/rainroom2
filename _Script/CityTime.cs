@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CityTime : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class CityTime : MonoBehaviour {
     //외물물건
     public GameObject putToast_obj;
 
+    public Sprite[] background_front, background_back;
+    public GameObject bg_front, bg_back;
+
     private void Awake()
     {
         StopCoroutine("updateSec");
@@ -29,6 +33,32 @@ public class CityTime : MonoBehaviour {
         str = PlayerPrefs.GetString("code", "");
         StopCoroutine("updateSec");
         StartCoroutine("updateSec");
+
+        //계절체크
+        string mon = System.DateTime.Now.ToString("MM");
+
+        int mon_i = int.Parse(mon);
+
+        if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)  //봄 10
+        {
+            bg_front.GetComponent<Image>().sprite = background_front[0];
+            bg_back.GetComponent<Image>().sprite = background_back[0];
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)  //여름 20
+        {
+            bg_front.GetComponent<Image>().sprite = background_front[1];
+            bg_back.GetComponent<Image>().sprite = background_back[1];
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)  //가을 30
+        {
+            bg_front.GetComponent<Image>().sprite = background_front[2];
+            bg_back.GetComponent<Image>().sprite = background_back[2];
+        }
+        else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40) //겨울 40
+        {
+            bg_front.GetComponent<Image>().sprite = background_front[3];
+            bg_back.GetComponent<Image>().sprite = background_back[3];
+        }
 
 
     }
