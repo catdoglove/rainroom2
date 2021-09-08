@@ -481,7 +481,30 @@ public class GasrangeEvt : MonoBehaviour {
     public void infoShow()
     {
         text_obj.SetActive(false);
-        ingredient_txt.text = "" + data[indexNumber_i]["재료"];
+        if (indexNumber_i >= 10)
+        {
+            if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)
+            {
+                indexNumber_i = indexNumber_i + 0;
+            }
+            else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)
+            {
+                indexNumber_i = indexNumber_i + 2;
+            }
+            else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)
+            {
+                indexNumber_i = indexNumber_i + 4;
+            }
+            else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40)
+            {
+                indexNumber_i = indexNumber_i + 6;
+            }
+            ingredient_txt.text = "" + data[indexNumber_i]["재료"];
+        }
+        else
+        {
+            ingredient_txt.text = "" + data[indexNumber_i]["재료"];
+        }
     }
 
     IEnumerator toastBImgFadeOut()
