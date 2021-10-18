@@ -421,6 +421,19 @@ public class MainShop : ShopHandler {
         {
             lightMax_txt.text = "완전한 전등";
         }
+        //공원가구 이름변경
+        if (PlayerPrefs.GetInt("mat1lv", 0) >= 4)
+        {
+            bedMax_txt.text = "완전한 매트";
+        }
+        if (PlayerPrefs.GetInt("mat2lv", 0) >= 4)
+        {
+            bedMax_txt.text = "완전한 매트";
+        }
+        if (PlayerPrefs.GetInt("shelflv", 0) >= 3)
+        {
+            lightMax_txt.text = "완전한 선반";
+        }
 
     }
 
