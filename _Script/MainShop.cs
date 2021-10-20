@@ -85,7 +85,7 @@ public class MainShop : ShopHandler {
     public GameObject audio_obj;
 
     //도시가구이름
-    public Text bedMax_txt,lightMax_txt,deskMax_txt;
+    public Text bedMax_txt,lightMax_txt,deskMax_txt, mat1Max_txt, mat2Max_txt, shelfMax_txt;
 
     
 
@@ -97,7 +97,6 @@ public class MainShop : ShopHandler {
          * 마법의 코드 자리
         */
         //초기화 코드 자리
-
         GM = GameObject.FindGameObjectWithTag("firstroomGM");
         GM2 = GameObject.FindGameObjectWithTag("GM2");
         loadGM =GameObject.FindGameObjectWithTag("loadGM");
@@ -422,17 +421,17 @@ public class MainShop : ShopHandler {
             lightMax_txt.text = "완전한 전등";
         }
         //공원가구 이름변경
-        if (PlayerPrefs.GetInt("mat1lv", 0) >= 4)
+        if (PlayerPrefs.GetInt("shoppalette0", 0) >= 1)
         {
-            bedMax_txt.text = "완전한 매트";
+            mat1Max_txt.text = "완전한 매트";
         }
-        if (PlayerPrefs.GetInt("mat2lv", 0) >= 4)
+        if (PlayerPrefs.GetInt("shoppalette1", 0) >= 1)
         {
-            bedMax_txt.text = "완전한 매트";
+            mat2Max_txt.text = "완전한 매트";
         }
-        if (PlayerPrefs.GetInt("shelflv", 0) >= 3)
+        if (PlayerPrefs.GetInt("shoppalette2", 0) >= 1)
         {
-            lightMax_txt.text = "완전한 선반";
+            shelfMax_txt.text = "완전한 선반";
         }
 
     }
