@@ -66,7 +66,7 @@ public class MountianFunction : MonoBehaviour {
         int sh = Random.Range(0, 10);
         if (sh == 1)
         {
-            bam_obj.SetActive(true);
+            //bam_obj.SetActive(true);
         }
     }
     public void ActSBam()
@@ -74,7 +74,7 @@ public class MountianFunction : MonoBehaviour {
         if (bamWindow_obj.activeSelf == true)
         {
             bamWindow_obj.SetActive(false);
-            bam_obj.SetActive(false);
+            //bam_obj.SetActive(false);
             //PlayerPrefs.SetInt("bam", 1);
             //PlayerPrefs.SetInt("pat", 1);
             //PlayerPrefs.SetInt("subaks", 1);

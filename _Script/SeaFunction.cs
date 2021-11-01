@@ -77,7 +77,7 @@ public class SeaFunction : MonoBehaviour {
         int sh = Random.Range(0, 10);
         if (sh == 1)
         {
-            shrimp_obj.SetActive(true);
+            //shrimp_obj.SetActive(true);
         }
     }
     public void ActShrimp()
@@ -85,7 +85,7 @@ public class SeaFunction : MonoBehaviour {
         if (shrimpWindow_obj.activeSelf == true)
         {
             shrimpWindow_obj.SetActive(false);
-            shrimp_obj.SetActive(false);
+            //shrimp_obj.SetActive(false);
             //PlayerPrefs.SetInt("shrimp", 1);
             //PlayerPrefs.SetInt("ggomak", 1);
             //PlayerPrefs.SetInt("icebars", 1);
