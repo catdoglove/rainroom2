@@ -138,6 +138,7 @@ public class CityShop : MonoBehaviour {
 
     public void icebox()
     {
+        gas_i = 0;
         gasTxt_obj.SetActive(false);
         itemIndex_i = 0;
         interior_str = "iceboxlv";
