@@ -397,26 +397,29 @@ public class GasrangeEvt : MonoBehaviour {
             PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
             PlayerPrefs.Save();
             audio_obj.GetComponent<SoundEvt>().cookSound();
-            if (indexNumber_i>=10)
+
+            /*
+        if (indexNumber_i>=10)
+        {
+            int help = PlayerPrefs.GetInt("summerCount21", 0);
+            if (help >= 9 && PlayerPrefs.GetInt("windowsumm21", 0) == 0)
             {
-                int help = PlayerPrefs.GetInt("summerCount21", 0);
-                if (help >= 9 && PlayerPrefs.GetInt("windowsumm21", 0) == 0)
-                {
-                    PlayerPrefs.SetInt("windowbackset", 1);
-                    PlayerPrefs.SetInt("windowsumm21", 1);
-                    //GM2.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
-                    sToast_obj.SetActive(true);
-                    StopCoroutine("toastHotImgFadeOut");
-                    StartCoroutine("toastHotImgFadeOut");
-                    help++;
-                    PlayerPrefs.SetInt("summerCount21", help);
-                }
-                else
-                {
-                    help++;
-                    PlayerPrefs.SetInt("summerCount21", help);
-                }
+                PlayerPrefs.SetInt("windowbackset", 1);
+                PlayerPrefs.SetInt("windowsumm21", 1);
+                //GM2.GetComponent<FirstRoomFunction>().window_season_obj.SetActive(true);
+                sToast_obj.SetActive(true);
+                StopCoroutine("toastHotImgFadeOut");
+                StartCoroutine("toastHotImgFadeOut");
+                help++;
+                PlayerPrefs.SetInt("summerCount21", help);
             }
+            else
+            {
+                help++;
+                PlayerPrefs.SetInt("summerCount21", help);
+            }
+        }
+            */
         }
         else
         {
