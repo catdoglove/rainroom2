@@ -19,7 +19,7 @@ public class secondRoomFunction : CavasData
     public GameObject switch_obj;
     public Sprite[] switch_spr;
     public Sprite[] wall_spr, wall2_spr;
-    public GameObject iceBoxBtn_obj;
+    public GameObject iceBoxBtn_obj, gasBtn_obj;
     //애완동물
     public GameObject roomTutle_obj, roomGoldfish_obj;
 
@@ -278,6 +278,10 @@ public class secondRoomFunction : CavasData
         if (PlayerPrefs.GetInt("gasrangebox", 0) == 10)
         {
             gasrangeBox_obj.SetActive(true);
+        }
+        else
+        {
+            gasBtn_obj.SetActive(true);
         }
         if (PlayerPrefs.GetInt("drawerbox", 0) == 10)
         {
@@ -746,6 +750,7 @@ public class secondRoomFunction : CavasData
             if (PlayerPrefs.GetInt("gasrangebox", 0) == 1)
             {
                 gasrangeBox_obj.SetActive(false);
+                gasBtn_obj.SetActive(true);
             }
             if (PlayerPrefs.GetInt("iceboxbox", 0) == 1)
             {
