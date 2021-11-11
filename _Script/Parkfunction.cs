@@ -19,7 +19,7 @@ public class Parkfunction : CavasData
     public GameObject audio_obj;
     //랜덤
     public int eventRand_i;
-    public GameObject eventPet_obj, eventPaint_obj, event_obj;
+    public GameObject eventPet_obj, eventPaint_obj, event_obj, eventWait_obj, eventWin_obj;
     public Sprite[] event_spr;
     //도움말
     public GameObject helpPark_obj;
@@ -116,6 +116,7 @@ public class Parkfunction : CavasData
         else
         {
             event_obj.GetComponent<Image>().sprite = event_spr[0];
+            eventWait_obj.SetActive(true);
         }
         if (PlayerPrefs.GetInt("dayday", 0) == 1)
         {
@@ -147,7 +148,7 @@ public class Parkfunction : CavasData
 
             if (PlayerPrefs.GetInt("outorhome", 0) == 1)
             {
-
+                eventWait_obj.SetActive(true);
                 if (PlayerPrefs.GetInt("dayday", 0) == 1)
                 {
                     eventPaint_obj.SetActive(false);
@@ -172,6 +173,84 @@ public class Parkfunction : CavasData
         PlayerPrefs.Save();
 
     }
+
+    public void ParaWait()
+    {
+        eventWin_obj.SetActive(true);
+    }
+    public void ParaWaitY()
+    {
+        int cvp = PlayerPrefs.GetInt(str + "cv", 0);
+        int randp = Random.Range(0, 4);
+
+        if (PlayerPrefs.GetInt("dayday", 0) == 1)//밤
+        {
+            if (cvp >= 4)
+            {
+                cvp = cvp - 4;
+                PlayerPrefs.SetInt(str + "cv", cvp);
+                PlayerPrefs.Save();
+
+                if (randp < 2)
+                {
+                    event_obj.SetActive(false);
+                    eventNight_obj.SetActive(true);
+                }
+                else if (randp < 4)
+                {
+                    event_obj.SetActive(false);
+                    eventNightPet_obj.SetActive(true);
+                }
+                else
+                {
+                    event_obj.SetActive(false);
+                    eventNightPet_obj.SetActive(true);
+                }
+
+                eventWait_obj.SetActive(false);
+            }
+            else
+            {
+                needMoney();
+            }
+        }
+        else
+        {
+            if (cvp >= 4)
+            {
+                cvp = cvp - 4;
+                PlayerPrefs.SetInt(str + "cv", cvp);
+                PlayerPrefs.Save();
+                if (randp < 2)
+                {
+                    eventPet_obj.SetActive(true);
+                    event_obj.GetComponent<Image>().sprite = event_spr[1];
+                }
+                else if (randp < 4)
+                {
+                    eventPaint_obj.SetActive(true);
+                    event_obj.GetComponent<Image>().sprite = event_spr[2];
+                }
+                else
+                {
+                    eventPaint_obj.SetActive(true);
+                    event_obj.GetComponent<Image>().sprite = event_spr[2];
+                }
+                eventWait_obj.SetActive(false);
+            }
+            else
+            {
+                needMoney();
+            }
+        }
+        eventWin_obj.SetActive(false);
+
+    }
+    public void ParaWaitN()
+    {
+        eventWin_obj.SetActive(false);
+    }
+
     //도움말
     public void CloseHelpP()
     {
