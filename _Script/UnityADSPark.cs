@@ -16,6 +16,12 @@ public class UnityADSPark : MonoBehaviour {
     Color color;
     public GameObject Toast_obj;
 
+
+    public GameObject watingAds_obj, watingAdsHelp_obj, watingAdsNoise_obj, watingAdsShow_obj, chAds_obj;
+    public Sprite watingAdsNoise_spr1, watingAdsNoise_spr2;
+    public Sprite[] watingAdspr;
+    int noise_i = 0;
+    int rand_i = 0;
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -46,6 +52,7 @@ public class UnityADSPark : MonoBehaviour {
 
     public void ShowRewardedAd()
     {
+        PlayerPrefs.SetInt("wait",1);
         if (Advertisement.IsReady("rewardedVideo"))
         {
             ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
@@ -54,7 +61,56 @@ public class UnityADSPark : MonoBehaviour {
         }
         else
         {
-            StartCoroutine("ToastImgFadeOut");
+            //StartCoroutine("ToastImgFadeOut");
+            Wating();
+            PlayerPrefs.SetInt("wait", 2);
+        }
+    }
+
+    public void Wating()
+    {
+        watingAds_obj.SetActive(true);
+        rand_i = Random.Range(0, 15);
+        watingAdsShow_obj.GetComponent<Image>().sprite = watingAdspr[rand_i];
+        chAds_obj.SetActive(false);
+    }
+
+    //광고준비중
+    public void WatingAdColse()
+    {
+        watingAds_obj.SetActive(false);
+    }
+    public void WatingAdHelp()
+    {
+        if (watingAdsHelp_obj.activeSelf == true)
+        {
+            watingAdsHelp_obj.SetActive(false);
+        }
+        else
+        {
+            watingAdsHelp_obj.SetActive(true);
+        }
+    }
+
+    void noise()
+    {
+        if (noise_i == 0)
+        {
+            watingAdsNoise_obj.GetComponent<Image>().sprite = watingAdsNoise_spr1;
+            noise_i = 1;
+        }
+        else
+        {
+            watingAdsNoise_obj.GetComponent<Image>().sprite = watingAdsNoise_spr2;
+            noise_i = 0;
+        }
+    }
+
+    public void WaitAdshow()
+    {
+        if (PlayerPrefs.GetInt("wait", 0)==2)
+        {
+            ad_obj.SetActive(true);
         }
     }
 
@@ -62,6 +118,7 @@ public class UnityADSPark : MonoBehaviour {
     {
         PlayerPrefs.SetInt("adrunout", 0);
         ad_obj.SetActive(true);
+        watingAds_obj.SetActive(false);
     }
     public void closeAdYN()
     {
@@ -122,7 +179,8 @@ public class UnityADSPark : MonoBehaviour {
 				sG = -1;
 			}
 			PlayerPrefs.SetInt("secf0",sG);
-			yield return new WaitForSeconds(1f);
+            noise();
+            yield return new WaitForSeconds(1f);
             //Debug.Log("sg" + sG);
         }
 	}
@@ -173,6 +231,7 @@ public class UnityADSPark : MonoBehaviour {
                 sG2 = -1;
             }
             PlayerPrefs.SetInt("secf2", sG2);
+            noise();
             //Debug.Log("sg2" + sG2);
             yield return new WaitForSeconds(1f);
         }

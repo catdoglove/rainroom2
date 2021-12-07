@@ -29,8 +29,8 @@ public class AdmobADSCity : MonoBehaviour {
 
     int sG, mG;
     int sG2, mG2;
-    
 
+    public GameObject GM;
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -133,6 +133,7 @@ public class AdmobADSCity : MonoBehaviour {
 
     public void showAdmobVideo()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (rewardBasedVideo.IsLoaded())
         {
             blackimg.SetActive(true);
@@ -141,7 +142,9 @@ public class AdmobADSCity : MonoBehaviour {
         }
         else
         {
-            StartCoroutine("ToastImgFadeOut");
+            //StartCoroutine("ToastImgFadeOut");
+            GM.GetComponent<UnityADSPark>().Wating();
+            PlayerPrefs.SetInt("wait", 2);
         }
     }
     
@@ -219,6 +222,7 @@ public class AdmobADSCity : MonoBehaviour {
     {
         PlayerPrefs.SetInt("adrunout", 0);
         ad_obj.SetActive(true);
+        GM.GetComponent<UnityADSPark>().watingAds_obj.SetActive(false);
     }
 
 

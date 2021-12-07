@@ -148,6 +148,7 @@ public class AdmobADS : MonoBehaviour {
 
     public void showAdmobVideo()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (rewardBasedVideo.IsLoaded())
         {
             blackimg.SetActive(true);
@@ -162,7 +163,9 @@ public class AdmobADS : MonoBehaviour {
             }
             else
             {
-                StartCoroutine("ToastImgFadeOut");
+                //StartCoroutine("ToastImgFadeOut");
+                GM.GetComponent<UnityADS>().Wating();
+                PlayerPrefs.SetInt("wait", 2);
             }
         }
     }

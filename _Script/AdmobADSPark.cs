@@ -25,6 +25,7 @@ public class AdmobADSPark : MonoBehaviour {
     Color color;
     public GameObject Toast_obj, blackimg;
 
+    public GameObject GM;
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -122,6 +123,7 @@ public class AdmobADSPark : MonoBehaviour {
 
     public void showAdmobVideo()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (rewardBasedVideo.IsLoaded())
         {
             blackimg.SetActive(true);
@@ -129,7 +131,9 @@ public class AdmobADSPark : MonoBehaviour {
         }
         else
         {
-            StartCoroutine("ToastImgFadeOut");
+            //StartCoroutine("ToastImgFadeOut");
+            GM.GetComponent<UnityADSPark>().Wating();
+            PlayerPrefs.SetInt("wait", 2);
         }
     }
     
