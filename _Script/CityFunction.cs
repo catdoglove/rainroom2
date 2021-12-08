@@ -309,6 +309,14 @@ public class CityFunction : CavasData
         }
     }
 
+    public void WaitShow()
+    {
+        if (PlayerPrefs.GetInt("wait", 0) == 2)
+        {
+            outAd_obj.SetActive(true);
+        }
+    }
+
     //어떻게 갈까 창열기
     public void OpenSeaAD()
     {

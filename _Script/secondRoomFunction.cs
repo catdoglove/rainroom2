@@ -1129,6 +1129,14 @@ public class secondRoomFunction : CavasData
 
     }
 
+    public void WaitShow()
+    {
+        if (PlayerPrefs.GetInt("wait", 0) == 2)
+        {
+            outAd_obj.SetActive(true);
+        }
+    }
+
     IEnumerator outTime()
     {
         int a = 0;

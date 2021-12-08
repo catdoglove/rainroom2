@@ -169,7 +169,14 @@ public class AdmobADS : MonoBehaviour {
             }
         }
     }
-    
+
+    public void MilkToast()
+    {
+        if (PlayerPrefs.GetInt("wait", 0) == 2)
+        {
+            StartCoroutine("ToastImgFadeOut");
+        }
+    }
 
 
     public void callBanner()
@@ -227,10 +234,16 @@ public class AdmobADS : MonoBehaviour {
 
     public void ShowAdInterstitial()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (this.interstitial.IsLoaded())
         {
             this.interstitial.Show();
             PlayerPrefs.SetInt("bouttime", 9);
+        }
+        else
+        {
+            GM.GetComponent<UnityADS>().Wating();
+            PlayerPrefs.SetInt("wait", 2);
         }
     }
 
@@ -259,10 +272,16 @@ public class AdmobADS : MonoBehaviour {
     }
     public void ShowRewardedInterstitialAd()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (rewardedInterstitialAd != null)
         {
             blackimg.SetActive(true);
             rewardedInterstitialAd.Show(userEarnedRewardCallback);
+        }
+        else
+        {
+            GM.GetComponent<UnityADS>().Wating();
+            PlayerPrefs.SetInt("wait", 2);
         }
     }
 

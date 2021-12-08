@@ -283,10 +283,16 @@ public class AdmobADSCity : MonoBehaviour {
     }
     public void ShowRewardedInterstitialAd()
     {
+        PlayerPrefs.SetInt("wait", 1);
         if (rewardedInterstitialAd != null)
         {
             blackimg.SetActive(true);
             rewardedInterstitialAd.Show(userEarnedRewardCallback);
+        }
+        else
+        {
+            GM.GetComponent<UnityADSPark>().Wating();
+            PlayerPrefs.SetInt("wait", 2);
         }
     }
 

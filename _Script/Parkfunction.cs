@@ -442,7 +442,14 @@ public class Parkfunction : CavasData
             }
         }
     }
-    
+    public void WaitShow()
+    {
+        if (PlayerPrefs.GetInt("wait", 0) == 2)
+        {
+            outAd_obj.SetActive(true);
+        }
+    }
+
     public void GoMountian()
     {
         int hotR_i;
