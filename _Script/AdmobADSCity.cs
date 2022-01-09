@@ -17,13 +17,12 @@ public class AdmobADSCity : MonoBehaviour {
     //영상
     private RewardBasedVideoAd rewardBasedVideo;
     string adUnitIdvideo;
-
-    //전면
-    private InterstitialAd interstitial;
+    
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj, blackimg;
+    public GameObject Toast_obj, blackimg, Toast_obj2;
+    public Text Toast_txt;
 
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
@@ -44,7 +43,7 @@ public class AdmobADSCity : MonoBehaviour {
         string appId = "unexpected_platform";
 #endif
         // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(appId);
+        //MobileAds.Initialize(appId);
 
         //this.RequestBanner();
         
@@ -57,7 +56,6 @@ public class AdmobADSCity : MonoBehaviour {
         rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
-        RequestInterstitial();
 
         //보상형 전면 광고
         // Create an empty ad request.
@@ -129,23 +127,36 @@ public class AdmobADSCity : MonoBehaviour {
     {
         blackimg.SetActive(false);
         RequestRewardedVideo();
+        Toast_obj.SetActive(true);
+        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StartCoroutine("ToastImgFadeOut");
     }
 
     public void showAdmobVideo()
     {
-        PlayerPrefs.SetInt("wait", 1);
-        if (rewardBasedVideo.IsLoaded())
+        if (PlayerPrefs.GetInt("talk", 5) >= 5)
         {
-            blackimg.SetActive(true);
-            rewardBasedVideo.Show();
-            ad_obj.SetActive(false);
+            Toast_obj.SetActive(true);
+            Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+            StartCoroutine("ToastImgFadeOut");
         }
         else
         {
-            //StartCoroutine("ToastImgFadeOut");
-            GM.GetComponent<UnityADSPark>().Wating();
-            PlayerPrefs.SetInt("wait", 2);
+            PlayerPrefs.SetInt("wait", 1);
+            if (rewardBasedVideo.IsLoaded())
+            {
+                blackimg.SetActive(true);
+                rewardBasedVideo.Show();
+                ad_obj.SetActive(false);
+            }
+            else
+            {
+                //StartCoroutine("ToastImgFadeOut");
+                GM.GetComponent<UnityADSPark>().Wating();
+                PlayerPrefs.SetInt("wait", 2);
+            }
         }
+            
     }
     
 
@@ -171,23 +182,7 @@ public class AdmobADSCity : MonoBehaviour {
         Toast_obj.SetActive(false);
     }
 
-    //전면광고
-    private void RequestInterstitial()
-    {
-#if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-9179569099191885/1598954374"; // 테스트ca-app-pub-3940256099942544/1033173712
-#elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/4411468910";
-#else
-        string adUnitId = "unexpected_platform";
-#endif
 
-        // Initialize an InterstitialAd.
-        this.interstitial = new InterstitialAd(adUnitId);
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the interstitial with the request.
-        this.interstitial.LoadAd(request);
-    }
 
 
     private void OnDisable()
@@ -195,15 +190,7 @@ public class AdmobADSCity : MonoBehaviour {
         rewardBasedVideo.OnAdRewarded -= HandleRewardBasedVideoRewarded;
         rewardBasedVideo.OnAdClosed -= HandleRewardBasedVideoClosed;
     }
-
-    public void ShowAdInterstitial()
-    {
-        if (this.interstitial.IsLoaded())
-        {
-            this.interstitial.Show();
-            PlayerPrefs.SetInt("seatime", 4);
-        }
-    }
+    
 
     /*
     public void HandleOnAdClosed(object sender, EventArgs args)
@@ -301,6 +288,12 @@ public class AdmobADSCity : MonoBehaviour {
         // TODO: Reward the user.
         PlayerPrefs.SetInt("seatime", 4);
         blackimg.SetActive(false);
+        Toast_obj2.SetActive(true);
+    }
+
+    public void touchToastEvt()
+    {
+        Toast_obj2.SetActive(false);
     }
 
     private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)

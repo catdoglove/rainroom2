@@ -22,6 +22,8 @@ public class UnityADSPark : MonoBehaviour {
     public Sprite[] watingAdspr;
     int noise_i = 0;
     int rand_i = 0;
+
+    public GameObject GM;
     // Use this for initialization
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -52,18 +54,38 @@ public class UnityADSPark : MonoBehaviour {
 
     public void ShowRewardedAd()
     {
-        PlayerPrefs.SetInt("wait",1);
-        if (Advertisement.IsReady("rewardedVideo"))
+
+        if (PlayerPrefs.GetInt("talk", 5) >= 5 && PlayerPrefs.GetInt("adrunout", 0) == 0)
         {
-            ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
-            Advertisement.Show("rewardedVideo", options);
-            //PlayerPrefs.SetInt("secf", 240);
+
+            if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+            {
+                GM.GetComponent<AdmobADSCity>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADSCity>().Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+                GM.GetComponent<AdmobADSCity>().StartCoroutine("ToastImgFadeOut");
+            }
+            else
+            {
+                GM.GetComponent<AdmobADSPark>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADSPark>().Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+                GM.GetComponent<AdmobADSPark>().StartCoroutine("ToastImgFadeOut");
+            }
         }
         else
         {
-            //StartCoroutine("ToastImgFadeOut");
-            Wating();
-            PlayerPrefs.SetInt("wait", 2);
+            PlayerPrefs.SetInt("wait", 1);
+            if (Advertisement.IsReady("rewardedVideo"))
+            {
+                ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
+                Advertisement.Show("rewardedVideo", options);
+                //PlayerPrefs.SetInt("secf", 240);
+            }
+            else
+            {
+                //StartCoroutine("ToastImgFadeOut");
+                Wating();
+                PlayerPrefs.SetInt("wait", 2);
+            }
         }
     }
 
@@ -143,6 +165,9 @@ public class UnityADSPark : MonoBehaviour {
                 {
                     PlayerPrefs.SetInt("secf3", 240);
                 }
+                GM.GetComponent<AdmobADSCity>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADSCity>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+                GM.GetComponent<AdmobADSCity>().StartCoroutine("ToastImgFadeOut");
             }
             else
             {
@@ -158,6 +183,9 @@ public class UnityADSPark : MonoBehaviour {
                 {
                     PlayerPrefs.SetInt("secf0", 240);
                 }
+                GM.GetComponent<AdmobADSPark>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADSPark>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+                GM.GetComponent<AdmobADSPark>().StartCoroutine("ToastImgFadeOut");
 
             }
         }

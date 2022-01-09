@@ -17,14 +17,12 @@ public class AdmobADS : MonoBehaviour {
     //영상
     private RewardBasedVideoAd rewardBasedVideo;
     string adUnitIdvideo;
-
-    //전면
-    private InterstitialAd interstitial;
+    
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj, blackimg;
-
+    public GameObject Toast_obj, blackimg, Toast_obj2;
+    public Text Toast_txt;
 
     public Button milkad_btn;
 
@@ -42,7 +40,7 @@ public class AdmobADS : MonoBehaviour {
         string appId = "unexpected_platform";
 #endif
         // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(appId);
+        //MobileAds.Initialize(appId);
 
         //this.RequestBanner();
         
@@ -55,7 +53,6 @@ public class AdmobADS : MonoBehaviour {
         rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
-        RequestInterstitial();
 
         //보상형 전면 광고
         // Create an empty ad request.
@@ -112,6 +109,11 @@ public class AdmobADS : MonoBehaviour {
         {
             PlayerPrefs.SetInt("milkadc", 1);
             PlayerPrefs.SetInt("setmilkadc", 0);
+            Toast_obj.SetActive(true);
+            Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
+            StartCoroutine("ToastImgFadeOut");
+            milkad_btn.interactable = false;
+            PlayerPrefs.SetInt("adrunout", 0);
         }
         else
         {
@@ -144,28 +146,40 @@ public class AdmobADS : MonoBehaviour {
     {
         RequestRewardedVideo();
         blackimg.SetActive(false);
+        Toast_obj.SetActive(true);
+        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StartCoroutine("ToastImgFadeOut");
     }
 
     public void showAdmobVideo()
     {
-        PlayerPrefs.SetInt("wait", 1);
-        if (rewardBasedVideo.IsLoaded())
+        if (PlayerPrefs.GetInt("talk",5)>=5&& PlayerPrefs.GetInt("adrunout", 0)==0)
         {
-            blackimg.SetActive(true);
-            rewardBasedVideo.Show();
+            Toast_obj.SetActive(true);
+            Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+            StartCoroutine("ToastImgFadeOut");
         }
         else
         {
-            if (PlayerPrefs.GetInt("adrunout", 0)==1)
+            PlayerPrefs.SetInt("wait", 1);
+            if (rewardBasedVideo.IsLoaded())
             {
-                GM.GetComponent<UnityADS>().adYes();
-                PlayerPrefs.SetInt("adrunout", 0);
+                blackimg.SetActive(true);
+                rewardBasedVideo.Show();
             }
             else
             {
-                //StartCoroutine("ToastImgFadeOut");
-                GM.GetComponent<UnityADS>().Wating();
-                PlayerPrefs.SetInt("wait", 2);
+                if (PlayerPrefs.GetInt("adrunout", 0) == 1)
+                {
+                    GM.GetComponent<UnityADS>().adYes();
+                    PlayerPrefs.SetInt("adrunout", 0);
+                }
+                else
+                {
+                    //StartCoroutine("ToastImgFadeOut");
+                    GM.GetComponent<UnityADS>().Wating();
+                    PlayerPrefs.SetInt("wait", 2);
+                }
             }
         }
     }
@@ -174,6 +188,8 @@ public class AdmobADS : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("wait", 0) == 2)
         {
+            Toast_obj.SetActive(true);
+            Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
             StartCoroutine("ToastImgFadeOut");
         }
     }
@@ -206,46 +222,14 @@ public class AdmobADS : MonoBehaviour {
         Toast_obj.SetActive(false);
 
     }
-
-    //전면광고
-    private void RequestInterstitial()
-    {
-#if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-9179569099191885/1598954374"; // 테스트ca-app-pub-3940256099942544/1033173712
-#elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/4411468910";
-#else
-        string adUnitId = "unexpected_platform";
-#endif
-
-        // Initialize an InterstitialAd.
-        this.interstitial = new InterstitialAd(adUnitId);
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the interstitial with the request.
-        this.interstitial.LoadAd(request);
-        
-    }
+    
 
     private void OnDisable()
     {
         rewardBasedVideo.OnAdRewarded -= HandleRewardBasedVideoRewarded;
         rewardBasedVideo.OnAdClosed -= HandleRewardBasedVideoClosed;
     }
-
-    public void ShowAdInterstitial()
-    {
-        PlayerPrefs.SetInt("wait", 1);
-        if (this.interstitial.IsLoaded())
-        {
-            this.interstitial.Show();
-            PlayerPrefs.SetInt("bouttime", 9);
-        }
-        else
-        {
-            GM.GetComponent<UnityADS>().Wating();
-            PlayerPrefs.SetInt("wait", 2);
-        }
-    }
+    
 
     /*
     public void HandleOnAdClosed(object sender, EventArgs args)
@@ -290,6 +274,12 @@ public class AdmobADS : MonoBehaviour {
         // TODO: Reward the user.
         PlayerPrefs.SetInt("bouttime", 9);
         blackimg.SetActive(false);
+        Toast_obj2.SetActive(true);
+    }
+
+    public void touchToastEvt()
+    {
+        Toast_obj2.SetActive(false);
     }
 
     private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
