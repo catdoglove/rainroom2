@@ -61,13 +61,13 @@ public class UnityADSPark : MonoBehaviour {
             if (PlayerPrefs.GetInt("outtrip", 0) == 2)
             {
                 GM.GetComponent<AdmobADSCity>().Toast_obj.SetActive(true);
-                GM.GetComponent<AdmobADSCity>().Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+                GM.GetComponent<AdmobADSCity>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
                 GM.GetComponent<AdmobADSCity>().StartCoroutine("ToastImgFadeOut");
             }
             else
             {
                 GM.GetComponent<AdmobADSPark>().Toast_obj.SetActive(true);
-                GM.GetComponent<AdmobADSPark>().Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+                GM.GetComponent<AdmobADSPark>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
                 GM.GetComponent<AdmobADSPark>().StartCoroutine("ToastImgFadeOut");
             }
         }

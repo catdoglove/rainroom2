@@ -137,7 +137,7 @@ public class AdmobADSCity : MonoBehaviour {
         if (PlayerPrefs.GetInt("talk", 5) >= 5)
         {
             Toast_obj.SetActive(true);
-            Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+            Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
             StartCoroutine("ToastImgFadeOut");
         }
         else

@@ -70,7 +70,7 @@ public class UnityADS : MonoBehaviour {
         if (PlayerPrefs.GetInt("talk", 5) >= 5 && PlayerPrefs.GetInt("adrunout", 0) == 0)
         {
             GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
-            GM.GetComponent<AdmobADS>().Toast_txt.text = "대화횟수가 이미 최대값이므로 시청할 수 없습니다.";
+            GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
             GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
         }
         else
