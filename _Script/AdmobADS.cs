@@ -112,7 +112,11 @@ public class AdmobADS : MonoBehaviour {
             Toast_obj.SetActive(true);
             Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
             StartCoroutine("ToastImgFadeOut");
-            milkad_btn.interactable = false;
+
+            if (milkad_btn != null)
+            {
+                milkad_btn.interactable = false;
+            }
             PlayerPrefs.SetInt("adrunout", 0);
         }
         else
@@ -205,7 +209,10 @@ public class AdmobADS : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("setmilkadc", 0) == 1)
         {
-            milkad_btn.interactable = true;
+            if (milkad_btn != null)
+            {
+                milkad_btn.interactable = true;
+            }
             PlayerPrefs.SetInt("setmilkadc", 0);
         }
 
