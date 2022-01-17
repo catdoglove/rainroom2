@@ -639,14 +639,6 @@ public class MainBtnEvt : CavasData
     {
         Help_obj.SetActive(true);
         Help_obj.GetComponent<Image>().sprite = help_spr[1];
-        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
-        {
-            Help_obj.GetComponent<Image>().sprite = help_spr[1];
-        }
-        if (PlayerPrefs.GetInt("outtrip", 0) == 2)
-        {
-            Help_obj.GetComponent<Image>().sprite = help_spr[1];
-        }
     }
     public void OpenHelpOption()
     {
