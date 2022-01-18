@@ -91,15 +91,12 @@ public class AdmobADS : MonoBehaviour {
         {
             PlayerPrefs.SetInt("milkadc", 1);
             PlayerPrefs.SetInt("setmilkadc", 0);
-            Toast_obj.SetActive(true);
-            Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
             StartCoroutine("ToastImgFadeOut");
 
             if (milkad_btn != null)
             {
                 milkad_btn.interactable = false;
             }
-            PlayerPrefs.SetInt("adrunout", 0);
         }
         else
         {
@@ -132,7 +129,15 @@ public class AdmobADS : MonoBehaviour {
         RequestRewardedVideo();
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
-        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        if (PlayerPrefs.GetInt("adrunout", 0) == 1)
+        {
+            Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
+            PlayerPrefs.SetInt("adrunout", 0);
+        }
+        else
+        {
+            Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        }
         StartCoroutine("ToastImgFadeOut");
     }
 
