@@ -9,13 +9,11 @@ public class AdmobADS : MonoBehaviour {
 
     //보상형 전면 광고
     private RewardedInterstitialAd rewardedInterstitialAd;
-
-    //배너
-    private BannerView bannerView;
+    
     AdRequest request;
 
     //영상
-    private RewardBasedVideoAd rewardBasedVideo;
+    private RewardedAd rewardedAd;
     string adUnitIdvideo;
     
 
@@ -43,14 +41,22 @@ public class AdmobADS : MonoBehaviour {
         //MobileAds.Initialize(appId);
 
         //this.RequestBanner();
-        
 
-        rewardBasedVideo = RewardBasedVideoAd.Instance;
-        
+
+#if UNITY_ANDROID
+        adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트 ca-app-pub-3940256099942544/5224354917
+#elif UNITY_IPHONE
+            adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
+#else
+        adUnitIdvideo = "unexpected_platform";
+#endif
+
+        this.rewardedAd = new RewardedAd(adUnitIdvideo);
+
         // Called when the user should be rewarded for watching a video.
-        rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         // Called when the ad is closed.
-        rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
+        this.rewardedAd.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
 
@@ -62,48 +68,24 @@ public class AdmobADS : MonoBehaviour {
 
     }
 
-    //배너
-    private void RequestBanner()
+    private void OnDisable()
     {
-#if UNITY_ANDROID
-            string adUnitId = "ca-app-pub-3940256099942544/6300978111";
-#elif UNITY_IPHONE
-            string adUnitId = "ca-app-pub-3940256099942544/2934735716";
-#else
-        string adUnitId = "unexpected_platform";
-#endif
-
-        // Create a 320x50 banner at the top of the screen.
-        bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Bottom);
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-
-        // Load the banner with the request.
-        bannerView.LoadAd(request);
+        rewardedAd.OnUserEarnedReward -= HandleUserEarnedReward;
+        rewardedAd.OnAdClosed -= HandleRewardBasedVideoClosed;
     }
 
 
-    
     //동영상
     private void RequestRewardedVideo()
     {
-
-#if UNITY_ANDROID
-            adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트 ca-app-pub-3940256099942544/5224354917
-#elif UNITY_IPHONE
-            adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
-#else
-        adUnitIdvideo = "unexpected_platform";
-#endif
         // Create an empty ad request.
         request = new AdRequest.Builder().Build();
         // Load the rewarded video ad with the request.
-        rewardBasedVideo.LoadAd(request, adUnitIdvideo);
+        this.rewardedAd.LoadAd(request);
     }
 
     //시청보상
-    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
+    public void HandleUserEarnedReward(object sender, Reward args)
     {
         if (PlayerPrefs.GetInt("adrunout", 0) == 1)
         {
@@ -142,7 +124,6 @@ public class AdmobADS : MonoBehaviour {
             }
         }
         PlayerPrefs.SetInt("blad", 1);
-
     }
 
     //동영상닫음
@@ -166,10 +147,10 @@ public class AdmobADS : MonoBehaviour {
         else
         {
             PlayerPrefs.SetInt("wait", 1);
-            if (rewardBasedVideo.IsLoaded())
+            if (this.rewardedAd.IsLoaded())
             {
                 blackimg.SetActive(true);
-                rewardBasedVideo.Show();
+                this.rewardedAd.Show();
             }
             else
             {
@@ -197,12 +178,7 @@ public class AdmobADS : MonoBehaviour {
             StartCoroutine("ToastImgFadeOut");
         }
     }
-
-
-    public void callBanner()
-    {
-        this.RequestBanner();
-    }
+    
 
     
     IEnumerator ToastImgFadeOut()
@@ -219,7 +195,7 @@ public class AdmobADS : MonoBehaviour {
         color.a = Mathf.Lerp(0f, 1f, 1f);
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
             color.a = Mathf.Lerp(0f, 1f, i);
@@ -231,11 +207,7 @@ public class AdmobADS : MonoBehaviour {
     }
     
 
-    private void OnDisable()
-    {
-        rewardBasedVideo.OnAdRewarded -= HandleRewardBasedVideoRewarded;
-        rewardBasedVideo.OnAdClosed -= HandleRewardBasedVideoClosed;
-    }
+    
     
 
     /*

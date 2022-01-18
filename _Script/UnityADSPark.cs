@@ -298,7 +298,7 @@ public class UnityADSPark : MonoBehaviour {
         color.a = Mathf.Lerp(0f, 1f, 1f);
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
             color.a = Mathf.Lerp(0f, 1f, i);
