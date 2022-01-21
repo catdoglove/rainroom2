@@ -97,7 +97,6 @@ public class AdmobADS : MonoBehaviour {
             {
                 milkad_btn.interactable = false;
             }
-            PlayerPrefs.SetInt("adrunout", 0);
         }
         else
         {
