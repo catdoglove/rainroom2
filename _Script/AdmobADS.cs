@@ -133,6 +133,7 @@ public class AdmobADS : MonoBehaviour {
         if (PlayerPrefs.GetInt("adrunout", 0) == 1)
         {
             Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
+            PlayerPrefs.SetInt("adrunout", 0);
         }
         else
         {
