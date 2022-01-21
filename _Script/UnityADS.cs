@@ -164,6 +164,18 @@ public class UnityADS : MonoBehaviour {
             {
                 PlayerPrefs.SetInt("milkadc", 1);
                 PlayerPrefs.SetInt("setmilkadc", 0);
+                StartCoroutine("ToastImgFadeOut");
+
+                if (GM.GetComponent<AdmobADS>().milkad_btn != null)
+                {
+                    GM.GetComponent<AdmobADS>().milkad_btn.interactable = false;
+                }
+
+                GM.GetComponent<AdmobADS>().blackimg.SetActive(false);
+                GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADS>().Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
+                PlayerPrefs.SetInt("adrunout", 0);
+                GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
             }
             else
             {
