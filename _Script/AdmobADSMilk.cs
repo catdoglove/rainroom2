@@ -106,9 +106,7 @@ public class AdmobADSMilk : MonoBehaviour {
 
     public void showAdmobVideo()
     {
-        GM.GetComponent<UnityADSMilk>().adYes();
         PlayerPrefs.SetInt("wait", 1);
-        /*
         if (this.rewardedAd.IsLoaded())
         {
             blackimg.SetActive(true);
@@ -120,7 +118,6 @@ public class AdmobADSMilk : MonoBehaviour {
             PlayerPrefs.SetInt("adrunout", 0);
 
         }
-        */
     }
 
     public void MilkToast()
