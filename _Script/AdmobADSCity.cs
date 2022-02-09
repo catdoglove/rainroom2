@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
-
+using System;
 
 public class AdmobADSCity : MonoBehaviour {
 
@@ -233,9 +233,9 @@ public class AdmobADSCity : MonoBehaviour {
     }
 
     //보상형 전면 광고
-    private void adLoadCallback(RewardedInterstitialAd ad, string error)
+    private void adLoadCallback(RewardedInterstitialAd ad, AdFailedToLoadEventArgs arg2)
     {
-        if (error == null)
+        if (arg2 == null)
         {
             rewardedInterstitialAd = ad;
             rewardedInterstitialAd.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresent;

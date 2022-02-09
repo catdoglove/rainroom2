@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
-
+using System;
 
 public class AdmobADSPark : MonoBehaviour {
 
@@ -35,7 +35,6 @@ public class AdmobADSPark : MonoBehaviour {
         string appId = "unexpected_platform";
 #endif
         // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(appId);
 
         //this.RequestBanner();
 
@@ -148,9 +147,9 @@ public class AdmobADSPark : MonoBehaviour {
         }
         Toast_obj.SetActive(false);
     }
-    
 
-    
+
+
 
     /*
     public void HandleOnAdClosed(object sender, EventArgs args)
@@ -165,9 +164,10 @@ public class AdmobADSPark : MonoBehaviour {
     */
 
     //보상형 전면 광고
-    private void adLoadCallback(RewardedInterstitialAd ad, string error)
+
+    private void adLoadCallback(RewardedInterstitialAd ad, AdFailedToLoadEventArgs arg2)
     {
-        if (error == null)
+        if (arg2 == null)
         {
             rewardedInterstitialAd = ad;
             rewardedInterstitialAd.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresent;

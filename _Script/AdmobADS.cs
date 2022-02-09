@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using UnityEngine.UI;
-
+using System;
 
 public class AdmobADS : MonoBehaviour {
 
@@ -67,6 +67,8 @@ public class AdmobADS : MonoBehaviour {
         RewardedInterstitialAd.LoadAd("ca-app-pub-9179569099191885/5047087900", request, adLoadCallback);
 
     }
+
+  
 
     private void OnDisable()
     {
@@ -210,10 +212,10 @@ public class AdmobADS : MonoBehaviour {
         Toast_obj.SetActive(false);
 
     }
-    
 
-    
-    
+
+
+
 
     /*
     public void HandleOnAdClosed(object sender, EventArgs args)
@@ -229,9 +231,9 @@ public class AdmobADS : MonoBehaviour {
 
 
     //보상형 전면 광고
-    private void adLoadCallback(RewardedInterstitialAd ad, string error)
+    private void adLoadCallback(RewardedInterstitialAd ad, AdFailedToLoadEventArgs arg2)
     {
-        if (error == null)
+        if (arg2 == null)
         {
             rewardedInterstitialAd = ad;
             rewardedInterstitialAd.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresent;
