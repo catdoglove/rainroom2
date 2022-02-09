@@ -67,7 +67,7 @@ public class UnityADS : MonoBehaviour {
 
     public void ShowRewardedAd()
     {
-        if (PlayerPrefs.GetInt("talk", 5) >= 5 && PlayerPrefs.GetInt("adrunout", 0) == 0)
+        if (PlayerPrefs.GetInt("talk", 5) >= 5)
         {
             GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
             GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
@@ -160,56 +160,37 @@ public class UnityADS : MonoBehaviour {
         if (result == ShowResult.Finished)
         {
 
-            if (PlayerPrefs.GetInt("adrunout", 0) == 1)
+            if (PlayerPrefs.GetInt("place", 0) == 0)
             {
-                PlayerPrefs.SetInt("milkadc", 1);
-                PlayerPrefs.SetInt("setmilkadc", 0);
-                StartCoroutine("ToastImgFadeOut");
-
-                if (GM.GetComponent<AdmobADS>().milkad_btn != null)
+                radio_ani.SetActive(false);
+                adBtn_obj.SetActive(false);
+                StopCoroutine("adTimeFlow");
+                StopCoroutine("adAniTime");
+                StartCoroutine("adTimeFlow");
+                StartCoroutine("adAniTime");
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
                 {
-                    GM.GetComponent<AdmobADS>().milkad_btn.interactable = false;
+                    PlayerPrefs.SetInt("secf", 240);
                 }
-
-                GM.GetComponent<AdmobADS>().blackimg.SetActive(false);
                 GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
-                GM.GetComponent<AdmobADS>().Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
-                PlayerPrefs.SetInt("adrunout", 0);
+                GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
                 GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
             }
             else
             {
-                if (PlayerPrefs.GetInt("place", 0) == 0)
+                PlayerPrefs.SetInt("talk", 5);
+                PlayerPrefs.Save();
+                if (PlayerPrefs.GetInt("talk", 5) >= 5)
                 {
-                    radio_ani.SetActive(false);
-                    adBtn_obj.SetActive(false);
-                    StopCoroutine("adTimeFlow");
-                    StopCoroutine("adAniTime");
-                    StartCoroutine("adTimeFlow");
-                    StartCoroutine("adAniTime");
-                    PlayerPrefs.SetInt("talk", 5);
-                    PlayerPrefs.Save();
-                    if (PlayerPrefs.GetInt("talk", 5) >= 5)
-                    {
-                        PlayerPrefs.SetInt("secf", 240);
-                    }
-                    GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
-                    GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
-                    GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
+                    PlayerPrefs.SetInt("secf2", 240);
                 }
-                else
-                {
-                    PlayerPrefs.SetInt("talk", 5);
-                    PlayerPrefs.Save();
-                    if (PlayerPrefs.GetInt("talk", 5) >= 5)
-                    {
-                        PlayerPrefs.SetInt("secf2", 240);
-                    }
-                    GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
-                    GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
-                    GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
-                }
+                GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
+                GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+                GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
             }
+
         }
     }
 

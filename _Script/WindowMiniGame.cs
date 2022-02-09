@@ -451,7 +451,7 @@ public class WindowMiniGame : MonoBehaviour {
     
     public void MilkAd()
     {
-        PlayerPrefs.SetInt("adrunout", 1);
+        //PlayerPrefs.SetInt("adrunout", 1);
         PlayerPrefs.SetInt("setmilkadc", 1);
         milkad_btn.interactable = false;
     }

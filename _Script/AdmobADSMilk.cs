@@ -5,10 +5,8 @@ using GoogleMobileAds.Api;
 using UnityEngine.UI;
 using System;
 
-public class AdmobADS : MonoBehaviour {
-
-    //보상형 전면 광고
-    private RewardedInterstitialAd rewardedInterstitialAd;
+public class AdmobADSMilk : MonoBehaviour {
+    
     
     AdRequest request;
 
@@ -59,12 +57,7 @@ public class AdmobADS : MonoBehaviour {
         this.rewardedAd.OnAdClosed += HandleRewardBasedVideoClosed;
 
         RequestRewardedVideo();
-
-        //보상형 전면 광고
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the rewarded ad with the request.
-        RewardedInterstitialAd.LoadAd("ca-app-pub-9179569099191885/5047087900", request, adLoadCallback);
+        
 
     }
 
@@ -89,25 +82,14 @@ public class AdmobADS : MonoBehaviour {
     //시청보상
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-        PlayerPrefs.SetInt("adrunout", 0);
-        if (PlayerPrefs.GetInt("place", 0) == 0)
-        {
-            PlayerPrefs.SetInt("talk", 5);
-            PlayerPrefs.Save();
-            if (PlayerPrefs.GetInt("talk", 5) >= 5)
+            PlayerPrefs.SetInt("milkadc", 1);
+            PlayerPrefs.SetInt("setmilkadc", 0);
+            StartCoroutine("ToastImgFadeOut");
+
+            if (milkad_btn != null)
             {
-                PlayerPrefs.SetInt("secf", 240);
+                milkad_btn.interactable = false;
             }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("talk", 5);
-            PlayerPrefs.Save();
-            if (PlayerPrefs.GetInt("talk", 5) >= 5)
-            {
-                PlayerPrefs.SetInt("secf2", 240);
-            }
-        }
         PlayerPrefs.SetInt("blad", 1);
     }
 
@@ -117,39 +99,53 @@ public class AdmobADS : MonoBehaviour {
         RequestRewardedVideo();
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
+        Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
         PlayerPrefs.SetInt("adrunout", 0);
-        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
         StartCoroutine("ToastImgFadeOut");
     }
 
     public void showAdmobVideo()
     {
-        if (PlayerPrefs.GetInt("talk",5)>=5)
+        GM.GetComponent<UnityADSMilk>().adYes();
+        PlayerPrefs.SetInt("wait", 1);
+        /*
+        if (this.rewardedAd.IsLoaded())
         {
-            Toast_obj.SetActive(true);
-            Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
-            StartCoroutine("ToastImgFadeOut");
+            blackimg.SetActive(true);
+            this.rewardedAd.Show();
         }
         else
         {
-            PlayerPrefs.SetInt("wait", 1);
-            if (this.rewardedAd.IsLoaded())
-            {
-                blackimg.SetActive(true);
-                this.rewardedAd.Show();
-            }
-            else
-            {
-                    //StartCoroutine("ToastImgFadeOut");
-                    GM.GetComponent<UnityADS>().Wating();
-                    PlayerPrefs.SetInt("wait", 2);
-            }
+            GM.GetComponent<UnityADSMilk>().adYes();
+            PlayerPrefs.SetInt("adrunout", 0);
+
+        }
+        */
+    }
+
+    public void MilkToast()
+    {
+        if (PlayerPrefs.GetInt("wait", 0) == 2)
+        {
+            Toast_obj.SetActive(true);
+            Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
+            StartCoroutine("ToastImgFadeOut");
         }
     }
     
+
     
     IEnumerator ToastImgFadeOut()
     {
+        if (PlayerPrefs.GetInt("setmilkadc", 0) == 1)
+        {
+            if (milkad_btn != null)
+            {
+                milkad_btn.interactable = true;
+            }
+            PlayerPrefs.SetInt("setmilkadc", 0);
+        }
+
         color.a = Mathf.Lerp(0f, 1f, 1f);
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
@@ -180,49 +176,14 @@ public class AdmobADS : MonoBehaviour {
     }
     */
 
-
-    //보상형 전면 광고
-    private void adLoadCallback(RewardedInterstitialAd ad, AdFailedToLoadEventArgs arg2)
-    {
-        if (arg2 == null)
-        {
-            rewardedInterstitialAd = ad;
-            rewardedInterstitialAd.OnAdFailedToPresentFullScreenContent += HandleAdFailedToPresent;
-
-        }
-    }
-    public void ShowRewardedInterstitialAd()
-    {
-        PlayerPrefs.SetInt("wait", 1);
-        if (rewardedInterstitialAd != null)
-        {
-            blackimg.SetActive(true);
-            rewardedInterstitialAd.Show(userEarnedRewardCallback);
-        }
-        else
-        {
-            GM.GetComponent<UnityADS>().Wating();
-            PlayerPrefs.SetInt("wait", 2);
-        }
-    }
-
-    private void userEarnedRewardCallback(Reward reward)
-    {
-        // TODO: Reward the user.
-        PlayerPrefs.SetInt("bouttime", 9);
-        blackimg.SetActive(false);
-        Toast_obj2.SetActive(true);
-    }
+        
+        
 
     public void touchToastEvt()
     {
         Toast_obj2.SetActive(false);
     }
-
-    private void HandleAdFailedToPresent(object sender, AdErrorEventArgs args)
-    {
-        //MonoBehavior.print("Rewarded interstitial ad has failed to present.");
-    }
+    
 
     //방지
     public void closeBlackImg()

@@ -43017,7 +43017,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128228839}
+      - m_Target: {fileID: 2128228842}
         m_MethodName: showAdmobVideo
         m_Mode: 1
         m_Arguments:
@@ -43039,7 +43039,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128228839}
+      - m_Target: {fileID: 2128228842}
         m_MethodName: MilkToast
         m_Mode: 1
         m_Arguments:
@@ -55752,7 +55752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 56, y: 105}
+  m_AnchoredPosition: {x: 56, y: 104.999985}
   m_SizeDelta: {x: 165, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864120950
@@ -97677,7 +97677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -69, y: 111}
+  m_AnchoredPosition: {x: -69, y: 110.999985}
   m_SizeDelta: {x: 164, y: 632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521106223
@@ -110051,7 +110051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -49, y: 111}
+  m_AnchoredPosition: {x: -49, y: 110.999985}
   m_SizeDelta: {x: 134, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1698208885
@@ -111186,7 +111186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74, y: 105}
+  m_AnchoredPosition: {x: 74, y: 104.999985}
   m_SizeDelta: {x: 180, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706359611
@@ -121589,7 +121589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: -6.6}
+  m_AnchoredPosition: {x: -23.999924, y: -6.6}
   m_SizeDelta: {x: -330, y: 660}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852424618
@@ -136953,6 +136953,8 @@ GameObject:
   - component: {fileID: 2128228838}
   - component: {fileID: 2128228839}
   - component: {fileID: 2128228840}
+  - component: {fileID: 2128228842}
+  - component: {fileID: 2128228841}
   m_Layer: 0
   m_Name: firstroomGM
   m_TagString: firstroomGM
@@ -138128,6 +138130,40 @@ MonoBehaviour:
   hintInput: {fileID: 1461593841}
   charNum_txt: {fileID: 1071738772}
   GMS: {fileID: 365005793}
+--- !u!114 &2128228841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128228821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728de96bfad3eb441b52a9563326ff03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundck: 0
+  ad_obj: {fileID: 56489020}
+  Toast_obj: {fileID: 0}
+  GM: {fileID: 2128228821}
+--- !u!114 &2128228842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128228821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1326dc81bd739344a36193319ef5922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Toast_obj: {fileID: 1141998244}
+  blackimg: {fileID: 1847953931}
+  Toast_obj2: {fileID: 0}
+  Toast_txt: {fileID: 539302340}
+  milkad_btn: {fileID: 698239331}
+  GM: {fileID: 2128228821}
 --- !u!1 &2128879277
 GameObject:
   m_ObjectHideFlags: 0
