@@ -40,7 +40,6 @@ public class UnityADSMilk : MonoBehaviour {
         }
         else
         {
-            //StartCoroutine("ToastImgFadeOut");
             GM.GetComponent<UnityADS>().Wating();
             PlayerPrefs.SetInt("wait", 2);
         }
@@ -62,7 +61,6 @@ public class UnityADSMilk : MonoBehaviour {
         {
                 PlayerPrefs.SetInt("milkadc", 1);
                 PlayerPrefs.SetInt("setmilkadc", 0);
-                StartCoroutine("ToastImgFadeOut");
                 if (GM.GetComponent<AdmobADSMilk>().milkad_btn != null)
                 {
                     GM.GetComponent<AdmobADSMilk>().milkad_btn.interactable = false;

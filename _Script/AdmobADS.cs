@@ -22,7 +22,6 @@ public class AdmobADS : MonoBehaviour {
     public GameObject Toast_obj, blackimg, Toast_obj2;
     public Text Toast_txt;
 
-    public Button milkad_btn;
 
     public GameObject GM;
 

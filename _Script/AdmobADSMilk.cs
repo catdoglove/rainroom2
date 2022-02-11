@@ -159,21 +159,6 @@ public class AdmobADSMilk : MonoBehaviour {
 
 
 
-
-
-    /*
-    public void HandleOnAdClosed(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdClosed event received");
-        interstitial.Destroy();
-    }
-    public void HandleOnAdOpened(object sender, EventArgs args)
-    {
-        MonoBehaviour.print("HandleAdOpened event received");
-    }
-    */
-
-        
         
 
     public void touchToastEvt()
