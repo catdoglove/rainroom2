@@ -27,6 +27,9 @@ public class AdmobADS : MonoBehaviour {
 
     // Use this for initialization 앱 ID
     void Start () {
+
+        MobileAds.Initialize(initStatus => { });
+
         color = new Color(1f, 1f, 1f);
 
 #if UNITY_ANDROID
