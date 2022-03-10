@@ -123,21 +123,33 @@ public class SeaFunction : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("seasonCODE", 0) == 10) //봄 10
         {
+            background_front[0] = Resources.Load<Sprite>("UI/city/sea_background");
+            background_back[0] = Resources.Load<Sprite>("UI/city/sea_background");
+
             bg_front.GetComponent<Image>().sprite = background_front[0];
             bg_back.GetComponent<Image>().sprite = background_back[0];
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20) //여름 20
         {
+            background_front[1] = Resources.Load<Sprite>("UI/city/sea_background (2)");
+            background_back[1] = Resources.Load<Sprite>("UI/city/sea_background (2)");
+
             bg_front.GetComponent<Image>().sprite = background_front[1];
             bg_back.GetComponent<Image>().sprite = background_back[1];
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30) //가을 30
         {
+            background_front[2] = Resources.Load<Sprite>("UI/city/sea_background");
+            background_back[2] = Resources.Load<Sprite>("UI/city/sea_background");
+
             bg_front.GetComponent<Image>().sprite = background_front[2];
             bg_back.GetComponent<Image>().sprite = background_back[2];
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40) //겨울 40
         {
+            background_front[3] = Resources.Load<Sprite>("UI/city/sea_background");
+            background_back[3] = Resources.Load<Sprite>("UI/city/sea_background");
+
             bg_front.GetComponent<Image>().sprite = background_front[3];
             bg_back.GetComponent<Image>().sprite = background_back[3];
         }
