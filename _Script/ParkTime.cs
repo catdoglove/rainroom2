@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ParkTime : MonoBehaviour
 {
-
     string str;
     int randLeaf_i, bas_i, rainBas_i;
     float lx,ly;
@@ -13,7 +12,6 @@ public class ParkTime : MonoBehaviour
 
     //양동이
     public GameObject bas_obj;
-    public Sprite[] bas_spr;
 
     //엔딩
     public GameObject endWindow_obj;
@@ -28,8 +26,6 @@ public class ParkTime : MonoBehaviour
     public AudioClip sp_end, sp_original;
     public GameObject blackAd_obj;
 
-
-    public Sprite[] background_front, background_back, moonbangu_spr;
     public GameObject bg_front, bg_back, moonbangu_img;
 
     // Use this for initialization
@@ -37,9 +33,8 @@ public class ParkTime : MonoBehaviour
     {
         PlayerPrefs.SetInt("basketrain", 0);
         PlayerPrefs.SetInt("basket", 0);
-        //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
-        StartCoroutine("updateSec");
+        StartCoroutine("updateSec"); //업데이트대신쓴다
 
 
         //계절체크
@@ -48,54 +43,29 @@ public class ParkTime : MonoBehaviour
         int mon_i = int.Parse(mon);
 
         if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)  //봄 10
-        {
-            background_front[0] = Resources.Load<Sprite>("UI/park_playground/park_playground (3)");
-            background_back[0] = Resources.Load<Sprite>("UI/park_playground/park_market (3)");
-            moonbangu_spr[0] = Resources.Load<Sprite>("UI/noteStore/park_note_enter_spring");
-
-
-            bg_front.GetComponent<Image>().sprite = background_front[0];
-            bg_back.GetComponent<Image>().sprite = background_back[0];
-            moonbangu_img.GetComponent<Image>().sprite = moonbangu_spr[0];
+        {       
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_playground (3)"); ;
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_market (3)");
+            moonbangu_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/noteStore/park_note_enter_spring");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)  //여름 20
         {
-
-            background_front[1] = Resources.Load<Sprite>("UI/park_playground/park_playground");
-            background_back[1] = Resources.Load<Sprite>("UI/park_playground/park_market");
-            moonbangu_spr[1] = Resources.Load<Sprite>("UI/noteStore/park_note_enter");
-
-            bg_front.GetComponent<Image>().sprite = background_front[1];
-            bg_back.GetComponent<Image>().sprite = background_back[1];
-            moonbangu_img.GetComponent<Image>().sprite = moonbangu_spr[1];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_playground");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_market");
+            moonbangu_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/noteStore/park_note_enter");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)  //가을 30
         {
-
-            background_front[2] = Resources.Load<Sprite>("UI/park_playground/park_playground (4)");
-            background_back[2] = Resources.Load<Sprite>("UI/park_playground/park_market (4)");
-            moonbangu_spr[2] = Resources.Load<Sprite>("UI/noteStore/park_note_enter");
-
-            bg_front.GetComponent<Image>().sprite = background_front[2];
-            bg_back.GetComponent<Image>().sprite = background_back[2];
-            moonbangu_img.GetComponent<Image>().sprite = moonbangu_spr[2];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_playground (4)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_market (4)");
+            moonbangu_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/noteStore/park_note_enter");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40)  //겨울 40
         {
-            background_front[3] = Resources.Load<Sprite>("UI/park_playground/park_playground (2)");
-            background_back[3] = Resources.Load<Sprite>("UI/park_playground/park_market (2)");
-            moonbangu_spr[3] = Resources.Load<Sprite>("UI/noteStore/park_note_enter (2)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[3];
-            bg_back.GetComponent<Image>().sprite = background_back[3];
-            moonbangu_img.GetComponent<Image>().sprite = moonbangu_spr[3];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_playground (2)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/park_market (2)");
+            moonbangu_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/noteStore/park_note_enter (2)");
         }
-
-
-
-
-
-
 
     }
     IEnumerator updateSec()
@@ -108,7 +78,6 @@ public class ParkTime : MonoBehaviour
             {
                 randLeaf_i = 1;
             }
-
 
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
@@ -156,22 +125,22 @@ public class ParkTime : MonoBehaviour
             bas_i = PlayerPrefs.GetInt("basket", 0);
             bas_i++;
             PlayerPrefs.SetInt("basket", bas_i);
-           // Debug.Log(bas_i);
             if (bas_i >= 60)
             {
                 rainBas_i = PlayerPrefs.GetInt("basketrain", 0);
                 rainBas_i++;
                 PlayerPrefs.SetInt("basketrain", rainBas_i);
                 PlayerPrefs.SetInt("basket", 0);
-            //    Debug.Log(rainBas_i);
             }
-            if(PlayerPrefs.GetInt("basketrain", 0) > 0)
+
+            Sprite[] sprites = Resources.LoadAll<Sprite>("UI/park_playground/park_bucket");
+            if (PlayerPrefs.GetInt("basketrain", 0) > 0)
             {
-                bas_obj.GetComponent<Image>().sprite = bas_spr[1];
+                bas_obj.GetComponent<Image>().sprite = sprites[1];
             }
             else
             {
-                bas_obj.GetComponent<Image>().sprite = bas_spr[0];
+                bas_obj.GetComponent<Image>().sprite = sprites[0];
             }
 
             //저장하고 1초동안 대기

@@ -396,7 +396,6 @@ public class Parkfunction : CavasData
         int cts = PlayerPrefs.GetInt("countgooutst", 0);
         cts++;
         PlayerPrefs.SetInt("countgooutst", cts);
-        //Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
         if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
         {
             PlayerPrefs.SetInt("gooutst", 3);

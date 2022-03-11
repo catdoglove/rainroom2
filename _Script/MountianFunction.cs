@@ -31,16 +31,11 @@ public class MountianFunction : MonoBehaviour {
     int nowArr = 1; //현재 줄
 
     int ik;
-    //
     Color colorN;
     public GameObject needToast_obj;
 
     //외물물건
     public GameObject putToast_obj;
-
-    public GameObject bamWindow_obj,bam_obj;
-
-    public Sprite[] background_front, background_back;
     public GameObject bg_front, bg_back;
 
     /// <summary>
@@ -60,33 +55,6 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetInt("nowarrsign", nowArr);
     }
 
-    //쑥
-    void bam()
-    {
-        int sh = Random.Range(0, 10);
-        if (sh == 1)
-        {
-            //bam_obj.SetActive(true);
-        }
-    }
-    public void ActSBam()
-    {
-        if (bamWindow_obj.activeSelf == true)
-        {
-            bamWindow_obj.SetActive(false);
-            //bam_obj.SetActive(false);
-            //PlayerPrefs.SetInt("bam", 1);
-            //PlayerPrefs.SetInt("pat", 1);
-            //PlayerPrefs.SetInt("subaks", 1);
-            PlayerPrefs.SetInt("subaks2", 1);
-        }
-        else
-        {
-            bamWindow_obj.SetActive(true);
-        }
-    }
-
-
     List<Dictionary<string, object>> data;
     // Use this for initialization
     void Start()
@@ -98,40 +66,24 @@ public class MountianFunction : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("seasonCODE", 0) == 10) //봄 10
         {
-            background_front[0] = Resources.Load<Sprite>("UI/park_playground/mo_back (3)");
-            background_back[0] = Resources.Load<Sprite>("UI/park_playground/mo_back (3)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[0];
-            bg_back.GetComponent<Image>().sprite = background_back[0];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (3)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (3)");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20) //여름 20
         {
-
-            background_front[1] = Resources.Load<Sprite>("UI/park_playground/mo_back");
-            background_back[1] = Resources.Load<Sprite>("UI/park_playground/mo_back");
-
-            bg_front.GetComponent<Image>().sprite = background_front[1];
-            bg_back.GetComponent<Image>().sprite = background_back[1];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30) //가을 30
         {
-
-            background_front[2] = Resources.Load<Sprite>("UI/park_playground/mo_back (4)");
-            background_back[2] = Resources.Load<Sprite>("UI/park_playground/mo_back (4)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[2];
-            bg_back.GetComponent<Image>().sprite = background_back[2];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (4)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (4)");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40) //겨울 40
         {
-
-            background_front[3] = Resources.Load<Sprite>("UI/park_playground/mo_back (2)");
-            background_back[3] = Resources.Load<Sprite>("UI/park_playground/mo_back (2)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[3];
-            bg_back.GetComponent<Image>().sprite = background_back[3];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (2)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/park_playground/mo_back (2)");
         }
-
 
         PlayerPrefs.SetInt("parkgock", 1);
         //외출시 스페이드 얻기
@@ -256,14 +208,7 @@ public class MountianFunction : MonoBehaviour {
         }
         else
         {
-            bam_obj.SetActive(false);
-            if (PlayerPrefs.GetInt("subaks2", 0) == 0)
-            {
-                bam();
-            }
             walk_Ani.Play("mountain", -1, 0f);
-            //배경변경
-            //backGround_obj.GetComponent<Image>().sprite = background_spr[moveCount_i];
             if (backGround_obj.activeSelf == true)
             {
                 backGround_obj.SetActive(false);

@@ -153,8 +153,6 @@ public class CityFood : MonoBehaviour {
         FoodD_i[3] = 13;
     }
 
-   
-
     public void BuyTruckShopN()
     {
         truckWindowYN_obj.SetActive(false);

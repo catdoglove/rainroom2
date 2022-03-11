@@ -19,7 +19,6 @@ public class CityFunction : CavasData
     public GameObject dayRoom, dayRoom2;
     public GameObject nightShop_obj, dayShop_obj, helpCity_obj;
     public GameObject noteSign_obj;
-    public Sprite noteSignNight_spr;
     //도움말
     int help=0;
     public Sprite[] helpC_spr;
@@ -109,7 +108,6 @@ public class CityFunction : CavasData
         int cts = PlayerPrefs.GetInt("countgooutst", 0);
         cts++;
         PlayerPrefs.SetInt("countgooutst", cts);
-        //Debug.Log("tal" + PlayerPrefs.GetInt("gooutst", 0) + "cts" + cts);
         if (cts >= 100 && PlayerPrefs.GetInt("gooutst", 0) < 3)
         {
             PlayerPrefs.SetInt("gooutst", 3);
@@ -254,8 +252,6 @@ public class CityFunction : CavasData
     }
     
     
-
-
     public void building()
     {
         if (buildToast_obj.activeSelf == true)
@@ -459,6 +455,8 @@ public class CityFunction : CavasData
     //밤낮
     public void setDay()
     {
+        Sprite[] sprites = Resources.LoadAll<Sprite>("UI/noteStore/cirt_note_enter");
+
         System.DateTime time = System.DateTime.Now;
         if (time.ToString("tt") == "PM")
         {
@@ -471,18 +469,14 @@ public class CityFunction : CavasData
             {
                 dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
-                //nightShop_obj.SetActive(true);
-                //dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
-                noteSign_obj.GetComponent<Image>().sprite = noteSignNight_spr;
+                noteSign_obj.GetComponent<Image>().sprite = sprites[1];
             }
             else
             {
                 //낮
                 dayRoom.SetActive(false);
                 dayRoom2.SetActive(false);
-                //nightShop_obj.SetActive(false);
-                //dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
@@ -497,18 +491,14 @@ public class CityFunction : CavasData
             {
                 dayRoom.SetActive(true);
                 dayRoom2.SetActive(true);
-                //nightShop_obj.SetActive(true);
-                //dayShop_obj.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 1);
-                noteSign_obj.GetComponent<Image>().sprite = noteSignNight_spr;
+                noteSign_obj.GetComponent<Image>().sprite = sprites[1];
             }
             else
             {
                 //낮
                 dayRoom.SetActive(false);
                 dayRoom2.SetActive(false);
-                //nightShop_obj.SetActive(false);
-                //dayShop_obj.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }

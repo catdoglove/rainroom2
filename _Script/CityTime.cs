@@ -17,8 +17,6 @@ public class CityTime : MonoBehaviour {
 
     //외물물건
     public GameObject putToast_obj;
-
-    public Sprite[] background_front, background_back;
     public GameObject bg_front, bg_back;
 
     private void Awake()
@@ -28,7 +26,6 @@ public class CityTime : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-
         //업데이트대신쓴다
         str = PlayerPrefs.GetString("code", "");
         StopCoroutine("updateSec");
@@ -41,40 +38,25 @@ public class CityTime : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("seasonCODE", 0) == 10)  //봄 10
         {
-            background_front[0] = Resources.Load<Sprite>("UI/city/city_background (3)");
-            background_back[0] = Resources.Load<Sprite>("UI/city/city_background2 (3)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[0];
-            bg_back.GetComponent<Image>().sprite = background_back[0];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background (3)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background2 (3)");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20)  //여름 20
         {
-            background_front[1] = Resources.Load<Sprite>("UI/city/city_background");
-            background_back[1] = Resources.Load<Sprite>("UI/city/city_background2");
-
-            bg_front.GetComponent<Image>().sprite = background_front[1];
-            bg_back.GetComponent<Image>().sprite = background_back[1];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background2");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30)  //가을 30
         {
-            background_front[2] = Resources.Load<Sprite>("UI/city/city_background");
-            background_back[2] = Resources.Load<Sprite>("UI/city/city_background2");
-
-            bg_front.GetComponent<Image>().sprite = background_front[2];
-            bg_back.GetComponent<Image>().sprite = background_back[2];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background2");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40) //겨울 40
         {
-            background_front[3] = Resources.Load<Sprite>("UI/city/city_background (2)");
-            background_back[3] = Resources.Load<Sprite>("UI/city/city_background2 (2)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[3];
-            bg_back.GetComponent<Image>().sprite = background_back[3];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background (2)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_background2 (2)");
         }
-
-
     }
-
 
     //1초당 업데이트
     IEnumerator updateSec()
@@ -86,15 +68,12 @@ public class CityTime : MonoBehaviour {
             {
                 randPaper_i =1;
             }
-
-
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
                 blackAd_obj.SetActive(false);
                 PlayerPrefs.SetInt("blad", 0);
-            }
-            //전단지
-            if (randPaper_i == 1)
+            }            
+            if (randPaper_i == 1) //전단지
             {
                 paper_obj.SetActive(false);
 
@@ -129,12 +108,8 @@ public class CityTime : MonoBehaviour {
                     px = Random.Range(-2, 6);
                     py = Random.Range(-3, -2);
                 }
-            }
-
-
-
-            //코인
-            if (randCoin_i == 1)
+            }                        
+            if (randCoin_i == 1) //코인
             {
                 coin_obj.SetActive(false);
                 coin_obj.transform.position = new Vector3(cx, cy, coin_obj.transform.position.z);
@@ -159,8 +134,6 @@ public class CityTime : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }//endOfWhile
     }
-
-
 
     //전단지 눌렀을때
     public void touchPaper()

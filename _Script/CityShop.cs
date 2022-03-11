@@ -29,7 +29,6 @@ public class CityShop : MonoBehaviour {
     public Text InteriorItem_txt;
     //솔드아웃
     public GameObject[] soldInterior_obj, soldPaint_obj, soldFabric_obj;
-    public Sprite soldOut_spr;
     public Text gas_txt;
     public GameObject gasTxt_obj;
     int gas_i;
@@ -321,37 +320,32 @@ public class CityShop : MonoBehaviour {
         //침대 완전한 2레벨
         if (PlayerPrefs.GetInt("bedmaxlv", 0) >= 2)
         {
-            //soldInterior_obj[1].SetActive(true);
             interiorTape_obj[0].SetActive(true);
-            interiorTape_obj[0].GetComponent<Image>().sprite = soldOut_spr;
+            interiorTape_obj[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_furniture_soldout");
         }
         //냉장고 4
         if (PlayerPrefs.GetInt("iceboxlv", 0) >= 4)
         {
-            //soldInterior_obj[0].SetActive(true);
             interiorTape_obj[1].SetActive(true);
-            interiorTape_obj[1].GetComponent<Image>().sprite = soldOut_spr;
+            interiorTape_obj[1].GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_furniture_soldout");
         }
         //테이블 6레벨
         if (PlayerPrefs.GetInt("desklv", 0) >= 6)
         {
-            //soldInterior_obj[2].SetActive(true);
             interiorTape_obj[2].SetActive(true);
-            interiorTape_obj[2].GetComponent<Image>().sprite = soldOut_spr;
+            interiorTape_obj[2].GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_furniture_soldout");
         }
         //전구 완전한 2레벨
         if (PlayerPrefs.GetInt("lightmaxlv", 0) >= 2)
         {
-            //soldInterior_obj[3].SetActive(true);
             interiorTape_obj[3].SetActive(true);
-            interiorTape_obj[3].GetComponent<Image>().sprite = soldOut_spr;
+            interiorTape_obj[3].GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_furniture_soldout");
         }
         //가스렌지 2레벨
         if (PlayerPrefs.GetInt("gasrangelv", 0) >= 5)
         {
-            //soldInterior_obj[3].SetActive(true);
             interiorTape_obj[4].SetActive(true);
-            interiorTape_obj[4].GetComponent<Image>().sprite = soldOut_spr;
+            interiorTape_obj[4].GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/city_furniture_soldout");
         }
     }
     void CheckMaxPaint()
@@ -454,7 +448,6 @@ public class CityShop : MonoBehaviour {
             interiorBuyC_txt.text = "" + interiorC_i;
             interiorBuyH_txt.text = "" + interiorH_i;
             interiorBuy_obj.SetActive(true);
-            //interiorItem_obj.GetComponent<Image>().sprite = InteriorItem_spr[itemIndex_i];
         }
     }
     public void BuyPaint()

@@ -19,7 +19,6 @@ public class SeaFunction : MonoBehaviour {
     string str;
     int haveClover_i;
     int clover_i = 0;
-    //
     public Text moveCount_txt;
 
     public Animator walk_Ani;
@@ -32,13 +31,11 @@ public class SeaFunction : MonoBehaviour {
     int nowArr = 1; //현재 줄
 
     int ik;
-    //
     Color colorN;
     public GameObject needToast_obj;
 
     //외물물건
     public GameObject putToast_obj;
-    public GameObject shrimp_obj, shrimpWindow_obj;
 
     //엔딩
     public GameObject endWindow_obj;
@@ -50,8 +47,6 @@ public class SeaFunction : MonoBehaviour {
     public AudioClip sp_end, sp_original;
     public GameObject GM;
 
-
-    public Sprite[] background_front, background_back;
     public GameObject bg_front, bg_back;
 
     /// <summary>
@@ -70,33 +65,6 @@ public class SeaFunction : MonoBehaviour {
         }
         PlayerPrefs.SetInt("nowarrsign", nowArr);
     }
-
-    //주꾸미
-    void shrimp()
-    {
-        int sh = Random.Range(0, 10);
-        if (sh == 1)
-        {
-            //shrimp_obj.SetActive(true);
-        }
-    }
-    public void ActShrimp()
-    {
-        if (shrimpWindow_obj.activeSelf == true)
-        {
-            shrimpWindow_obj.SetActive(false);
-            //shrimp_obj.SetActive(false);
-            //PlayerPrefs.SetInt("shrimp", 1);
-            //PlayerPrefs.SetInt("ggomak", 1);
-            //PlayerPrefs.SetInt("icebars", 1);
-            PlayerPrefs.SetInt("icebars2", 1);
-        }
-        else
-        {
-            shrimpWindow_obj.SetActive(true);
-        }
-    }
-
     //글씨창 여닫기
     public void ActSingText()
     {
@@ -110,12 +78,10 @@ public class SeaFunction : MonoBehaviour {
         }
     }
 
-
     List<Dictionary<string, object>> data;
     // Use this for initialization
     void Start()
     {
-
         //계절체크
         string mon = System.DateTime.Now.ToString("MM");
 
@@ -123,35 +89,23 @@ public class SeaFunction : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("seasonCODE", 0) == 10) //봄 10
         {
-            background_front[0] = Resources.Load<Sprite>("UI/city/sea_background");
-            background_back[0] = Resources.Load<Sprite>("UI/city/sea_background");
-
-            bg_front.GetComponent<Image>().sprite = background_front[0];
-            bg_back.GetComponent<Image>().sprite = background_back[0];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 20) //여름 20
         {
-            background_front[1] = Resources.Load<Sprite>("UI/city/sea_background (2)");
-            background_back[1] = Resources.Load<Sprite>("UI/city/sea_background (2)");
-
-            bg_front.GetComponent<Image>().sprite = background_front[1];
-            bg_back.GetComponent<Image>().sprite = background_back[1];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background (2)");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background (2)");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 30) //가을 30
         {
-            background_front[2] = Resources.Load<Sprite>("UI/city/sea_background");
-            background_back[2] = Resources.Load<Sprite>("UI/city/sea_background");
-
-            bg_front.GetComponent<Image>().sprite = background_front[2];
-            bg_back.GetComponent<Image>().sprite = background_back[2];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
         }
         else if (PlayerPrefs.GetInt("seasonCODE", 0) == 40) //겨울 40
         {
-            background_front[3] = Resources.Load<Sprite>("UI/city/sea_background");
-            background_back[3] = Resources.Load<Sprite>("UI/city/sea_background");
-
-            bg_front.GetComponent<Image>().sprite = background_front[3];
-            bg_back.GetComponent<Image>().sprite = background_back[3];
+            bg_front.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
+            bg_back.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/city/sea_background");
         }
 
         //외출시 스페이드 얻기
@@ -277,14 +231,8 @@ public class SeaFunction : MonoBehaviour {
         }
         else
         {
-            shrimp_obj.SetActive(false);
-            if (PlayerPrefs.GetInt("icebars2", 0) == 0)
-            {
-                shrimp();
-            }
             walk_Ani.Play("mountain", -1, 0f);
             //배경변경
-            //backGround_obj.GetComponent<Image>().sprite = background_spr[moveCount_i];
             if (backGround_obj.activeSelf == true)
             {
                 backGround_obj.SetActive(false);
@@ -411,7 +359,6 @@ public class SeaFunction : MonoBehaviour {
     {
         putToast_obj.SetActive(false);
     }
-
 
     public void touchBox()
     {
