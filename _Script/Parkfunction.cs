@@ -26,7 +26,7 @@ public class Parkfunction : CavasData
     public Sprite[] helpP_spr;
     int help;
     //
-    public GameObject GMtag,GMP;
+    public GameObject GMtag,GMP, blackimg;
     public GameObject leafPr_obj,leafWin_obj;
     public GameObject eventNight_obj,eventNightPet_obj;
 
@@ -472,6 +472,7 @@ public class Parkfunction : CavasData
             //업적
             //PlayerPrefs.SetInt("acgocheck", 1);
             //checkachOut();
+            MemoryDestroy();
             StartCoroutine("LoadOut");
             audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
@@ -634,4 +635,15 @@ public class Parkfunction : CavasData
         needToast_obj.SetActive(false);
     }
 
+    /// <summary>
+    /// 메모리 해제 함수
+    /// </summary>
+    void MemoryDestroy()
+    {
+        blackimg.SetActive(true);
+        GMP.GetComponent<ParkTime>().bg_front.GetComponent<Image>().sprite = null;
+        GMP.GetComponent<ParkTime>().bg_back.GetComponent<Image>().sprite = null;
+        GMP.GetComponent<ParkTime>().moonbangu_img.GetComponent<Image>().sprite = null;
+        GMP.GetComponent<ParkTime>().bas_obj.GetComponent<Image>().sprite = null;
+    }
 }

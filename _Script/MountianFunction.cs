@@ -32,7 +32,7 @@ public class MountianFunction : MonoBehaviour {
 
     int ik;
     Color colorN;
-    public GameObject needToast_obj;
+    public GameObject needToast_obj, blackimg;
 
     //외물물건
     public GameObject putToast_obj;
@@ -488,8 +488,10 @@ public class MountianFunction : MonoBehaviour {
     //미니게임끝
     public void FinishMini()
     {
-
         PlayerPrefs.SetInt("outtrip", 1);
+        bg_front.GetComponent<Image>().sprite = null;
+        bg_back.GetComponent<Image>().sprite = null;
+        blackimg.SetActive(true);
         StartCoroutine("LoadOut");
     }
 

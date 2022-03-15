@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class CityFunction : CavasData
 {
     public GameObject GMtag, GMC;
-    public GameObject buildToast_obj;
+    public GameObject buildToast_obj, blackimg;
 
     //씬이동
     public GameObject menuBlock_obj;
@@ -338,6 +338,7 @@ public class CityFunction : CavasData
             PlayerPrefs.SetInt("seatime", 9);
             PlayerPrefs.Save();
             hPrice_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0);
+            MemoryDestroy();
             StartCoroutine("LoadOut");
             audio_obj.GetComponent<SoundEvt>().buttonSound();
         }
@@ -502,5 +503,22 @@ public class CityFunction : CavasData
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
+    }
+
+
+    /// <summary>
+    /// 메모리 해제 함수
+    /// </summary>
+    void MemoryDestroy()
+    {
+        blackimg.SetActive(true);
+        GMC.GetComponent<CityTime>().bg_front.GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityTime>().bg_back.GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityShop>().interiorTape_obj[0].GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityShop>().interiorTape_obj[1].GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityShop>().interiorTape_obj[2].GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityShop>().interiorTape_obj[3].GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityShop>().interiorTape_obj[4].GetComponent<Image>().sprite = null;
+        GMC.GetComponent<CityFunction>().noteSign_obj.GetComponent<Image>().sprite = null;
     }
 }

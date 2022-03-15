@@ -190,7 +190,6 @@ public class MainShop : ShopHandler {
         }
         else
         {
-            //Debug.Log(itemIndex_i + "fd" + itemLevel_i);//////////////////////////////////////////////////////////////////
 
             if (coldRain_i >= coldRainPrice_i)
             {
@@ -374,7 +373,6 @@ public class MainShop : ShopHandler {
             levels_txt[i].text = "" + data_itemName[itemLevel_i][itemName_str];
             lvNum_txt[i].text = "LV. " + itemLevel_i.ToString();
             hotRainPrice_i = (int)data_hPrice[itemLevel_i][itemName_str];
-            //Debug.Log(""+ itemLevel_i+ itemName_str);
             coldRainPrice_i = (int)data_cPrice[itemLevel_i][itemName_str];
             coldPrice_txt[i].text = coldRainPrice_i.ToString();
             hotPrice_txt[i].text = hotRainPrice_i.ToString();
@@ -1116,7 +1114,6 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            Debug.Log("ttt");
             if (PlayerPrefs.GetInt("putsummerhat", 0) == 1)
             {
                 GM2.GetComponent<GasrangeEvt>().sHat_obj.SetActive(false);
@@ -2327,7 +2324,6 @@ public class MainShop : ShopHandler {
                 }
             }
         }
-        //Debug.Log(itemName_str + PlayerPrefs.GetInt("windowlv") + "window" + PlayerPrefs.GetInt("allwindow", 0));
         if (itemName_str == "window")
         {
             if (PlayerPrefs.GetInt("windowlv") >= 8 && PlayerPrefs.GetInt("allwindow", 0) == 0)

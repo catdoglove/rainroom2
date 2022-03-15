@@ -207,7 +207,6 @@ public class AdmobADSCity : MonoBehaviour {
                 sG2 = -1;
             }
             PlayerPrefs.SetInt("secf3", sG2);
-            //Debug.Log("sg2" + sG2);
             yield return new WaitForSeconds(1f);
         }
     }

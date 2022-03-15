@@ -809,6 +809,8 @@ public class MainBtnEvt : CavasData
 
     public void goHome()
     {
+        MemoryDestroy();
+
         //외출중
         PlayerPrefs.SetInt("outorhome", 0);
         PlayerPrefs.SetInt("outtrip", 0);
@@ -977,4 +979,40 @@ public class MainBtnEvt : CavasData
         Application.OpenURL("https://docs.google.com/document/d/1JFdyCym-5Kxns2xcA-w8W5ir5YiL4J-6JrJeMF8zcuk/edit?usp=sharing");
     }
 
+    /// <summary>
+    /// 메모리 해제 함수
+    /// </summary>
+    void MemoryDestroy()
+    {
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1) //공원
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("parkGM");
+            }
+            GM2.GetComponent<ParkTime>().bg_front.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<ParkTime>().bg_back.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<ParkTime>().moonbangu_img.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<ParkTime>().bas_obj.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<Parkfunction>().blackimg.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2) //도시
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("cityGM");
+            }
+            GM2.GetComponent<CityTime>().bg_front.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityTime>().bg_back.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityShop>().interiorTape_obj[0].GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityShop>().interiorTape_obj[1].GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityShop>().interiorTape_obj[2].GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityShop>().interiorTape_obj[3].GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityShop>().interiorTape_obj[4].GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityFunction>().noteSign_obj.GetComponent<Image>().sprite = null;
+            GM2.GetComponent<CityFunction>().blackimg.SetActive(true);
+        }
+
     }
+
+}

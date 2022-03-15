@@ -39,10 +39,6 @@ public class AdmobADS : MonoBehaviour {
 #else
         string appId = "unexpected_platform";
 #endif
-        // Initialize the Google Mobile Ads SDK.
-        //MobileAds.Initialize(appId);
-
-        //this.RequestBanner();
 
 
 #if UNITY_ANDROID

@@ -492,12 +492,10 @@ public class FirstRoomBookList : MonoBehaviour {
         if (itemNowArr < itemAllArr) //대화 차례대로 보이기
         {
             itemNowArr++;
-            //Debug.Log(itemNowArr);
         }
         else if (itemNowArr >= itemAllArr) //대화 줄 초기화
         {
             itemNowArr = 0;
-            //Debug.Log("리셋");
         }
 
     }

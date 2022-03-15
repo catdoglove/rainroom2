@@ -1209,7 +1209,6 @@ public class FirstRoomFunction : CavasData {
     {
         int cts = PlayerPrefs.GetInt("countboxst", 0);
         cts++;
-        //Debug.Log("boxst");
         PlayerPrefs.SetInt("countboxst", cts);
         if (cts >= 9 && PlayerPrefs.GetInt("boxst", 0) < 3)
         {
