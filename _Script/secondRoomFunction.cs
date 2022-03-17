@@ -173,8 +173,8 @@ public class secondRoomFunction : CavasData
             goodsDesk_obj.SetActive(true);
             goodsImg_obj.GetComponent<Image>().sprite = goods_spr[PlayerPrefs.GetInt("setoutgoods", 0)];
         }
-        
-            //checkEnd();
+
+        //checkEnd();
 
 
         colorL = new Color(1f, 1f, 1f);
@@ -194,11 +194,10 @@ public class secondRoomFunction : CavasData
         }
         GMTag.GetComponent<MainBtnEvt>().menuBack_obj.GetComponent<Image>().sprite = menuShop_spr;
 
-        GMTag.GetComponent <MainShop>().RabbitColo();
+        GMTag.GetComponent<MainShop>().RabbitColo();
         GMTag.GetComponent<MainShop>().TutleColo();
         GMTag.GetComponent<MainShop>().MarimoColo();
         GMTag.GetComponent<MainShop>().FishColo();
-
         //GM을 찾아불러온 데이터들 가져오기
         GMNotdistroy = GameObject.FindGameObjectWithTag("loadGM");
         window_i = PlayerPrefs.GetInt("windowlv", 0);
@@ -213,6 +212,29 @@ public class secondRoomFunction : CavasData
         light_i = PlayerPrefs.GetInt("lightlv", 0);
         umbrella_i = PlayerPrefs.GetInt("umbrellalv", 0);
         drawer_i = PlayerPrefs.GetInt("drawerlv", 0);
+
+
+        //메모리할당
+        if (wall_i == 0)
+        {
+            wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall00");
+            wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall00");
+        }
+        switch (wall_i)
+        {
+            case 1:
+                wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall01");
+                wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall01");
+                break;
+            case 2:
+                wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall02");
+                wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall02");
+                break;
+            case 3:
+                wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall03");
+                wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall03");
+                break;
+        }
 
 
         wallImg_obj.GetComponent<Image>().sprite = wall_spr[wall_i];
