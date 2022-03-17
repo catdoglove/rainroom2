@@ -210,7 +210,6 @@ public class FirstRoomFunction : CavasData {
         GMNotdistroy.GetComponent<MainShop>().FishColo();
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 
-        PlayerPrefs.SetInt("walllv", 0);
         //window_i = PlayerPrefs.GetInt ("windowlv", 0);
         book_i = PlayerPrefs.GetInt ("booklv",0);
 		bed_i = PlayerPrefs.GetInt ("bedlv",0);

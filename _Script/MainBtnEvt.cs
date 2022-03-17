@@ -609,13 +609,13 @@ public class MainBtnEvt : CavasData
 
     public void TalkSpeedFast()
     {
-        speedF = 0.02f;
+        speedF = 0.001f;
         StartCoroutine("closeToast");
     }
 
     public void TalkSpeedNor()
     {
-        speedF = 0.05f;
+        speedF = 0.04f;
         StartCoroutine("closeToast");
     }
 
@@ -638,12 +638,12 @@ public class MainBtnEvt : CavasData
         PlayerPrefs.SetFloat("talkspeed", speedF);
         PlayerPrefs.Save();
 
-        if (speedF == 0.02f)
+        if (speedF == 0.001f)
         {
             tspeed_txt.text = "대화 속도 '빠름'으로 변경";
             speedBtnCKFunction(3);
         }
-        else if (speedF == 0.05f)
+        else if (speedF == 0.04f)
         {
             tspeed_txt.text = "대화 속도 '보통'으로 변경";
             speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[1];
