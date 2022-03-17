@@ -19,15 +19,18 @@ public class FirstRoomSticker : MonoBehaviour {
     public GameObject frameShow_obj;
     public GameObject GM;
 
-	// Use this for initialization
-	void Start () {
+    public int a = 0;
+
+    // Use this for initialization
+    void Start () {
         StartFrame();
-        frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
+        //frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
         //LoadFrame();
     }
 
     public void OpenFrame()
     {
+        SetImage();
         frame_obj.SetActive(true);
         LoadFrame();
     }
@@ -35,6 +38,27 @@ public class FirstRoomSticker : MonoBehaviour {
     public void CloseFrame()
     {
         frame_obj.SetActive(false);
+        ReleseImage();
+    }
+    public void SetImage()
+    {
+        if (a == 0)
+        {
+            frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
+            a = 1;
+        }
+    }
+    public void ReleseImage()
+    {
+        if (a == 1)
+        {
+            for (int i = 0; i <= 68; i++)
+            {
+                frame_spr[i] = null;
+            }
+            Resources.UnloadUnusedAssets();
+        }
+        a = 0;
     }
 
     public void ShowFrame()
@@ -144,6 +168,10 @@ public class FirstRoomSticker : MonoBehaviour {
 
     public void frameNumCheck()
     {
+        if (frame_spr[0] == null)
+        {
+            frame_spr = Resources.LoadAll<Sprite>("UI/Sticker");
+        }
         show_i++;
         int c=0;
         for (int i = 0; i < 29; i++)

@@ -2193,12 +2193,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneMove_btn: {fileID: 0}
   MainGM: {fileID: 0}
+  loadGM: {fileID: 0}
   GMN: {fileID: 0}
   secondGM: {fileID: 96967352}
   moreLv_obj: {fileID: 0}
   achievement_obj: {fileID: 938562170}
   moveX: 0
   moveY: 0
+  moveBack_obj: {fileID: 1725800505}
   title_obj: {fileID: 0}
 --- !u!114 &96967356
 MonoBehaviour:
@@ -2263,14 +2265,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 052e2cf1f54675e40935d63ab23a784f, type: 3}
   wall_spr:
   - {fileID: 21300000, guid: 1ae31b2ad3f32c04e973cf50411392d4, type: 3}
-  - {fileID: 21300000, guid: 73d0fb87e187ab147b96941dad71c8c2, type: 3}
-  - {fileID: 21300000, guid: d4c75dbe240e05e48922a692362059ee, type: 3}
-  - {fileID: 21300000, guid: 1250c4d7765088b4bb0ca64a0f2a3a7c, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   wall2_spr:
   - {fileID: 21300000, guid: b68e3ee38eb964c4398813d51624b5c3, type: 3}
-  - {fileID: 21300000, guid: 17c2f2c7c210a494cb6dfd6af32054ba, type: 3}
-  - {fileID: 21300000, guid: 281a1dfef1f78b94cb81cd58d331f7e7, type: 3}
-  - {fileID: 21300000, guid: 8bb31e934ae0ab34187bb98cc803d712, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   iceBoxBtn_obj: {fileID: 378764996}
   gasBtn_obj: {fileID: 105337872}
   roomTutle_obj: {fileID: 1722449747}
@@ -2341,8 +2343,8 @@ MonoBehaviour:
   GMTag: {fileID: 0}
   dayRoom: {fileID: 320892303}
   day_spr:
-  - {fileID: 21300000, guid: cc175dd333360c24884b7ecb1a24c1a3, type: 3}
-  - {fileID: 21300000, guid: 1074595f94d9b7f46819bbdaab565e6e, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   switchToast_obj: {fileID: 1650790776}
   outPrice_txt: {fileID: 1033612661}
   outTime_txt: {fileID: 1083899189}
@@ -2385,18 +2387,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 402cb07e61320a845a71f177eb583798, type: 3}
   reformWall_spr:
   - {fileID: 21300000, guid: 1250c4d7765088b4bb0ca64a0f2a3a7c, type: 3}
-  - {fileID: 21300000, guid: f9cfdadd6e9860f4e8cfb7fc02eae012, type: 3}
-  - {fileID: 21300000, guid: 41e054d3beff71c45a38f588561e3492, type: 3}
-  - {fileID: 21300000, guid: 5decf82327127c74a84218d7bdc8fb1a, type: 3}
-  - {fileID: 21300000, guid: 34fb126627ac25544b44fdb240f60b46, type: 3}
-  - {fileID: 21300000, guid: 9853e3c056481b1499bef11ba05a5918, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   reformWall2_spr:
   - {fileID: 21300000, guid: 8bb31e934ae0ab34187bb98cc803d712, type: 3}
-  - {fileID: 21300000, guid: 5b6beb8978a835047991cf4ffb9636bf, type: 3}
-  - {fileID: 21300000, guid: 78c0e7e9e58c8a54384b85101a44ae66, type: 3}
-  - {fileID: 21300000, guid: 2f93ab2295b94cb4f9254f83920990a2, type: 3}
-  - {fileID: 21300000, guid: b5f83a6d316037949a0fd2ddf59fc6c4, type: 3}
-  - {fileID: 21300000, guid: f6d6331e915d59f4dac65eb0b46cec27, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   reformDrawer_spr:
   - {fileID: 21300008, guid: 92ddcb2b8113aa04dac8cb8c5aed69ab, type: 3}
   - {fileID: 21300008, guid: 92ddcb2b8113aa04dac8cb8c5aed69ab, type: 3}
@@ -2487,6 +2489,7 @@ MonoBehaviour:
   m_end: {fileID: 437253269}
   sp_end: {fileID: 8300000, guid: 0e7706a07dfc4ad4ea8bc02e5560f16c, type: 3}
   sp_original: {fileID: 8300000, guid: e06f9078811528642bbeda3eceee86a7, type: 3}
+  moveBack_obj: {fileID: 1725800505}
 --- !u!114 &96967357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3012,6 +3015,7 @@ MonoBehaviour:
   showNum_i: 380000003a0000003c0000000a0000000c0000000e0000002a0000002c0000002e000000020000000400000010000000120000001400000031000000330000003500000017000000190000001c0000003f000000070000001f000000280000004200000021000000230000002500000045000000
   frameShow_obj: {fileID: 1228626193}
   GM: {fileID: 0}
+  a: 0
 --- !u!114 &96967366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31872,6 +31876,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1725800505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725800507}
+  - component: {fileID: 1725800506}
+  m_Layer: 0
+  m_Name: "\uBA54\uBAA8\uB9AC\uC6A9\uAC80\uC815\uD654\uBA74"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &1725800506
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725800505}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 9999
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.5254902, g: 0.64705884, b: 0.654902, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1725800507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725800505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07, y: -0.05, z: 74.28516}
+  m_LocalScale: {x: 239.13524, y: 138.53497, z: 1.1967242}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1731353928
 GameObject:
   m_ObjectHideFlags: 0

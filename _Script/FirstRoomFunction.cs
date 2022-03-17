@@ -120,7 +120,13 @@ public class FirstRoomFunction : CavasData {
     
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 40;
+
+        Resources.UnloadUnusedAssets();
+
         PlayerPrefs.SetInt("parkgock", 0);
         //다시 나가시겠습니까?
         if (PlayerPrefs.GetInt("outorhome", 0) >= 1)
@@ -204,12 +210,36 @@ public class FirstRoomFunction : CavasData {
         GMNotdistroy.GetComponent<MainShop>().FishColo();
         //방에 처음 들어왔을때 각각 단계에 따라 이미지 바꿔주기
 
+        PlayerPrefs.SetInt("walllv", 0);
         //window_i = PlayerPrefs.GetInt ("windowlv", 0);
         book_i = PlayerPrefs.GetInt ("booklv",0);
 		bed_i = PlayerPrefs.GetInt ("bedlv",0);
 		rug_i = PlayerPrefs.GetInt ("ruglv",0);
         wall_i = PlayerPrefs.GetInt("walllv", 0);
-		poster_i = PlayerPrefs.GetInt ("posterlv",0);
+
+        //메모리할당
+        if (wall_i == 0)
+        {
+            loadGM.GetComponent<LoadingData>().wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/head_wall00");
+            loadGM.GetComponent<LoadingData>().wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/back_wall00");
+        }
+        switch (wall_i)
+        {
+            case 1:
+                loadGM.GetComponent<LoadingData>().wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/head_wall01");
+                loadGM.GetComponent<LoadingData>().wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/back_wall01");
+                break;
+            case 2:
+                loadGM.GetComponent<LoadingData>().wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/head_wall02");
+                loadGM.GetComponent<LoadingData>().wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/back_wall02");
+                break;
+            case 3:
+                loadGM.GetComponent<LoadingData>().wall_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/head_wall03");
+                loadGM.GetComponent<LoadingData>().wall2_spr[wall_i] = Resources.Load<Sprite>("UI/Roomup/back_wall03");
+                break;
+        }
+
+        poster_i = PlayerPrefs.GetInt ("posterlv",0);
 		desk_i = PlayerPrefs.GetInt ("desklv",0);
 		tapestry_i = PlayerPrefs.GetInt ("tapestrylv",0);
 		stand_i = PlayerPrefs.GetInt ("standlv",0);
@@ -335,12 +365,10 @@ public class FirstRoomFunction : CavasData {
                 }
             }
         }
-        //standImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().stand_spr [stand_i];
         rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
-        //tapestryImg_obj.GetComponent<Image> ().sprite = loadGM.GetComponent<LoadingData> ().tapestry_spr [tapestry_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
 
 
@@ -391,6 +419,30 @@ public class FirstRoomFunction : CavasData {
         //벽지
         if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
         {
+            //메모리할당
+            switch (PlayerPrefs.GetInt("setwallpalette", 0))
+            {
+                case 1:
+                    reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomup/head_wallre_01");
+                    reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomup/back_wallre_01");
+                    break;
+                case 2:
+                    reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomup/head_wallre_02");
+                    reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomup/back_wallre_02");
+                    break;
+                case 3:
+                    reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomup/head_wallre_03");
+                    reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomup/back_wallre_03");
+                    break;
+                case 4:
+                    reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall1");
+                    reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall2");
+                    break;
+                case 5:
+                    reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall1");
+                    reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall2");
+                    break;
+            }
             wallImg_obj.GetComponent<Image>().sprite = reformWall_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
             wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
         }

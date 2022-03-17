@@ -90,6 +90,16 @@ public class MainBtnEvt : CavasData
     public void CloseHelp()
     {
         Help_obj.SetActive(false);
+        HMemoryDestroy();
+    }
+
+    void HMemoryDestroy()
+    {
+        help_spr[0] = null;
+        help_spr[1] = null;
+        help_spr[2] = null;
+        Help_obj.GetComponent<Image>().sprite = null;
+        Resources.UnloadUnusedAssets();
     }
 
     private void Update()
@@ -380,8 +390,42 @@ public class MainBtnEvt : CavasData
         speed_obj.SetActive(false);
         YN_obj.SetActive(false);
         Help_obj.SetActive(false);
+        HMemoryDestroy();
         helpfrist_obj.SetActive(false);
+        if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("parkGM");
+            }
+            GM2.GetComponent<FirstRoomSticker>().ReleseImage();
+        }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("cityGM");
+            }
+            GM2.GetComponent<FirstRoomSticker>().ReleseImage();
+        }
+        else if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("GM2");
+            }
+            GM2.GetComponent<FirstRoomSticker>().ReleseImage();
+        }
+        else if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            if (GM == null)
+            {
+                GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            }
+            GM.GetComponent<FirstRoomSticker>().ReleseImage();
+        }
     }
+
 
     public void windowsOpen()
     {
@@ -633,16 +677,19 @@ public class MainBtnEvt : CavasData
     public void OpenHelpShop()
     {
         Help_obj.SetActive(true);
+        help_spr[0] = Resources.Load<Sprite>("UI/menu/help05");
         Help_obj.GetComponent<Image>().sprite = help_spr[0];
     }
     public void OpenHelpInfo()
     {
         Help_obj.SetActive(true);
+        help_spr[1] = Resources.Load<Sprite>("UI/menu/help04");
         Help_obj.GetComponent<Image>().sprite = help_spr[1];
     }
     public void OpenHelpOption()
     {
         Help_obj.SetActive(true);
+        help_spr[2] = Resources.Load<Sprite>("UI/menu/help06");
         Help_obj.GetComponent<Image>().sprite = help_spr[2];
     }
 

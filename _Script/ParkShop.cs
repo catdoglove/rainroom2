@@ -938,8 +938,22 @@ public class ParkShop : MonoBehaviour {
     public void CloseHelp()
     {
         help_obj.SetActive(false);
+
     }
 
+    /// <summary>
+    /// 메모리해제
+    /// </summary>
+    void HMemoryDestroy()
+    {
+        help_spr[0] = null;
+        help_spr[1] = null;
+        help_spr[2] = null;
+        help_spr[4] = null;
+        help_spr[3] = null;
+        help_obj.GetComponent<Image>().sprite = null;
+        Resources.UnloadUnusedAssets();
+    }
 
     //밤에식물구매 꽃 팔레트 바꾸기
     public void OpenActFlowerColor()
@@ -1461,22 +1475,28 @@ public class ParkShop : MonoBehaviour {
     }
     public void numH0()
     {
+        //메모리할당
+        help_spr[0] = Resources.Load<Sprite>("UI/park_playground/park_help05");
         helpNum = 0;
     }
     public void numH1()
     {
+        help_spr[1] = Resources.Load<Sprite>("UI/park_playground/park_help06");
         helpNum = 1;
     }
     public void numH2()
     {
+        help_spr[2] = Resources.Load<Sprite>("UI/park_playground/park_help03");
         helpNum = 2;
     }
     public void numH3()
     {
+        help_spr[3] = Resources.Load<Sprite>("UI/park_playground/park_help04");
         helpNum = 3;
     }
     public void numH4()
     {
+        help_spr[4] = Resources.Load<Sprite>("UI/park_playground/park_help07");
         helpNum = 4;
     }
     #endregion

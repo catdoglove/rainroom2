@@ -304,8 +304,46 @@ public class MainShop : ShopHandler {
                     break;
 
                 case 5:
+                    //메모리작업
+                    switch (itemLevel_i)
+                    {
+                        case 1:
+                            loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/head_wall01");
+                            loadGM.GetComponent<LoadingData>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/back_wall01");
+                            break;
+                        case 2:
+                            loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/head_wall02");
+                            loadGM.GetComponent<LoadingData>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/back_wall02");
+                            break;
+                        case 3:
+                            loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/head_wall03");
+                            loadGM.GetComponent<LoadingData>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomup/back_wall03");
+                            break;
+                    }
                     GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[itemLevel_i];
-                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[4 + itemLevel_i];
+                    GM.GetComponent<FirstRoomFunction>().fisrtRoomItem_obj[7].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[itemLevel_i];
+                    switch (itemLevel_i)
+                    {
+                        case 1:
+                            loadGM.GetComponent<LoadingData>().wall_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[3] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[3] = null;
+                            break;
+                        case 2:
+                            loadGM.GetComponent<LoadingData>().wall_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[3] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[3] = null;
+                            break;
+                        case 3:
+                            loadGM.GetComponent<LoadingData>().wall_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[2] = null;
+                            break;
+                    }
+                    Resources.UnloadUnusedAssets();
                     break;
                 case 6:
                     
@@ -317,8 +355,46 @@ public class MainShop : ShopHandler {
             switch (itemIndex_i)
             {
                 case 5:
+                    //메모리작업
+                    switch (itemLevel_i)
+                    {
+                        case 1:
+                            GM2.GetComponent<secondRoomFunction>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall01");
+                            GM2.GetComponent<secondRoomFunction>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall01");
+                            break;
+                        case 2:
+                            GM2.GetComponent<secondRoomFunction>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall02");
+                            GM2.GetComponent<secondRoomFunction>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall02");
+                            break;
+                        case 3:
+                            GM2.GetComponent<secondRoomFunction>().wall_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/back_wall03");
+                            GM2.GetComponent<secondRoomFunction>().wall2_spr[itemLevel_i] = Resources.Load<Sprite>("UI/Roomdown/head_wall03");
+                            break;
+                    }
                     GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().wall_spr[itemLevel_i];
                     GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().wall2_spr[itemLevel_i];
+                    switch (itemLevel_i)
+                    {
+                        case 1:
+                            loadGM.GetComponent<LoadingData>().wall_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[3] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[3] = null;
+                            break;
+                        case 2:
+                            loadGM.GetComponent<LoadingData>().wall_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[3] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[3] = null;
+                            break;
+                        case 3:
+                            loadGM.GetComponent<LoadingData>().wall_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[1] = null;
+                            loadGM.GetComponent<LoadingData>().wall_spr[2] = null;
+                            loadGM.GetComponent<LoadingData>().wall2_spr[2] = null;
+                            break;
+                    }
+                    Resources.UnloadUnusedAssets();
                     break;
                 case 6:
                     GM2.GetComponent<secondRoomFunction>().secondRoomItem_obj[itemIndex_i].GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().light_spr[itemLevel_i];
@@ -1716,14 +1792,110 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
+            //메모리작업
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomup/head_wallre_01");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomup/back_wallre_01");
+                    break;
+                case 2:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomup/head_wallre_02");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomup/back_wallre_02");
+                    break;
+                case 3:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomup/head_wallre_03");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomup/back_wallre_03");
+                    break;
+                case 4:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall2");
+                    break;
+                case 5:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall2");
+                    break;
+            }
             GM.GetComponent<FirstRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall_spr[itemIndex_i];
             GM.GetComponent<FirstRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall2_spr[itemIndex_i];
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomup/head_wallre_01");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomup/back_wallre_01");
+                    break;
+                case 2:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomup/head_wallre_02");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomup/back_wallre_02");
+                    break;
+                case 3:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomup/head_wallre_03");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomup/back_wallre_03");
+                    break;
+                case 4:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall2");
+                    break;
+                case 5:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall2");
+                    break;
+            }
+            Resources.UnloadUnusedAssets();
         }
 
         if (PlayerPrefs.GetInt("place", 0) == 1)//방
         {
+            //메모리작업
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomdown/head_wallre01");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomdown/back_wallre01");
+                    break;
+                case 2:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomdown/head_wallre02");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomdown/back_wallre02");
+                    break;
+                case 3:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomdown/head_wallre03");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomdown/back_wallre03");
+                    break;
+                case 4:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall1");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall2");
+                    break;
+                case 5:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall2");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall");
+                    break;
+            }
             GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall_spr[itemIndex_i];
             GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[itemIndex_i];
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomdown/head_wallre01");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomdown/back_wallre01");
+                    break;
+                case 2:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomdown/head_wallre02");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomdown/back_wallre02");
+                    break;
+                case 3:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomdown/head_wallre03");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomdown/back_wallre03");
+                    break;
+                case 4:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall1");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall2");
+                    break;
+                case 5:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall2");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall");
+                    break;
+            }
+            Resources.UnloadUnusedAssets();
         }
         PlayerPrefs.SetInt("setwallpalette", itemIndex_i);
         selectAllFalse();
@@ -1733,13 +1905,109 @@ public class MainShop : ShopHandler {
     {
         if (PlayerPrefs.GetInt("place", 0) == 0)//방
         {
+            //메모리작업
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomup/head_wallre_01");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomup/back_wallre_01");
+                    break;
+                case 2:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomup/head_wallre_02");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomup/back_wallre_02");
+                    break;
+                case 3:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomup/head_wallre_03");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomup/back_wallre_03");
+                    break;
+                case 4:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall2");
+                    break;
+                case 5:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall2");
+                    break;
+            }
             GM.GetComponent<FirstRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall_spr[0];
             GM.GetComponent<FirstRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM.GetComponent<FirstRoomFunction>().reformWall2_spr[0];
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomup/head_wallre_01");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomup/back_wallre_01");
+                    break;
+                case 2:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomup/head_wallre_02");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomup/back_wallre_02");
+                    break;
+                case 3:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomup/head_wallre_03");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomup/back_wallre_03");
+                    break;
+                case 4:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomup/forest_wall2");
+                    break;
+                case 5:
+                    GM.GetComponent<FirstRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall1");
+                    GM.GetComponent<FirstRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomup/sea_wall2");
+                    break;
+            }
+            Resources.UnloadUnusedAssets();
         }
         if (PlayerPrefs.GetInt("place", 0) == 1)//방
         {
+            //메모리작업
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomdown/head_wallre01");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomdown/back_wallre01");
+                    break;
+                case 2:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomdown/head_wallre02");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomdown/back_wallre02");
+                    break;
+                case 3:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomdown/head_wallre03");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomdown/back_wallre03");
+                    break;
+                case 4:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall1");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall2");
+                    break;
+                case 5:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall2");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall");
+                    break;
+            }
             GM2.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall_spr[0];
             GM2.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = GM2.GetComponent<secondRoomFunction>().reformWall2_spr[0];
+            switch (itemIndex_i)
+            {
+                case 1:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomdown/head_wallre01");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomdown/back_wallre01");
+                    break;
+                case 2:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomdown/head_wallre02");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomdown/back_wallre02");
+                    break;
+                case 3:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomdown/head_wallre03");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomdown/back_wallre03");
+                    break;
+                case 4:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall1");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall2");
+                    break;
+                case 5:
+                    GM2.GetComponent<secondRoomFunction>().reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall2");
+                    GM2.GetComponent<secondRoomFunction>().reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall");
+                    break;
+            }
+            Resources.UnloadUnusedAssets();
         }
         PlayerPrefs.SetInt("setwallpalette", 0);
         selectAllFalse();

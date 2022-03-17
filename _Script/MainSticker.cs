@@ -89,7 +89,28 @@ public class MainSticker : MonoBehaviour
         }
         else
         {
-
+            if (GM == null)
+            {
+                if (PlayerPrefs.GetInt("place", 0) == 1)
+                {
+                    GM2 = GameObject.FindGameObjectWithTag("GM2");
+                    GM = GM2;
+                }
+                else if (PlayerPrefs.GetInt("place", 0) == 0)
+                {
+                    FGM = GameObject.FindGameObjectWithTag("firstroomGM");
+                    GM = FGM;
+                }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+                {
+                    GM = GameObject.FindGameObjectWithTag("parkGM");
+                }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+                {
+                    GM = GameObject.FindGameObjectWithTag("cityGM");
+                }
+            }
+            GM.GetComponent<FirstRoomSticker>().SetImage();
             audio_obj = GameObject.Find("AudioSound");
 
             audio_obj.GetComponent<SoundEvt>().stickerSound();

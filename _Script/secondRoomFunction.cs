@@ -108,6 +108,8 @@ public class secondRoomFunction : CavasData
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
 
+    //가림판
+    public GameObject moveBack_obj;
 
     #region
 
@@ -158,6 +160,7 @@ public class secondRoomFunction : CavasData
     // Use this for initialization
     void Start()
     {
+        Resources.UnloadUnusedAssets();
         PlayerPrefs.SetInt("adrunout", 0);
         //외출시 스페이드 얻기 초기화
         PlayerPrefs.SetInt("outspade", 2);
@@ -442,8 +445,44 @@ public class secondRoomFunction : CavasData
         //벽지
         if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
         {
+            //메모리할당
+            switch (PlayerPrefs.GetInt("setwallpalette", 0))
+            {
+                case 1:
+                    reformWall2_spr[1] = Resources.Load<Sprite>("UI/Roomdown/head_wallre01");
+                    reformWall_spr[1] = Resources.Load<Sprite>("UI/Roomdown/back_wallre01");
+                    break;
+                case 2:
+                    reformWall2_spr[2] = Resources.Load<Sprite>("UI/Roomdown/head_wallre02");
+                    reformWall_spr[2] = Resources.Load<Sprite>("UI/Roomdown/back_wallre02");
+                    break;
+                case 3:
+                    reformWall2_spr[3] = Resources.Load<Sprite>("UI/Roomdown/head_wallre03");
+                    reformWall_spr[3] = Resources.Load<Sprite>("UI/Roomdown/back_wallre03");
+                    break;
+                case 4:
+                    reformWall2_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall1");
+                    reformWall_spr[4] = Resources.Load<Sprite>("UI/Roomdown/forest_wall2");
+                    break;
+                case 5:
+                    reformWall2_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall2");
+                    reformWall_spr[5] = Resources.Load<Sprite>("UI/Roomdown/sea_wall");
+                    break;
+            }
             wallImg_obj.GetComponent<Image>().sprite = reformWall_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
             wallImg2_obj.GetComponent<Image>().sprite = reformWall2_spr[PlayerPrefs.GetInt("setwallpalette", 0)];
+            //메모리해제
+            reformWall2_spr[5] = null;
+            reformWall_spr[5] = null;
+            reformWall2_spr[4] = null;
+            reformWall_spr[4] = null;
+            reformWall2_spr[3] = null;
+            reformWall_spr[3] = null;
+            reformWall2_spr[2] = null;
+            reformWall_spr[2] = null;
+            reformWall2_spr[1] = null;
+            reformWall_spr[1] = null;
+            Resources.UnloadUnusedAssets();
         }
 
 
@@ -512,16 +551,16 @@ public class secondRoomFunction : CavasData
             //밤
             if (PlayerPrefs.GetInt("lightover", 0) == 1)
             {
+                //메모리할당
                 //꺼짐
-                dayRoom.GetComponent<Image>().sprite = day_spr[0];
+                dayRoom.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Roomdown/night01");
                 switch_obj.GetComponent<Image>().sprite = switch_spr[0];
                 PlayerPrefs.SetInt("lightover", 0);
             }
             else
             {
                 //켜짐
-                dayRoom.GetComponent<Image>().sprite = day_spr[1];
-
+                dayRoom.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Roomdown/night02");
                 switch_obj.GetComponent<Image>().sprite = switch_spr[1];
                 PlayerPrefs.SetInt("lightover", 1);
             }
@@ -1092,6 +1131,8 @@ public class secondRoomFunction : CavasData
 
             }
 
+            moveBack_obj.SetActive(true);
+            MemoryDestroy();
 
             heart_i = heart_i - hp_i;
             PlayerPrefs.SetInt(str1 + "ht", heart_i);
@@ -1381,5 +1422,15 @@ public class secondRoomFunction : CavasData
             ani_obk[2].SetActive(false);
             ani_obk[end_i].SetActive(true);
         }
+    }
+    /// <summary>
+    /// 메모리해제
+    /// </summary>
+    void MemoryDestroy()
+    {
+        dayRoom.GetComponent<Image>().sprite = null;
+        wallImg_obj.GetComponent<Image>().sprite = null;
+        wallImg2_obj.GetComponent<Image>().sprite = null;
+        Resources.UnloadUnusedAssets();
     }
 }

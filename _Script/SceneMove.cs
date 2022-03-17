@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneMove : MonoBehaviour {
 	public GameObject sceneMove_btn;
 
-	public GameObject MainGM;
-	public GameObject GMN;
+    public GameObject MainGM, loadGM;
+    public GameObject GMN;
     public GameObject secondGM;
     public GameObject moreLv_obj;
 
@@ -16,6 +17,9 @@ public class SceneMove : MonoBehaviour {
     //업적
     public GameObject achievement_obj;
     public float moveX, moveY;
+
+    //가림판
+    public GameObject moveBack_obj;
 
     //타이틀
     public GameObject title_obj;
@@ -55,7 +59,34 @@ public class SceneMove : MonoBehaviour {
     }
 
     public void moveDown()
-    {
+    { //메모리해제
+        if (loadGM == null)
+        {
+            loadGM = GameObject.FindGameObjectWithTag("loadGM");
+        }
+
+        moveBack_obj.SetActive(true);
+        loadGM.GetComponent<LoadingData>().wall_spr[0] = null;
+        loadGM.GetComponent<LoadingData>().wall2_spr[0] = null;
+        loadGM.GetComponent<LoadingData>().wall_spr[1] = null;
+        loadGM.GetComponent<LoadingData>().wall2_spr[1] = null;
+        loadGM.GetComponent<LoadingData>().wall_spr[2] = null;
+        loadGM.GetComponent<LoadingData>().wall2_spr[2] = null;
+        loadGM.GetComponent<LoadingData>().wall_spr[3] = null;
+        loadGM.GetComponent<LoadingData>().wall2_spr[3] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall_spr[1] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall2_spr[1] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall_spr[2] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall2_spr[2] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall_spr[3] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall2_spr[3] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall_spr[4] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall2_spr[4] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall_spr[5] = null;
+        MainGM.GetComponent<FirstRoomFunction>().reformWall2_spr[5] = null;
+        MainGM.GetComponent<FirstRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = null;
+        MainGM.GetComponent<FirstRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = null;
+
         PlayerPrefs.SetInt("storg", 1);
         PlayerPrefs.SetInt("unlockshop", 10);
         if (PlayerPrefs.GetInt("waterpurifiershop", 0) == 0)
@@ -79,6 +110,26 @@ public class SceneMove : MonoBehaviour {
         if(GMN == null) {
             GMN = GameObject.FindGameObjectWithTag("GMtag");
         }
+        if (secondGM == null)
+        {
+            secondGM = GameObject.FindGameObjectWithTag("GM2");
+        }
+
+        //메모리해제
+        moveBack_obj.SetActive(true);
+        secondGM.GetComponent<secondRoomFunction>().reformWall_spr[1] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall2_spr[1] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall_spr[2] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall2_spr[2] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall_spr[3] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall2_spr[3] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall_spr[4] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall2_spr[4] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall_spr[5] = null;
+        secondGM.GetComponent<secondRoomFunction>().reformWall2_spr[5] = null;
+        secondGM.GetComponent<secondRoomFunction>().wallImg_obj.GetComponent<Image>().sprite = null;
+        secondGM.GetComponent<secondRoomFunction>().wallImg2_obj.GetComponent<Image>().sprite = null;
+
         GMN.GetComponent<MainBtnEvt> ().allClose ();
         PlayerPrefs.SetInt("achievemove", 1);
         PlayerPrefs.Save();
