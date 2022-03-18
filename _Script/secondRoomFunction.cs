@@ -1120,7 +1120,7 @@ public class secondRoomFunction : CavasData
         if (PlayerPrefs.GetInt("lightover", 0) == 1)
         {
             //켜짐
-            dayRoom.GetComponent<Image>().sprite = day_spr[1];
+            dayRoom.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/Roomdown/night02");
             switch_obj.GetComponent<Image>().sprite = switch_spr[1];
         }
     }
