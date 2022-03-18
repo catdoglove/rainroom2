@@ -1023,7 +1023,7 @@ public class MainBtnEvt : CavasData
 
     public void showInfoLink()
     {
-        Application.OpenURL("https://docs.google.com/document/d/1JFdyCym-5Kxns2xcA-w8W5ir5YiL4J-6JrJeMF8zcuk/edit?usp=sharing");
+        Application.OpenURL("https://bit.ly/3uMwAsU");
     }
 
     /// <summary>

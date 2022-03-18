@@ -326,6 +326,10 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
+    public void showInfoLink()
+    {
+        Application.OpenURL("https://bit.ly/3hxi7eQ");
+    }
     public void closeNotice()
     {
         PlayerPrefs.SetInt("noticeforpet", 99);
