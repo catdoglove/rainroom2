@@ -143,14 +143,14 @@ public class FirstRoomFunction : CavasData {
             }
             backagain_obj.SetActive(true);
         }
-/*
-        if (PlayerPrefs.GetInt("noticeforpet", 0) == 0)
+
+        if (PlayerPrefs.GetInt("noticeforpet22321", 0) == 0)
         {
-            PlayerPrefs.SetInt("noticeforpet", 99);
+            PlayerPrefs.SetInt("noticeforpet22321", 99);
             PlayerPrefs.Save();
             notice_obj.SetActive(true);
         }
-        */
+        
 
         //겨울목도리
         if (PlayerPrefs.GetInt("putwinterc", 0) == 1)
@@ -332,7 +332,7 @@ public class FirstRoomFunction : CavasData {
     }
     public void closeNotice()
     {
-        PlayerPrefs.SetInt("noticeforpet", 99);
+        PlayerPrefs.SetInt("noticeforpet22321", 99);
         notice_obj.SetActive(false);
     }
 
