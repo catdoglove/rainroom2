@@ -40,7 +40,7 @@ public class UnityADSMilk : MonoBehaviour {
         }
         else
         {
-            GM.GetComponent<UnityADS>().Wating();
+            GM.GetComponent<AdmobADSMilk>().MilkToast();
             PlayerPrefs.SetInt("wait", 2);
         }
 
@@ -61,15 +61,11 @@ public class UnityADSMilk : MonoBehaviour {
         {
                 PlayerPrefs.SetInt("milkadc", 1);
                 PlayerPrefs.SetInt("setmilkadc", 0);
-                if (GM.GetComponent<AdmobADSMilk>().milkad_btn != null)
-                {
-                    GM.GetComponent<AdmobADSMilk>().milkad_btn.interactable = false;
-                }
                 GM.GetComponent<AdmobADSMilk>().blackimg.SetActive(false);
-                GM.GetComponent<AdmobADSMilk>().Toast_obj.SetActive(true);
-                GM.GetComponent<AdmobADSMilk>().Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
-                PlayerPrefs.SetInt("adrunout", 0);
-                GM.GetComponent<AdmobADSMilk>().StartCoroutine("ToastImgFadeOut");
+                GM.GetComponent<AdmobADSMilk>().Toast_obj2.SetActive(true);
+            GM.GetComponent<AdmobADSMilk>().Toast_contain2.SetActive(false);
+            GM.GetComponent<AdmobADSMilk>().Toast_contain3.SetActive(true);
+            PlayerPrefs.SetInt("adrunout", 0);
         }
     }
     

@@ -144,13 +144,14 @@ public class FirstRoomFunction : CavasData {
             backagain_obj.SetActive(true);
         }
 
+        /*
         if (PlayerPrefs.GetInt("noticeforpet22321", 0) == 0)
         {
             PlayerPrefs.SetInt("noticeforpet22321", 99);
             PlayerPrefs.Save();
             notice_obj.SetActive(true);
         }
-        
+        */
 
         //겨울목도리
         if (PlayerPrefs.GetInt("putwinterc", 0) == 1)

@@ -375,6 +375,10 @@ public class WindowMiniGame : MonoBehaviour {
         hm = hm + 10;
         htm = htm + 2;
 
+        GM.GetComponent<AdmobADSMilk>().Toast_obj2.SetActive(true);
+        GM.GetComponent<AdmobADSMilk>().Toast_contain2.SetActive(true);
+        GM.GetComponent<AdmobADSMilk>().Toast_contain3.SetActive(false);
+
         if (PlayerPrefs.GetInt("milkadc", 0) == 1)
         {
             cm = cm + 100;
@@ -429,14 +433,6 @@ public class WindowMiniGame : MonoBehaviour {
     public void MilkYesNo()
     {
         milkAdWin_obj.SetActive(true);
-        if (PlayerPrefs.GetInt("milkadc", 0) == 1)
-        {
-            milkad_btn.interactable = false;
-        }
-        else
-        {
-            milkad_btn.interactable = true;
-        }
 
     }
     public void MilkYes()
@@ -453,7 +449,6 @@ public class WindowMiniGame : MonoBehaviour {
     {
         //PlayerPrefs.SetInt("adrunout", 1);
         PlayerPrefs.SetInt("setmilkadc", 1);
-        milkad_btn.interactable = false;
     }
 
 

@@ -17,7 +17,7 @@ public class AdmobADSMilk : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj, blackimg, Toast_obj2;
+    public GameObject Toast_obj, blackimg, Toast_obj2, Toast_contain, Toast_contain2, Toast_contain3;
     public Text Toast_txt;
 
     public Button milkad_btn;
@@ -82,14 +82,13 @@ public class AdmobADSMilk : MonoBehaviour {
     //시청보상
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-            PlayerPrefs.SetInt("milkadc", 1);
-            PlayerPrefs.SetInt("setmilkadc", 0);
-            StartCoroutine("ToastImgFadeOut");
-
-            if (milkad_btn != null)
-            {
-                milkad_btn.interactable = false;
-            }
+        PlayerPrefs.SetInt("milkadc", 1);
+        PlayerPrefs.SetInt("setmilkadc", 0);
+        //StartCoroutine("ToastImgFadeOut");
+        Toast_obj2.SetActive(true);
+        GM.GetComponent<WindowMiniGame>().MilkYes();
+        Toast_contain3.SetActive(true);
+        Toast_contain2.SetActive(false);
         PlayerPrefs.SetInt("blad", 1);
     }
 
@@ -98,10 +97,7 @@ public class AdmobADSMilk : MonoBehaviour {
     {
         RequestRewardedVideo();
         blackimg.SetActive(false);
-        Toast_obj.SetActive(true);
-        Toast_txt.text = "우유 보상 두배 효과가 적용되었다.";
         PlayerPrefs.SetInt("adrunout", 0);
-        StartCoroutine("ToastImgFadeOut");
     }
 
     public void showAdmobVideo()
@@ -126,6 +122,7 @@ public class AdmobADSMilk : MonoBehaviour {
         {
             Toast_obj.SetActive(true);
             Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
+            Toast_contain.SetActive(true);
             StartCoroutine("ToastImgFadeOut");
         }
     }
@@ -136,10 +133,6 @@ public class AdmobADSMilk : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("setmilkadc", 0) == 1)
         {
-            if (milkad_btn != null)
-            {
-                milkad_btn.interactable = true;
-            }
             PlayerPrefs.SetInt("setmilkadc", 0);
         }
 
