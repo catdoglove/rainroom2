@@ -122,7 +122,6 @@ public class AdmobADSMilk : MonoBehaviour {
         {
             Toast_obj.SetActive(true);
             Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
-            Toast_contain.SetActive(true);
             StartCoroutine("ToastImgFadeOut");
         }
     }
