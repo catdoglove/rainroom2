@@ -61,7 +61,8 @@ public class UnityADSMilk : MonoBehaviour {
         {
                 PlayerPrefs.SetInt("milkadc", 1);
                 PlayerPrefs.SetInt("setmilkadc", 0);
-                GM.GetComponent<AdmobADSMilk>().blackimg.SetActive(false);
+            GM.GetComponent<WindowMiniGame>().MilkYes();
+            GM.GetComponent<AdmobADSMilk>().blackimg.SetActive(false);
                 GM.GetComponent<AdmobADSMilk>().Toast_obj2.SetActive(true);
             GM.GetComponent<AdmobADSMilk>().Toast_contain2.SetActive(false);
             GM.GetComponent<AdmobADSMilk>().Toast_contain3.SetActive(true);
