@@ -65,6 +65,25 @@ public class FirstRoomSticker : MonoBehaviour {
     {
         if (frame_i == 25)
         {
+            if (GM == null)
+            {
+                if (PlayerPrefs.GetInt("place", 0) == 1)
+                {
+                    GM = GameObject.FindGameObjectWithTag("GM2");
+                }
+                else if (PlayerPrefs.GetInt("place", 0) == 0)
+                {
+                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 1)
+                {
+                    GM = GameObject.FindGameObjectWithTag("parkGM");
+                }
+                if (PlayerPrefs.GetInt("outtrip", 0) == 2)
+                {
+                    GM = GameObject.FindGameObjectWithTag("cityGM");
+                }
+            }
             GM.GetComponent<EndingBox>().PlayEndLast();
         }
         else
