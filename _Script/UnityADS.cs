@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-public class UnityADS : MonoBehaviour {
+public class UnityADS : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener, IUnityAdsInitializationListener
+{
 
-    private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
+    private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)2883785
     public int soundck;
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
@@ -24,6 +25,12 @@ public class UnityADS : MonoBehaviour {
     int rand_i = 0;
 
     public GameObject GM;
+    public string _adUnitId = "rewardedVideo";
+
+    private void Awake()
+    {
+        Advertisement.Initialize(gameId, false, this);//테스트모드 true
+    }
 
     // Use this for initialization
     void Start () {
@@ -55,12 +62,7 @@ public class UnityADS : MonoBehaviour {
             StartCoroutine("adAniTime");
         }
 
-
-
-        if (Advertisement.isSupported)
-          {
-              Advertisement.Initialize(gameId, false);
-          }
+        LoadAd();
       }
       
     // Update is called once per frame
@@ -76,20 +78,16 @@ public class UnityADS : MonoBehaviour {
         else
         {
             PlayerPrefs.SetInt("wait", 1);
-            if (Advertisement.IsReady("rewardedVideo"))
-            {
-                ShowOptions options = new ShowOptions { resultCallback = HandleShowResult };
-                Advertisement.Show("rewardedVideo", options);
-                //PlayerPrefs.SetInt("secf", 240);
-            }
-            else
-            {
-                //StartCoroutine("ToastImgFadeOut");
-                Wating();
-                PlayerPrefs.SetInt("wait", 2);
-            }
+            Advertisement.Show("rewardedVideo", this);
         }
             
+    }
+
+
+    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+    {
+        PlayerPrefs.SetInt("wait", 2);
+        Wating();
     }
 
     public void Wating()
@@ -155,9 +153,9 @@ public class UnityADS : MonoBehaviour {
     }
     
 
-    private void HandleShowResult(ShowResult result)
+    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (result == ShowResult.Finished)
+        if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
 
             if (PlayerPrefs.GetInt("place", 0) == 0)
@@ -190,7 +188,7 @@ public class UnityADS : MonoBehaviour {
                 GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
                 GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
             }
-
+            Advertisement.Load(_adUnitId, this);
         }
     }
 
@@ -342,5 +340,40 @@ public class UnityADS : MonoBehaviour {
             yield return null;
         }
         Toast_obj.SetActive(false);
+    }
+
+
+    // Load content to the Ad Unit:
+    public void LoadAd()
+    {
+        // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
+        Debug.Log("Loading Ad: " + _adUnitId);
+        Advertisement.Load(_adUnitId, this);
+    }
+
+    public void OnUnityAdsAdLoaded(string placementId)
+    {
+    }
+
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+    {
+    }
+
+
+    public void OnUnityAdsShowStart(string placementId)
+    {
+    }
+
+    public void OnUnityAdsShowClick(string placementId)
+    {
+    }
+
+
+    public void OnInitializationComplete()
+    {
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
     }
 }
