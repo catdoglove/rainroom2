@@ -82,6 +82,7 @@ public class UnityADSPark : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
         PlayerPrefs.SetInt("wait", 2);
+        ad_obj.SetActive(true);
         Wating();
     }
 
