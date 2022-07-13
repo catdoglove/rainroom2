@@ -34,7 +34,13 @@ public class MainInfo : MonoBehaviour {
     public GameObject nicknameWrite_obj, nicknameYN_obj;
     public Text nickname_txt, InputField_txt, nickYN_txt;
     public InputField InputField;
-    public GameObject nickBtn_obj;
+    public GameObject nickBtn_obj, nickReBtn_obj;
+
+    Color colorN;
+    public GameObject nameToast_obj, nickH_obj;
+    public Sprite reNick_spr;
+    public Text toast_txt;
+
     //마음
     public Text h_txt, c_txt,d_txt;
     //
@@ -53,6 +59,8 @@ public class MainInfo : MonoBehaviour {
         love_i = PlayerPrefs.GetInt("lovepoint", 0);
         //호감레벨
         loveLv_i = PlayerPrefs.GetInt("lovelv", 0);
+        
+        colorN = new Color(1f, 1f, 1f);
     }
 
     public void infoShow()
@@ -81,6 +89,11 @@ public class MainInfo : MonoBehaviour {
         if (PlayerPrefs.GetInt("setnick", 0) == 99)
         {
             nickBtn_obj.SetActive(false);
+
+            if (PlayerPrefs.GetInt("setrenick", 0) == 0)
+            {
+                nickReBtn_obj.SetActive(true);
+            }
         }
         //마음
         string str = PlayerPrefs.GetString("code", "");
@@ -449,8 +462,40 @@ public class MainInfo : MonoBehaviour {
         nicknameWrite_obj.SetActive(true);
         InputField.text = "";
         InputField_txt.text = "";
+        if (PlayerPrefs.GetInt("setnick", 0) == 99)
+        {
+            nickH_obj.SetActive(true);
+        }
     }
     public void Setname()
+    {
+            nickReBtn_obj.SetActive(true);
+
+        if (PlayerPrefs.GetInt("setnick", 0) == 99)
+        {
+            string str = PlayerPrefs.GetString("code", "");
+            if (PlayerPrefs.GetInt(str + "ht", 0)<10)
+            {
+                toast_txt.text = "그걸 하기에는 마음이 부족하다.";
+                StopCoroutine("toastNImgFadeOut");
+                StartCoroutine("toastNImgFadeOut");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("setrenick", 1);
+                PlayerPrefs.SetInt(str + "ht", PlayerPrefs.GetInt(str + "ht", 0) - 10);
+                h_txt.text = "" + PlayerPrefs.GetInt(str + "ht", 0);
+                nickReBtn_obj.SetActive(false);
+                NameOk();
+            }
+        }
+        else
+        {
+            NameOk();
+        }
+    }
+
+    void NameOk()
     {
         PlayerPrefs.SetString("nickname", "" + InputField_txt.text);
         PlayerPrefs.SetInt("setnick", 99);
@@ -460,6 +505,7 @@ public class MainInfo : MonoBehaviour {
         nicknameWrite_obj.SetActive(false);
         nicknameYN_obj.SetActive(false);
     }
+
     public void closeNick()
     {
         InputField.text = "";
@@ -472,4 +518,43 @@ public class MainInfo : MonoBehaviour {
         nicknameYN_obj.SetActive(true);
         nickYN_txt.text = ""+InputField_txt.text;
     }
+
+    /// <summary>
+    /// 이름 4레벨에 다시 변경
+    /// </summary>
+    public void Rename()
+    {
+        if (loveLv_i >= 4)
+        {
+            if (PlayerPrefs.GetInt("setrenick", 0)==0)
+            {
+                MakeNickname();
+                nicknameWrite_obj.GetComponent<Image>().sprite = reNick_spr;
+
+            }
+        }
+        else
+        {
+            StopCoroutine("toastNImgFadeOut");
+            StartCoroutine("toastNImgFadeOut");
+        }
+    }
+
+
+    //토스트페이드아웃
+    IEnumerator toastNImgFadeOut()
+    {
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        nameToast_obj.GetComponent<Image>().color = colorN;
+        nameToast_obj.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            nameToast_obj.GetComponent<Image>().color = colorN;
+            yield return null;
+        }
+        nameToast_obj.SetActive(false);
+    }
+
 }
