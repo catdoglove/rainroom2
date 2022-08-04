@@ -109,7 +109,7 @@ public class secondRoomFunction : CavasData
     public AudioClip sp_end, sp_original;
 
     //가림판
-    public GameObject moveBack_obj;
+    public GameObject moveBack_obj,tre2_obj;
 
     #region
 
@@ -506,8 +506,12 @@ public class secondRoomFunction : CavasData
             reformWall_spr[1] = null;
             Resources.UnloadUnusedAssets();
         }
-
-
+        
+        //보물찾기
+        if (PlayerPrefs.GetInt("gettre2", 0) == 1)
+        {
+            tre2_obj.SetActive(false);
+        }
     }
 
 
@@ -1454,5 +1458,17 @@ public class secondRoomFunction : CavasData
         wallImg_obj.GetComponent<Image>().sprite = null;
         wallImg2_obj.GetComponent<Image>().sprite = null;
         Resources.UnloadUnusedAssets();
+    }
+
+    //보물찾기
+    public void OpenTra2()
+    {
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        tre2_obj.SetActive(false);
+        PlayerPrefs.SetInt("gettre2", 1);
+        GMTag.GetComponent<MainBtnEvt>().CheckTre();
     }
 }

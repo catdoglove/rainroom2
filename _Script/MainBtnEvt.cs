@@ -7,23 +7,23 @@ using UnityEngine.SceneManagement;
 public class MainBtnEvt : CavasData
 {
 
-	public GameObject[] MainBtn_obj;
-	public GameObject[] MainWindow_obj;
-	public Text test_txt;
+    public GameObject[] MainBtn_obj;
+    public GameObject[] MainWindow_obj;
+    public Text test_txt;
 
     public GameObject close_obj;
     public GameObject backBlackImg_obj;
 
     //메뉴펼쳐주기
-    public GameObject menuBack_obj,menuBefore_obj,menuAfter_obj, showBefore_obj, showAfter_obj;
+    public GameObject menuBack_obj, menuBefore_obj, menuAfter_obj, showBefore_obj, showAfter_obj;
     public Vector2 menuBack_vet;
-    public GameObject GM, GM2,GMtag;
+    public GameObject GM, GM2, GMtag;
 
     //문장속도
     float speedF = 0.05f;
     public Text tspeed_txt;
     public GameObject speed_obj, speed_toast;
-    public GameObject [] speedBtn;
+    public GameObject[] speedBtn;
     public Sprite[] speedbtnCK;
 
     //닫을때같이닫는것
@@ -34,21 +34,21 @@ public class MainBtnEvt : CavasData
     public Sprite[] help_spr;
     public Sprite[] helpf_spr;
     public GameObject helpfrist_obj;
-    public GameObject helpPark_obj,helpCity_obj;
+    public GameObject helpPark_obj, helpCity_obj;
     public Sprite[] helpP_spr, helpC_spr;
     int help = 0;
 
     //외출
     public GameObject comeHome_obj;
-    public GameObject shop_obj,goHome_obj;
+    public GameObject shop_obj, goHome_obj;
 
     //화폐변환
-    public GameObject h_obj,c_obj, d_obj;
+    public GameObject h_obj, c_obj, d_obj;
     //미리 씬을 불러오기
     AsyncOperation async;
 
     //쿠폰
-    public GameObject coupon_obj,couponTxt_obj, couponTxtF_obj;
+    public GameObject coupon_obj, couponTxt_obj, couponTxtF_obj;
     public InputField InputField;
     public Text InputField_txt, couponeMsg;
 
@@ -56,11 +56,15 @@ public class MainBtnEvt : CavasData
 
 
     //상세표시
-    public GameObject have_obj, showCheck_obj, talkChange_obj,showImage_obj;
+    public GameObject have_obj, showCheck_obj, talkChange_obj, showImage_obj;
     public Text rain_txt, horRain_txt, heart_txt;
-    public Sprite showHave1_spr, showHave2_spr,talkChange1_spr, talkChange2_spr;
+    public Sprite showHave1_spr, showHave2_spr, talkChange1_spr, talkChange2_spr;
     public Sprite[] heart_spr;
     public Vector2 showHave_vet;
+
+    //보물찾기
+    public GameObject[] tre_obj;
+    public GameObject treWin_obj, treDone_obj;
 
     public void CloseHelpf()
     {
@@ -159,8 +163,9 @@ public class MainBtnEvt : CavasData
     }
 
     // Use this for initialization
-    void Start () {
-        menuBack_vet= menuBack_obj.transform.position;
+    void Start()
+    {
+        menuBack_vet = menuBack_obj.transform.position;
         PlayerPrefs.SetFloat("mbx", menuBack_vet.x);
         menuBack_vet = menuBefore_obj.transform.position;
         PlayerPrefs.SetFloat("mby1", menuBack_vet.y);
@@ -196,76 +201,79 @@ public class MainBtnEvt : CavasData
         {
             GM2 = GameObject.FindGameObjectWithTag("GM2");
         }
-		setScreen ();
+        setScreen();
         StartCoroutine("updateSec");
-		//처음코드설정
+        //처음코드설정
 
 
-		#region
-		int c=0;
-		string str="";
-		if (c == PlayerPrefs.GetInt ("first", 0)) {
+        #region
+        int c = 0;
+        string str = "";
+        if (c == PlayerPrefs.GetInt("first", 0))
+        {
 
-			for (int i = 0; i < 16; i++) {
-				int a = Random.Range (0, 16);//0~15
+            for (int i = 0; i < 16; i++)
+            {
+                int a = Random.Range(0, 16);//0~15
 
-				switch (a) {
-				case 0:
-					str = str + "0";
-					break;
-				case 1:
-					str = str + "1";
-					break;
-				case 2:
-					str = str + "2";
-					break;
-				case 3:
-					str = str + "3";
-					break;
-				case 4:
-					str = str + "4";
-					break;
-				case 5:
-					str = str + "5";
-					break;
-				case 6:
-					str = str + "6";
-					break;
-				case 7:
-					str = str + "7";
-					break;
-				case 8:
-					str = str + "8";
-					break;
-				case 9:
-					str = str + "9";
-					break;
-				case 10:
-					str = str + "a";
-					break;
-				case 11:
-					str = str + "b";
-					break;
-				case 12:
-					str = str + "c";
-					break;
-				case 13:
-					str = str + "d";
-					break;
-				case 14:
-					str = str + "e";
-					break;
-				case 15:
-					str = str + "f";
-					break;
-				default:
-					break;
-				}
+                switch (a)
+                {
+                    case 0:
+                        str = str + "0";
+                        break;
+                    case 1:
+                        str = str + "1";
+                        break;
+                    case 2:
+                        str = str + "2";
+                        break;
+                    case 3:
+                        str = str + "3";
+                        break;
+                    case 4:
+                        str = str + "4";
+                        break;
+                    case 5:
+                        str = str + "5";
+                        break;
+                    case 6:
+                        str = str + "6";
+                        break;
+                    case 7:
+                        str = str + "7";
+                        break;
+                    case 8:
+                        str = str + "8";
+                        break;
+                    case 9:
+                        str = str + "9";
+                        break;
+                    case 10:
+                        str = str + "a";
+                        break;
+                    case 11:
+                        str = str + "b";
+                        break;
+                    case 12:
+                        str = str + "c";
+                        break;
+                    case 13:
+                        str = str + "d";
+                        break;
+                    case 14:
+                        str = str + "e";
+                        break;
+                    case 15:
+                        str = str + "f";
+                        break;
+                    default:
+                        break;
+                }
 
-				//코인이 저장되는 이름을 자기의 코드로해줌
-			}
+                //코인이 저장되는 이름을 자기의 코드로해줌
+            }
 
-			PlayerPrefs.SetString ("code", str);
+            PlayerPrefs.SetString("code", str);
             PlayerPrefs.SetInt("bookbox", 10);
             PlayerPrefs.SetInt("deskbox", 10);
             PlayerPrefs.SetInt("bedbox", 10);
@@ -278,29 +286,30 @@ public class MainBtnEvt : CavasData
             PlayerPrefs.SetInt("seedbox", -10);
 
 
-                PlayerPrefs.SetInt ("first", 1);
-			PlayerPrefs.Save ();
-		}//endOfIf
+            PlayerPrefs.SetInt("first", 1);
+            PlayerPrefs.Save();
+        }//endOfIf
 
-		#endregion
+        #endregion
 
-		/*데이터불러오기
+        /*데이터불러오기
 		 * 상자와 물건가구들 단계확인 이미지변경
 		 * GM찾아서 가져오기
 		 * player에 저장된 정보는 그때그때 가져오자 값이 변경될때만 바꾸기
 		*/
 
 
-	}//endofstart
+    }//endofstart
 
- 
+
 
 
     /// <summary>
     /// 메뉴를펼쳐준다
     /// </summary>
-    public void showButtons(){
-        if(PlayerPrefs.GetInt("achievemove", 0) == 0)
+    public void showButtons()
+    {
+        if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
             allClose();
             if (MainBtn_obj[0].activeSelf == true)
@@ -316,9 +325,10 @@ public class MainBtnEvt : CavasData
                 MainBtn_obj[0].SetActive(true);
             }
         }
-	}
+    }
 
-	public void openInfoWindow(){
+    public void openInfoWindow()
+    {
         if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
             if (MainWindow_obj[0].activeSelf == true)
@@ -339,8 +349,9 @@ public class MainBtnEvt : CavasData
                 MainWindow_obj[3].SetActive(true);
             }
         }
-	}
-	public void openShopWindow(){
+    }
+    public void openShopWindow()
+    {
         if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
             if (MainWindow_obj[1].activeSelf == true)
@@ -359,8 +370,9 @@ public class MainBtnEvt : CavasData
                 MainWindow_obj[1].SetActive(true);
             }
         }
-	}
-	public void openOptionWindow(){
+    }
+    public void openOptionWindow()
+    {
         if (PlayerPrefs.GetInt("achievemove", 0) == 0)
         {
             if (MainWindow_obj[2].activeSelf == true)
@@ -379,12 +391,13 @@ public class MainBtnEvt : CavasData
                 MainWindow_obj[2].SetActive(true);
             }
         }
-	}
-	public void allClose(){
-		MainWindow_obj[0].SetActive(false);
-		MainWindow_obj[1].SetActive(false);
-		MainWindow_obj[2].SetActive(false);
-		MainWindow_obj [3].SetActive (false);
+    }
+    public void allClose()
+    {
+        MainWindow_obj[0].SetActive(false);
+        MainWindow_obj[1].SetActive(false);
+        MainWindow_obj[2].SetActive(false);
+        MainWindow_obj[3].SetActive(false);
         backBlackImg_obj.SetActive(false);
         close_obj.SetActive(false);
         speed_obj.SetActive(false);
@@ -432,11 +445,12 @@ public class MainBtnEvt : CavasData
         backBlackImg_obj.SetActive(true);
         close_obj.SetActive(true);
     }
-    
-    
-	void setScreen(){
-		//스크린화면해상도에맞춰조절,화면꺼지지않게
-		#region
+
+
+    void setScreen()
+    {
+        //스크린화면해상도에맞춰조절,화면꺼지지않게
+        #region
 
         /*
 		float screenNum =(float)Screen.height/(float)Screen.width;
@@ -465,11 +479,11 @@ public class MainBtnEvt : CavasData
 		}
         */
 
-		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		#endregion
-	
-	}
-    
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        #endregion
+
+    }
+
 
     public void Sight()
     {
@@ -525,7 +539,7 @@ public class MainBtnEvt : CavasData
         menuBack_vet = menuBack_obj.transform.position;
 
         menuBack_vet.x = PlayerPrefs.GetFloat("mbx", 0);
-        while (menuBack_vet.y >= (PlayerPrefs.GetFloat("mby2", 0)+0.55f))
+        while (menuBack_vet.y >= (PlayerPrefs.GetFloat("mby2", 0) + 0.55f))
         {
             menuBack_vet.y = menuBack_vet.y - 0.6f;
             menuBack_obj.transform.position = menuBack_vet;
@@ -674,6 +688,30 @@ public class MainBtnEvt : CavasData
     }
 
 
+    //토스트
+    IEnumerator closetreToast()
+    {
+        
+        PlayerPrefs.Save();
+        
+            tspeed_txt.text = "다락방에 무언가 생겼다";
+        Color colorN;
+        colorN = new Color(1f, 1f, 1f);
+        colorN.a = Mathf.Lerp(0f, 1f, 1f);
+        speed_toast.GetComponent<Image>().color = colorN;
+        speed_toast.SetActive(true);
+
+        yield return new WaitForSeconds(2.5f);
+        for (float i = 1f; i > 0f; i -= 0.05f)
+        {
+            colorN.a = Mathf.Lerp(0f, 1f, i);
+            speed_toast.GetComponent<Image>().color = colorN;
+            yield return null;
+        }
+        speed_toast.SetActive(false);
+    }
+
+
     public void OpenHelpShop()
     {
         Help_obj.SetActive(true);
@@ -695,11 +733,12 @@ public class MainBtnEvt : CavasData
 
     public void OpenHelpf()
     {
-        
+
         if (PlayerPrefs.GetInt("outtrip", 0) == 1)
         {
             helpPark_obj.SetActive(true);
-        }else if(PlayerPrefs.GetInt("outtrip", 0) == 2)
+        }
+        else if (PlayerPrefs.GetInt("outtrip", 0) == 2)
         {
             helpCity_obj.SetActive(true);
         }
@@ -716,7 +755,8 @@ public class MainBtnEvt : CavasData
         {
             help = 1;
             helpPark_obj.GetComponent<Image>().sprite = helpP_spr[1];
-        }else
+        }
+        else
         {
             help = 0;
             helpPark_obj.GetComponent<Image>().sprite = helpP_spr[0];
@@ -834,14 +874,14 @@ public class MainBtnEvt : CavasData
                 speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[4];
                 speedBtn[2].GetComponent<Image>().sprite = speedbtnCK[5];
                 break;
-                
+
             //보통
             case 5:
                 speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[3];
                 speedBtn[1].GetComponent<Image>().sprite = speedbtnCK[1];
                 speedBtn[2].GetComponent<Image>().sprite = speedbtnCK[5];
                 break;
-            
+
             //빠름
             case 3:
                 speedBtn[0].GetComponent<Image>().sprite = speedbtnCK[3];
@@ -897,7 +937,7 @@ public class MainBtnEvt : CavasData
         }
     }
 
-   
+
     //화폐변환
     public void SetClover()
     {
@@ -971,7 +1011,7 @@ public class MainBtnEvt : CavasData
     IEnumerator updateSec()
     {
         int w = 0;
-        while (w==0)
+        while (w == 0)
         {
 
             //최대량 제한
@@ -997,10 +1037,10 @@ public class MainBtnEvt : CavasData
             {
                 PlayerPrefs.SetInt(str + "cv", 999);
             }
-            
-            
-            rain_txt.text = ""+ PlayerPrefs.GetInt(str + "c", 0); ;
-            horRain_txt.text = ""+ PlayerPrefs.GetInt(str + "h", 0); ;
+
+
+            rain_txt.text = "" + PlayerPrefs.GetInt(str + "c", 0); ;
+            horRain_txt.text = "" + PlayerPrefs.GetInt(str + "h", 0); ;
 
             if (PlayerPrefs.GetInt("outtrip", 0) == 1)
             {
@@ -1017,7 +1057,7 @@ public class MainBtnEvt : CavasData
                 showImage_obj.GetComponent<Image>().sprite = heart_spr[0];
                 heart_txt.text = "" + PlayerPrefs.GetInt(str + "ht", 0); ;
             }
-                yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -1060,6 +1100,36 @@ public class MainBtnEvt : CavasData
             GM2.GetComponent<CityFunction>().blackimg.SetActive(true);
         }
 
+    }
+
+    //모은쪽지 확인
+    public void CheckTre()
+    {
+        int a = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            if (PlayerPrefs.GetInt("gettre" + i, 0) == 1)
+            {
+                tre_obj[i].SetActive(true);
+                a++;
+            }
+        }
+        if (a >= 6)
+        {
+            treDone_obj.SetActive(true);
+            PlayerPrefs.SetInt("putmap", 1);
+        }
+        treWin_obj.SetActive(true);
+    }
+
+
+    public void CloseTre()
+    {
+        treWin_obj.SetActive(false);
+        if (PlayerPrefs.GetInt("putmap" , 0) == 1)
+        {
+            StartCoroutine("closetreToast");
+        }
     }
 
 }
