@@ -664,7 +664,7 @@ public class Parkfunction : CavasData
             GMtag = GameObject.FindGameObjectWithTag("GMtag");
         }
         tre5_obj.SetActive(false);
-        PlayerPrefs.SetInt("gettre4", 1);
+        PlayerPrefs.SetInt("gettre5", 1);
         GMtag.GetComponent<MainBtnEvt>().CheckTre();
     }
 }

@@ -694,7 +694,7 @@ public class MainBtnEvt : CavasData
         
         PlayerPrefs.Save();
         
-            tspeed_txt.text = "다락방에 무언가 생겼다";
+            tspeed_txt.text = "다락방 벽에 뭔가 생겼다.";
         Color colorN;
         colorN = new Color(1f, 1f, 1f);
         colorN.a = Mathf.Lerp(0f, 1f, 1f);
@@ -1118,6 +1118,7 @@ public class MainBtnEvt : CavasData
         {
             treDone_obj.SetActive(true);
             PlayerPrefs.SetInt("putmap", 1);
+            PlayerPrefs.SetInt("setputmap", 1);
         }
         treWin_obj.SetActive(true);
     }

@@ -170,10 +170,12 @@ public class FirstRoomFunction : CavasData {
         if (PlayerPrefs.GetInt("putrug", 0) == 1)
         {
             rugImg_obj.SetActive(true);
+            rugImg2_obj.SetActive(true);
         }
         else
         {
             rugImg_obj.SetActive(false);
+            rugImg2_obj.SetActive(false);
         }
 
         //보물지도

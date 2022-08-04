@@ -827,7 +827,7 @@ public class MainShop : ShopHandler {
             funcBox_obj[5].SetActive(false);
         }
 
-        if (PlayerPrefs.GetInt("putmap", 0) >= 1)
+        if (PlayerPrefs.GetInt("setputmap", 0) >= 1)
         {
             funcBox_obj[9].SetActive(true);
         }
