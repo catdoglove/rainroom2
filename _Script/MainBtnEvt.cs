@@ -1119,6 +1119,15 @@ public class MainBtnEvt : CavasData
             treDone_obj.SetActive(true);
             PlayerPrefs.SetInt("putmap", 1);
             PlayerPrefs.SetInt("setputmap", 1);
+
+            if (PlayerPrefs.GetInt("place", 0) == 0)
+            {
+                if (GM == null)
+                {
+                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
+                }
+                GM.GetComponent<FirstRoomFunction>().map_obj.SetActive(true);
+            }
         }
         treWin_obj.SetActive(true);
     }
