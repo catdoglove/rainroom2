@@ -211,7 +211,7 @@ public class MainBtnEvt : CavasData
         string str = "";
         if (c == PlayerPrefs.GetInt("first", 0))
         {
-
+            PlayerPrefs.SetInt("putrug", 1);
             for (int i = 0; i < 16; i++)
             {
                 int a = Random.Range(0, 16);//0~15
