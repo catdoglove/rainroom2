@@ -167,7 +167,7 @@ public class FirstRoomFunction : CavasData {
         }
 
         //러그
-        if (PlayerPrefs.GetInt("putrug", 0) == 1)
+        if (PlayerPrefs.GetInt("putrug", 1) == 1)
         {
             rugImg_obj.SetActive(true);
             rugImg2_obj.SetActive(true);
