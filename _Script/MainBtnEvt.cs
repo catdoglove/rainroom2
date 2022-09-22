@@ -110,43 +110,47 @@ public class MainBtnEvt : CavasData
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            allClose();
-            GMtag.GetComponent<MainShop>().CloseFuncCabinet();
-            if (PlayerPrefs.GetInt("place", 0) == 0)
-            {
-                if (GM == null)
-                {
-                    GM = GameObject.FindGameObjectWithTag("firstroomGM");
-                }
-                GM.GetComponent<NoteStoreFunction>().noteWindow_obj.SetActive(false);
-                GM.GetComponent<NoteStoreFunction>().noteWriteOKBtn_obj.SetActive(false);
-                GM.GetComponent<NoteStoreFunction>().titleWriteOKBtn_obj.SetActive(false);
-                GM.GetComponent<NoteStoreFunction>().StopCoroutine("moveC");
-                GM.GetComponent<NoteStoreFunction>().StopCoroutine("Lines");
-                GM.GetComponent<FirstRoomFunction>().closeTitle();
-                GM.GetComponent<WindowMiniGame>().CloseMiniGame();
-                GM.GetComponent<FirstRoomFunction>().closeBeadal();
-                GM.GetComponent<UnityADS>().closeAdYN();
-                GM.GetComponent<FirstRoomBookList>().closeItemList();
-                GM.GetComponent<FirstRoomSticker>().CloseFrame();
-                GM.GetComponent<FirstRoomFunction>().boxNo();
-                GM.GetComponent<SleepTime>().CloseSleep();
-                //GM.GetComponent<MainShop>().palette_obj.SetActive(false);
-            }
-            if (PlayerPrefs.GetInt("place", 0) == 1)
-            {
-                if (GM2 == null)
-                {
-                    GM2 = GameObject.FindGameObjectWithTag("GM2");
-                }
-                GM2.GetComponent<secondRoomFunction>().AllClose();
-                GM2.GetComponent<secondRoomFunction>().boxClose();
-                GM2.GetComponent<GasrangeEvt>().Closefood();
-                GM2.GetComponent<GasrangeEvt>().CloseIceBox();
-                GM2.GetComponent<SeedTime>().CloseSeed();
-                GM2.GetComponent<UnityADS>().closeAdYN();
-            }
+            Invoke("WaitClose", 0.01f);
+        }
+    }
 
+    void WaitClose()
+    {
+        allClose();
+        GMtag.GetComponent<MainShop>().CloseFuncCabinet();
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            if (GM == null)
+            {
+                GM = GameObject.FindGameObjectWithTag("firstroomGM");
+            }
+            GM.GetComponent<NoteStoreFunction>().noteWindow_obj.SetActive(false);
+            GM.GetComponent<NoteStoreFunction>().noteWriteOKBtn_obj.SetActive(false);
+            GM.GetComponent<NoteStoreFunction>().titleWriteOKBtn_obj.SetActive(false);
+            GM.GetComponent<NoteStoreFunction>().StopCoroutine("moveC");
+            GM.GetComponent<NoteStoreFunction>().StopCoroutine("Lines");
+            GM.GetComponent<FirstRoomFunction>().closeTitle();
+            GM.GetComponent<WindowMiniGame>().CloseMiniGame();
+            GM.GetComponent<FirstRoomFunction>().closeBeadal();
+            GM.GetComponent<UnityADS>().closeAdYN();
+            GM.GetComponent<FirstRoomBookList>().closeItemList();
+            GM.GetComponent<FirstRoomSticker>().CloseFrame();
+            GM.GetComponent<FirstRoomFunction>().boxNo();
+            GM.GetComponent<SleepTime>().CloseSleep();
+            //GM.GetComponent<MainShop>().palette_obj.SetActive(false);
+        }
+        if (PlayerPrefs.GetInt("place", 0) == 1)
+        {
+            if (GM2 == null)
+            {
+                GM2 = GameObject.FindGameObjectWithTag("GM2");
+            }
+            GM2.GetComponent<secondRoomFunction>().AllClose();
+            GM2.GetComponent<secondRoomFunction>().boxClose();
+            GM2.GetComponent<GasrangeEvt>().Closefood();
+            GM2.GetComponent<GasrangeEvt>().CloseIceBox();
+            GM2.GetComponent<SeedTime>().CloseSeed();
+            GM2.GetComponent<UnityADS>().closeAdYN();
         }
     }
 
