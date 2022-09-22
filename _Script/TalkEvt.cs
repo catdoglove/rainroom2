@@ -48,7 +48,7 @@ public class TalkEvt : MonoBehaviour {
     //업적
     public GameObject achievement_obj;
     public float moveX, moveY;
-    public GameObject firstGM;
+    public GameObject firstGM, GMTag;
 
     //나가기
     public GameObject exitTalkBalln, closeTB_exit;
@@ -78,7 +78,9 @@ public class TalkEvt : MonoBehaviour {
     public int end_i2 = 0;
     public GameObject endR_obj2, endL_obj2, endClose_obj2;
     public GameObject[] ani_obk2;
-    
+
+
+    int a = 0;
 
     // Use this for initialization
     void Start ()
@@ -98,34 +100,250 @@ public class TalkEvt : MonoBehaviour {
         setCharAni();
     }
 
+    /// <summary>
+    /// 뒤로가기 종료 버튼 분리
+    /// </summary>
+    void checkOpenWindow()
+    {
+
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().MainWindow_obj[0].activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().MainWindow_obj[1].activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().MainWindow_obj[2].activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().MainWindow_obj[3].activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().backBlackImg_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().close_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().speed_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().YN_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().Help_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().helpfrist_obj.activeSelf)
+        {
+            a = 1;
+        }
+        //GMTag.GetComponent<MainShop>().CloseFuncCabinet();
+        if (GMTag.GetComponent<MainShop>().funcCabinet_obj.activeSelf)
+        {
+            a = 1;
+        }
+        if (PlayerPrefs.GetInt("place", 0) == 0)
+        {
+            if (firstGM.GetComponent<NoteStoreFunction>().noteWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<NoteStoreFunction>().noteWriteOKBtn_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<NoteStoreFunction>().titleWriteOKBtn_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<FirstRoomFunction>().closeTitle();
+            if (firstGM.GetComponent<FirstRoomFunction>().titleImg.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<WindowMiniGame>().CloseMiniGame();
+            if (firstGM.GetComponent<WindowMiniGame>().milkWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<WindowMiniGame>().miniGameWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<WindowMiniGame>().minicat_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<FirstRoomFunction>().closeBeadal();
+            if (firstGM.GetComponent<FirstRoomFunction>().beadalWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomFunction>().beadalType1_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomFunction>().beadalType2_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomFunction>().beadalYesNo_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<UnityADS>().closeAdYN();
+            if (firstGM.GetComponent<UnityADS>().ad_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<FirstRoomBookList>().closeItemList();
+            if (firstGM.GetComponent<FirstRoomBookList>().itemListText_left.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomBookList>().itemListText_txt.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomBookList>().itemListText_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<FirstRoomSticker>().CloseFrame();
+            if (firstGM.GetComponent<FirstRoomSticker>().frame_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<FirstRoomFunction>().boxNo();
+            if (firstGM.GetComponent<FirstRoomFunction>().boxClean_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<FirstRoomFunction>().needMore_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM.GetComponent<SleepTime>().CloseSleep();
+            if (firstGM.GetComponent<SleepTime>().sleepWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+        }
+        else
+        {
+            //GM2.GetComponent<secondRoomFunction>().AllClose();
+            if (firstGM.GetComponent<secondRoomFunction>().close_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<secondRoomFunction>().WaterPurifilerWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<secondRoomFunction>().coldToHot_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<secondRoomFunction>().hotToCold_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<secondRoomFunction>().goOutWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<secondRoomFunction>().goodsWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM2.GetComponent<secondRoomFunction>().boxClose();
+            if (firstGM.GetComponent<secondRoomFunction>().boxClean_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM2.GetComponent<GasrangeEvt>().Closefood();
+            if (firstGM.GetComponent<GasrangeEvt>().cookYN_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM2.GetComponent<GasrangeEvt>().CloseIceBox();
+            if (firstGM.GetComponent<GasrangeEvt>().cookYN_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<GasrangeEvt>().iceBox_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<GasrangeEvt>().gasrange_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM2.GetComponent<SeedTime>().CloseSeed();
+            if (firstGM.GetComponent<SeedTime>().seedWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            if (firstGM.GetComponent<SeedTime>().seedYetWindow_obj.activeSelf)
+            {
+                a = 1;
+            }
+            //GM2.GetComponent<UnityADS>().closeAdYN();
+            if (firstGM.GetComponent<UnityADS>().ad_obj.activeSelf)
+            {
+                a = 1;
+            }
+        }
+
+    }
+
+
     //게임종료-------
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            closeTalkBoon();
-            talkCursor.SetActive(true);
-            if (!exitTalkBalln.activeSelf)
+            checkOpenWindow();
+            if (a == 0)
             {
-                exit_int = 1;
-                exitTalkBalln.SetActive(true); //대화창 새로만들기
-                closeTB_exit.SetActive(true);
-                exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[0];
-                if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
+                closeTalkBoon();
+                talkCursor.SetActive(true);
+                if (!exitTalkBalln.activeSelf)
                 {
-                    talkCursor.SetActive(false);
-                    exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
-                    exitText.text = "(자고있다. 조용히 나갈까?)\n(뒤로두번 종료)";
+                    exit_int = 1;
+                    exitTalkBalln.SetActive(true); //대화창 새로만들기
+                    closeTB_exit.SetActive(true);
+                    exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[0];
+                    if (PlayerPrefs.GetInt("sleepTxt", 0) == 1)
+                    {
+                        talkCursor.SetActive(false);
+                        exitTalkBalln.GetComponent<Image>().sprite = ballnSpr[1];
+                        exitText.text = "(자고있다. 조용히 나갈까?)\n(뒤로두번 종료)";
+                    }
+                    else
+                    {
+                        exitText.text = "가는거니?\n(뒤로두번 종료)";
+                    }
                 }
                 else
                 {
-                    exitText.text = "가는거니?\n(뒤로두번 종료)";
+                    StartCoroutine("quitGame");
                 }
             }
-            else
-            {
-                StartCoroutine("quitGame");
-            }
+            a = 0;
         }
 
 
