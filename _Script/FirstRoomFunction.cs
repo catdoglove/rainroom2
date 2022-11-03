@@ -1422,6 +1422,9 @@ public class FirstRoomFunction : CavasData {
             GMNotdistroy.GetComponent<MainInfo>().infoShow();
             GMNotdistroy.GetComponent<MainBtnEvt>().openInfoWindow();
             GMNotdistroy.GetComponent<MainInfo>().infoWindowTurn();
+            firstGM.GetComponent<TalkEvt>().closeTalkBoon();
+            firstGM.GetComponent<EndingBox>().CloseEnding();
+            firstGM.GetComponent<WindowMiniGame>().CloseMiniGame();
         }
     }
 }

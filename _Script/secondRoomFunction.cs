@@ -1487,9 +1487,12 @@ public class secondRoomFunction : CavasData
         }
         else
         {
+            AllClose();
             GMTag.GetComponent<MainInfo>().infoShow();
             GMTag.GetComponent<MainBtnEvt>().openInfoWindow();
             GMTag.GetComponent<MainInfo>().infoWindowTurn();
+            GM2.GetComponent<GasrangeEvt>().CloseIceBox();
+            GM2.GetComponent<TalkEvt>().closeTalkBoon();
         }
     }
 
