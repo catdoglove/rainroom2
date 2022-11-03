@@ -1471,4 +1471,26 @@ public class secondRoomFunction : CavasData
         PlayerPrefs.SetInt("gettre2", 1);
         GMTag.GetComponent<MainBtnEvt>().CheckTre();
     }
+
+    /// <summary>
+    /// 업적 팝업 터치 인포 뒷면 보기
+    /// </summary>
+    public void AcBtnShowInfoBack()
+    {
+        if (GMTag == null)
+        {
+            GMTag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        if (GMTag.GetComponent<MainBtnEvt>().MainWindow_obj[0].activeSelf)
+        {
+            GMTag.GetComponent<MainInfo>().infoWindowTurn();
+        }
+        else
+        {
+            GMTag.GetComponent<MainInfo>().infoShow();
+            GMTag.GetComponent<MainBtnEvt>().openInfoWindow();
+            GMTag.GetComponent<MainInfo>().infoWindowTurn();
+        }
+    }
+
 }

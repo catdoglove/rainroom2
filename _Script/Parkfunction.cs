@@ -667,4 +667,26 @@ public class Parkfunction : CavasData
         PlayerPrefs.SetInt("gettre5", 1);
         GMtag.GetComponent<MainBtnEvt>().CheckTre();
     }
+
+
+    /// <summary>
+    /// 업적 팝업 터치 인포 뒷면 보기
+    /// </summary>
+    public void AcBtnShowInfoBack()
+    {
+        if (GMtag == null)
+        {
+            GMtag = GameObject.FindGameObjectWithTag("GMtag");
+        }
+        if (GMtag.GetComponent<MainBtnEvt>().MainWindow_obj[0].activeSelf)
+        {
+            GMtag.GetComponent<MainInfo>().infoWindowTurn();
+        }
+        else
+        {
+            GMtag.GetComponent<MainInfo>().infoShow();
+            GMtag.GetComponent<MainBtnEvt>().openInfoWindow();
+            GMtag.GetComponent<MainInfo>().infoWindowTurn();
+        }
+    }
 }
