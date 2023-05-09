@@ -303,6 +303,7 @@ public class CityFunction : CavasData
                 seaWindow_obj.SetActive(true);
             }
         }
+        PlayerPrefs.SetInt("ForUnityADSnewReward", 88);
     }
 
     //산으로가기

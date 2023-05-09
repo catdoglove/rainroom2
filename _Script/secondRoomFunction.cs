@@ -1046,6 +1046,8 @@ public class secondRoomFunction : CavasData
             PlayerPrefs.SetInt("showhavec", 1);
         }
 
+        PlayerPrefs.SetInt("ForUnityADSnewReward", 99);
+
 
     }
     public void CloseGoOut()

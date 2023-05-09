@@ -449,6 +449,7 @@ public class Parkfunction : CavasData
                 mountainWindow_obj.SetActive(true);
             }
         }
+        PlayerPrefs.SetInt("ForUnityADSnewReward", 77);
     }
     public void WaitShow()
     {
