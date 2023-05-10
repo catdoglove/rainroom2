@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UnityADSnewReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener, IUnityAdsInitializationListener
 {
 
-    private string gameId = "1486550";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
+    private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
 
 
     public GameObject GM;
@@ -17,7 +17,7 @@ public class UnityADSnewReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     private void Awake()
     {
-        Advertisement.Initialize(gameId, true, this);//테스트모드 true
+        Advertisement.Initialize(gameId, false, this);//테스트모드 true
     }
 
     void Start()
