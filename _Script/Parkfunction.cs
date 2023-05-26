@@ -284,7 +284,7 @@ public class Parkfunction : CavasData
         //이밴트 랜덤 
         eventRand_i = Random.Range(0, 3);
         System.DateTime time = System.DateTime.Now;
-        if (time.ToString("tt") == "PM")
+        if (time.ToString("tt") == "PM" || time.ToString("tt") == "오후")
         {
             int k = int.Parse(time.ToString("hh"));
             if (k == 12)

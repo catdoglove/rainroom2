@@ -167,7 +167,8 @@ public class WindowMiniGame : MonoBehaviour {
         //우유확인
         milk();
         System.DateTime time = System.DateTime.Now;
-        if (time.ToString("tt") == "PM")
+        Debug.Log(time.ToString("hh"));
+        if (time.ToString("tt") == "PM" || time.ToString("tt") == "오후")
         {
             int k = int.Parse(time.ToString("hh"));
             if (k == 12)

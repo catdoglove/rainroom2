@@ -473,7 +473,7 @@ public class CityFunction : CavasData
         Sprite[] sprites = Resources.LoadAll<Sprite>("UI/noteStore/cirt_note_enter");
 
         System.DateTime time = System.DateTime.Now;
-        if (time.ToString("tt") == "PM")
+        if (time.ToString("tt") == "PM" || time.ToString("tt") == "오후")
         {
             int k = int.Parse(time.ToString("hh"));
             if (k == 12)

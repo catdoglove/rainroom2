@@ -7,13 +7,11 @@ using System;
 
 public class AdmobADSMilk : MonoBehaviour {
     
-    
-    AdRequest request;
 
     //영상
     private RewardedAd rewardedAd;
-    string adUnitIdvideo;
-    
+    private string _rewardedAdUnitId;
+
 
     int rewardCoin;
     Color color;
@@ -28,93 +26,138 @@ public class AdmobADSMilk : MonoBehaviour {
     void Start () {
         color = new Color(1f, 1f, 1f);
 
-#if UNITY_ANDROID
-        string appId = "ca-app-pub-9179569099191885~5921342761"; //테스트용ca-app-pub-3940256099942544~3347511713
-#elif UNITY_IPHONE
-            string appId = "ca-app-pub-3940256099942544~1458002511";
-#else
-        string appId = "unexpected_platform";
-#endif
+
+
         // Initialize the Google Mobile Ads SDK.
-        //MobileAds.Initialize(appId);
+        MobileAds.Initialize((InitializationStatus initStatus) =>
+        {
+            // This callback is called once the MobileAds SDK is initialized.
+        });
 
-        //this.RequestBanner();
+        _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
 
 
-#if UNITY_ANDROID
-        adUnitIdvideo = "ca-app-pub-9179569099191885/8650861151"; // 테스트 ca-app-pub-3940256099942544/5224354917
-#elif UNITY_IPHONE
-            adUnitIdvideo = "ca-app-pub-3940256099942544/1712485313";
-#else
-        adUnitIdvideo = "unexpected_platform";
-#endif
+        LoadRewardedAd();
 
-        this.rewardedAd = new RewardedAd(adUnitIdvideo);
-
-        // Called when the user should be rewarded for watching a video.
-        this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
-        // Called when the ad is closed.
-        this.rewardedAd.OnAdClosed += HandleRewardBasedVideoClosed;
-
-        RequestRewardedVideo();
-        
 
     }
 
-  
 
-    private void OnDisable()
+
+
+
+
+    public void LoadRewardedAd()
     {
-        rewardedAd.OnUserEarnedReward -= HandleUserEarnedReward;
-        rewardedAd.OnAdClosed -= HandleRewardBasedVideoClosed;
+        // Clean up the old ad before loading a new one.
+        if (rewardedAd != null)
+        {
+            rewardedAd.Destroy();
+            rewardedAd = null;
+        }
+
+        //Debug.Log("Loading the rewarded ad.");
+
+        // create our request used to load the ad.
+        var adRequest = new AdRequest.Builder().Build();
+
+        // send the request to load the ad.
+        RewardedAd.Load(_rewardedAdUnitId, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
+            {
+                // if error is not null, the load request failed.
+                if (error != null || ad == null)
+                {
+                    //Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                    return;
+                }
+
+                //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
+
+                rewardedAd = ad;
+            });
+
+        RegisterEventHandlers(rewardedAd); //이벤트 등록
     }
 
 
-    //동영상
-    private void RequestRewardedVideo()
+    private void RegisterReloadHandler(RewardedAd ad)
     {
-        // Create an empty ad request.
-        request = new AdRequest.Builder().Build();
-        // Load the rewarded video ad with the request.
-        this.rewardedAd.LoadAd(request);
+        // Raised when the ad closed full screen content.
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            //Debug.Log("Rewarded Ad full screen content closed.");
+
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
+        // Raised when the ad failed to open full screen content.
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            //Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
+
+            // Reload the ad so that we can show another as soon as possible.
+            LoadRewardedAd();
+        };
     }
 
-    //시청보상
-    public void HandleUserEarnedReward(object sender, Reward args)
+
+    private void RegisterEventHandlers(RewardedAd ad)
     {
-        PlayerPrefs.SetInt("milkadc", 1);
-        PlayerPrefs.SetInt("setmilkadc", 0);
-        //StartCoroutine("ToastImgFadeOut");
-        Toast_obj2.SetActive(true);
-        GM.GetComponent<WindowMiniGame>().MilkYes();
-        Toast_contain3.SetActive(true);
-        Toast_contain2.SetActive(false);
-        PlayerPrefs.SetInt("blad", 1);
+        // Raised when the ad is estimated to have earned money.
+        ad.OnAdPaid += (AdValue adValue) =>
+        {
+            //Debug.Log("광고");
+        };
+
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            PlayerPrefs.SetInt("adrunout", 0);
+            LoadRewardedAd();
+            //Debug.Log("광고닫기");
+        };
     }
 
-    //동영상닫음
-    private void HandleRewardBasedVideoClosed(object sender, System.EventArgs args)
-    {
-        RequestRewardedVideo();
-        blackimg.SetActive(false);
-        PlayerPrefs.SetInt("adrunout", 0);
-    }
+
+
+
+
+
 
     public void showAdmobVideo()
     {
+        //Debug.Log("상태보기 : " + rewardedAd);
+
         PlayerPrefs.SetInt("wait", 1);
-        if (this.rewardedAd.IsLoaded())
+        if (rewardedAd != null)
         {
             blackimg.SetActive(true);
-            this.rewardedAd.Show();
+            rewardedAd.Show((Reward reward) =>
+            {
+                PlayerPrefs.SetInt("milkadc", 1);
+                PlayerPrefs.SetInt("setmilkadc", 0);
+                    //StartCoroutine("ToastImgFadeOut");
+                    Toast_obj2.SetActive(true);
+                GM.GetComponent<WindowMiniGame>().MilkYes();
+                Toast_contain3.SetActive(true);
+                Toast_contain2.SetActive(false);
+                PlayerPrefs.SetInt("blad", 1);
+                blackimg.SetActive(false);
+            });
         }
         else
         {
             GM.GetComponent<UnityADSMilk>().adYes();
             PlayerPrefs.SetInt("adrunout", 0);
-
+            LoadRewardedAd();
         }
+
     }
+
+
+
+
+
 
     public void MilkToast()
     {
