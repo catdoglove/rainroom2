@@ -136,13 +136,14 @@ public class AdmobADSMilk : MonoBehaviour {
             {
                 PlayerPrefs.SetInt("milkadc", 1);
                 PlayerPrefs.SetInt("setmilkadc", 0);
-                    //StartCoroutine("ToastImgFadeOut");
-                    Toast_obj2.SetActive(true);
+                //StartCoroutine("ToastImgFadeOut");
+                Toast_obj2.SetActive(true);
                 GM.GetComponent<WindowMiniGame>().MilkYes();
                 Toast_contain3.SetActive(true);
                 Toast_contain2.SetActive(false);
                 PlayerPrefs.SetInt("blad", 1);
                 blackimg.SetActive(false);
+                PlayerPrefs.SetInt("adrunout", 0);
             });
         }
         else
