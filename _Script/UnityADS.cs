@@ -89,6 +89,7 @@ public class UnityADS : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
         PlayerPrefs.SetInt("wait", 2);
         ad_obj.SetActive(true);
         Wating();
+        LoadAd();
     }
 
     public void Wating()

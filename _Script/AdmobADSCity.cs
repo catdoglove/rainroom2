@@ -32,6 +32,10 @@ public class AdmobADSCity : MonoBehaviour {
     void Start () {
         color = new Color(1f, 1f, 1f);
 
+        StopCoroutine("adTimeFlow2");
+        StopCoroutine("adAniTime2");
+        StartCoroutine("adTimeFlow2");
+        StartCoroutine("adAniTime2");
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize((InitializationStatus initStatus) =>
@@ -46,10 +50,6 @@ public class AdmobADSCity : MonoBehaviour {
         LoadRewardedAd();
         LoadRewardedInterstitialAd();
 
-        StopCoroutine("adTimeFlow2");
-        StopCoroutine("adAniTime2");
-        StartCoroutine("adTimeFlow2");
-        StartCoroutine("adAniTime2");
     }
 
 
@@ -121,11 +121,6 @@ public class AdmobADSCity : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            blackimg.SetActive(false);
-            Toast_obj.SetActive(true);
-            Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
-            StartCoroutine("ToastImgFadeOut");
-            LoadRewardedAd();
             //Debug.Log("광고닫기");
         };
     }
@@ -157,7 +152,7 @@ public class AdmobADSCity : MonoBehaviour {
                         PlayerPrefs.SetInt("secf3", 240);
                     }
                     ad_obj.SetActive(false);
-                    blackimg.SetActive(false);
+                    giveMeReward();
                 });
             }
             else
@@ -171,7 +166,14 @@ public class AdmobADSCity : MonoBehaviour {
     }
 
 
-
+    void giveMeReward()
+    {
+        blackimg.SetActive(false);
+        Toast_obj.SetActive(true);
+        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StartCoroutine("ToastImgFadeOut");
+        LoadRewardedAd();
+    }
 
     
 

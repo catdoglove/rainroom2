@@ -113,14 +113,18 @@ public class AdmobADS : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            blackimg.SetActive(false);
-            Toast_obj.SetActive(true);
-            PlayerPrefs.SetInt("adrunout", 0);
-            Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
-            StartCoroutine("ToastImgFadeOut");
-            LoadRewardedAd();
             //Debug.Log("광고닫기");
         };
+    }
+
+    void giveMeReward()
+    {
+        blackimg.SetActive(false);
+        Toast_obj.SetActive(true);
+        PlayerPrefs.SetInt("adrunout", 0);
+        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StartCoroutine("ToastImgFadeOut");
+        LoadRewardedAd();
     }
 
 
@@ -163,7 +167,7 @@ public class AdmobADS : MonoBehaviour {
                         }
                     }
                     PlayerPrefs.SetInt("blad", 1);
-                    blackimg.SetActive(false);
+                    giveMeReward();
                 });
             }
             else

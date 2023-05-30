@@ -111,13 +111,17 @@ public class AdmobADSPark : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            blackimg.SetActive(false);
-            Toast_obj.SetActive(true);
-            Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
-            StartCoroutine("ToastImgFadeOut");
-            LoadRewardedAd();
             //Debug.Log("광고닫기");
         };
+    }
+
+    void giveMeReward()
+    {
+        blackimg.SetActive(false);
+        Toast_obj.SetActive(true);
+        Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StartCoroutine("ToastImgFadeOut");
+        LoadRewardedAd();
     }
 
 
@@ -148,7 +152,7 @@ public class AdmobADSPark : MonoBehaviour {
                     {
                         PlayerPrefs.SetInt("secf0", 240);
                     }
-                    blackimg.SetActive(false);
+                    giveMeReward();
                 });
             }
             else
