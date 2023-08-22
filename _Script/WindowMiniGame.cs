@@ -18,7 +18,7 @@ public class WindowMiniGame : MonoBehaviour {
     public float moveX, moveY;
 
     //낮밤
-    public GameObject dayLight_obj,dayRoom_obj,dayWindow_obj;
+    public GameObject dayLight_obj,dayRoom_obj,dayWindow_obj, nightchangeWindow, nightchangeWindow2;
     public Sprite[] dayLight_spr;
 
     //우유
@@ -168,19 +168,22 @@ public class WindowMiniGame : MonoBehaviour {
         milk();
         System.DateTime time = System.DateTime.Now;
         Debug.Log(time.ToString("hh"));
-        if (time.ToString("tt") == "PM" || time.ToString("tt") == "오후")
+        if (int.Parse(time.ToString("HH")) >= 12)
         {
             int k = int.Parse(time.ToString("hh"));
+            int Hourcheck = int.Parse(time.ToString("HH"));
             if (k == 12)
             {
                 k = 0;
             }
-            if (k >= 6)
+            if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 //밤
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
                 dayWindow_obj.SetActive(true);
                 dayRoom_obj.SetActive(true);
+                nightchangeWindow.SetActive(true);
+                nightchangeWindow2.SetActive(true);
                 PlayerPrefs.SetInt("dayday",1);
             }
             else
@@ -189,21 +192,26 @@ public class WindowMiniGame : MonoBehaviour {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
                 dayWindow_obj.SetActive(false);
                 dayRoom_obj.SetActive(false);
+                nightchangeWindow.SetActive(false);
+                nightchangeWindow2.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
         else
         {
             int k = int.Parse(time.ToString("hh"));
+            int Hourcheck = int.Parse(time.ToString("HH"));
             if (k == 12)
             {
                 k = 0;
             }
-            if (k < 6)
+            if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];
                 dayWindow_obj.SetActive(true);
                 dayRoom_obj.SetActive(true);
+                nightchangeWindow.SetActive(true);
+                nightchangeWindow2.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 1);
             }
             else
@@ -212,6 +220,8 @@ public class WindowMiniGame : MonoBehaviour {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[1];
                 dayRoom_obj.SetActive(false);
                 dayWindow_obj.SetActive(false);
+                nightchangeWindow.SetActive(false);
+                nightchangeWindow2.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }

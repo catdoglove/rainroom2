@@ -1320,41 +1320,51 @@ public class FirstRoomFunction : CavasData {
     public void setDay()
     {
         System.DateTime time = System.DateTime.Now;
-        if (time.ToString("tt") == "PM" || time.ToString("tt") == "오후")
+        if (int.Parse(time.ToString("HH")) >= 12)
         {
             int k = int.Parse(time.ToString("hh"));
+            int Hourcheck = int.Parse(time.ToString("HH"));
             if (k == 12)
             {
                 k = 0;
             }
-            if (k >= 6)
+            if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 dayRoom.SetActive(true);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow.SetActive(true);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow2.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 1);
             }
             else
             {
                 //낮
                 dayRoom.SetActive(false);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow.SetActive(false);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow2.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
         else
         {
             int k = int.Parse(time.ToString("hh"));
+            int Hourcheck = int.Parse(time.ToString("HH"));
             if (k == 12)
             {
                 k = 0;
             }
-            if (k < 6)
+            if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 dayRoom.SetActive(true);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow.SetActive(true);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow2.SetActive(true);
                 PlayerPrefs.SetInt("dayday", 1);
             }
             else
             {
                 //낮
                 dayRoom.SetActive(false);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow.SetActive(false);
+                GM.GetComponent<WindowMiniGame>().nightchangeWindow2.SetActive(false);
                 PlayerPrefs.SetInt("dayday", 0);
             }
         }
