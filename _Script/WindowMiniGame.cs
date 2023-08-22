@@ -167,15 +167,9 @@ public class WindowMiniGame : MonoBehaviour {
         //우유확인
         milk();
         System.DateTime time = System.DateTime.Now;
-        Debug.Log(time.ToString("hh"));
         if (int.Parse(time.ToString("HH")) >= 12)
         {
-            int k = int.Parse(time.ToString("hh"));
             int Hourcheck = int.Parse(time.ToString("HH"));
-            if (k == 12)
-            {
-                k = 0;
-            }
             if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 //밤
@@ -199,12 +193,7 @@ public class WindowMiniGame : MonoBehaviour {
         }
         else
         {
-            int k = int.Parse(time.ToString("hh"));
             int Hourcheck = int.Parse(time.ToString("HH"));
-            if (k == 12)
-            {
-                k = 0;
-            }
             if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 dayLight_obj.GetComponent<Image>().sprite = dayLight_spr[0];

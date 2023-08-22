@@ -286,12 +286,7 @@ public class Parkfunction : CavasData
         System.DateTime time = System.DateTime.Now;
         if (int.Parse(time.ToString("HH")) >= 12)
         {
-            int k = int.Parse(time.ToString("hh"));
             int Hourcheck = int.Parse(time.ToString("HH"));
-            if (k == 12)
-            {
-                k = 0;
-            }
             if (Hourcheck >= 18 || Hourcheck < 6)
             {
                     dayRoom.SetActive(true);
@@ -312,12 +307,7 @@ public class Parkfunction : CavasData
         }
         else
         {
-            int k = int.Parse(time.ToString("hh"));
             int Hourcheck = int.Parse(time.ToString("HH"));
-            if (k == 12)
-            {
-                k = 0;
-            }
             if (Hourcheck >= 18 || Hourcheck < 6)
             {
                 dayRoom.SetActive(true);
