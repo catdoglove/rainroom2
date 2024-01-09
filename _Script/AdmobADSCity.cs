@@ -66,7 +66,7 @@ public class AdmobADSCity : MonoBehaviour {
         //Debug.Log("Loading the rewarded ad.");
 
         // create our request used to load the ad.
-        var adRequest = new AdRequest.Builder().Build();
+        var adRequest = new AdRequest();
 
         // send the request to load the ad.
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
@@ -273,7 +273,7 @@ public class AdmobADSCity : MonoBehaviour {
         //Debug.Log("Loading the rewarded interstitial ad.");
 
         // create our request used to load the ad.
-        var adRequest = new AdRequest.Builder().Build();
+        var adRequest = new AdRequest();
 
         // send the request to load the ad.
         RewardedInterstitialAd.Load(_GoOutADSid, adRequest,
