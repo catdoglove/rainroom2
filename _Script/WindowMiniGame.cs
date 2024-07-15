@@ -330,9 +330,19 @@ public class WindowMiniGame : MonoBehaviour {
     void milk()
     {
         //초기값을가져옵니다
-        System.DateTime dateTimenow = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        System.DateTime dateTimenow = System.DateTime.Now.AddHours(-10);
         //str로장되어있는과거접속시간을가져옵니다
         string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+
+        try
+        {
+            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+        }
+        catch (System.Exception)
+        {
+            lastTimem = System.DateTime.Now.AddHours(-10).ToString();
+        }
+
         //형변환을해줍니다
         System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
         //계산
@@ -620,9 +630,19 @@ public class WindowMiniGame : MonoBehaviour {
     IEnumerator toastMilkTime()
     {
         //초기값을가져옵니다
-        System.DateTime dateTimenow = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        System.DateTime dateTimenow = System.DateTime.Now.AddHours(-10);
         //str로장되어있는과거접속시간을가져옵니다
         string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+
+        try
+        {
+            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+        }
+        catch (System.Exception)
+        {
+            lastTimem = System.DateTime.Now.AddHours(-10).ToString();
+        }
+
         //형변환을해줍니다
         System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
         //계산

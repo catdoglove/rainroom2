@@ -209,8 +209,16 @@ public class SleepTime : MonoBehaviour {
 
     void SleepTimeFlow()
     {
-        System.DateTime d = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        System.DateTime d = System.DateTime.Now.AddHours(-6);
         lastTime = PlayerPrefs.GetString("sleepLastTime", d.ToString());
+        try
+        {
+            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTime);
+        }
+        catch (System.Exception)
+        {
+            lastTime = System.DateTime.Now.AddHours(-6).ToString();
+        }
         System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
         System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
         hours = (int)compareTime.TotalHours;

@@ -506,9 +506,21 @@ public class Parkfunction : CavasData
                 PlayerPrefs.SetInt("outtimeonpark", 1);
             }
             else
-            {
-                System.DateTime dateTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
-                System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
+            {             
+
+                System.DateTime dateTime = System.DateTime.Now.AddHours(-1);
+                System.DateTime lastDateTime;
+                try
+                {
+                    System.DateTime lastDateTime2 = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
+                }
+                catch (System.Exception)
+                {
+                    lastDateTime = System.DateTime.Now.AddHours(-1);
+                }
+
+                lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
+
                 System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;

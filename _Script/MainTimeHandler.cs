@@ -50,8 +50,18 @@ public class MainTimeHandler : MonoBehaviour {
 		System.DateTime dateTimenow = System.DateTime.Now;
 		//str로장되어있는과거접속시간을가져옵니다
 		string lastTimem = PlayerPrefs.GetString("lastTime",dateTimenow.ToString());
-		//형변환을해줍니다
-		System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
+        //형변환을해줍니다
+        try
+        {
+            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+        }
+        catch (System.Exception)
+        {
+            lastTimem = System.DateTime.Now.AddHours(-1).ToString();
+        }
+
+        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
+
 		//계산
 		System.TimeSpan compareTimem =  System.DateTime.Now - lastDateTimem;
 		//1분당1씩줍니다
