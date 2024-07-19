@@ -1227,8 +1227,7 @@ public class secondRoomFunction : CavasData
                 PlayerPrefs.SetInt("outtimeon", 1);
             }
             else
-            {
-                
+            {                
 
                 System.DateTime dateTime = System.DateTime.Now.AddHours(-1);
                 System.DateTime lastDateTime;
@@ -1243,10 +1242,6 @@ public class secondRoomFunction : CavasData
 
 
                 lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", dateTime.ToString()));
-
-
-
-
 
 
 

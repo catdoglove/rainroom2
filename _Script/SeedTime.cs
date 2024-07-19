@@ -141,7 +141,7 @@ public class SeedTime : MonoBehaviour {
     {
         seed_i = PlayerPrefs.GetInt("seedlv", 0);
         seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
-        System.DateTime d = System.DateTime.Now.AddHours(-10);
+        System.DateTime d = System.DateTime.Now.AddHours(-13);
         lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString());
         try
         {
@@ -149,7 +149,7 @@ public class SeedTime : MonoBehaviour {
         }
         catch (System.Exception)
         {
-            lastTime = System.DateTime.Now.AddHours(-10).ToString();
+            lastTime = System.DateTime.Now.AddHours(-13).ToString();
         }
 
 
