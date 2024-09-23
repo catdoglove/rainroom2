@@ -102,10 +102,29 @@ public class MainTimeHandler : MonoBehaviour {
 		int sec;
 		int a = 0;
 		while (a == 0) {
-			talk = PlayerPrefs.GetInt ("talk", 5);
-			lastTime = PlayerPrefs.GetString ("TalkLastTime", System.DateTime.Now.ToString ());
-			System.DateTime lastDateTime = System.DateTime.Parse (lastTime);
-			System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+            int justOne = 99;
+            talk = PlayerPrefs.GetInt ("talk", 5);
+            System.DateTime dateTime = System.DateTime.Now.AddHours(-1);
+            lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ());            
+            System.DateTime lastDateTime = System.DateTime.Now;
+
+            try
+            {
+                System.DateTime lastDateTime2 = System.DateTime.Parse(lastTime);
+            }
+            catch (System.Exception)
+            {
+                justOne = 0;
+                lastDateTime = System.DateTime.Now.AddHours(-1);
+            }
+
+            if(justOne == 99)
+            {
+                lastDateTime = System.DateTime.Parse(lastTime);
+            }
+            System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+
+
             if ((int)compareTime.TotalSeconds < 0)
             {
                 compareTime = System.DateTime.Now - System.DateTime.Now;
