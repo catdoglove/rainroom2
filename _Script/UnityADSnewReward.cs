@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
+using Unity.Services.LevelPlay;
 
-public class UnityADSnewReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener, IUnityAdsInitializationListener
+public class UnityADSnewReward : MonoBehaviour
 {
 
-    private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)
+    string appKey = "a1f59a75";
 
 
     public GameObject GM;
@@ -17,17 +18,54 @@ public class UnityADSnewReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     private void Awake()
     {
-        Advertisement.Initialize(gameId, false, this);//테스트모드 true
     }
 
     void Start()
     {
-        LoadAd();
+        Debug.Log("unity-script: IronSource.Agent.validateIntegration");
+        IronSource.Agent.validateIntegration();
+
+        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+
+        // SDK init
+        Debug.Log("unity-script: LevelPlay SDK initialization");
+        LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
+
+        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
 
+    void EnableAds()
+    {
 
-    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+    }
+
+
+    void OnApplicationPause(bool isPaused)
+    {
+        Debug.Log("unity-script: OnApplicationPause = " + isPaused);
+        IronSource.Agent.onApplicationPause(isPaused);
+    }
+
+
+    void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo)
+    {
+        Debug.Log("unity-script: I got RewardedVideoOnAdOpenedEvent With AdInfo " + adInfo);
+    }
+
+
+    void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo)
+    {
+        Debug.Log("unity-script: I got RewardedVideoOnAdAvailable With AdInfo " + adInfo);
+    }
+
+    void RewardedVideoOnAdUnavailable()
+    {
+        Debug.Log("unity-script: I got RewardedVideoOnAdUnavailable");
+    }
+
+    void RewardedVideoOnAdShowFailedEvent(IronSourceError ironSourceError, IronSourceAdInfo adInfo)
     {
         PlayerPrefs.SetInt("wait", 2);
         GM.GetComponent<UnityADSPark>().ad_obj.SetActive(true);
@@ -35,64 +73,68 @@ public class UnityADSnewReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     }
 
 
-    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
+
+    void RewardedVideoOnAdClickedEvent(IronSourcePlacement ironSourcePlacement, IronSourceAdInfo adInfo)
     {
-        if (adUnitId.Equals(uid) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        Debug.Log("unity-script: I got RewardedVideoOnAdClickedEvent With Placement" + ironSourcePlacement + "And AdInfo " + adInfo);
+    }
+
+
+
+    void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
+    {
+        Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: " + config);
+        EnableAds();
+    }
+
+    void SdkInitializationFailedEvent(LevelPlayInitError error)
+    {
+        Debug.Log("unity-script: I got SdkInitializationFailedEvent with error: " + error);
+    }
+
+    void ImpressionDataReadyEvent(IronSourceImpressionData impressionData)
+    {
+        Debug.Log("unity - script: I got ImpressionDataReadyEvent ToString(): " + impressionData.ToString());
+        Debug.Log("unity - script: I got ImpressionDataReadyEvent allData: " + impressionData.allData);
+    }
+
+    void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
+    {
+         if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 99)
         {
-
-            if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 77)
-            {
-                PlayerPrefs.SetInt("foresttime", 4);
-                GM.GetComponent<AdmobADSPark>().Toast_obj2.SetActive(true);
-            }
-            else if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 88)
-            {
-                PlayerPrefs.SetInt("seatime", 4);
-                GM.GetComponent<AdmobADSCity>().Toast_obj2.SetActive(true);
-            }
-            else if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 99)
-            {
-                PlayerPrefs.SetInt("bouttime", 9);
-                GM.GetComponent<AdmobADS>().Toast_obj2.SetActive(true);
-            }
-
-            Advertisement.Load(uid, this);
+            PlayerPrefs.SetInt("bouttime", 9);
+            GM.GetComponent<AdmobADS>().Toast_obj2.SetActive(true);
         }
     }
+
+
+    void RewardedVideoOnAdRewardedEvent(IronSourcePlacement ironSourcePlacement, IronSourceAdInfo adInfo)
+    {
+        if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 77)
+        {
+            PlayerPrefs.SetInt("foresttime", 4);
+            GM.GetComponent<AdmobADSPark>().Toast_obj2.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 88)
+        {
+            PlayerPrefs.SetInt("seatime", 4);
+            GM.GetComponent<AdmobADSCity>().Toast_obj2.SetActive(true);
+        }
+    }
+
 
     public void ShowRewardedAd()
     {
         PlayerPrefs.SetInt("wait", 1);
-        Advertisement.Show("rewardedVideo", this);
+        Debug.Log("unity-script: ShowRewardedVideoButtonClicked");
+        if (IronSource.Agent.isRewardedVideoAvailable())
+        {
+            IronSource.Agent.showRewardedVideo();
+        }
+        else
+        {
+        }
     }
 
 
-    // Load content to the Ad Unit:
-    public void LoadAd()
-    {
-        // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
-        Debug.Log("Loading Ad: " + uid);
-        Advertisement.Load(uid, this);
-    }
-
-    public void OnInitializationComplete()
-    {
-    }
-
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    {
-    }
-    public void OnUnityAdsAdLoaded(string placementId)
-    {
-    }
-
-    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
-    {
-    }
-    public void OnUnityAdsShowStart(string placementId)
-    {
-    }
-    public void OnUnityAdsShowClick(string placementId)
-    {
-    }
 }
