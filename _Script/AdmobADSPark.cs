@@ -63,6 +63,7 @@ public class AdmobADSPark : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
+                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -75,30 +76,8 @@ public class AdmobADSPark : MonoBehaviour {
                 rewardedAd = ad;
             });
 
-        RegisterEventHandlers(rewardedAd); //이벤트 등록
     }
 
-
-
-    private void RegisterReloadHandler(RewardedAd ad)
-    {
-        // Raised when the ad closed full screen content.
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            //Debug.Log("Rewarded Ad full screen content closed.");
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
-        // Raised when the ad failed to open full screen content.
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
-    }
 
 
     private void RegisterEventHandlers(RewardedAd ad)
@@ -140,7 +119,7 @@ public class AdmobADSPark : MonoBehaviour {
         {
             PlayerPrefs.SetInt("wait", 1);
 
-            if (rewardedAd != null)
+            if (rewardedAd != null && rewardedAd.CanShowAd())
             {
                 blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
@@ -211,6 +190,7 @@ public class AdmobADSPark : MonoBehaviour {
         RewardedInterstitialAd.Load(_GoOutADSid, adRequest,
             (RewardedInterstitialAd ad, LoadAdError error) =>
             {
+                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -222,7 +202,6 @@ public class AdmobADSPark : MonoBehaviour {
 
                 rewardedInterstitialAd = ad;
             });
-        RegisterEventHandlers(rewardedInterstitialAd); //이벤트 등록
     }
 
 
@@ -236,7 +215,7 @@ public class AdmobADSPark : MonoBehaviour {
         PlayerPrefs.SetInt("wait", 1);
 
         //Debug.Log("상태보기 : " + rewardedInterstitialAd);
-        if (rewardedInterstitialAd != null)
+        if (rewardedInterstitialAd != null && rewardedInterstitialAd.CanShowAd())
         {
             blackimg.SetActive(true);
             rewardedInterstitialAd.Show((Reward reward) =>
@@ -245,7 +224,7 @@ public class AdmobADSPark : MonoBehaviour {
                 PlayerPrefs.SetInt("foresttime", 4);
                 Toast_obj2.SetActive(true);
                 blackimg.SetActive(false);
-
+                LoadRewardedInterstitialAd();
             });
         }
         else
@@ -280,7 +259,7 @@ public class AdmobADSPark : MonoBehaviour {
         ad.OnAdFullScreenContentClosed += () =>
         {
             blackimg.SetActive(false);
-            LoadRewardedInterstitialAd();
+            //LoadRewardedInterstitialAd();
 
             //Debug.Log("Interstitial ad full screen content closed.");
         };
@@ -289,32 +268,6 @@ public class AdmobADSPark : MonoBehaviour {
             //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
         };
     }
-
-
-
-
-
-
-
-
-
-
-    private void RegisterReloadHandler(RewardedInterstitialAd ad)
-    {
-        ad.OnAdFullScreenContentClosed += (null);
-        {
-            //Debug.Log("Interstitial Ad full screen content closed.");
-
-            LoadRewardedInterstitialAd();
-        };
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
-
-            LoadRewardedInterstitialAd();
-        };
-    }
-
 
 
 

@@ -67,6 +67,7 @@ public class AdmobADS : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
+                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -78,28 +79,6 @@ public class AdmobADS : MonoBehaviour {
 
                 rewardedAd = ad;
             });
-
-        RegisterEventHandlers(rewardedAd); //이벤트 등록
-    }
-
-    private void RegisterReloadHandler(RewardedAd ad)
-    {
-        // Raised when the ad closed full screen content.
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            //Debug.Log("Rewarded Ad full screen content closed.");
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
-        // Raised when the ad failed to open full screen content.
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
     }
 
 
@@ -114,11 +93,13 @@ public class AdmobADS : MonoBehaviour {
         ad.OnAdFullScreenContentClosed += () =>
         {
             //Debug.Log("광고닫기");
+
         };
     }
 
     void giveMeReward()
     {
+       // Debug.Log("로드리워드애드");
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
         PlayerPrefs.SetInt("adrunout", 0);
@@ -142,7 +123,7 @@ public class AdmobADS : MonoBehaviour {
         {
             PlayerPrefs.SetInt("wait", 1);
 
-            if (rewardedAd != null)
+            if (rewardedAd != null && rewardedAd.CanShowAd())
             {
                 blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
@@ -224,6 +205,7 @@ public class AdmobADS : MonoBehaviour {
         RewardedInterstitialAd.Load(_GoOutADSid, adRequest,
             (RewardedInterstitialAd ad, LoadAdError error) =>
             {
+                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -235,7 +217,6 @@ public class AdmobADS : MonoBehaviour {
 
                 rewardedInterstitialAd = ad;
             });
-        RegisterEventHandlers(rewardedInterstitialAd); //이벤트 등록
     }
 
 
@@ -248,7 +229,7 @@ public class AdmobADS : MonoBehaviour {
         PlayerPrefs.SetInt("wait", 1);
 
         //Debug.Log("상태보기 : " + rewardedInterstitialAd);
-        if (rewardedInterstitialAd != null)
+        if (rewardedInterstitialAd != null && rewardedInterstitialAd.CanShowAd())
         {
             blackimg.SetActive(true);
             rewardedInterstitialAd.Show((Reward reward) =>
@@ -257,7 +238,7 @@ public class AdmobADS : MonoBehaviour {
                 PlayerPrefs.SetInt("bouttime", 9);
                 Toast_obj2.SetActive(true);
                 blackimg.SetActive(false);
-
+                LoadRewardedInterstitialAd();
             });
         }
         else
@@ -266,8 +247,6 @@ public class AdmobADS : MonoBehaviour {
             PlayerPrefs.SetInt("wait", 2);
             LoadRewardedInterstitialAd();
         }
-
-
 
     }
 
@@ -295,8 +274,6 @@ public class AdmobADS : MonoBehaviour {
         ad.OnAdFullScreenContentClosed += () =>
         {
             blackimg.SetActive(false);
-            LoadRewardedInterstitialAd();
-
             //Debug.Log("Interstitial ad full screen content closed.");
         };
         ad.OnAdFullScreenContentFailed += (AdError error) =>
@@ -304,35 +281,6 @@ public class AdmobADS : MonoBehaviour {
             //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
         };
     }
-
-
-
-
-
-
-
-
-
-
-    private void RegisterReloadHandler(RewardedInterstitialAd ad)
-    {
-        ad.OnAdFullScreenContentClosed += (null);
-        {
-            //Debug.Log("Interstitial Ad full screen content closed.");
-
-            LoadRewardedInterstitialAd();
-        };
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
-
-            LoadRewardedInterstitialAd();
-        };
-    }
-
-
-
-
 
 
     public void touchToastEvt()

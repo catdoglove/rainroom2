@@ -65,6 +65,7 @@ public class AdmobADSMilk : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
+                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -77,30 +78,7 @@ public class AdmobADSMilk : MonoBehaviour {
                 rewardedAd = ad;
             });
 
-        RegisterEventHandlers(rewardedAd); //이벤트 등록
     }
-
-
-    private void RegisterReloadHandler(RewardedAd ad)
-    {
-        // Raised when the ad closed full screen content.
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            //Debug.Log("Rewarded Ad full screen content closed.");
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
-        // Raised when the ad failed to open full screen content.
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Rewarded ad failed to open full screen content " + "with error : " + error);
-
-            // Reload the ad so that we can show another as soon as possible.
-            LoadRewardedAd();
-        };
-    }
-
 
     private void RegisterEventHandlers(RewardedAd ad)
     {
@@ -113,8 +91,8 @@ public class AdmobADSMilk : MonoBehaviour {
         ad.OnAdFullScreenContentClosed += () =>
         {
             PlayerPrefs.SetInt("adrunout", 0);
-            LoadRewardedAd();
-            //Debug.Log("광고닫기");
+           // LoadRewardedAd();
+           // Debug.Log("광고닫기");
         };
     }
 
@@ -129,7 +107,7 @@ public class AdmobADSMilk : MonoBehaviour {
         //Debug.Log("상태보기 : " + rewardedAd);
 
         PlayerPrefs.SetInt("wait", 1);
-        if (rewardedAd != null)
+        if (rewardedAd != null && rewardedAd.CanShowAd())
         {
             blackimg.SetActive(true);
             rewardedAd.Show((Reward reward) =>
@@ -148,8 +126,9 @@ public class AdmobADSMilk : MonoBehaviour {
         }
         else
         {
-            GM.GetComponent<UnityADSMilk>().adYes();
-            PlayerPrefs.SetInt("adrunout", 0);
+            //GM.GetComponent<UnityADSMilk>().adYes();
+            PlayerPrefs.SetInt("wait", 2);
+            MilkToast();
             LoadRewardedAd();
         }
 
