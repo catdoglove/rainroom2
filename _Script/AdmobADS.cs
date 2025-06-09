@@ -125,7 +125,7 @@ public class AdmobADS : MonoBehaviour {
 
             if (rewardedAd != null && rewardedAd.CanShowAd())
             {
-                blackimg.SetActive(true);
+               // blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
                 {
                     PlayerPrefs.SetInt("adrunout", 0);
@@ -231,7 +231,7 @@ public class AdmobADS : MonoBehaviour {
         //Debug.Log("상태보기 : " + rewardedInterstitialAd);
         if (rewardedInterstitialAd != null && rewardedInterstitialAd.CanShowAd())
         {
-            blackimg.SetActive(true);
+         //   blackimg.SetActive(true);
             rewardedInterstitialAd.Show((Reward reward) =>
             {
                 // TODO: Reward the user.

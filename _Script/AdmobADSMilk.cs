@@ -109,7 +109,7 @@ public class AdmobADSMilk : MonoBehaviour {
         PlayerPrefs.SetInt("wait", 1);
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
-            blackimg.SetActive(true);
+       //     blackimg.SetActive(true);
             rewardedAd.Show((Reward reward) =>
             {
                 PlayerPrefs.SetInt("milkadc", 1);
