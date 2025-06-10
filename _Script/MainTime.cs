@@ -13,10 +13,10 @@ public class MainTime : MonoBehaviour {
     public float bMoveX, bMoveY, moveX1, moveX2, moveY, moveY2;
     public int endBMove_i;
 
-    public float pMoveX = 5.4f, pMoveY;
+    public float pMoveX = 15.4f, pMoveY;
     public int endPMove_i;
 
-    public GameObject balloon_obj, balloonR_obj, airplane_obj,snow_obj,snowYs_obj, snowYe_obj;
+    public GameObject balloon_obj, balloonR_obj, airplane_obj, snow_obj,snowYs_obj, snowYe_obj;
     public int randball1_i, randball2_i, snow_i, snowImg_i;
     public float snowY_f, snowX_f;
     public int airplane_i, cat_i,plane_i;
@@ -39,6 +39,9 @@ public class MainTime : MonoBehaviour {
     public GameObject GM;
 
     public GameObject blackAd_obj;
+
+    //해상도별위치
+    public GameObject airplaneEnd_obj, balloonEnd_obj, balloonREnd_obj;
 
     // Use this for initialization
     void Start () {
@@ -128,7 +131,7 @@ public class MainTime : MonoBehaviour {
                 }
                 else
                 {
-                    plane_i = Random.Range(0, 450);
+                    plane_i = Random.Range(0, 6);
                 }
             }
             //풍선
@@ -192,7 +195,8 @@ public class MainTime : MonoBehaviour {
             randball1_i = Random.Range(0, 80);
             if (randball1_i == 1)
             {
-                moveX1 = -5.2f;
+                //moveX1 = -5.2f;
+                moveX1 = balloonREnd_obj.transform.position.x;
             }
         }
         if (randball2_i == 1)
@@ -207,7 +211,8 @@ public class MainTime : MonoBehaviour {
             randball2_i = Random.Range(0, 80);
             if (randball2_i == 1)
             {
-                moveX2 = 5.2f;
+                //moveX2 = 5.2f;
+                moveX2 = balloonEnd_obj.transform.position.x;
             }
         }
     }
@@ -355,18 +360,35 @@ public class MainTime : MonoBehaviour {
     {
         while (plane_i == 4)
         {
+            /*
             if (pMoveX > 7)
             {
                 pMoveX = 5.4f;
             }
                 pMoveX = pMoveX -0.1f;
-                if (pMoveX <= -5.3)
-                {
+            if (pMoveX <= -5.3)
+            {
                 PlayerPrefs.SetInt("windowairplane", 0);
                 pMoveX = 18.4f;
                 plane_i = 0;
-                }
+            }
+            */
+
+            if (pMoveX > 7)
+            {
+                pMoveX = balloonEnd_obj.transform.position.x;
+            }
+            pMoveX = pMoveX - 0.1f;
+            if (airplane_obj.transform.position.x <= airplaneEnd_obj.transform.position.x)
+            {
+                PlayerPrefs.SetInt("windowairplane", 0);
+                pMoveX = 18.4f;
+                plane_i = 0;
+            }
+
+
             airplane_obj.transform.position = new Vector3(pMoveX, airplane_obj.transform.position.y, airplane_obj.transform.position.z);
+
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -377,6 +399,7 @@ public class MainTime : MonoBehaviour {
     {
         while (randball1_i == 1)
         {
+            /*
             if (moveX1 >= 15f)
             {
                 //moveX1 = -5.2f;
@@ -388,6 +411,21 @@ public class MainTime : MonoBehaviour {
                 moveX1 = 15.4f;
                 randball1_i = 0;
             }
+            */
+
+            if (moveX1 >= 15f)
+            {
+                //moveX1 = -5.2f;
+                randball1_i = 0;
+            }
+            moveX1 = moveX1 + 0.05f;
+
+            if (balloon_obj.transform.position.x >= balloonEnd_obj.transform.position.x)
+            {
+                moveX1 = 15.4f;
+                randball1_i = 0;
+            }
+
             balloon_obj.transform.position = new Vector3(moveX1, moveY, balloon_obj.transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
@@ -397,6 +435,7 @@ public class MainTime : MonoBehaviour {
     {
         while (randball2_i == 1)
         {
+            /*
             if (moveX2 <= -15f)
             {
                 //moveX2 = 5.2f;
@@ -408,6 +447,22 @@ public class MainTime : MonoBehaviour {
                 moveX2 = -15.4f;
                 randball2_i = 0;
             }
+            */
+
+
+            if (moveX2 <= -15f)
+            {
+                //moveX2 = 5.2f;
+                randball2_i = 0;
+            }
+            moveX2 = moveX2 - 0.05f;
+
+            if (balloonR_obj.transform.position.x <= balloonREnd_obj.transform.position.x)
+            {
+                moveX2 = -15.4f;
+                randball2_i = 0;
+            }
+
             balloonR_obj.transform.position = new Vector3(moveX2, moveY2, balloonR_obj.transform.position.z);
             yield return new WaitForSeconds(0.1f);
         }
