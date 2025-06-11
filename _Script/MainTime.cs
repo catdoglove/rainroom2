@@ -13,7 +13,7 @@ public class MainTime : MonoBehaviour {
     public float bMoveX, bMoveY, moveX1, moveX2, moveY, moveY2;
     public int endBMove_i;
 
-    public float pMoveX = 15.4f, pMoveY;
+    public float pMoveX = 35.4f, pMoveY;
     public int endPMove_i;
 
     public GameObject balloon_obj, balloonR_obj, airplane_obj, snow_obj,snowYs_obj, snowYe_obj;
