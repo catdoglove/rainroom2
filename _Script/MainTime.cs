@@ -131,7 +131,7 @@ public class MainTime : MonoBehaviour {
                 }
                 else
                 {
-                    plane_i = Random.Range(0, 6);
+                    plane_i = Random.Range(0, 450);
                 }
             }
             //풍선
