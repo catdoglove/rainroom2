@@ -168,7 +168,7 @@ public class SleepTime : MonoBehaviour {
         PlayerPrefs.SetInt("sleepTxt", 1);
         PlayerPrefs.SetInt("showdir", 1);
 
-        PlayerPrefs.SetString("sleepLastTime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("sleepLastTime", System.DateTime.UtcNow.ToString());
         sleepWindow_obj.SetActive(false);
         sleepBlind_obj.SetActive(true);
 
@@ -209,7 +209,7 @@ public class SleepTime : MonoBehaviour {
 
     void SleepTimeFlow()
     {
-        System.DateTime d = System.DateTime.Now.AddHours(-6);
+        System.DateTime d = System.DateTime.UtcNow.AddHours(-6);
         lastTime = PlayerPrefs.GetString("sleepLastTime", d.ToString());
         try
         {
@@ -217,10 +217,10 @@ public class SleepTime : MonoBehaviour {
         }
         catch (System.Exception)
         {
-            lastTime = System.DateTime.Now.AddHours(-6).ToString();
+            lastTime = System.DateTime.UtcNow.AddHours(-6).ToString();
         }
         System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
-        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+        System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;

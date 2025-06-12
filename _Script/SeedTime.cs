@@ -141,7 +141,7 @@ public class SeedTime : MonoBehaviour {
     {
         seed_i = PlayerPrefs.GetInt("seedlv", 0);
         seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
-        System.DateTime d = System.DateTime.Now.AddHours(-13);
+        System.DateTime d = System.DateTime.UtcNow.AddHours(-13);
         lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString());
         try
         {
@@ -149,12 +149,12 @@ public class SeedTime : MonoBehaviour {
         }
         catch (System.Exception)
         {
-            lastTime = System.DateTime.Now.AddHours(-13).ToString();
+            lastTime = System.DateTime.UtcNow.AddHours(-13).ToString();
         }
 
 
         System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
-        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+        System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
@@ -242,7 +242,7 @@ public class SeedTime : MonoBehaviour {
                     ht = ht - seedHtPrice_i[seed_i - 1];
                     PlayerPrefs.SetInt(str + "c", coldRain_i);
                     PlayerPrefs.SetInt(str + "ht", ht);
-                    PlayerPrefs.SetString("seedLastTime", System.DateTime.Now.ToString());
+                    PlayerPrefs.SetString("seedLastTime", System.DateTime.UtcNow.ToString());
                     seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
                     seedWater_i++;
                     PlayerPrefs.SetInt("seedWater", seedWater_i);

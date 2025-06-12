@@ -345,7 +345,7 @@ public class CityFunction : CavasData
         }
         if (hotR_i >= hp_i)//240온수가 있는가?
         {
-            PlayerPrefs.SetString("outlasttimecity", System.DateTime.Now.ToString());
+            PlayerPrefs.SetString("outlasttimecity", System.DateTime.UtcNow.ToString());
             PlayerPrefs.SetInt("outtrip", 4);
             hotR_i = hotR_i - hp_i;
             PlayerPrefs.SetInt(str + "h", hotR_i);
@@ -397,7 +397,7 @@ public class CityFunction : CavasData
             else
             {
 
-                System.DateTime dateTime = System.DateTime.Now.AddHours(-1);
+                System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
                 System.DateTime lastDateTime;
                 try
                 {
@@ -405,12 +405,12 @@ public class CityFunction : CavasData
                 }
                 catch (System.Exception)
                 {
-                    lastDateTime = System.DateTime.Now.AddHours(-1);              
+                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);              
                 }
 
                 lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimecity", dateTime.ToString()));
 
-                System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+                System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;
                 sec = sec - (sec / 60) * 60;

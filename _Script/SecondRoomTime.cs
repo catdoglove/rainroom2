@@ -99,8 +99,8 @@ public class SecondRoomTime : MonoBehaviour {
     //음식시간아랫방
     void beadal()
     {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("cookLastTime", System.DateTime.Now.ToString()));
-        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString()));
+        System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
         int sec = (int)compareTime.TotalSeconds;
         sec = sec - (sec / 60) * 60;

@@ -271,9 +271,18 @@ public class MainTime : MonoBehaviour {
 
     //배달시간
     void beadal(){
-		System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
-		System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
-		int m = (int)compareTime.TotalMinutes;
+        //System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
+        //System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+
+
+        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString()));
+        System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
+
+    //    Debug.Log(compareTime + "시간들" + System.DateTime.UtcNow);
+                               //00:00:00.5336409시간들2025 - 06 - 12 오전 4:53:00
+
+
+        int m = (int)compareTime.TotalMinutes;
 		int sec = (int)compareTime.TotalSeconds;
 		sec = sec - (sec / 60) * 60;
 		sec = 59 - sec;
@@ -286,8 +295,11 @@ public class MainTime : MonoBehaviour {
             PlayerPrefs.SetInt("beadal", 0);
             PlayerPrefs.Save();
 		}
-	}
-    
+
+
+
+    }
+
 
 
     /*

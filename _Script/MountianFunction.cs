@@ -96,7 +96,7 @@ public class MountianFunction : MonoBehaviour {
             PlayerPrefs.SetInt("outspade", -2);
         }
 
-        PlayerPrefs.SetString("outlasttimepark", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("outlasttimepark", System.DateTime.UtcNow.ToString());
         PlayerPrefs.SetInt("foresttime", 9);
         PlayerPrefs.Save();
         data_sign = CSVReader.Read("Talk/sign_park");

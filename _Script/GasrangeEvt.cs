@@ -394,7 +394,7 @@ public class GasrangeEvt : MonoBehaviour {
             point_i = PlayerPrefs.GetInt("lovepoint", 0) + point_i;
             PlayerPrefs.SetInt("cooked", 1);
             PlayerPrefs.SetInt("lovepoint", point_i);
-            PlayerPrefs.SetString("cookLastTime", System.DateTime.Now.ToString());
+            PlayerPrefs.SetString("cookLastTime", System.DateTime.UtcNow.ToString());
             PlayerPrefs.Save();
             audio_obj.GetComponent<SoundEvt>().cookSound();
 
