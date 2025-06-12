@@ -167,8 +167,8 @@ public class SecondRoomTime : MonoBehaviour {
     //식물시간
     void plant()
     {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("plantLastTime", System.DateTime.Now.ToString()));
-        System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
+        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString()));
+        System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
         int sec = (int)compareTime.TotalSeconds;
         sec = sec - (sec / 60) * 60;
@@ -204,14 +204,14 @@ public class SecondRoomTime : MonoBehaviour {
         int ph = PlayerPrefs.GetInt(str1 + "h", 0);
         ph = ph + b;
         PlayerPrefs.SetInt(str1 + "h", ph);
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString());
         plant_obj.GetComponent<Image>().sprite = plant_spr[0];
         plantBtn_obj.SetActive(false);
     }
 
     public void OpenPlantMemo()
     {
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.Now.ToString());
+        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString());
         PlayerPrefs.SetInt("leafget", 2);
         if (plantWin_obj.activeSelf == false)
         {
