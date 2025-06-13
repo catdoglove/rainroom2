@@ -24,9 +24,48 @@ public class MainTimeHandler : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("emergencyCODE3", 0) == 0)
         {
+
+
             System.DateTime turnBackTime = System.DateTime.UtcNow.AddHours(-10);
+            PlayerPrefs.SetString("milktime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-6);
+            PlayerPrefs.SetString("sleepLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("outLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-13);
+            PlayerPrefs.SetString("seedLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-10);
+            PlayerPrefs.SetString("plantLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("cookLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("outlasttimepark", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("outlasttimecity", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("foodLastTime", turnBackTime.ToString());
+
+            turnBackTime = System.DateTime.UtcNow.AddHours(-1);
+            PlayerPrefs.SetString("TalkLastTime", turnBackTime.ToString());
+
             turnBackTime = System.DateTime.UtcNow.AddHours(-10);
             PlayerPrefs.SetString("lastTime", turnBackTime.ToString());
+
+            PlayerPrefs.SetInt("secf", 0);
+            PlayerPrefs.SetInt("secf0", 0);
+            PlayerPrefs.SetInt("secf1", 0);
+            PlayerPrefs.SetInt("secf2", 0);
+            PlayerPrefs.SetInt("secf3", 0);
+
+
 
             PlayerPrefs.SetInt("emergencyCODE3", 99);
         }
