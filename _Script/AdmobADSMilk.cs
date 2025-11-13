@@ -26,25 +26,17 @@ public class AdmobADSMilk : MonoBehaviour {
     void Start () {
         color = new Color(1f, 1f, 1f);
 
-
-
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize((InitializationStatus initStatus) =>
-        {
-            // This callback is called once the MobileAds SDK is initialized.
-        });
-
         _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
 
-
-        LoadRewardedAd();
-
-
-    }
-
-
-
-
+        if (Application.internetReachability != NetworkReachability.NotReachable)
+        {
+            LoadRewardedAd();
+        }
+        else
+        {
+            //Debug.Log("No Internet, skip init for now 인터넷 연결 X");
+        }
+}
 
 
     public void LoadRewardedAd()
@@ -65,7 +57,6 @@ public class AdmobADSMilk : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
-                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -79,28 +70,6 @@ public class AdmobADSMilk : MonoBehaviour {
             });
 
     }
-
-    private void RegisterEventHandlers(RewardedAd ad)
-    {
-        // Raised when the ad is estimated to have earned money.
-        ad.OnAdPaid += (AdValue adValue) =>
-        {
-            //Debug.Log("광고");
-        };
-
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            PlayerPrefs.SetInt("adrunout", 0);
-           // LoadRewardedAd();
-           // Debug.Log("광고닫기");
-        };
-    }
-
-
-
-
-
-
 
     public void showAdmobVideo()
     {

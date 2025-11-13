@@ -37,18 +37,18 @@ public class AdmobADSCity : MonoBehaviour {
         StartCoroutine("adTimeFlow2");
         StartCoroutine("adAniTime2");
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize((InitializationStatus initStatus) =>
-        {
-            // This callback is called once the MobileAds SDK is initialized.
-        });
-
         _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
         _GoOutADSid = "ca-app-pub-9179569099191885/5047087900";
 
-
-        LoadRewardedAd();
-        LoadRewardedInterstitialAd();
+        if (Application.internetReachability != NetworkReachability.NotReachable)
+        {
+            LoadRewardedAd();
+            LoadRewardedInterstitialAd();
+        }
+        else
+        {
+            //인터넷연결안됨
+        }
 
     }
 
@@ -72,7 +72,6 @@ public class AdmobADSCity : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
-                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -83,6 +82,7 @@ public class AdmobADSCity : MonoBehaviour {
                 //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
 
                 rewardedAd = ad;
+                RegisterEventHandlers(ad); //이벤트 등록
             });
 
     }
@@ -98,7 +98,8 @@ public class AdmobADSCity : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            //Debug.Log("광고닫기");
+            Debug.Log("광고닫기");
+            giveMeReward();
         };
     }
 
@@ -122,14 +123,7 @@ public class AdmobADSCity : MonoBehaviour {
                 rewardedAd.Show((Reward reward) =>
                 {
                     PlayerPrefs.SetInt("blad", 1);
-                    PlayerPrefs.SetInt("talk", 5);
                     PlayerPrefs.Save();
-                    if (PlayerPrefs.GetInt("talk", 5) >= 5)
-                    {
-                        PlayerPrefs.SetInt("secf3", 240);
-                    }
-                    ad_obj.SetActive(false);
-                    giveMeReward();
                 });
             }
             else
@@ -145,6 +139,12 @@ public class AdmobADSCity : MonoBehaviour {
 
     void giveMeReward()
     {
+        PlayerPrefs.SetInt("talk", 5);
+        if (PlayerPrefs.GetInt("talk", 5) >= 5)
+        {
+            PlayerPrefs.SetInt("secf3", 240);
+        }
+        ad_obj.SetActive(false);
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
         Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
@@ -256,7 +256,6 @@ public class AdmobADSCity : MonoBehaviour {
         RewardedInterstitialAd.Load(_GoOutADSid, adRequest,
             (RewardedInterstitialAd ad, LoadAdError error) =>
             {
-                RegisterEventHandlers(ad); //이벤트 등록
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -300,36 +299,6 @@ public class AdmobADSCity : MonoBehaviour {
 
     }
 
-
-    private void RegisterEventHandlers(RewardedInterstitialAd ad)
-    {
-        ad.OnAdPaid += (AdValue adValue) =>
-        {
-
-        };
-        ad.OnAdImpressionRecorded += () =>
-        {
-            //Debug.Log("Interstitial ad recorded an impression.");
-        };
-        ad.OnAdClicked += () =>
-        {
-            //Debug.Log("Interstitial ad was clicked.");
-        };
-        ad.OnAdFullScreenContentOpened += () =>
-        {
-            //Debug.Log("Interstitial ad full screen content opened.");
-        };
-        ad.OnAdFullScreenContentClosed += () =>
-        {
-            blackimg.SetActive(false);
-         
-            //Debug.Log("Interstitial ad full screen content closed.");
-        };
-        ad.OnAdFullScreenContentFailed += (AdError error) =>
-        {
-            //Debug.LogError("Interstitial ad failed to open full screen content " + "with error : " + error);
-        };
-    }
 
 
 
