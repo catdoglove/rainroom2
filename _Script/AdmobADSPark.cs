@@ -87,7 +87,7 @@ public class AdmobADSPark : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            Debug.Log("광고닫기");
+           // Debug.Log("광고닫기");
             giveMeReward();
         };
     }
