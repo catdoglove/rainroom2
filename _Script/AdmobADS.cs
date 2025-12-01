@@ -25,6 +25,7 @@ public class AdmobADS : MonoBehaviour {
 
 
     public GameObject GM;
+    bool rewardEarned = false;
 
     // Use this for initialization 앱 ID
     void Start ()
@@ -95,8 +96,15 @@ public class AdmobADS : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            //Debug.Log("광고닫기");
-            giveMeReward();
+
+            
+            if (rewardEarned)
+            {
+                //Debug.Log("광고닫기");
+                giveMeReward();
+                rewardEarned = false;
+            }
+
 
         };
     }
@@ -150,6 +158,7 @@ public class AdmobADS : MonoBehaviour {
                // blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
                 {
+                    rewardEarned = true;
                     PlayerPrefs.SetInt("blad", 1);
                     PlayerPrefs.Save();
                 });
