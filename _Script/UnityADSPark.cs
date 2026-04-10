@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
-using Unity.Services.LevelPlay;
+//using Unity.Services.LevelPlay;
 
 public class UnityADSPark : MonoBehaviour
 {
@@ -38,18 +38,18 @@ public class UnityADSPark : MonoBehaviour
         //debug.Log("나는UnityADSPark다");
 
         //debug.Log("unity-script: IronSource.Agent.validateIntegration");
-        IronSource.Agent.validateIntegration();
+       // IronSource.Agent.validateIntegration();
 
         //debug.Log("unity-script: unity version" + IronSource.unityVersion());
 
         // SDK init
         //debug.Log("unity-script: LevelPlay SDK initialization");
-        LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
+       // LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
 
-        LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed -= SdkInitializationFailedEvent;
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+     //   LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
+      //  LevelPlay.OnInitFailed -= SdkInitializationFailedEvent;
+      //  LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+     //   LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
 
         color = new Color(1f, 1f, 1f);
         if (PlayerPrefs.GetInt("outtrip", 0) == 2)
@@ -69,7 +69,7 @@ public class UnityADSPark : MonoBehaviour
       }
 
     // Update is called once per frame
-
+    /*
     private void OnDisable()
     {
 
@@ -120,7 +120,7 @@ public class UnityADSPark : MonoBehaviour
         
     }
 
-
+    
 
     void OnApplicationPause(bool isPaused)
     {
@@ -183,8 +183,8 @@ public class UnityADSPark : MonoBehaviour
     {
         //debug.Log("나는 광고다2");
     }
-
-    void RewardedVideoOnAdRewardedEvent(IronSourcePlacement ironSourcePlacement, IronSourceAdInfo adInfo)
+    */
+  /*  void RewardedVideoOnAdRewardedEvent(IronSourcePlacement ironSourcePlacement, IronSourceAdInfo adInfo)
     {
         //debug.Log("Placement name: " + ironSourcePlacement.getPlacementName());
         if (ironSourcePlacement.getPlacementName() == "RewardTalk_place2")
@@ -238,7 +238,7 @@ public class UnityADSPark : MonoBehaviour
         }
         //debug.Log("나는 광고다");
     }
-
+  
 
     public void ShowRewardedAdout()
     {
@@ -252,7 +252,7 @@ public class UnityADSPark : MonoBehaviour
         {
         }
     }
-
+  */
 
     public void ShowRewardedAd()
     {
@@ -279,14 +279,14 @@ public class UnityADSPark : MonoBehaviour
 
             PlayerPrefs.SetInt("wait", 1);
             //debug.Log("unity-script: ShowRewardedVideoButtonClicked");
-            if (IronSource.Agent.isRewardedVideoAvailable())
+           /* if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo("RewardTalk_place2");
             }
             else
             {
             }
-
+           */
         }
     }
 
@@ -399,7 +399,7 @@ public class UnityADSPark : MonoBehaviour
     {
         while (mG2 > -1)
         {
-            sG2 = PlayerPrefs.GetInt("secf2", 240);
+            sG2 = PlayerPrefs.GetInt("secf2", 180);
             ////debug.Log(sG);
             mG2= (int)(sG2 / 60);
             sG2 = sG2 - (sG2 / 60) * 60;
@@ -413,7 +413,7 @@ public class UnityADSPark : MonoBehaviour
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-            sG2 = PlayerPrefs.GetInt("secf2", 240);
+            sG2 = PlayerPrefs.GetInt("secf2", 180);
             sG2 = sG2 - 1;
             if (sG2 < 0)
             {

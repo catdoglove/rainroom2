@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
-using Unity.Services.LevelPlay;
+//using Unity.Services.LevelPlay;
 
 public class UnityADSMilk : MonoBehaviour 
 {
@@ -30,17 +30,17 @@ public class UnityADSMilk : MonoBehaviour
         color = new Color(1f, 1f, 1f);
 
 
-        Debug.Log("unity-script: IronSource.Agent.validateIntegration");
-        IronSource.Agent.validateIntegration();
+      //  Debug.Log("unity-script: IronSource.Agent.validateIntegration");
+        //IronSource.Agent.validateIntegration();
 
-        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+        //Debug.Log("unity-script: unity version" + IronSource.unityVersion());
 
         // SDK init
-        Debug.Log("unity-script: LevelPlay SDK initialization");
-        LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
+       // Debug.Log("unity-script: LevelPlay SDK initialization");
+       // LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
 
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+       // LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+       // LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
     void EnableAds()
@@ -48,7 +48,7 @@ public class UnityADSMilk : MonoBehaviour
 
     }
 
-
+    /*
     void OnApplicationPause(bool isPaused)
     {
         Debug.Log("unity-script: OnApplicationPause = " + isPaused);
@@ -104,10 +104,10 @@ public class UnityADSMilk : MonoBehaviour
         Debug.Log("unity - script: I got ImpressionDataReadyEvent allData: " + impressionData.allData);
     }
 
-
+    
     void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
     {
-        /*
+        
         PlayerPrefs.SetInt("milkadc", 1);
         PlayerPrefs.SetInt("setmilkadc", 0);
         GM.GetComponent<WindowMiniGame>().MilkYes();
@@ -116,7 +116,7 @@ public class UnityADSMilk : MonoBehaviour
         GM.GetComponent<AdmobADSMilk>().Toast_contain2.SetActive(false);
         GM.GetComponent<AdmobADSMilk>().Toast_contain3.SetActive(true);
         PlayerPrefs.SetInt("adrunout", 0);
-        */
+        
         Debug.Log("나는 우유 광고 닫기다");
 
     }
@@ -134,10 +134,11 @@ public class UnityADSMilk : MonoBehaviour
         GM.GetComponent<AdmobADSMilk>().Toast_contain3.SetActive(true);
         PlayerPrefs.SetInt("adrunout", 0);
         */
-        Debug.Log("나는 우유 광고다");
+    //Debug.Log("나는 우유 광고다");
         
-    }
+    //}
 
+    /*
         public void ShowRewardedAd()
     {
 
@@ -151,14 +152,11 @@ public class UnityADSMilk : MonoBehaviour
         else
         {
         }
-
-
-
     }
-
+    */
     public void adYes()
     {
-        ShowRewardedAd();
+        //ShowRewardedAd();
         ad_obj.SetActive(false);
     }
     

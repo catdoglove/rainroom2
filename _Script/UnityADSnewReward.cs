@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
-using Unity.Services.LevelPlay;
+//using Unity.Services.LevelPlay;
 
 public class UnityADSnewReward : MonoBehaviour
 {
@@ -22,17 +22,17 @@ public class UnityADSnewReward : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("unity-script: IronSource.Agent.validateIntegration");
-        IronSource.Agent.validateIntegration();
+       // Debug.Log("unity-script: IronSource.Agent.validateIntegration");
+       // IronSource.Agent.validateIntegration();
 
-        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+       // Debug.Log("unity-script: unity version" + IronSource.unityVersion());
 
         // SDK init
-        Debug.Log("unity-script: LevelPlay SDK initialization");
-        LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
+       // Debug.Log("unity-script: LevelPlay SDK initialization");
+      //  LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
 
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+       // LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+      //  LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
 
@@ -41,7 +41,7 @@ public class UnityADSnewReward : MonoBehaviour
 
     }
 
-
+    /*
     void OnApplicationPause(bool isPaused)
     {
         Debug.Log("unity-script: OnApplicationPause = " + isPaused);
@@ -107,7 +107,7 @@ public class UnityADSnewReward : MonoBehaviour
         }
     }
 
-
+    
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement ironSourcePlacement, IronSourceAdInfo adInfo)
     {
         if (PlayerPrefs.GetInt("ForUnityADSnewReward", 0) == 77)
@@ -135,6 +135,6 @@ public class UnityADSnewReward : MonoBehaviour
         {
         }
     }
-
+    */
 
 }

@@ -8,7 +8,7 @@ using System;
 public class AdmobADSPark : MonoBehaviour {
 
     //보상형 전면 광고
-    private RewardedInterstitialAd rewardedInterstitialAd;
+    private RewardedAd rewardedInterstitialAd;
     private string _GoOutADSid;
 
     //영상
@@ -28,7 +28,7 @@ public class AdmobADSPark : MonoBehaviour {
         color = new Color(1f, 1f, 1f);
 
         _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
-        _GoOutADSid = "ca-app-pub-9179569099191885/5047087900";
+        _GoOutADSid = "ca-app-pub-9179569099191885/2270327348";
 
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
@@ -88,12 +88,12 @@ public class AdmobADSPark : MonoBehaviour {
 
         ad.OnAdFullScreenContentClosed += () =>
         {
-            if (rewardEarned)
-            {
+           // if (rewardEarned)
+          //  {
                 // Debug.Log("광고닫기");
                 giveMeReward();
                 rewardEarned = false;
-            }
+           // }
         };
     }
 
@@ -102,7 +102,7 @@ public class AdmobADSPark : MonoBehaviour {
         PlayerPrefs.SetInt("talk", 5);
         if (PlayerPrefs.GetInt("talk", 5) >= 5)
         {
-            PlayerPrefs.SetInt("secf0", 240);
+            PlayerPrefs.SetInt("secf0", 180);
         }
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
@@ -190,8 +190,8 @@ public class AdmobADSPark : MonoBehaviour {
         var adRequest = new AdRequest();
 
         // send the request to load the ad.
-        RewardedInterstitialAd.Load(_GoOutADSid, adRequest,
-            (RewardedInterstitialAd ad, LoadAdError error) =>
+        RewardedAd.Load(_GoOutADSid, adRequest,
+            (RewardedAd ad, LoadAdError error) =>
             {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
@@ -203,11 +203,29 @@ public class AdmobADSPark : MonoBehaviour {
                 //Debug.Log("Rewarded interstitial ad loaded with response : " + ad.GetResponseInfo());
 
                 rewardedInterstitialAd = ad;
+                RegisterEventHandlers2(ad); //이벤트 등록
             });
     }
 
 
 
+
+    private void RegisterEventHandlers2(RewardedAd ad)
+    {
+        // Raised when the ad is estimated to have earned money.
+        ad.OnAdPaid += (AdValue adValue) =>
+        {
+            //Debug.Log("광고");
+        };
+
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            // TODO: Reward the user.
+            PlayerPrefs.SetInt("foresttime", 4);
+            Toast_obj2.SetActive(true);
+            LoadRewardedInterstitialAd();
+        };
+    }
 
 
 
@@ -222,11 +240,7 @@ public class AdmobADSPark : MonoBehaviour {
        //     blackimg.SetActive(true);
             rewardedInterstitialAd.Show((Reward reward) =>
             {
-                // TODO: Reward the user.
-                PlayerPrefs.SetInt("foresttime", 4);
-                Toast_obj2.SetActive(true);
                 blackimg.SetActive(false);
-                LoadRewardedInterstitialAd();
             });
         }
         else

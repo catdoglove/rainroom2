@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
-using Unity.Services.LevelPlay;
+//using Unity.Services.LevelPlay;
 
 
 public class UnityADS : MonoBehaviour
@@ -40,19 +40,19 @@ public class UnityADS : MonoBehaviour
         //debug.Log("나는UnityADS다");
 
         //debug.Log("unity-script: IronSource.Agent.validateIntegration");
-        IronSource.Agent.validateIntegration();
+        //IronSource.Agent.validateIntegration();
 
         //debug.Log("unity-script: unity version" + IronSource.unityVersion());
 
         // SDK init
         //debug.Log("unity-script: LevelPlay SDK initialization");
 
-        LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
+       // LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
 
-        LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed -= SdkInitializationFailedEvent;
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+       // LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
+       // LevelPlay.OnInitFailed -= SdkInitializationFailedEvent;
+      //  LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+      //  LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
 
         color = new Color(1f, 1f, 1f);
         
@@ -83,7 +83,7 @@ public class UnityADS : MonoBehaviour
         }
 
       }
-
+    /*
     private void OnDisable()
     {
         LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
@@ -201,7 +201,7 @@ public class UnityADS : MonoBehaviour
         {
         }
     }
-
+    */
 
     public void ShowRewardedAd()
     {
@@ -218,7 +218,7 @@ public class UnityADS : MonoBehaviour
 
 
             //debug.Log("unity-script: ShowRewardedVideoButtonClicked");
-            if (IronSource.Agent.isRewardedVideoAvailable())
+           /* if (IronSource.Agent.isRewardedVideoAvailable())
             {
                 IronSource.Agent.showRewardedVideo("RewardTalk_place");
             }
@@ -228,6 +228,7 @@ public class UnityADS : MonoBehaviour
                 ad_obj.SetActive(true);
                 Wating();
             }
+           */
         }
             
     }
@@ -294,7 +295,7 @@ public class UnityADS : MonoBehaviour
         ad_obj.SetActive(false);
     }
 
-
+    /*
     void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo)
     { 
         //debug.Log("닫기 이벤트 UnityADS");
@@ -359,7 +360,7 @@ public class UnityADS : MonoBehaviour
         }
             //debug.Log("UnityADS광고");
     }
-
+    */
     public void Admob()
     {
         radio_ani.SetActive(false);
@@ -372,7 +373,7 @@ public class UnityADS : MonoBehaviour
         PlayerPrefs.Save();
         if (PlayerPrefs.GetInt("talk", 5) >= 5)
         {
-            PlayerPrefs.SetInt("secf", 240);
+            PlayerPrefs.SetInt("secf", 180);
         }
     }
 
@@ -380,7 +381,7 @@ public class UnityADS : MonoBehaviour
 
 	IEnumerator adTimeFlow(){
 		while (mG>-1) {
-			sG = PlayerPrefs.GetInt("secf", 240);
+			sG = PlayerPrefs.GetInt("secf", 180);
             ////debug.Log(sG);
             mG = (int)(sG / 60);
 			sG = sG-(sG / 60)*60;
@@ -391,7 +392,7 @@ public class UnityADS : MonoBehaviour
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-			sG = PlayerPrefs.GetInt("secf", 240);
+			sG = PlayerPrefs.GetInt("secf", 180);
 			sG = sG - 1;
 			if (sG < 0) {
 				sG = -1;
@@ -439,7 +440,7 @@ public class UnityADS : MonoBehaviour
     {
         while (mG2 > -1)
         {
-            sG2 = PlayerPrefs.GetInt("secf2", 240);
+            sG2 = PlayerPrefs.GetInt("secf2", 180);
             ////debug.Log(sG);
             mG2= (int)(sG2 / 60);
             sG2 = sG2 - (sG2 / 60) * 60;
@@ -453,7 +454,7 @@ public class UnityADS : MonoBehaviour
                 radio_ani.SetActive(false);
                 adBtn_obj.SetActive(false);
             }
-            sG2 = PlayerPrefs.GetInt("secf2", 240);
+            sG2 = PlayerPrefs.GetInt("secf2", 180);
             sG2 = sG2 - 1;
             if (sG2 < 0)
             {
