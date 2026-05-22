@@ -41,9 +41,15 @@ public class SleepTime : MonoBehaviour {
 
     public Animator sleep_ani, sleepOne_ani;
 
+    public GameObject alarm_obj;
+
     // Use this for initialization
     void Start () {
 
+        if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
+        {
+            alarm_obj.SetActive(false);
+        }
 
         n = PlayerPrefs.GetInt("bedlv", 0);
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
@@ -89,6 +95,7 @@ public class SleepTime : MonoBehaviour {
         }
         else
         {
+            PlayerPrefs.SetInt("sleeptimeadsreward", 0);
             PlayerPrefs.SetInt("sleepTxt", 0);
             sleepMax_obj.SetActive(false);
             if (PlayerPrefs.GetInt("showdir", 0) == 1)
@@ -224,8 +231,17 @@ public class SleepTime : MonoBehaviour {
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 59 - minute;
-        hours = 5 - hours;
+        minute = 59 - minute;        
+
+        if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
+        {
+            hours = 3 - hours;
+        }
+        else
+        {
+            hours = 5 - hours;
+        }
+
         if (minute < 0)
         {
         }
@@ -245,6 +261,7 @@ public class SleepTime : MonoBehaviour {
             string str = string.Format(@"{0:00}" + ":", hours) + string.Format(@"{0:00}", minute);
             if (hours <= 0)
             {
+                
                 sleepTime_txt.text = "00:00";
                 sleepBlind_obj.SetActive(false);
 
