@@ -22,7 +22,7 @@ public class MainTimeHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (PlayerPrefs.GetInt("emergencyCODE4", 0) == 0)
+        if (PlayerPrefs.GetInt("emergencyCODE5", 0) == 0)
         {
 
 
@@ -67,7 +67,7 @@ public class MainTimeHandler : MonoBehaviour {
 
 
 
-            PlayerPrefs.SetInt("emergencyCODE4", 99);
+            PlayerPrefs.SetInt("emergencyCODE5", 99);
         }
 
             //빗물
