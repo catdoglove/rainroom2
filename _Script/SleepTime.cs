@@ -46,10 +46,6 @@ public class SleepTime : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
-        {
-            alarm_obj.SetActive(false);
-        }
 
         n = PlayerPrefs.GetInt("bedlv", 0);
         if (PlayerPrefs.GetInt("nowsleep", 0) == 1)
@@ -95,7 +91,6 @@ public class SleepTime : MonoBehaviour {
         }
         else
         {
-            PlayerPrefs.SetInt("sleeptimeadsreward", 0);
             PlayerPrefs.SetInt("sleepTxt", 0);
             sleepMax_obj.SetActive(false);
             if (PlayerPrefs.GetInt("showdir", 0) == 1)
@@ -106,6 +101,13 @@ public class SleepTime : MonoBehaviour {
 
 
         data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
+
+
+
+        if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
+        {
+            alarm_obj.SetActive(false);
+        }
 
     }
 
@@ -212,6 +214,14 @@ public class SleepTime : MonoBehaviour {
             switchBtn_obj.SetActive(true);
         }
 
+        if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
+        {
+            alarm_obj.SetActive(false);
+        }
+        else
+        {
+            alarm_obj.SetActive(true);
+        }
     }
 
     void SleepTimeFlow()
@@ -323,6 +333,8 @@ public class SleepTime : MonoBehaviour {
                     }
                 }
                 PlayerPrefs.SetInt("nowsleep", 0);
+
+                Invoke("WaitSleep", 1f);
                 PlayerPrefs.SetInt("sleepTxt", 0);
                 PlayerPrefs.Save();
 
@@ -416,5 +428,11 @@ public class SleepTime : MonoBehaviour {
     public void CloseHelp()
     {
         sleepHelp_obj.SetActive(false);
+    }
+
+    public void WaitSleep()
+    {
+
+        PlayerPrefs.SetInt("sleeptimeadsreward", 0);
     }
 }
