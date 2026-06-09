@@ -81,6 +81,8 @@ public class TalkEvt : MonoBehaviour {
 
 
     int a = 0;
+    private int cnt;
+    private string[] lineStr;
 
     // Use this for initialization
     void Start ()
@@ -536,17 +538,18 @@ public class TalkEvt : MonoBehaviour {
 
             checkach();//업적체크
             lovetalk();
-            testText_cut = text_str.Split('/'); //끊기
-            cleantalk();
 
-            if (testText_cut[0] == "q")
+            Text_obj.text = "";
+            lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답          
+            if (text_str.Contains("Z"))
             { //질문이 있는경우
                 StartCoroutine("questionTalkRun");
             }
             else
             {
-                StartCoroutine("talkRun");
+                StartCoroutine(talkRun(speedF));
             }
+
             countTalk();
             //경험치
             ExpCk_talk();
@@ -636,14 +639,18 @@ public class TalkEvt : MonoBehaviour {
 
 
     //대사 출력
-    IEnumerator talkRun()
+    IEnumerator talkRun(float f)
     {
         falseObject();
-        for (int i = 0; i < testText_cut.Length; i++)
+        cnt = 0;
+        while (cnt != text_str.Length)
         {
-                text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
-                yield return new WaitForSeconds(speedF);
+            if (cnt < text_str.Length)
+            {
+                Text_obj.text += text_str[cnt].ToString();
+                cnt++;
+            }
+            yield return new WaitForSeconds(speedF);
         }
         trueObject();
     }
@@ -655,29 +662,22 @@ public class TalkEvt : MonoBehaviour {
         closeTB.SetActive(false);
         quesBack.SetActive(true);
         quesStr = " ";
-        for (int i = 0; i < testText_cut.Length; i++)
+        btnTxt1.text = "";
+        btnTxt2.text = "";
+        cnt = 1;
+        while (cnt != lineStr[0].Length)
         {
-            quesStr = quesStr.Insert(quesStr.Length, testText_cut[i]);
-        }
-
-        for (int i = 1; i < testText_cut.Length; i++)
-        {
-            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-
-            if (text_str.Contains("y"))
-            { 
-                string str, str2;
-                str = quesStr.Substring(quesStr.IndexOf("y") + 1, 4);
-                btnTxt1.text = str;
-                str2 = quesStr.Substring(quesStr.IndexOf("n") + 1, 4);
-                btnTxt2.text = str2;                
-            }
-            else
+            if (cnt < lineStr[0].Length)
             {
-                Text_obj.text = text_str;
-                yield return new WaitForSeconds(speedF);
+                Text_obj.text += lineStr[0][cnt].ToString();
+                cnt++;
             }
+            yield return new WaitForSeconds(speedF);
         }
+
+        btnTxt1.text += lineStr[1].ToString();
+        btnTxt2.text += lineStr[3].ToString();
+
         quesBtmArea.SetActive(true);
     }
 
@@ -687,26 +687,29 @@ public class TalkEvt : MonoBehaviour {
         falseObject();
 
         quesStr = " ";
-        for (int i = 0; i < testText_cut.Length; i++)
-        {
-            quesStr = quesStr.Insert(quesStr.Length, testText_cut[i]);            
-        }        
+        cnt = 0;
 
         if (choiceNum == 1)
         {
-            for (int i = quesStr.IndexOf("a"); i < quesStr.IndexOf("b")-1; i++)
+            while (cnt != lineStr[2].Length)
             {
-                text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+                if (cnt < lineStr[2].Length)
+                {
+                    Text_obj.text += lineStr[2][cnt].ToString();
+                    cnt++;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
         else if (choiceNum == 2)
         {
-            for (int i = quesStr.IndexOf("c"); i < quesStr.IndexOf("d")-1; i++)
-            { 
-                text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+            while (cnt != lineStr[4].Length)
+            {
+                if (cnt < lineStr[4].Length)
+                {
+                    Text_obj.text += lineStr[4][cnt].ToString();
+                    cnt++;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
@@ -945,13 +948,11 @@ public class TalkEvt : MonoBehaviour {
     }
 
     public void talkEvtSpring()
-    {        
+    {
+        cleantalk();
         text_str = "" + data_evt_spring[etcNum]["벚꽃가지"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -964,12 +965,10 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkTurtle()
     {
+        cleantalk();
         text_str = "" + data_pet[etcNum]["turtle"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -982,12 +981,10 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkRabbit()
     {
+        cleantalk();
         text_str = "" + data_pet[etcNum]["rabbit"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1000,12 +997,10 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkFish()
     {
+        cleantalk();
         text_str = "" + data_pet[etcNum]["fish"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1018,12 +1013,10 @@ public class TalkEvt : MonoBehaviour {
 
     public void talkMmarimo()
     {
+        cleantalk();
         text_str = "" + data_pet[etcNum]["marimo"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1039,11 +1032,9 @@ public class TalkEvt : MonoBehaviour {
     public void talkBook()
     {
         callTalkItem();
-        itemLineReload(299); 
-        text_str = "" + data_book[itemNowArr]["book" + itemLv[0]];
-        testText_cut = text_str.Split('/');
+        itemLineReload(299);
         cleantalk();
-        
+        text_str = "" + data_book[itemNowArr]["book" + itemLv[0]];
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
@@ -1052,10 +1043,8 @@ public class TalkEvt : MonoBehaviour {
     {
         callTalkItem();
         itemLineReload(304);
-        text_str = "" + data_wall[itemNowArr]["wall" + itemLv[1]];
-        testText_cut = text_str.Split('/');
         cleantalk();
-
+        text_str = "" + data_wall[itemNowArr]["wall" + itemLv[1]];
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
@@ -1064,10 +1053,9 @@ public class TalkEvt : MonoBehaviour {
     {
         callTalkItem();
         itemLineReload(376);
-        text_str = "" + data_light[itemNowArr]["light" + itemLv[2]];
-        testText_cut = text_str.Split('/');
         cleantalk();
-        
+        text_str = "" + data_light[itemNowArr]["light" + itemLv[2]];
+        StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
 
@@ -1075,10 +1063,9 @@ public class TalkEvt : MonoBehaviour {
     {
         callTalkItem();
         itemLineReload(472);
-        text_str = "" + data_window[itemNowArr]["window" + itemLv[3]];
-        testText_cut = text_str.Split('/');
         cleantalk();
-        
+        text_str = "" + data_window[itemNowArr]["window" + itemLv[3]];
+        StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
 
@@ -1090,10 +1077,9 @@ public class TalkEvt : MonoBehaviour {
         }
         callTalkItem();
         itemLineReload(289);
-        text_str = "" + data_seed[itemNowArr]["seed" + itemLv[4]];
-        testText_cut = text_str.Split('/');
         cleantalk();
-
+        text_str = "" + data_seed[itemNowArr]["seed" + itemLv[4]];
+        StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
     }
     void achvcheck()
@@ -1112,13 +1098,16 @@ public class TalkEvt : MonoBehaviour {
     {
         speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
-        for (int i = 0; i < testText_cut.Length; i++)
+        cnt = 0;
+        while (cnt != text_str.Length)
         {
-            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-            Text_obj.text = text_str;
+            if (cnt < text_str.Length)
+            {
+                Text_obj.text += text_str[cnt].ToString();
+                cnt++;
+            }
             yield return new WaitForSeconds(speedF);
         }
-
         trueObject();
     }
 

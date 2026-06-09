@@ -63,6 +63,8 @@ public class TalkEvtOut : MonoBehaviour
     public GameObject Audio_obj;
     //외물물건
     public GameObject putToast_obj;
+    private int cnt;
+    private string[] lineStr;
 
 
     // Use this for initialization
@@ -244,16 +246,15 @@ public class TalkEvtOut : MonoBehaviour
 
 
 
-            testText_cut = text_str.Split('/'); //끊기
-            cleantalk();
-
-            if (testText_cut[0] == "q")
+            Text_obj.text = "";
+            lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답          
+            if (text_str.Contains("Z"))
             { //질문이 있는경우
                 StartCoroutine("questionTalkRun");
             }
             else
             {
-                StartCoroutine("talkRun");
+                StartCoroutine(talkRun(speedF));
             }
 
             //경험치
@@ -303,18 +304,20 @@ public class TalkEvtOut : MonoBehaviour
 
 
     //대사 출력
-    IEnumerator talkRun()
+    IEnumerator talkRun(float f)
     {
         falseObject();
-        for (int i = 0; i < testText_cut.Length; i++)
+        cnt = 0;
+        while (cnt != text_str.Length)
         {
-            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-            Text_obj.text = text_str;
+            if (cnt < text_str.Length)
+            {
+                Text_obj.text += text_str[cnt].ToString();
+                cnt++;
+            }
             yield return new WaitForSeconds(speedF);
         }
-
         trueObject();
-
     }
 
     //질문 출력
@@ -324,29 +327,22 @@ public class TalkEvtOut : MonoBehaviour
         closeTB.SetActive(false);
         quesBack.SetActive(true);
         quesStr = " ";
-        for (int i = 0; i < testText_cut.Length; i++)
+        btnTxt1.text = "";
+        btnTxt2.text = "";
+        cnt = 1;
+        while (cnt != lineStr[0].Length)
         {
-            quesStr = quesStr.Insert(quesStr.Length, testText_cut[i]);
+            if (cnt < lineStr[0].Length)
+            {
+                Text_obj.text += lineStr[0][cnt].ToString();
+                cnt++;
+            }
+            yield return new WaitForSeconds(speedF);
         }
 
-        for (int i = 1; i < testText_cut.Length; i++)
-        {
-            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
+        btnTxt1.text += lineStr[1].ToString();
+        btnTxt2.text += lineStr[3].ToString();
 
-            if (text_str.Contains("y"))
-            {
-                string str, str2;
-                str = quesStr.Substring(quesStr.IndexOf("y") + 1, 4);
-                btnTxt1.text = str;
-                str2 = quesStr.Substring(quesStr.IndexOf("n") + 1, 4);
-                btnTxt2.text = str2;
-            }
-            else
-            {
-                Text_obj.text = text_str;
-                yield return new WaitForSeconds(speedF);
-            }
-        }
         quesBtmArea.SetActive(true);
     }
 
@@ -356,26 +352,29 @@ public class TalkEvtOut : MonoBehaviour
         falseObject();
 
         quesStr = " ";
-        for (int i = 0; i < testText_cut.Length; i++)
-        {
-            quesStr = quesStr.Insert(quesStr.Length, testText_cut[i]);
-        }
+        cnt = 0;
 
         if (choiceNum == 1)
         {
-            for (int i = quesStr.IndexOf("a"); i < quesStr.IndexOf("b") - 1; i++)
+            while (cnt != lineStr[2].Length)
             {
-                text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+                if (cnt < lineStr[2].Length)
+                {
+                    Text_obj.text += lineStr[2][cnt].ToString();
+                    cnt++;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
         else if (choiceNum == 2)
         {
-            for (int i = quesStr.IndexOf("c"); i < quesStr.IndexOf("d") - 1; i++)
+            while (cnt != lineStr[4].Length)
             {
-                text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-                Text_obj.text = text_str;
+                if (cnt < lineStr[4].Length)
+                {
+                    Text_obj.text += lineStr[4][cnt].ToString();
+                    cnt++;
+                }
                 yield return new WaitForSeconds(speedF);
             }
         }
@@ -636,12 +635,10 @@ public class TalkEvtOut : MonoBehaviour
 
     public void talk1()
     {
+        cleantalk();
         text_str = "" + data_park[etcNum]["벤치"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
 
         if (etcNum >= 2)
         {
@@ -655,13 +652,10 @@ public class TalkEvtOut : MonoBehaviour
 
     public void talk2()
     {
+        cleantalk();
         text_str = "" + data_park[etcNum]["모래"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
-
 
         if (etcNum >= 2)
         {
@@ -675,13 +669,10 @@ public class TalkEvtOut : MonoBehaviour
 
     public void talk3()
     {
+        cleantalk();
         text_str = "" + data_park[etcNum]["시소"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
-
 
         if (etcNum >= 2)
         {
@@ -695,13 +686,10 @@ public class TalkEvtOut : MonoBehaviour
 
     public void talk4()
     {
+        cleantalk();
         text_str = "" + data_park[etcNum]["그네"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
-
 
         if (etcNum >= 2)
         {
@@ -715,12 +703,10 @@ public class TalkEvtOut : MonoBehaviour
 
     public void talk5()
     {
+        cleantalk();
         text_str = "" + data_park[etcNum]["미끄럼틀"];
-        testText_cut = text_str.Split('/');
-
         StopCoroutine("itemTalkRun");
         StartCoroutine("itemTalkRun");
-        cleantalk();
 
 
         if (etcNum >= 2)
@@ -737,15 +723,17 @@ public class TalkEvtOut : MonoBehaviour
     {
         speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
-        for (int i = 0; i < testText_cut.Length; i++)
+        cnt = 0;
+        while (cnt != text_str.Length)
         {
-            text_str = text_str.Insert(text_str.Length, testText_cut[i]);
-            Text_obj.text = text_str;
+            if (cnt < text_str.Length)
+            {
+                Text_obj.text += text_str[cnt].ToString();
+                cnt++;
+            }
             yield return new WaitForSeconds(speedF);
         }
-
         trueObject();
     }
-
 
 }
