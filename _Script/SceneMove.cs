@@ -24,11 +24,13 @@ public class SceneMove : MonoBehaviour {
     //타이틀
     public GameObject title_obj;
 
+    private SoundHandler soundHandler;
+
     void Start()
     {
         if(PlayerPrefs.GetInt("achievemove", 0) == 1)
         {
-            achievementfunc();
+            Invoke("achievementfunc", 0.5f);
             PlayerPrefs.SetInt("achievemove", 0);
             if(PlayerPrefs.GetInt("place", 0) == 0)
             {
@@ -104,9 +106,13 @@ public class SceneMove : MonoBehaviour {
         StartCoroutine(Load());
         PlayerPrefs.Save();
         //아래층으로
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
     }
 
-	public void moveUp(){
+    public void moveUp(){
         if(GMN == null) {
             GMN = GameObject.FindGameObjectWithTag("GMtag");
         }
@@ -137,13 +143,16 @@ public class SceneMove : MonoBehaviour {
         StartCoroutine(Load2());
         PlayerPrefs.Save();
         //다락방으로
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
     }
     
     public void closeMoreLv()
     {
         moreLv_obj.SetActive(false);
     }
-
 
     
     //업적

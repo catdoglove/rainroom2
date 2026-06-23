@@ -108,10 +108,12 @@ public class WindowMiniGame : MonoBehaviour {
                 break;
         }
         PlayerPrefs.Save();
-        
-        data_milk = CSVReader.Read("Talk/todaymilk");
+        csvvreader();
     }
-
+    async void csvvreader()
+    {
+        data_milk = await CSVReader.ReadAsync("Assets/csv/todaymilk.csv");
+    }
 
     public void showSeasonChange()
     {

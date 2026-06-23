@@ -54,7 +54,7 @@ public class TalkEvt : MonoBehaviour {
     public GameObject exitTalkBalln, closeTB_exit;
     public Sprite[] ballnSpr;
     public Text exitText;
-    int exCk = 0;
+ //   int exCk = 0;
     //종료
     int exit_int, exitTalk;
     int cnt_exit;
@@ -91,21 +91,25 @@ public class TalkEvt : MonoBehaviour {
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         callTalkBook();
         callTalkItem();
-        data = CSVReader.Read("Talk/talk_room"); //대사 불러오기   
-        data_book = CSVReader.Read("Talk/talk_book"); 
-        data_light = CSVReader.Read("Talk/talk_light"); 
-        data_seed = CSVReader.Read("Talk/talk_seed"); 
-        data_wall = CSVReader.Read("Talk/talk_wall"); 
-        data_window = CSVReader.Read("Talk/talk_window");
-        data_evt_spring = CSVReader.Read("Talk/etc_room");
-        data_pet = CSVReader.Read("Talk/talk_pet");
+        csvvreader();
         setCharAni();
     }
 
-    /// <summary>
-    /// 뒤로가기 종료 버튼 분리
-    /// </summary>
-    void checkOpenWindow()
+    async void csvvreader()
+    {
+        data = await CSVReader.ReadAsync("Assets/csv/talk_room.csv"); //대사 불러오기   
+        data_book = await CSVReader.ReadAsync("Assets/csv/talk_book.csv");
+        data_light = await CSVReader.ReadAsync("Assets/csv/talk_light.csv");
+        data_seed = await CSVReader.ReadAsync("Assets/csv/talk_seed.csv");
+        data_wall = await CSVReader.ReadAsync("Assets/csv/talk_wall.csv");
+        data_window = await CSVReader.ReadAsync("Assets/csv/talk_window.csv");
+        data_evt_spring = await CSVReader.ReadAsync("Assets/csv/etc_room.csv");
+        data_pet = await CSVReader.ReadAsync("Assets/csv/talk_pet.csv");
+    }
+        /// <summary>
+        /// 뒤로가기 종료 버튼 분리
+        /// </summary>
+        void checkOpenWindow()
     {
 
         if (GMTag == null)
@@ -539,10 +543,10 @@ public class TalkEvt : MonoBehaviour {
             checkach();//업적체크
             lovetalk();
 
-            Text_obj.text = "";
-            lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답          
+            Text_obj.text = "";     
             if (text_str.Contains("Z"))
             { //질문이 있는경우
+                lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답     
                 StartCoroutine("questionTalkRun");
             }
             else

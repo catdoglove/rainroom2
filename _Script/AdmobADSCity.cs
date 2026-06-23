@@ -27,7 +27,7 @@ public class AdmobADSCity : MonoBehaviour {
     int sG2, mG2;
 
     public GameObject GM;
-    bool rewardEarned = false;
+  //  bool rewardEarned = false;
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -103,7 +103,7 @@ public class AdmobADSCity : MonoBehaviour {
            // {
                 // Debug.Log("광고닫기");
                 giveMeReward();
-                rewardEarned = false;
+             //   rewardEarned = false;
            // }
         };
     }
@@ -127,7 +127,7 @@ public class AdmobADSCity : MonoBehaviour {
                // blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
                 {
-                    rewardEarned = true;
+                 //   rewardEarned = true;
                     PlayerPrefs.SetInt("blad", 1);
                     PlayerPrefs.Save();
                 });

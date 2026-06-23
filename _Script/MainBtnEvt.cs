@@ -910,6 +910,11 @@ public class MainBtnEvt : CavasData
         comeHome_obj.SetActive(false);
         shop_obj.SetActive(true);
         goHome_obj.SetActive(false);
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
     }
 
     public void OpenGoHome()

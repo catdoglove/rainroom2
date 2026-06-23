@@ -12,7 +12,7 @@ public class Singleton : MonoBehaviour {
         int len = des.Length;
         if (len == 2)
         {
-            DestroyImmediate(gameObject);
+            DestroyImmediate(this.gameObject);
         }
         else
         {
@@ -24,12 +24,6 @@ public class Singleton : MonoBehaviour {
     void Start () {
         
     }
-
-
-
-
-
-
 
     /*
     //정적변수

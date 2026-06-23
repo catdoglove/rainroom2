@@ -23,7 +23,7 @@ public class SoundHandlerRain : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        OnLoadSound();
+        //OnLoadSound();
     }
     
 

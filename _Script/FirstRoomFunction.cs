@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks; // Task.Yield()를 쓰기 위해 추가
 
 public class FirstRoomFunction : CavasData {
     //앞뒤바꾸기
@@ -112,7 +113,9 @@ public class FirstRoomFunction : CavasData {
     public Sprite menuOut_spr, city_spr, park_spr;
 
     //타이틀닫기
-    public GameObject titleImg;
+    public GameObject titleImg, titlebtn, touchtostart, loadingImg;
+    public GameObject roomLoading;
+    private SoundHandler soundHandler;
 
     public void closeTitle()
     {
@@ -120,11 +123,39 @@ public class FirstRoomFunction : CavasData {
     }
 
 
+    IEnumerator ForAddressable()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (PlayerPrefs.GetInt("AddressableComplete", 0) == 99)
+            {
+                titlebtn.SetActive(true);
+                touchtostart.SetActive(true);
+                loadingImg.SetActive(false);
+                roomLoading.SetActive(false);
+                PlayerPrefs.SetInt("AddressableComplete", 1);
+                //Debug.Log("로딩 완료");
+
+                if (SoundHandler.instance != null)
+                {
+                    // 소리를 다시 켜고 싶을 때 (음소거 OFF)
+                    SoundHandler.instance.SetMute(false);
+                }
+            }
+        }
+    }
+
+
     // Use this for initialization
     void Start()
     {
+        //로딩용
+
+        PlayerPrefs.SetInt("gooutLoading", 0);
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 40;
+        StartCoroutine("ForAddressable");
 
         Resources.UnloadUnusedAssets();
 
@@ -321,6 +352,11 @@ public class FirstRoomFunction : CavasData {
     public void OutAgainY()
     {
 
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
+
         if (PlayerPrefs.GetInt("outorhome", 0) == 2)
         {
             PlayerPrefs.SetInt("outtrip", 2);
@@ -370,8 +406,22 @@ public class FirstRoomFunction : CavasData {
         notice_obj.SetActive(false);
     }
 
-    public void setItems()
+    public async void UpdateRoomSprites()
     {
+        // 1. 최적화: 매번 GetComponent를 부르면 모바일에서 느려집니다. 한 번만 찾아서 변수에 저장합니다.
+        LoadingData data = loadGM.GetComponent<LoadingData>();
+
+        // 2. [가장 중요] 어드레서블 로딩이 완전히 끝날 때까지 대기합니다.
+        // data.IsLoadingComplete가 false인 동안 계속 돕니다.
+        while (!data.IsLoadingComplete)
+        {
+            // 화면이 멈추지 않도록 유니티에게 "1프레임 뒤에 다시 확인할게" 하고 양보합니다.
+            await Task.Yield();
+        }
+
+        // 3. 대기가 끝났다는 것은 이미지가 메모리에 전부 올라왔다는 뜻! 
+        // 이제 안전하게 이미지를 입혀줍니다.
+
         //windowImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData> ().window_spr [window_i];
         if (PlayerPrefs.GetInt("booklv", 0) >= 15)
         {
@@ -385,6 +435,14 @@ public class FirstRoomFunction : CavasData {
         }
         bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
         deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
+        rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+        cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+    }
+
+
+    public void setItems()
+    {
 
         //쿠폰이있나
         if (PlayerPrefs.GetInt("10016", 0) == 50)
@@ -402,14 +460,11 @@ public class FirstRoomFunction : CavasData {
                 }
             }
         }
-        rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-        rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
+
+
         wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
-        cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
-
-
-
+        UpdateRoomSprites();
         //러그바로 되어있도록
         //러그파랑
         if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette100", 0) == 1)

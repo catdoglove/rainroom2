@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UnityADSPark : MonoBehaviour
 {
 
-    string appKey = "a1f59a75";
+ //   string appKey = "a1f59a75";
     public int soundck;
     public GameObject ad_obj, radio_ani, adBtn_obj;
 
@@ -26,7 +26,7 @@ public class UnityADSPark : MonoBehaviour
     int rand_i = 0;
 
     public GameObject GM;
-    public string _adUnitId = "rewardedVideo";
+ //   public string _adUnitId = "rewardedVideo";
 
     private void Awake()
     {

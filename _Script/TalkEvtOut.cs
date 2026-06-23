@@ -53,7 +53,7 @@ public class TalkEvtOut : MonoBehaviour
     //나가기
     public GameObject exitTalkBalln, closeTB_exit, exitBbg;
     public Text exitText;
-    int exCk = 0;
+  //  int exCk = 0;
     //종료
     int exit_int, exitTalk;
     int cnt_exit;
@@ -74,17 +74,18 @@ public class TalkEvtOut : MonoBehaviour
         color = new Color(1f, 1f, 1f);
         countTalkNum = PlayerPrefs.GetInt("talk", 5);
         charAni.Play("char_park");
-
-
-        data_out = CSVReader.Read("Talk/talk_out"); //대사 불러오기   
-        data_park = CSVReader.Read("Talk/etc_park");
-
-
+        csvvreader();
 
     }
 
-    // 종료 함수
-    void Update()
+    async void csvvreader()
+    {
+        data_park = await CSVReader.ReadAsync("Assets/csv/etc_park.csv");
+        data_out = await CSVReader.ReadAsync("Assets/csv/talk_out.csv");
+    }
+
+        // 종료 함수
+        void Update()
     {
         //클립초기화
         if (PlayerPrefs.GetInt("frontpark", 0) == 1)
@@ -246,10 +247,10 @@ public class TalkEvtOut : MonoBehaviour
 
 
 
-            Text_obj.text = "";
-            lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답          
+            Text_obj.text = "";      
             if (text_str.Contains("Z"))
             { //질문이 있는경우
+                lineStr = text_str.ToString().Split('|'); // 0:질문 1:대답버튼 2:1번의 대답 3:대답버튼 4:3번의 대답    
                 StartCoroutine("questionTalkRun");
             }
             else

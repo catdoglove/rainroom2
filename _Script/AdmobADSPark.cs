@@ -21,7 +21,7 @@ public class AdmobADSPark : MonoBehaviour {
     public GameObject Toast_obj, blackimg, Toast_obj2;
     public Text Toast_txt;
     public GameObject GM;
-    bool rewardEarned = false;
+   // bool rewardEarned = false;
 
     // Use this for initialization 앱 ID
     void Start () {
@@ -92,7 +92,7 @@ public class AdmobADSPark : MonoBehaviour {
           //  {
                 // Debug.Log("광고닫기");
                 giveMeReward();
-                rewardEarned = false;
+               // rewardEarned = false;
            // }
         };
     }
@@ -132,7 +132,7 @@ public class AdmobADSPark : MonoBehaviour {
              //   blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
                 {
-                    rewardEarned = true;
+                  //  rewardEarned = true;
                     PlayerPrefs.SetInt("blad", 1);
                     PlayerPrefs.Save();
                 });

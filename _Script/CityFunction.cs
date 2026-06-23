@@ -49,7 +49,12 @@ public class CityFunction : CavasData
 
     // Use this for initialization
     void Start () {
-
+        //로딩용
+        PlayerPrefs.SetInt("gooutLoading", 99);
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(false);
+        }
 
         color = new Color(1f, 1f, 1f);
 
@@ -84,7 +89,7 @@ public class CityFunction : CavasData
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
         {
-            checkachOut();
+            Invoke("checkachOut", 0.5f);
             PlayerPrefs.SetInt("acgocheck", 0);
         }
         //도시에 처음 왔을때
@@ -355,6 +360,11 @@ public class CityFunction : CavasData
             MemoryDestroy();
             StartCoroutine("LoadOut");
             audio_obj.GetComponent<SoundEvt>().buttonSound();
+
+            if (SoundHandler.instance != null)
+            {
+                SoundHandler.instance.SetMute(true);
+            }
         }
         else
         {

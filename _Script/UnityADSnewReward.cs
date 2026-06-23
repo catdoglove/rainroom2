@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UnityADSnewReward : MonoBehaviour
 {
 
-    string appKey = "a1f59a75";
+ //   string appKey = "a1f59a75";
 
 
     public GameObject GM;

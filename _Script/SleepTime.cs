@@ -44,7 +44,8 @@ public class SleepTime : MonoBehaviour {
     public GameObject alarm_obj;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
 
         n = PlayerPrefs.GetInt("bedlv", 0);
@@ -60,7 +61,7 @@ public class SleepTime : MonoBehaviour {
                 {
                     sleepMax_obj.SetActive(false);
                     int m = PlayerPrefs.GetInt("setbedpalette", 0) + 2;
-                    string s = "sleepbed"+m;
+                    string s = "sleepbed" + m;
                     sleepMax_obj.SetActive(true);
                     sleep_ani.Play(s, -1, 0f);
                     //sleepColor_obj[PlayerPrefs.GetInt("setbedpalette", 0)].SetActive(true);
@@ -70,15 +71,15 @@ public class SleepTime : MonoBehaviour {
             {
                 sleep_obj[0].SetActive(true);
                 //int k = n + 1;
-                sleepOne_ani.Play("sleep"+n, -1, 0f);
+                sleepOne_ani.Play("sleep" + n, -1, 0f);
             }
 
             sleepGone_obj.SetActive(false);
-            if(PlayerPrefs.GetInt("switchshop", 0) == 2)
+            if (PlayerPrefs.GetInt("switchshop", 0) == 2)
             {
                 switchBtn_obj.SetActive(true);
             }
-            if(PlayerPrefs.GetInt("starsover", 0) == 1)
+            if (PlayerPrefs.GetInt("starsover", 0) == 1)
             {
                 stars_obj.SetActive(true);
                 switchBtn_obj.GetComponent<Image>().sprite = switch_spr[1];
@@ -99,16 +100,17 @@ public class SleepTime : MonoBehaviour {
             }
         }
 
-
-        data_diary = CSVReader.Read("Talk/deardiary"); //대사 불러오기   
-
-
-
+        csvvreader();
         if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
         {
             alarm_obj.SetActive(false);
         }
 
+    }
+
+    async void csvvreader()
+    {
+        data_diary = await CSVReader.ReadAsync("Assets/csv/deardiary.csv"); //대사 불러오기   
     }
 
     public void TurnOnSwitch()
@@ -313,24 +315,7 @@ public class SleepTime : MonoBehaviour {
                         rabbitSleep_obj.SetActive(false);
                     }
                     dreamBtn_obj.SetActive(true);
-                    int s = PlayerPrefs.GetInt("countinsleepst", 0);
-                    s++;
-                    PlayerPrefs.SetInt("countinsleepst", s);
-                    if (s >= 50 && PlayerPrefs.GetInt("insleepst", 0) < 3)
-                    {
-                        PlayerPrefs.SetInt("insleepst", 3);
-                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
-                    }
-                    else if (s >= 25 && PlayerPrefs.GetInt("insleepst", 0) < 2)
-                    {
-                        PlayerPrefs.SetInt("insleepst", 2);
-                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
-                    }
-                    else if (s >= 1 && PlayerPrefs.GetInt("insleepst", 0) < 1)
-                    {
-                        PlayerPrefs.SetInt("insleepst", 1);
-                        firstGM.GetComponent<AchievementShow>().achievementCheck(5, 0);
-                    }
+                    Invoke("Achevment", 0.5f);
                 }
                 PlayerPrefs.SetInt("nowsleep", 0);
 
@@ -346,7 +331,29 @@ public class SleepTime : MonoBehaviour {
             yield return new WaitForSeconds(0.1f);
         }
     }
-    
+
+    void Achevment()
+    {
+        int s = PlayerPrefs.GetInt("countinsleepst", 0);
+        s++;
+        PlayerPrefs.SetInt("countinsleepst", s);
+        if (s >= 50 && PlayerPrefs.GetInt("insleepst", 0) < 3)
+        {
+            PlayerPrefs.SetInt("insleepst", 3);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 2);
+        }
+        else if (s >= 25 && PlayerPrefs.GetInt("insleepst", 0) < 2)
+        {
+            PlayerPrefs.SetInt("insleepst", 2);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 1);
+        }
+        else if (s >= 1 && PlayerPrefs.GetInt("insleepst", 0) < 1)
+        {
+            PlayerPrefs.SetInt("insleepst", 1);
+            firstGM.GetComponent<AchievementShow>().achievementCheck(5, 0);
+        }
+    }
+
     //꿈일기 창띄우기
     public void ShowDream()
     {

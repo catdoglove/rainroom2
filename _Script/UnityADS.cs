@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UnityADS : MonoBehaviour
 {
 
-    string appKey = "a1f59a75";
+    //string appKey = "a1f59a75";
    // private string gameId = "2883785";//★ Window > Services 설정 테스트 바꿀것 (test용 1486550)2883785
     public int soundck;
     public GameObject ad_obj, radio_ani, adBtn_obj;
@@ -28,7 +28,7 @@ public class UnityADS : MonoBehaviour
     int rand_i = 0;
 
     public GameObject GM;
-    public string _adUnitId = "rewardedVideo";
+   // public string _adUnitId = "rewardedVideo";
 
     private void Awake()
     {

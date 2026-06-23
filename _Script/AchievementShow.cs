@@ -12,16 +12,16 @@ public class AchievementShow : MonoBehaviour {
     public Text title_txt,info_txt;
     List<Dictionary<string, object>> data,infoData;
 
-    private void Awake()
+
+    async void csvvreader()
     {
-        data = CSVReader.Read("rewardname");
-        infoData = CSVReader.Read("rewardinfo");
-        //saveY = achievement_obj.transform.position.y;
+        data = await CSVReader.ReadAsync("Assets/csv/rewardname.csv");
+        infoData = await CSVReader.ReadAsync("Assets/csv/rewardinfo.csv");
     }
 
     // Use this for initialization
     void Start () {
-        
+        csvvreader();
     }
 
     //업적
@@ -43,7 +43,6 @@ public class AchievementShow : MonoBehaviour {
             tier_i++;
             string str = "lv" + tier_i;
             tier_i--;
-            data = CSVReader.Read("rewardname");
             title_txt.text = "" + data[achv_i][str];
             info_txt.text = "" + infoData[achv_i][str];
         }

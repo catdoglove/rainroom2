@@ -77,11 +77,23 @@ public class SeaFunction : MonoBehaviour {
             signWindow_obj.SetActive(true);
         }
     }
+    async void csvvreader()
+    {
+
+        data_sign = await CSVReader.ReadAsync("Assets/csv/bottle_sea.csv");
+    }
 
     List<Dictionary<string, object>> data;
     // Use this for initialization
     void Start()
     {
+        if (SoundHandler.instance != null)
+        {
+            // 소리를 다시 켜고 싶을 때 (음소거 OFF)
+            SoundHandler.instance.SetMute(false);
+            if (SoundHandler.instance.BGM != null) SoundHandler.instance.BGM.mute = true;
+        }
+
         //계절체크
         string mon = System.DateTime.Now.ToString("MM");
 
@@ -121,8 +133,8 @@ public class SeaFunction : MonoBehaviour {
         PlayerPrefs.SetString("outlasttimecity", System.DateTime.UtcNow.ToString());
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
-        data_sign = CSVReader.Read("Talk/bottle_sea");
-        signText();
+        csvvreader();
+        Invoke("signText", 1f);
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어
         //슬슬 돌아가야겠다.
@@ -541,6 +553,13 @@ public class SeaFunction : MonoBehaviour {
     IEnumerator LoadOut()
     {
         async = SceneManager.LoadSceneAsync("SubLoadOut");
+
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
+
         while (!async.isDone)
         {
             yield return true;

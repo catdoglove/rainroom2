@@ -22,12 +22,12 @@ namespace GoogleMobileAds.Mediation.UnityAds.Common
     {
         public PlaceholderClient ()
         {
-            Debug.Log ("Placeholder " + MethodBase.GetCurrentMethod ().Name);
+           // Debug.Log ("Placeholder " + MethodBase.GetCurrentMethod ().Name);
         }
 
         public void SetConsentMetaData(string key, bool metaDataValue)
         {
-            Debug.Log ("Placeholder " + MethodBase.GetCurrentMethod ().Name);
+           // Debug.Log ("Placeholder " + MethodBase.GetCurrentMethod ().Name);
         }
     }
 }

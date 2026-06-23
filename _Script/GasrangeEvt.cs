@@ -69,7 +69,8 @@ public class GasrangeEvt : MonoBehaviour {
         colorC = new Color(1f, 1f, 1f);
         color = new Color(1f, 1f, 1f);
         CheckIng();
-        data = CSVReader.Read("material");
+        csvvreader();
+
         if (PlayerPrefs.GetInt("putfallleaf", 0) == 1)
         {
             fsticker_obj.SetActive(true);
@@ -205,7 +206,11 @@ public class GasrangeEvt : MonoBehaviour {
     }
     #endregion
 
-    void CookStrSet()
+    async void csvvreader()
+    {
+        data = await CSVReader.ReadAsync("Assets/csv/material.csv");
+    }
+        void CookStrSet()
     {
         cook_str[0] = "계란프라이";
         cook_str[1] = "계란볶음밥";
@@ -798,7 +803,7 @@ public class GasrangeEvt : MonoBehaviour {
     /// </summary>
     void endg()
     {
-        int k = 0;
+        //int k = 0;
         if (PlayerPrefs.GetInt("cookending", 0) == 0)
         {
             int fo = 0;

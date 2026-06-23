@@ -52,6 +52,15 @@ public class Parkfunction : CavasData
 
     private void Awake()
     {
+        //로딩용
+
+        PlayerPrefs.SetInt("gooutLoading", 99);
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(false);
+        }
+
         //초기화
         str = PlayerPrefs.GetString("code", "");
         colorP = new Color(1f, 1f, 1f);
@@ -74,7 +83,7 @@ public class Parkfunction : CavasData
         //외출업적
         if (PlayerPrefs.GetInt("acgocheck", 0) == 1)
         {
-            checkachOut();
+            Invoke("checkachOut", 0.5f);
             PlayerPrefs.SetInt("acgocheck", 0);
         }
         
@@ -477,6 +486,11 @@ public class Parkfunction : CavasData
             MemoryDestroy();
             StartCoroutine("LoadOut");
             audio_obj.GetComponent<SoundEvt>().buttonSound();
+
+            if (SoundHandler.instance != null)
+            {
+                SoundHandler.instance.SetMute(true);
+            }
         }
         else
         {

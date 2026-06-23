@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MountianFunction : MonoBehaviour {
 
     //미리 씬을 불러오기
-    AsyncOperation async;
+    UnityEngine.AsyncOperation async;
 
     public GameObject squral_obj, sign_obj, right_obj, left_obj, box_obj,tesureWindow_obj, squralWindow_obj, resultWindow_obj;
     public GameObject backGround_obj, backGround2_obj,sqH_obj, audio_obj;
@@ -57,8 +58,18 @@ public class MountianFunction : MonoBehaviour {
 
     List<Dictionary<string, object>> data;
     // Use this for initialization
+    async void csvvreader()
+    {
+        data_sign = await CSVReader.ReadAsync("Assets/csv/sign_park.csv");
+    }
     void Start()
     {
+        if (SoundHandler.instance != null)
+        {
+            // 소리를 다시 켜고 싶을 때 (음소거 OFF)
+            SoundHandler.instance.SetMute(false);
+            if (SoundHandler.instance.BGM != null) SoundHandler.instance.BGM.mute = true;
+        }
         //계절체크
         string mon = System.DateTime.Now.ToString("MM");
 
@@ -99,8 +110,8 @@ public class MountianFunction : MonoBehaviour {
         PlayerPrefs.SetString("outlasttimepark", System.DateTime.UtcNow.ToString());
         PlayerPrefs.SetInt("foresttime", 9);
         PlayerPrefs.Save();
-        data_sign = CSVReader.Read("Talk/sign_park");
-        signText();
+        csvvreader();
+        Invoke("signText", 1f);
 
         //상자 안에              /12그림/ 관련 리폼색이                들어있어
         //슬슬 돌아가야겠다.
@@ -516,6 +527,11 @@ public class MountianFunction : MonoBehaviour {
     IEnumerator LoadOut()
     {
         async = SceneManager.LoadSceneAsync("SubLoadOut");
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(true);
+        }
         while (!async.isDone)
         {
             yield return true;

@@ -27,7 +27,7 @@ public class AdmobADS : MonoBehaviour {
 
 
     public GameObject GM;
-    bool rewardEarned = false;
+   // bool rewardEarned = false;
 
     void Awake()
     {
@@ -140,7 +140,7 @@ public class AdmobADS : MonoBehaviour {
           //  {
           //      Debug.Log("광고보상이 얻어졌는가");
                 giveMeReward();
-                rewardEarned = false;
+              //  rewardEarned = false;
          //   }
 
 
@@ -197,7 +197,7 @@ public class AdmobADS : MonoBehaviour {
                 rewardedAd.Show((Reward reward) =>
                 {
                 //    Debug.Log("광고리워드쇼");
-                    rewardEarned = true;
+                  //  rewardEarned = true;
                     PlayerPrefs.SetInt("blad", 1);
                     PlayerPrefs.Save();
                 });

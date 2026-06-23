@@ -24,14 +24,14 @@ public class FirstRoomBookList : MonoBehaviour {
 
     //이거 unity 세팅 다시하기..
 
-    void Start()
+    async void Start()
     {
-        data_book = CSVReader.Read("Talk/talk_book");
-        data_light = CSVReader.Read("Talk/talk_light");
-        data_seed = CSVReader.Read("Talk/talk_seed");
-        data_wall = CSVReader.Read("Talk/talk_wall");
-        data_window = CSVReader.Read("Talk/talk_window");
-               
+        data_book = await CSVReader.ReadAsync("Assets/csv/talk_book.csv");
+        data_light = await CSVReader.ReadAsync("Assets/csv/talk_light.csv");
+        data_seed = await CSVReader.ReadAsync("Assets/csv/talk_seed.csv");
+        data_wall = await CSVReader.ReadAsync("Assets/csv/talk_wall.csv");
+        data_window = await CSVReader.ReadAsync("Assets/csv/talk_window.csv");
+
     }
 
     //책장내용 열기
