@@ -102,7 +102,7 @@ public class LoadingData : LodingDataBase
             var iceboxTask = LoadSpritesAsync("Assets/UI/Roomdown/back_ice(190x230).png");
             var lightTask = LoadSpritesAsync("Assets/UI/Roomdown/light(150x130).png");
             var shelfTask = LoadSpritesAsync("Assets/UI/Roomdown/back_shelf(240x130).png");
-            var flowerpotTask = LoadSpritesAsync("Assets/UI/Roomdown/head_flower_re(100x170).png");
+            var flowerpotTask = LoadSpritesAsync("Assets/UI/Roomdown/head_flowerseed(100x170).png");
             var gasrangeTask = LoadSpritesAsync("Assets/UI/Roomdown/back_gasrange(210x200).png");
             var matTask = LoadSpritesAsync("Assets/UI/Roomdown/head_carpet(230x200).png");
             var mat2Task = LoadSpritesAsync("Assets/UI/Roomdown/back_carpet(200x80).png");

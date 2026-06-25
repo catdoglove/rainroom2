@@ -949,6 +949,11 @@ public class TalkEvt : MonoBehaviour {
         itemLv[2] = PlayerPrefs.GetInt("lightlv", 0);
         itemLv[3] = PlayerPrefs.GetInt("windowlv", 0);
         itemLv[4] = PlayerPrefs.GetInt("seedlv", 0) - 1;
+
+        if (itemLv[0] >= 14) //KeyNotFoundException: The given key '14' was not present in the dictionary. 오류 방지 
+        {
+           itemLv[0] = 13;
+        }
     }
 
     public void talkEvtSpring()
@@ -1120,9 +1125,10 @@ public class TalkEvt : MonoBehaviour {
     public void bookAllArr()
     {
         if (itemLv[0] == 12 || itemLv[0] == 13)
-            {
+        {
             itemAllArr = 7;
-        }else if (itemLv[0] == 7 || itemLv[0] == 8 || itemLv[0] == 9 || itemLv[0] == 10 || itemLv[0] == 11)
+        }
+        else if (itemLv[0] == 7 || itemLv[0] == 8 || itemLv[0] == 9 || itemLv[0] == 10 || itemLv[0] == 11)
         {
             itemAllArr = 5;
         }

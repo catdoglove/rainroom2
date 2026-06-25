@@ -426,6 +426,7 @@ public class SeedTime : MonoBehaviour {
 
     IEnumerator TimeCheck()
     {
+        yield return new WaitForSeconds(0.5f);
         waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
         int a =0;
         while (a == 0)
