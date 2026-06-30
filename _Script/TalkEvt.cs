@@ -478,8 +478,6 @@ public class TalkEvt : MonoBehaviour {
 
         
 
-        //대화속도
-        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         //Debug.Log(countTalkNum);
 
 
@@ -551,7 +549,7 @@ public class TalkEvt : MonoBehaviour {
             }
             else
             {
-                StartCoroutine(talkRun(speedF));
+                StartCoroutine(talkRun());
             }
 
             countTalk();
@@ -643,18 +641,29 @@ public class TalkEvt : MonoBehaviour {
 
 
     //대사 출력
-    IEnumerator talkRun(float f)
+    IEnumerator talkRun()
     {
+        //대화속도
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
         cnt = 0;
         while (cnt != text_str.Length)
         {
-            if (cnt < text_str.Length)
+            // 1. 현재 출력할 문자 확인
+            char currentChar = text_str[cnt];
+            Text_obj.text += currentChar.ToString();
+            cnt++;
+
+            // 2. 문자에 따라 대기 시간 다르게 설정
+            if (currentChar == '.' || currentChar == ',' || currentChar == '!' || currentChar == '?')
             {
-                Text_obj.text += text_str[cnt].ToString();
-                cnt++;
+                yield return new WaitForSeconds(speedF * 10f);
             }
-            yield return new WaitForSeconds(speedF);
+            else
+            {
+                // 일반 글자일 때는 원래 속도대로 출력
+                yield return new WaitForSeconds(speedF);
+            }
         }
         trueObject();
     }
@@ -662,6 +671,8 @@ public class TalkEvt : MonoBehaviour {
     //질문 출력
     IEnumerator questionTalkRun()
     {
+        //대화속도
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
         closeTB.SetActive(false);
         quesBack.SetActive(true);
@@ -671,12 +682,22 @@ public class TalkEvt : MonoBehaviour {
         cnt = 1;
         while (cnt != lineStr[0].Length)
         {
-            if (cnt < lineStr[0].Length)
+            // 1. 현재 출력할 문자 확인
+            char currentChar = lineStr[0][cnt];
+            Text_obj.text += currentChar.ToString();
+            cnt++;
+
+            // 2. 문자에 따라 대기 시간 다르게 설정
+            if (currentChar == '.' || currentChar == ',' || currentChar == '!' || currentChar == '?')
             {
-                Text_obj.text += lineStr[0][cnt].ToString();
-                cnt++;
+                // 쉼표나 마침표, 느낌표 등에서는 한 템포 더 길게 쉼 (예: 기본 속도의 3배)
+                yield return new WaitForSeconds(speedF * 10f);
             }
-            yield return new WaitForSeconds(speedF);
+            else
+            {
+                // 일반 글자일 때는 원래 속도대로 출력
+                yield return new WaitForSeconds(speedF);
+            }
         }
 
         btnTxt1.text += lineStr[1].ToString();
@@ -688,6 +709,8 @@ public class TalkEvt : MonoBehaviour {
     //선택한 질문 출력
     IEnumerator choiceTextRun()
     {
+        //대화속도
+        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
         falseObject();
 
         quesStr = " ";
@@ -697,24 +720,42 @@ public class TalkEvt : MonoBehaviour {
         {
             while (cnt != lineStr[2].Length)
             {
-                if (cnt < lineStr[2].Length)
+                // 1. 현재 출력할 문자 확인
+                char currentChar = lineStr[2][cnt];
+                Text_obj.text += currentChar.ToString();
+                cnt++;
+
+                // 2. 문자에 따라 대기 시간 다르게 설정
+                if (currentChar == '.' || currentChar == ',' || currentChar == '!' || currentChar == '?')
                 {
-                    Text_obj.text += lineStr[2][cnt].ToString();
-                    cnt++;
+                    yield return new WaitForSeconds(speedF * 10f);
                 }
-                yield return new WaitForSeconds(speedF);
+                else
+                {
+                    // 일반 글자일 때는 원래 속도대로 대기
+                    yield return new WaitForSeconds(speedF);
+                }
             }
         }
         else if (choiceNum == 2)
         {
             while (cnt != lineStr[4].Length)
             {
-                if (cnt < lineStr[4].Length)
+                // 1. 현재 출력할 문자 확인
+                char currentChar = lineStr[4][cnt];
+                Text_obj.text += currentChar.ToString();
+                cnt++;
+
+                // 2. 문자에 따라 대기 시간 다르게 설정
+                if (currentChar == '.' || currentChar == ',' || currentChar == '!' || currentChar == '?')
                 {
-                    Text_obj.text += lineStr[4][cnt].ToString();
-                    cnt++;
+                    yield return new WaitForSeconds(speedF * 10f);
                 }
-                yield return new WaitForSeconds(speedF);
+                else
+                {
+                    // 일반 글자일 때는 원래 속도대로 대기
+                    yield return new WaitForSeconds(speedF);
+                }
             }
         }
         trueObject();
@@ -739,21 +780,6 @@ public class TalkEvt : MonoBehaviour {
     }
 
 
-
-
-
-
-
-    /*
-     생각할 것
-     진행 중일 때 호감도가 오른다면 어디에 넣어야 할까? > loveLv
-     상점에서 업그레이드를 한다면 어디에 넣어야 할까? > loveLv
-     loveLv 수치 조절하면 lovetalk()에서 값을 받아 알아서 출력해준다
-     랜덤 대화만 해결하면 될 듯? 10.04 완료
-     호감도가 올라서 새로운 대화를 해야할 때 allArr(length)과 nowArr 둘 다 초기화 해준다(줄 수 다시 불러오기 + 1로 만들기
-
-    실시간 호감도 업그레이드에 따른 정보 출력 = 정보창이 열릴 때
-     */
 
 
     public int[] GetRandomInt(int length) //중복없는 난수생성기
@@ -952,7 +978,7 @@ public class TalkEvt : MonoBehaviour {
 
         if (itemLv[0] >= 14) //KeyNotFoundException: The given key '14' was not present in the dictionary. 오류 방지 
         {
-           itemLv[0] = 13;
+          itemLv[0] = 13;
         }
     }
 
@@ -960,8 +986,8 @@ public class TalkEvt : MonoBehaviour {
     {
         cleantalk();
         text_str = "" + data_evt_spring[etcNum]["벚꽃가지"];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -976,8 +1002,8 @@ public class TalkEvt : MonoBehaviour {
     {
         cleantalk();
         text_str = "" + data_pet[etcNum]["turtle"];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -992,8 +1018,8 @@ public class TalkEvt : MonoBehaviour {
     {
         cleantalk();
         text_str = "" + data_pet[etcNum]["rabbit"];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1008,8 +1034,8 @@ public class TalkEvt : MonoBehaviour {
     {
         cleantalk();
         text_str = "" + data_pet[etcNum]["fish"];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1024,8 +1050,8 @@ public class TalkEvt : MonoBehaviour {
     {
         cleantalk();
         text_str = "" + data_pet[etcNum]["marimo"];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
         if (etcNum >= 4)
         {
             etcNum = 0;
@@ -1044,8 +1070,8 @@ public class TalkEvt : MonoBehaviour {
         itemLineReload(299);
         cleantalk();
         text_str = "" + data_book[itemNowArr]["book" + itemLv[0]];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
     }
 
     public void talkWall()
@@ -1054,8 +1080,8 @@ public class TalkEvt : MonoBehaviour {
         itemLineReload(304);
         cleantalk();
         text_str = "" + data_wall[itemNowArr]["wall" + itemLv[1]];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
     }
     
     public void talkLight()
@@ -1064,8 +1090,8 @@ public class TalkEvt : MonoBehaviour {
         itemLineReload(376);
         cleantalk();
         text_str = "" + data_light[itemNowArr]["light" + itemLv[2]];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
     }
 
     public void talkWindow()
@@ -1074,8 +1100,8 @@ public class TalkEvt : MonoBehaviour {
         itemLineReload(472);
         cleantalk();
         text_str = "" + data_window[itemNowArr]["window" + itemLv[3]];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
     }
 
     public void talkSeed()
@@ -1088,8 +1114,8 @@ public class TalkEvt : MonoBehaviour {
         itemLineReload(289);
         cleantalk();
         text_str = "" + data_seed[itemNowArr]["seed" + itemLv[4]];
-        StopCoroutine("itemTalkRun");
-        StartCoroutine("itemTalkRun");
+        StopCoroutine("talkRun");
+        StartCoroutine("talkRun");
     }
     void achvcheck()
     {
@@ -1101,24 +1127,6 @@ public class TalkEvt : MonoBehaviour {
         }
     }
 
-
-        //아이템대사 출력
-        IEnumerator itemTalkRun()
-    {
-        speedF = PlayerPrefs.GetFloat("talkspeed", 0.05f);
-        falseObject();
-        cnt = 0;
-        while (cnt != text_str.Length)
-        {
-            if (cnt < text_str.Length)
-            {
-                Text_obj.text += text_str[cnt].ToString();
-                cnt++;
-            }
-            yield return new WaitForSeconds(speedF);
-        }
-        trueObject();
-    }
 
 
     //범위 설정 다시하기
