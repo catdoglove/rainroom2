@@ -333,7 +333,8 @@ public class FirstRoomFunction : CavasData {
         {
             ladderBox_obj.SetActive(true);
         }
-        setItems();
+        //setItems();
+        UpdateRoomSprites();
 
         //낮밤
         setDay();
@@ -438,6 +439,7 @@ public class FirstRoomFunction : CavasData {
         rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
         cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+        setItems();
     }
 
 
@@ -464,7 +466,7 @@ public class FirstRoomFunction : CavasData {
 
         wallImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().wall2_spr[wall_i];
-        UpdateRoomSprites();
+        //UpdateRoomSprites();
         //러그바로 되어있도록
         //러그파랑
         if (PlayerPrefs.GetInt("ruglv", 0) >= 3 && PlayerPrefs.GetInt("shoppalette100", 0) == 1)

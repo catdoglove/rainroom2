@@ -275,7 +275,6 @@ public class secondRoomFunction : CavasData
 
         wallImg_obj.GetComponent<Image>().sprite = wall_spr[wall_i];
         wallImg2_obj.GetComponent<Image>().sprite = wall2_spr[wall_i];
-        Invoke("UpdateRoomSprites", 0.1f);
 
         if (PlayerPrefs.GetInt("wateringcanshop", 0) == 2)
         {
@@ -350,8 +349,20 @@ public class secondRoomFunction : CavasData
         }
         //낮밤
         setDay();
+        Invoke("UpdateRoomSprites", 0.1f);
+
+        
+        //보물찾기
+        if (PlayerPrefs.GetInt("gettre2", 0) == 1)
+        {
+            tre2_obj.SetActive(false);
+        }
+    }
 
 
+
+    public void setItems()
+    {
         //리폼
 
         //도어매트
@@ -473,6 +484,9 @@ public class secondRoomFunction : CavasData
                     break;
             }
         }
+
+
+
         //벽지
         if (PlayerPrefs.GetInt("shoppalette9", 0) > 0)
         {
@@ -515,14 +529,7 @@ public class secondRoomFunction : CavasData
             reformWall_spr[1] = null;
             Resources.UnloadUnusedAssets();
         }
-        
-        //보물찾기
-        if (PlayerPrefs.GetInt("gettre2", 0) == 1)
-        {
-            tre2_obj.SetActive(false);
-        }
     }
-
 
 
     public async void UpdateRoomSprites()
@@ -567,6 +574,8 @@ public class secondRoomFunction : CavasData
         }
         lightImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
         lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
+
+        setItems();
     }
 
 
