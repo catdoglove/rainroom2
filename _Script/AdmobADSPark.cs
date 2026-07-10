@@ -21,8 +21,35 @@ public class AdmobADSPark : MonoBehaviour {
     public GameObject Toast_obj, blackimg, Toast_obj2;
     public Text Toast_txt;
     public GameObject GM;
-   // bool rewardEarned = false;
 
+    // 중요: 보상 지급 타이밍을 메인 스레드로 넘겨줄 플래그
+    private bool isFirstRewardPending = false;
+    private bool isSecondRewardPending = false;
+
+    private bool isReloadPending = false;
+    private bool isReloadInterstitialPending = false;
+
+    private int loadFailCount = 0;
+    private int loadFailCountInterstitial = 0;
+
+    // 기존 플래그들 아래에 추가
+    private bool isFirstAdLoadSuccessPending = false;
+    private bool isSecondAdLoadSuccessPending = false;
+
+    // 애드몹 초기화 상태를 저장할 변수 추가
+    private bool isAdmobInitialized = false;
+    private bool isInitializing = false;
+    private Coroutine networkRoutine = null;
+    private Coroutine initTimeoutRoutine = null;
+
+//    public GameObject adsBtn;
+//    private Button adsBtnComponent;
+//    public Button cutTime_btn;
+
+    private void Awake()
+    {
+      //  adsBtnComponent = adsBtn.GetComponent<Button>();
+    }
     // Use this for initialization 앱 ID
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -30,14 +57,134 @@ public class AdmobADSPark : MonoBehaviour {
         _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
         _GoOutADSid = "ca-app-pub-9179569099191885/2270327348";
 
-        if (Application.internetReachability != NetworkReachability.NotReachable)
+        InitializeAds(); // 애드몹 초기화 시도
+    }
+
+    // 3초마다 인터넷이 켜졌는지 확인하는 감시자 역할
+    private IEnumerator CheckNetworkRoutine()
+    {
+        // 애드몹이 초기화되지 않은 동안에만 무한 반복
+        while (!isAdmobInitialized)
         {
-            LoadRewardedAd();
-            LoadRewardedInterstitialAd();
+            yield return new WaitForSeconds(3f); // 3초 쉬고 
+
+            if (isInitializing) continue;
+
+            // 인터넷이 켜졌는지 다시 확인
+            if (Application.internetReachability != NetworkReachability.NotReachable)
+            {
+                //Debug.Log("인터넷 연결 감지! 애드몹 초기화를 시작합니다.");
+                InitializeAds(); // 연결되었으니 다시 초기화 시도
+            }
+        }
+        networkRoutine = null;
+    }
+
+    public void InitializeAds()
+    {
+        // 이미 초기화가 끝났거나, 현재 초기화가 진행 중이면 아무것도 안 하고 돌아감
+        if (isAdmobInitialized || isInitializing) return;
+
+        if (Application.internetReachability != NetworkReachability.NotReachable) //인터넷연결된경우?
+        {
+            isInitializing = true; // 잠금장치 ON (초기화 시작)
+            StartCoroutine(InitTimeoutRoutine());
+
+            MobileAds.Initialize((InitializationStatus initStatus) =>
+            {
+                //Debug.Log("Admob Init Complete");
+                isAdmobInitialized = true;
+                isInitializing = false;
+
+                LoadRewardedAd();
+                LoadRewardedInterstitialAd();
+            });
+
+
         }
         else
         {
-            //인터넷연결안됨
+          //  adsBtnComponent.interactable = false; // 인터넷 없으면 비활성화
+         //   if (cutTime_btn != null)
+         //       cutTime_btn.interactable = false;
+            if (networkRoutine == null)
+            {
+                //Debug.Log("인터넷 없음. 3초마다 재연결을 확인합니다.");
+                networkRoutine = StartCoroutine(CheckNetworkRoutine());
+            }
+        }
+    }
+
+
+    // 중요: 메인 스레드에서 플래그를 감지하여 안전하게 보상 지급
+    private void Update()
+    {
+        if (isFirstRewardPending)
+        {
+            isFirstRewardPending = false;
+            giveMeReward();
+        }
+
+        if (isSecondRewardPending)
+        {
+            isSecondRewardPending = false;
+            giveMeSecondReward();
+        }
+
+        if (isReloadPending)
+        {
+            isReloadPending = false;
+            //   if (adsBtnComponent != null) adsBtnComponent.interactable = false;
+
+            if (rewardedAd != null)
+            {
+                rewardedAd.Destroy();
+                rewardedAd = null;
+            }
+
+            if (!IsInvoking("LoadRewardedAd")) // ← 이미 예약됐는지 체크
+            {
+                float delay = Mathf.Min(1f * Mathf.Pow(2, loadFailCount), 30f); // 최대 30초
+                loadFailCount++;
+                Invoke("LoadRewardedAd", delay);
+            }
+
+        }
+
+        if (isReloadInterstitialPending)
+        {
+            isReloadInterstitialPending = false;
+            //    if (cutTime_btn != null) cutTime_btn.interactable = false;
+
+            if (rewardedInterstitialAd != null)
+            {
+                rewardedInterstitialAd.Destroy();
+                rewardedInterstitialAd = null;
+            }
+
+            if (!IsInvoking("LoadRewardedInterstitialAd")) // ← 이미 예약됐는지 체크
+            {
+                float delay = Mathf.Min(1f * Mathf.Pow(2, loadFailCountInterstitial), 30f); // 최대 30초
+                loadFailCountInterstitial++;
+                Invoke("LoadRewardedInterstitialAd", delay);
+            }
+        }
+
+
+        if (isFirstAdLoadSuccessPending)
+        {
+            isFirstAdLoadSuccessPending = false;
+       //     adsBtnComponent.interactable = true;
+        }
+
+        if (isSecondAdLoadSuccessPending)
+        {
+            isSecondAdLoadSuccessPending = false;
+         /*   if (cutTime_btn != null) // 먼저 버튼이 존재하는지 확인
+            {
+                if (PlayerPrefs.GetInt("outtimecut", 0) != 4)
+                    cutTime_btn.interactable = true;
+            }*/
         }
 
     }
@@ -45,6 +192,7 @@ public class AdmobADSPark : MonoBehaviour {
 
     public void LoadRewardedAd()
     {
+       // adsBtnComponent.interactable = false;
         // Clean up the old ad before loading a new one.
         if (rewardedAd != null)
         {
@@ -64,51 +212,47 @@ public class AdmobADSPark : MonoBehaviour {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
-                    //Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                 //   Debug.Log("광고 로드 실패 재시도");
+                    isReloadPending = true; // 여기서도 플래그를 세워주면 무한 동력 완성!
                     return;
                 }
 
-                //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
-
+                loadFailCount = 0;
                 rewardedAd = ad;
                 RegisterEventHandlers(ad); //이벤트 등록
+                isFirstAdLoadSuccessPending = true;
             });
 
     }
 
 
 
+
     private void RegisterEventHandlers(RewardedAd ad)
     {
-        // Raised when the ad is estimated to have earned money.
-        ad.OnAdPaid += (AdValue adValue) =>
-        {
-            //Debug.Log("광고");
-        };
-
         ad.OnAdFullScreenContentClosed += () =>
         {
-           // if (rewardEarned)
-          //  {
-                // Debug.Log("광고닫기");
-                giveMeReward();
-               // rewardEarned = false;
-           // }
+            isReloadPending = true; // 플래그만 세움, 여기서 직접 호출 X
+        };
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            isReloadPending = true;
         };
     }
 
     void giveMeReward()
     {
         PlayerPrefs.SetInt("talk", 5);
-        if (PlayerPrefs.GetInt("talk", 5) >= 5)
-        {
-            PlayerPrefs.SetInt("secf0", 180);
-        }
+        PlayerPrefs.SetInt("secf0", 180);
+
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
         Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StopCoroutine("ToastImgFadeOut");
         StartCoroutine("ToastImgFadeOut");
-        LoadRewardedAd();
+
+        PlayerPrefs.SetInt("blad", 1);
+        PlayerPrefs.Save();
     }
 
 
@@ -121,6 +265,7 @@ public class AdmobADSPark : MonoBehaviour {
         {
             Toast_obj.SetActive(true);
             Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
+            StopCoroutine("ToastImgFadeOut");
             StartCoroutine("ToastImgFadeOut");
         }
         else
@@ -132,9 +277,7 @@ public class AdmobADSPark : MonoBehaviour {
              //   blackimg.SetActive(true);
                 rewardedAd.Show((Reward reward) =>
                 {
-                  //  rewardEarned = true;
-                    PlayerPrefs.SetInt("blad", 1);
-                    PlayerPrefs.Save();
+                    isFirstRewardPending = true;
                 });
             }
             else
@@ -142,7 +285,7 @@ public class AdmobADSPark : MonoBehaviour {
                 //StartCoroutine("ToastImgFadeOut");
                 GM.GetComponent<UnityADSPark>().Wating();
                 PlayerPrefs.SetInt("wait", 2);
-                LoadRewardedAd();
+                //LoadRewardedAd();
             }
         }
     }
@@ -177,6 +320,10 @@ public class AdmobADSPark : MonoBehaviour {
 
     public void LoadRewardedInterstitialAd()
     {
+       /* if (cutTime_btn != null)
+        {
+            cutTime_btn.interactable = false;
+        }*/
         // Clean up the old ad before loading a new one.
         if (rewardedInterstitialAd != null)
         {
@@ -196,34 +343,40 @@ public class AdmobADSPark : MonoBehaviour {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
-                    //Debug.LogError("rewarded interstitial ad failed to load an ad " + "with error : " + error);
+                 //   Debug.Log("광고 로드 실패, 재시도");
+                    isReloadInterstitialPending = true; // 여기서도 플래그를 세워주면 무한 동력 완성!
                     return;
                 }
 
-                //Debug.Log("Rewarded interstitial ad loaded with response : " + ad.GetResponseInfo());
-
+                loadFailCountInterstitial = 0;
                 rewardedInterstitialAd = ad;
                 RegisterEventHandlers2(ad); //이벤트 등록
+                isSecondAdLoadSuccessPending = true;
             });
     }
+
+
+    private void giveMeSecondReward()
+    {
+        // TODO: Reward the user.
+        PlayerPrefs.SetInt("foresttime", 4);
+        Toast_obj2.SetActive(true);
+        //LoadRewardedInterstitialAd();
+    }
+
 
 
 
 
     private void RegisterEventHandlers2(RewardedAd ad)
     {
-        // Raised when the ad is estimated to have earned money.
-        ad.OnAdPaid += (AdValue adValue) =>
-        {
-            //Debug.Log("광고");
-        };
-
         ad.OnAdFullScreenContentClosed += () =>
         {
-            // TODO: Reward the user.
-            PlayerPrefs.SetInt("foresttime", 4);
-            Toast_obj2.SetActive(true);
-            LoadRewardedInterstitialAd();
+            isReloadInterstitialPending = true;
+        };
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            isReloadInterstitialPending = true;
         };
     }
 
@@ -237,17 +390,18 @@ public class AdmobADSPark : MonoBehaviour {
         //Debug.Log("상태보기 : " + rewardedInterstitialAd);
         if (rewardedInterstitialAd != null && rewardedInterstitialAd.CanShowAd())
         {
-       //     blackimg.SetActive(true);
+        //    if (cutTime_btn != null)
+         //       cutTime_btn.interactable = false;
             rewardedInterstitialAd.Show((Reward reward) =>
             {
-                blackimg.SetActive(false);
+                isSecondRewardPending = true;
             });
         }
         else
         {
             GM.GetComponent<UnityADSPark>().Wating();
             PlayerPrefs.SetInt("wait", 2);
-            LoadRewardedInterstitialAd();
+            //LoadRewardedInterstitialAd();
         }
 
     }
@@ -263,5 +417,52 @@ public class AdmobADSPark : MonoBehaviour {
     public void closeBlackImg()
     {
         blackimg.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (rewardedAd != null)
+        {
+            rewardedAd.Destroy();
+            rewardedAd = null;
+        }
+        if (rewardedInterstitialAd != null)
+        {
+            rewardedInterstitialAd.Destroy();
+            rewardedInterstitialAd = null;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (networkRoutine != null)
+        {
+            StopCoroutine(networkRoutine); // 혹시 모를 찌꺼기 실행을 확실히 정지
+            networkRoutine = null;         // 변수를 깨끗하게 청소!
+        }
+        if (initTimeoutRoutine != null)
+        {
+            StopCoroutine(initTimeoutRoutine);
+            initTimeoutRoutine = null;
+        }
+    }
+    // 초기화가 특정 시간 내에 안 끝나면 강제로 잠금을 풀어주는 코루틴
+    private IEnumerator InitTimeoutRoutine()
+    {
+        yield return new WaitForSeconds(10f); // 10초 대기 (네트워크 상태에 따라 15초 등으로 조절 가능)
+        if (isAdmobInitialized)
+        {
+            yield break;
+        }
+        if (isInitializing)
+        {
+         //   Debug.Log("애드몹 초기화 타임아웃! 잠금을 해제하여 재시도를 허용합니다.");
+            isInitializing = false;
+        }
+
+        if (networkRoutine == null)
+        {
+            networkRoutine = StartCoroutine(CheckNetworkRoutine());
+        }
     }
 }

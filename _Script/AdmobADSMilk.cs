@@ -22,6 +22,13 @@ public class AdmobADSMilk : MonoBehaviour {
 
     public GameObject GM;
 
+    // 중요: 보상 지급 타이밍을 메인 스레드로 넘겨줄 플래그
+    private bool isFirstRewardPending = false;
+
+    private bool isReloadPending = false;
+
+    private int loadFailCount = 0;
+
     // Use this for initialization 앱 ID
     void Start () {
         color = new Color(1f, 1f, 1f);
@@ -38,6 +45,23 @@ public class AdmobADSMilk : MonoBehaviour {
         }
 }
 
+    // 중요: 메인 스레드에서 플래그를 감지하여 안전하게 보상 지급
+    private void Update()
+    {
+        if (isFirstRewardPending)
+        {
+            isFirstRewardPending = false;
+            giveMeReward();
+        }
+
+        if (isReloadPending)
+        {
+            isReloadPending = false;
+            float delay = Mathf.Min(1f * Mathf.Pow(2, loadFailCount), 30f); // 최대 30초
+            loadFailCount++;
+            Invoke("LoadRewardedAd", delay);
+        }
+    }
 
     public void LoadRewardedAd()
     {
@@ -60,16 +84,31 @@ public class AdmobADSMilk : MonoBehaviour {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
-                    //Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                    Debug.Log("광고 로드 실패 재시도");
+                    isReloadPending = true; // 여기서도 플래그를 세워주면 무한 동력 완성!
                     return;
                 }
 
-                //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
-
+                loadFailCount = 0;
                 rewardedAd = ad;
+                RegisterEventHandlers(ad); //이벤트 등록
             });
-
     }
+
+
+    private void RegisterEventHandlers(RewardedAd ad)
+    {
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            isReloadPending = true; // 플래그만 세움, 여기서 직접 호출 X
+        };
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            isReloadPending = true;
+        };
+    }
+
+
 
     public void showAdmobVideo()
     {
@@ -81,16 +120,7 @@ public class AdmobADSMilk : MonoBehaviour {
        //     blackimg.SetActive(true);
             rewardedAd.Show((Reward reward) =>
             {
-                PlayerPrefs.SetInt("milkadc", 1);
-                PlayerPrefs.SetInt("setmilkadc", 0);
-                //StartCoroutine("ToastImgFadeOut");
-                Toast_obj2.SetActive(true);
-                GM.GetComponent<WindowMiniGame>().MilkYes();
-                Toast_contain3.SetActive(true);
-                Toast_contain2.SetActive(false);
-                PlayerPrefs.SetInt("blad", 1);
-                blackimg.SetActive(false);
-                PlayerPrefs.SetInt("adrunout", 0);
+                isFirstRewardPending = true;
             });
         }
         else
@@ -98,13 +128,27 @@ public class AdmobADSMilk : MonoBehaviour {
             //GM.GetComponent<UnityADSMilk>().adYes();
             PlayerPrefs.SetInt("wait", 2);
             MilkToast();
-            LoadRewardedAd();
+            //LoadRewardedAd();
         }
 
     }
 
 
 
+    void giveMeReward()
+    {
+        PlayerPrefs.SetInt("milkadc", 1);
+        PlayerPrefs.SetInt("setmilkadc", 0);
+        //StartCoroutine("ToastImgFadeOut");
+        Toast_obj2.SetActive(true);
+        GM.GetComponent<WindowMiniGame>().MilkYes();
+        Toast_contain3.SetActive(true);
+        Toast_contain2.SetActive(false);
+        PlayerPrefs.SetInt("blad", 1);
+        blackimg.SetActive(false);
+        PlayerPrefs.SetInt("adrunout", 0);
+        PlayerPrefs.Save();
+    }
 
 
 
@@ -156,4 +200,6 @@ public class AdmobADSMilk : MonoBehaviour {
     {
         blackimg.SetActive(false);
     }
+
+
 }

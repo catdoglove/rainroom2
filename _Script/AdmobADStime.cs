@@ -1,4 +1,4 @@
-using GoogleMobileAds.Api;
+﻿using GoogleMobileAds.Api;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AdmobADStime : MonoBehaviour
 {
 
-    //����
+    //영상
     private RewardedAd rewardedAd;
     private string _rewardedAdUnitId;
 
@@ -18,6 +18,13 @@ public class AdmobADStime : MonoBehaviour
     public Text Toast_txt;
 
     public GameObject GM, timeWnd_obj, alarm_obj;
+
+    // 중요: 보상 지급 타이밍을 메인 스레드로 넘겨줄 플래그
+    private bool isFirstRewardPending = false;
+
+    private bool isReloadPending = false;
+
+    private int loadFailCount = 0;
 
     void Start()
     {
@@ -31,9 +38,29 @@ public class AdmobADStime : MonoBehaviour
         }
         else
         {
-            //Debug.Log("No Internet, skip init for now ���ͳ� ���� X");
+            //Debug.Log("No Internet, skip init for now 인터넷 연결 X");
         }
     }
+
+
+    // 중요: 메인 스레드에서 플래그를 감지하여 안전하게 보상 지급
+    private void Update()
+    {
+        if (isFirstRewardPending)
+        {
+            isFirstRewardPending = false;
+            giveMeReward();
+        }
+
+        if (isReloadPending)
+        {
+            isReloadPending = false;
+            float delay = Mathf.Min(1f * Mathf.Pow(2, loadFailCount), 30f); // 최대 30초
+            loadFailCount++;
+            Invoke("LoadRewardedAd", delay);
+        }
+    }
+
 
     public void LoadRewardedAd()
     {
@@ -56,36 +83,41 @@ public class AdmobADStime : MonoBehaviour
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
-                    //Debug.LogError("Rewarded ad failed to load an ad " + "with error : " + error);
+                    Debug.Log("광고 로드 실패 재시도");
+                    isReloadPending = true; // 여기서도 플래그를 세워주면 무한 동력 완성!
                     return;
                 }
 
-                //Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
-
+                loadFailCount = 0;
                 rewardedAd = ad;
+                RegisterEventHandlers(ad); //이벤트 등록
             });
 
+    }
+
+    private void RegisterEventHandlers(RewardedAd ad)
+    {
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            isReloadPending = true; // 플래그만 세움, 여기서 직접 호출 X
+        };
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            isReloadPending = true;
+        };
     }
 
 
     public void showAdmobVideo()
     {
-        //Debug.Log("���º��� : " + rewardedAd);
+        //Debug.Log("상태보기 : " + rewardedAd);
 
         PlayerPrefs.SetInt("wait", 1);
         if (rewardedAd != null && rewardedAd.CanShowAd())
         {
             rewardedAd.Show((Reward reward) =>
             {
-                closeTimeADS();
-                Toast_obj.SetActive(true);
-                Toast_txt.text = "���ڴ� �ð��� 2�ð� ���ҵǾ���.";
-                StartCoroutine("ToastImgFadeOut");
-                PlayerPrefs.SetInt("sleeptimeadsreward", 99);
-                alarm_obj.SetActive(false);
-
-                PlayerPrefs.SetInt("blad", 1);
-                PlayerPrefs.SetInt("adrunout", 0);
+                isFirstRewardPending = true;
             });
         }
         else
@@ -96,6 +128,20 @@ public class AdmobADStime : MonoBehaviour
             LoadRewardedAd();
         }
 
+    }
+
+    void giveMeReward()
+    {
+        closeTimeADS();
+        Toast_obj.SetActive(true);
+        Toast_txt.text = "잠자는 시간이 2시간 감소되었다.";
+        StartCoroutine("ToastImgFadeOut");
+        PlayerPrefs.SetInt("sleeptimeadsreward", 99);
+        alarm_obj.SetActive(false);
+
+        PlayerPrefs.SetInt("blad", 1);
+        PlayerPrefs.SetInt("adrunout", 0);
+        PlayerPrefs.Save();
     }
 
 
@@ -114,7 +160,7 @@ public class AdmobADStime : MonoBehaviour
         if (PlayerPrefs.GetInt("wait", 0) == 2)
         {
             Toast_obj.SetActive(true);
-            Toast_txt.text = "���� �� �� ����. ���߿� �õ�����.";
+            Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
             StartCoroutine("ToastImgFadeOut");
         }
     }
