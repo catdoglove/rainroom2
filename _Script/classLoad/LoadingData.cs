@@ -11,7 +11,8 @@ public class LoadingData : LodingDataBase
     // 로딩이 완료되었는지 확인하는 플래그
     public bool IsLoadingComplete { get; private set; } = false;
     private List<AsyncOperationHandle> activeHandles = new List<AsyncOperationHandle>();
-    private bool isInitializing = false; // 로딩 진행 중인지 체크하는 변수 추가
+
+    private Task _loadingTask = null;
 
     void Start()
     {
@@ -19,79 +20,72 @@ public class LoadingData : LodingDataBase
        // CheckAndLoadFurniture(SceneManager.GetActiveScene());
     }
 
-    // 🔥 1. 오브젝트가 활성화될 때 씬 이동 감지 센서를 켭니다.
+    // 1. 오브젝트가 활성화될 때 씬 이동 감지 센서를 켭니다.
     void OnEnable()
     {
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // 🔥 2. 센서를 끕니다 (에러 방지용)
+    // 2. 센서를 끕니다 (에러 방지용)
     void OnDisable()
     {
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // 🔥 3. 유니티가 특정 씬을 닫고 떠날 때 자동으로 불리는 함수입니다.
-    private void OnSceneUnloaded(Scene currentScene)
-    {// "가구를 사용하는 씬"에서 나갈 때 메모리를 해제합니다.
-        if (currentScene.name == "Main" ||
-            currentScene.name == "Main2" )
+
+    private async void OnSceneLoaded(Scene currentScene, LoadSceneMode mode)
+    {
+        // 1. 방금 도착한 씬이 Main이나 Main2 라면?
+        if (currentScene.name == "Main" || currentScene.name == "Main2")
+        {
+            try
+            {
+                // 가구 로딩을 기다립니다.
+                await InitializeRoomSpritesAsync();
+
+                PlayerPrefs.SetInt("AddressableComplete", 99);
+                PlayerPrefs.Save();
+                // Debug.Log("어드레서블 로딩 성공 및 플래그 저장 완료!");
+            }
+            catch (System.Exception e)
+            {
+                // 플래그가 99로 저장되지 않으므로 시스템이 안전하게 보호됩니다.
+                Debug.LogError($"OnSceneLoaded: 가구 로딩 실패로 인해 완료 플래그를 저장하지 않습니다. 에러 내용: {e.Message}");
+
+                // [선택 사항]여기에 유저에게 "네트워크가 불안정하여 로딩 실패" 팝업을 띄우거나 
+                // 재시도 버튼을 누르게 만드는 로직을 넣으면 최고입니다.
+            }
+        }
+        // 2. 중간 징검다리인 '로딩 씬(SubLoad)'이라면?
+        else if (currentScene.name == "SubLoad")
+        {
+            // 아무것도 안 하고 가구 데이터를 꽉 쥐고 버팁니다.
+        }
+        // 3. 로비(Lobby) 등 완전히 다른 씬에 도착했다면?
+        else
         {
             ReleaseAllFurniture();
-            //Debug.Log($"{currentScene.name} 씬을 나갔으므로 가구 이미지를 메모리에서 해제합니다!");
         }
     }
 
-    // 가구가 필요한 씬이면 비동기로 로딩을 시작하는 함수
-    private void CheckAndLoadFurniture(Scene currentScene)
+    public Task InitializeRoomSpritesAsync()
     {
-        if (currentScene.name == "Main" ||
-            currentScene.name == "Main2")
-        {
-            //Debug.Log($"{currentScene.name} 씬에 들어왔습니다. 가구 로딩을 시작합니다.");
-            _ = InitializeRoomSpritesAsync();
-        }
-    }
-    private void OnSceneLoaded(Scene currentScene, LoadSceneMode mode)
-    {
-        CheckAndLoadFurniture(currentScene);
+        // 이미 로딩이 시작되었거나 완료되었다면, 그 Task를 공유해서 같이 기다리게 만듭니다.
+        if (_loadingTask != null) return _loadingTask;
+
+        // 최초 호출 시에만 실제 비동기 로직을 실행하고 저장합니다.
+        _loadingTask = InitializeInternalAsync();
+        return _loadingTask;
     }
 
-    // 기존 setSprite()를 대체하는 비동기 초기화 함수
-    public async Task InitializeRoomSpritesAsync()
+    private async Task InitializeInternalAsync()
     {
         PlayerPrefs.SetInt("AddressableComplete", 0);
-        // 중복 로드 방지
-
-        if (isInitializing) return; // 이미 로딩이 시작되었다면 튕겨냄
-        isInitializing = true;
+        IsLoadingComplete = false;
 
         try
-        { 
-            if (window_spr != null && window_spr.Length > 0 && window_spr[0] != null) return;
-        if (window2_spr != null && window2_spr.Length > 0 && window2_spr[0] != null) return;
-        if (book_spr != null && book_spr.Length > 0 && book_spr[0] != null) return;
-        if (bed_spr != null && bed_spr.Length > 0 && bed_spr[0] != null) return;
-        if (desk_spr != null && desk_spr.Length > 0 && desk_spr[0] != null) return;
-        if (flower_spr != null && flower_spr.Length > 0 && flower_spr[0] != null) return;
-        if (icebox_spr != null && icebox_spr.Length > 0 && icebox_spr[0] != null) return;
-        if (light_spr != null && light_spr.Length > 0 && light_spr[0] != null) return;
-        if (shelf_spr != null && shelf_spr.Length > 0 && shelf_spr[0] != null) return;
-        if (flowerpot_spr != null && flowerpot_spr.Length > 0 && flowerpot_spr[0] != null) return;
-        if (gasrange_spr != null && gasrange_spr.Length > 0 && gasrange_spr[0] != null) return;
-        if (mat_spr != null && mat_spr.Length > 0 && mat_spr[0] != null) return;
-        if (mat2_spr != null && mat2_spr.Length > 0 && mat2_spr[0] != null) return;
-        if (cabinet_spr != null && cabinet_spr.Length > 0 && cabinet_spr[0] != null) return;
-        if (drawer_spr != null && drawer_spr.Length > 0 && drawer_spr[0] != null) return;
-
-            IsLoadingComplete = false;
+        {
             //Debug.Log("어드레서블 가구 스프라이트 로딩 시작...");
-
-            // await를 붙이면 해당 에셋들을 다 불러올 때까지 아래로 넘어가지 않고 대기합니다.
-            // 각 문자열은 Addressables Groups 창에서 설정한 'Address(주소)' 또는 'Label(레이블)' 이름입니다.
-            // 기존에 사용하시던 파일명 문자열을 주소(Key)로 그대로 사용합니다.
 
             var windowTask = LoadSpritesAsync("Assets/UI/Roomdown/head_window(280x210).png");
             var window2Task = LoadSpritesAsync("Assets/UI/Roomdown/back_window(220x220).png");
@@ -128,57 +122,35 @@ public class LoadingData : LodingDataBase
             drawer_spr = drawerTask.Result;
 
             IsLoadingComplete = true;
-            //Debug.Log("모든 어드레서블 스프라이트 로딩 완료! 이제 가구를 배치할 수 있습니다.");
-            await Task.Delay(500); // 0.5초 대기 (밀리초 단위)
-            PlayerPrefs.SetInt("AddressableComplete", 99);
-            PlayerPrefs.Save();
+            //  Debug.Log("모든 어드레서블 스프라이트 로딩 완료! 이제 가구를 배치할 수 있습니다.");
+            //   await Task.Delay(500); // 0.5초 대기 (밀리초 단위)
         }
         catch (System.Exception e)
         {
             Debug.LogError($"어드레서블 로딩 중 에러 발생: {e.Message}");
+            _loadingTask = null;
+            throw;
         }
-        finally
-        {
-            // ✅ [수정됨] 로딩이 정상적으로 끝나든, 중간에 에러가 나든 무조건 플래그를 원상 복구합니다.
-            isInitializing = false;
-        }
-
     }
 
 
-    // 🔥 [수정된 로딩 함수] Result(스프라이트 배열)만 넘기는 것이 아니라, 핸들도 저장합니다.
     private async Task<Sprite[]> LoadSpritesAsync(string key)
     {
-        try
+        AsyncOperationHandle<IList<Sprite>> handle = Addressables.LoadAssetAsync<IList<Sprite>>(key);
+        IList<Sprite> spriteList = await handle.Task;
+
+        if (handle.Status != AsyncOperationStatus.Succeeded)
         {
-            // 1. 핸들(영수증)을 발급받습니다.
-            AsyncOperationHandle<IList<Sprite>> handle = Addressables.LoadAssetAsync<IList<Sprite>>(key);
-
-            // 2. 비동기로 완료될 때까지 기다립니다.
-            IList<Sprite> spriteList = await handle.Task;
-
-            // 3. 로드가 성공했다면 나중에 반납(Release)하기 위해 핸들을 리스트에 보관해둡니다.
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                activeHandles.Add(handle);
-            }
-
-            // 4. 안전하게 배열로 변환하여 반환합니다.
-            if (spriteList != null)
-            {
-                return spriteList.ToArray();
-            }
-            return new Sprite[0];
+            Debug.LogError($"어드레서블 로드 실패 (Key: {key})");
+            throw new System.Exception($"Failed to load: {key}"); // 실패를 위로 전파
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"어드레서블 로드 실패 (Key: {key}): {e.Message}");
-            return new Sprite[0];
-        }
+
+        activeHandles.Add(handle);
+        return spriteList?.ToArray() ?? new Sprite[0];
     }
 
 
-    // 🧹 메모리 청소를 전담하는 함수 (기존 OnDestroy에 있던 코드 이사)
+    // 메모리 청소를 전담하는 함수 (기존 OnDestroy에 있던 코드 이사)
     private void ReleaseAllFurniture()
     {
         // 모아둔 영수증(핸들)을 싹 다 반납합니다.
@@ -211,12 +183,8 @@ public class LoadingData : LodingDataBase
         drawer_spr = null;
 
         IsLoadingComplete = false; // 다시 방에 들어올 때 로딩을 위해 플래그 초기화
+        _loadingTask = null;
+        //Debug.Log("모든 가구 스프라이트와 핸들을 해제했습니다.");
     }
 
-    // 🔥 [수정된 해제 함수] Sprite 배열을 던지는 것이 아니라, 보관해둔 핸들을 던집니다.
-    void OnDestroy()
-    {
-        //Debug.Log("LoadingData가 파괴됩니다. 로드된 어드레서블 자원을 해제합니다..."); 
-        ReleaseAllFurniture();
-    }
 }

@@ -164,21 +164,21 @@ public class secondRoomFunction : CavasData
 
     IEnumerator ForAddressable_roomload()
     {
-        while (true)
+        while (PlayerPrefs.GetInt("AddressableComplete", 0) != 99)
         {
-            yield return new WaitForSeconds(0.2f);
-            if (PlayerPrefs.GetInt("AddressableComplete", 0) == 99)
-            {
-                SceneLoading.SetActive(false);
-                PlayerPrefs.SetInt("AddressableComplete", 2);
-                if (SoundHandler.instance != null)
-                {
-                    // 소리를 다시 켜고 싶을 때 (음소거 OFF)
-                    SoundHandler.instance.SetMute(false);
-                }
+            yield return new WaitForSeconds(0.5f);
+        }
 
-               // Debug.Log("방2 로딩 완료");
-            }
+        PlayerPrefs.SetInt("AddressableComplete", 2);
+        PlayerPrefs.Save();
+
+        yield return new WaitForSeconds(1f);
+
+        SceneLoading.SetActive(false);
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(false);
         }
     }
     // Use this for initialization
@@ -548,32 +548,32 @@ public class secondRoomFunction : CavasData
         // 3. 대기가 끝났다는 것은 이미지가 메모리에 전부 올라왔다는 뜻! 
         // 이제 안전하게 이미지를 입혀줍니다.
 
-        drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
-        windowImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window_spr[window_i];
-        windowImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().window2_spr[window_i];
-        gasrangeImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().gasrange_spr[gasrange_i];
-        iceboxImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().icebox_spr[icebox_i];
-        shelfImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().shelf_spr[shelf_i];
-        matImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat_spr[mat_i];
+        drawerImg_obj.GetComponent<Image>().sprite = data.drawer_spr[drawer_i];
+        windowImg_obj.GetComponent<Image>().sprite = data.window_spr[window_i];
+        windowImg2_obj.GetComponent<Image>().sprite = data.window2_spr[window_i];
+        gasrangeImg_obj.GetComponent<Image>().sprite = data.gasrange_spr[gasrange_i];
+        iceboxImg_obj.GetComponent<Image>().sprite = data.icebox_spr[icebox_i];
+        shelfImg_obj.GetComponent<Image>().sprite = data.shelf_spr[shelf_i];
+        matImg_obj.GetComponent<Image>().sprite = data.mat_spr[mat_i];
         if (PlayerPrefs.GetInt("setmatpalette", 0) >= 1)
         {
-            matImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat_spr[mat_i];
+            matImg_obj.GetComponent<Image>().sprite = data.mat_spr[mat_i];
         }
-        matImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat2_spr[mat2_i];
+        matImg2_obj.GetComponent<Image>().sprite = data.mat2_spr[mat2_i];
         if (PlayerPrefs.GetInt("setmatpalette", 0) >= 1)
         {
-            matImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().mat2_spr[mat2_i];
+            matImg2_obj.GetComponent<Image>().sprite = data.mat2_spr[mat2_i];
         }
         if (PlayerPrefs.GetInt("seedbox", 0) == -10)
         {
-            flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[0];
+            flowerImg_obj.GetComponent<Image>().sprite = data.flower_spr[0];
         }
         else
         {
-            flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[flower_i];
+            flowerImg_obj.GetComponent<Image>().sprite = data.flower_spr[flower_i];
         }
-        lightImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
-        lightImg2_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().light_spr[light_i];
+        lightImg_obj.GetComponent<Image>().sprite = data.light_spr[light_i];
+        lightImg2_obj.GetComponent<Image>().sprite = data.light_spr[light_i];
 
         setItems();
     }
@@ -596,10 +596,10 @@ public class secondRoomFunction : CavasData
         // 3. 대기가 끝났다는 것은 이미지가 메모리에 전부 올라왔다는 뜻! 
         // 이제 안전하게 이미지를 입혀줍니다.
 
-        flowerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().flower_spr[flower_i];
-        drawerImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().drawer_spr[drawer_i];
-        gasrangeImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().gasrange_spr[gasrange_i];
-        iceboxImg_obj.GetComponent<Image>().sprite = GMNotdistroy.GetComponent<LoadingData>().icebox_spr[icebox_i];
+        flowerImg_obj.GetComponent<Image>().sprite = data.flower_spr[flower_i];
+        drawerImg_obj.GetComponent<Image>().sprite = data.drawer_spr[drawer_i];
+        gasrangeImg_obj.GetComponent<Image>().sprite = data.gasrange_spr[gasrange_i];
+        iceboxImg_obj.GetComponent<Image>().sprite = data.icebox_spr[icebox_i];
     }
 
 

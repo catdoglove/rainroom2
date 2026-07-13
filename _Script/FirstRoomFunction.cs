@@ -125,24 +125,24 @@ public class FirstRoomFunction : CavasData {
 
     IEnumerator ForAddressable()
     {
-        while (true)
+        while (PlayerPrefs.GetInt("AddressableComplete", 0) != 99)
         {
-            yield return new WaitForSeconds(0.2f);
-            if (PlayerPrefs.GetInt("AddressableComplete", 0) == 99)
-            {
-                titlebtn.SetActive(true);
-                touchtostart.SetActive(true);
-                loadingImg.SetActive(false);
-                roomLoading.SetActive(false);
-                PlayerPrefs.SetInt("AddressableComplete", 1);
-                //Debug.Log("로딩 완료");
+            yield return new WaitForSeconds(0.5f);
+        }
 
-                if (SoundHandler.instance != null)
-                {
-                    // 소리를 다시 켜고 싶을 때 (음소거 OFF)
-                    SoundHandler.instance.SetMute(false);
-                }
-            }
+        PlayerPrefs.SetInt("AddressableComplete", 1);
+        PlayerPrefs.Save();
+
+        yield return new WaitForSeconds(1f);
+
+        titlebtn.SetActive(true);
+        touchtostart.SetActive(true);
+        loadingImg.SetActive(false);
+        roomLoading.SetActive(false);
+
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(false);
         }
     }
 
@@ -432,13 +432,13 @@ public class FirstRoomFunction : CavasData {
         }
         else
         {
-            bookImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().book_spr[book_i];
+            bookImg_obj.GetComponent<Image>().sprite = data.book_spr[book_i];
         }
-        bedImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().bed_spr[bed_i];
-        deskImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().desk_spr[desk_i];
-        rugImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-        rugImg2_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().rug_spr[rug_i];
-        cabinetImg_obj.GetComponent<Image>().sprite = loadGM.GetComponent<LoadingData>().cabinet_spr[cabinet_i];
+        bedImg_obj.GetComponent<Image>().sprite = data.bed_spr[bed_i];
+        deskImg_obj.GetComponent<Image>().sprite = data.desk_spr[desk_i];
+        rugImg_obj.GetComponent<Image>().sprite = data.rug_spr[rug_i];
+        rugImg2_obj.GetComponent<Image>().sprite = data.rug_spr[rug_i];
+        cabinetImg_obj.GetComponent<Image>().sprite = data.cabinet_spr[cabinet_i];
         setItems();
     }
 
