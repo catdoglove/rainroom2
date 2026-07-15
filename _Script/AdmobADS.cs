@@ -40,18 +40,19 @@ public class AdmobADS : MonoBehaviour {
     private int loadFailCountInterstitial = 0;
 
     // 기존 플래그들 아래에 추가
-    private bool isFirstAdLoadSuccessPending = false;
-    private bool isSecondAdLoadSuccessPending = false;
+  //  private bool isFirstAdLoadSuccessPending = false;
+  //  private bool isSecondAdLoadSuccessPending = false;
 
     // 애드몹 초기화 상태를 저장할 변수 추가
     private bool isAdmobInitialized = false;
     private bool isInitializing = false;
     private Coroutine networkRoutine = null;
     private Coroutine initTimeoutRoutine = null;
+    private bool isInitCompletePending = false;
 
     //public GameObject adsBtn;
-   // private Button adsBtnComponent;
-   // public Button cutTime_btn;
+    // private Button adsBtnComponent;
+    // public Button cutTime_btn;
 
     void Awake()
     {
@@ -113,16 +114,12 @@ public class AdmobADS : MonoBehaviour {
         if (Application.internetReachability != NetworkReachability.NotReachable) //인터넷연결된경우?
         {
             isInitializing = true; // 잠금장치 ON (초기화 시작)
-            StartCoroutine(InitTimeoutRoutine());
+            initTimeoutRoutine = StartCoroutine(InitTimeoutRoutine());
 
             MobileAds.Initialize((InitializationStatus initStatus) =>
             {
-                //Debug.Log("Admob Init Complete");
-                isAdmobInitialized = true;
-                isInitializing = false;
-
-                LoadRewardedAd();
-                LoadRewardedInterstitialAd();
+                if (isAdmobInitialized) return; // 이미 다른 시도로 초기화 완료된 경우 무시
+                isInitCompletePending = true;
             });
 
 
@@ -197,21 +194,41 @@ public class AdmobADS : MonoBehaviour {
             }
         }
 
+        if (isInitCompletePending)
+        {
+            isInitCompletePending = false;
+
+            isAdmobInitialized = true;
+            isInitializing = false;
+
+            if (initTimeoutRoutine != null)
+            {
+                StopCoroutine(initTimeoutRoutine);
+                initTimeoutRoutine = null;
+            }
+
+            // 광고 로드 시작
+            LoadRewardedAd();
+            LoadRewardedInterstitialAd();
+        }
+
+
+        /*
         if (isFirstAdLoadSuccessPending)
         {
             isFirstAdLoadSuccessPending = false;
          //   adsBtnComponent.interactable = true;
         }
-
-        if (isSecondAdLoadSuccessPending)
-        {
-            isSecondAdLoadSuccessPending = false;
-          /*  if (cutTime_btn != null) // 먼저 버튼이 존재하는지 확인
-            {
-                if (PlayerPrefs.GetInt("outtimecut", 0) != 4)
-                    cutTime_btn.interactable = true;
-            }*/
-        }
+        */
+        /* if (isSecondAdLoadSuccessPending)
+         {
+             isSecondAdLoadSuccessPending = false;
+             if (cutTime_btn != null) // 먼저 버튼이 존재하는지 확인
+             {
+                 if (PlayerPrefs.GetInt("outtimecut", 0) != 4)
+                     cutTime_btn.interactable = true;
+             }
+    }*/
 
     }
 
@@ -259,7 +276,7 @@ public class AdmobADS : MonoBehaviour {
                 loadFailCount = 0;
                 rewardedAd = ad;
                 RegisterEventHandlers(ad); //이벤트 등록
-                isFirstAdLoadSuccessPending = true;
+               // isFirstAdLoadSuccessPending = true;
             });
     }
 
@@ -339,21 +356,20 @@ public class AdmobADS : MonoBehaviour {
 
 
 
-    
+
     IEnumerator ToastImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
+        color.a = 1f;
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
+            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
             Toast_obj.GetComponent<Image>().color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);
-
     }
 
 
@@ -397,7 +413,7 @@ public class AdmobADS : MonoBehaviour {
                 loadFailCountInterstitial = 0;
                 rewardedInterstitialAd = ad;
                 RegisterEventHandlers2(ad); //이벤트 등록
-                isSecondAdLoadSuccessPending = true;
+             //   isSecondAdLoadSuccessPending = true;
             });
     }
 

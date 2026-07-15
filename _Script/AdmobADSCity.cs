@@ -39,18 +39,21 @@ public class AdmobADSCity : MonoBehaviour {
     private int loadFailCountInterstitial = 0;
 
     // 기존 플래그들 아래에 추가
-    private bool isFirstAdLoadSuccessPending = false;
-    private bool isSecondAdLoadSuccessPending = false;
+   // private bool isFirstAdLoadSuccessPending = false;
+   // private bool isSecondAdLoadSuccessPending = false;
 
     // 애드몹 초기화 상태를 저장할 변수 추가
     private bool isAdmobInitialized = false;
     private bool isInitializing = false;
     private Coroutine networkRoutine = null;
     private Coroutine initTimeoutRoutine = null;
+    private bool isInitCompletePending = false;
+    private Coroutine adTimeFlowCoroutine = null;
+    private Coroutine adAniTimeCoroutine = null;
 
-   // public GameObject adsBtn;
-   // private Button adsBtnComponent;
-   // public Button cutTime_btn;
+    // public GameObject adsBtn;
+    // private Button adsBtnComponent;
+    // public Button cutTime_btn;
 
     private void Awake()
     {
@@ -61,10 +64,11 @@ public class AdmobADSCity : MonoBehaviour {
     void Start () {
         color = new Color(1f, 1f, 1f);
 
-        StopCoroutine("adTimeFlow2");
-        StopCoroutine("adAniTime2");
-        StartCoroutine("adTimeFlow2");
-        StartCoroutine("adAniTime2");
+        if (adTimeFlowCoroutine != null) StopCoroutine(adTimeFlowCoroutine);
+        if (adAniTimeCoroutine != null) StopCoroutine(adAniTimeCoroutine);
+
+        adTimeFlowCoroutine = StartCoroutine(adTimeFlow2());
+        adAniTimeCoroutine = StartCoroutine(adAniTime2());
 
         _rewardedAdUnitId = "ca-app-pub-9179569099191885/8650861151";
         _GoOutADSid = "ca-app-pub-9179569099191885/2270327348";
@@ -102,16 +106,12 @@ public class AdmobADSCity : MonoBehaviour {
         if (Application.internetReachability != NetworkReachability.NotReachable) //인터넷연결된경우?
         {
             isInitializing = true; // 잠금장치 ON (초기화 시작)
-            StartCoroutine(InitTimeoutRoutine());
+            initTimeoutRoutine = StartCoroutine(InitTimeoutRoutine());
 
             MobileAds.Initialize((InitializationStatus initStatus) =>
             {
-                //Debug.Log("Admob Init Complete");
-                isAdmobInitialized = true;
-                isInitializing = false;
-
-                LoadRewardedAd();
-                LoadRewardedInterstitialAd();
+                if (isAdmobInitialized) return; // 이미 다른 시도로 초기화 완료된 경우 무시
+                isInitCompletePending = true;
             });
 
 
@@ -185,21 +185,39 @@ public class AdmobADSCity : MonoBehaviour {
             }
         }
 
+        if (isInitCompletePending)
+        {
+            isInitCompletePending = false;
+
+            isAdmobInitialized = true;
+            isInitializing = false;
+
+            if (initTimeoutRoutine != null)
+            {
+                StopCoroutine(initTimeoutRoutine);
+                initTimeoutRoutine = null;
+            }
+
+            // 광고 로드 시작
+            LoadRewardedAd();
+            LoadRewardedInterstitialAd();
+        }
+        /*
         if (isFirstAdLoadSuccessPending)
         {
             isFirstAdLoadSuccessPending = false;
          //   adsBtnComponent.interactable = true;
-        }
+        }*/
 
-        if (isSecondAdLoadSuccessPending)
-        {
-            isSecondAdLoadSuccessPending = false;
-         /*   if (cutTime_btn != null) // 먼저 버튼이 존재하는지 확인
-            {
-                if (PlayerPrefs.GetInt("outtimecut", 0) != 4)
-                    cutTime_btn.interactable = true;
-            }*/
-        }
+        /* if (isSecondAdLoadSuccessPending)
+         {
+             isSecondAdLoadSuccessPending = false;
+             if (cutTime_btn != null) // 먼저 버튼이 존재하는지 확인
+             {
+                 if (PlayerPrefs.GetInt("outtimecut", 0) != 4)
+                     cutTime_btn.interactable = true;
+             }
+         }*/
 
     }
 
@@ -234,7 +252,7 @@ public class AdmobADSCity : MonoBehaviour {
                 loadFailCount = 0;
                 rewardedAd = ad;
                 RegisterEventHandlers(ad); //이벤트 등록
-                isFirstAdLoadSuccessPending = true;
+              // isFirstAdLoadSuccessPending = true;
             });
 
     }
@@ -301,18 +319,18 @@ public class AdmobADSCity : MonoBehaviour {
         PlayerPrefs.Save();
     }
 
-    
 
-    
+
+
     IEnumerator ToastImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
+        color.a = 1f;
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
+            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
             Toast_obj.GetComponent<Image>().color = color;
             yield return null;
         }
@@ -323,7 +341,6 @@ public class AdmobADSCity : MonoBehaviour {
 
 
 
-    
 
 
     public void OpenAd()
@@ -339,14 +356,13 @@ public class AdmobADSCity : MonoBehaviour {
         while (mG2 > -1)
         {
             sG2 = PlayerPrefs.GetInt("secf3", 0);
-            if (sG2 < 0)
+            if (sG2 >= 0)
             {
+                // 불필요한 매초 SetActive(false) 중복 방지를 위해 이미 켜진 경우에만 꺼지도록 구성 가능
+                if (radio_ani.activeSelf) radio_ani.SetActive(false);
+                if (adBtn_obj.activeSelf) adBtn_obj.SetActive(false);
             }
-            else
-            {
-                radio_ani.SetActive(false);
-                adBtn_obj.SetActive(false);
-            }
+
             sG2 = PlayerPrefs.GetInt("secf3", 0);
             sG2 = sG2 - 1;
             if (sG2 < 0)
@@ -357,20 +373,19 @@ public class AdmobADSCity : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }
     }
+
     IEnumerator adAniTime2()
     {
-        int w = 0;
-        while (w == 0)
+        while (true)
         {
             if (sG2 < 0)
             {
-                    radio_ani.SetActive(true);
-                    adBtn_obj.SetActive(true);
+                // 매 프레임 SetActive 호출을 방지하기 위한 안전장치
+                if (!radio_ani.activeSelf) radio_ani.SetActive(true);
+                if (!adBtn_obj.activeSelf) adBtn_obj.SetActive(true);
             }
-
             yield return null;
         }
-
     }
 
     public void close()
@@ -420,7 +435,7 @@ public class AdmobADSCity : MonoBehaviour {
                 loadFailCountInterstitial = 0;
                 rewardedInterstitialAd = ad;
                 RegisterEventHandlers2(ad); //이벤트 등록
-                isSecondAdLoadSuccessPending = true;
+            //    isSecondAdLoadSuccessPending = true;
             });
     }
 
@@ -498,6 +513,17 @@ public class AdmobADSCity : MonoBehaviour {
         {
             StopCoroutine(initTimeoutRoutine);
             initTimeoutRoutine = null;
+        }
+
+        if (adTimeFlowCoroutine != null)
+        {
+            StopCoroutine(adTimeFlowCoroutine);
+            adTimeFlowCoroutine = null;
+        }
+        if (adAniTimeCoroutine != null)
+        {
+            StopCoroutine(adAniTimeCoroutine);
+            adAniTimeCoroutine = null;
         }
     }
     // 초기화가 특정 시간 내에 안 끝나면 강제로 잠금을 풀어주는 코루틴

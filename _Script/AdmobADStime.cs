@@ -83,7 +83,7 @@ public class AdmobADStime : MonoBehaviour
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
-                    Debug.Log("광고 로드 실패 재시도");
+                  //  Debug.Log("광고 로드 실패 재시도");
                     isReloadPending = true; // 여기서도 플래그를 세워주면 무한 동력 완성!
                     return;
                 }
@@ -125,7 +125,7 @@ public class AdmobADStime : MonoBehaviour
             //GM.GetComponent<UnityADSMilk>().adYes();
             PlayerPrefs.SetInt("wait", 2);
             MilkToast();
-            LoadRewardedAd();
+           // LoadRewardedAd();
         }
 
     }

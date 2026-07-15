@@ -26,7 +26,6 @@ public class UnityADSPark : MonoBehaviour
     int rand_i = 0;
 
     public GameObject GM;
- //   public string _adUnitId = "rewardedVideo";
 
     private void Awake()
     {
@@ -35,35 +34,19 @@ public class UnityADSPark : MonoBehaviour
     // Use this for initialization
     void Start () {
 
-        //debug.Log("나는UnityADSPark다");
-
-        //debug.Log("unity-script: IronSource.Agent.validateIntegration");
-       // IronSource.Agent.validateIntegration();
-
-        //debug.Log("unity-script: unity version" + IronSource.unityVersion());
-
-        // SDK init
-        //debug.Log("unity-script: LevelPlay SDK initialization");
-       // LevelPlay.Init(appKey, adFormats: new[] { com.unity3d.mediation.LevelPlayAdFormat.REWARDED });
-
-     //   LevelPlay.OnInitSuccess -= SdkInitializationCompletedEvent;
-      //  LevelPlay.OnInitFailed -= SdkInitializationFailedEvent;
-      //  LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-     //   LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
-
         color = new Color(1f, 1f, 1f);
         if (PlayerPrefs.GetInt("outtrip", 0) == 2)
         {
         }
         else
         {
-            StopCoroutine("adTimeFlow2");
-            StopCoroutine("adAniTime2");
-            StopCoroutine("adTimeFlow");
-            StopCoroutine("adAniTime");
+            StopCoroutine(adTimeFlow2());
+            StopCoroutine(adAniTime2());
+            StopCoroutine(adTimeFlow());
+            StopCoroutine(adAniTime());
 
-            StartCoroutine("adTimeFlow");
-            StartCoroutine("adAniTime");
+            StartCoroutine(adTimeFlow());
+            StartCoroutine(adAniTime());
         }
 
       }
@@ -456,24 +439,18 @@ public class UnityADSPark : MonoBehaviour
 
     IEnumerator ToastImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
+        color.a = 1f;
         Toast_obj.GetComponent<Image>().color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
         for (float i = 1f; i > 0f; i -= 0.05f)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
+            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
             Toast_obj.GetComponent<Image>().color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);
     }
 
-    // Load content to the Ad Unit:
-    public void LoadAd()
-    {
-        // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
-      //  //debug.Log("Loading Ad: " + _adUnitId);
-    }
 
 }
