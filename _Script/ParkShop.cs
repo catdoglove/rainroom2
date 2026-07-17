@@ -1211,16 +1211,24 @@ public class ParkShop : MonoBehaviour {
     //꽃
     IEnumerator toastFlowerFadeOut()
     {
-        colorF.a = Mathf.Lerp(0f, 1f, 1f);
-        flowerToast_obj.GetComponent<Image>().color = colorF;
+        Image flowerToastImage = flowerToast_obj.GetComponent<Image>();
+        colorF.a = 1f;
+        flowerToastImage.color = colorF;
         flowerToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorF.a = Mathf.Lerp(0f, 1f, i);
-            flowerToast_obj.GetComponent<Image>().color = colorF;
+            elapsedTime += Time.deltaTime;
+            colorF.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            flowerToastImage.color = colorF;
             yield return null;
         }
+
         flowerToast_obj.SetActive(false);
     }
 

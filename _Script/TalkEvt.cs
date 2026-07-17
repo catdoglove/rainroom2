@@ -1620,17 +1620,30 @@ public class TalkEvt : MonoBehaviour {
     //친해졌다
     IEnumerator leveUpToastImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        leveUpToast_obj.GetComponent<Image>().color = color;
+        // 최적화: 매 프레임 찾지 않도록 미리 Image 컴포넌트를 가져와서 변수에 저장합니다.
+        Image toastImage = leveUpToast_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        toastImage.color = color;
         leveUpToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            leveUpToast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            // 매 프레임 GetComponent를 호출하지 않고, 미리 찾아둔 변수를 사용합니다.
+            toastImage.color = color;
+
             yield return null;
         }
+
         leveUpToast_obj.SetActive(false);
     }
-    
+
 }

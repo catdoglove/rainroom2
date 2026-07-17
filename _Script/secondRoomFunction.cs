@@ -995,48 +995,81 @@ public class secondRoomFunction : CavasData
     //외출페이드아웃
     IEnumerator toastLadderFadeOut()
     {
-        colorL.a = Mathf.Lerp(0f, 1f, 1f);
-        boxLv_obj.GetComponent<Image>().color = colorL;
+        Image boxLvImage = boxLv_obj.GetComponent<Image>();
+
+        colorL.a = 1f;
+        boxLvImage.color = colorL;
         boxLv_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorL.a = Mathf.Lerp(0f, 1f, i);
-            boxLv_obj.GetComponent<Image>().color = colorL;
+            elapsedTime += Time.deltaTime;
+            colorL.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            boxLvImage.color = colorL;
+
             yield return null;
         }
+
         boxLv_obj.SetActive(false);
     }
 
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = color;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        needToastImage.color = color;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 페이드아웃 시간 설정 (1초)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            needToastImage.color = color;
+
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
 
     //스위치토스트페이드아웃
     IEnumerator SwitchToastFadeOut()
     {
-        colorS.a = Mathf.Lerp(0f, 1f, 1f);
-        switchToast_obj.GetComponent<Image>().color = colorS;
+        Image switchToastImage = switchToast_obj.GetComponent<Image>();
+
+        colorS.a = 1f;
+        switchToastImage.color = colorS;
         switchToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorS.a = Mathf.Lerp(0f, 1f, i);
-            switchToast_obj.GetComponent<Image>().color = colorS;
+            elapsedTime += Time.deltaTime;
+            colorS.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            switchToastImage.color = colorS;
+
             yield return null;
         }
+
         switchToast_obj.SetActive(false);
     }
 
@@ -1064,16 +1097,27 @@ public class secondRoomFunction : CavasData
     //토스트가 사라지게
     IEnumerator toastCImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        needcRain_obj.GetComponent<Image>().color = color;
+        Image needcRainImage = needcRain_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        needcRainImage.color = color;
         needcRain_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            needcRain_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            needcRainImage.color = color;
+
             yield return null;
         }
+
         needcRain_obj.SetActive(false);
     }
 

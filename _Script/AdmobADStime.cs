@@ -135,6 +135,7 @@ public class AdmobADStime : MonoBehaviour
         closeTimeADS();
         Toast_obj.SetActive(true);
         Toast_txt.text = "잠자는 시간이 2시간 감소되었다.";
+        StopCoroutine("ToastImgFadeOut");
         StartCoroutine("ToastImgFadeOut");
         PlayerPrefs.SetInt("sleeptimeadsreward", 99);
         alarm_obj.SetActive(false);
@@ -161,6 +162,7 @@ public class AdmobADStime : MonoBehaviour
         {
             Toast_obj.SetActive(true);
             Toast_txt.text = "아직 볼 수 없다. 나중에 시도하자.";
+            StopCoroutine("ToastImgFadeOut");
             StartCoroutine("ToastImgFadeOut");
         }
     }
@@ -169,24 +171,26 @@ public class AdmobADStime : MonoBehaviour
 
     IEnumerator ToastImgFadeOut()
     {
-        if (PlayerPrefs.GetInt("setmilkadc", 0) == 1)
-        {
-            PlayerPrefs.SetInt("setmilkadc", 0);
-        }
+        Image toastImage = Toast_obj.GetComponent<Image>();
 
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        Toast_obj.GetComponent<Image>().color = color;
+        color.a = 1f;
+        toastImage.color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            Toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);
-
     }
+
 
 
 

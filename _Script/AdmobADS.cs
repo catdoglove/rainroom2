@@ -14,7 +14,7 @@ public class AdmobADS : MonoBehaviour {
     private RewardedAd rewardedInterstitialAd;
     private string _GoOutADSid;
 
-    AdRequest request;
+  //  AdRequest request;
 
     //영상
     private RewardedAd rewardedAd;
@@ -54,11 +54,11 @@ public class AdmobADS : MonoBehaviour {
     // private Button adsBtnComponent;
     // public Button cutTime_btn;
 
+    /*  GDPR주석처리 국내에서 해주면 안좋을 수 있다함
     void Awake()
     {
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-           // GoogleMobileAds.Mediation.IronSource.Api.IronSource.SetMetaData("do_not_sell", "true");
             GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("gdpr.consent", true);
             GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("privacy.consent", true);
         }
@@ -68,7 +68,7 @@ public class AdmobADS : MonoBehaviour {
         }
       //  adsBtnComponent = adsBtn.GetComponent<Button>();
     }
-
+*/
 
     // 3초마다 인터넷이 켜졌는지 확인하는 감시자 역할
     private IEnumerator CheckNetworkRoutine()
@@ -359,14 +359,21 @@ public class AdmobADS : MonoBehaviour {
 
     IEnumerator ToastImgFadeOut()
     {
+        Image toastImage = Toast_obj.GetComponent<Image>();
+
         color.a = 1f;
-        Toast_obj.GetComponent<Image>().color = color;
+        toastImage.color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
-            Toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);
@@ -484,6 +491,7 @@ public class AdmobADS : MonoBehaviour {
 
     private void OnDestroy()
     {
+        CancelInvoke();
         if (rewardedAd != null)
         {
             rewardedAd.Destroy();
@@ -514,7 +522,7 @@ public class AdmobADS : MonoBehaviour {
     // 초기화가 특정 시간 내에 안 끝나면 강제로 잠금을 풀어주는 코루틴
     private IEnumerator InitTimeoutRoutine()
     {
-        yield return new WaitForSeconds(10f); // 10초 대기 (네트워크 상태에 따라 15초 등으로 조절 가능)
+        yield return new WaitForSeconds(15f);
         if (isAdmobInitialized)
         {
             yield break;

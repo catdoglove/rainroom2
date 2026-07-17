@@ -313,6 +313,7 @@ public class AdmobADSCity : MonoBehaviour {
         blackimg.SetActive(false);
         Toast_obj.SetActive(true);
         Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
+        StopCoroutine("ToastImgFadeOut");
         StartCoroutine("ToastImgFadeOut");
 
         PlayerPrefs.SetInt("blad", 1);
@@ -324,19 +325,25 @@ public class AdmobADSCity : MonoBehaviour {
 
     IEnumerator ToastImgFadeOut()
     {
+        Image toastImage = Toast_obj.GetComponent<Image>();
+
         color.a = 1f;
-        Toast_obj.GetComponent<Image>().color = color;
+        toastImage.color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
-            Toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);
     }
-
 
 
 
@@ -376,6 +383,7 @@ public class AdmobADSCity : MonoBehaviour {
 
     IEnumerator adAniTime2()
     {
+        yield return new WaitForSeconds(2f);
         while (true)
         {
             if (sG2 < 0)
@@ -491,6 +499,7 @@ public class AdmobADSCity : MonoBehaviour {
 
     private void OnDestroy()
     {
+        CancelInvoke();
         if (rewardedAd != null)
         {
             rewardedAd.Destroy();
@@ -529,7 +538,7 @@ public class AdmobADSCity : MonoBehaviour {
     // 초기화가 특정 시간 내에 안 끝나면 강제로 잠금을 풀어주는 코루틴
     private IEnumerator InitTimeoutRoutine()
     {
-        yield return new WaitForSeconds(10f); // 10초 대기 (네트워크 상태에 따라 15초 등으로 조절 가능)
+        yield return new WaitForSeconds(15f); // 10초 대기 (네트워크 상태에 따라 15초 등으로 조절 가능)
         if (isAdmobInitialized)
         {
             yield break;

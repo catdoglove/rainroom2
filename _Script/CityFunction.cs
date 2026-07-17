@@ -445,23 +445,32 @@ public class CityFunction : CavasData
     }
 
 
-
     //밤에는 못가
     IEnumerator toastSeaFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        seaToast_obj.GetComponent<Image>().color = color;
+        Image seaToastImage = seaToast_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        seaToastImage.color = color;
         seaToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            seaToast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            seaToastImage.color = color;
+
             yield return null;
         }
+
         seaToast_obj.SetActive(false);
     }
-
 
     //돈이 부족하다
     void needMoney()
@@ -475,16 +484,24 @@ public class CityFunction : CavasData
     //온수가 부족하다
     IEnumerator toastNImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = color;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+        color.a = 1f;
+        needToastImage.color = color;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            needToastImage.color = color;
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
 

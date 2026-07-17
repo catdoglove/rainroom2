@@ -666,14 +666,21 @@ public class WindowMiniGame : MonoBehaviour {
         }
         milkTime_txt.text = string.Format(@"{0:00}" + ":", hour) + string.Format(@"{0:00}", minute);
 
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        toast_obj.GetComponent<Image>().color = color;
+        Image toastImage = toast_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        toastImage.color = color;
         toast_obj.SetActive(true);
-        yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+        yield return new WaitForSeconds(3.5f);
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         toast_obj.SetActive(false);

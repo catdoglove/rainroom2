@@ -786,19 +786,27 @@ public class CityShop : MonoBehaviour {
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        colorP.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = colorP;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+        colorP.a = 1f;
+        needToastImage.color = colorP;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorP.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = colorP;
+            elapsedTime += Time.deltaTime;
+            colorP.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            needToastImage.color = colorP;
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
-    
+
 
     public void setIndex0()
     {

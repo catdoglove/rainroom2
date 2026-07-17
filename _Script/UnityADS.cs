@@ -82,6 +82,7 @@ public class UnityADS : MonoBehaviour
         {
             GM.GetComponent<AdmobADS>().Toast_obj.SetActive(true);
             GM.GetComponent<AdmobADS>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
+            GM.GetComponent<AdmobADS>().StopCoroutine("ToastImgFadeOut");
             GM.GetComponent<AdmobADS>().StartCoroutine("ToastImgFadeOut");
         }
         else
@@ -215,6 +216,7 @@ public class UnityADS : MonoBehaviour
 
     IEnumerator adAniTime()
     {
+        yield return new WaitForSeconds(2f);
         while (true)
         {
             if (sG < 0)
@@ -265,6 +267,7 @@ public class UnityADS : MonoBehaviour
 
     IEnumerator adAniTime2()
     {
+        yield return new WaitForSeconds(2f);
         while (true)
         {
             if (sG2 < 0)
@@ -292,14 +295,21 @@ public class UnityADS : MonoBehaviour
 
     IEnumerator ToastImgFadeOut()
     {
+        Image toastImage = Toast_obj.GetComponent<Image>();
+
         color.a = 1f;
-        Toast_obj.GetComponent<Image>().color = color;
+        toastImage.color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
-            Toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);

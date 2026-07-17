@@ -1161,70 +1161,115 @@ public class FirstRoomFunction : CavasData {
         }
     }
 
-    
 
-    
+
     IEnumerator toastBImgFadeOut()
     {
-        colorB.a = Mathf.Lerp(0f, 1f, 1f);
-        beadalYetToast_obj.GetComponent<Image>().color = colorB;
-        beadalTime_obj.GetComponent<Image>().color = colorB;
+        Image beadalYetImage = beadalYetToast_obj.GetComponent<Image>();
+        Image beadalTimeImage = beadalTime_obj.GetComponent<Image>();
+
+        colorB.a = 1f;
+        beadalYetImage.color = colorB;
+        beadalTimeImage.color = colorB;
         beadalYetToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorB.a = Mathf.Lerp(0f, 1f, i);
-            beadalYetToast_obj.GetComponent<Image>().color = colorB;
-            beadalTime_obj.GetComponent<Image>().color = colorB;
+            elapsedTime += Time.deltaTime;
+            colorB.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            beadalYetImage.color = colorB;
+            beadalTimeImage.color = colorB;
+
             yield return null;
         }
+
         beadalYetToast_obj.SetActive(false);
     }
 
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        colorN.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = colorN;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+
+        colorN.a = 1f;
+        needToastImage.color = colorN;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 페이드아웃 시간 설정 (1초)
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorN.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = colorN;
+            elapsedTime += Time.deltaTime;
+            colorN.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            needToastImage.color = colorN;
+
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
+
     //사다리페이드아웃
     IEnumerator toastLadderFadeOut()
     {
-        colorL.a = Mathf.Lerp(0f, 1f, 1f);
-        boxLv_obj.GetComponent<Image>().color = colorL;
+        Image boxLvImage = boxLv_obj.GetComponent<Image>();
+
+        colorL.a = 1f;
+        boxLvImage.color = colorL;
         boxLv_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorL.a = Mathf.Lerp(0f, 1f, i);
-            boxLv_obj.GetComponent<Image>().color = colorL;
+            elapsedTime += Time.deltaTime;
+            colorL.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            boxLvImage.color = colorL;
+
             yield return null;
         }
+
         boxLv_obj.SetActive(false);
     }
 
     //아티팩트페이드아웃
     IEnumerator toastAFadeOut()
     {
-        colorA.a = Mathf.Lerp(0f, 1f, 1f);
-        atoast_obj.GetComponent<Image>().color = colorA;
+        Image atoastImage = atoast_obj.GetComponent<Image>();
+
+        colorA.a = 1f;
+        atoastImage.color = colorA;
         atoast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorA.a = Mathf.Lerp(0f, 1f, i);
-            atoast_obj.GetComponent<Image>().color = colorA;
+            elapsedTime += Time.deltaTime;
+            colorA.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            atoastImage.color = colorA;
+
             yield return null;
         }
+
         atoast_obj.SetActive(false);
     }
 

@@ -247,12 +247,14 @@ public class UnityADSPark : MonoBehaviour
             {
                 GM.GetComponent<AdmobADSCity>().Toast_obj.SetActive(true);
                 GM.GetComponent<AdmobADSCity>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
+                GM.GetComponent<AdmobADSPark>().StopCoroutine("ToastImgFadeOut");
                 GM.GetComponent<AdmobADSCity>().StartCoroutine("ToastImgFadeOut");
             }
             else
             {
                 GM.GetComponent<AdmobADSPark>().Toast_obj.SetActive(true);
                 GM.GetComponent<AdmobADSPark>().Toast_txt.text = "대화 횟수가 이미 최대값이라 시청할 수 없다.";
+                GM.GetComponent<AdmobADSPark>().StopCoroutine("ToastImgFadeOut");
                 GM.GetComponent<AdmobADSPark>().StartCoroutine("ToastImgFadeOut");
             }
         }
@@ -358,6 +360,7 @@ public class UnityADSPark : MonoBehaviour
 	}
     IEnumerator adAniTime()
     {
+        yield return new WaitForSeconds(2f);
         int w = 0;
         while (w == 0)
         {
@@ -410,6 +413,7 @@ public class UnityADSPark : MonoBehaviour
     }
     IEnumerator adAniTime2()
     {
+        yield return new WaitForSeconds(2f);
         int w = 0;
         while (w == 0)
         {
@@ -436,17 +440,23 @@ public class UnityADSPark : MonoBehaviour
     }
 
 
-
     IEnumerator ToastImgFadeOut()
     {
+        Image toastImage = Toast_obj.GetComponent<Image>();
+
         color.a = 1f;
-        Toast_obj.GetComponent<Image>().color = color;
+        toastImage.color = color;
         Toast_obj.SetActive(true);
         yield return new WaitForSeconds(3.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = i; // Lerp 대용으로 더 깔끔하게 대입
-            Toast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            toastImage.color = color;
             yield return null;
         }
         Toast_obj.SetActive(false);

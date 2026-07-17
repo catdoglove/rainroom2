@@ -141,17 +141,25 @@ public class MainBtnEvt : CavasData
         }
         if (PlayerPrefs.GetInt("place", 0) == 1)
         {
-            if (GM2 == null)
+            if (PlayerPrefs.GetInt("outtrip", 0) == 1 || PlayerPrefs.GetInt("outtrip", 0) == 2)
             {
-                GM2 = GameObject.FindGameObjectWithTag("GM2");
+                Debug.Log("외출중");
             }
-            GM2.GetComponent<secondRoomFunction>().AllClose();
-            GM2.GetComponent<secondRoomFunction>().boxClose();
-            GM2.GetComponent<GasrangeEvt>().Closefood();
-            GM2.GetComponent<GasrangeEvt>().CloseIceBox();
-            GM2.GetComponent<SeedTime>().CloseSeed();
-            GM2.GetComponent<UnityADS>().closeAdYN();
+            else
+            {
+                if (GM2 == null)
+                {
+                    GM2 = GameObject.FindGameObjectWithTag("GM2");
+                }
+                GM2.GetComponent<secondRoomFunction>().AllClose();
+                GM2.GetComponent<secondRoomFunction>().boxClose();
+                GM2.GetComponent<GasrangeEvt>().Closefood();
+                GM2.GetComponent<GasrangeEvt>().CloseIceBox();
+                GM2.GetComponent<SeedTime>().CloseSeed();
+                GM2.GetComponent<UnityADS>().closeAdYN();
+            }
         }
+
     }
 
 

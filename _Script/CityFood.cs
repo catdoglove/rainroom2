@@ -332,48 +332,68 @@ public class CityFood : MonoBehaviour {
 
 
 
-
-    //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        color.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = color;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+
+        color.a = 1f;
+        needToastImage.color = color;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            color.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = color;
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            needToastImage.color = color;
+
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
 
     //트럭페이드아웃
     IEnumerator toastTruckFadeOut()
     {
-        colorT.a = Mathf.Lerp(0f, 1f, 1f);
-        truckToast_obj.GetComponent<Image>().color = colorT;
+        Image truckToastImage = truckToast_obj.GetComponent<Image>();
+
+        colorT.a = 1f;
+        truckToastImage.color = colorT;
         truckToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f; // 1초 동안 페이드아웃
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorT.a = Mathf.Lerp(0f, 1f, i);
-            truckToast_obj.GetComponent<Image>().color = colorT;
+            elapsedTime += Time.deltaTime;
+            colorT.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+            truckToastImage.color = colorT;
+
             yield return null;
         }
+
         truckToast_obj.SetActive(false);
     }
 
-    
 
 
 
-        /// <summary>
-        /// 상점넘버
-        /// </summary>
-        #region
-        public void num0()
+
+    /// <summary>
+    /// 상점넘버
+    /// </summary>
+    #region
+    public void num0()
     {
         shopNum = 0;
     }
