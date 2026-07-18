@@ -20,7 +20,6 @@ public class SecondRoomTime : MonoBehaviour {
     public Sprite[] plant_spr;
     string str;
 
-    public GameObject blackAd_obj;
 
     // Use this for initialization
     void Start ()
@@ -68,7 +67,6 @@ public class SecondRoomTime : MonoBehaviour {
         {
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
-                blackAd_obj.SetActive(false);
                 PlayerPrefs.SetInt("blad", 0);
             }
             beadal();

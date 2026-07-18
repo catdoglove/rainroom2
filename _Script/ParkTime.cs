@@ -24,7 +24,6 @@ public class ParkTime : MonoBehaviour
     public GameObject[] ani_obk;
     public AudioSource m_end;
     public AudioClip sp_end, sp_original;
-    public GameObject blackAd_obj;
 
     public GameObject bg_front, bg_back, moonbangu_img;
 
@@ -81,7 +80,6 @@ public class ParkTime : MonoBehaviour
 
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
-                blackAd_obj.SetActive(false);
                 PlayerPrefs.SetInt("blad", 0);
             }
             //나뭇잎

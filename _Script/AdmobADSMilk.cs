@@ -15,7 +15,7 @@ public class AdmobADSMilk : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj, blackimg, Toast_obj2, Toast_contain, Toast_contain2, Toast_contain3;
+    public GameObject Toast_obj, Toast_obj2, Toast_contain, Toast_contain2, Toast_contain3;
     public Text Toast_txt;
 
     public Button milkad_btn;
@@ -125,7 +125,6 @@ public class AdmobADSMilk : MonoBehaviour {
         }
         else
         {
-            //GM.GetComponent<UnityADSMilk>().adYes();
             PlayerPrefs.SetInt("wait", 2);
             MilkToast();
             //LoadRewardedAd();
@@ -145,7 +144,7 @@ public class AdmobADSMilk : MonoBehaviour {
         Toast_contain3.SetActive(true);
         Toast_contain2.SetActive(false);
         PlayerPrefs.SetInt("blad", 1);
-        blackimg.SetActive(false);
+      //  blackimg.SetActive(false);
         PlayerPrefs.SetInt("adrunout", 0);
         PlayerPrefs.Save();
     }
@@ -206,7 +205,7 @@ public class AdmobADSMilk : MonoBehaviour {
     //방지
     public void closeBlackImg()
     {
-        blackimg.SetActive(false);
+       // blackimg.SetActive(false);
     }
 
 

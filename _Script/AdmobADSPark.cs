@@ -18,7 +18,7 @@ public class AdmobADSPark : MonoBehaviour {
 
     int rewardCoin;
     Color color;
-    public GameObject Toast_obj, blackimg, Toast_obj2;
+    public GameObject Toast_obj, Toast_obj2;
     public Text Toast_txt;
     public GameObject GM;
 
@@ -43,6 +43,8 @@ public class AdmobADSPark : MonoBehaviour {
     private Coroutine initTimeoutRoutine = null;
     private bool isInitCompletePending = false;
 
+    private bool isRewardedAdLoading = false;
+    private bool isInterstitialAdLoading = false;
     //    public GameObject adsBtn;
     //    private Button adsBtnComponent;
     //    public Button cutTime_btn;
@@ -207,8 +209,9 @@ public class AdmobADSPark : MonoBehaviour {
 
     public void LoadRewardedAd()
     {
-       // adsBtnComponent.interactable = false;
-        // Clean up the old ad before loading a new one.
+        if (isRewardedAdLoading) return;
+
+        isRewardedAdLoading = true; // 로딩 시작
         if (rewardedAd != null)
         {
             rewardedAd.Destroy();
@@ -224,6 +227,8 @@ public class AdmobADSPark : MonoBehaviour {
         RewardedAd.Load(_rewardedAdUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
+                isRewardedAdLoading = false; // 로드 완료(또는 실패) 시 플래그 해제
+
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -260,7 +265,7 @@ public class AdmobADSPark : MonoBehaviour {
         PlayerPrefs.SetInt("talk", 5);
         PlayerPrefs.SetInt("secf0", 180);
 
-        blackimg.SetActive(false);
+       // blackimg.SetActive(false);
         Toast_obj.SetActive(true);
         Toast_txt.text = "대화 횟수가 5로 다시 복구되었다.";
         StopCoroutine("ToastImgFadeOut");
@@ -300,7 +305,7 @@ public class AdmobADSPark : MonoBehaviour {
                 //StartCoroutine("ToastImgFadeOut");
                 GM.GetComponent<UnityADSPark>().Wating();
                 PlayerPrefs.SetInt("wait", 2);
-                //LoadRewardedAd();
+                LoadRewardedAd();
             }
         }
     }
@@ -341,11 +346,9 @@ public class AdmobADSPark : MonoBehaviour {
 
     public void LoadRewardedInterstitialAd()
     {
-       /* if (cutTime_btn != null)
-        {
-            cutTime_btn.interactable = false;
-        }*/
-        // Clean up the old ad before loading a new one.
+        if (isInterstitialAdLoading) return;
+
+        isInterstitialAdLoading = true; // 로딩 시작
         if (rewardedInterstitialAd != null)
         {
             rewardedInterstitialAd.Destroy();
@@ -361,6 +364,8 @@ public class AdmobADSPark : MonoBehaviour {
         RewardedAd.Load(_GoOutADSid, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
+                isInterstitialAdLoading = false; // 로드 완료(또는 실패) 시 플래그 해제
+
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
                 {
@@ -422,7 +427,7 @@ public class AdmobADSPark : MonoBehaviour {
         {
             GM.GetComponent<UnityADSPark>().Wating();
             PlayerPrefs.SetInt("wait", 2);
-            //LoadRewardedInterstitialAd();
+            LoadRewardedInterstitialAd();
         }
 
     }
@@ -431,13 +436,6 @@ public class AdmobADSPark : MonoBehaviour {
     public void touchToastEvt()
     {
         Toast_obj2.SetActive(false);
-    }
-
-
-    //방지
-    public void closeBlackImg()
-    {
-        blackimg.SetActive(false);
     }
 
     private void OnDestroy()
@@ -485,6 +483,20 @@ public class AdmobADSPark : MonoBehaviour {
         if (networkRoutine == null)
         {
             networkRoutine = StartCoroutine(CheckNetworkRoutine());
+        }
+    }
+    void OnApplicationPause(bool pause)
+    {
+        if (!pause && isAdmobInitialized) // 초기화 완료 후에만 체크
+        {
+            if (rewardedAd == null || !rewardedAd.CanShowAd())
+            {
+                LoadRewardedAd();
+            }
+            if (rewardedInterstitialAd == null || !rewardedInterstitialAd.CanShowAd())
+            {
+                LoadRewardedInterstitialAd();
+            }
         }
     }
 }

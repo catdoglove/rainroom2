@@ -122,7 +122,6 @@ public class AdmobADStime : MonoBehaviour
         }
         else
         {
-            //GM.GetComponent<UnityADSMilk>().adYes();
             PlayerPrefs.SetInt("wait", 2);
             MilkToast();
            // LoadRewardedAd();

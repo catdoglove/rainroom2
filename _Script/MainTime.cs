@@ -38,8 +38,6 @@ public class MainTime : MonoBehaviour {
     
     public GameObject GM;
 
-    public GameObject blackAd_obj;
-
     //해상도별위치
     public GameObject airplaneEnd_obj, balloonEnd_obj, balloonREnd_obj;
 
@@ -83,7 +81,6 @@ public class MainTime : MonoBehaviour {
             
             if (PlayerPrefs.GetInt("blad", 0)==1)
             {
-                blackAd_obj.SetActive(false);
                 PlayerPrefs.SetInt("blad", 0);
             }
 
