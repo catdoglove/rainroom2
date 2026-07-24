@@ -550,16 +550,24 @@ public class ParkShop : MonoBehaviour {
     //냉장고필요페이드아웃
     IEnumerator toastIceFadeOut()
     {
-        colorT.a = Mathf.Lerp(0f, 1f, 1f);
-        needIceToast_obj.GetComponent<Image>().color = colorT;
+        Image needIceToastImage = needIceToast_obj.GetComponent<Image>();
+        colorT.a = 1f;
+        needIceToastImage.color = colorT;
         needIceToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorT.a = Mathf.Lerp(0f, 1f, i);
-            needIceToast_obj.GetComponent<Image>().color = colorT;
+            elapsedTime += Time.deltaTime;
+            colorT.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            needIceToastImage.color = colorT;
             yield return null;
         }
+
         needIceToast_obj.SetActive(false);
     }
 
@@ -1196,16 +1204,24 @@ public class ParkShop : MonoBehaviour {
     //토스트페이드아웃
     IEnumerator toastNImgFadeOut()
     {
-        colorP.a = Mathf.Lerp(0f, 1f, 1f);
-        needToast_obj.GetComponent<Image>().color = colorP;
+        Image needToastImage = needToast_obj.GetComponent<Image>();
+        colorP.a = 1f;
+        needToastImage.color = colorP;
         needToast_obj.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
-        for (float i = 1f; i > 0f; i -= 0.05f)
+
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
         {
-            colorP.a = Mathf.Lerp(0f, 1f, i);
-            needToast_obj.GetComponent<Image>().color = colorP;
+            elapsedTime += Time.deltaTime;
+            colorP.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            needToastImage.color = colorP;
             yield return null;
         }
+
         needToast_obj.SetActive(false);
     }
     //꽃

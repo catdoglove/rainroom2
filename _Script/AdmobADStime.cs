@@ -198,4 +198,14 @@ public class AdmobADStime : MonoBehaviour
         Toast_obj.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        if (rewardedAd != null)
+        {
+            rewardedAd.Destroy();
+            rewardedAd = null;
+        }
+    }
+
+
 }
