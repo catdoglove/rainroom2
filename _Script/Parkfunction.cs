@@ -505,8 +505,7 @@ public class Parkfunction : CavasData
 
     IEnumerator outTime()
     {
-        int a = 0;
-        while (a == 0)
+        while (true)
         {
             if (PlayerPrefs.GetInt("foresttime", 9) == 4)
             {
@@ -520,21 +519,15 @@ public class Parkfunction : CavasData
                 PlayerPrefs.SetInt("outtimeonpark", 1);
             }
             else
-            {             
+            {
 
                 System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
+                string outLastTimeStr = PlayerPrefs.GetString("outlasttimepark", dateTime.ToString());
                 System.DateTime lastDateTime;
-                try
-                {
-                    System.DateTime lastDateTime2 = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
-                }
-                catch (System.Exception)
+                if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
                 {
                     lastDateTime = System.DateTime.UtcNow.AddHours(-1);
                 }
-
-                lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimepark", dateTime.ToString()));
-
                 System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;

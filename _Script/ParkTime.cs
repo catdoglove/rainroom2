@@ -69,8 +69,7 @@ public class ParkTime : MonoBehaviour
     }
     IEnumerator updateSec()
     {
-        int a = 0;
-        while (a == 0)
+        while (true)
         {
 
             if (PlayerPrefs.GetInt("positionleaffirst", 0) == 0)

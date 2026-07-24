@@ -60,8 +60,7 @@ public class CityTime : MonoBehaviour {
     //1초당 업데이트
     IEnumerator updateSec()
     {
-        int a = 0;
-        while (a == 0)
+        while (true)
         {
             if (PlayerPrefs.GetInt("positionpaperfirst", 0) == 0)
             {

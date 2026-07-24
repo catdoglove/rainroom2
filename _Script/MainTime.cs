@@ -75,8 +75,7 @@ public class MainTime : MonoBehaviour {
     }
 
     IEnumerator updateSec(){
-		int a = 0;
-		while (a == 0) {
+		while (true) {
 
             
             if (PlayerPrefs.GetInt("blad", 0)==1)
@@ -271,14 +270,13 @@ public class MainTime : MonoBehaviour {
         //System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
         //System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
 
-
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString()));
+        string foodLastTimeStr = PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString());
+        System.DateTime lastDateTime;
+        if (!System.DateTime.TryParse(foodLastTimeStr, out lastDateTime))
+        {
+            lastDateTime = System.DateTime.UtcNow;
+        }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
-
-    //    Debug.Log(compareTime + "시간들" + System.DateTime.UtcNow);
-                               //00:00:00.5336409시간들2025 - 06 - 12 오전 4:53:00
-
-
         int m = (int)compareTime.TotalMinutes;
 		int sec = (int)compareTime.TotalSeconds;
 		sec = sec - (sec / 60) * 60;
@@ -292,9 +290,6 @@ public class MainTime : MonoBehaviour {
             PlayerPrefs.SetInt("beadal", 0);
             PlayerPrefs.Save();
 		}
-
-
-
     }
 
 

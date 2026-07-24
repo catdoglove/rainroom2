@@ -143,17 +143,11 @@ public class SeedTime : MonoBehaviour {
         seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
         System.DateTime d = System.DateTime.UtcNow.AddHours(-13);
         lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString());
-        try
+        System.DateTime lastDateTime;
+        if (!System.DateTime.TryParse(lastTime, out lastDateTime))
         {
-            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTime);
+            lastDateTime = System.DateTime.UtcNow.AddHours(-13);
         }
-        catch (System.Exception)
-        {
-            lastTime = System.DateTime.UtcNow.AddHours(-13).ToString();
-        }
-
-
-        System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
@@ -428,8 +422,7 @@ public class SeedTime : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.5f);
         waterPot_obj.GetComponent<Image>().sprite = waterPot_spr[0];
-        int a =0;
-        while (a == 0)
+        while (true)
         {
             SeedTimeFlow();
             yield return new WaitForSeconds(2f);

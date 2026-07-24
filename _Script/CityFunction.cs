@@ -390,8 +390,7 @@ public class CityFunction : CavasData
     //버스바다시간
     IEnumerator outTime()
     {
-        int a = 0;
-        while (a == 0)
+        while (true)
         {
             if (PlayerPrefs.GetInt("seatime", 9) == 4)
             {
@@ -406,20 +405,13 @@ public class CityFunction : CavasData
             }
             else
             {
-
                 System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
+                string outLastTimeStr = PlayerPrefs.GetString("outlasttimecity", dateTime.ToString());
                 System.DateTime lastDateTime;
-                try
+                if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
                 {
-                    System.DateTime lastDateTime2 = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimecity", dateTime.ToString()));
+                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);
                 }
-                catch (System.Exception)
-                {
-                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);              
-                }
-
-                lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outlasttimecity", dateTime.ToString()));
-
                 System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;
                 int sec = (int)compareTime.TotalSeconds;

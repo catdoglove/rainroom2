@@ -98,19 +98,13 @@ public class MainTimeHandler : MonoBehaviour {
 		//str로장되어있는과거접속시간을가져옵니다
 		string lastTimem = PlayerPrefs.GetString("lastTime",dateTimenow.ToString());
         //형변환을해줍니다
-        try
+        System.DateTime lastDateTimem;
+        if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
         {
-            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+            lastDateTimem = dateTimenow;
         }
-        catch (System.Exception)
-        {
-            lastTimem = System.DateTime.UtcNow.AddHours(-1).ToString();
-        }
-
-        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
-
-		//계산
-		System.TimeSpan compareTimem =  System.DateTime.UtcNow - lastDateTimem;
+        //계산
+        System.TimeSpan compareTimem =  System.DateTime.UtcNow - lastDateTimem;
 		//1분당1씩줍니다
 		getRain = (int)compareTimem .TotalMinutes;
         //최초실행
@@ -147,27 +141,15 @@ public class MainTimeHandler : MonoBehaviour {
 	IEnumerator talkTimeFlow(){
 		int minute;
 		int sec;
-		int a = 0;
-		while (a == 0) {
-            int justOne = 99;
+		while (true) {
             talk = PlayerPrefs.GetInt ("talk", 5);
             System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
-            lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ());            
-            System.DateTime lastDateTime = System.DateTime.UtcNow;
+            lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ());
 
-            try
+            System.DateTime lastDateTime;
+            if (!System.DateTime.TryParse(lastTime, out lastDateTime))
             {
-                System.DateTime lastDateTime2 = System.DateTime.Parse(lastTime);
-            }
-            catch (System.Exception)
-            {
-                justOne = 0;
                 lastDateTime = System.DateTime.UtcNow.AddHours(-1);
-            }
-
-            if(justOne == 99)
-            {
-                lastDateTime = System.DateTime.Parse(lastTime);
             }
             System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
 

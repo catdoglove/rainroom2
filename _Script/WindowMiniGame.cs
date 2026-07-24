@@ -335,18 +335,11 @@ public class WindowMiniGame : MonoBehaviour {
         System.DateTime dateTimenow = System.DateTime.UtcNow.AddHours(-13);
         //str로장되어있는과거접속시간을가져옵니다
         string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
-
-        try
+        System.DateTime lastDateTimem;
+        if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
         {
-            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+            lastDateTimem = System.DateTime.UtcNow.AddHours(-13);
         }
-        catch (System.Exception)
-        {
-            lastTimem = System.DateTime.UtcNow.AddHours(-13).ToString();
-        }
-
-        //형변환을해줍니다
-        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
         //계산
         System.TimeSpan compareTimem = System.DateTime.UtcNow - lastDateTimem;
         int hour;
@@ -635,18 +628,11 @@ public class WindowMiniGame : MonoBehaviour {
         System.DateTime dateTimenow = System.DateTime.UtcNow.AddHours(-13);
         //str로장되어있는과거접속시간을가져옵니다
         string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
-
-        try
+        System.DateTime lastDateTimem;
+        if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
         {
-            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTimem);
+            lastDateTimem = System.DateTime.UtcNow.AddHours(-13);
         }
-        catch (System.Exception)
-        {
-            lastTimem = System.DateTime.UtcNow.AddHours(-13).ToString();
-        }
-
-        //형변환을해줍니다
-        System.DateTime lastDateTimem = System.DateTime.Parse(lastTimem);
         //계산
         System.TimeSpan compareTimem = System.DateTime.UtcNow - lastDateTimem;
         int hour;

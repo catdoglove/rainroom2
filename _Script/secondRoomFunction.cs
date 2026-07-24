@@ -1343,10 +1343,9 @@ public class secondRoomFunction : CavasData
 
     IEnumerator outTime()
     {
-        int a = 0;
         string ste = "00:00";
 
-        while (a == 0)
+        while (true)
         {
             if (PlayerPrefs.GetInt("bouttime", 14) == 9)
             {
@@ -1360,23 +1359,14 @@ public class secondRoomFunction : CavasData
                 PlayerPrefs.SetInt("outtimeon", 1);
             }
             else
-            {                
-
+            {
                 System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
+                string outLastTimeStr = PlayerPrefs.GetString("outLastTime", dateTime.ToString());
                 System.DateTime lastDateTime;
-                try
+                if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
                 {
-                    System.DateTime lastDateTime2 = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", dateTime.ToString()));
+                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);
                 }
-                catch (System.Exception)
-                {
-                    lastDateTime = System.DateTime.UtcNow.AddHours(-1); //수치 생각해볼것
-                }
-
-
-                lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("outLastTime", dateTime.ToString()));
-
-
 
                 System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
                 int m = (int)compareTime.TotalMinutes;

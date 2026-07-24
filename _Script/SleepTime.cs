@@ -230,15 +230,11 @@ public class SleepTime : MonoBehaviour {
     {
         System.DateTime d = System.DateTime.UtcNow.AddHours(-6);
         lastTime = PlayerPrefs.GetString("sleepLastTime", d.ToString());
-        try
+        System.DateTime lastDateTime;
+        if (!System.DateTime.TryParse(lastTime, out lastDateTime))
         {
-            System.DateTime lastDateTimem2 = System.DateTime.Parse(lastTime);
+            lastDateTime = System.DateTime.UtcNow.AddHours(-6);
         }
-        catch (System.Exception)
-        {
-            lastTime = System.DateTime.UtcNow.AddHours(-6).ToString();
-        }
-        System.DateTime lastDateTime = System.DateTime.Parse(lastTime);
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
@@ -262,8 +258,7 @@ public class SleepTime : MonoBehaviour {
     //매초시간흐르게
     IEnumerator sleepTimecheck()
     {
-        int aa=0;
-        while (aa == 0)
+        while (true)
         {
             SleepTimeFlow();
             if (minute <= 0 && hours == 0)

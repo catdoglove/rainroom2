@@ -61,9 +61,7 @@ public class SecondRoomTime : MonoBehaviour {
             plant();
         }
 
-
-        int a = 0;
-        while (a == 0)
+        while (true)
         {
             if (PlayerPrefs.GetInt("blad", 0) == 1)
             {
@@ -97,7 +95,12 @@ public class SecondRoomTime : MonoBehaviour {
     //음식시간아랫방
     void beadal()
     {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString()));
+        string cookLastTimeStr = PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString());
+        System.DateTime lastDateTime;
+        if (!System.DateTime.TryParse(cookLastTimeStr, out lastDateTime))
+        {
+            lastDateTime = System.DateTime.UtcNow;
+        }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
         int sec = (int)compareTime.TotalSeconds;
@@ -165,7 +168,12 @@ public class SecondRoomTime : MonoBehaviour {
     //식물시간
     void plant()
     {
-        System.DateTime lastDateTime = System.DateTime.Parse(PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString()));
+        string plantLastTimeStr = PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString());
+        System.DateTime lastDateTime;
+        if (!System.DateTime.TryParse(plantLastTimeStr, out lastDateTime))
+        {
+            lastDateTime = System.DateTime.UtcNow;
+        }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
         int sec = (int)compareTime.TotalSeconds;
