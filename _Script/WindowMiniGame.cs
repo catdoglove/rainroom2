@@ -334,7 +334,7 @@ public class WindowMiniGame : MonoBehaviour {
         //초기값을가져옵니다
         System.DateTime dateTimenow = System.DateTime.UtcNow.AddHours(-13);
         //str로장되어있는과거접속시간을가져옵니다
-        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString("o"));
         System.DateTime lastDateTimem;
         if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
         {
@@ -397,7 +397,7 @@ public class WindowMiniGame : MonoBehaviour {
         PlayerPrefs.SetInt(str + "ht", htm);
 
         //시간초기화
-        PlayerPrefs.SetString("milktime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("milktime", System.DateTime.UtcNow.ToString("o"));
         milk_obj.GetComponent<Image>().sprite = milk_spr[0];
         milkBtn_obj.SetActive(false);
         
@@ -627,7 +627,7 @@ public class WindowMiniGame : MonoBehaviour {
         //초기값을가져옵니다
         System.DateTime dateTimenow = System.DateTime.UtcNow.AddHours(-13);
         //str로장되어있는과거접속시간을가져옵니다
-        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString());
+        string lastTimem = PlayerPrefs.GetString("milktime", dateTimenow.ToString("o"));
         System.DateTime lastDateTimem;
         if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
         {

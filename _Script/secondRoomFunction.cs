@@ -1276,7 +1276,7 @@ public class secondRoomFunction : CavasData
         }
         if (heart_i >= hp_i)//30테스트
         {
-            PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString());
+            PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString("o"));
             PlayerPrefs.SetInt("outtrip", 1);
             PlayerPrefs.SetInt("outorhome", 1);
 
@@ -1361,7 +1361,7 @@ public class secondRoomFunction : CavasData
             else
             {
                 System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
-                string outLastTimeStr = PlayerPrefs.GetString("outLastTime", dateTime.ToString());
+                string outLastTimeStr = PlayerPrefs.GetString("outLastTime", dateTime.ToString("o"));
                 System.DateTime lastDateTime;
                 if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
                 {
@@ -1436,7 +1436,7 @@ public class secondRoomFunction : CavasData
 
     public void GoCity()
     {
-        PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString("o"));
         PlayerPrefs.SetInt("outtrip", 2);
         PlayerPrefs.SetInt("bouttime", 14);
         //외출업적

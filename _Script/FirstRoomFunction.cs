@@ -369,7 +369,7 @@ public class FirstRoomFunction : CavasData {
 
         PlayerPrefs.SetInt("front", 1);
         PlayerPrefs.SetInt("place", 1);
-        PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("outLastTime", System.DateTime.UtcNow.ToString("o"));
         PlayerPrefs.SetInt("bouttime", 14);
         StartCoroutine("LoadOut");
         
@@ -874,7 +874,7 @@ public class FirstRoomFunction : CavasData {
         PlayerPrefs.SetInt("lovepoint", point_i);
         closeBeadal();
         beadalIllust_obj.SetActive(true);
-        PlayerPrefs.SetString("foodLastTime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("foodLastTime", System.DateTime.UtcNow.ToString("o"));
         audio_obj.GetComponent<SoundEvt>().foodSound();
     }
 

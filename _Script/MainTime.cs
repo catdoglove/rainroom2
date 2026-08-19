@@ -270,7 +270,7 @@ public class MainTime : MonoBehaviour {
         //System.DateTime lastDateTime = System.DateTime.Parse (PlayerPrefs.GetString ("foodLastTime", System.DateTime.Now.ToString ()));
         //System.TimeSpan compareTime = System.DateTime.Now - lastDateTime;
 
-        string foodLastTimeStr = PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString());
+        string foodLastTimeStr = PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
         if (!System.DateTime.TryParse(foodLastTimeStr, out lastDateTime))
         {

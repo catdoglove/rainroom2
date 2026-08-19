@@ -95,7 +95,7 @@ public class SecondRoomTime : MonoBehaviour {
     //음식시간아랫방
     void beadal()
     {
-        string cookLastTimeStr = PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString());
+        string cookLastTimeStr = PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
         if (!System.DateTime.TryParse(cookLastTimeStr, out lastDateTime))
         {
@@ -168,7 +168,7 @@ public class SecondRoomTime : MonoBehaviour {
     //식물시간
     void plant()
     {
-        string plantLastTimeStr = PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString());
+        string plantLastTimeStr = PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
         if (!System.DateTime.TryParse(plantLastTimeStr, out lastDateTime))
         {
@@ -210,14 +210,14 @@ public class SecondRoomTime : MonoBehaviour {
         int ph = PlayerPrefs.GetInt(str1 + "h", 0);
         ph = ph + b;
         PlayerPrefs.SetInt(str1 + "h", ph);
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString("o"));
         plant_obj.GetComponent<Image>().sprite = plant_spr[0];
         plantBtn_obj.SetActive(false);
     }
 
     public void OpenPlantMemo()
     {
-        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("plantLastTime", System.DateTime.UtcNow.ToString("o"));
         PlayerPrefs.SetInt("leafget", 2);
         if (plantWin_obj.activeSelf == false)
         {

@@ -22,42 +22,42 @@ public class MainTimeHandler : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (PlayerPrefs.GetInt("emergencyCODE7", 0) == 0)
+        if (PlayerPrefs.GetInt("emergencyCODE8", 0) == 0)
         {
 
 
             System.DateTime turnBackTime = System.DateTime.UtcNow.AddHours(-10);
-            PlayerPrefs.SetString("milktime", turnBackTime.ToString());
+            PlayerPrefs.SetString("milktime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-6);
-            PlayerPrefs.SetString("sleepLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("sleepLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("outLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("outLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-13);
-            PlayerPrefs.SetString("seedLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("seedLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-10);
-            PlayerPrefs.SetString("plantLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("plantLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("cookLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("cookLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("outlasttimepark", turnBackTime.ToString());
+            PlayerPrefs.SetString("outlasttimepark", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("outlasttimecity", turnBackTime.ToString());
+            PlayerPrefs.SetString("outlasttimecity", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("foodLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("foodLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-1);
-            PlayerPrefs.SetString("TalkLastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("TalkLastTime", turnBackTime.ToString("o"));
 
             turnBackTime = System.DateTime.UtcNow.AddHours(-10);
-            PlayerPrefs.SetString("lastTime", turnBackTime.ToString());
+            PlayerPrefs.SetString("lastTime", turnBackTime.ToString("o"));
 
             PlayerPrefs.SetInt("secf", 0);
             PlayerPrefs.SetInt("secf0", 0);
@@ -67,7 +67,7 @@ public class MainTimeHandler : MonoBehaviour {
 
 
 
-            PlayerPrefs.SetInt("emergencyCODE7", 99);
+            PlayerPrefs.SetInt("emergencyCODE8", 99);
         }
 
             //빗물
@@ -78,7 +78,7 @@ public class MainTimeHandler : MonoBehaviour {
         //돈디스트로이로 씬을 넘어가도 다시 실행되지 않는다
         if (talk >= 5)
         {
-            PlayerPrefs.SetString("TalkLastTime", System.DateTime.UtcNow.ToString());
+            PlayerPrefs.SetString("TalkLastTime", System.DateTime.UtcNow.ToString("o"));
         }
     }
 
@@ -96,7 +96,7 @@ public class MainTimeHandler : MonoBehaviour {
 		//현재시간을가져옵니다
 		System.DateTime dateTimenow = System.DateTime.UtcNow;
 		//str로장되어있는과거접속시간을가져옵니다
-		string lastTimem = PlayerPrefs.GetString("lastTime",dateTimenow.ToString());
+		string lastTimem = PlayerPrefs.GetString("lastTime",dateTimenow.ToString("o"));
         //형변환을해줍니다
         System.DateTime lastDateTimem;
         if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
@@ -120,7 +120,7 @@ public class MainTimeHandler : MonoBehaviour {
         coldRain_i = coldRain_i + getRain;
 		PlayerPrefs.SetInt (str + "c", coldRain_i);
 		//rainNum.text = coldRain_i.ToString();
-		PlayerPrefs.SetString("lastTime",dateTimenow.ToString());
+		PlayerPrefs.SetString("lastTime",dateTimenow.ToString("o"));
 		PlayerPrefs.Save ();
 
         //빗물이 마이너스일때
@@ -144,7 +144,7 @@ public class MainTimeHandler : MonoBehaviour {
 		while (true) {
             talk = PlayerPrefs.GetInt ("talk", 5);
             System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
-            lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ());
+            lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ("o"));
 
             System.DateTime lastDateTime;
             if (!System.DateTime.TryParse(lastTime, out lastDateTime))
@@ -175,7 +175,7 @@ public class MainTimeHandler : MonoBehaviour {
                 //PlayerPrefs.SetInt("timesechelp", 59-sec);
                 //Debug.Log("minute" + minute+ "sec" + sec);
                 //Debug.Log(""+System.DateTime.Now.ToString());
-                PlayerPrefs.SetString ("TalkLastTime", System.DateTime.UtcNow.ToString ());
+                PlayerPrefs.SetString ("TalkLastTime", System.DateTime.UtcNow.ToString ("o"));
 				//talkTime_txt.text = "04:59";
 			} else {
 				string str = string.Format (@"{0:00}" + ":", minute) + string.Format (@"{0:00}", sec);

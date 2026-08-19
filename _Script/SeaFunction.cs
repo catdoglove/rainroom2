@@ -130,7 +130,7 @@ public class SeaFunction : MonoBehaviour {
             PlayerPrefs.SetInt("outspade", -2);
         }
 
-        PlayerPrefs.SetString("outlasttimecity", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("outlasttimecity", System.DateTime.UtcNow.ToString("o"));
         PlayerPrefs.SetInt("seatime", 9);
         PlayerPrefs.Save();
         csvvreader();

@@ -107,7 +107,7 @@ public class MountianFunction : MonoBehaviour {
             PlayerPrefs.SetInt("outspade", -2);
         }
 
-        PlayerPrefs.SetString("outlasttimepark", System.DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("outlasttimepark", System.DateTime.UtcNow.ToString("o"));
         PlayerPrefs.SetInt("foresttime", 9);
         PlayerPrefs.Save();
         csvvreader();

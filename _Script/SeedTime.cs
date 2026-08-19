@@ -142,7 +142,7 @@ public class SeedTime : MonoBehaviour {
         seed_i = PlayerPrefs.GetInt("seedlv", 0);
         seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
         System.DateTime d = System.DateTime.UtcNow.AddHours(-13);
-        lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString());
+        lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString("o"));
         System.DateTime lastDateTime;
         if (!System.DateTime.TryParse(lastTime, out lastDateTime))
         {
@@ -236,7 +236,7 @@ public class SeedTime : MonoBehaviour {
                     ht = ht - seedHtPrice_i[seed_i - 1];
                     PlayerPrefs.SetInt(str + "c", coldRain_i);
                     PlayerPrefs.SetInt(str + "ht", ht);
-                    PlayerPrefs.SetString("seedLastTime", System.DateTime.UtcNow.ToString());
+                    PlayerPrefs.SetString("seedLastTime", System.DateTime.UtcNow.ToString("o"));
                     seedWater_i = PlayerPrefs.GetInt("seedWater", 1);
                     seedWater_i++;
                     PlayerPrefs.SetInt("seedWater", seedWater_i);
