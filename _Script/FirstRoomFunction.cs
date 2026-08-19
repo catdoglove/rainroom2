@@ -638,7 +638,10 @@ public class FirstRoomFunction : CavasData {
         }
         if (PlayerPrefs.GetInt("setrabbit", 0) == 1)
         {
-            roomRabbit_obj.SetActive(true);
+            if (PlayerPrefs.GetInt("nowsleep", 0) == 0) //잠자는중이 아니라면기본토끼 보여주기
+            {
+                roomRabbit_obj.SetActive(true);
+            }
         }
     }
 
