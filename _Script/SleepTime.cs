@@ -231,15 +231,19 @@ public class SleepTime : MonoBehaviour {
         System.DateTime d = System.DateTime.UtcNow.AddHours(-6);
         lastTime = PlayerPrefs.GetString("sleepLastTime", d.ToString("o"));
         System.DateTime lastDateTime;
-        if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+        if (!System.DateTime.TryParse(lastTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
         {
-            lastDateTime = System.DateTime.UtcNow.AddHours(-6);
+            if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+            {
+                lastDateTime = System.DateTime.UtcNow.AddHours(-6);
+            }
         }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
+
         hours = (int)compareTime.TotalHours;
         minute = (int)compareTime.TotalMinutes;
         minute = minute - (minute / 60) * 60;
-        minute = 59 - minute;        
+        minute = 59 - minute;
 
         if (PlayerPrefs.GetInt("sleeptimeadsreward", 0) == 99)
         {
@@ -250,9 +254,6 @@ public class SleepTime : MonoBehaviour {
             hours = 5 - hours;
         }
 
-        if (minute < 0)
-        {
-        }
     }
 
     //매초시간흐르게

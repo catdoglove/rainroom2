@@ -1363,9 +1363,12 @@ public class secondRoomFunction : CavasData
                 System.DateTime dateTime = System.DateTime.UtcNow.AddHours(-1);
                 string outLastTimeStr = PlayerPrefs.GetString("outLastTime", dateTime.ToString("o"));
                 System.DateTime lastDateTime;
-                if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
+                if (!System.DateTime.TryParse(outLastTimeStr, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
                 {
-                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);
+                    if (!System.DateTime.TryParse(outLastTimeStr, out lastDateTime))
+                    {
+                        lastDateTime = System.DateTime.UtcNow.AddHours(-1);
+                    }
                 }
 
                 System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;

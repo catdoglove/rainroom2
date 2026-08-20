@@ -272,9 +272,12 @@ public class MainTime : MonoBehaviour {
 
         string foodLastTimeStr = PlayerPrefs.GetString("foodLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
-        if (!System.DateTime.TryParse(foodLastTimeStr, out lastDateTime))
+        if (!System.DateTime.TryParse(foodLastTimeStr, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
         {
-            lastDateTime = System.DateTime.UtcNow;
+            if (!System.DateTime.TryParse(foodLastTimeStr, out lastDateTime))
+            {
+                lastDateTime = System.DateTime.UtcNow;
+            }
         }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;

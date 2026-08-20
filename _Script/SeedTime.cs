@@ -144,9 +144,12 @@ public class SeedTime : MonoBehaviour {
         System.DateTime d = System.DateTime.UtcNow.AddHours(-13);
         lastTime = PlayerPrefs.GetString("seedLastTime", d.ToString("o"));
         System.DateTime lastDateTime;
-        if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+        if (!System.DateTime.TryParse(lastTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
         {
-            lastDateTime = System.DateTime.UtcNow.AddHours(-13);
+            if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+            {
+                lastDateTime = System.DateTime.UtcNow.AddHours(-13);
+            }
         }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         hours = (int)compareTime.TotalHours;

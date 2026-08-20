@@ -97,9 +97,12 @@ public class SecondRoomTime : MonoBehaviour {
     {
         string cookLastTimeStr = PlayerPrefs.GetString("cookLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
-        if (!System.DateTime.TryParse(cookLastTimeStr, out lastDateTime))
+        if (!System.DateTime.TryParse(cookLastTimeStr, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
         {
-            lastDateTime = System.DateTime.UtcNow;
+            if (!System.DateTime.TryParse(cookLastTimeStr, out lastDateTime))
+            {
+                lastDateTime = System.DateTime.UtcNow;
+            }
         }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;
@@ -170,9 +173,12 @@ public class SecondRoomTime : MonoBehaviour {
     {
         string plantLastTimeStr = PlayerPrefs.GetString("plantLastTime", System.DateTime.UtcNow.ToString("o"));
         System.DateTime lastDateTime;
-        if (!System.DateTime.TryParse(plantLastTimeStr, out lastDateTime))
+        if (!System.DateTime.TryParse(plantLastTimeStr, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
         {
-            lastDateTime = System.DateTime.UtcNow;
+            if (!System.DateTime.TryParse(plantLastTimeStr, out lastDateTime))
+            {
+                lastDateTime = System.DateTime.UtcNow;
+            }
         }
         System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
         int m = (int)compareTime.TotalMinutes;

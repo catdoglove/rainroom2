@@ -21,11 +21,9 @@ public class MainTimeHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        if (PlayerPrefs.GetInt("emergencyCODE8", 0) == 0)
+        //CheckAllTimeKeys();
+        if (PlayerPrefs.GetInt("emergencyCODE10", 0) == 0)
         {
-
-
             System.DateTime turnBackTime = System.DateTime.UtcNow.AddHours(-10);
             PlayerPrefs.SetString("milktime", turnBackTime.ToString("o"));
 
@@ -66,12 +64,11 @@ public class MainTimeHandler : MonoBehaviour {
             PlayerPrefs.SetInt("secf3", 0);
 
 
-
-            PlayerPrefs.SetInt("emergencyCODE8", 99);
+            PlayerPrefs.SetInt("emergencyCODE10", 99);
         }
 
-            //빗물
-            collectRain ();
+        //빗물
+        collectRain();
 		//대화
 		StartCoroutine ("talkTimeFlow");
         //이부분은 생성될때 한번만 실행된다
@@ -82,10 +79,51 @@ public class MainTimeHandler : MonoBehaviour {
         }
     }
 
+    //시간관련 키값이 정상적으로 저장되어 있는지 확인하는 함수!!
+    void CheckAllTimeKeys()
+    {
+        string[] keys = {
+        "outtime", "outLastTime", "outlasttimepark", "outlasttimecity",
+        "sleepLastTime", "TalkLastTime", "milktime", "plantLastTime",
+        "seedLastTime", "cookLastTime", "foodLastTime",
+        "lastTime", "saveGudoc", "savePaper", "adtimes"
+    };
+
+        System.DateTime nowUtc = System.DateTime.UtcNow;
+
+        foreach (string key in keys)
+        {
+            if (!PlayerPrefs.HasKey(key))
+            {
+                Debug.Log($"[TIMECHECK] {key} : 저장된 값 없음 (기본값 사용 예정)");
+                continue;
+            }
+
+            string raw = PlayerPrefs.GetString(key, "");
+            System.DateTime parsed;
+            bool ok = System.DateTime.TryParse(raw, null, System.Globalization.DateTimeStyles.RoundtripKind, out parsed);
+            bool fallbackUsed = false;
+
+            if (!ok)
+            {
+                ok = System.DateTime.TryParse(raw, out parsed);
+                fallbackUsed = true;
+            }
+
+            double hoursDiff = ok ? (nowUtc - parsed).TotalHours : double.NaN;
+
+            string flag = "";
+            if (!ok) flag = "파싱 완전 실패";
+            else if (fallbackUsed) flag = "예전 포맷으로 겨우 읽힘 (아직 'o'로 재저장 안 됨)";
+            else if (Mathf.Abs((float)hoursDiff) > 24) flag = $"비정상적으로 큰 차이 ({hoursDiff:F1}시간)";
+            else flag = "정상";
+
+            Debug.Log($"[TIMECHECK] {key} : raw=\"{raw}\" | parsed={(ok ? parsed.ToString("o") : "실패")} | diff={hoursDiff:F2}h | {flag}");
+        }
+    }
 
 
-
-	void collectRain(){
+    void collectRain(){
 
         string str = PlayerPrefs.GetString("code", "");
         coldRain_i = PlayerPrefs.GetInt(str + "c", 0);
@@ -99,9 +137,12 @@ public class MainTimeHandler : MonoBehaviour {
 		string lastTimem = PlayerPrefs.GetString("lastTime",dateTimenow.ToString("o"));
         //형변환을해줍니다
         System.DateTime lastDateTimem;
-        if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
+        if (!System.DateTime.TryParse(lastTimem, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTimem)) 
         {
-            lastDateTimem = dateTimenow;
+            if (!System.DateTime.TryParse(lastTimem, out lastDateTimem))
+            {
+                lastDateTimem = dateTimenow; 
+            }
         }
         //계산
         System.TimeSpan compareTimem =  System.DateTime.UtcNow - lastDateTimem;
@@ -147,9 +188,12 @@ public class MainTimeHandler : MonoBehaviour {
             lastTime = PlayerPrefs.GetString ("TalkLastTime", dateTime.ToString ("o"));
 
             System.DateTime lastDateTime;
-            if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+            if (!System.DateTime.TryParse(lastTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out lastDateTime))
             {
-                lastDateTime = System.DateTime.UtcNow.AddHours(-1);
+                if (!System.DateTime.TryParse(lastTime, out lastDateTime))
+                {
+                    lastDateTime = System.DateTime.UtcNow.AddHours(-1);
+                }
             }
             System.TimeSpan compareTime = System.DateTime.UtcNow - lastDateTime;
 
