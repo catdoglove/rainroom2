@@ -83,7 +83,7 @@ public class MainTimeHandler : MonoBehaviour {
     void CheckAllTimeKeys()
     {
         string[] keys = {
-        "outtime", "outLastTime", "outlasttimepark", "outlasttimecity",
+        "outLastTime", "outlasttimepark", "outlasttimecity",
         "sleepLastTime", "TalkLastTime", "milktime", "plantLastTime",
         "seedLastTime", "cookLastTime", "foodLastTime",
         "lastTime"
