@@ -86,7 +86,7 @@ public class MainTimeHandler : MonoBehaviour {
         "outtime", "outLastTime", "outlasttimepark", "outlasttimecity",
         "sleepLastTime", "TalkLastTime", "milktime", "plantLastTime",
         "seedLastTime", "cookLastTime", "foodLastTime",
-        "lastTime", "saveGudoc", "savePaper", "adtimes"
+        "lastTime"
     };
 
         System.DateTime nowUtc = System.DateTime.UtcNow;
