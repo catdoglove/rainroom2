@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.VersionControl;
 
 
 public class Parkfunction : CavasData
@@ -350,8 +351,6 @@ public class Parkfunction : CavasData
             GMP.GetComponent<EndingBox>().PlayEnd();
             GMP.GetComponent<EndingBox>().end_ani.Play("endPark1", -1, 0f);
             //소리
-            m_end.clip = sp_end;
-            m_end.Play();
         }
     }
 
@@ -361,8 +360,17 @@ public class Parkfunction : CavasData
         audio_obj.GetComponent<SoundEvt>().cancleSound();
 
         //소리
-        m_end.clip = sp_original;
-        m_end.Play();
+        GameObject soundObj = GameObject.Find("SoundControl");
+
+        if (soundObj != null)
+        {
+            SoundHandler handler = soundObj.GetComponent<SoundHandler>();
+
+            if (handler != null && sp_original != null)
+            {
+                handler.ChangeBGM(sp_original);
+            }
+        }
     }
 
     public void endR()

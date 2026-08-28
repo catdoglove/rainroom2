@@ -179,6 +179,7 @@ public class secondRoomFunction : CavasData
         if (SoundHandler.instance != null)
         {
             SoundHandler.instance.SetMute(false);
+            SoundHandler.instance.BGM.Play();
         }
     }
     // Use this for initialization
@@ -1532,8 +1533,17 @@ public class secondRoomFunction : CavasData
         else if(PlayerPrefs.GetInt("endafter", 0) == 1)
         {
             //소리
-            m_end.clip = sp_end;
-            m_end.Play();
+            GameObject soundObj = GameObject.Find("SoundControl");
+
+            if (soundObj != null)
+            {
+                SoundHandler handler = soundObj.GetComponent<SoundHandler>();
+
+                if (handler != null && sp_end != null)
+                {
+                    handler.ChangeBGM(sp_end);
+                }
+            }
             endWindow_obj.SetActive(true);
         }
     }
@@ -1543,8 +1553,18 @@ public class secondRoomFunction : CavasData
     {
         endWindow_obj.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
-        m_end.clip = sp_original;
-        m_end.Play();
+        //소리
+        GameObject soundObj = GameObject.Find("SoundControl");
+
+        if (soundObj != null)
+        {
+            SoundHandler handler = soundObj.GetComponent<SoundHandler>();
+
+            if (handler != null && sp_original != null)
+            {
+                handler.ChangeBGM(sp_original);
+            }
+        }
     }
 
     public void endR()

@@ -23,7 +23,7 @@ public class EndingBox : MonoBehaviour {
     public GameObject endR_obj, endL_obj, endClose_obj;
     public GameObject[] ani_obk;
     public AudioSource m_end;
-    public AudioClip sp_end;//, sp_original;
+    public AudioClip sp_end, sp_original;
     public int page = 0;
 
     public Animator end_ani;
@@ -273,14 +273,7 @@ public class EndingBox : MonoBehaviour {
         page = 0;
         endBack_obj.SetActive(true);
         //소리
-         m_end.clip = sp_end;
-
-        if (SoundHandler.instance != null)
-        {
-            SoundHandler.instance.SetMute(true);
-        }
-
-        m_end.Play();
+        soundChange(sp_end);
         SumPage();
         endL_obj.SetActive(false);
         endClose_obj.SetActive(false);
@@ -291,14 +284,7 @@ public class EndingBox : MonoBehaviour {
     {
         endBack_obj.SetActive(true);
         //소리
-         m_end.clip = sp_end;
-
-        if (SoundHandler.instance != null)
-        {
-            SoundHandler.instance.SetMute(true);
-        }
-
-        m_end.Play();
+        soundChange(sp_end);
         endL_obj.SetActive(false);
         endClose_obj.SetActive(false);
         endR_obj.SetActive(true);
@@ -318,13 +304,8 @@ public class EndingBox : MonoBehaviour {
         audio_obj.GetComponent<SoundEvt>().cancleSound();
         endBack_obj.SetActive(false);
         //소리
-        // m_end.clip = sp_original;
+        soundChange(sp_original);
 
-        if (SoundHandler.instance != null)
-        {
-            SoundHandler.instance.SetMute(false);
-        }
-        m_end.Stop();
         end_i = 0;
         if (room == 5)
         {
@@ -412,5 +393,21 @@ public class EndingBox : MonoBehaviour {
                 page = 2;
                 break;
         }
+    }
+
+    void soundChange(AudioClip changeS)
+    {
+        GameObject soundObj = GameObject.Find("SoundControl");
+
+        if (soundObj != null)
+        {
+            SoundHandler handler = soundObj.GetComponent<SoundHandler>();
+
+            if (handler != null && changeS != null)
+            {
+                handler.ChangeBGM(changeS);
+            }
+        }
+
     }
 }

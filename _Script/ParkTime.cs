@@ -204,8 +204,17 @@ public class ParkTime : MonoBehaviour
         endWindow_obj.SetActive(false);
         Audio_obj.GetComponent<SoundEvt>().cancleSound();
         //소리
-        m_end.clip = sp_original;
-        m_end.Play();
+        GameObject soundObj = GameObject.Find("SoundControl");
+
+        if (soundObj != null)
+        {
+            SoundHandler handler = soundObj.GetComponent<SoundHandler>();
+
+            if (handler != null && sp_original != null)
+            {
+                handler.ChangeBGM(sp_original);
+            }
+        }
     }
 
     public void endR()

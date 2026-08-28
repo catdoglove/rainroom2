@@ -133,17 +133,17 @@ public class FirstRoomFunction : CavasData {
         PlayerPrefs.SetInt("AddressableComplete", 1);
         PlayerPrefs.Save();
 
+        if (SoundHandler.instance != null)
+        {
+            SoundHandler.instance.SetMute(false);
+            //SoundHandler.instance.BGM.Play();
+        }
         yield return new WaitForSeconds(1f);
 
         titlebtn.SetActive(true);
         touchtostart.SetActive(true);
         loadingImg.SetActive(false);
         roomLoading.SetActive(false);
-
-        if (SoundHandler.instance != null)
-        {
-            SoundHandler.instance.SetMute(false);
-        }
     }
 
 
